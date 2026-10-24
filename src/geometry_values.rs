@@ -1,13 +1,10 @@
 // Copyright (C) 2026 Open Source Robotics Foundation
 // SPDX-License-Identifier: Apache-2.0
 //! Plane and bounding-box components without a simulator math dependency.
-use crate::msgs::{AxisAlignedBox, PlaneGeom, Vector3d};
-
-fn set_xyz(message: &mut Vector3d, [x, y, z]: [f64; 3]) {
-    message.x = x;
-    message.y = y;
-    message.z = z;
-}
+use crate::{
+    msgs::{AxisAlignedBox, PlaneGeom},
+    set_vector3,
+};
 
 /// Creates a plane with default metadata; components are not normalized.
 pub fn plane(normal: [f64; 3], size: [f64; 2], offset: f64) -> PlaneGeom {
@@ -18,7 +15,7 @@ pub fn plane(normal: [f64; 3], size: [f64; 2], offset: f64) -> PlaneGeom {
 
 /// Updates geometry while retaining outer and nested message headers.
 pub fn set_plane(message: &mut PlaneGeom, normal: [f64; 3], [x, y]: [f64; 2], offset: f64) {
-    set_xyz(message.normal.get_or_insert_default(), normal);
+    set_vector3(message.normal.get_or_insert_default(), normal);
     let size = message.size.get_or_insert_default();
     size.x = x;
     size.y = y;
@@ -41,8 +38,8 @@ pub fn axis_aligned_box(min: [f64; 3], max: [f64; 3]) -> AxisAlignedBox {
 
 /// Updates both corners while retaining outer and nested message headers.
 pub fn set_axis_aligned_box(message: &mut AxisAlignedBox, min: [f64; 3], max: [f64; 3]) {
-    set_xyz(message.min_corner.get_or_insert_default(), min);
-    set_xyz(message.max_corner.get_or_insert_default(), max);
+    set_vector3(message.min_corner.get_or_insert_default(), min);
+    set_vector3(message.max_corner.get_or_insert_default(), max);
 }
 
 /// Missing corners read as zero; explicitly inverted corners remain inverted.

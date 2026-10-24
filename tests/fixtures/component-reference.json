@@ -1,0 +1,155 @@
+{
+  "orientations": [
+    [
+      13827431492881805563,
+      4598546281027811478,
+      4604059456027029756,
+      4598546281027811477
+    ],
+    [
+      4607182418800017408,
+      4611686018427387904,
+      4613937818241073152,
+      4616189618054758400
+    ],
+    [
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "rows": [
+    {
+      "kind": "v2",
+      "index": 0,
+      "seeded": 0,
+      "wire_hex": "11000000000000f03f190000000000000040"
+    },
+    {
+      "kind": "v3",
+      "index": 0,
+      "seeded": 0,
+      "wire_hex": "11000000000000f03f190000000000000040210000000000000840"
+    },
+    {
+      "kind": "color",
+      "index": 0,
+      "seeded": 0,
+      "wire_hex": "15cdcccc3d1dcdcc4c3e259a99993e2d0000803f"
+    },
+    {
+      "kind": "quaternion",
+      "index": 0,
+      "seeded": 0,
+      "wire_hex": "11fbf04491aee7e4bf199638db7b7a51d13f21fcf04491aee7e43f299538db7b7a51d13f"
+    },
+    {
+      "kind": "pose",
+      "index": 0,
+      "seeded": 0,
+      "wire_hex": "221b11000000000000f03f1900000000000000402100000000000008402a2411fbf04491aee7e4bf199638db7b7a51d13f21fcf04491aee7e43f299538db7b7a51d13f"
+    },
+    {
+      "kind": "quaternion",
+      "index": 1,
+      "seeded": 0,
+      "wire_hex": "11000000000000f03f190000000000000040210000000000000840290000000000001040"
+    },
+    {
+      "kind": "pose",
+      "index": 1,
+      "seeded": 0,
+      "wire_hex": "221b11000000000000f03f1900000000000000402100000000000008402a2411000000000000f03f190000000000000040210000000000000840290000000000001040"
+    },
+    {
+      "kind": "quaternion",
+      "index": 2,
+      "seeded": 0,
+      "wire_hex": ""
+    },
+    {
+      "kind": "pose",
+      "index": 2,
+      "seeded": 0,
+      "wire_hex": "221b11000000000000f03f1900000000000000402100000000000008402a00"
+    },
+    {
+      "kind": "v2",
+      "index": 0,
+      "seeded": 1,
+      "wire_hex": "0a040a02080b11000000000000f03f190000000000000040"
+    },
+    {
+      "kind": "v3",
+      "index": 0,
+      "seeded": 1,
+      "wire_hex": "0a040a02080b11000000000000f03f190000000000000040210000000000000840"
+    },
+    {
+      "kind": "color",
+      "index": 0,
+      "seeded": 1,
+      "wire_hex": "0a040a02080b15cdcccc3d1dcdcc4c3e259a99993e2d0000803f"
+    },
+    {
+      "kind": "quaternion",
+      "index": 0,
+      "seeded": 1,
+      "wire_hex": "0a040a02080b11fbf04491aee7e4bf199638db7b7a51d13f21fcf04491aee7e43f299538db7b7a51d13f"
+    },
+    {
+      "kind": "pose",
+      "index": 0,
+      "seeded": 1,
+      "wire_hex": "0a040a02080b120872657461696e6564182a22210a040a02081611000000000000f03f1900000000000000402100000000000008402a2a0a040a02082111fbf04491aee7e4bf199638db7b7a51d13f21fcf04491aee7e43f299538db7b7a51d13f"
+    },
+    {
+      "kind": "quaternion",
+      "index": 1,
+      "seeded": 1,
+      "wire_hex": "0a040a02080b11000000000000f03f190000000000000040210000000000000840290000000000001040"
+    },
+    {
+      "kind": "pose",
+      "index": 1,
+      "seeded": 1,
+      "wire_hex": "0a040a02080b120872657461696e6564182a22210a040a02081611000000000000f03f1900000000000000402100000000000008402a2a0a040a02082111000000000000f03f190000000000000040210000000000000840290000000000001040"
+    },
+    {
+      "kind": "quaternion",
+      "index": 2,
+      "seeded": 1,
+      "wire_hex": "0a040a02080b"
+    },
+    {
+      "kind": "pose",
+      "index": 2,
+      "seeded": 1,
+      "wire_hex": "0a040a02080b120872657461696e6564182a22210a040a02081611000000000000f03f1900000000000000402100000000000008402a060a040a020821"
+    }
+  ],
+  "upstream_commit": "89c0c3d1474f545cb889335daf930bfdab6ab852",
+  "source_sha256": {
+    "core/include/gz/msgs/convert/Vector2.hh": "9e2afc562d9569a3a6e435b83779a8a838bd871fa3209338f300655f37b7c688",
+    "core/include/gz/msgs/convert/Vector3.hh": "ff6db5affe1c6f634490c790afbe55bc84aedd1b516c627e2f996b398d641a7d",
+    "core/include/gz/msgs/convert/Color.hh": "50a7cb645f53b4770444aeeac3d122e5e816c626d76484237d6edff2136e5276",
+    "core/include/gz/msgs/convert/Quaternion.hh": "d1517e123dfd80b1639b01ae2ac752bfe85b286c245a9a795d4c7e939207cebd",
+    "core/include/gz/msgs/convert/Pose.hh": "be2c19f27f174918f73d8caad665920d51b824c6514bbe7ccc29353ad6cd7146",
+    "test/integration/Utility_TEST.cc": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607"
+  },
+  "probe_source_sha256": "1c5523d6f8cd34d4cad4286d3ebbe10ea81ab92e47d31779db6b0d64718daabe",
+  "probe_binary_sha256": "351ab072c7948ef2414547cb6c7287efe462d2cff042c9ebf121c5224a205cd4",
+  "original_native_binary_sha256": "f49abdc7852a8bb429fc49ce1d072679abaab72bb39b6f93fcc6036f9081a6c8",
+  "original_native_tests": [
+    "UtilityTest.ConvertMathQuaterionToMsgs",
+    "UtilityTest.ConvertMsgsQuaterionToMath",
+    "UtilityTest.ConvertPoseMathToMsgs",
+    "UtilityTest.ConvertMsgPoseToMath",
+    "UtilityTest.SetVector3",
+    "UtilityTest.SetVector2d",
+    "UtilityTest.SetQuaternion",
+    "UtilityTest.SetPose",
+    "MsgsTest.SetColor"
+  ]
+}

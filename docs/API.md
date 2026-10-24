@@ -231,3 +231,10 @@ for missing nested vectors. They copy values directly: plane normals are not
 normalized and box corners are not sorted. In particular these represent already
 assigned native math components, not the native AxisAlignedBox constructor's
 corner ordering policy. Existing generated typed unknown-field limits still apply.
+
+`set_vector2`, `set_vector3`, `set_quaternion`, `set_color` and `set_pose`
+update raw components while retaining metadata. Pose updates also retain nested
+position/orientation headers and the outer name/ID. Quaternion order remains XYZW;
+no normalization is introduced, including explicitly zero or non-unit rotations.
+These setters consume caller-computed math values; Euler conversion and color
+clamping remain responsibilities of the caller's math implementation.

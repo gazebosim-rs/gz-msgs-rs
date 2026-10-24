@@ -235,33 +235,53 @@
       "id": "UtilityTest.ConvertMathQuaterionToMsgs",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "component_setters::original_quaternion_and_pose_conversions_and_assignment"
+      ],
+      "native_status": "passed",
+      "review_note": "Complete nine original assertions and five native headers independently compared; all three Rust tests, exact nine native originals and source/binary hash checks rerun. Actual probe reproduced18 complete wire rows/three native orientation inputs. Original component bounds/raw ordering/zero/nonunit rotations and all metadata retained. Caller owns math algorithms/Euler conversion.",
+      "reviewer": "/root/transport",
+      "reviewed_diff": "affdc82edd66fff16aec1be6ff8bde11bee7cddbd5a3759b6bb0436c1da91665"
     },
     {
       "id": "UtilityTest.ConvertMsgsQuaterionToMath",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "component_setters::original_quaternion_and_pose_conversions_and_assignment"
+      ],
+      "native_status": "passed",
+      "review_note": "Complete nine original assertions and five native headers independently compared; all three Rust tests, exact nine native originals and source/binary hash checks rerun. Actual probe reproduced18 complete wire rows/three native orientation inputs. Original component bounds/raw ordering/zero/nonunit rotations and all metadata retained. Caller owns math algorithms/Euler conversion.",
+      "reviewer": "/root/transport",
+      "reviewed_diff": "affdc82edd66fff16aec1be6ff8bde11bee7cddbd5a3759b6bb0436c1da91665"
     },
     {
       "id": "UtilityTest.ConvertPoseMathToMsgs",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "component_setters::original_quaternion_and_pose_conversions_and_assignment"
+      ],
+      "native_status": "passed",
+      "review_note": "Complete nine original assertions and five native headers independently compared; all three Rust tests, exact nine native originals and source/binary hash checks rerun. Actual probe reproduced18 complete wire rows/three native orientation inputs. Original component bounds/raw ordering/zero/nonunit rotations and all metadata retained. Caller owns math algorithms/Euler conversion.",
+      "reviewer": "/root/transport",
+      "reviewed_diff": "affdc82edd66fff16aec1be6ff8bde11bee7cddbd5a3759b6bb0436c1da91665"
     },
     {
       "id": "UtilityTest.ConvertMsgPoseToMath",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "component_setters::original_quaternion_and_pose_conversions_and_assignment"
+      ],
+      "native_status": "passed",
+      "review_note": "Complete nine original assertions and five native headers independently compared; all three Rust tests, exact nine native originals and source/binary hash checks rerun. Actual probe reproduced18 complete wire rows/three native orientation inputs. Original component bounds/raw ordering/zero/nonunit rotations and all metadata retained. Caller owns math algorithms/Euler conversion.",
+      "reviewer": "/root/transport",
+      "reviewed_diff": "affdc82edd66fff16aec1be6ff8bde11bee7cddbd5a3759b6bb0436c1da91665"
     },
     {
       "id": "UtilityTest.ConvertMsgPoseToMathIdentity",
@@ -512,41 +532,66 @@
       "id": "UtilityTest.SetVector3",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "component_setters::original_vector_and_color_assignment"
+      ],
+      "native_status": "passed",
+      "review_note": "Complete nine original assertions and five native headers independently compared; all three Rust tests, exact nine native originals and source/binary hash checks rerun. Actual probe reproduced18 complete wire rows/three native orientation inputs. Original component bounds/raw ordering/zero/nonunit rotations and all metadata retained. Caller owns math algorithms/Euler conversion.",
+      "reviewer": "/root/transport",
+      "reviewed_diff": "affdc82edd66fff16aec1be6ff8bde11bee7cddbd5a3759b6bb0436c1da91665"
     },
     {
       "id": "UtilityTest.SetVector2d",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "component_setters::original_vector_and_color_assignment"
+      ],
+      "native_status": "passed",
+      "review_note": "Complete nine original assertions and five native headers independently compared; all three Rust tests, exact nine native originals and source/binary hash checks rerun. Actual probe reproduced18 complete wire rows/three native orientation inputs. Original component bounds/raw ordering/zero/nonunit rotations and all metadata retained. Caller owns math algorithms/Euler conversion.",
+      "reviewer": "/root/transport",
+      "reviewed_diff": "affdc82edd66fff16aec1be6ff8bde11bee7cddbd5a3759b6bb0436c1da91665"
     },
     {
       "id": "UtilityTest.SetQuaternion",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "component_setters::original_quaternion_and_pose_conversions_and_assignment"
+      ],
+      "native_status": "passed",
+      "review_note": "Complete nine original assertions and five native headers independently compared; all three Rust tests, exact nine native originals and source/binary hash checks rerun. Actual probe reproduced18 complete wire rows/three native orientation inputs. Original component bounds/raw ordering/zero/nonunit rotations and all metadata retained. Caller owns math algorithms/Euler conversion.",
+      "reviewer": "/root/transport",
+      "reviewed_diff": "affdc82edd66fff16aec1be6ff8bde11bee7cddbd5a3759b6bb0436c1da91665"
     },
     {
       "id": "UtilityTest.SetPose",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "component_setters::original_quaternion_and_pose_conversions_and_assignment"
+      ],
+      "native_status": "passed",
+      "review_note": "Complete nine original assertions and five native headers independently compared; all three Rust tests, exact nine native originals and source/binary hash checks rerun. Actual probe reproduced18 complete wire rows/three native orientation inputs. Original component bounds/raw ordering/zero/nonunit rotations and all metadata retained. Caller owns math algorithms/Euler conversion.",
+      "reviewer": "/root/transport",
+      "reviewed_diff": "affdc82edd66fff16aec1be6ff8bde11bee7cddbd5a3759b6bb0436c1da91665"
     },
     {
       "id": "MsgsTest.SetColor",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "component_setters::original_vector_and_color_assignment"
+      ],
+      "native_status": "passed",
+      "review_note": "Complete nine original assertions and five native headers independently compared; all three Rust tests, exact nine native originals and source/binary hash checks rerun. Actual probe reproduced18 complete wire rows/three native orientation inputs. Original component bounds/raw ordering/zero/nonunit rotations and all metadata retained. Caller owns math algorithms/Euler conversion.",
+      "reviewer": "/root/transport",
+      "reviewed_diff": "affdc82edd66fff16aec1be6ff8bde11bee7cddbd5a3759b6bb0436c1da91665"
     },
     {
       "id": "UtilityTest.SetPlane",

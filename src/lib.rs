@@ -88,11 +88,9 @@ pub fn quaternion(value: [f64; 4]) -> quaternion::Quaternion {
 
 /// Constructs only a pose's geometric fields; names/IDs/headers remain default.
 pub fn pose(position: [f64; 3], orientation: [f64; 4]) -> Pose {
-    Pose {
-        position: Some(position.into()),
-        orientation: Some(orientation.into()),
-        ..Default::default()
-    }
+    let mut message = Pose::default();
+    set_pose(&mut message, position, orientation);
+    message
 }
 
 /// Missing orientation means identity, matching Gazebo's domain conversion.
@@ -116,3 +114,11 @@ pub mod factory;
 
 mod geometry_values;
 pub use geometry_values::*;
+
+/// Updates pose geometry while retaining name, ID, outer and nested headers.
+pub fn set_pose(message: &mut Pose, position: [f64; 3], orientation: [f64; 4]) {
+    set_vector3(message.position.get_or_insert_default(), position);
+    set_quaternion(message.orientation.get_or_insert_default(), orientation);
+}
+
+pub use conversions::{set_color, set_quaternion, set_vector2, set_vector3};
