@@ -252,3 +252,23 @@ fresh component value accepts fluid data only at exactly21 entries and reflects
 the upper triangle into the lower; all other lengths yield None. This matches
 native conversion, including discarded asymmetric lower-triangle values. Use
 fresh construction when replacing the complete message is intended.
+
+`coordinate_type_from_math` and `coordinate_type_to_math` explicitly translate
+raw gz-math coordinate enum codes1..4 (SPHERICAL/ECEF/GLOBAL/LOCAL) and canonical
+protobuf codes0..3. These numeric domains differ; direct integer casting is
+incorrect. Both converters preserve native invalid-value diagnostics and LOCAL
+fallback (protobuf3/native4). No spherical position transformation is performed.
+
+`SphericalComponents` uses radians for latitude/longitude/heading and meters for
+elevation; its typed surface is Earth, Moon, Custom axes, or an explicitly
+unrecognized native code. `spherical_coordinates` creates fresh messages;
+`set_spherical_coordinates` keeps header/entity and unused axis fields. Unknown
+surfaces diagnose and retain old model/axes while updating other references.
+`spherical_components` reads a fresh domain value: unknown protobuf models fall
+back to Earth; invalid custom axes keep Custom but use Earth's parameters. Axis
+validity follows native positivity/polar<=equatorial comparisons, including IEEE
+nonfinite behavior. `.axes()` exposes native known/custom model axes. Scalar
+radian/degree operation order matches native Angle rounding; there is no coordinate
+transform/ellipsoid implementation or input quaternion math. As with other raw
+components, caller-computed surface parameters are copied by setters rather than
+rerunning native math constructors' physical normalization.

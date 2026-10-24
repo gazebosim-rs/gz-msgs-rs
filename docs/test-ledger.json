@@ -417,25 +417,40 @@
       "id": "MsgsTest.ConvertMathSphericalCoordinatesToMsgs",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "spherical::original_complete_spherical_conversion_assertions"
+      ],
+      "native_status": "passed",
+      "review_note": "All four originals, conversion header and native Angle/custom fallback independently compared; five Rust tests, four exact native originals and hash-matched native probes rerun. All14 enum results/diagnostics,16 setter wires and11 reverse bits reproduce. Original literals/fourULP bounds,500000 LOCAL fallbacks,state/IEEE semantics and raw-caller constructor scope retained. Rust diagnostic bodies source-compared, no false subprocess stderr claim. No geodetic transformation/dependency claim.",
+      "reviewer": "/root/transport",
+      "reviewed_diff": "5313d24b676d65f90cf26dd48da0410e175eb893f58deaf980bed68b34377428"
     },
     {
       "id": "MsgsTest.ConvertMsgsSphericalCoordinatesTypeToMath",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "coordinates::original_coordinate_enum_conversions"
+      ],
+      "native_status": "passed",
+      "review_note": "All four originals, conversion header and native Angle/custom fallback independently compared; five Rust tests, four exact native originals and hash-matched native probes rerun. All14 enum results/diagnostics,16 setter wires and11 reverse bits reproduce. Original literals/fourULP bounds,500000 LOCAL fallbacks,state/IEEE semantics and raw-caller constructor scope retained. Rust diagnostic bodies source-compared, no false subprocess stderr claim. No geodetic transformation/dependency claim.",
+      "reviewer": "/root/transport",
+      "reviewed_diff": "5313d24b676d65f90cf26dd48da0410e175eb893f58deaf980bed68b34377428"
     },
     {
       "id": "MsgsTest.ConvertMathSphericalCoordinatedTypeToMsg",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "coordinates::original_coordinate_enum_conversions"
+      ],
+      "native_status": "passed",
+      "review_note": "All four originals, conversion header and native Angle/custom fallback independently compared; five Rust tests, four exact native originals and hash-matched native probes rerun. All14 enum results/diagnostics,16 setter wires and11 reverse bits reproduce. Original literals/fourULP bounds,500000 LOCAL fallbacks,state/IEEE semantics and raw-caller constructor scope retained. Rust diagnostic bodies source-compared, no false subprocess stderr claim. No geodetic transformation/dependency claim.",
+      "reviewer": "/root/transport",
+      "reviewed_diff": "5313d24b676d65f90cf26dd48da0410e175eb893f58deaf980bed68b34377428"
     },
     {
       "id": "UtilityTest.ConvertStringMsg",
@@ -661,9 +676,14 @@
       "id": "MsgsTest.SetSphericalCoordinates",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "spherical::original_spherical_assignment_assertions"
+      ],
+      "native_status": "passed",
+      "review_note": "All four originals, conversion header and native Angle/custom fallback independently compared; five Rust tests, four exact native originals and hash-matched native probes rerun. All14 enum results/diagnostics,16 setter wires and11 reverse bits reproduce. Original literals/fourULP bounds,500000 LOCAL fallbacks,state/IEEE semantics and raw-caller constructor scope retained. Rust diagnostic bodies source-compared, no false subprocess stderr claim. No geodetic transformation/dependency claim.",
+      "reviewer": "/root/transport",
+      "reviewed_diff": "5313d24b676d65f90cf26dd48da0410e175eb893f58deaf980bed68b34377428"
     },
     {
       "id": "MsgsTest.SetStringMsg",

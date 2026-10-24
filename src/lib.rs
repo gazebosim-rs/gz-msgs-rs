@@ -125,3 +125,9 @@ pub use conversions::{set_color, set_quaternion, set_vector2, set_vector3};
 
 mod inertial_values;
 pub use inertial_values::*;
+
+mod coordinate_values;
+pub use coordinate_values::*;
+
+mod spherical_values;
+pub use spherical_values::*;

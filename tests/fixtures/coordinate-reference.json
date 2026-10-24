@@ -1,0 +1,102 @@
+{
+  "rows": [
+    {
+      "direction": "from_math",
+      "input": 0,
+      "output": 3,
+      "stderr": "Invalid coordinate type passed\n"
+    },
+    {
+      "direction": "from_math",
+      "input": 1,
+      "output": 0,
+      "stderr": ""
+    },
+    {
+      "direction": "from_math",
+      "input": 2,
+      "output": 1,
+      "stderr": ""
+    },
+    {
+      "direction": "from_math",
+      "input": 3,
+      "output": 2,
+      "stderr": ""
+    },
+    {
+      "direction": "from_math",
+      "input": 4,
+      "output": 3,
+      "stderr": ""
+    },
+    {
+      "direction": "from_math",
+      "input": 5,
+      "output": 3,
+      "stderr": "Invalid coordinate type passed\n"
+    },
+    {
+      "direction": "from_math",
+      "input": 500000,
+      "output": 3,
+      "stderr": "Invalid coordinate type passed\n"
+    },
+    {
+      "direction": "to_math",
+      "input": 0,
+      "output": 1,
+      "stderr": ""
+    },
+    {
+      "direction": "to_math",
+      "input": 1,
+      "output": 2,
+      "stderr": ""
+    },
+    {
+      "direction": "to_math",
+      "input": 2,
+      "output": 3,
+      "stderr": ""
+    },
+    {
+      "direction": "to_math",
+      "input": 3,
+      "output": 4,
+      "stderr": ""
+    },
+    {
+      "direction": "to_math",
+      "input": 4,
+      "output": 4,
+      "stderr": "Invalid coordinate type passed\n"
+    },
+    {
+      "direction": "to_math",
+      "input": 5,
+      "output": 4,
+      "stderr": "Invalid coordinate type passed\n"
+    },
+    {
+      "direction": "to_math",
+      "input": 500000,
+      "output": 4,
+      "stderr": "Invalid coordinate type passed\n"
+    }
+  ],
+  "upstream_commit": "89c0c3d1474f545cb889335daf930bfdab6ab852",
+  "source_sha256": {
+    "core/include/gz/msgs/convert/SphericalCoordinates.hh": "c8ff9eb3e3309fe7645187795ece80c79545ddde4f9d3b29e43c53e1a99aac5e",
+    "test/integration/Utility_TEST.cc": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607"
+  },
+  "probe_source_sha256": "6891e6e5877ccd3f71cd2121a5b8c124df665396c68852558e70080287e98d6f",
+  "probe_binary_sha256": "765ab93b117268e244a46636e6f60c82d5e3edc64a49e0dbd0fd9e6664be75e6",
+  "original_native_binary_sha256": "f49abdc7852a8bb429fc49ce1d072679abaab72bb39b6f93fcc6036f9081a6c8",
+  "original_native_tests": [
+    "MsgsTest.ConvertMsgsSphericalCoordinatesTypeToMath",
+    "MsgsTest.ConvertMathSphericalCoordinatedTypeToMsg"
+  ],
+  "math_revision": "1316ed334f4d5bda7be59aae07cd6e8ff31cfe13",
+  "math_coordinate_header_sha256": "3b3c9d12274de114fb8cc7147076540829f0bdbfafcbc24a464aaf824784b361"
+}

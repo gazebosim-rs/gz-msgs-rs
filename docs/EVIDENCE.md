@@ -592,3 +592,49 @@ mappings are reviewed. Full local gate passes67 Rust checks,5 snapshot regressio
 fmt/clippy/clean consumer and714/714 owned lines,1052/1061 regions; inertial values
 are71/71 lines,86/86 regions. Physical/math validation remains caller-owned.
 No dependency/exclusion changed; final strict staged gate remains required.
+
+Coordinate enum slice explicitly translates native math codes1..4 to canonical
+protobuf0..3 and back; malformed values diagnose and fall back to LOCAL. The
+actual native probe captures14 return-value/stderr rows and reruns both exact
+original coordinate cases, including original500000 invalid inputs. Source/
+header/helper/native binary hashes are pinned. Two Rust tests retain every
+original enum/fallback assertion and compare all14 returned values. Native
+stderr is captured; Rust diagnostic wording is source-inspected, not claimed as
+an automatic subprocess equality test. This is numeric interoperability only,
+without coordinate transformation algorithms or a new math dependency. Both
+mapping dispositions await independent review.
+
+The coordinate enum work is grouped with complete spherical-reference conversion
+and assignment into one family. Typed Earth/Moon/Custom/Unrecognized surfaces and
+raw radian reference components replace math objects. Fresh/message setters and
+readers retain native surface code behavior, stale axes/header/entity retention,
+custom-axis fallback (keep CUSTOM, Earth radii), unknown model fallback (Earth),
+negative zero, and operation-order-sensitive degree/radian IEEE rounding. This
+uses constants/simple unit conversion and the native parameter predicate, without
+reimplementing geodetic coordinate transforms or adding a math dependency.
+
+The native spherical probe captures16 complete fresh/seeded setter wires and11
+reverse parameter/axis bit rows, including nonpositive, reversed, NaN and infinite
+axes, unknown surfaces, negative zeros and overflowing angle values. Caller math
+construction diagnostics are separate from conversion diagnostics. The fixture
+pins message/core/helper/native binary and math source revision/file/library
+hashes. Three Rust tests retain every assertion in the two complete originals,
+including their enum checks and four-ULP EXPECT_DOUBLE_EQ bounds, then compare all
+wires and reverse bits. Native diagnostics are captured; Rust diagnostic text is
+source-inspected rather than claimed as a subprocess equivalence test. Both
+original native cases pass exactly1run/0fail. Alongside the enum slice, four
+mappings await independent review; no dependency or exclusion changed.
+
+/root/transport approved exact spherical-family staged diff
+`5313d24b676d65f90cf26dd48da0410e175eb893f58deaf980bed68b34377428`.
+It independently compared all four originals, conversion header and native
+Angle/custom fallback, reran five Rust tests and four exact native originals,
+and replayed hash-matched probes for14 enum rows,16 wires and11 reverse states.
+Source/probe/original/math-library hashes match. Literal values/four-ULP bounds,
+500000 fallback, caller-raw constructor scope, stale metadata, custom/nonfinite
+semantics and exact operation order are retained. Rust diagnostics are explicitly
+source-compared. All four mappings are reviewed; full local gate passes72 Rust
+checks,5 snapshot regressions, fmt/clippy/clean consumer and788/788 owned lines,
+1123/1132 regions. Coordinate helpers are18/18 lines/regions, spherical helpers
+56/56 lines and53/53 regions. No dependencies/exclusions changed. Final strict
+staged gate remains required.
