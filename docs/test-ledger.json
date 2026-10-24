@@ -30,21 +30,27 @@
       "id": "FactoryTest.NewWithWellFormedData",
       "source": "test/integration/Factory_TEST.cc",
       "source_sha256": "a132a6f663ec29fa265819be82dc69ad6e3c900ee7a8a24052fb15b06e48e9d0",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "upstream_ports::factory_original_text_construction_and_all_registered_types"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root",
+      "reviewed_commit": "a7b99ec50b71d6417bc328cb45dbe2afcac4858b",
+      "review_note": "Original Factory assertions independently compared and both targeted Rust tests rerun by root; complete 271-name native set retained, native unordered traversal explicitly not promised."
     },
     {
       "id": "FactoryTest.NewWithMalformedData",
       "source": "test/integration/Factory_TEST.cc",
       "source_sha256": "a132a6f663ec29fa265819be82dc69ad6e3c900ee7a8a24052fb15b06e48e9d0",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "upstream_ports::factory_original_text_construction_and_all_registered_types"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root",
+      "reviewed_commit": "a7b99ec50b71d6417bc328cb45dbe2afcac4858b",
+      "review_note": "Original Factory assertions independently compared and both targeted Rust tests rerun by root; complete 271-name native set retained, native unordered traversal explicitly not promised."
     },
     {
       "id": "FactoryTest.DeprecatedNonFullyQualified",
@@ -82,11 +88,14 @@
       "id": "FactoryTest.NewAllRegisteredTypes",
       "source": "test/integration/Factory_TEST.cc",
       "source_sha256": "a132a6f663ec29fa265819be82dc69ad6e3c900ee7a8a24052fb15b06e48e9d0",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "upstream_ports::factory_original_text_construction_and_all_registered_types"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root",
+      "reviewed_commit": "a7b99ec50b71d6417bc328cb45dbe2afcac4858b",
+      "review_note": "Original Factory assertions independently compared and both targeted Rust tests rerun by root; complete 271-name native set retained, native unordered traversal explicitly not promised."
     },
     {
       "id": "FactoryTest.MultipleMessagesInAProto",
@@ -132,12 +141,15 @@
       "id": "PointCloudPackedUtilsTest.SizeOfPointField",
       "source": "test/integration/PointCloudPackedUtils_TEST.cc",
       "source_sha256": "3b310f335e73209b2db3a726d03ee223df64c2b29ef8350d53f783814792cb29",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "cloud::original_size_and_initializer_assertions",
         "cloud::native_layout_and_size_corpus"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root/sdformat",
+      "reviewed_commit": "991617956669bdf5c631a4e210b6b5584666b7eb",
+      "review_note": "Every original assertion compared; native 30 complete-wire layouts, 10 sizes and follow-on 10 scalar/color fixtures independently reproduced. Coordinator accepted independent review before publication."
     },
     {
       "id": "UtilityTest.CovertMathVector3ToMsgs",
@@ -665,12 +677,15 @@
       "id": "UtilityTest.InitPointCloudPacked",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "cloud::original_size_and_initializer_assertions",
         "cloud::native_layout_and_size_corpus"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root/sdformat",
+      "reviewed_commit": "991617956669bdf5c631a4e210b6b5584666b7eb",
+      "review_note": "Every original assertion compared; native 30 complete-wire layouts, 10 sizes and follow-on 10 scalar/color fixtures independently reproduced. Coordinator accepted independent review before publication."
     },
     {
       "id": "UtilityTest.DiscoveryTypeString",

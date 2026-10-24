@@ -285,3 +285,12 @@ consumer, fmt/clippy and strict coverage: 422/422 owned lines, 595/603 regions.
 The smaller CLI denominator reflects replacing its nested top-level-only scan
 with a direct all_messages iterator, without new coverage exclusions. External
 factory descriptor loading/retry/lazy/concurrency scope remains unfinished.
+
+Independent review receipt: /root/sdformat compared every original initializer/
+size assertion against 9916179 and reproduced the 30 metadata, 10 size and 10
+follow-on scalar/color native fixtures with matching provenance. No functional
+defect found in either cloud slice. /root independently compared the three
+Factory cases against a7b99ec and reran the original text/all-type and complete
+native-list Rust tests. All five mappings are now reviewed; the coordinator
+accepted the chain through ab3fc90 for publication. This accepts bounded slices,
+not completed MSG-01/MSG-02 packets or unimplemented iterator operators.
