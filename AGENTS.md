@@ -57,3 +57,6 @@ For new repository-owned Rust, Python, C++ and shell source/probes, include
 `SPDX-License-Identifier: Apache-2.0`; place comments after a shebang where present.
 Keep root NOTICE and README attribution consistent. Preserve original imported
 copyright holders/years and all vendored third-party attribution unchanged.
+
+Assertion-preserving Rust ports retain the original source copyright notices/years
+alongside the new rewrite notice, even when the source language changes.

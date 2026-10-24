@@ -1,5 +1,7 @@
 // Copyright (C) 2026 Open Source Robotics Foundation
 // SPDX-License-Identifier: Apache-2.0
+// Original assertion sources:
+// Copyright (C) 2018 Open Source Robotics Foundation
 use std::{
     io::Write,
     process::{Command, Stdio},

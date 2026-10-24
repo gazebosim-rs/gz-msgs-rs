@@ -1,5 +1,8 @@
 // Copyright (C) 2026 Open Source Robotics Foundation
 // SPDX-License-Identifier: Apache-2.0
+// Original assertion sources:
+// Copyright (C) 2016 Open Source Robotics Foundation
+// Copyright (C) 2019 Open Source Robotics Foundation
 use gz_msgs::enum_names::EnumKind;
 #[test]
 fn native_enum_spelling_and_fallback_corpus() {
