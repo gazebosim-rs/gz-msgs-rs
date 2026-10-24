@@ -492,3 +492,40 @@ mappings are reviewed. Full local gate passes54 Rust checks,5 snapshot regressio
 fmt/clippy/clean consumer,643/643 owned Rust lines and955/964 regions (geometry
 46/46 lines,81/81 regions). No dependency or exclusion changed. Final strict
 staged gate remains required for publication.
+
+Safe packed-cloud accesses now exercise the complete original missing-field,
+mixed-field and XYZRGBA behavioral assertions through indexed read/write calls.
+Some/None current/end observations replace native iterator/end comparisons;
+exclusive cloud borrows replace simultaneous aliased mutable iterator references.
+All original metadata, seven typed reads/writes, five-record counts, mutable and
+const-equivalent passes and all end observations are retained. The original
+FLOAT64 field accessed as float remains f32. The Operators test's numeric reads,
+copied/advanced positions and arithmetic values are covered, but object identity
+and overloaded-operator assertions remain outside the API; its mapping stays
+not_ported with partial evidence, not silently retired. No cursor wrapper or unsafe
+reference is introduced. Initialization retains all9 scalar default assertions;
+absent nested Rust Option fields are explicitly viewed through default values
+without insertion. Four full mappings await independent review.
+
+`cloud-original-reference.py` reruns the four exact native cloud cases and
+UtilityTest.Initialization, checks one-run/zero-failure XML and saves source/binary
+hashes plus logs under target/reference. The existing full-wire scalar/color
+corpus remains unchanged. Five targeted new Rust tests and all five native cases
+pass; the next full gate will include them before publication.
+
+/root/sdformat approved exact cloud/default staged diff
+`86a7ef17bcb9e96512cdefdac08de38ca4eca3a41d3d01e5feb839cefe952d2f`:
+complete original source/assertions compared, five exact native tests and five
+Rust tests independently rerun; source/native hashes verified. Four full mappings
+are reviewed. Operators remains not_ported with explicitly partial numeric evidence.
+The full local gate passes59 Rust checks with unchanged643/643 owned lines and
+955/964 regions; no production Rust, dependency, exclusion or threshold changed.
+
+Separately /root/transport independently reviewed all15 older pending vector,
+color, missing-orientation identity and primitive Set mappings against immutable
+Utility_TEST.cc. It verified source SHA, reran exactly15 native original cases and
+all9 Rust upstream_ports tests, all passing. All original finite literals,
+components, identity/state and two-string overwrite assertions are retained;
+Rust exact comparisons strengthen the original bounds. All15 mappings are now
+reviewed; direct generated field assignment is accepted as the Rust Set API.
+No broader math/color clamping semantics are added to this raw component API.

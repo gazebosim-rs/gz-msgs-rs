@@ -119,33 +119,51 @@
       "id": "PointCloudPackedUtilsTest.BadFields",
       "source": "test/integration/PointCloudPackedUtils_TEST.cc",
       "source_sha256": "3b310f335e73209b2db3a726d03ee223df64c2b29ef8350d53f783814792cb29",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "cloud_originals::original_bad_fields"
+      ],
+      "native_status": "passed",
+      "review_note": "All original assertions independently compared; five exact native cases and five Rust tests rerun; source/nativebinary hashes checked. Safe Some/None indexed current/end mapping retains values and counts; missing nested values default without insertion. Operators separately stays not_ported.",
+      "reviewer": "/root/sdformat",
+      "reviewed_diff": "86a7ef17bcb9e96512cdefdac08de38ca4eca3a41d3d01e5feb839cefe952d2f"
     },
     {
       "id": "PointCloudPackedUtilsTest.Operators",
       "source": "test/integration/PointCloudPackedUtils_TEST.cc",
       "source_sha256": "3b310f335e73209b2db3a726d03ee223df64c2b29ef8350d53f783814792cb29",
       "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "rust_tests": [
+        "cloud_originals::original_operator_values_with_indexed_api"
+      ],
+      "native_status": "passed",
+      "review_note": "Partial behavioral value coverage only: all original field/loop/read/copy-position/advanced-position values retained by safe indexed APIs. Iterator object equality/inequality and operator-overload identity are not exposed or claimed; mapping remains not_ported."
     },
     {
       "id": "PointCloudPackedUtilsTest.MultipleFields",
       "source": "test/integration/PointCloudPackedUtils_TEST.cc",
       "source_sha256": "3b310f335e73209b2db3a726d03ee223df64c2b29ef8350d53f783814792cb29",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "cloud_originals::original_multiple_fields"
+      ],
+      "native_status": "passed",
+      "review_note": "All original assertions independently compared; five exact native cases and five Rust tests rerun; source/nativebinary hashes checked. Safe Some/None indexed current/end mapping retains values and counts; missing nested values default without insertion. Operators separately stays not_ported.",
+      "reviewer": "/root/sdformat",
+      "reviewed_diff": "86a7ef17bcb9e96512cdefdac08de38ca4eca3a41d3d01e5feb839cefe952d2f"
     },
     {
       "id": "PointCloudPackedUtilsTest.XYZRGBA",
       "source": "test/integration/PointCloudPackedUtils_TEST.cc",
       "source_sha256": "3b310f335e73209b2db3a726d03ee223df64c2b29ef8350d53f783814792cb29",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "cloud_originals::original_xyz_rgba"
+      ],
+      "native_status": "passed",
+      "review_note": "All original assertions independently compared; five exact native cases and five Rust tests rerun; source/nativebinary hashes checked. Safe Some/None indexed current/end mapping retains values and counts; missing nested values default without insertion. Operators separately stays not_ported.",
+      "reviewer": "/root/sdformat",
+      "reviewed_diff": "86a7ef17bcb9e96512cdefdac08de38ca4eca3a41d3d01e5feb839cefe952d2f"
     },
     {
       "id": "PointCloudPackedUtilsTest.SizeOfPointField",
@@ -165,41 +183,53 @@
       "id": "UtilityTest.CovertMathVector3ToMsgs",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "upstream_ports::utility_vector_and_color_conversions"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root/transport",
+      "reviewed_implementation": "a160efc",
+      "review_note": "All15 preexisting vector/color/identity/primitive Set mappings independently source-compared against immutable Utility_TEST.cc with SHA verification; exact15 native cases and all9 Rust upstream_ports tests rerun, allpass. Original literal/component/identity/state assertions retained; exact Rust comparisons stronger for finite constants. Generated field assignment faithfully replaces native primitive Set; two-string overwrite retained."
     },
     {
       "id": "UtilityTest.ConvertMsgsVector3dToMath",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "upstream_ports::utility_vector_and_color_conversions"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root/transport",
+      "reviewed_implementation": "a160efc",
+      "review_note": "All15 preexisting vector/color/identity/primitive Set mappings independently source-compared against immutable Utility_TEST.cc with SHA verification; exact15 native cases and all9 Rust upstream_ports tests rerun, allpass. Original literal/component/identity/state assertions retained; exact Rust comparisons stronger for finite constants. Generated field assignment faithfully replaces native primitive Set; two-string overwrite retained."
     },
     {
       "id": "UtilityTest.CovertMathVector2ToMsgs",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "upstream_ports::utility_vector_and_color_conversions"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root/transport",
+      "reviewed_implementation": "a160efc",
+      "review_note": "All15 preexisting vector/color/identity/primitive Set mappings independently source-compared against immutable Utility_TEST.cc with SHA verification; exact15 native cases and all9 Rust upstream_ports tests rerun, allpass. Original literal/component/identity/state assertions retained; exact Rust comparisons stronger for finite constants. Generated field assignment faithfully replaces native primitive Set; two-string overwrite retained."
     },
     {
       "id": "UtilityTest.ConvertMsgsVector2dToMath",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "upstream_ports::utility_vector_and_color_conversions"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root/transport",
+      "reviewed_implementation": "a160efc",
+      "review_note": "All15 preexisting vector/color/identity/primitive Set mappings independently source-compared against immutable Utility_TEST.cc with SHA verification; exact15 native cases and all9 Rust upstream_ports tests rerun, allpass. Original literal/component/identity/state assertions retained; exact Rust comparisons stronger for finite constants. Generated field assignment faithfully replaces native primitive Set; two-string overwrite retained."
     },
     {
       "id": "UtilityTest.ConvertMathQuaterionToMsgs",
@@ -237,31 +267,40 @@
       "id": "UtilityTest.ConvertMsgPoseToMathIdentity",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "upstream_ports::pose_defaults_distinguish_missing_and_zero_orientation"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root/transport",
+      "reviewed_implementation": "a160efc",
+      "review_note": "All15 preexisting vector/color/identity/primitive Set mappings independently source-compared against immutable Utility_TEST.cc with SHA verification; exact15 native cases and all9 Rust upstream_ports tests rerun, allpass. Original literal/component/identity/state assertions retained; exact Rust comparisons stronger for finite constants. Generated field assignment faithfully replaces native primitive Set; two-string overwrite retained."
     },
     {
       "id": "MsgsTest.ConvertMathColorToMsgs",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "upstream_ports::utility_vector_and_color_conversions"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root/transport",
+      "reviewed_implementation": "a160efc",
+      "review_note": "All15 preexisting vector/color/identity/primitive Set mappings independently source-compared against immutable Utility_TEST.cc with SHA verification; exact15 native cases and all9 Rust upstream_ports tests rerun, allpass. Original literal/component/identity/state assertions retained; exact Rust comparisons stronger for finite constants. Generated field assignment faithfully replaces native primitive Set; two-string overwrite retained."
     },
     {
       "id": "MsgsTest.ConvertMsgsColorToMath",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "upstream_ports::utility_vector_and_color_conversions"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root/transport",
+      "reviewed_implementation": "a160efc",
+      "review_note": "All15 preexisting vector/color/identity/primitive Set mappings independently source-compared against immutable Utility_TEST.cc with SHA verification; exact15 native cases and all9 Rust upstream_ports tests rerun, allpass. Original literal/component/identity/state assertions retained; exact Rust comparisons stronger for finite constants. Generated field assignment faithfully replaces native primitive Set; two-string overwrite retained."
     },
     {
       "id": "UtilityTest.ConvertMathPlaneToMsgs",
@@ -550,89 +589,118 @@
       "id": "MsgsTest.SetStringMsg",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "upstream_ports::utility_primitive_assignment"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root/transport",
+      "reviewed_implementation": "a160efc",
+      "review_note": "All15 preexisting vector/color/identity/primitive Set mappings independently source-compared against immutable Utility_TEST.cc with SHA verification; exact15 native cases and all9 Rust upstream_ports tests rerun, allpass. Original literal/component/identity/state assertions retained; exact Rust comparisons stronger for finite constants. Generated field assignment faithfully replaces native primitive Set; two-string overwrite retained."
     },
     {
       "id": "MsgsTest.SetBoolean",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "upstream_ports::utility_primitive_assignment"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root/transport",
+      "reviewed_implementation": "a160efc",
+      "review_note": "All15 preexisting vector/color/identity/primitive Set mappings independently source-compared against immutable Utility_TEST.cc with SHA verification; exact15 native cases and all9 Rust upstream_ports tests rerun, allpass. Original literal/component/identity/state assertions retained; exact Rust comparisons stronger for finite constants. Generated field assignment faithfully replaces native primitive Set; two-string overwrite retained."
     },
     {
       "id": "MsgsTest.SetInt32",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "upstream_ports::utility_primitive_assignment"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root/transport",
+      "reviewed_implementation": "a160efc",
+      "review_note": "All15 preexisting vector/color/identity/primitive Set mappings independently source-compared against immutable Utility_TEST.cc with SHA verification; exact15 native cases and all9 Rust upstream_ports tests rerun, allpass. Original literal/component/identity/state assertions retained; exact Rust comparisons stronger for finite constants. Generated field assignment faithfully replaces native primitive Set; two-string overwrite retained."
     },
     {
       "id": "MsgsTest.SetUInt32",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "upstream_ports::utility_primitive_assignment"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root/transport",
+      "reviewed_implementation": "a160efc",
+      "review_note": "All15 preexisting vector/color/identity/primitive Set mappings independently source-compared against immutable Utility_TEST.cc with SHA verification; exact15 native cases and all9 Rust upstream_ports tests rerun, allpass. Original literal/component/identity/state assertions retained; exact Rust comparisons stronger for finite constants. Generated field assignment faithfully replaces native primitive Set; two-string overwrite retained."
     },
     {
       "id": "MsgsTest.SetInt64",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "upstream_ports::utility_primitive_assignment"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root/transport",
+      "reviewed_implementation": "a160efc",
+      "review_note": "All15 preexisting vector/color/identity/primitive Set mappings independently source-compared against immutable Utility_TEST.cc with SHA verification; exact15 native cases and all9 Rust upstream_ports tests rerun, allpass. Original literal/component/identity/state assertions retained; exact Rust comparisons stronger for finite constants. Generated field assignment faithfully replaces native primitive Set; two-string overwrite retained."
     },
     {
       "id": "MsgsTest.SetUInt64",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "upstream_ports::utility_primitive_assignment"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root/transport",
+      "reviewed_implementation": "a160efc",
+      "review_note": "All15 preexisting vector/color/identity/primitive Set mappings independently source-compared against immutable Utility_TEST.cc with SHA verification; exact15 native cases and all9 Rust upstream_ports tests rerun, allpass. Original literal/component/identity/state assertions retained; exact Rust comparisons stronger for finite constants. Generated field assignment faithfully replaces native primitive Set; two-string overwrite retained."
     },
     {
       "id": "MsgsTest.SetDouble",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "upstream_ports::utility_primitive_assignment"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root/transport",
+      "reviewed_implementation": "a160efc",
+      "review_note": "All15 preexisting vector/color/identity/primitive Set mappings independently source-compared against immutable Utility_TEST.cc with SHA verification; exact15 native cases and all9 Rust upstream_ports tests rerun, allpass. Original literal/component/identity/state assertions retained; exact Rust comparisons stronger for finite constants. Generated field assignment faithfully replaces native primitive Set; two-string overwrite retained."
     },
     {
       "id": "MsgsTest.SetFloat",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "upstream_ports::utility_primitive_assignment"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root/transport",
+      "reviewed_implementation": "a160efc",
+      "review_note": "All15 preexisting vector/color/identity/primitive Set mappings independently source-compared against immutable Utility_TEST.cc with SHA verification; exact15 native cases and all9 Rust upstream_ports tests rerun, allpass. Original literal/component/identity/state assertions retained; exact Rust comparisons stronger for finite constants. Generated field assignment faithfully replaces native primitive Set; two-string overwrite retained."
     },
     {
       "id": "UtilityTest.Initialization",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "default_values::original_vector_and_nested_wrench_initialization"
+      ],
+      "native_status": "passed",
+      "review_note": "All original assertions independently compared; five exact native cases and five Rust tests rerun; source/nativebinary hashes checked. Safe Some/None indexed current/end mapping retains values and counts; missing nested values default without insertion. Operators separately stays not_ported.",
+      "reviewer": "/root/sdformat",
+      "reviewed_diff": "86a7ef17bcb9e96512cdefdac08de38ca4eca3a41d3d01e5feb839cefe952d2f"
     },
     {
       "id": "MsgsTest.ConvertMsgsJointTypeToString",
