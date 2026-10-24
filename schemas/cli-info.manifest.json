@@ -1,0 +1,9 @@
+{
+  "upstream_commit": "89c0c3d1474f545cb889335daf930bfdab6ab852",
+  "native_binary_sha256": "6160c5d48314c32f36fceecd6a0637fc84b7fb09f1dada790ab6fcefd729bcc8",
+  "schema_manifest_sha256": "4762e2101674aa2cdd3a6518f8a71a50acde2ce417452e46b44f42e9d02c1d39",
+  "corpus_sha256": "91cb44f537871e752db8a1388eb5ee87dc35e13a694f5a53fe706b0d178bbdd8",
+  "protobuf_version": "3.21.12",
+  "messages": 271,
+  "generation": "Complete stdout of pinned native gz-msgs --info for all canonical/imported/nested/synthetic message descriptors; definition is native Descriptor::DebugString without CLI headings/trailing separator."
+}

@@ -1,0 +1,1086 @@
+{
+  "google.protobuf.Any": {
+    "definition": "message Any {\n  string type_url = 1 [json_name = \"typeUrl\"];\n  bytes value = 2 [json_name = \"value\"];\n}\n",
+    "output": "Name: google.protobuf.Any\nFile: google/protobuf/any.proto\n\nmessage Any {\n  string type_url = 1 [json_name = \"typeUrl\"];\n  bytes value = 2 [json_name = \"value\"];\n}\n\n"
+  },
+  "gz.msgs.Actor": {
+    "definition": "message Actor {\n  message Animation {\n    string name = 1;\n    string filename = 2;\n    float scale = 3;\n    bool interpolate_x = 4;\n  }\n  message Waypoint {\n    float time = 1;\n    .gz.msgs.Pose pose = 2;\n  }\n  message Trajectory {\n    uint32 id = 1;\n    string type = 2;\n    float tension = 3;\n    repeated .gz.msgs.Actor.Waypoint waypoints = 4;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Entity entity = 2;\n  .gz.msgs.Pose pose = 3;\n  string skin_filename = 4;\n  float skin_scale = 5;\n  repeated .gz.msgs.Actor.Animation animations = 6;\n  bool script_loop = 7;\n  float script_delay_start = 8;\n  bool script_auto_start = 9;\n  repeated .gz.msgs.Actor.Trajectory trajectories = 10;\n  .gz.msgs.Entity parent = 11;\n}\n",
+    "output": "Name: gz.msgs.Actor\nFile: gz/msgs/actor.proto\n\nmessage Actor {\n  message Animation {\n    string name = 1;\n    string filename = 2;\n    float scale = 3;\n    bool interpolate_x = 4;\n  }\n  message Waypoint {\n    float time = 1;\n    .gz.msgs.Pose pose = 2;\n  }\n  message Trajectory {\n    uint32 id = 1;\n    string type = 2;\n    float tension = 3;\n    repeated .gz.msgs.Actor.Waypoint waypoints = 4;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Entity entity = 2;\n  .gz.msgs.Pose pose = 3;\n  string skin_filename = 4;\n  float skin_scale = 5;\n  repeated .gz.msgs.Actor.Animation animations = 6;\n  bool script_loop = 7;\n  float script_delay_start = 8;\n  bool script_auto_start = 9;\n  repeated .gz.msgs.Actor.Trajectory trajectories = 10;\n  .gz.msgs.Entity parent = 11;\n}\n\n"
+  },
+  "gz.msgs.Actor.Animation": {
+    "definition": "message Animation {\n  string name = 1 [json_name = \"name\"];\n  string filename = 2 [json_name = \"filename\"];\n  float scale = 3 [json_name = \"scale\"];\n  bool interpolate_x = 4 [json_name = \"interpolateX\"];\n}\n",
+    "output": "Name: gz.msgs.Actor.Animation\nFile: gz/msgs/actor.proto\n\nmessage Animation {\n  string name = 1 [json_name = \"name\"];\n  string filename = 2 [json_name = \"filename\"];\n  float scale = 3 [json_name = \"scale\"];\n  bool interpolate_x = 4 [json_name = \"interpolateX\"];\n}\n\n"
+  },
+  "gz.msgs.Actor.Trajectory": {
+    "definition": "message Trajectory {\n  uint32 id = 1 [json_name = \"id\"];\n  string type = 2 [json_name = \"type\"];\n  float tension = 3 [json_name = \"tension\"];\n  repeated .gz.msgs.Actor.Waypoint waypoints = 4 [json_name = \"waypoints\"];\n}\n",
+    "output": "Name: gz.msgs.Actor.Trajectory\nFile: gz/msgs/actor.proto\n\nmessage Trajectory {\n  uint32 id = 1 [json_name = \"id\"];\n  string type = 2 [json_name = \"type\"];\n  float tension = 3 [json_name = \"tension\"];\n  repeated .gz.msgs.Actor.Waypoint waypoints = 4 [json_name = \"waypoints\"];\n}\n\n"
+  },
+  "gz.msgs.Actor.Waypoint": {
+    "definition": "message Waypoint {\n  float time = 1 [json_name = \"time\"];\n  .gz.msgs.Pose pose = 2 [json_name = \"pose\"];\n}\n",
+    "output": "Name: gz.msgs.Actor.Waypoint\nFile: gz/msgs/actor.proto\n\nmessage Waypoint {\n  float time = 1 [json_name = \"time\"];\n  .gz.msgs.Pose pose = 2 [json_name = \"pose\"];\n}\n\n"
+  },
+  "gz.msgs.Actuators": {
+    "definition": "message Actuators {\n  .gz.msgs.Header header = 1;\n  repeated double position = 2;\n  repeated double velocity = 3;\n  repeated double normalized = 4;\n}\n",
+    "output": "Name: gz.msgs.Actuators\nFile: gz/msgs/actuators.proto\n\nmessage Actuators {\n  .gz.msgs.Header header = 1;\n  repeated double position = 2;\n  repeated double velocity = 3;\n  repeated double normalized = 4;\n}\n\n"
+  },
+  "gz.msgs.AirPressureSensor": {
+    "definition": "message AirPressureSensor {\n  .gz.msgs.Header header = 1;\n  double reference_altitude = 2;\n  .gz.msgs.SensorNoise pressure_noise = 3;\n}\n",
+    "output": "Name: gz.msgs.AirPressureSensor\nFile: gz/msgs/air_pressure_sensor.proto\n\nmessage AirPressureSensor {\n  .gz.msgs.Header header = 1;\n  double reference_altitude = 2;\n  .gz.msgs.SensorNoise pressure_noise = 3;\n}\n\n"
+  },
+  "gz.msgs.AirSpeed": {
+    "definition": "message AirSpeed {\n  .gz.msgs.Header header = 1;\n  double diff_pressure = 2;\n  double temperature = 3;\n}\n",
+    "output": "Name: gz.msgs.AirSpeed\nFile: gz/msgs/air_speed.proto\n\nmessage AirSpeed {\n  .gz.msgs.Header header = 1;\n  double diff_pressure = 2;\n  double temperature = 3;\n}\n\n"
+  },
+  "gz.msgs.AirSpeedSensor": {
+    "definition": "message AirSpeedSensor {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.SensorNoise pressure_noise = 4;\n}\n",
+    "output": "Name: gz.msgs.AirSpeedSensor\nFile: gz/msgs/air_speed_sensor.proto\n\nmessage AirSpeedSensor {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.SensorNoise pressure_noise = 4;\n}\n\n"
+  },
+  "gz.msgs.Altimeter": {
+    "definition": "message Altimeter {\n  .gz.msgs.Header header = 1;\n  double vertical_position = 2;\n  double vertical_velocity = 3;\n  double vertical_reference = 4;\n}\n",
+    "output": "Name: gz.msgs.Altimeter\nFile: gz/msgs/altimeter.proto\n\nmessage Altimeter {\n  .gz.msgs.Header header = 1;\n  double vertical_position = 2;\n  double vertical_velocity = 3;\n  double vertical_reference = 4;\n}\n\n"
+  },
+  "gz.msgs.AltimeterSensor": {
+    "definition": "message AltimeterSensor {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.SensorNoise vertical_position_noise = 2;\n  .gz.msgs.SensorNoise vertical_velocity_noise = 3;\n}\n",
+    "output": "Name: gz.msgs.AltimeterSensor\nFile: gz/msgs/altimeter_sensor.proto\n\nmessage AltimeterSensor {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.SensorNoise vertical_position_noise = 2;\n  .gz.msgs.SensorNoise vertical_velocity_noise = 3;\n}\n\n"
+  },
+  "gz.msgs.AnnotatedAxisAligned2DBox": {
+    "definition": "message AnnotatedAxisAligned2DBox {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.AxisAligned2DBox box = 2;\n  uint32 label = 3;\n}\n",
+    "output": "Name: gz.msgs.AnnotatedAxisAligned2DBox\nFile: gz/msgs/annotated_axis_aligned_2d_box.proto\n\nmessage AnnotatedAxisAligned2DBox {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.AxisAligned2DBox box = 2;\n  uint32 label = 3;\n}\n\n"
+  },
+  "gz.msgs.AnnotatedAxisAligned2DBox_V": {
+    "definition": "message AnnotatedAxisAligned2DBox_V {\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.AnnotatedAxisAligned2DBox annotated_box = 2;\n}\n",
+    "output": "Name: gz.msgs.AnnotatedAxisAligned2DBox_V\nFile: gz/msgs/annotated_axis_aligned_2d_box_v.proto\n\nmessage AnnotatedAxisAligned2DBox_V {\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.AnnotatedAxisAligned2DBox annotated_box = 2;\n}\n\n"
+  },
+  "gz.msgs.AnnotatedOriented3DBox": {
+    "definition": "message AnnotatedOriented3DBox {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Oriented3DBox box = 2;\n  uint32 label = 3;\n}\n",
+    "output": "Name: gz.msgs.AnnotatedOriented3DBox\nFile: gz/msgs/annotated_oriented_3d_box.proto\n\nmessage AnnotatedOriented3DBox {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Oriented3DBox box = 2;\n  uint32 label = 3;\n}\n\n"
+  },
+  "gz.msgs.AnnotatedOriented3DBox_V": {
+    "definition": "message AnnotatedOriented3DBox_V {\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.AnnotatedOriented3DBox annotated_box = 2;\n}\n",
+    "output": "Name: gz.msgs.AnnotatedOriented3DBox_V\nFile: gz/msgs/annotated_oriented_3d_box_v.proto\n\nmessage AnnotatedOriented3DBox_V {\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.AnnotatedOriented3DBox annotated_box = 2;\n}\n\n"
+  },
+  "gz.msgs.Any": {
+    "definition": "message Any {\n  enum ValueType {\n    NONE = 0;\n    DOUBLE = 1;\n    INT32 = 2;\n    STRING = 3;\n    BOOLEAN = 4;\n    VECTOR3D = 5;\n    COLOR = 6;\n    POSE3D = 7;\n    QUATERNIOND = 8;\n    TIME = 9;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Any.ValueType type = 2;\n  oneof value {\n    double double_value = 3;\n    int32 int_value = 4;\n    string string_value = 5;\n    bool bool_value = 6;\n    .gz.msgs.Vector3d vector3d_value = 7;\n    .gz.msgs.Color color_value = 8;\n    .gz.msgs.Pose pose3d_value = 9;\n    .gz.msgs.Quaternion quaternion_value = 10;\n    .gz.msgs.Time time_value = 11;\n  }\n}\n",
+    "output": "Name: gz.msgs.Any\nFile: gz/msgs/any.proto\n\nmessage Any {\n  enum ValueType {\n    NONE = 0;\n    DOUBLE = 1;\n    INT32 = 2;\n    STRING = 3;\n    BOOLEAN = 4;\n    VECTOR3D = 5;\n    COLOR = 6;\n    POSE3D = 7;\n    QUATERNIOND = 8;\n    TIME = 9;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Any.ValueType type = 2;\n  oneof value {\n    double double_value = 3;\n    int32 int_value = 4;\n    string string_value = 5;\n    bool bool_value = 6;\n    .gz.msgs.Vector3d vector3d_value = 7;\n    .gz.msgs.Color color_value = 8;\n    .gz.msgs.Pose pose3d_value = 9;\n    .gz.msgs.Quaternion quaternion_value = 10;\n    .gz.msgs.Time time_value = 11;\n  }\n}\n\n"
+  },
+  "gz.msgs.Atmosphere": {
+    "definition": "message Atmosphere {\n  enum Type {\n    ADIABATIC = 0;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Atmosphere.Type type = 2;\n  double temperature = 3;\n  double pressure = 4;\n  double mass_density = 5;\n  bool enable_atmosphere = 6;\n}\n",
+    "output": "Name: gz.msgs.Atmosphere\nFile: gz/msgs/atmosphere.proto\n\nmessage Atmosphere {\n  enum Type {\n    ADIABATIC = 0;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Atmosphere.Type type = 2;\n  double temperature = 3;\n  double pressure = 4;\n  double mass_density = 5;\n  bool enable_atmosphere = 6;\n}\n\n"
+  },
+  "gz.msgs.AttachDetachRequest": {
+    "definition": "message AttachDetachRequest {\n  enum Command {\n    COMMAND_UNSPECIFIED = 0;\n    ATTACH = 1;\n    DETACH = 2;\n  }\n  string child_model_name = 1;\n  string child_link_name = 2;\n  .gz.msgs.AttachDetachRequest.Command command = 3;\n}\n",
+    "output": "Name: gz.msgs.AttachDetachRequest\nFile: gz/msgs/dynamic_detachable_joint.proto\n\nmessage AttachDetachRequest {\n  enum Command {\n    COMMAND_UNSPECIFIED = 0;\n    ATTACH = 1;\n    DETACH = 2;\n  }\n  string child_model_name = 1;\n  string child_link_name = 2;\n  .gz.msgs.AttachDetachRequest.Command command = 3;\n}\n\n"
+  },
+  "gz.msgs.Axis": {
+    "definition": "message Axis {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Vector3d xyz = 2;\n  double limit_lower = 3;\n  double limit_upper = 4;\n  double limit_effort = 5;\n  double limit_velocity = 6;\n  double damping = 7;\n  double friction = 8;\n  double position = 10;\n  double velocity = 11;\n  double force = 12;\n  double acceleration = 13;\n  string xyz_expressed_in = 14;\n}\n",
+    "output": "Name: gz.msgs.Axis\nFile: gz/msgs/axis.proto\n\nmessage Axis {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Vector3d xyz = 2;\n  double limit_lower = 3;\n  double limit_upper = 4;\n  double limit_effort = 5;\n  double limit_velocity = 6;\n  double damping = 7;\n  double friction = 8;\n  double position = 10;\n  double velocity = 11;\n  double force = 12;\n  double acceleration = 13;\n  string xyz_expressed_in = 14;\n}\n\n"
+  },
+  "gz.msgs.AxisAligned2DBox": {
+    "definition": "message AxisAligned2DBox {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Vector2d min_corner = 2;\n  .gz.msgs.Vector2d max_corner = 3;\n}\n",
+    "output": "Name: gz.msgs.AxisAligned2DBox\nFile: gz/msgs/axis_aligned_2d_box.proto\n\nmessage AxisAligned2DBox {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Vector2d min_corner = 2;\n  .gz.msgs.Vector2d max_corner = 3;\n}\n\n"
+  },
+  "gz.msgs.AxisAlignedBox": {
+    "definition": "message AxisAlignedBox {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Vector3d min_corner = 2;\n  .gz.msgs.Vector3d max_corner = 3;\n}\n",
+    "output": "Name: gz.msgs.AxisAlignedBox\nFile: gz/msgs/axis_aligned_box.proto\n\nmessage AxisAlignedBox {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Vector3d min_corner = 2;\n  .gz.msgs.Vector3d max_corner = 3;\n}\n\n"
+  },
+  "gz.msgs.Battery": {
+    "definition": "message Battery {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  double voltage = 3;\n}\n",
+    "output": "Name: gz.msgs.Battery\nFile: gz/msgs/battery.proto\n\nmessage Battery {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  double voltage = 3;\n}\n\n"
+  },
+  "gz.msgs.BatteryState": {
+    "definition": "message BatteryState {\n  enum PowerSupplyStatus {\n    UNKNOWN = 0;\n    CHARGING = 1;\n    DISCHARGING = 2;\n    NOT_CHARGING = 3;\n    FULL = 4;\n  }\n  .gz.msgs.Header header = 1;\n  double voltage = 2;\n  double current = 3;\n  double charge = 4;\n  double capacity = 5;\n  double percentage = 6;\n  .gz.msgs.BatteryState.PowerSupplyStatus power_supply_status = 7;\n}\n",
+    "output": "Name: gz.msgs.BatteryState\nFile: gz/msgs/battery_state.proto\n\nmessage BatteryState {\n  enum PowerSupplyStatus {\n    UNKNOWN = 0;\n    CHARGING = 1;\n    DISCHARGING = 2;\n    NOT_CHARGING = 3;\n    FULL = 4;\n  }\n  .gz.msgs.Header header = 1;\n  double voltage = 2;\n  double current = 3;\n  double charge = 4;\n  double capacity = 5;\n  double percentage = 6;\n  .gz.msgs.BatteryState.PowerSupplyStatus power_supply_status = 7;\n}\n\n"
+  },
+  "gz.msgs.Boolean": {
+    "definition": "message Boolean {\n  .gz.msgs.Header header = 1;\n  bool data = 2;\n}\n",
+    "output": "Name: gz.msgs.Boolean\nFile: gz/msgs/boolean.proto\n\nmessage Boolean {\n  .gz.msgs.Header header = 1;\n  bool data = 2;\n}\n\n"
+  },
+  "gz.msgs.BoxGeom": {
+    "definition": "message BoxGeom {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Vector3d size = 2;\n}\n",
+    "output": "Name: gz.msgs.BoxGeom\nFile: gz/msgs/boxgeom.proto\n\nmessage BoxGeom {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Vector3d size = 2;\n}\n\n"
+  },
+  "gz.msgs.Bytes": {
+    "definition": "message Bytes {\n  .gz.msgs.Header header = 1;\n  bytes data = 2;\n}\n",
+    "output": "Name: gz.msgs.Bytes\nFile: gz/msgs/bytes.proto\n\nmessage Bytes {\n  .gz.msgs.Header header = 1;\n  bytes data = 2;\n}\n\n"
+  },
+  "gz.msgs.CameraCmd": {
+    "definition": "message CameraCmd {\n  .gz.msgs.Header header = 1;\n  string follow_model = 2;\n}\n",
+    "output": "Name: gz.msgs.CameraCmd\nFile: gz/msgs/camera_cmd.proto\n\nmessage CameraCmd {\n  .gz.msgs.Header header = 1;\n  string follow_model = 2;\n}\n\n"
+  },
+  "gz.msgs.CameraInfo": {
+    "definition": "message CameraInfo {\n  message Distortion {\n    enum DistortionModelType {\n      PLUMB_BOB = 0;\n      RATIONAL_POLYNOMIAL = 1;\n      EQUIDISTANT = 2;\n    }\n    .gz.msgs.CameraInfo.Distortion.DistortionModelType model = 1;\n    repeated double k = 2;\n  }\n  message Intrinsics {\n    repeated double k = 1;\n  }\n  message Projection {\n    repeated double p = 1;\n  }\n  .gz.msgs.Header header = 1;\n  uint32 width = 2;\n  uint32 height = 3;\n  .gz.msgs.CameraInfo.Distortion distortion = 4;\n  .gz.msgs.CameraInfo.Intrinsics intrinsics = 5;\n  .gz.msgs.CameraInfo.Projection projection = 6;\n  repeated double rectification_matrix = 7 [packed = true];\n}\n",
+    "output": "Name: gz.msgs.CameraInfo\nFile: gz/msgs/camera_info.proto\n\nmessage CameraInfo {\n  message Distortion {\n    enum DistortionModelType {\n      PLUMB_BOB = 0;\n      RATIONAL_POLYNOMIAL = 1;\n      EQUIDISTANT = 2;\n    }\n    .gz.msgs.CameraInfo.Distortion.DistortionModelType model = 1;\n    repeated double k = 2;\n  }\n  message Intrinsics {\n    repeated double k = 1;\n  }\n  message Projection {\n    repeated double p = 1;\n  }\n  .gz.msgs.Header header = 1;\n  uint32 width = 2;\n  uint32 height = 3;\n  .gz.msgs.CameraInfo.Distortion distortion = 4;\n  .gz.msgs.CameraInfo.Intrinsics intrinsics = 5;\n  .gz.msgs.CameraInfo.Projection projection = 6;\n  repeated double rectification_matrix = 7 [packed = true];\n}\n\n"
+  },
+  "gz.msgs.CameraInfo.Distortion": {
+    "definition": "message Distortion {\n  enum DistortionModelType {\n    PLUMB_BOB = 0;\n    RATIONAL_POLYNOMIAL = 1;\n    EQUIDISTANT = 2;\n  }\n  .gz.msgs.CameraInfo.Distortion.DistortionModelType model = 1 [json_name = \"model\"];\n  repeated double k = 2 [json_name = \"k\"];\n}\n",
+    "output": "Name: gz.msgs.CameraInfo.Distortion\nFile: gz/msgs/camera_info.proto\n\nmessage Distortion {\n  enum DistortionModelType {\n    PLUMB_BOB = 0;\n    RATIONAL_POLYNOMIAL = 1;\n    EQUIDISTANT = 2;\n  }\n  .gz.msgs.CameraInfo.Distortion.DistortionModelType model = 1 [json_name = \"model\"];\n  repeated double k = 2 [json_name = \"k\"];\n}\n\n"
+  },
+  "gz.msgs.CameraInfo.Intrinsics": {
+    "definition": "message Intrinsics {\n  repeated double k = 1 [json_name = \"k\"];\n}\n",
+    "output": "Name: gz.msgs.CameraInfo.Intrinsics\nFile: gz/msgs/camera_info.proto\n\nmessage Intrinsics {\n  repeated double k = 1 [json_name = \"k\"];\n}\n\n"
+  },
+  "gz.msgs.CameraInfo.Projection": {
+    "definition": "message Projection {\n  repeated double p = 1 [json_name = \"p\"];\n}\n",
+    "output": "Name: gz.msgs.CameraInfo.Projection\nFile: gz/msgs/camera_info.proto\n\nmessage Projection {\n  repeated double p = 1 [json_name = \"p\"];\n}\n\n"
+  },
+  "gz.msgs.CameraLens": {
+    "definition": "message CameraLens {\n  .gz.msgs.Header header = 1;\n  string type = 2;\n  double c1 = 3;\n  double c2 = 4;\n  double c3 = 5;\n  double f = 6;\n  string fun = 7;\n  bool scale_to_hfov = 8;\n  double cutoff_angle = 9;\n  double hfov = 10;\n  int32 env_texture_size = 11;\n}\n",
+    "output": "Name: gz.msgs.CameraLens\nFile: gz/msgs/camera_lens.proto\n\nmessage CameraLens {\n  .gz.msgs.Header header = 1;\n  string type = 2;\n  double c1 = 3;\n  double c2 = 4;\n  double c3 = 5;\n  double f = 6;\n  string fun = 7;\n  bool scale_to_hfov = 8;\n  double cutoff_angle = 9;\n  double hfov = 10;\n  int32 env_texture_size = 11;\n}\n\n"
+  },
+  "gz.msgs.CameraSensor": {
+    "definition": "message CameraSensor {\n  enum BoundingBoxType {\n    NO_BOUNDING_BOX = 0;\n    FULL_BOX_2D = 1;\n    VISIBLE_BOX_2D = 2;\n    BOX_3D = 3;\n  }\n  enum SegmentationType {\n    NO_SEGMENTATION = 0;\n    SEMANTIC = 1;\n    PANOPTIC = 2;\n  }\n  .gz.msgs.Header header = 1;\n  double horizontal_fov = 2;\n  .gz.msgs.Vector2d image_size = 3;\n  string image_format = 4 [deprecated = true];\n  double near_clip = 5;\n  double far_clip = 6;\n  bool save_enabled = 7;\n  string save_path = 8;\n  .gz.msgs.Distortion distortion = 9;\n  .gz.msgs.SensorNoise image_noise = 10;\n  .gz.msgs.Double depth_near_clip = 11;\n  .gz.msgs.Double depth_far_clip = 12;\n  .gz.msgs.CameraSensor.BoundingBoxType bounding_box_type = 13;\n  .gz.msgs.CameraSensor.SegmentationType segmentation_type = 14;\n  .gz.msgs.Lens lens = 15;\n  bool triggered = 16;\n  string triggered_topic = 17;\n  int32 anti_aliasing = 18;\n  uint32 visibility_mask = 19;\n  bool is_depth_camera = 20;\n  .gz.msgs.PixelFormatType pixel_format = 21;\n}\n",
+    "output": "Name: gz.msgs.CameraSensor\nFile: gz/msgs/camerasensor.proto\n\nmessage CameraSensor {\n  enum BoundingBoxType {\n    NO_BOUNDING_BOX = 0;\n    FULL_BOX_2D = 1;\n    VISIBLE_BOX_2D = 2;\n    BOX_3D = 3;\n  }\n  enum SegmentationType {\n    NO_SEGMENTATION = 0;\n    SEMANTIC = 1;\n    PANOPTIC = 2;\n  }\n  .gz.msgs.Header header = 1;\n  double horizontal_fov = 2;\n  .gz.msgs.Vector2d image_size = 3;\n  string image_format = 4 [deprecated = true];\n  double near_clip = 5;\n  double far_clip = 6;\n  bool save_enabled = 7;\n  string save_path = 8;\n  .gz.msgs.Distortion distortion = 9;\n  .gz.msgs.SensorNoise image_noise = 10;\n  .gz.msgs.Double depth_near_clip = 11;\n  .gz.msgs.Double depth_far_clip = 12;\n  .gz.msgs.CameraSensor.BoundingBoxType bounding_box_type = 13;\n  .gz.msgs.CameraSensor.SegmentationType segmentation_type = 14;\n  .gz.msgs.Lens lens = 15;\n  bool triggered = 16;\n  string triggered_topic = 17;\n  int32 anti_aliasing = 18;\n  uint32 visibility_mask = 19;\n  bool is_depth_camera = 20;\n  .gz.msgs.PixelFormatType pixel_format = 21;\n}\n\n"
+  },
+  "gz.msgs.CameraTrack": {
+    "definition": "message CameraTrack {\n  enum TrackMode {\n    NONE = 0;\n    TRACK = 1;\n    FOLLOW = 2;\n    FOLLOW_FREE_LOOK = 3;\n    FOLLOW_LOOK_AT = 4;\n    USE_LAST = 5;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.CameraTrack.TrackMode track_mode = 2;\n  .gz.msgs.Entity follow_target = 3;\n  .gz.msgs.Entity track_target = 4;\n  .gz.msgs.Vector3d follow_offset = 5;\n  .gz.msgs.Vector3d track_offset = 6;\n  double follow_pgain = 7;\n  double track_pgain = 8;\n}\n",
+    "output": "Name: gz.msgs.CameraTrack\nFile: gz/msgs/cameratrack.proto\n\nmessage CameraTrack {\n  enum TrackMode {\n    NONE = 0;\n    TRACK = 1;\n    FOLLOW = 2;\n    FOLLOW_FREE_LOOK = 3;\n    FOLLOW_LOOK_AT = 4;\n    USE_LAST = 5;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.CameraTrack.TrackMode track_mode = 2;\n  .gz.msgs.Entity follow_target = 3;\n  .gz.msgs.Entity track_target = 4;\n  .gz.msgs.Vector3d follow_offset = 5;\n  .gz.msgs.Vector3d track_offset = 6;\n  double follow_pgain = 7;\n  double track_pgain = 8;\n}\n\n"
+  },
+  "gz.msgs.CapsuleGeom": {
+    "definition": "message CapsuleGeom {\n  .gz.msgs.Header header = 1;\n  double radius = 2;\n  double length = 3;\n}\n",
+    "output": "Name: gz.msgs.CapsuleGeom\nFile: gz/msgs/capsulegeom.proto\n\nmessage CapsuleGeom {\n  .gz.msgs.Header header = 1;\n  double radius = 2;\n  double length = 3;\n}\n\n"
+  },
+  "gz.msgs.Cessna": {
+    "definition": "message Cessna {\n  .gz.msgs.Header header = 1;\n  float propeller_speed = 2;\n  float left_aileron = 3;\n  float left_flap = 4;\n  float right_aileron = 5;\n  float right_flap = 6;\n  float elevators = 7;\n  float rudder = 8;\n  float cmd_propeller_speed = 9;\n  float cmd_left_aileron = 10;\n  float cmd_left_flap = 11;\n  float cmd_right_aileron = 12;\n  float cmd_right_flap = 13;\n  float cmd_elevators = 14;\n  float cmd_rudder = 15;\n}\n",
+    "output": "Name: gz.msgs.Cessna\nFile: gz/msgs/cessna.proto\n\nmessage Cessna {\n  .gz.msgs.Header header = 1;\n  float propeller_speed = 2;\n  float left_aileron = 3;\n  float left_flap = 4;\n  float right_aileron = 5;\n  float right_flap = 6;\n  float elevators = 7;\n  float rudder = 8;\n  float cmd_propeller_speed = 9;\n  float cmd_left_aileron = 10;\n  float cmd_left_flap = 11;\n  float cmd_right_aileron = 12;\n  float cmd_right_flap = 13;\n  float cmd_elevators = 14;\n  float cmd_rudder = 15;\n}\n\n"
+  },
+  "gz.msgs.Clock": {
+    "definition": "message Clock {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Time system = 2;\n  .gz.msgs.Time real = 3;\n  .gz.msgs.Time sim = 4;\n}\n",
+    "output": "Name: gz.msgs.Clock\nFile: gz/msgs/clock.proto\n\nmessage Clock {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Time system = 2;\n  .gz.msgs.Time real = 3;\n  .gz.msgs.Time sim = 4;\n}\n\n"
+  },
+  "gz.msgs.CmdVel2D": {
+    "definition": "message CmdVel2D {\n  .gz.msgs.Header header = 1;\n  double velocity = 2;\n  double theta = 3;\n}\n",
+    "output": "Name: gz.msgs.CmdVel2D\nFile: gz/msgs/cmd_vel2d.proto\n\nmessage CmdVel2D {\n  .gz.msgs.Header header = 1;\n  double velocity = 2;\n  double theta = 3;\n}\n\n"
+  },
+  "gz.msgs.Collision": {
+    "definition": "message Collision {\n  .gz.msgs.Header header = 1;\n  uint32 id = 2;\n  string name = 3;\n  double laser_retro = 4;\n  double max_contacts = 5;\n  .gz.msgs.Pose pose = 6;\n  .gz.msgs.Geometry geometry = 7;\n  .gz.msgs.Surface surface = 8;\n  repeated .gz.msgs.Visual visual = 9;\n}\n",
+    "output": "Name: gz.msgs.Collision\nFile: gz/msgs/collision.proto\n\nmessage Collision {\n  .gz.msgs.Header header = 1;\n  uint32 id = 2;\n  string name = 3;\n  double laser_retro = 4;\n  double max_contacts = 5;\n  .gz.msgs.Pose pose = 6;\n  .gz.msgs.Geometry geometry = 7;\n  .gz.msgs.Surface surface = 8;\n  repeated .gz.msgs.Visual visual = 9;\n}\n\n"
+  },
+  "gz.msgs.Color": {
+    "definition": "message Color {\n  .gz.msgs.Header header = 1;\n  float r = 2;\n  float g = 3;\n  float b = 4;\n  float a = 5;\n}\n",
+    "output": "Name: gz.msgs.Color\nFile: gz/msgs/color.proto\n\nmessage Color {\n  .gz.msgs.Header header = 1;\n  float r = 2;\n  float g = 3;\n  float b = 4;\n  float a = 5;\n}\n\n"
+  },
+  "gz.msgs.ConeGeom": {
+    "definition": "message ConeGeom {\n  .gz.msgs.Header header = 1;\n  double radius = 2;\n  double length = 3;\n}\n",
+    "output": "Name: gz.msgs.ConeGeom\nFile: gz/msgs/conegeom.proto\n\nmessage ConeGeom {\n  .gz.msgs.Header header = 1;\n  double radius = 2;\n  double length = 3;\n}\n\n"
+  },
+  "gz.msgs.Contact": {
+    "definition": "message Contact {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Entity collision1 = 2;\n  .gz.msgs.Entity collision2 = 3;\n  repeated .gz.msgs.Vector3d position = 4;\n  repeated .gz.msgs.Vector3d normal = 5;\n  repeated double depth = 6;\n  repeated .gz.msgs.JointWrench wrench = 7;\n  .gz.msgs.Entity world = 8;\n}\n",
+    "output": "Name: gz.msgs.Contact\nFile: gz/msgs/contact.proto\n\nmessage Contact {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Entity collision1 = 2;\n  .gz.msgs.Entity collision2 = 3;\n  repeated .gz.msgs.Vector3d position = 4;\n  repeated .gz.msgs.Vector3d normal = 5;\n  repeated double depth = 6;\n  repeated .gz.msgs.JointWrench wrench = 7;\n  .gz.msgs.Entity world = 8;\n}\n\n"
+  },
+  "gz.msgs.ContactSensor": {
+    "definition": "message ContactSensor {\n  .gz.msgs.Header header = 1;\n  string collision_name = 2;\n}\n",
+    "output": "Name: gz.msgs.ContactSensor\nFile: gz/msgs/contactsensor.proto\n\nmessage ContactSensor {\n  .gz.msgs.Header header = 1;\n  string collision_name = 2;\n}\n\n"
+  },
+  "gz.msgs.Contacts": {
+    "definition": "message Contacts {\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.Contact contact = 2;\n}\n",
+    "output": "Name: gz.msgs.Contacts\nFile: gz/msgs/contacts.proto\n\nmessage Contacts {\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.Contact contact = 2;\n}\n\n"
+  },
+  "gz.msgs.CylinderGeom": {
+    "definition": "message CylinderGeom {\n  .gz.msgs.Header header = 1;\n  double radius = 2;\n  double length = 3;\n}\n",
+    "output": "Name: gz.msgs.CylinderGeom\nFile: gz/msgs/cylindergeom.proto\n\nmessage CylinderGeom {\n  .gz.msgs.Header header = 1;\n  double radius = 2;\n  double length = 3;\n}\n\n"
+  },
+  "gz.msgs.DVLBeamState": {
+    "definition": "message DVLBeamState {\n  int32 id = 1;\n  .gz.msgs.DVLKinematicEstimate velocity = 2;\n  .gz.msgs.DVLRangeEstimate range = 3;\n  double rssi = 4;\n  double nsd = 5;\n  bool locked = 6;\n}\n",
+    "output": "Name: gz.msgs.DVLBeamState\nFile: gz/msgs/dvl_beam_state.proto\n\nmessage DVLBeamState {\n  int32 id = 1;\n  .gz.msgs.DVLKinematicEstimate velocity = 2;\n  .gz.msgs.DVLRangeEstimate range = 3;\n  double rssi = 4;\n  double nsd = 5;\n  bool locked = 6;\n}\n\n"
+  },
+  "gz.msgs.DVLKinematicEstimate": {
+    "definition": "message DVLKinematicEstimate {\n  enum ReferenceType {\n    DVL_REFERENCE_UNSPECIFIED = 0;\n    DVL_REFERENCE_EARTH = 1;\n    DVL_REFERENCE_SHIP = 2;\n  }\n  .gz.msgs.DVLKinematicEstimate.ReferenceType reference = 1;\n  .gz.msgs.Vector3d mean = 2;\n  repeated double covariance = 3;\n}\n",
+    "output": "Name: gz.msgs.DVLKinematicEstimate\nFile: gz/msgs/dvl_kinematic_estimate.proto\n\nmessage DVLKinematicEstimate {\n  enum ReferenceType {\n    DVL_REFERENCE_UNSPECIFIED = 0;\n    DVL_REFERENCE_EARTH = 1;\n    DVL_REFERENCE_SHIP = 2;\n  }\n  .gz.msgs.DVLKinematicEstimate.ReferenceType reference = 1;\n  .gz.msgs.Vector3d mean = 2;\n  repeated double covariance = 3;\n}\n\n"
+  },
+  "gz.msgs.DVLRangeEstimate": {
+    "definition": "message DVLRangeEstimate {\n  double mean = 1;\n  double variance = 2;\n}\n",
+    "output": "Name: gz.msgs.DVLRangeEstimate\nFile: gz/msgs/dvl_range_estimate.proto\n\nmessage DVLRangeEstimate {\n  double mean = 1;\n  double variance = 2;\n}\n\n"
+  },
+  "gz.msgs.DVLTrackingTarget": {
+    "definition": "message DVLTrackingTarget {\n  enum TargetType {\n    DVL_TARGET_UNSPECIFIED = 0;\n    DVL_TARGET_BOTTOM = 1;\n    DVL_TARGET_WATER_MASS = 2;\n  }\n  .gz.msgs.DVLTrackingTarget.TargetType type = 1;\n  .gz.msgs.DVLRangeEstimate range = 2;\n  .gz.msgs.DVLKinematicEstimate position = 3;\n}\n",
+    "output": "Name: gz.msgs.DVLTrackingTarget\nFile: gz/msgs/dvl_tracking_target.proto\n\nmessage DVLTrackingTarget {\n  enum TargetType {\n    DVL_TARGET_UNSPECIFIED = 0;\n    DVL_TARGET_BOTTOM = 1;\n    DVL_TARGET_WATER_MASS = 2;\n  }\n  .gz.msgs.DVLTrackingTarget.TargetType type = 1;\n  .gz.msgs.DVLRangeEstimate range = 2;\n  .gz.msgs.DVLKinematicEstimate position = 3;\n}\n\n"
+  },
+  "gz.msgs.DVLVelocityTracking": {
+    "definition": "message DVLVelocityTracking {\n  enum DVLType {\n    DVL_TYPE_UNSPECIFIED = 0;\n    DVL_TYPE_PISTON = 1;\n    DVL_TYPE_PHASED_ARRAY = 2;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.DVLVelocityTracking.DVLType type = 2;\n  .gz.msgs.DVLTrackingTarget target = 3;\n  .gz.msgs.DVLKinematicEstimate velocity = 4;\n  repeated .gz.msgs.DVLBeamState beams = 5;\n  int32 status = 6;\n}\n",
+    "output": "Name: gz.msgs.DVLVelocityTracking\nFile: gz/msgs/dvl_velocity_tracking.proto\n\nmessage DVLVelocityTracking {\n  enum DVLType {\n    DVL_TYPE_UNSPECIFIED = 0;\n    DVL_TYPE_PISTON = 1;\n    DVL_TYPE_PHASED_ARRAY = 2;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.DVLVelocityTracking.DVLType type = 2;\n  .gz.msgs.DVLTrackingTarget target = 3;\n  .gz.msgs.DVLKinematicEstimate velocity = 4;\n  repeated .gz.msgs.DVLBeamState beams = 5;\n  int32 status = 6;\n}\n\n"
+  },
+  "gz.msgs.DataLoadPathOptions": {
+    "definition": "message DataLoadPathOptions {\n  enum DataAngularUnits {\n    RADIANS = 0;\n    DEGREES = 1;\n  }\n  string path = 1;\n  string time = 2;\n  bool static_time = 3;\n  string x = 4;\n  string y = 5;\n  string z = 6;\n  .gz.msgs.DataLoadPathOptions.DataAngularUnits units = 7;\n  .gz.msgs.SphericalCoordinatesType coordinate_type = 8;\n}\n",
+    "output": "Name: gz.msgs.DataLoadPathOptions\nFile: gz/msgs/data_load_options.proto\n\nmessage DataLoadPathOptions {\n  enum DataAngularUnits {\n    RADIANS = 0;\n    DEGREES = 1;\n  }\n  string path = 1;\n  string time = 2;\n  bool static_time = 3;\n  string x = 4;\n  string y = 5;\n  string z = 6;\n  .gz.msgs.DataLoadPathOptions.DataAngularUnits units = 7;\n  .gz.msgs.SphericalCoordinatesType coordinate_type = 8;\n}\n\n"
+  },
+  "gz.msgs.Dataframe": {
+    "definition": "message Dataframe {\n  .gz.msgs.Header header = 1;\n  string src_address = 2;\n  string dst_address = 3;\n  bytes data = 4;\n}\n",
+    "output": "Name: gz.msgs.Dataframe\nFile: gz/msgs/dataframe.proto\n\nmessage Dataframe {\n  .gz.msgs.Header header = 1;\n  string src_address = 2;\n  string dst_address = 3;\n  bytes data = 4;\n}\n\n"
+  },
+  "gz.msgs.Density": {
+    "definition": "message Density {\n  .gz.msgs.Header header = 1;\n  double density = 2;\n}\n",
+    "output": "Name: gz.msgs.Density\nFile: gz/msgs/density.proto\n\nmessage Density {\n  .gz.msgs.Header header = 1;\n  double density = 2;\n}\n\n"
+  },
+  "gz.msgs.Diagnostics": {
+    "definition": "message Diagnostics {\n  message DiagTime {\n    string name = 1;\n    .gz.msgs.Time elapsed = 2;\n    .gz.msgs.Time wall = 3;\n  }\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.Diagnostics.DiagTime time = 2;\n  .gz.msgs.Time real_time = 3;\n  .gz.msgs.Time sim_time = 4;\n  double real_time_factor = 5;\n}\n",
+    "output": "Name: gz.msgs.Diagnostics\nFile: gz/msgs/diagnostics.proto\n\nmessage Diagnostics {\n  message DiagTime {\n    string name = 1;\n    .gz.msgs.Time elapsed = 2;\n    .gz.msgs.Time wall = 3;\n  }\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.Diagnostics.DiagTime time = 2;\n  .gz.msgs.Time real_time = 3;\n  .gz.msgs.Time sim_time = 4;\n  double real_time_factor = 5;\n}\n\n"
+  },
+  "gz.msgs.Diagnostics.DiagTime": {
+    "definition": "message DiagTime {\n  string name = 1 [json_name = \"name\"];\n  .gz.msgs.Time elapsed = 2 [json_name = \"elapsed\"];\n  .gz.msgs.Time wall = 3 [json_name = \"wall\"];\n}\n",
+    "output": "Name: gz.msgs.Diagnostics.DiagTime\nFile: gz/msgs/diagnostics.proto\n\nmessage DiagTime {\n  string name = 1 [json_name = \"name\"];\n  .gz.msgs.Time elapsed = 2 [json_name = \"elapsed\"];\n  .gz.msgs.Time wall = 3 [json_name = \"wall\"];\n}\n\n"
+  },
+  "gz.msgs.Discovery": {
+    "definition": "message Discovery {\n  message Flags {\n    bool relay = 1;\n    bool no_relay = 2;\n  }\n  message Subscriber {\n    string topic = 1;\n  }\n  message Publisher {\n    message MessagePublisher {\n      string ctrl = 1;\n      string msg_type = 2;\n      bool throttled = 3;\n      uint64 msgs_per_sec = 4;\n    }\n    message ServicePublisher {\n      string socket_id = 1;\n      string request_type = 2;\n      string response_type = 3;\n    }\n    enum Scope {\n      PROCESS = 0;\n      HOST = 1;\n      ALL = 2;\n    }\n    string topic = 1;\n    string address = 2;\n    string process_uuid = 3;\n    string node_uuid = 4;\n    .gz.msgs.Discovery.Publisher.Scope scope = 5;\n    oneof pub_type {\n      .gz.msgs.Discovery.Publisher.MessagePublisher msg_pub = 6;\n      .gz.msgs.Discovery.Publisher.ServicePublisher srv_pub = 7;\n    }\n  }\n  enum Type {\n    UNINITIALIZED = 0;\n    ADVERTISE = 1;\n    SUBSCRIBE = 2;\n    UNADVERTISE = 3;\n    HEARTBEAT = 4;\n    BYE = 5;\n    NEW_CONNECTION = 6;\n    END_CONNECTION = 7;\n    SUBSCRIBERS_REQ = 8;\n    SUBSCRIBERS_REP = 9;\n  }\n  .gz.msgs.Header header = 1;\n  uint32 version = 2;\n  string process_uuid = 3;\n  .gz.msgs.Discovery.Type type = 4;\n  .gz.msgs.Discovery.Flags flags = 5;\n  oneof disc_contents {\n    .gz.msgs.Discovery.Subscriber sub = 6;\n    .gz.msgs.Discovery.Publisher pub = 7;\n  }\n}\n",
+    "output": "Name: gz.msgs.Discovery\nFile: gz/msgs/discovery.proto\n\nmessage Discovery {\n  message Flags {\n    bool relay = 1;\n    bool no_relay = 2;\n  }\n  message Subscriber {\n    string topic = 1;\n  }\n  message Publisher {\n    message MessagePublisher {\n      string ctrl = 1;\n      string msg_type = 2;\n      bool throttled = 3;\n      uint64 msgs_per_sec = 4;\n    }\n    message ServicePublisher {\n      string socket_id = 1;\n      string request_type = 2;\n      string response_type = 3;\n    }\n    enum Scope {\n      PROCESS = 0;\n      HOST = 1;\n      ALL = 2;\n    }\n    string topic = 1;\n    string address = 2;\n    string process_uuid = 3;\n    string node_uuid = 4;\n    .gz.msgs.Discovery.Publisher.Scope scope = 5;\n    oneof pub_type {\n      .gz.msgs.Discovery.Publisher.MessagePublisher msg_pub = 6;\n      .gz.msgs.Discovery.Publisher.ServicePublisher srv_pub = 7;\n    }\n  }\n  enum Type {\n    UNINITIALIZED = 0;\n    ADVERTISE = 1;\n    SUBSCRIBE = 2;\n    UNADVERTISE = 3;\n    HEARTBEAT = 4;\n    BYE = 5;\n    NEW_CONNECTION = 6;\n    END_CONNECTION = 7;\n    SUBSCRIBERS_REQ = 8;\n    SUBSCRIBERS_REP = 9;\n  }\n  .gz.msgs.Header header = 1;\n  uint32 version = 2;\n  string process_uuid = 3;\n  .gz.msgs.Discovery.Type type = 4;\n  .gz.msgs.Discovery.Flags flags = 5;\n  oneof disc_contents {\n    .gz.msgs.Discovery.Subscriber sub = 6;\n    .gz.msgs.Discovery.Publisher pub = 7;\n  }\n}\n\n"
+  },
+  "gz.msgs.Discovery.Flags": {
+    "definition": "message Flags {\n  bool relay = 1 [json_name = \"relay\"];\n  bool no_relay = 2 [json_name = \"noRelay\"];\n}\n",
+    "output": "Name: gz.msgs.Discovery.Flags\nFile: gz/msgs/discovery.proto\n\nmessage Flags {\n  bool relay = 1 [json_name = \"relay\"];\n  bool no_relay = 2 [json_name = \"noRelay\"];\n}\n\n"
+  },
+  "gz.msgs.Discovery.Publisher": {
+    "definition": "message Publisher {\n  message MessagePublisher {\n    string ctrl = 1 [json_name = \"ctrl\"];\n    string msg_type = 2 [json_name = \"msgType\"];\n    bool throttled = 3 [json_name = \"throttled\"];\n    uint64 msgs_per_sec = 4 [json_name = \"msgsPerSec\"];\n  }\n  message ServicePublisher {\n    string socket_id = 1 [json_name = \"socketId\"];\n    string request_type = 2 [json_name = \"requestType\"];\n    string response_type = 3 [json_name = \"responseType\"];\n  }\n  enum Scope {\n    PROCESS = 0;\n    HOST = 1;\n    ALL = 2;\n  }\n  string topic = 1 [json_name = \"topic\"];\n  string address = 2 [json_name = \"address\"];\n  string process_uuid = 3 [json_name = \"processUuid\"];\n  string node_uuid = 4 [json_name = \"nodeUuid\"];\n  .gz.msgs.Discovery.Publisher.Scope scope = 5 [json_name = \"scope\"];\n  oneof pub_type {\n    .gz.msgs.Discovery.Publisher.MessagePublisher msg_pub = 6 [json_name = \"msgPub\"];\n    .gz.msgs.Discovery.Publisher.ServicePublisher srv_pub = 7 [json_name = \"srvPub\"];\n  }\n}\n",
+    "output": "Name: gz.msgs.Discovery.Publisher\nFile: gz/msgs/discovery.proto\n\nmessage Publisher {\n  message MessagePublisher {\n    string ctrl = 1 [json_name = \"ctrl\"];\n    string msg_type = 2 [json_name = \"msgType\"];\n    bool throttled = 3 [json_name = \"throttled\"];\n    uint64 msgs_per_sec = 4 [json_name = \"msgsPerSec\"];\n  }\n  message ServicePublisher {\n    string socket_id = 1 [json_name = \"socketId\"];\n    string request_type = 2 [json_name = \"requestType\"];\n    string response_type = 3 [json_name = \"responseType\"];\n  }\n  enum Scope {\n    PROCESS = 0;\n    HOST = 1;\n    ALL = 2;\n  }\n  string topic = 1 [json_name = \"topic\"];\n  string address = 2 [json_name = \"address\"];\n  string process_uuid = 3 [json_name = \"processUuid\"];\n  string node_uuid = 4 [json_name = \"nodeUuid\"];\n  .gz.msgs.Discovery.Publisher.Scope scope = 5 [json_name = \"scope\"];\n  oneof pub_type {\n    .gz.msgs.Discovery.Publisher.MessagePublisher msg_pub = 6 [json_name = \"msgPub\"];\n    .gz.msgs.Discovery.Publisher.ServicePublisher srv_pub = 7 [json_name = \"srvPub\"];\n  }\n}\n\n"
+  },
+  "gz.msgs.Discovery.Publisher.MessagePublisher": {
+    "definition": "message MessagePublisher {\n  string ctrl = 1 [json_name = \"ctrl\"];\n  string msg_type = 2 [json_name = \"msgType\"];\n  bool throttled = 3 [json_name = \"throttled\"];\n  uint64 msgs_per_sec = 4 [json_name = \"msgsPerSec\"];\n}\n",
+    "output": "Name: gz.msgs.Discovery.Publisher.MessagePublisher\nFile: gz/msgs/discovery.proto\n\nmessage MessagePublisher {\n  string ctrl = 1 [json_name = \"ctrl\"];\n  string msg_type = 2 [json_name = \"msgType\"];\n  bool throttled = 3 [json_name = \"throttled\"];\n  uint64 msgs_per_sec = 4 [json_name = \"msgsPerSec\"];\n}\n\n"
+  },
+  "gz.msgs.Discovery.Publisher.ServicePublisher": {
+    "definition": "message ServicePublisher {\n  string socket_id = 1 [json_name = \"socketId\"];\n  string request_type = 2 [json_name = \"requestType\"];\n  string response_type = 3 [json_name = \"responseType\"];\n}\n",
+    "output": "Name: gz.msgs.Discovery.Publisher.ServicePublisher\nFile: gz/msgs/discovery.proto\n\nmessage ServicePublisher {\n  string socket_id = 1 [json_name = \"socketId\"];\n  string request_type = 2 [json_name = \"requestType\"];\n  string response_type = 3 [json_name = \"responseType\"];\n}\n\n"
+  },
+  "gz.msgs.Discovery.Subscriber": {
+    "definition": "message Subscriber {\n  string topic = 1 [json_name = \"topic\"];\n}\n",
+    "output": "Name: gz.msgs.Discovery.Subscriber\nFile: gz/msgs/discovery.proto\n\nmessage Subscriber {\n  string topic = 1 [json_name = \"topic\"];\n}\n\n"
+  },
+  "gz.msgs.Distortion": {
+    "definition": "message Distortion {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Vector2d center = 2;\n  double k1 = 3;\n  double k2 = 4;\n  double k3 = 5;\n  double p1 = 6;\n  double p2 = 7;\n}\n",
+    "output": "Name: gz.msgs.Distortion\nFile: gz/msgs/distortion.proto\n\nmessage Distortion {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Vector2d center = 2;\n  double k1 = 3;\n  double k2 = 4;\n  double k3 = 5;\n  double p1 = 6;\n  double p2 = 7;\n}\n\n"
+  },
+  "gz.msgs.Double": {
+    "definition": "message Double {\n  .gz.msgs.Header header = 1;\n  double data = 2;\n}\n",
+    "output": "Name: gz.msgs.Double\nFile: gz/msgs/double.proto\n\nmessage Double {\n  .gz.msgs.Header header = 1;\n  double data = 2;\n}\n\n"
+  },
+  "gz.msgs.Double_V": {
+    "definition": "message Double_V {\n  repeated double data = 1;\n}\n",
+    "output": "Name: gz.msgs.Double_V\nFile: gz/msgs/double_v.proto\n\nmessage Double_V {\n  repeated double data = 1;\n}\n\n"
+  },
+  "gz.msgs.Duration": {
+    "definition": "message Duration {\n  .gz.msgs.Header header = 1;\n  int64 sec = 2;\n  int32 nsec = 3;\n}\n",
+    "output": "Name: gz.msgs.Duration\nFile: gz/msgs/duration.proto\n\nmessage Duration {\n  .gz.msgs.Header header = 1;\n  int64 sec = 2;\n  int32 nsec = 3;\n}\n\n"
+  },
+  "gz.msgs.EllipsoidGeom": {
+    "definition": "message EllipsoidGeom {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Vector3d radii = 2;\n}\n",
+    "output": "Name: gz.msgs.EllipsoidGeom\nFile: gz/msgs/ellipsoidgeom.proto\n\nmessage EllipsoidGeom {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Vector3d radii = 2;\n}\n\n"
+  },
+  "gz.msgs.Empty": {
+    "definition": "message Empty {\n  bool unused = 1;\n}\n",
+    "output": "Name: gz.msgs.Empty\nFile: gz/msgs/empty.proto\n\nmessage Empty {\n  bool unused = 1;\n}\n\n"
+  },
+  "gz.msgs.Entity": {
+    "definition": "message Entity {\n  enum Type {\n    NONE = 0;\n    LIGHT = 1;\n    MODEL = 2;\n    LINK = 3;\n    VISUAL = 4;\n    COLLISION = 5;\n    SENSOR = 6;\n    JOINT = 7;\n    ACTOR = 8;\n    WORLD = 9;\n  }\n  .gz.msgs.Header header = 1;\n  uint64 id = 2;\n  string name = 3;\n  .gz.msgs.Entity.Type type = 4;\n}\n",
+    "output": "Name: gz.msgs.Entity\nFile: gz/msgs/entity.proto\n\nmessage Entity {\n  enum Type {\n    NONE = 0;\n    LIGHT = 1;\n    MODEL = 2;\n    LINK = 3;\n    VISUAL = 4;\n    COLLISION = 5;\n    SENSOR = 6;\n    JOINT = 7;\n    ACTOR = 8;\n    WORLD = 9;\n  }\n  .gz.msgs.Header header = 1;\n  uint64 id = 2;\n  string name = 3;\n  .gz.msgs.Entity.Type type = 4;\n}\n\n"
+  },
+  "gz.msgs.EntityFactory": {
+    "definition": "message EntityFactory {\n  .gz.msgs.Header header = 1;\n  oneof from {\n    string sdf = 2;\n    string sdf_filename = 3;\n    .gz.msgs.Model model = 4;\n    .gz.msgs.Light light = 5;\n    string clone_name = 6;\n  }\n  .gz.msgs.Pose pose = 7;\n  string name = 8;\n  bool allow_renaming = 9;\n  string relative_to = 10;\n  .gz.msgs.SphericalCoordinates spherical_coordinates = 11;\n  string entity_namespace = 12;\n}\n",
+    "output": "Name: gz.msgs.EntityFactory\nFile: gz/msgs/entity_factory.proto\n\nmessage EntityFactory {\n  .gz.msgs.Header header = 1;\n  oneof from {\n    string sdf = 2;\n    string sdf_filename = 3;\n    .gz.msgs.Model model = 4;\n    .gz.msgs.Light light = 5;\n    string clone_name = 6;\n  }\n  .gz.msgs.Pose pose = 7;\n  string name = 8;\n  bool allow_renaming = 9;\n  string relative_to = 10;\n  .gz.msgs.SphericalCoordinates spherical_coordinates = 11;\n  string entity_namespace = 12;\n}\n\n"
+  },
+  "gz.msgs.EntityFactoryWithNs": {
+    "definition": "message EntityFactoryWithNs {\n  option deprecated = true;\n  .gz.msgs.Header header = 1;\n  oneof from {\n    string sdf = 2;\n    string sdf_filename = 3;\n    .gz.msgs.Model model = 4;\n    .gz.msgs.Light light = 5;\n    string clone_name = 6;\n  }\n  .gz.msgs.Pose pose = 7;\n  string name = 8;\n  bool allow_renaming = 9;\n  string relative_to = 10;\n  .gz.msgs.SphericalCoordinates spherical_coordinates = 11;\n  string entity_namespace = 12;\n}\n",
+    "output": "Name: gz.msgs.EntityFactoryWithNs\nFile: gz/msgs/entity_factory_with_ns.proto\n\nmessage EntityFactoryWithNs {\n  option deprecated = true;\n  .gz.msgs.Header header = 1;\n  oneof from {\n    string sdf = 2;\n    string sdf_filename = 3;\n    .gz.msgs.Model model = 4;\n    .gz.msgs.Light light = 5;\n    string clone_name = 6;\n  }\n  .gz.msgs.Pose pose = 7;\n  string name = 8;\n  bool allow_renaming = 9;\n  string relative_to = 10;\n  .gz.msgs.SphericalCoordinates spherical_coordinates = 11;\n  string entity_namespace = 12;\n}\n\n"
+  },
+  "gz.msgs.EntityFactoryWithNs_V": {
+    "definition": "message EntityFactoryWithNs_V {\n  option deprecated = true;\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.EntityFactoryWithNs data = 2;\n}\n",
+    "output": "Name: gz.msgs.EntityFactoryWithNs_V\nFile: gz/msgs/entity_factory_with_ns_v.proto\n\nmessage EntityFactoryWithNs_V {\n  option deprecated = true;\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.EntityFactoryWithNs data = 2;\n}\n\n"
+  },
+  "gz.msgs.EntityFactory_V": {
+    "definition": "message EntityFactory_V {\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.EntityFactory data = 2;\n}\n",
+    "output": "Name: gz.msgs.EntityFactory_V\nFile: gz/msgs/entity_factory_v.proto\n\nmessage EntityFactory_V {\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.EntityFactory data = 2;\n}\n\n"
+  },
+  "gz.msgs.EntityPlugin_V": {
+    "definition": "message EntityPlugin_V {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Entity entity = 2;\n  repeated .gz.msgs.Plugin plugins = 3;\n}\n",
+    "output": "Name: gz.msgs.EntityPlugin_V\nFile: gz/msgs/entity_plugin_v.proto\n\nmessage EntityPlugin_V {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Entity entity = 2;\n  repeated .gz.msgs.Plugin plugins = 3;\n}\n\n"
+  },
+  "gz.msgs.EntityWrench": {
+    "definition": "message EntityWrench {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Entity entity = 2;\n  .gz.msgs.Wrench wrench = 3;\n}\n",
+    "output": "Name: gz.msgs.EntityWrench\nFile: gz/msgs/entity_wrench.proto\n\nmessage EntityWrench {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Entity entity = 2;\n  .gz.msgs.Wrench wrench = 3;\n}\n\n"
+  },
+  "gz.msgs.EntityWrenchMap": {
+    "definition": "message EntityWrenchMap {\n  .gz.msgs.Header header = 1;\n  map<string, .gz.msgs.EntityWrench> wrenches = 2;\n}\n",
+    "output": "Name: gz.msgs.EntityWrenchMap\nFile: gz/msgs/entity_wrench_map.proto\n\nmessage EntityWrenchMap {\n  .gz.msgs.Header header = 1;\n  map<string, .gz.msgs.EntityWrench> wrenches = 2;\n}\n\n"
+  },
+  "gz.msgs.EntityWrenchMap.WrenchesEntry": {
+    "definition": "",
+    "output": "Name: gz.msgs.EntityWrenchMap.WrenchesEntry\nFile: gz/msgs/entity_wrench_map.proto\n\n\n"
+  },
+  "gz.msgs.Float": {
+    "definition": "message Float {\n  .gz.msgs.Header header = 1;\n  float data = 2;\n}\n",
+    "output": "Name: gz.msgs.Float\nFile: gz/msgs/float.proto\n\nmessage Float {\n  .gz.msgs.Header header = 1;\n  float data = 2;\n}\n\n"
+  },
+  "gz.msgs.Float_V": {
+    "definition": "message Float_V {\n  .gz.msgs.Header header = 1;\n  repeated float data = 2;\n}\n",
+    "output": "Name: gz.msgs.Float_V\nFile: gz/msgs/float_v.proto\n\nmessage Float_V {\n  .gz.msgs.Header header = 1;\n  repeated float data = 2;\n}\n\n"
+  },
+  "gz.msgs.Fluid": {
+    "definition": "message Fluid {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  repeated .gz.msgs.Vector3d position = 3;\n}\n",
+    "output": "Name: gz.msgs.Fluid\nFile: gz/msgs/fluid.proto\n\nmessage Fluid {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  repeated .gz.msgs.Vector3d position = 3;\n}\n\n"
+  },
+  "gz.msgs.FluidPressure": {
+    "definition": "message FluidPressure {\n  .gz.msgs.Header header = 1;\n  double pressure = 2;\n  double variance = 3;\n}\n",
+    "output": "Name: gz.msgs.FluidPressure\nFile: gz/msgs/fluid_pressure.proto\n\nmessage FluidPressure {\n  .gz.msgs.Header header = 1;\n  double pressure = 2;\n  double variance = 3;\n}\n\n"
+  },
+  "gz.msgs.Fog": {
+    "definition": "message Fog {\n  enum FogType {\n    NONE = 0;\n    LINEAR = 1;\n    EXPONENTIAL = 2;\n    EXPONENTIAL2 = 3;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Fog.FogType type = 2;\n  .gz.msgs.Color color = 3;\n  float density = 4;\n  float start = 5;\n  float end = 6;\n}\n",
+    "output": "Name: gz.msgs.Fog\nFile: gz/msgs/fog.proto\n\nmessage Fog {\n  enum FogType {\n    NONE = 0;\n    LINEAR = 1;\n    EXPONENTIAL = 2;\n    EXPONENTIAL2 = 3;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Fog.FogType type = 2;\n  .gz.msgs.Color color = 3;\n  float density = 4;\n  float start = 5;\n  float end = 6;\n}\n\n"
+  },
+  "gz.msgs.Friction": {
+    "definition": "message Friction {\n  message Torsional {\n    message ODE {\n      double slip = 1;\n    }\n    double coefficient = 1;\n    bool use_patch_radius = 2;\n    double patch_radius = 3;\n    double surface_radius = 4;\n    .gz.msgs.Friction.Torsional.ODE ode = 5;\n  }\n  .gz.msgs.Header header = 1;\n  double mu = 2;\n  double mu2 = 3;\n  .gz.msgs.Vector3d fdir1 = 4;\n  double slip1 = 5;\n  double slip2 = 6;\n  .gz.msgs.Friction.Torsional torsional = 7;\n}\n",
+    "output": "Name: gz.msgs.Friction\nFile: gz/msgs/friction.proto\n\nmessage Friction {\n  message Torsional {\n    message ODE {\n      double slip = 1;\n    }\n    double coefficient = 1;\n    bool use_patch_radius = 2;\n    double patch_radius = 3;\n    double surface_radius = 4;\n    .gz.msgs.Friction.Torsional.ODE ode = 5;\n  }\n  .gz.msgs.Header header = 1;\n  double mu = 2;\n  double mu2 = 3;\n  .gz.msgs.Vector3d fdir1 = 4;\n  double slip1 = 5;\n  double slip2 = 6;\n  .gz.msgs.Friction.Torsional torsional = 7;\n}\n\n"
+  },
+  "gz.msgs.Friction.Torsional": {
+    "definition": "message Torsional {\n  message ODE {\n    double slip = 1 [json_name = \"slip\"];\n  }\n  double coefficient = 1 [json_name = \"coefficient\"];\n  bool use_patch_radius = 2 [json_name = \"usePatchRadius\"];\n  double patch_radius = 3 [json_name = \"patchRadius\"];\n  double surface_radius = 4 [json_name = \"surfaceRadius\"];\n  .gz.msgs.Friction.Torsional.ODE ode = 5 [json_name = \"ode\"];\n}\n",
+    "output": "Name: gz.msgs.Friction.Torsional\nFile: gz/msgs/friction.proto\n\nmessage Torsional {\n  message ODE {\n    double slip = 1 [json_name = \"slip\"];\n  }\n  double coefficient = 1 [json_name = \"coefficient\"];\n  bool use_patch_radius = 2 [json_name = \"usePatchRadius\"];\n  double patch_radius = 3 [json_name = \"patchRadius\"];\n  double surface_radius = 4 [json_name = \"surfaceRadius\"];\n  .gz.msgs.Friction.Torsional.ODE ode = 5 [json_name = \"ode\"];\n}\n\n"
+  },
+  "gz.msgs.Friction.Torsional.ODE": {
+    "definition": "message ODE {\n  double slip = 1 [json_name = \"slip\"];\n}\n",
+    "output": "Name: gz.msgs.Friction.Torsional.ODE\nFile: gz/msgs/friction.proto\n\nmessage ODE {\n  double slip = 1 [json_name = \"slip\"];\n}\n\n"
+  },
+  "gz.msgs.FuelMetadata": {
+    "definition": "message FuelMetadata {\n  message Contact {\n    string name = 1;\n    string email = 2;\n  }\n  message Legal {\n    string copyright = 1;\n    string license = 2;\n  }\n  message Model {\n    string file = 1;\n    .gz.msgs.VersionedName file_format = 2;\n  }\n  message World {\n    string file = 1;\n    .gz.msgs.VersionedName file_format = 2;\n  }\n  message Dependency {\n    string uri = 1;\n  }\n  message Compatibility {\n    string name = 1;\n    oneof version_type {\n      .gz.msgs.Version version = 2;\n      .gz.msgs.VersionRange version_range = 3;\n    }\n  }\n  message Categories {\n    string first = 1;\n    string second = 2;\n  }\n  oneof resource_type {\n    .gz.msgs.FuelMetadata.Model model = 1;\n    .gz.msgs.FuelMetadata.World world = 2;\n  }\n  string name = 3;\n  string description = 4;\n  int32 version = 5;\n  repeated .gz.msgs.FuelMetadata.Contact authors = 6;\n  .gz.msgs.FuelMetadata.Legal legal = 7;\n  repeated string tags = 8;\n  map<string, string> annotations = 9;\n  repeated .gz.msgs.FuelMetadata.Dependency dependencies = 10;\n  repeated .gz.msgs.FuelMetadata.Compatibility compatibilities = 11;\n  .gz.msgs.FuelMetadata.Categories categories = 12;\n}\n",
+    "output": "Name: gz.msgs.FuelMetadata\nFile: gz/msgs/fuel_metadata.proto\n\nmessage FuelMetadata {\n  message Contact {\n    string name = 1;\n    string email = 2;\n  }\n  message Legal {\n    string copyright = 1;\n    string license = 2;\n  }\n  message Model {\n    string file = 1;\n    .gz.msgs.VersionedName file_format = 2;\n  }\n  message World {\n    string file = 1;\n    .gz.msgs.VersionedName file_format = 2;\n  }\n  message Dependency {\n    string uri = 1;\n  }\n  message Compatibility {\n    string name = 1;\n    oneof version_type {\n      .gz.msgs.Version version = 2;\n      .gz.msgs.VersionRange version_range = 3;\n    }\n  }\n  message Categories {\n    string first = 1;\n    string second = 2;\n  }\n  oneof resource_type {\n    .gz.msgs.FuelMetadata.Model model = 1;\n    .gz.msgs.FuelMetadata.World world = 2;\n  }\n  string name = 3;\n  string description = 4;\n  int32 version = 5;\n  repeated .gz.msgs.FuelMetadata.Contact authors = 6;\n  .gz.msgs.FuelMetadata.Legal legal = 7;\n  repeated string tags = 8;\n  map<string, string> annotations = 9;\n  repeated .gz.msgs.FuelMetadata.Dependency dependencies = 10;\n  repeated .gz.msgs.FuelMetadata.Compatibility compatibilities = 11;\n  .gz.msgs.FuelMetadata.Categories categories = 12;\n}\n\n"
+  },
+  "gz.msgs.FuelMetadata.AnnotationsEntry": {
+    "definition": "",
+    "output": "Name: gz.msgs.FuelMetadata.AnnotationsEntry\nFile: gz/msgs/fuel_metadata.proto\n\n\n"
+  },
+  "gz.msgs.FuelMetadata.Categories": {
+    "definition": "message Categories {\n  string first = 1 [json_name = \"first\"];\n  string second = 2 [json_name = \"second\"];\n}\n",
+    "output": "Name: gz.msgs.FuelMetadata.Categories\nFile: gz/msgs/fuel_metadata.proto\n\nmessage Categories {\n  string first = 1 [json_name = \"first\"];\n  string second = 2 [json_name = \"second\"];\n}\n\n"
+  },
+  "gz.msgs.FuelMetadata.Compatibility": {
+    "definition": "message Compatibility {\n  string name = 1 [json_name = \"name\"];\n  oneof version_type {\n    .gz.msgs.Version version = 2 [json_name = \"version\"];\n    .gz.msgs.VersionRange version_range = 3 [json_name = \"versionRange\"];\n  }\n}\n",
+    "output": "Name: gz.msgs.FuelMetadata.Compatibility\nFile: gz/msgs/fuel_metadata.proto\n\nmessage Compatibility {\n  string name = 1 [json_name = \"name\"];\n  oneof version_type {\n    .gz.msgs.Version version = 2 [json_name = \"version\"];\n    .gz.msgs.VersionRange version_range = 3 [json_name = \"versionRange\"];\n  }\n}\n\n"
+  },
+  "gz.msgs.FuelMetadata.Contact": {
+    "definition": "message Contact {\n  string name = 1 [json_name = \"name\"];\n  string email = 2 [json_name = \"email\"];\n}\n",
+    "output": "Name: gz.msgs.FuelMetadata.Contact\nFile: gz/msgs/fuel_metadata.proto\n\nmessage Contact {\n  string name = 1 [json_name = \"name\"];\n  string email = 2 [json_name = \"email\"];\n}\n\n"
+  },
+  "gz.msgs.FuelMetadata.Dependency": {
+    "definition": "message Dependency {\n  string uri = 1 [json_name = \"uri\"];\n}\n",
+    "output": "Name: gz.msgs.FuelMetadata.Dependency\nFile: gz/msgs/fuel_metadata.proto\n\nmessage Dependency {\n  string uri = 1 [json_name = \"uri\"];\n}\n\n"
+  },
+  "gz.msgs.FuelMetadata.Legal": {
+    "definition": "message Legal {\n  string copyright = 1 [json_name = \"copyright\"];\n  string license = 2 [json_name = \"license\"];\n}\n",
+    "output": "Name: gz.msgs.FuelMetadata.Legal\nFile: gz/msgs/fuel_metadata.proto\n\nmessage Legal {\n  string copyright = 1 [json_name = \"copyright\"];\n  string license = 2 [json_name = \"license\"];\n}\n\n"
+  },
+  "gz.msgs.FuelMetadata.Model": {
+    "definition": "message Model {\n  string file = 1 [json_name = \"file\"];\n  .gz.msgs.VersionedName file_format = 2 [json_name = \"fileFormat\"];\n}\n",
+    "output": "Name: gz.msgs.FuelMetadata.Model\nFile: gz/msgs/fuel_metadata.proto\n\nmessage Model {\n  string file = 1 [json_name = \"file\"];\n  .gz.msgs.VersionedName file_format = 2 [json_name = \"fileFormat\"];\n}\n\n"
+  },
+  "gz.msgs.FuelMetadata.World": {
+    "definition": "message World {\n  string file = 1 [json_name = \"file\"];\n  .gz.msgs.VersionedName file_format = 2 [json_name = \"fileFormat\"];\n}\n",
+    "output": "Name: gz.msgs.FuelMetadata.World\nFile: gz/msgs/fuel_metadata.proto\n\nmessage World {\n  string file = 1 [json_name = \"file\"];\n  .gz.msgs.VersionedName file_format = 2 [json_name = \"fileFormat\"];\n}\n\n"
+  },
+  "gz.msgs.GPS": {
+    "definition": "message GPS {\n  option deprecated = true;\n  .gz.msgs.Header header = 1;\n  string link_name = 2;\n  double latitude_deg = 3;\n  double longitude_deg = 4;\n  double altitude = 5;\n  double velocity_east = 6;\n  double velocity_north = 7;\n  double velocity_up = 8;\n}\n",
+    "output": "Name: gz.msgs.GPS\nFile: gz/msgs/gps.proto\n\nmessage GPS {\n  option deprecated = true;\n  .gz.msgs.Header header = 1;\n  string link_name = 2;\n  double latitude_deg = 3;\n  double longitude_deg = 4;\n  double altitude = 5;\n  double velocity_east = 6;\n  double velocity_north = 7;\n  double velocity_up = 8;\n}\n\n"
+  },
+  "gz.msgs.GPSSensor": {
+    "definition": "message GPSSensor {\n  option deprecated = true;\n  message Sensing {\n    .gz.msgs.SensorNoise horizontal_noise = 1;\n    .gz.msgs.SensorNoise vertical_noise = 2;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.GPSSensor.Sensing position = 2;\n  .gz.msgs.GPSSensor.Sensing velocity = 3;\n}\n",
+    "output": "Name: gz.msgs.GPSSensor\nFile: gz/msgs/gps_sensor.proto\n\nmessage GPSSensor {\n  option deprecated = true;\n  message Sensing {\n    .gz.msgs.SensorNoise horizontal_noise = 1;\n    .gz.msgs.SensorNoise vertical_noise = 2;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.GPSSensor.Sensing position = 2;\n  .gz.msgs.GPSSensor.Sensing velocity = 3;\n}\n\n"
+  },
+  "gz.msgs.GPSSensor.Sensing": {
+    "definition": "message Sensing {\n  .gz.msgs.SensorNoise horizontal_noise = 1 [json_name = \"horizontalNoise\"];\n  .gz.msgs.SensorNoise vertical_noise = 2 [json_name = \"verticalNoise\"];\n}\n",
+    "output": "Name: gz.msgs.GPSSensor.Sensing\nFile: gz/msgs/gps_sensor.proto\n\nmessage Sensing {\n  .gz.msgs.SensorNoise horizontal_noise = 1 [json_name = \"horizontalNoise\"];\n  .gz.msgs.SensorNoise vertical_noise = 2 [json_name = \"verticalNoise\"];\n}\n\n"
+  },
+  "gz.msgs.GUI": {
+    "definition": "message GUI {\n  .gz.msgs.Header header = 1;\n  bool fullscreen = 2;\n  .gz.msgs.GUICamera camera = 3;\n  repeated .gz.msgs.Plugin plugin = 4;\n}\n",
+    "output": "Name: gz.msgs.GUI\nFile: gz/msgs/gui.proto\n\nmessage GUI {\n  .gz.msgs.Header header = 1;\n  bool fullscreen = 2;\n  .gz.msgs.GUICamera camera = 3;\n  repeated .gz.msgs.Plugin plugin = 4;\n}\n\n"
+  },
+  "gz.msgs.GUICamera": {
+    "definition": "message GUICamera {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  string view_controller = 3;\n  .gz.msgs.Pose pose = 4;\n  .gz.msgs.TrackVisual track = 5;\n  string projection_type = 6;\n  double duration = 7;\n}\n",
+    "output": "Name: gz.msgs.GUICamera\nFile: gz/msgs/gui_camera.proto\n\nmessage GUICamera {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  string view_controller = 3;\n  .gz.msgs.Pose pose = 4;\n  .gz.msgs.TrackVisual track = 5;\n  string projection_type = 6;\n  double duration = 7;\n}\n\n"
+  },
+  "gz.msgs.Geometry": {
+    "definition": "message Geometry {\n  enum Type {\n    BOX = 0;\n    CYLINDER = 1;\n    SPHERE = 2;\n    PLANE = 3;\n    IMAGE = 4;\n    HEIGHTMAP = 5;\n    MESH = 6;\n    TRIANGLE_FAN = 7;\n    LINE_STRIP = 8;\n    POLYLINE = 9;\n    CONE = 10;\n    EMPTY = 11;\n    ARROW = 12;\n    AXIS = 13;\n    CAPSULE = 14;\n    ELLIPSOID = 15;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Geometry.Type type = 2;\n  .gz.msgs.BoxGeom box = 3;\n  .gz.msgs.CylinderGeom cylinder = 4;\n  .gz.msgs.PlaneGeom plane = 5;\n  .gz.msgs.SphereGeom sphere = 6;\n  .gz.msgs.ImageGeom image = 7;\n  .gz.msgs.HeightmapGeom heightmap = 8;\n  .gz.msgs.MeshGeom mesh = 9;\n  .gz.msgs.ConeGeom cone = 10;\n  .gz.msgs.CapsuleGeom capsule = 13;\n  .gz.msgs.EllipsoidGeom ellipsoid = 14;\n  repeated .gz.msgs.Vector3d points = 11;\n  repeated .gz.msgs.Polyline polyline = 12;\n}\n",
+    "output": "Name: gz.msgs.Geometry\nFile: gz/msgs/geometry.proto\n\nmessage Geometry {\n  enum Type {\n    BOX = 0;\n    CYLINDER = 1;\n    SPHERE = 2;\n    PLANE = 3;\n    IMAGE = 4;\n    HEIGHTMAP = 5;\n    MESH = 6;\n    TRIANGLE_FAN = 7;\n    LINE_STRIP = 8;\n    POLYLINE = 9;\n    CONE = 10;\n    EMPTY = 11;\n    ARROW = 12;\n    AXIS = 13;\n    CAPSULE = 14;\n    ELLIPSOID = 15;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Geometry.Type type = 2;\n  .gz.msgs.BoxGeom box = 3;\n  .gz.msgs.CylinderGeom cylinder = 4;\n  .gz.msgs.PlaneGeom plane = 5;\n  .gz.msgs.SphereGeom sphere = 6;\n  .gz.msgs.ImageGeom image = 7;\n  .gz.msgs.HeightmapGeom heightmap = 8;\n  .gz.msgs.MeshGeom mesh = 9;\n  .gz.msgs.ConeGeom cone = 10;\n  .gz.msgs.CapsuleGeom capsule = 13;\n  .gz.msgs.EllipsoidGeom ellipsoid = 14;\n  repeated .gz.msgs.Vector3d points = 11;\n  repeated .gz.msgs.Polyline polyline = 12;\n}\n\n"
+  },
+  "gz.msgs.Header": {
+    "definition": "message Header {\n  message Map {\n    string key = 1;\n    repeated string value = 2;\n  }\n  .gz.msgs.Time stamp = 1;\n  repeated .gz.msgs.Header.Map data = 2;\n}\n",
+    "output": "Name: gz.msgs.Header\nFile: gz/msgs/header.proto\n\nmessage Header {\n  message Map {\n    string key = 1;\n    repeated string value = 2;\n  }\n  .gz.msgs.Time stamp = 1;\n  repeated .gz.msgs.Header.Map data = 2;\n}\n\n"
+  },
+  "gz.msgs.Header.Map": {
+    "definition": "message Map {\n  string key = 1 [json_name = \"key\"];\n  repeated string value = 2 [json_name = \"value\"];\n}\n",
+    "output": "Name: gz.msgs.Header.Map\nFile: gz/msgs/header.proto\n\nmessage Map {\n  string key = 1 [json_name = \"key\"];\n  repeated string value = 2 [json_name = \"value\"];\n}\n\n"
+  },
+  "gz.msgs.HeightmapGeom": {
+    "definition": "message HeightmapGeom {\n  message Texture {\n    string diffuse = 1;\n    string normal = 2;\n    double size = 3;\n  }\n  message Blend {\n    double min_height = 1;\n    double fade_dist = 2;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Image image = 2;\n  .gz.msgs.Vector3d size = 3;\n  .gz.msgs.Vector3d origin = 4;\n  repeated float heights = 5;\n  int32 width = 6;\n  int32 height = 7;\n  repeated .gz.msgs.HeightmapGeom.Texture texture = 8;\n  repeated .gz.msgs.HeightmapGeom.Blend blend = 9;\n  bool use_terrain_paging = 10;\n  string filename = 11;\n  uint32 sampling = 12;\n}\n",
+    "output": "Name: gz.msgs.HeightmapGeom\nFile: gz/msgs/heightmapgeom.proto\n\nmessage HeightmapGeom {\n  message Texture {\n    string diffuse = 1;\n    string normal = 2;\n    double size = 3;\n  }\n  message Blend {\n    double min_height = 1;\n    double fade_dist = 2;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Image image = 2;\n  .gz.msgs.Vector3d size = 3;\n  .gz.msgs.Vector3d origin = 4;\n  repeated float heights = 5;\n  int32 width = 6;\n  int32 height = 7;\n  repeated .gz.msgs.HeightmapGeom.Texture texture = 8;\n  repeated .gz.msgs.HeightmapGeom.Blend blend = 9;\n  bool use_terrain_paging = 10;\n  string filename = 11;\n  uint32 sampling = 12;\n}\n\n"
+  },
+  "gz.msgs.HeightmapGeom.Blend": {
+    "definition": "message Blend {\n  double min_height = 1 [json_name = \"minHeight\"];\n  double fade_dist = 2 [json_name = \"fadeDist\"];\n}\n",
+    "output": "Name: gz.msgs.HeightmapGeom.Blend\nFile: gz/msgs/heightmapgeom.proto\n\nmessage Blend {\n  double min_height = 1 [json_name = \"minHeight\"];\n  double fade_dist = 2 [json_name = \"fadeDist\"];\n}\n\n"
+  },
+  "gz.msgs.HeightmapGeom.Texture": {
+    "definition": "message Texture {\n  string diffuse = 1 [json_name = \"diffuse\"];\n  string normal = 2 [json_name = \"normal\"];\n  double size = 3 [json_name = \"size\"];\n}\n",
+    "output": "Name: gz.msgs.HeightmapGeom.Texture\nFile: gz/msgs/heightmapgeom.proto\n\nmessage Texture {\n  string diffuse = 1 [json_name = \"diffuse\"];\n  string normal = 2 [json_name = \"normal\"];\n  double size = 3 [json_name = \"size\"];\n}\n\n"
+  },
+  "gz.msgs.Hydra": {
+    "definition": "message Hydra {\n  message Paddle {\n    .gz.msgs.Pose pose = 1;\n    bool button_bumper = 2;\n    bool button_1 = 3;\n    bool button_2 = 4;\n    bool button_3 = 5;\n    bool button_4 = 6;\n    bool button_joy = 7;\n    bool button_center = 8;\n    double joy_x = 9;\n    double joy_y = 10;\n    double trigger = 11;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Hydra.Paddle right = 2;\n  .gz.msgs.Hydra.Paddle left = 3;\n}\n",
+    "output": "Name: gz.msgs.Hydra\nFile: gz/msgs/hydra.proto\n\nmessage Hydra {\n  message Paddle {\n    .gz.msgs.Pose pose = 1;\n    bool button_bumper = 2;\n    bool button_1 = 3;\n    bool button_2 = 4;\n    bool button_3 = 5;\n    bool button_4 = 6;\n    bool button_joy = 7;\n    bool button_center = 8;\n    double joy_x = 9;\n    double joy_y = 10;\n    double trigger = 11;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Hydra.Paddle right = 2;\n  .gz.msgs.Hydra.Paddle left = 3;\n}\n\n"
+  },
+  "gz.msgs.Hydra.Paddle": {
+    "definition": "message Paddle {\n  .gz.msgs.Pose pose = 1 [json_name = \"pose\"];\n  bool button_bumper = 2 [json_name = \"buttonBumper\"];\n  bool button_1 = 3 [json_name = \"button1\"];\n  bool button_2 = 4 [json_name = \"button2\"];\n  bool button_3 = 5 [json_name = \"button3\"];\n  bool button_4 = 6 [json_name = \"button4\"];\n  bool button_joy = 7 [json_name = \"buttonJoy\"];\n  bool button_center = 8 [json_name = \"buttonCenter\"];\n  double joy_x = 9 [json_name = \"joyX\"];\n  double joy_y = 10 [json_name = \"joyY\"];\n  double trigger = 11 [json_name = \"trigger\"];\n}\n",
+    "output": "Name: gz.msgs.Hydra.Paddle\nFile: gz/msgs/hydra.proto\n\nmessage Paddle {\n  .gz.msgs.Pose pose = 1 [json_name = \"pose\"];\n  bool button_bumper = 2 [json_name = \"buttonBumper\"];\n  bool button_1 = 3 [json_name = \"button1\"];\n  bool button_2 = 4 [json_name = \"button2\"];\n  bool button_3 = 5 [json_name = \"button3\"];\n  bool button_4 = 6 [json_name = \"button4\"];\n  bool button_joy = 7 [json_name = \"buttonJoy\"];\n  bool button_center = 8 [json_name = \"buttonCenter\"];\n  double joy_x = 9 [json_name = \"joyX\"];\n  double joy_y = 10 [json_name = \"joyY\"];\n  double trigger = 11 [json_name = \"trigger\"];\n}\n\n"
+  },
+  "gz.msgs.IMU": {
+    "definition": "message IMU {\n  .gz.msgs.Header header = 1;\n  string entity_name = 2;\n  .gz.msgs.Quaternion orientation = 3;\n  .gz.msgs.Float_V orientation_covariance = 4;\n  .gz.msgs.Vector3d angular_velocity = 5;\n  .gz.msgs.Float_V angular_velocity_covariance = 6;\n  .gz.msgs.Vector3d linear_acceleration = 7;\n  .gz.msgs.Float_V linear_acceleration_covariance = 8;\n}\n",
+    "output": "Name: gz.msgs.IMU\nFile: gz/msgs/imu.proto\n\nmessage IMU {\n  .gz.msgs.Header header = 1;\n  string entity_name = 2;\n  .gz.msgs.Quaternion orientation = 3;\n  .gz.msgs.Float_V orientation_covariance = 4;\n  .gz.msgs.Vector3d angular_velocity = 5;\n  .gz.msgs.Float_V angular_velocity_covariance = 6;\n  .gz.msgs.Vector3d linear_acceleration = 7;\n  .gz.msgs.Float_V linear_acceleration_covariance = 8;\n}\n\n"
+  },
+  "gz.msgs.IMUSensor": {
+    "definition": "message IMUSensor {\n  message AngularVelocity {\n    .gz.msgs.SensorNoise x_noise = 1;\n    .gz.msgs.SensorNoise y_noise = 2;\n    .gz.msgs.SensorNoise z_noise = 3;\n  }\n  message LinearAcceleration {\n    .gz.msgs.SensorNoise x_noise = 1;\n    .gz.msgs.SensorNoise y_noise = 2;\n    .gz.msgs.SensorNoise z_noise = 3;\n  }\n  message OrientationReferenceFrame {\n    string localization = 1;\n    .gz.msgs.Vector3d custom_rpy = 2;\n    string custom_rpy_parent_frame = 3;\n    .gz.msgs.Vector3d gravity_dir_x = 4;\n    string gravity_dir_x_parent_frame = 5;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.IMUSensor.AngularVelocity angular_velocity = 2;\n  .gz.msgs.IMUSensor.LinearAcceleration linear_acceleration = 3;\n  .gz.msgs.IMUSensor.OrientationReferenceFrame orientation_ref_frame = 4;\n}\n",
+    "output": "Name: gz.msgs.IMUSensor\nFile: gz/msgs/imu_sensor.proto\n\nmessage IMUSensor {\n  message AngularVelocity {\n    .gz.msgs.SensorNoise x_noise = 1;\n    .gz.msgs.SensorNoise y_noise = 2;\n    .gz.msgs.SensorNoise z_noise = 3;\n  }\n  message LinearAcceleration {\n    .gz.msgs.SensorNoise x_noise = 1;\n    .gz.msgs.SensorNoise y_noise = 2;\n    .gz.msgs.SensorNoise z_noise = 3;\n  }\n  message OrientationReferenceFrame {\n    string localization = 1;\n    .gz.msgs.Vector3d custom_rpy = 2;\n    string custom_rpy_parent_frame = 3;\n    .gz.msgs.Vector3d gravity_dir_x = 4;\n    string gravity_dir_x_parent_frame = 5;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.IMUSensor.AngularVelocity angular_velocity = 2;\n  .gz.msgs.IMUSensor.LinearAcceleration linear_acceleration = 3;\n  .gz.msgs.IMUSensor.OrientationReferenceFrame orientation_ref_frame = 4;\n}\n\n"
+  },
+  "gz.msgs.IMUSensor.AngularVelocity": {
+    "definition": "message AngularVelocity {\n  .gz.msgs.SensorNoise x_noise = 1 [json_name = \"xNoise\"];\n  .gz.msgs.SensorNoise y_noise = 2 [json_name = \"yNoise\"];\n  .gz.msgs.SensorNoise z_noise = 3 [json_name = \"zNoise\"];\n}\n",
+    "output": "Name: gz.msgs.IMUSensor.AngularVelocity\nFile: gz/msgs/imu_sensor.proto\n\nmessage AngularVelocity {\n  .gz.msgs.SensorNoise x_noise = 1 [json_name = \"xNoise\"];\n  .gz.msgs.SensorNoise y_noise = 2 [json_name = \"yNoise\"];\n  .gz.msgs.SensorNoise z_noise = 3 [json_name = \"zNoise\"];\n}\n\n"
+  },
+  "gz.msgs.IMUSensor.LinearAcceleration": {
+    "definition": "message LinearAcceleration {\n  .gz.msgs.SensorNoise x_noise = 1 [json_name = \"xNoise\"];\n  .gz.msgs.SensorNoise y_noise = 2 [json_name = \"yNoise\"];\n  .gz.msgs.SensorNoise z_noise = 3 [json_name = \"zNoise\"];\n}\n",
+    "output": "Name: gz.msgs.IMUSensor.LinearAcceleration\nFile: gz/msgs/imu_sensor.proto\n\nmessage LinearAcceleration {\n  .gz.msgs.SensorNoise x_noise = 1 [json_name = \"xNoise\"];\n  .gz.msgs.SensorNoise y_noise = 2 [json_name = \"yNoise\"];\n  .gz.msgs.SensorNoise z_noise = 3 [json_name = \"zNoise\"];\n}\n\n"
+  },
+  "gz.msgs.IMUSensor.OrientationReferenceFrame": {
+    "definition": "message OrientationReferenceFrame {\n  string localization = 1 [json_name = \"localization\"];\n  .gz.msgs.Vector3d custom_rpy = 2 [json_name = \"customRpy\"];\n  string custom_rpy_parent_frame = 3 [json_name = \"customRpyParentFrame\"];\n  .gz.msgs.Vector3d gravity_dir_x = 4 [json_name = \"gravityDirX\"];\n  string gravity_dir_x_parent_frame = 5 [json_name = \"gravityDirXParentFrame\"];\n}\n",
+    "output": "Name: gz.msgs.IMUSensor.OrientationReferenceFrame\nFile: gz/msgs/imu_sensor.proto\n\nmessage OrientationReferenceFrame {\n  string localization = 1 [json_name = \"localization\"];\n  .gz.msgs.Vector3d custom_rpy = 2 [json_name = \"customRpy\"];\n  string custom_rpy_parent_frame = 3 [json_name = \"customRpyParentFrame\"];\n  .gz.msgs.Vector3d gravity_dir_x = 4 [json_name = \"gravityDirX\"];\n  string gravity_dir_x_parent_frame = 5 [json_name = \"gravityDirXParentFrame\"];\n}\n\n"
+  },
+  "gz.msgs.Image": {
+    "definition": "message Image {\n  .gz.msgs.Header header = 1;\n  uint32 width = 2;\n  uint32 height = 3;\n  uint32 step = 4;\n  bytes data = 5;\n  .gz.msgs.PixelFormatType pixel_format_type = 6;\n}\n",
+    "output": "Name: gz.msgs.Image\nFile: gz/msgs/image.proto\n\nmessage Image {\n  .gz.msgs.Header header = 1;\n  uint32 width = 2;\n  uint32 height = 3;\n  uint32 step = 4;\n  bytes data = 5;\n  .gz.msgs.PixelFormatType pixel_format_type = 6;\n}\n\n"
+  },
+  "gz.msgs.ImageGeom": {
+    "definition": "message ImageGeom {\n  .gz.msgs.Header header = 1;\n  string uri = 2;\n  double scale = 3;\n  int32 threshold = 4;\n  double height = 5;\n  int32 granularity = 6;\n}\n",
+    "output": "Name: gz.msgs.ImageGeom\nFile: gz/msgs/imagegeom.proto\n\nmessage ImageGeom {\n  .gz.msgs.Header header = 1;\n  string uri = 2;\n  double scale = 3;\n  int32 threshold = 4;\n  double height = 5;\n  int32 granularity = 6;\n}\n\n"
+  },
+  "gz.msgs.Inertial": {
+    "definition": "message Inertial {\n  .gz.msgs.Header header = 1;\n  double mass = 2;\n  .gz.msgs.Pose pose = 3;\n  double ixx = 4;\n  double ixy = 5;\n  double ixz = 6;\n  double iyy = 7;\n  double iyz = 8;\n  double izz = 9;\n  repeated double fluid_added_mass = 10;\n}\n",
+    "output": "Name: gz.msgs.Inertial\nFile: gz/msgs/inertial.proto\n\nmessage Inertial {\n  .gz.msgs.Header header = 1;\n  double mass = 2;\n  .gz.msgs.Pose pose = 3;\n  double ixx = 4;\n  double ixy = 5;\n  double ixz = 6;\n  double iyy = 7;\n  double iyz = 8;\n  double izz = 9;\n  repeated double fluid_added_mass = 10;\n}\n\n"
+  },
+  "gz.msgs.Int32": {
+    "definition": "message Int32 {\n  .gz.msgs.Header header = 1;\n  int32 data = 2;\n}\n",
+    "output": "Name: gz.msgs.Int32\nFile: gz/msgs/int32.proto\n\nmessage Int32 {\n  .gz.msgs.Header header = 1;\n  int32 data = 2;\n}\n\n"
+  },
+  "gz.msgs.Int32_V": {
+    "definition": "message Int32_V {\n  .gz.msgs.Header header = 1;\n  repeated int32 data = 2;\n}\n",
+    "output": "Name: gz.msgs.Int32_V\nFile: gz/msgs/int32_v.proto\n\nmessage Int32_V {\n  .gz.msgs.Header header = 1;\n  repeated int32 data = 2;\n}\n\n"
+  },
+  "gz.msgs.Int64": {
+    "definition": "message Int64 {\n  .gz.msgs.Header header = 1;\n  int64 data = 2;\n}\n",
+    "output": "Name: gz.msgs.Int64\nFile: gz/msgs/int64.proto\n\nmessage Int64 {\n  .gz.msgs.Header header = 1;\n  int64 data = 2;\n}\n\n"
+  },
+  "gz.msgs.Int64_V": {
+    "definition": "message Int64_V {\n  .gz.msgs.Header header = 1;\n  repeated int64 data = 2;\n}\n",
+    "output": "Name: gz.msgs.Int64_V\nFile: gz/msgs/int64_v.proto\n\nmessage Int64_V {\n  .gz.msgs.Header header = 1;\n  repeated int64 data = 2;\n}\n\n"
+  },
+  "gz.msgs.Joint": {
+    "definition": "message Joint {\n  message Gearbox {\n    string gearbox_reference_body = 1;\n    double gearbox_ratio = 2;\n  }\n  message Screw {\n    double thread_pitch = 1;\n  }\n  enum Type {\n    REVOLUTE = 0;\n    REVOLUTE2 = 1;\n    PRISMATIC = 2;\n    UNIVERSAL = 3;\n    BALL = 4;\n    SCREW = 5;\n    GEARBOX = 6;\n    FIXED = 7;\n    CONTINUOUS = 8;\n  }\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  uint32 id = 3;\n  .gz.msgs.Joint.Type type = 4;\n  string parent = 5;\n  uint32 parent_id = 6;\n  string child = 7;\n  uint32 child_id = 8;\n  .gz.msgs.Pose pose = 9;\n  .gz.msgs.Axis axis1 = 10;\n  .gz.msgs.Axis axis2 = 11;\n  double cfm = 12;\n  double bounce = 13;\n  double fudge_factor = 14;\n  double limit_cfm = 15;\n  double limit_erp = 16;\n  double suspension_cfm = 17;\n  double suspension_erp = 18;\n  .gz.msgs.Joint.Gearbox gearbox = 19;\n  .gz.msgs.Joint.Screw screw = 20;\n  repeated .gz.msgs.Sensor sensor = 21;\n}\n",
+    "output": "Name: gz.msgs.Joint\nFile: gz/msgs/joint.proto\n\nmessage Joint {\n  message Gearbox {\n    string gearbox_reference_body = 1;\n    double gearbox_ratio = 2;\n  }\n  message Screw {\n    double thread_pitch = 1;\n  }\n  enum Type {\n    REVOLUTE = 0;\n    REVOLUTE2 = 1;\n    PRISMATIC = 2;\n    UNIVERSAL = 3;\n    BALL = 4;\n    SCREW = 5;\n    GEARBOX = 6;\n    FIXED = 7;\n    CONTINUOUS = 8;\n  }\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  uint32 id = 3;\n  .gz.msgs.Joint.Type type = 4;\n  string parent = 5;\n  uint32 parent_id = 6;\n  string child = 7;\n  uint32 child_id = 8;\n  .gz.msgs.Pose pose = 9;\n  .gz.msgs.Axis axis1 = 10;\n  .gz.msgs.Axis axis2 = 11;\n  double cfm = 12;\n  double bounce = 13;\n  double fudge_factor = 14;\n  double limit_cfm = 15;\n  double limit_erp = 16;\n  double suspension_cfm = 17;\n  double suspension_erp = 18;\n  .gz.msgs.Joint.Gearbox gearbox = 19;\n  .gz.msgs.Joint.Screw screw = 20;\n  repeated .gz.msgs.Sensor sensor = 21;\n}\n\n"
+  },
+  "gz.msgs.Joint.Gearbox": {
+    "definition": "message Gearbox {\n  string gearbox_reference_body = 1 [json_name = \"gearboxReferenceBody\"];\n  double gearbox_ratio = 2 [json_name = \"gearboxRatio\"];\n}\n",
+    "output": "Name: gz.msgs.Joint.Gearbox\nFile: gz/msgs/joint.proto\n\nmessage Gearbox {\n  string gearbox_reference_body = 1 [json_name = \"gearboxReferenceBody\"];\n  double gearbox_ratio = 2 [json_name = \"gearboxRatio\"];\n}\n\n"
+  },
+  "gz.msgs.Joint.Screw": {
+    "definition": "message Screw {\n  double thread_pitch = 1 [json_name = \"threadPitch\"];\n}\n",
+    "output": "Name: gz.msgs.Joint.Screw\nFile: gz/msgs/joint.proto\n\nmessage Screw {\n  double thread_pitch = 1 [json_name = \"threadPitch\"];\n}\n\n"
+  },
+  "gz.msgs.JointAnimation": {
+    "definition": "message JointAnimation {\n  message Joint {\n    repeated string name = 1;\n    repeated double angle = 2;\n  }\n  .gz.msgs.Header header = 1;\n  string model_name = 2;\n  repeated .gz.msgs.JointAnimation.Joint joint = 3;\n  repeated .gz.msgs.Time time = 4;\n}\n",
+    "output": "Name: gz.msgs.JointAnimation\nFile: gz/msgs/joint_animation.proto\n\nmessage JointAnimation {\n  message Joint {\n    repeated string name = 1;\n    repeated double angle = 2;\n  }\n  .gz.msgs.Header header = 1;\n  string model_name = 2;\n  repeated .gz.msgs.JointAnimation.Joint joint = 3;\n  repeated .gz.msgs.Time time = 4;\n}\n\n"
+  },
+  "gz.msgs.JointAnimation.Joint": {
+    "definition": "message Joint {\n  repeated string name = 1 [json_name = \"name\"];\n  repeated double angle = 2 [json_name = \"angle\"];\n}\n",
+    "output": "Name: gz.msgs.JointAnimation.Joint\nFile: gz/msgs/joint_animation.proto\n\nmessage Joint {\n  repeated string name = 1 [json_name = \"name\"];\n  repeated double angle = 2 [json_name = \"angle\"];\n}\n\n"
+  },
+  "gz.msgs.JointCmd": {
+    "definition": "message JointCmd {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  int32 axis = 3;\n  .gz.msgs.PID position = 5;\n  .gz.msgs.PID velocity = 6;\n  bool reset = 7;\n  .gz.msgs.Double force_optional = 8;\n}\n",
+    "output": "Name: gz.msgs.JointCmd\nFile: gz/msgs/joint_cmd.proto\n\nmessage JointCmd {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  int32 axis = 3;\n  .gz.msgs.PID position = 5;\n  .gz.msgs.PID velocity = 6;\n  bool reset = 7;\n  .gz.msgs.Double force_optional = 8;\n}\n\n"
+  },
+  "gz.msgs.JointTrajectory": {
+    "definition": "message JointTrajectory {\n  .gz.msgs.Header header = 1;\n  repeated string joint_names = 2;\n  repeated .gz.msgs.JointTrajectoryPoint points = 3;\n}\n",
+    "output": "Name: gz.msgs.JointTrajectory\nFile: gz/msgs/joint_trajectory.proto\n\nmessage JointTrajectory {\n  .gz.msgs.Header header = 1;\n  repeated string joint_names = 2;\n  repeated .gz.msgs.JointTrajectoryPoint points = 3;\n}\n\n"
+  },
+  "gz.msgs.JointTrajectoryPoint": {
+    "definition": "message JointTrajectoryPoint {\n  repeated double positions = 1;\n  repeated double velocities = 2;\n  repeated double accelerations = 3;\n  repeated double effort = 4;\n  .gz.msgs.Duration time_from_start = 5;\n}\n",
+    "output": "Name: gz.msgs.JointTrajectoryPoint\nFile: gz/msgs/joint_trajectory_point.proto\n\nmessage JointTrajectoryPoint {\n  repeated double positions = 1;\n  repeated double velocities = 2;\n  repeated double accelerations = 3;\n  repeated double effort = 4;\n  .gz.msgs.Duration time_from_start = 5;\n}\n\n"
+  },
+  "gz.msgs.JointWrench": {
+    "definition": "message JointWrench {\n  .gz.msgs.Header header = 1;\n  string body_1_name = 2;\n  uint32 body_1_id = 3;\n  string body_2_name = 4;\n  uint32 body_2_id = 5;\n  .gz.msgs.Wrench body_1_wrench = 6;\n  .gz.msgs.Wrench body_2_wrench = 7;\n}\n",
+    "output": "Name: gz.msgs.JointWrench\nFile: gz/msgs/joint_wrench.proto\n\nmessage JointWrench {\n  .gz.msgs.Header header = 1;\n  string body_1_name = 2;\n  uint32 body_1_id = 3;\n  string body_2_name = 4;\n  uint32 body_2_id = 5;\n  .gz.msgs.Wrench body_1_wrench = 6;\n  .gz.msgs.Wrench body_2_wrench = 7;\n}\n\n"
+  },
+  "gz.msgs.Joy": {
+    "definition": "message Joy {\n  .gz.msgs.Header header = 1;\n  repeated float axes = 2;\n  repeated int32 buttons = 3;\n}\n",
+    "output": "Name: gz.msgs.Joy\nFile: gz/msgs/joy.proto\n\nmessage Joy {\n  .gz.msgs.Header header = 1;\n  repeated float axes = 2;\n  repeated int32 buttons = 3;\n}\n\n"
+  },
+  "gz.msgs.Joystick": {
+    "definition": "message Joystick {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Vector3d translation = 2;\n  .gz.msgs.Vector3d rotation = 3;\n  repeated int32 buttons = 4;\n}\n",
+    "output": "Name: gz.msgs.Joystick\nFile: gz/msgs/joystick.proto\n\nmessage Joystick {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Vector3d translation = 2;\n  .gz.msgs.Vector3d rotation = 3;\n  repeated int32 buttons = 4;\n}\n\n"
+  },
+  "gz.msgs.LaserScan": {
+    "definition": "message LaserScan {\n  .gz.msgs.Header header = 1;\n  string frame = 2;\n  .gz.msgs.Pose world_pose = 3;\n  double angle_min = 4;\n  double angle_max = 5;\n  double angle_step = 6;\n  double range_min = 7;\n  double range_max = 8;\n  uint32 count = 9;\n  double vertical_angle_min = 10;\n  double vertical_angle_max = 11;\n  double vertical_angle_step = 12;\n  uint32 vertical_count = 13;\n  repeated double ranges = 14;\n  repeated double intensities = 15;\n}\n",
+    "output": "Name: gz.msgs.LaserScan\nFile: gz/msgs/laserscan.proto\n\nmessage LaserScan {\n  .gz.msgs.Header header = 1;\n  string frame = 2;\n  .gz.msgs.Pose world_pose = 3;\n  double angle_min = 4;\n  double angle_max = 5;\n  double angle_step = 6;\n  double range_min = 7;\n  double range_max = 8;\n  uint32 count = 9;\n  double vertical_angle_min = 10;\n  double vertical_angle_max = 11;\n  double vertical_angle_step = 12;\n  uint32 vertical_count = 13;\n  repeated double ranges = 14;\n  repeated double intensities = 15;\n}\n\n"
+  },
+  "gz.msgs.Lens": {
+    "definition": "message Lens {\n  enum Type {\n    TYPE_NOT_SPECIFIED = 0;\n    GNOMONICAL = 1;\n    STEREOGRAPHIC = 2;\n    EQUIDISTANT = 3;\n    EQUISOLID_ANGLE = 4;\n    ORTHOGRAPHIC = 5;\n    CUSTOM = 6;\n  }\n  enum FunctionType {\n    FUNCTION_NOT_SPECIFIED = 0;\n    SIN = 1;\n    TAN = 2;\n    ID = 3;\n  }\n  .gz.msgs.Lens.Type type = 1;\n  bool scale_to_hfov = 2;\n  double c1 = 3;\n  double c2 = 4;\n  double c3 = 5;\n  double focal_length = 6;\n  .gz.msgs.Lens.FunctionType function_type = 7;\n  double cutoff_angle = 8;\n  int32 environment_texture_size = 9;\n  double intrinsics_fx = 10;\n  double intrinsics_fy = 11;\n  double intrinsics_cx = 12;\n  double intrinsics_cy = 13;\n  double intrinsics_skew = 14;\n}\n",
+    "output": "Name: gz.msgs.Lens\nFile: gz/msgs/lens.proto\n\nmessage Lens {\n  enum Type {\n    TYPE_NOT_SPECIFIED = 0;\n    GNOMONICAL = 1;\n    STEREOGRAPHIC = 2;\n    EQUIDISTANT = 3;\n    EQUISOLID_ANGLE = 4;\n    ORTHOGRAPHIC = 5;\n    CUSTOM = 6;\n  }\n  enum FunctionType {\n    FUNCTION_NOT_SPECIFIED = 0;\n    SIN = 1;\n    TAN = 2;\n    ID = 3;\n  }\n  .gz.msgs.Lens.Type type = 1;\n  bool scale_to_hfov = 2;\n  double c1 = 3;\n  double c2 = 4;\n  double c3 = 5;\n  double focal_length = 6;\n  .gz.msgs.Lens.FunctionType function_type = 7;\n  double cutoff_angle = 8;\n  int32 environment_texture_size = 9;\n  double intrinsics_fx = 10;\n  double intrinsics_fy = 11;\n  double intrinsics_cx = 12;\n  double intrinsics_cy = 13;\n  double intrinsics_skew = 14;\n}\n\n"
+  },
+  "gz.msgs.LidarSensor": {
+    "definition": "message LidarSensor {\n  .gz.msgs.Header header = 1;\n  bool display_scan = 2;\n  int32 horizontal_samples = 3;\n  double horizontal_resolution = 4;\n  double horizontal_min_angle = 5;\n  double horizontal_max_angle = 6;\n  int32 vertical_samples = 7;\n  double vertical_resolution = 8;\n  double vertical_min_angle = 9;\n  double vertical_max_angle = 10;\n  double range_min = 11;\n  double range_max = 12;\n  double range_resolution = 13;\n  .gz.msgs.SensorNoise noise = 14;\n}\n",
+    "output": "Name: gz.msgs.LidarSensor\nFile: gz/msgs/lidar_sensor.proto\n\nmessage LidarSensor {\n  .gz.msgs.Header header = 1;\n  bool display_scan = 2;\n  int32 horizontal_samples = 3;\n  double horizontal_resolution = 4;\n  double horizontal_min_angle = 5;\n  double horizontal_max_angle = 6;\n  int32 vertical_samples = 7;\n  double vertical_resolution = 8;\n  double vertical_min_angle = 9;\n  double vertical_max_angle = 10;\n  double range_min = 11;\n  double range_max = 12;\n  double range_resolution = 13;\n  .gz.msgs.SensorNoise noise = 14;\n}\n\n"
+  },
+  "gz.msgs.Light": {
+    "definition": "message Light {\n  enum LightType {\n    POINT = 0;\n    SPOT = 1;\n    DIRECTIONAL = 2;\n  }\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  .gz.msgs.Light.LightType type = 3;\n  .gz.msgs.Pose pose = 4;\n  .gz.msgs.Color diffuse = 5;\n  .gz.msgs.Color specular = 6;\n  float attenuation_constant = 7;\n  float attenuation_linear = 8;\n  float attenuation_quadratic = 9;\n  .gz.msgs.Vector3d direction = 10;\n  float range = 11;\n  bool cast_shadows = 12;\n  float spot_inner_angle = 13;\n  float spot_outer_angle = 14;\n  float spot_falloff = 15;\n  uint32 id = 16;\n  uint32 parent_id = 17;\n  float intensity = 18;\n  bool is_light_off = 19;\n  bool visualize_visual = 20;\n}\n",
+    "output": "Name: gz.msgs.Light\nFile: gz/msgs/light.proto\n\nmessage Light {\n  enum LightType {\n    POINT = 0;\n    SPOT = 1;\n    DIRECTIONAL = 2;\n  }\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  .gz.msgs.Light.LightType type = 3;\n  .gz.msgs.Pose pose = 4;\n  .gz.msgs.Color diffuse = 5;\n  .gz.msgs.Color specular = 6;\n  float attenuation_constant = 7;\n  float attenuation_linear = 8;\n  float attenuation_quadratic = 9;\n  .gz.msgs.Vector3d direction = 10;\n  float range = 11;\n  bool cast_shadows = 12;\n  float spot_inner_angle = 13;\n  float spot_outer_angle = 14;\n  float spot_falloff = 15;\n  uint32 id = 16;\n  uint32 parent_id = 17;\n  float intensity = 18;\n  bool is_light_off = 19;\n  bool visualize_visual = 20;\n}\n\n"
+  },
+  "gz.msgs.Link": {
+    "definition": "message Link {\n  .gz.msgs.Header header = 1;\n  uint32 id = 2;\n  string name = 3;\n  bool self_collide = 4;\n  bool gravity = 5;\n  bool kinematic = 6;\n  bool enabled = 7;\n  .gz.msgs.Density density = 8;\n  .gz.msgs.Inertial inertial = 9;\n  .gz.msgs.Pose pose = 10;\n  repeated .gz.msgs.Visual visual = 11;\n  repeated .gz.msgs.Collision collision = 12;\n  repeated .gz.msgs.Sensor sensor = 13;\n  repeated .gz.msgs.Projector projector = 14;\n  bool canonical = 15;\n  repeated .gz.msgs.Battery battery = 16;\n  repeated .gz.msgs.Light light = 17;\n  repeated .gz.msgs.ParticleEmitter particle_emitter = 18;\n}\n",
+    "output": "Name: gz.msgs.Link\nFile: gz/msgs/link.proto\n\nmessage Link {\n  .gz.msgs.Header header = 1;\n  uint32 id = 2;\n  string name = 3;\n  bool self_collide = 4;\n  bool gravity = 5;\n  bool kinematic = 6;\n  bool enabled = 7;\n  .gz.msgs.Density density = 8;\n  .gz.msgs.Inertial inertial = 9;\n  .gz.msgs.Pose pose = 10;\n  repeated .gz.msgs.Visual visual = 11;\n  repeated .gz.msgs.Collision collision = 12;\n  repeated .gz.msgs.Sensor sensor = 13;\n  repeated .gz.msgs.Projector projector = 14;\n  bool canonical = 15;\n  repeated .gz.msgs.Battery battery = 16;\n  repeated .gz.msgs.Light light = 17;\n  repeated .gz.msgs.ParticleEmitter particle_emitter = 18;\n}\n\n"
+  },
+  "gz.msgs.LinkData": {
+    "definition": "message LinkData {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  .gz.msgs.Vector3d linear_velocity = 3;\n  .gz.msgs.Vector3d angular_velocity = 4;\n}\n",
+    "output": "Name: gz.msgs.LinkData\nFile: gz/msgs/link_data.proto\n\nmessage LinkData {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  .gz.msgs.Vector3d linear_velocity = 3;\n  .gz.msgs.Vector3d angular_velocity = 4;\n}\n\n"
+  },
+  "gz.msgs.LogControl": {
+    "definition": "message LogControl {\n  .gz.msgs.Header header = 1;\n  bool start = 2;\n  bool stop = 3;\n  bool paused = 4;\n  string base_path = 5;\n  string encoding = 6;\n  string record_resources = 7;\n}\n",
+    "output": "Name: gz.msgs.LogControl\nFile: gz/msgs/log_control.proto\n\nmessage LogControl {\n  .gz.msgs.Header header = 1;\n  bool start = 2;\n  bool stop = 3;\n  bool paused = 4;\n  string base_path = 5;\n  string encoding = 6;\n  string record_resources = 7;\n}\n\n"
+  },
+  "gz.msgs.LogPlaybackControl": {
+    "definition": "message LogPlaybackControl {\n  .gz.msgs.Header header = 1;\n  bool pause = 2;\n  sint32 multi_step = 3;\n  bool rewind = 4;\n  bool forward = 5;\n  .gz.msgs.Time seek = 6;\n}\n",
+    "output": "Name: gz.msgs.LogPlaybackControl\nFile: gz/msgs/log_playback_control.proto\n\nmessage LogPlaybackControl {\n  .gz.msgs.Header header = 1;\n  bool pause = 2;\n  sint32 multi_step = 3;\n  bool rewind = 4;\n  bool forward = 5;\n  .gz.msgs.Time seek = 6;\n}\n\n"
+  },
+  "gz.msgs.LogPlaybackStatistics": {
+    "definition": "message LogPlaybackStatistics {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Time start_time = 2;\n  .gz.msgs.Time end_time = 3;\n}\n",
+    "output": "Name: gz.msgs.LogPlaybackStatistics\nFile: gz/msgs/log_playback_stats.proto\n\nmessage LogPlaybackStatistics {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Time start_time = 2;\n  .gz.msgs.Time end_time = 3;\n}\n\n"
+  },
+  "gz.msgs.LogStatus": {
+    "definition": "message LogStatus {\n  message LogFile {\n    enum Units {\n      BYTES = 0;\n      K_BYTES = 1;\n      M_BYTES = 2;\n      G_BYTES = 3;\n    }\n    string uri = 1;\n    string base_path = 2;\n    string full_path = 3;\n    float size = 4;\n    .gz.msgs.LogStatus.LogFile.Units size_units = 5;\n    bool record_resources = 6;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Time sim_time = 2;\n  .gz.msgs.LogStatus.LogFile log_file = 3;\n}\n",
+    "output": "Name: gz.msgs.LogStatus\nFile: gz/msgs/log_status.proto\n\nmessage LogStatus {\n  message LogFile {\n    enum Units {\n      BYTES = 0;\n      K_BYTES = 1;\n      M_BYTES = 2;\n      G_BYTES = 3;\n    }\n    string uri = 1;\n    string base_path = 2;\n    string full_path = 3;\n    float size = 4;\n    .gz.msgs.LogStatus.LogFile.Units size_units = 5;\n    bool record_resources = 6;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Time sim_time = 2;\n  .gz.msgs.LogStatus.LogFile log_file = 3;\n}\n\n"
+  },
+  "gz.msgs.LogStatus.LogFile": {
+    "definition": "message LogFile {\n  enum Units {\n    BYTES = 0;\n    K_BYTES = 1;\n    M_BYTES = 2;\n    G_BYTES = 3;\n  }\n  string uri = 1 [json_name = \"uri\"];\n  string base_path = 2 [json_name = \"basePath\"];\n  string full_path = 3 [json_name = \"fullPath\"];\n  float size = 4 [json_name = \"size\"];\n  .gz.msgs.LogStatus.LogFile.Units size_units = 5 [json_name = \"sizeUnits\"];\n  bool record_resources = 6 [json_name = \"recordResources\"];\n}\n",
+    "output": "Name: gz.msgs.LogStatus.LogFile\nFile: gz/msgs/log_status.proto\n\nmessage LogFile {\n  enum Units {\n    BYTES = 0;\n    K_BYTES = 1;\n    M_BYTES = 2;\n    G_BYTES = 3;\n  }\n  string uri = 1 [json_name = \"uri\"];\n  string base_path = 2 [json_name = \"basePath\"];\n  string full_path = 3 [json_name = \"fullPath\"];\n  float size = 4 [json_name = \"size\"];\n  .gz.msgs.LogStatus.LogFile.Units size_units = 5 [json_name = \"sizeUnits\"];\n  bool record_resources = 6 [json_name = \"recordResources\"];\n}\n\n"
+  },
+  "gz.msgs.LogicalCameraImage": {
+    "definition": "message LogicalCameraImage {\n  message Model {\n    string name = 1;\n    .gz.msgs.Pose pose = 2;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Pose pose = 2;\n  repeated .gz.msgs.LogicalCameraImage.Model model = 3;\n}\n",
+    "output": "Name: gz.msgs.LogicalCameraImage\nFile: gz/msgs/logical_camera_image.proto\n\nmessage LogicalCameraImage {\n  message Model {\n    string name = 1;\n    .gz.msgs.Pose pose = 2;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Pose pose = 2;\n  repeated .gz.msgs.LogicalCameraImage.Model model = 3;\n}\n\n"
+  },
+  "gz.msgs.LogicalCameraImage.Model": {
+    "definition": "message Model {\n  string name = 1 [json_name = \"name\"];\n  .gz.msgs.Pose pose = 2 [json_name = \"pose\"];\n}\n",
+    "output": "Name: gz.msgs.LogicalCameraImage.Model\nFile: gz/msgs/logical_camera_image.proto\n\nmessage Model {\n  string name = 1 [json_name = \"name\"];\n  .gz.msgs.Pose pose = 2 [json_name = \"pose\"];\n}\n\n"
+  },
+  "gz.msgs.LogicalCameraSensor": {
+    "definition": "message LogicalCameraSensor {\n  .gz.msgs.Header header = 1;\n  double near_clip = 2;\n  double far_clip = 3;\n  double horizontal_fov = 4;\n  double aspect_ratio = 5;\n}\n",
+    "output": "Name: gz.msgs.LogicalCameraSensor\nFile: gz/msgs/logical_camera_sensor.proto\n\nmessage LogicalCameraSensor {\n  .gz.msgs.Header header = 1;\n  double near_clip = 2;\n  double far_clip = 3;\n  double horizontal_fov = 4;\n  double aspect_ratio = 5;\n}\n\n"
+  },
+  "gz.msgs.Magnetometer": {
+    "definition": "message Magnetometer {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Vector3d field_tesla = 2;\n}\n",
+    "output": "Name: gz.msgs.Magnetometer\nFile: gz/msgs/magnetometer.proto\n\nmessage Magnetometer {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Vector3d field_tesla = 2;\n}\n\n"
+  },
+  "gz.msgs.MagnetometerSensor": {
+    "definition": "message MagnetometerSensor {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.SensorNoise x_noise = 2;\n  .gz.msgs.SensorNoise y_noise = 3;\n  .gz.msgs.SensorNoise z_noise = 4;\n}\n",
+    "output": "Name: gz.msgs.MagnetometerSensor\nFile: gz/msgs/magnetometer_sensor.proto\n\nmessage MagnetometerSensor {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.SensorNoise x_noise = 2;\n  .gz.msgs.SensorNoise y_noise = 3;\n  .gz.msgs.SensorNoise z_noise = 4;\n}\n\n"
+  },
+  "gz.msgs.Marker": {
+    "definition": "message Marker {\n  enum Type {\n    NONE = 0;\n    BOX = 1;\n    CYLINDER = 2;\n    LINE_LIST = 4;\n    LINE_STRIP = 3;\n    POINTS = 5;\n    SPHERE = 6;\n    TEXT = 7;\n    TRIANGLE_FAN = 8;\n    TRIANGLE_LIST = 9;\n    TRIANGLE_STRIP = 10;\n    CONE = 11;\n    ARROW = 12;\n    AXIS = 13;\n    CAPSULE = 14;\n    ELLIPSOID = 15;\n  }\n  enum Visibility {\n    GUI = 0;\n    ALL = 1;\n  }\n  enum Action {\n    ADD_MODIFY = 0;\n    DELETE_MARKER = 1;\n    DELETE_ALL = 2;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Marker.Action action = 2;\n  string ns = 3;\n  uint64 id = 4;\n  int32 layer = 5;\n  .gz.msgs.Marker.Type type = 6;\n  .gz.msgs.Time lifetime = 7;\n  .gz.msgs.Pose pose = 8;\n  .gz.msgs.Vector3d scale = 9;\n  .gz.msgs.Material material = 10;\n  repeated .gz.msgs.Vector3d point = 11;\n  string text = 12;\n  string parent = 13;\n  .gz.msgs.Marker.Visibility visibility = 14;\n  repeated .gz.msgs.Material materials = 15;\n}\n",
+    "output": "Name: gz.msgs.Marker\nFile: gz/msgs/marker.proto\n\nmessage Marker {\n  enum Type {\n    NONE = 0;\n    BOX = 1;\n    CYLINDER = 2;\n    LINE_LIST = 4;\n    LINE_STRIP = 3;\n    POINTS = 5;\n    SPHERE = 6;\n    TEXT = 7;\n    TRIANGLE_FAN = 8;\n    TRIANGLE_LIST = 9;\n    TRIANGLE_STRIP = 10;\n    CONE = 11;\n    ARROW = 12;\n    AXIS = 13;\n    CAPSULE = 14;\n    ELLIPSOID = 15;\n  }\n  enum Visibility {\n    GUI = 0;\n    ALL = 1;\n  }\n  enum Action {\n    ADD_MODIFY = 0;\n    DELETE_MARKER = 1;\n    DELETE_ALL = 2;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Marker.Action action = 2;\n  string ns = 3;\n  uint64 id = 4;\n  int32 layer = 5;\n  .gz.msgs.Marker.Type type = 6;\n  .gz.msgs.Time lifetime = 7;\n  .gz.msgs.Pose pose = 8;\n  .gz.msgs.Vector3d scale = 9;\n  .gz.msgs.Material material = 10;\n  repeated .gz.msgs.Vector3d point = 11;\n  string text = 12;\n  string parent = 13;\n  .gz.msgs.Marker.Visibility visibility = 14;\n  repeated .gz.msgs.Material materials = 15;\n}\n\n"
+  },
+  "gz.msgs.Marker_V": {
+    "definition": "message Marker_V {\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.Marker marker = 2;\n}\n",
+    "output": "Name: gz.msgs.Marker_V\nFile: gz/msgs/marker_v.proto\n\nmessage Marker_V {\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.Marker marker = 2;\n}\n\n"
+  },
+  "gz.msgs.Material": {
+    "definition": "message Material {\n  message Script {\n    repeated string uri = 1;\n    string name = 2;\n  }\n  message PBR {\n    enum WorkflowType {\n      NONE = 0;\n      METAL = 1;\n      SPECULAR = 2;\n    }\n    .gz.msgs.Material.PBR.WorkflowType type = 1;\n    string albedo_map = 2;\n    string normal_map = 3;\n    double metalness = 4;\n    string metalness_map = 5;\n    double roughness = 6;\n    string roughness_map = 7;\n    double glossiness = 8;\n    string glossiness_map = 9;\n    string specular_map = 10;\n    string environment_map = 11;\n    string ambient_occlusion_map = 12;\n    string emissive_map = 13;\n    string light_map = 14;\n    uint32 light_map_texcoord_set = 15;\n  }\n  enum ShaderType {\n    VERTEX = 0;\n    PIXEL = 1;\n    NORMAL_MAP_OBJECT_SPACE = 2;\n    NORMAL_MAP_TANGENT_SPACE = 3;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Material.Script script = 2;\n  .gz.msgs.Material.ShaderType shader_type = 3;\n  string normal_map = 4;\n  .gz.msgs.Color ambient = 5;\n  .gz.msgs.Color diffuse = 6;\n  .gz.msgs.Color specular = 7;\n  .gz.msgs.Color emissive = 8;\n  bool lighting = 9;\n  .gz.msgs.Material.PBR pbr = 10;\n  double render_order = 11;\n  bool double_sided = 12;\n  double shininess = 13;\n}\n",
+    "output": "Name: gz.msgs.Material\nFile: gz/msgs/material.proto\n\nmessage Material {\n  message Script {\n    repeated string uri = 1;\n    string name = 2;\n  }\n  message PBR {\n    enum WorkflowType {\n      NONE = 0;\n      METAL = 1;\n      SPECULAR = 2;\n    }\n    .gz.msgs.Material.PBR.WorkflowType type = 1;\n    string albedo_map = 2;\n    string normal_map = 3;\n    double metalness = 4;\n    string metalness_map = 5;\n    double roughness = 6;\n    string roughness_map = 7;\n    double glossiness = 8;\n    string glossiness_map = 9;\n    string specular_map = 10;\n    string environment_map = 11;\n    string ambient_occlusion_map = 12;\n    string emissive_map = 13;\n    string light_map = 14;\n    uint32 light_map_texcoord_set = 15;\n  }\n  enum ShaderType {\n    VERTEX = 0;\n    PIXEL = 1;\n    NORMAL_MAP_OBJECT_SPACE = 2;\n    NORMAL_MAP_TANGENT_SPACE = 3;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Material.Script script = 2;\n  .gz.msgs.Material.ShaderType shader_type = 3;\n  string normal_map = 4;\n  .gz.msgs.Color ambient = 5;\n  .gz.msgs.Color diffuse = 6;\n  .gz.msgs.Color specular = 7;\n  .gz.msgs.Color emissive = 8;\n  bool lighting = 9;\n  .gz.msgs.Material.PBR pbr = 10;\n  double render_order = 11;\n  bool double_sided = 12;\n  double shininess = 13;\n}\n\n"
+  },
+  "gz.msgs.Material.PBR": {
+    "definition": "message PBR {\n  enum WorkflowType {\n    NONE = 0;\n    METAL = 1;\n    SPECULAR = 2;\n  }\n  .gz.msgs.Material.PBR.WorkflowType type = 1 [json_name = \"type\"];\n  string albedo_map = 2 [json_name = \"albedoMap\"];\n  string normal_map = 3 [json_name = \"normalMap\"];\n  double metalness = 4 [json_name = \"metalness\"];\n  string metalness_map = 5 [json_name = \"metalnessMap\"];\n  double roughness = 6 [json_name = \"roughness\"];\n  string roughness_map = 7 [json_name = \"roughnessMap\"];\n  double glossiness = 8 [json_name = \"glossiness\"];\n  string glossiness_map = 9 [json_name = \"glossinessMap\"];\n  string specular_map = 10 [json_name = \"specularMap\"];\n  string environment_map = 11 [json_name = \"environmentMap\"];\n  string ambient_occlusion_map = 12 [json_name = \"ambientOcclusionMap\"];\n  string emissive_map = 13 [json_name = \"emissiveMap\"];\n  string light_map = 14 [json_name = \"lightMap\"];\n  uint32 light_map_texcoord_set = 15 [json_name = \"lightMapTexcoordSet\"];\n}\n",
+    "output": "Name: gz.msgs.Material.PBR\nFile: gz/msgs/material.proto\n\nmessage PBR {\n  enum WorkflowType {\n    NONE = 0;\n    METAL = 1;\n    SPECULAR = 2;\n  }\n  .gz.msgs.Material.PBR.WorkflowType type = 1 [json_name = \"type\"];\n  string albedo_map = 2 [json_name = \"albedoMap\"];\n  string normal_map = 3 [json_name = \"normalMap\"];\n  double metalness = 4 [json_name = \"metalness\"];\n  string metalness_map = 5 [json_name = \"metalnessMap\"];\n  double roughness = 6 [json_name = \"roughness\"];\n  string roughness_map = 7 [json_name = \"roughnessMap\"];\n  double glossiness = 8 [json_name = \"glossiness\"];\n  string glossiness_map = 9 [json_name = \"glossinessMap\"];\n  string specular_map = 10 [json_name = \"specularMap\"];\n  string environment_map = 11 [json_name = \"environmentMap\"];\n  string ambient_occlusion_map = 12 [json_name = \"ambientOcclusionMap\"];\n  string emissive_map = 13 [json_name = \"emissiveMap\"];\n  string light_map = 14 [json_name = \"lightMap\"];\n  uint32 light_map_texcoord_set = 15 [json_name = \"lightMapTexcoordSet\"];\n}\n\n"
+  },
+  "gz.msgs.Material.Script": {
+    "definition": "message Script {\n  repeated string uri = 1 [json_name = \"uri\"];\n  string name = 2 [json_name = \"name\"];\n}\n",
+    "output": "Name: gz.msgs.Material.Script\nFile: gz/msgs/material.proto\n\nmessage Script {\n  repeated string uri = 1 [json_name = \"uri\"];\n  string name = 2 [json_name = \"name\"];\n}\n\n"
+  },
+  "gz.msgs.MaterialColor": {
+    "definition": "message MaterialColor {\n  enum EntityMatch {\n    FIRST = 0;\n    ALL = 1;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Entity entity = 2;\n  .gz.msgs.Color ambient = 3;\n  .gz.msgs.Color diffuse = 4;\n  .gz.msgs.Color specular = 5;\n  .gz.msgs.Color emissive = 6;\n  double shininess = 7;\n  .gz.msgs.MaterialColor.EntityMatch entity_match = 8;\n}\n",
+    "output": "Name: gz.msgs.MaterialColor\nFile: gz/msgs/material_color.proto\n\nmessage MaterialColor {\n  enum EntityMatch {\n    FIRST = 0;\n    ALL = 1;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Entity entity = 2;\n  .gz.msgs.Color ambient = 3;\n  .gz.msgs.Color diffuse = 4;\n  .gz.msgs.Color specular = 5;\n  .gz.msgs.Color emissive = 6;\n  double shininess = 7;\n  .gz.msgs.MaterialColor.EntityMatch entity_match = 8;\n}\n\n"
+  },
+  "gz.msgs.MeshGeom": {
+    "definition": "message MeshGeom {\n  .gz.msgs.Header header = 1;\n  string filename = 2;\n  .gz.msgs.Vector3d scale = 3;\n  string submesh = 4;\n  bool center_submesh = 5;\n}\n",
+    "output": "Name: gz.msgs.MeshGeom\nFile: gz/msgs/meshgeom.proto\n\nmessage MeshGeom {\n  .gz.msgs.Header header = 1;\n  string filename = 2;\n  .gz.msgs.Vector3d scale = 3;\n  string submesh = 4;\n  bool center_submesh = 5;\n}\n\n"
+  },
+  "gz.msgs.Metric": {
+    "definition": "message Metric {\n  .gz.msgs.Header header = 1;\n  string unit = 2;\n  repeated .gz.msgs.StatisticsGroup statistics_groups = 3;\n  repeated .gz.msgs.Statistic statistics = 4;\n}\n",
+    "output": "Name: gz.msgs.Metric\nFile: gz/msgs/statistic.proto\n\nmessage Metric {\n  .gz.msgs.Header header = 1;\n  string unit = 2;\n  repeated .gz.msgs.StatisticsGroup statistics_groups = 3;\n  repeated .gz.msgs.Statistic statistics = 4;\n}\n\n"
+  },
+  "gz.msgs.Model": {
+    "definition": "message Model {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  uint32 id = 3;\n  bool is_static = 4;\n  .gz.msgs.Pose pose = 5;\n  repeated .gz.msgs.Joint joint = 6;\n  repeated .gz.msgs.Link link = 7;\n  bool deleted = 8;\n  repeated .gz.msgs.Visual visual = 9;\n  .gz.msgs.Vector3d scale = 10;\n  bool self_collide = 11;\n  repeated .gz.msgs.Model model = 12;\n  .gz.msgs.AxisAlignedBox bounding_box = 13;\n}\n",
+    "output": "Name: gz.msgs.Model\nFile: gz/msgs/model.proto\n\nmessage Model {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  uint32 id = 3;\n  bool is_static = 4;\n  .gz.msgs.Pose pose = 5;\n  repeated .gz.msgs.Joint joint = 6;\n  repeated .gz.msgs.Link link = 7;\n  bool deleted = 8;\n  repeated .gz.msgs.Visual visual = 9;\n  .gz.msgs.Vector3d scale = 10;\n  bool self_collide = 11;\n  repeated .gz.msgs.Model model = 12;\n  .gz.msgs.AxisAlignedBox bounding_box = 13;\n}\n\n"
+  },
+  "gz.msgs.ModelConfiguration": {
+    "definition": "message ModelConfiguration {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Time time = 2;\n  repeated string joint_names = 3;\n  repeated double joint_positions = 4;\n  .gz.msgs.Pose pose = 5;\n  string link_name = 6;\n}\n",
+    "output": "Name: gz.msgs.ModelConfiguration\nFile: gz/msgs/model_configuration.proto\n\nmessage ModelConfiguration {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Time time = 2;\n  repeated string joint_names = 3;\n  repeated double joint_positions = 4;\n  .gz.msgs.Pose pose = 5;\n  string link_name = 6;\n}\n\n"
+  },
+  "gz.msgs.Model_V": {
+    "definition": "message Model_V {\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.Model models = 2;\n}\n",
+    "output": "Name: gz.msgs.Model_V\nFile: gz/msgs/model_v.proto\n\nmessage Model_V {\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.Model models = 2;\n}\n\n"
+  },
+  "gz.msgs.NavSat": {
+    "definition": "message NavSat {\n  .gz.msgs.Header header = 1;\n  double latitude_deg = 2;\n  double longitude_deg = 3;\n  double altitude = 4;\n  double velocity_east = 5;\n  double velocity_north = 6;\n  double velocity_up = 7;\n  string frame_id = 8;\n}\n",
+    "output": "Name: gz.msgs.NavSat\nFile: gz/msgs/navsat.proto\n\nmessage NavSat {\n  .gz.msgs.Header header = 1;\n  double latitude_deg = 2;\n  double longitude_deg = 3;\n  double altitude = 4;\n  double velocity_east = 5;\n  double velocity_north = 6;\n  double velocity_up = 7;\n  string frame_id = 8;\n}\n\n"
+  },
+  "gz.msgs.NavSatSensor": {
+    "definition": "message NavSatSensor {\n  message Sensing {\n    .gz.msgs.SensorNoise horizontal_noise = 1;\n    .gz.msgs.SensorNoise vertical_noise = 2;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.NavSatSensor.Sensing position = 2;\n  .gz.msgs.NavSatSensor.Sensing velocity = 3;\n}\n",
+    "output": "Name: gz.msgs.NavSatSensor\nFile: gz/msgs/navsat_sensor.proto\n\nmessage NavSatSensor {\n  message Sensing {\n    .gz.msgs.SensorNoise horizontal_noise = 1;\n    .gz.msgs.SensorNoise vertical_noise = 2;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.NavSatSensor.Sensing position = 2;\n  .gz.msgs.NavSatSensor.Sensing velocity = 3;\n}\n\n"
+  },
+  "gz.msgs.NavSatSensor.Sensing": {
+    "definition": "message Sensing {\n  .gz.msgs.SensorNoise horizontal_noise = 1 [json_name = \"horizontalNoise\"];\n  .gz.msgs.SensorNoise vertical_noise = 2 [json_name = \"verticalNoise\"];\n}\n",
+    "output": "Name: gz.msgs.NavSatSensor.Sensing\nFile: gz/msgs/navsat_sensor.proto\n\nmessage Sensing {\n  .gz.msgs.SensorNoise horizontal_noise = 1 [json_name = \"horizontalNoise\"];\n  .gz.msgs.SensorNoise vertical_noise = 2 [json_name = \"verticalNoise\"];\n}\n\n"
+  },
+  "gz.msgs.NavSatWithCovariance": {
+    "definition": "message NavSatWithCovariance {\n  .gz.msgs.Header header = 1;\n  double latitude_deg = 2;\n  double longitude_deg = 3;\n  double altitude = 4;\n  .gz.msgs.Float_V position_covariance = 5;\n  uint32 position_covariance_type = 6;\n  double velocity_east = 7;\n  double velocity_north = 8;\n  double velocity_up = 9;\n  .gz.msgs.Float_V velocity_covariance = 10;\n  uint32 velocity_covariance_type = 11;\n  string frame_id = 12;\n}\n",
+    "output": "Name: gz.msgs.NavSatWithCovariance\nFile: gz/msgs/navsat_with_covariance.proto\n\nmessage NavSatWithCovariance {\n  .gz.msgs.Header header = 1;\n  double latitude_deg = 2;\n  double longitude_deg = 3;\n  double altitude = 4;\n  .gz.msgs.Float_V position_covariance = 5;\n  uint32 position_covariance_type = 6;\n  double velocity_east = 7;\n  double velocity_north = 8;\n  double velocity_up = 9;\n  .gz.msgs.Float_V velocity_covariance = 10;\n  uint32 velocity_covariance_type = 11;\n  string frame_id = 12;\n}\n\n"
+  },
+  "gz.msgs.OccupancyGrid": {
+    "definition": "message OccupancyGrid {\n  message MapMetaInfo {\n    .gz.msgs.Time map_load_time = 1;\n    double resolution = 2;\n    uint32 width = 3;\n    uint32 height = 4;\n    .gz.msgs.Pose origin = 5;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.OccupancyGrid.MapMetaInfo info = 2;\n  bytes data = 3;\n}\n",
+    "output": "Name: gz.msgs.OccupancyGrid\nFile: gz/msgs/occupancy_grid.proto\n\nmessage OccupancyGrid {\n  message MapMetaInfo {\n    .gz.msgs.Time map_load_time = 1;\n    double resolution = 2;\n    uint32 width = 3;\n    uint32 height = 4;\n    .gz.msgs.Pose origin = 5;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.OccupancyGrid.MapMetaInfo info = 2;\n  bytes data = 3;\n}\n\n"
+  },
+  "gz.msgs.OccupancyGrid.MapMetaInfo": {
+    "definition": "message MapMetaInfo {\n  .gz.msgs.Time map_load_time = 1 [json_name = \"mapLoadTime\"];\n  double resolution = 2 [json_name = \"resolution\"];\n  uint32 width = 3 [json_name = \"width\"];\n  uint32 height = 4 [json_name = \"height\"];\n  .gz.msgs.Pose origin = 5 [json_name = \"origin\"];\n}\n",
+    "output": "Name: gz.msgs.OccupancyGrid.MapMetaInfo\nFile: gz/msgs/occupancy_grid.proto\n\nmessage MapMetaInfo {\n  .gz.msgs.Time map_load_time = 1 [json_name = \"mapLoadTime\"];\n  double resolution = 2 [json_name = \"resolution\"];\n  uint32 width = 3 [json_name = \"width\"];\n  uint32 height = 4 [json_name = \"height\"];\n  .gz.msgs.Pose origin = 5 [json_name = \"origin\"];\n}\n\n"
+  },
+  "gz.msgs.Odometry": {
+    "definition": "message Odometry {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Pose pose = 2;\n  .gz.msgs.Twist twist = 3;\n}\n",
+    "output": "Name: gz.msgs.Odometry\nFile: gz/msgs/odometry.proto\n\nmessage Odometry {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Pose pose = 2;\n  .gz.msgs.Twist twist = 3;\n}\n\n"
+  },
+  "gz.msgs.OdometryWithCovariance": {
+    "definition": "message OdometryWithCovariance {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.PoseWithCovariance pose_with_covariance = 2;\n  .gz.msgs.TwistWithCovariance twist_with_covariance = 3;\n}\n",
+    "output": "Name: gz.msgs.OdometryWithCovariance\nFile: gz/msgs/odometry_with_covariance.proto\n\nmessage OdometryWithCovariance {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.PoseWithCovariance pose_with_covariance = 2;\n  .gz.msgs.TwistWithCovariance twist_with_covariance = 3;\n}\n\n"
+  },
+  "gz.msgs.Oriented3DBox": {
+    "definition": "message Oriented3DBox {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Vector3d center = 2;\n  .gz.msgs.Quaternion orientation = 3;\n  .gz.msgs.Vector3d boxSize = 4;\n}\n",
+    "output": "Name: gz.msgs.Oriented3DBox\nFile: gz/msgs/oriented_3d_box.proto\n\nmessage Oriented3DBox {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Vector3d center = 2;\n  .gz.msgs.Quaternion orientation = 3;\n  .gz.msgs.Vector3d boxSize = 4;\n}\n\n"
+  },
+  "gz.msgs.PID": {
+    "definition": "message PID {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Double target_optional = 2;\n  .gz.msgs.Double p_gain_optional = 3;\n  .gz.msgs.Double i_gain_optional = 4;\n  .gz.msgs.Double d_gain_optional = 5;\n  .gz.msgs.Double i_max_optional = 6;\n  .gz.msgs.Double i_min_optional = 7;\n  .gz.msgs.Double limit_optional = 8;\n}\n",
+    "output": "Name: gz.msgs.PID\nFile: gz/msgs/pid.proto\n\nmessage PID {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Double target_optional = 2;\n  .gz.msgs.Double p_gain_optional = 3;\n  .gz.msgs.Double i_gain_optional = 4;\n  .gz.msgs.Double d_gain_optional = 5;\n  .gz.msgs.Double i_max_optional = 6;\n  .gz.msgs.Double i_min_optional = 7;\n  .gz.msgs.Double limit_optional = 8;\n}\n\n"
+  },
+  "gz.msgs.Packet": {
+    "definition": "message Packet {\n  string topic = 1;\n  string type = 2;\n  oneof content {\n    .gz.msgs.CmdVel2D cmd_vel2d = 3;\n    .gz.msgs.Image image = 4;\n    .gz.msgs.StringMsg_V string_msg_v = 5;\n    .gz.msgs.WebRequest web_request = 6;\n    .gz.msgs.Pose pose = 7;\n    .gz.msgs.Double_V doublev = 8;\n    .gz.msgs.Pose_V pose_v = 9;\n    .gz.msgs.Time time = 10;\n    .gz.msgs.Clock clock = 11;\n    .gz.msgs.WorldStatistics world_stats = 12;\n  }\n}\n",
+    "output": "Name: gz.msgs.Packet\nFile: gz/msgs/packet.proto\n\nmessage Packet {\n  string topic = 1;\n  string type = 2;\n  oneof content {\n    .gz.msgs.CmdVel2D cmd_vel2d = 3;\n    .gz.msgs.Image image = 4;\n    .gz.msgs.StringMsg_V string_msg_v = 5;\n    .gz.msgs.WebRequest web_request = 6;\n    .gz.msgs.Pose pose = 7;\n    .gz.msgs.Double_V doublev = 8;\n    .gz.msgs.Pose_V pose_v = 9;\n    .gz.msgs.Time time = 10;\n    .gz.msgs.Clock clock = 11;\n    .gz.msgs.WorldStatistics world_stats = 12;\n  }\n}\n\n"
+  },
+  "gz.msgs.Param": {
+    "definition": "message Param {\n  .gz.msgs.Header header = 1;\n  map<string, .gz.msgs.Any> params = 2;\n  repeated .gz.msgs.Param children = 3;\n}\n",
+    "output": "Name: gz.msgs.Param\nFile: gz/msgs/param.proto\n\nmessage Param {\n  .gz.msgs.Header header = 1;\n  map<string, .gz.msgs.Any> params = 2;\n  repeated .gz.msgs.Param children = 3;\n}\n\n"
+  },
+  "gz.msgs.Param.ParamsEntry": {
+    "definition": "",
+    "output": "Name: gz.msgs.Param.ParamsEntry\nFile: gz/msgs/param.proto\n\n\n"
+  },
+  "gz.msgs.Param_V": {
+    "definition": "message Param_V {\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.Param param = 2;\n}\n",
+    "output": "Name: gz.msgs.Param_V\nFile: gz/msgs/param_v.proto\n\nmessage Param_V {\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.Param param = 2;\n}\n\n"
+  },
+  "gz.msgs.Parameter": {
+    "definition": "message Parameter {\n  string name = 1;\n  .google.protobuf.Any value = 2;\n}\n",
+    "output": "Name: gz.msgs.Parameter\nFile: gz/msgs/parameter.proto\n\nmessage Parameter {\n  string name = 1;\n  .google.protobuf.Any value = 2;\n}\n\n"
+  },
+  "gz.msgs.ParameterDeclaration": {
+    "definition": "message ParameterDeclaration {\n  string name = 1;\n  string type = 2;\n}\n",
+    "output": "Name: gz.msgs.ParameterDeclaration\nFile: gz/msgs/parameter_declaration.proto\n\nmessage ParameterDeclaration {\n  string name = 1;\n  string type = 2;\n}\n\n"
+  },
+  "gz.msgs.ParameterDeclarations": {
+    "definition": "message ParameterDeclarations {\n  repeated .gz.msgs.ParameterDeclaration parameter_declarations = 1;\n}\n",
+    "output": "Name: gz.msgs.ParameterDeclarations\nFile: gz/msgs/parameter_declarations.proto\n\nmessage ParameterDeclarations {\n  repeated .gz.msgs.ParameterDeclaration parameter_declarations = 1;\n}\n\n"
+  },
+  "gz.msgs.ParameterError": {
+    "definition": "message ParameterError {\n  enum Type {\n    SUCCESS = 0;\n    ALREADY_DECLARED = 1;\n    INVALID_TYPE = 2;\n    NOT_DECLARED = 3;\n  }\n  .gz.msgs.ParameterError.Type data = 1;\n}\n",
+    "output": "Name: gz.msgs.ParameterError\nFile: gz/msgs/parameter_error.proto\n\nmessage ParameterError {\n  enum Type {\n    SUCCESS = 0;\n    ALREADY_DECLARED = 1;\n    INVALID_TYPE = 2;\n    NOT_DECLARED = 3;\n  }\n  .gz.msgs.ParameterError.Type data = 1;\n}\n\n"
+  },
+  "gz.msgs.ParameterName": {
+    "definition": "message ParameterName {\n  string name = 1;\n}\n",
+    "output": "Name: gz.msgs.ParameterName\nFile: gz/msgs/parameter_name.proto\n\nmessage ParameterName {\n  string name = 1;\n}\n\n"
+  },
+  "gz.msgs.ParameterValue": {
+    "definition": "message ParameterValue {\n  .google.protobuf.Any data = 1;\n}\n",
+    "output": "Name: gz.msgs.ParameterValue\nFile: gz/msgs/parameter_value.proto\n\nmessage ParameterValue {\n  .google.protobuf.Any data = 1;\n}\n\n"
+  },
+  "gz.msgs.ParticleEmitter": {
+    "definition": "message ParticleEmitter {\n  enum EmitterType {\n    POINT = 0;\n    BOX = 1;\n    CYLINDER = 2;\n    ELLIPSOID = 3;\n  }\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  uint32 id = 3;\n  .gz.msgs.ParticleEmitter.EmitterType type = 4;\n  .gz.msgs.Pose pose = 5;\n  .gz.msgs.Vector3d size = 6;\n  .gz.msgs.Float rate = 7;\n  .gz.msgs.Float duration = 8;\n  .gz.msgs.Boolean emitting = 9;\n  .gz.msgs.Vector3d particle_size = 10;\n  .gz.msgs.Float lifetime = 11;\n  .gz.msgs.Material material = 12;\n  .gz.msgs.Float min_velocity = 13;\n  .gz.msgs.Float max_velocity = 14;\n  .gz.msgs.Color color_start = 15;\n  .gz.msgs.Color color_end = 16;\n  .gz.msgs.Float scale_rate = 17;\n  .gz.msgs.StringMsg color_range_image = 18;\n  .gz.msgs.StringMsg topic = 19;\n  .gz.msgs.Float particle_scatter_ratio = 20;\n}\n",
+    "output": "Name: gz.msgs.ParticleEmitter\nFile: gz/msgs/particle_emitter.proto\n\nmessage ParticleEmitter {\n  enum EmitterType {\n    POINT = 0;\n    BOX = 1;\n    CYLINDER = 2;\n    ELLIPSOID = 3;\n  }\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  uint32 id = 3;\n  .gz.msgs.ParticleEmitter.EmitterType type = 4;\n  .gz.msgs.Pose pose = 5;\n  .gz.msgs.Vector3d size = 6;\n  .gz.msgs.Float rate = 7;\n  .gz.msgs.Float duration = 8;\n  .gz.msgs.Boolean emitting = 9;\n  .gz.msgs.Vector3d particle_size = 10;\n  .gz.msgs.Float lifetime = 11;\n  .gz.msgs.Material material = 12;\n  .gz.msgs.Float min_velocity = 13;\n  .gz.msgs.Float max_velocity = 14;\n  .gz.msgs.Color color_start = 15;\n  .gz.msgs.Color color_end = 16;\n  .gz.msgs.Float scale_rate = 17;\n  .gz.msgs.StringMsg color_range_image = 18;\n  .gz.msgs.StringMsg topic = 19;\n  .gz.msgs.Float particle_scatter_ratio = 20;\n}\n\n"
+  },
+  "gz.msgs.ParticleEmitter_V": {
+    "definition": "message ParticleEmitter_V {\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.ParticleEmitter particle_emitter = 2;\n}\n",
+    "output": "Name: gz.msgs.ParticleEmitter_V\nFile: gz/msgs/particle_emitter_v.proto\n\nmessage ParticleEmitter_V {\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.ParticleEmitter particle_emitter = 2;\n}\n\n"
+  },
+  "gz.msgs.PerformanceSensorMetrics": {
+    "definition": "message PerformanceSensorMetrics {\n  string name = 1;\n  double real_update_rate = 2;\n  double sim_update_rate = 3;\n  double nominal_update_rate = 4;\n  .gz.msgs.Double fps_optional = 5;\n}\n",
+    "output": "Name: gz.msgs.PerformanceSensorMetrics\nFile: gz/msgs/performance_sensor_metrics.proto\n\nmessage PerformanceSensorMetrics {\n  string name = 1;\n  double real_update_rate = 2;\n  double sim_update_rate = 3;\n  double nominal_update_rate = 4;\n  .gz.msgs.Double fps_optional = 5;\n}\n\n"
+  },
+  "gz.msgs.Physics": {
+    "definition": "message Physics {\n  enum Type {\n    ODE = 0;\n    BULLET = 1;\n    SIMBODY = 2;\n    DART = 3;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Physics.Type type = 2;\n  string solver_type = 3;\n  double min_step_size = 4;\n  int32 precon_iters = 5;\n  int32 iters = 6;\n  double sor = 7;\n  double cfm = 8;\n  double erp = 9;\n  double contact_max_correcting_vel = 10;\n  double contact_surface_layer = 11;\n  .gz.msgs.Vector3d gravity = 12;\n  bool enable_physics = 13;\n  double real_time_factor = 14;\n  double real_time_update_rate = 15;\n  double max_step_size = 16;\n  string profile_name = 17;\n  .gz.msgs.Vector3d magnetic_field = 18;\n}\n",
+    "output": "Name: gz.msgs.Physics\nFile: gz/msgs/physics.proto\n\nmessage Physics {\n  enum Type {\n    ODE = 0;\n    BULLET = 1;\n    SIMBODY = 2;\n    DART = 3;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Physics.Type type = 2;\n  string solver_type = 3;\n  double min_step_size = 4;\n  int32 precon_iters = 5;\n  int32 iters = 6;\n  double sor = 7;\n  double cfm = 8;\n  double erp = 9;\n  double contact_max_correcting_vel = 10;\n  double contact_surface_layer = 11;\n  .gz.msgs.Vector3d gravity = 12;\n  bool enable_physics = 13;\n  double real_time_factor = 14;\n  double real_time_update_rate = 15;\n  double max_step_size = 16;\n  string profile_name = 17;\n  .gz.msgs.Vector3d magnetic_field = 18;\n}\n\n"
+  },
+  "gz.msgs.PlaneGeom": {
+    "definition": "message PlaneGeom {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Vector3d normal = 2;\n  .gz.msgs.Vector2d size = 3;\n  double d = 4;\n}\n",
+    "output": "Name: gz.msgs.PlaneGeom\nFile: gz/msgs/planegeom.proto\n\nmessage PlaneGeom {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Vector3d normal = 2;\n  .gz.msgs.Vector2d size = 3;\n  double d = 4;\n}\n\n"
+  },
+  "gz.msgs.Plugin": {
+    "definition": "message Plugin {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  string filename = 3;\n  string innerxml = 4;\n}\n",
+    "output": "Name: gz.msgs.Plugin\nFile: gz/msgs/plugin.proto\n\nmessage Plugin {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  string filename = 3;\n  string innerxml = 4;\n}\n\n"
+  },
+  "gz.msgs.Plugin_V": {
+    "definition": "message Plugin_V {\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.Plugin plugins = 2;\n}\n",
+    "output": "Name: gz.msgs.Plugin_V\nFile: gz/msgs/plugin_v.proto\n\nmessage Plugin_V {\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.Plugin plugins = 2;\n}\n\n"
+  },
+  "gz.msgs.PointCloud": {
+    "definition": "message PointCloud {\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.Vector3d points = 2;\n}\n",
+    "output": "Name: gz.msgs.PointCloud\nFile: gz/msgs/pointcloud.proto\n\nmessage PointCloud {\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.Vector3d points = 2;\n}\n\n"
+  },
+  "gz.msgs.PointCloudPacked": {
+    "definition": "message PointCloudPacked {\n  message Field {\n    enum DataType {\n      INT8 = 0;\n      UINT8 = 1;\n      INT16 = 2;\n      UINT16 = 3;\n      INT32 = 4;\n      UINT32 = 5;\n      FLOAT32 = 6;\n      FLOAT64 = 7;\n    }\n    string name = 1;\n    uint32 offset = 2;\n    .gz.msgs.PointCloudPacked.Field.DataType datatype = 3;\n    uint32 count = 4;\n  }\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.PointCloudPacked.Field field = 2;\n  uint32 height = 3;\n  uint32 width = 4;\n  bool is_bigendian = 5;\n  uint32 point_step = 6;\n  uint32 row_step = 7;\n  bytes data = 8;\n  bool is_dense = 9;\n}\n",
+    "output": "Name: gz.msgs.PointCloudPacked\nFile: gz/msgs/pointcloud_packed.proto\n\nmessage PointCloudPacked {\n  message Field {\n    enum DataType {\n      INT8 = 0;\n      UINT8 = 1;\n      INT16 = 2;\n      UINT16 = 3;\n      INT32 = 4;\n      UINT32 = 5;\n      FLOAT32 = 6;\n      FLOAT64 = 7;\n    }\n    string name = 1;\n    uint32 offset = 2;\n    .gz.msgs.PointCloudPacked.Field.DataType datatype = 3;\n    uint32 count = 4;\n  }\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.PointCloudPacked.Field field = 2;\n  uint32 height = 3;\n  uint32 width = 4;\n  bool is_bigendian = 5;\n  uint32 point_step = 6;\n  uint32 row_step = 7;\n  bytes data = 8;\n  bool is_dense = 9;\n}\n\n"
+  },
+  "gz.msgs.PointCloudPacked.Field": {
+    "definition": "message Field {\n  enum DataType {\n    INT8 = 0;\n    UINT8 = 1;\n    INT16 = 2;\n    UINT16 = 3;\n    INT32 = 4;\n    UINT32 = 5;\n    FLOAT32 = 6;\n    FLOAT64 = 7;\n  }\n  string name = 1 [json_name = \"name\"];\n  uint32 offset = 2 [json_name = \"offset\"];\n  .gz.msgs.PointCloudPacked.Field.DataType datatype = 3 [json_name = \"datatype\"];\n  uint32 count = 4 [json_name = \"count\"];\n}\n",
+    "output": "Name: gz.msgs.PointCloudPacked.Field\nFile: gz/msgs/pointcloud_packed.proto\n\nmessage Field {\n  enum DataType {\n    INT8 = 0;\n    UINT8 = 1;\n    INT16 = 2;\n    UINT16 = 3;\n    INT32 = 4;\n    UINT32 = 5;\n    FLOAT32 = 6;\n    FLOAT64 = 7;\n  }\n  string name = 1 [json_name = \"name\"];\n  uint32 offset = 2 [json_name = \"offset\"];\n  .gz.msgs.PointCloudPacked.Field.DataType datatype = 3 [json_name = \"datatype\"];\n  uint32 count = 4 [json_name = \"count\"];\n}\n\n"
+  },
+  "gz.msgs.Polyline": {
+    "definition": "message Polyline {\n  .gz.msgs.Header header = 1;\n  double height = 2;\n  repeated .gz.msgs.Vector2d point = 3;\n}\n",
+    "output": "Name: gz.msgs.Polyline\nFile: gz/msgs/polylinegeom.proto\n\nmessage Polyline {\n  .gz.msgs.Header header = 1;\n  double height = 2;\n  repeated .gz.msgs.Vector2d point = 3;\n}\n\n"
+  },
+  "gz.msgs.Pose": {
+    "definition": "message Pose {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  uint32 id = 3;\n  .gz.msgs.Vector3d position = 4;\n  .gz.msgs.Quaternion orientation = 5;\n}\n",
+    "output": "Name: gz.msgs.Pose\nFile: gz/msgs/pose.proto\n\nmessage Pose {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  uint32 id = 3;\n  .gz.msgs.Vector3d position = 4;\n  .gz.msgs.Quaternion orientation = 5;\n}\n\n"
+  },
+  "gz.msgs.PoseAnimation": {
+    "definition": "message PoseAnimation {\n  string model_name = 1;\n  uint32 model_id = 2;\n  repeated .gz.msgs.Pose pose = 3;\n  repeated .gz.msgs.Time time = 4;\n}\n",
+    "output": "Name: gz.msgs.PoseAnimation\nFile: gz/msgs/pose_animation.proto\n\nmessage PoseAnimation {\n  string model_name = 1;\n  uint32 model_id = 2;\n  repeated .gz.msgs.Pose pose = 3;\n  repeated .gz.msgs.Time time = 4;\n}\n\n"
+  },
+  "gz.msgs.PoseTrajectory": {
+    "definition": "message PoseTrajectory {\n  string name = 1;\n  uint32 id = 2;\n  repeated .gz.msgs.Pose pose = 3;\n}\n",
+    "output": "Name: gz.msgs.PoseTrajectory\nFile: gz/msgs/pose_trajectory.proto\n\nmessage PoseTrajectory {\n  string name = 1;\n  uint32 id = 2;\n  repeated .gz.msgs.Pose pose = 3;\n}\n\n"
+  },
+  "gz.msgs.PoseWithCovariance": {
+    "definition": "message PoseWithCovariance {\n  .gz.msgs.Pose pose = 1;\n  .gz.msgs.Float_V covariance = 2;\n}\n",
+    "output": "Name: gz.msgs.PoseWithCovariance\nFile: gz/msgs/pose_with_covariance.proto\n\nmessage PoseWithCovariance {\n  .gz.msgs.Pose pose = 1;\n  .gz.msgs.Float_V covariance = 2;\n}\n\n"
+  },
+  "gz.msgs.Pose_V": {
+    "definition": "message Pose_V {\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.Pose pose = 2;\n}\n",
+    "output": "Name: gz.msgs.Pose_V\nFile: gz/msgs/pose_v.proto\n\nmessage Pose_V {\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.Pose pose = 2;\n}\n\n"
+  },
+  "gz.msgs.Projector": {
+    "definition": "message Projector {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  string texture = 3;\n  .gz.msgs.Pose pose = 4;\n  double fov = 5;\n  double near_clip = 6;\n  double far_clip = 7;\n  bool enabled = 8;\n  uint32 id = 9;\n  uint32 visibility_flags = 10;\n}\n",
+    "output": "Name: gz.msgs.Projector\nFile: gz/msgs/projector.proto\n\nmessage Projector {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  string texture = 3;\n  .gz.msgs.Pose pose = 4;\n  double fov = 5;\n  double near_clip = 6;\n  double far_clip = 7;\n  bool enabled = 8;\n  uint32 id = 9;\n  uint32 visibility_flags = 10;\n}\n\n"
+  },
+  "gz.msgs.PropagationGrid": {
+    "definition": "message PropagationGrid {\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.PropagationParticle particle = 2;\n}\n",
+    "output": "Name: gz.msgs.PropagationGrid\nFile: gz/msgs/propagation_grid.proto\n\nmessage PropagationGrid {\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.PropagationParticle particle = 2;\n}\n\n"
+  },
+  "gz.msgs.PropagationParticle": {
+    "definition": "message PropagationParticle {\n  .gz.msgs.Header header = 1;\n  double x = 2;\n  double y = 3;\n  double signal_level = 4;\n}\n",
+    "output": "Name: gz.msgs.PropagationParticle\nFile: gz/msgs/propagation_particle.proto\n\nmessage PropagationParticle {\n  .gz.msgs.Header header = 1;\n  double x = 2;\n  double y = 3;\n  double signal_level = 4;\n}\n\n"
+  },
+  "gz.msgs.Publish": {
+    "definition": "message Publish {\n  .gz.msgs.Header header = 1;\n  string topic = 2;\n  string msg_type = 3;\n  string host = 4;\n  uint32 port = 5;\n}\n",
+    "output": "Name: gz.msgs.Publish\nFile: gz/msgs/publish.proto\n\nmessage Publish {\n  .gz.msgs.Header header = 1;\n  string topic = 2;\n  string msg_type = 3;\n  string host = 4;\n  uint32 port = 5;\n}\n\n"
+  },
+  "gz.msgs.Publishers": {
+    "definition": "message Publishers {\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.Publish publisher = 2;\n}\n",
+    "output": "Name: gz.msgs.Publishers\nFile: gz/msgs/publishers.proto\n\nmessage Publishers {\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.Publish publisher = 2;\n}\n\n"
+  },
+  "gz.msgs.Quaternion": {
+    "definition": "message Quaternion {\n  .gz.msgs.Header header = 1;\n  double x = 2;\n  double y = 3;\n  double z = 4;\n  double w = 5;\n}\n",
+    "output": "Name: gz.msgs.Quaternion\nFile: gz/msgs/quaternion.proto\n\nmessage Quaternion {\n  .gz.msgs.Header header = 1;\n  double x = 2;\n  double y = 3;\n  double z = 4;\n  double w = 5;\n}\n\n"
+  },
+  "gz.msgs.RaySensor": {
+    "definition": "message RaySensor {\n  .gz.msgs.Header header = 1;\n  bool display_scan = 2;\n  int32 horizontal_samples = 3;\n  double horizontal_resolution = 4;\n  double horizontal_min_angle = 5;\n  double horizontal_max_angle = 6;\n  int32 vertical_samples = 7;\n  double vertical_resolution = 8;\n  double vertical_min_angle = 9;\n  double vertical_max_angle = 10;\n  double range_min = 11;\n  double range_max = 12;\n  double range_resolution = 13;\n}\n",
+    "output": "Name: gz.msgs.RaySensor\nFile: gz/msgs/raysensor.proto\n\nmessage RaySensor {\n  .gz.msgs.Header header = 1;\n  bool display_scan = 2;\n  int32 horizontal_samples = 3;\n  double horizontal_resolution = 4;\n  double horizontal_min_angle = 5;\n  double horizontal_max_angle = 6;\n  int32 vertical_samples = 7;\n  double vertical_resolution = 8;\n  double vertical_min_angle = 9;\n  double vertical_max_angle = 10;\n  double range_min = 11;\n  double range_max = 12;\n  double range_resolution = 13;\n}\n\n"
+  },
+  "gz.msgs.Request": {
+    "definition": "message Request {\n  .gz.msgs.Header header = 1;\n  int32 id = 2;\n  string request = 3;\n  string data = 4;\n  double dbl_data = 5;\n}\n",
+    "output": "Name: gz.msgs.Request\nFile: gz/msgs/request.proto\n\nmessage Request {\n  .gz.msgs.Header header = 1;\n  int32 id = 2;\n  string request = 3;\n  string data = 4;\n  double dbl_data = 5;\n}\n\n"
+  },
+  "gz.msgs.Response": {
+    "definition": "message Response {\n  .gz.msgs.Header header = 1;\n  int32 id = 2;\n  string request = 3;\n  string response = 4;\n  string type = 5;\n  bytes serialized_data = 6;\n}\n",
+    "output": "Name: gz.msgs.Response\nFile: gz/msgs/response.proto\n\nmessage Response {\n  .gz.msgs.Header header = 1;\n  int32 id = 2;\n  string request = 3;\n  string response = 4;\n  string type = 5;\n  bytes serialized_data = 6;\n}\n\n"
+  },
+  "gz.msgs.RestLogin": {
+    "definition": "message RestLogin {\n  .gz.msgs.Header header = 1;\n  uint32 id = 2;\n  string url = 3;\n  string username = 4;\n  string password = 5;\n}\n",
+    "output": "Name: gz.msgs.RestLogin\nFile: gz/msgs/rest_login.proto\n\nmessage RestLogin {\n  .gz.msgs.Header header = 1;\n  uint32 id = 2;\n  string url = 3;\n  string username = 4;\n  string password = 5;\n}\n\n"
+  },
+  "gz.msgs.RestLogout": {
+    "definition": "message RestLogout {\n  .gz.msgs.Header header = 1;\n  uint32 id = 2;\n  string url = 3;\n}\n",
+    "output": "Name: gz.msgs.RestLogout\nFile: gz/msgs/rest_logout.proto\n\nmessage RestLogout {\n  .gz.msgs.Header header = 1;\n  uint32 id = 2;\n  string url = 3;\n}\n\n"
+  },
+  "gz.msgs.RestPost": {
+    "definition": "message RestPost {\n  .gz.msgs.Header header = 1;\n  uint32 id = 2;\n  string route = 3;\n  string json = 4;\n}\n",
+    "output": "Name: gz.msgs.RestPost\nFile: gz/msgs/rest_post.proto\n\nmessage RestPost {\n  .gz.msgs.Header header = 1;\n  uint32 id = 2;\n  string route = 3;\n  string json = 4;\n}\n\n"
+  },
+  "gz.msgs.RestResponse": {
+    "definition": "message RestResponse {\n  enum Type {\n    SUCCESS = 0;\n    ERR = 1;\n    LOGIN = 2;\n    LOGOUT = 3;\n  }\n  .gz.msgs.Header header = 1;\n  uint32 id = 2;\n  .gz.msgs.RestResponse.Type type = 3;\n  string msg = 4;\n}\n",
+    "output": "Name: gz.msgs.RestResponse\nFile: gz/msgs/rest_response.proto\n\nmessage RestResponse {\n  enum Type {\n    SUCCESS = 0;\n    ERR = 1;\n    LOGIN = 2;\n    LOGOUT = 3;\n  }\n  .gz.msgs.Header header = 1;\n  uint32 id = 2;\n  .gz.msgs.RestResponse.Type type = 3;\n  string msg = 4;\n}\n\n"
+  },
+  "gz.msgs.Result": {
+    "definition": "message Result {\n  int32 error_code = 1;\n  string message = 2;\n}\n",
+    "output": "Name: gz.msgs.Result\nFile: gz/msgs/result.proto\n\nmessage Result {\n  int32 error_code = 1;\n  string message = 2;\n}\n\n"
+  },
+  "gz.msgs.Road": {
+    "definition": "message Road {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  double width = 3;\n  repeated .gz.msgs.Vector3d point = 4;\n  .gz.msgs.Material material = 5;\n}\n",
+    "output": "Name: gz.msgs.Road\nFile: gz/msgs/road.proto\n\nmessage Road {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  double width = 3;\n  repeated .gz.msgs.Vector3d point = 4;\n  .gz.msgs.Material material = 5;\n}\n\n"
+  },
+  "gz.msgs.Scene": {
+    "definition": "message Scene {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  .gz.msgs.Color ambient = 3;\n  .gz.msgs.Color background = 4;\n  .gz.msgs.Sky sky = 5;\n  bool shadows = 6;\n  .gz.msgs.Fog fog = 7;\n  bool grid = 8;\n  repeated .gz.msgs.Model model = 9;\n  repeated .gz.msgs.Light light = 10;\n  repeated .gz.msgs.Joint joint = 11;\n  bool origin_visual = 12;\n  .gz.msgs.Material.Script shadow_caster_material_script = 13;\n}\n",
+    "output": "Name: gz.msgs.Scene\nFile: gz/msgs/scene.proto\n\nmessage Scene {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  .gz.msgs.Color ambient = 3;\n  .gz.msgs.Color background = 4;\n  .gz.msgs.Sky sky = 5;\n  bool shadows = 6;\n  .gz.msgs.Fog fog = 7;\n  bool grid = 8;\n  repeated .gz.msgs.Model model = 9;\n  repeated .gz.msgs.Light light = 10;\n  repeated .gz.msgs.Joint joint = 11;\n  bool origin_visual = 12;\n  .gz.msgs.Material.Script shadow_caster_material_script = 13;\n}\n\n"
+  },
+  "gz.msgs.SdfGeneratorConfig": {
+    "definition": "message SdfGeneratorConfig {\n  message EntityGeneratorConfig {\n    .gz.msgs.Boolean expand_include_tags = 1;\n    .gz.msgs.Boolean save_fuel_version = 2;\n    .gz.msgs.Boolean resources_use_absolute_paths = 3;\n    .gz.msgs.Boolean copy_model_resources = 4;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.SdfGeneratorConfig.EntityGeneratorConfig global_entity_gen_config = 2;\n  map<string, .gz.msgs.SdfGeneratorConfig.EntityGeneratorConfig> override_entity_gen_configs = 3;\n}\n",
+    "output": "Name: gz.msgs.SdfGeneratorConfig\nFile: gz/msgs/sdf_generator_config.proto\n\nmessage SdfGeneratorConfig {\n  message EntityGeneratorConfig {\n    .gz.msgs.Boolean expand_include_tags = 1;\n    .gz.msgs.Boolean save_fuel_version = 2;\n    .gz.msgs.Boolean resources_use_absolute_paths = 3;\n    .gz.msgs.Boolean copy_model_resources = 4;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.SdfGeneratorConfig.EntityGeneratorConfig global_entity_gen_config = 2;\n  map<string, .gz.msgs.SdfGeneratorConfig.EntityGeneratorConfig> override_entity_gen_configs = 3;\n}\n\n"
+  },
+  "gz.msgs.SdfGeneratorConfig.EntityGeneratorConfig": {
+    "definition": "message EntityGeneratorConfig {\n  .gz.msgs.Boolean expand_include_tags = 1 [json_name = \"expandIncludeTags\"];\n  .gz.msgs.Boolean save_fuel_version = 2 [json_name = \"saveFuelVersion\"];\n  .gz.msgs.Boolean resources_use_absolute_paths = 3 [json_name = \"resourcesUseAbsolutePaths\"];\n  .gz.msgs.Boolean copy_model_resources = 4 [json_name = \"copyModelResources\"];\n}\n",
+    "output": "Name: gz.msgs.SdfGeneratorConfig.EntityGeneratorConfig\nFile: gz/msgs/sdf_generator_config.proto\n\nmessage EntityGeneratorConfig {\n  .gz.msgs.Boolean expand_include_tags = 1 [json_name = \"expandIncludeTags\"];\n  .gz.msgs.Boolean save_fuel_version = 2 [json_name = \"saveFuelVersion\"];\n  .gz.msgs.Boolean resources_use_absolute_paths = 3 [json_name = \"resourcesUseAbsolutePaths\"];\n  .gz.msgs.Boolean copy_model_resources = 4 [json_name = \"copyModelResources\"];\n}\n\n"
+  },
+  "gz.msgs.SdfGeneratorConfig.OverrideEntityGenConfigsEntry": {
+    "definition": "",
+    "output": "Name: gz.msgs.SdfGeneratorConfig.OverrideEntityGenConfigsEntry\nFile: gz/msgs/sdf_generator_config.proto\n\n\n"
+  },
+  "gz.msgs.Selection": {
+    "definition": "message Selection {\n  .gz.msgs.Header header = 1;\n  uint32 id = 2;\n  string name = 3;\n  bool selected = 4;\n}\n",
+    "output": "Name: gz.msgs.Selection\nFile: gz/msgs/selection.proto\n\nmessage Selection {\n  .gz.msgs.Header header = 1;\n  uint32 id = 2;\n  string name = 3;\n  bool selected = 4;\n}\n\n"
+  },
+  "gz.msgs.Sensor": {
+    "definition": "message Sensor {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  uint32 id = 3;\n  string parent = 4;\n  uint32 parent_id = 5;\n  string type = 6;\n  bool always_on = 7;\n  double update_rate = 8;\n  .gz.msgs.Pose pose = 9;\n  .gz.msgs.CameraSensor camera = 10;\n  .gz.msgs.ContactSensor contact = 11;\n  bool visualize = 12;\n  string topic = 13;\n  .gz.msgs.LogicalCameraSensor logical_camera = 14;\n  .gz.msgs.GPSSensor gps = 15 [deprecated = true];\n  .gz.msgs.IMUSensor imu = 16;\n  .gz.msgs.MagnetometerSensor magnetometer = 17;\n  .gz.msgs.AltimeterSensor altimeter = 18;\n  .gz.msgs.AirPressureSensor air_pressure = 19;\n  .gz.msgs.LidarSensor lidar = 20;\n  .gz.msgs.AirSpeedSensor air_speed = 21;\n  .gz.msgs.NavSatSensor navsat = 22;\n}\n",
+    "output": "Name: gz.msgs.Sensor\nFile: gz/msgs/sensor.proto\n\nmessage Sensor {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  uint32 id = 3;\n  string parent = 4;\n  uint32 parent_id = 5;\n  string type = 6;\n  bool always_on = 7;\n  double update_rate = 8;\n  .gz.msgs.Pose pose = 9;\n  .gz.msgs.CameraSensor camera = 10;\n  .gz.msgs.ContactSensor contact = 11;\n  bool visualize = 12;\n  string topic = 13;\n  .gz.msgs.LogicalCameraSensor logical_camera = 14;\n  .gz.msgs.GPSSensor gps = 15 [deprecated = true];\n  .gz.msgs.IMUSensor imu = 16;\n  .gz.msgs.MagnetometerSensor magnetometer = 17;\n  .gz.msgs.AltimeterSensor altimeter = 18;\n  .gz.msgs.AirPressureSensor air_pressure = 19;\n  .gz.msgs.LidarSensor lidar = 20;\n  .gz.msgs.AirSpeedSensor air_speed = 21;\n  .gz.msgs.NavSatSensor navsat = 22;\n}\n\n"
+  },
+  "gz.msgs.SensorNoise": {
+    "definition": "message SensorNoise {\n  enum Type {\n    NONE = 0;\n    GAUSSIAN = 2;\n    GAUSSIAN_QUANTIZED = 3;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.SensorNoise.Type type = 2;\n  double mean = 3;\n  double stddev = 4;\n  double bias_mean = 5;\n  double bias_stddev = 6;\n  double precision = 7;\n  double dynamic_bias_stddev = 8;\n  double dynamic_bias_correlation_time = 9;\n}\n",
+    "output": "Name: gz.msgs.SensorNoise\nFile: gz/msgs/sensor_noise.proto\n\nmessage SensorNoise {\n  enum Type {\n    NONE = 0;\n    GAUSSIAN = 2;\n    GAUSSIAN_QUANTIZED = 3;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.SensorNoise.Type type = 2;\n  double mean = 3;\n  double stddev = 4;\n  double bias_mean = 5;\n  double bias_stddev = 6;\n  double precision = 7;\n  double dynamic_bias_stddev = 8;\n  double dynamic_bias_correlation_time = 9;\n}\n\n"
+  },
+  "gz.msgs.Sensor_V": {
+    "definition": "message Sensor_V {\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.Sensor sensors = 2;\n}\n",
+    "output": "Name: gz.msgs.Sensor_V\nFile: gz/msgs/sensor_v.proto\n\nmessage Sensor_V {\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.Sensor sensors = 2;\n}\n\n"
+  },
+  "gz.msgs.SerializedComponent": {
+    "definition": "message SerializedComponent {\n  uint64 type = 1;\n  bytes component = 2;\n  bool remove = 3;\n}\n",
+    "output": "Name: gz.msgs.SerializedComponent\nFile: gz/msgs/serialized.proto\n\nmessage SerializedComponent {\n  uint64 type = 1;\n  bytes component = 2;\n  bool remove = 3;\n}\n\n"
+  },
+  "gz.msgs.SerializedEntity": {
+    "definition": "message SerializedEntity {\n  uint64 id = 1;\n  repeated .gz.msgs.SerializedComponent components = 2;\n  bool remove = 3;\n}\n",
+    "output": "Name: gz.msgs.SerializedEntity\nFile: gz/msgs/serialized.proto\n\nmessage SerializedEntity {\n  uint64 id = 1;\n  repeated .gz.msgs.SerializedComponent components = 2;\n  bool remove = 3;\n}\n\n"
+  },
+  "gz.msgs.SerializedEntityMap": {
+    "definition": "message SerializedEntityMap {\n  uint64 id = 1;\n  map<int64, .gz.msgs.SerializedComponent> components = 2;\n  bool remove = 3;\n}\n",
+    "output": "Name: gz.msgs.SerializedEntityMap\nFile: gz/msgs/serialized_map.proto\n\nmessage SerializedEntityMap {\n  uint64 id = 1;\n  map<int64, .gz.msgs.SerializedComponent> components = 2;\n  bool remove = 3;\n}\n\n"
+  },
+  "gz.msgs.SerializedEntityMap.ComponentsEntry": {
+    "definition": "",
+    "output": "Name: gz.msgs.SerializedEntityMap.ComponentsEntry\nFile: gz/msgs/serialized_map.proto\n\n\n"
+  },
+  "gz.msgs.SerializedState": {
+    "definition": "message SerializedState {\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.SerializedEntity entities = 2;\n}\n",
+    "output": "Name: gz.msgs.SerializedState\nFile: gz/msgs/serialized.proto\n\nmessage SerializedState {\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.SerializedEntity entities = 2;\n}\n\n"
+  },
+  "gz.msgs.SerializedStateMap": {
+    "definition": "message SerializedStateMap {\n  .gz.msgs.Header header = 1;\n  map<uint64, .gz.msgs.SerializedEntityMap> entities = 2;\n  bool has_one_time_component_changes = 3;\n}\n",
+    "output": "Name: gz.msgs.SerializedStateMap\nFile: gz/msgs/serialized_map.proto\n\nmessage SerializedStateMap {\n  .gz.msgs.Header header = 1;\n  map<uint64, .gz.msgs.SerializedEntityMap> entities = 2;\n  bool has_one_time_component_changes = 3;\n}\n\n"
+  },
+  "gz.msgs.SerializedStateMap.EntitiesEntry": {
+    "definition": "",
+    "output": "Name: gz.msgs.SerializedStateMap.EntitiesEntry\nFile: gz/msgs/serialized_map.proto\n\n\n"
+  },
+  "gz.msgs.SerializedStep": {
+    "definition": "message SerializedStep {\n  .gz.msgs.WorldStatistics stats = 1;\n  .gz.msgs.SerializedState state = 2;\n}\n",
+    "output": "Name: gz.msgs.SerializedStep\nFile: gz/msgs/serialized.proto\n\nmessage SerializedStep {\n  .gz.msgs.WorldStatistics stats = 1;\n  .gz.msgs.SerializedState state = 2;\n}\n\n"
+  },
+  "gz.msgs.SerializedStepMap": {
+    "definition": "message SerializedStepMap {\n  .gz.msgs.WorldStatistics stats = 1;\n  .gz.msgs.SerializedStateMap state = 2;\n}\n",
+    "output": "Name: gz.msgs.SerializedStepMap\nFile: gz/msgs/serialized_map.proto\n\nmessage SerializedStepMap {\n  .gz.msgs.WorldStatistics stats = 1;\n  .gz.msgs.SerializedStateMap state = 2;\n}\n\n"
+  },
+  "gz.msgs.ServerControl": {
+    "definition": "message ServerControl {\n  .gz.msgs.Header header = 1;\n  string save_world_name = 2;\n  string save_filename = 3;\n  string open_filename = 4;\n  bool new_world = 5;\n  bool stop = 6;\n  bool clone = 7;\n  uint32 new_port = 8;\n}\n",
+    "output": "Name: gz.msgs.ServerControl\nFile: gz/msgs/server_control.proto\n\nmessage ServerControl {\n  .gz.msgs.Header header = 1;\n  string save_world_name = 2;\n  string save_filename = 3;\n  string open_filename = 4;\n  bool new_world = 5;\n  bool stop = 6;\n  bool clone = 7;\n  uint32 new_port = 8;\n}\n\n"
+  },
+  "gz.msgs.Shadows": {
+    "definition": "message Shadows {\n  enum ShadowType {\n    STENCIL_ADDITIVE = 0;\n    STENCIL_MODULATIVE = 1;\n    TEXTURE_ADDITIVE = 2;\n    TEXTURE_MODULATIVE = 3;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Shadows.ShadowType type = 2;\n  .gz.msgs.Color color = 3;\n}\n",
+    "output": "Name: gz.msgs.Shadows\nFile: gz/msgs/shadows.proto\n\nmessage Shadows {\n  enum ShadowType {\n    STENCIL_ADDITIVE = 0;\n    STENCIL_MODULATIVE = 1;\n    TEXTURE_ADDITIVE = 2;\n    TEXTURE_MODULATIVE = 3;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Shadows.ShadowType type = 2;\n  .gz.msgs.Color color = 3;\n}\n\n"
+  },
+  "gz.msgs.SimEvent": {
+    "definition": "message SimEvent {\n  .gz.msgs.Header header = 1;\n  uint32 id = 2;\n  string type = 3;\n  string name = 4;\n  .gz.msgs.WorldStatistics world_statistics = 5;\n  string data = 6;\n}\n",
+    "output": "Name: gz.msgs.SimEvent\nFile: gz/msgs/sim_event.proto\n\nmessage SimEvent {\n  .gz.msgs.Header header = 1;\n  uint32 id = 2;\n  string type = 3;\n  string name = 4;\n  .gz.msgs.WorldStatistics world_statistics = 5;\n  string data = 6;\n}\n\n"
+  },
+  "gz.msgs.Sky": {
+    "definition": "message Sky {\n  .gz.msgs.Header header = 1;\n  double time = 2;\n  double sunrise = 3;\n  double sunset = 4;\n  double wind_speed = 5;\n  double wind_direction = 6;\n  .gz.msgs.Color cloud_ambient = 7;\n  double humidity = 8;\n  double mean_cloud_size = 9;\n  string cubemap_uri = 10;\n}\n",
+    "output": "Name: gz.msgs.Sky\nFile: gz/msgs/sky.proto\n\nmessage Sky {\n  .gz.msgs.Header header = 1;\n  double time = 2;\n  double sunrise = 3;\n  double sunset = 4;\n  double wind_speed = 5;\n  double wind_direction = 6;\n  .gz.msgs.Color cloud_ambient = 7;\n  double humidity = 8;\n  double mean_cloud_size = 9;\n  string cubemap_uri = 10;\n}\n\n"
+  },
+  "gz.msgs.Sonar": {
+    "definition": "message Sonar {\n  .gz.msgs.Header header = 1;\n  string frame = 2;\n  .gz.msgs.Pose world_pose = 3;\n  double range_min = 4;\n  double range_max = 5;\n  double radius = 6;\n  double range = 7;\n  string geometry = 8;\n  .gz.msgs.Vector3d contact = 9;\n}\n",
+    "output": "Name: gz.msgs.Sonar\nFile: gz/msgs/sonar.proto\n\nmessage Sonar {\n  .gz.msgs.Header header = 1;\n  string frame = 2;\n  .gz.msgs.Pose world_pose = 3;\n  double range_min = 4;\n  double range_max = 5;\n  double radius = 6;\n  double range = 7;\n  string geometry = 8;\n  .gz.msgs.Vector3d contact = 9;\n}\n\n"
+  },
+  "gz.msgs.SphereGeom": {
+    "definition": "message SphereGeom {\n  .gz.msgs.Header header = 1;\n  double radius = 2;\n}\n",
+    "output": "Name: gz.msgs.SphereGeom\nFile: gz/msgs/spheregeom.proto\n\nmessage SphereGeom {\n  .gz.msgs.Header header = 1;\n  double radius = 2;\n}\n\n"
+  },
+  "gz.msgs.SphericalCoordinates": {
+    "definition": "message SphericalCoordinates {\n  enum SurfaceModel {\n    EARTH_WGS84 = 0;\n    MOON_SCS = 1;\n    CUSTOM_SURFACE = 2;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.SphericalCoordinates.SurfaceModel surface_model = 2;\n  double latitude_deg = 3;\n  double longitude_deg = 4;\n  double elevation = 5;\n  double heading_deg = 6;\n  .gz.msgs.Entity entity = 7;\n  double surface_axis_equatorial = 8;\n  double surface_axis_polar = 9;\n}\n",
+    "output": "Name: gz.msgs.SphericalCoordinates\nFile: gz/msgs/spherical_coordinates.proto\n\nmessage SphericalCoordinates {\n  enum SurfaceModel {\n    EARTH_WGS84 = 0;\n    MOON_SCS = 1;\n    CUSTOM_SURFACE = 2;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.SphericalCoordinates.SurfaceModel surface_model = 2;\n  double latitude_deg = 3;\n  double longitude_deg = 4;\n  double elevation = 5;\n  double heading_deg = 6;\n  .gz.msgs.Entity entity = 7;\n  double surface_axis_equatorial = 8;\n  double surface_axis_polar = 9;\n}\n\n"
+  },
+  "gz.msgs.Statistic": {
+    "definition": "message Statistic {\n  enum DataType {\n    UNINITIALIZED = 0;\n    AVERAGE = 1;\n    MINIMUM = 2;\n    MAXIMUM = 3;\n    VARIANCE = 4;\n    STDDEV = 5;\n    SAMPLE_COUNT = 6;\n    ROOT_MEAN_SQUARE = 7;\n    MAX_ABS_VALUE = 8;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Statistic.DataType type = 2;\n  string name = 3;\n  double value = 4;\n}\n",
+    "output": "Name: gz.msgs.Statistic\nFile: gz/msgs/statistic.proto\n\nmessage Statistic {\n  enum DataType {\n    UNINITIALIZED = 0;\n    AVERAGE = 1;\n    MINIMUM = 2;\n    MAXIMUM = 3;\n    VARIANCE = 4;\n    STDDEV = 5;\n    SAMPLE_COUNT = 6;\n    ROOT_MEAN_SQUARE = 7;\n    MAX_ABS_VALUE = 8;\n  }\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Statistic.DataType type = 2;\n  string name = 3;\n  double value = 4;\n}\n\n"
+  },
+  "gz.msgs.StatisticsGroup": {
+    "definition": "message StatisticsGroup {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  repeated .gz.msgs.Statistic statistics = 3;\n}\n",
+    "output": "Name: gz.msgs.StatisticsGroup\nFile: gz/msgs/statistic.proto\n\nmessage StatisticsGroup {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  repeated .gz.msgs.Statistic statistics = 3;\n}\n\n"
+  },
+  "gz.msgs.StringMsg": {
+    "definition": "message StringMsg {\n  .gz.msgs.Header header = 1;\n  string data = 2;\n}\n",
+    "output": "Name: gz.msgs.StringMsg\nFile: gz/msgs/stringmsg.proto\n\nmessage StringMsg {\n  .gz.msgs.Header header = 1;\n  string data = 2;\n}\n\n"
+  },
+  "gz.msgs.StringMsg_V": {
+    "definition": "message StringMsg_V {\n  .gz.msgs.Header header = 1;\n  repeated string data = 2;\n}\n",
+    "output": "Name: gz.msgs.StringMsg_V\nFile: gz/msgs/stringmsg_v.proto\n\nmessage StringMsg_V {\n  .gz.msgs.Header header = 1;\n  repeated string data = 2;\n}\n\n"
+  },
+  "gz.msgs.Subscribe": {
+    "definition": "message Subscribe {\n  .gz.msgs.Header header = 1;\n  string topic = 2;\n  string host = 3;\n  uint32 port = 4;\n  string msg_type = 5;\n  bool latching = 6;\n}\n",
+    "output": "Name: gz.msgs.Subscribe\nFile: gz/msgs/subscribe.proto\n\nmessage Subscribe {\n  .gz.msgs.Header header = 1;\n  string topic = 2;\n  string host = 3;\n  uint32 port = 4;\n  string msg_type = 5;\n  bool latching = 6;\n}\n\n"
+  },
+  "gz.msgs.Surface": {
+    "definition": "message Surface {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Friction friction = 2;\n  double restitution_coefficient = 3;\n  double bounce_threshold = 4;\n  double soft_cfm = 5;\n  double soft_erp = 6;\n  double kp = 7;\n  double kd = 8;\n  double max_vel = 9;\n  double min_depth = 10;\n  bool collide_without_contact = 11;\n  uint32 collide_without_contact_bitmask = 12;\n  uint32 collide_bitmask = 13;\n  double elastic_modulus = 14;\n}\n",
+    "output": "Name: gz.msgs.Surface\nFile: gz/msgs/surface.proto\n\nmessage Surface {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Friction friction = 2;\n  double restitution_coefficient = 3;\n  double bounce_threshold = 4;\n  double soft_cfm = 5;\n  double soft_erp = 6;\n  double kp = 7;\n  double kd = 8;\n  double max_vel = 9;\n  double min_depth = 10;\n  bool collide_without_contact = 11;\n  uint32 collide_without_contact_bitmask = 12;\n  uint32 collide_bitmask = 13;\n  double elastic_modulus = 14;\n}\n\n"
+  },
+  "gz.msgs.Tactile": {
+    "definition": "message Tactile {\n  .gz.msgs.Header header = 1;\n  repeated string collision_name = 2;\n  repeated uint32 collision_id = 3;\n  repeated double pressure = 4;\n}\n",
+    "output": "Name: gz.msgs.Tactile\nFile: gz/msgs/tactile.proto\n\nmessage Tactile {\n  .gz.msgs.Header header = 1;\n  repeated string collision_name = 2;\n  repeated uint32 collision_id = 3;\n  repeated double pressure = 4;\n}\n\n"
+  },
+  "gz.msgs.Test": {
+    "definition": "message Test {\n  .gz.msgs.Header header = 1;\n}\n",
+    "output": "Name: gz.msgs.Test\nFile: gz/msgs/test.proto\n\nmessage Test {\n  .gz.msgs.Header header = 1;\n}\n\n"
+  },
+  "gz.msgs.Time": {
+    "definition": "message Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n",
+    "output": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n"
+  },
+  "gz.msgs.TopicInfo": {
+    "definition": "message TopicInfo {\n  .gz.msgs.Header header = 1;\n  string msg_type = 2;\n  repeated .gz.msgs.Publish publisher = 3;\n  repeated .gz.msgs.Subscribe subscriber = 4;\n}\n",
+    "output": "Name: gz.msgs.TopicInfo\nFile: gz/msgs/topic_info.proto\n\nmessage TopicInfo {\n  .gz.msgs.Header header = 1;\n  string msg_type = 2;\n  repeated .gz.msgs.Publish publisher = 3;\n  repeated .gz.msgs.Subscribe subscriber = 4;\n}\n\n"
+  },
+  "gz.msgs.TrackVisual": {
+    "definition": "message TrackVisual {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  uint32 id = 3;\n  bool inherit_orientation = 4;\n  double min_dist = 5;\n  double max_dist = 6;\n  bool static = 7;\n  bool use_model_frame = 8;\n  .gz.msgs.Vector3d xyz = 9;\n  bool inherit_yaw = 10;\n}\n",
+    "output": "Name: gz.msgs.TrackVisual\nFile: gz/msgs/track_visual.proto\n\nmessage TrackVisual {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  uint32 id = 3;\n  bool inherit_orientation = 4;\n  double min_dist = 5;\n  double max_dist = 6;\n  bool static = 7;\n  bool use_model_frame = 8;\n  .gz.msgs.Vector3d xyz = 9;\n  bool inherit_yaw = 10;\n}\n\n"
+  },
+  "gz.msgs.Twist": {
+    "definition": "message Twist {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Vector3d linear = 2;\n  .gz.msgs.Vector3d angular = 3;\n}\n",
+    "output": "Name: gz.msgs.Twist\nFile: gz/msgs/twist.proto\n\nmessage Twist {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Vector3d linear = 2;\n  .gz.msgs.Vector3d angular = 3;\n}\n\n"
+  },
+  "gz.msgs.TwistWithCovariance": {
+    "definition": "message TwistWithCovariance {\n  .gz.msgs.Twist twist = 1;\n  .gz.msgs.Float_V covariance = 2;\n}\n",
+    "output": "Name: gz.msgs.TwistWithCovariance\nFile: gz/msgs/twist_with_covariance.proto\n\nmessage TwistWithCovariance {\n  .gz.msgs.Twist twist = 1;\n  .gz.msgs.Float_V covariance = 2;\n}\n\n"
+  },
+  "gz.msgs.UInt32": {
+    "definition": "message UInt32 {\n  .gz.msgs.Header header = 1;\n  uint32 data = 2;\n}\n",
+    "output": "Name: gz.msgs.UInt32\nFile: gz/msgs/uint32.proto\n\nmessage UInt32 {\n  .gz.msgs.Header header = 1;\n  uint32 data = 2;\n}\n\n"
+  },
+  "gz.msgs.UInt32_V": {
+    "definition": "message UInt32_V {\n  .gz.msgs.Header header = 1;\n  repeated uint32 data = 2;\n}\n",
+    "output": "Name: gz.msgs.UInt32_V\nFile: gz/msgs/uint32_v.proto\n\nmessage UInt32_V {\n  .gz.msgs.Header header = 1;\n  repeated uint32 data = 2;\n}\n\n"
+  },
+  "gz.msgs.UInt64": {
+    "definition": "message UInt64 {\n  .gz.msgs.Header header = 1;\n  uint64 data = 2;\n}\n",
+    "output": "Name: gz.msgs.UInt64\nFile: gz/msgs/uint64.proto\n\nmessage UInt64 {\n  .gz.msgs.Header header = 1;\n  uint64 data = 2;\n}\n\n"
+  },
+  "gz.msgs.UInt64_V": {
+    "definition": "message UInt64_V {\n  .gz.msgs.Header header = 1;\n  repeated uint64 data = 2;\n}\n",
+    "output": "Name: gz.msgs.UInt64_V\nFile: gz/msgs/uint64_v.proto\n\nmessage UInt64_V {\n  .gz.msgs.Header header = 1;\n  repeated uint64 data = 2;\n}\n\n"
+  },
+  "gz.msgs.UndoRedo": {
+    "definition": "message UndoRedo {\n  .gz.msgs.Header header = 1;\n  bool undo = 2;\n  uint32 id = 3;\n}\n",
+    "output": "Name: gz.msgs.UndoRedo\nFile: gz/msgs/undo_redo.proto\n\nmessage UndoRedo {\n  .gz.msgs.Header header = 1;\n  bool undo = 2;\n  uint32 id = 3;\n}\n\n"
+  },
+  "gz.msgs.UserCmd": {
+    "definition": "message UserCmd {\n  enum Type {\n    MOVING = 0;\n    WORLD_CONTROL = 1;\n    WRENCH = 2;\n    SCALING = 3;\n  }\n  .gz.msgs.Header header = 1;\n  uint32 id = 2;\n  string description = 3;\n  .gz.msgs.UserCmd.Type type = 4;\n  repeated .gz.msgs.Model model = 5;\n  repeated .gz.msgs.Light light = 6;\n  string entity_name = 7;\n  .gz.msgs.WorldControl world_control = 8;\n  .gz.msgs.Wrench wrench = 9;\n}\n",
+    "output": "Name: gz.msgs.UserCmd\nFile: gz/msgs/user_cmd.proto\n\nmessage UserCmd {\n  enum Type {\n    MOVING = 0;\n    WORLD_CONTROL = 1;\n    WRENCH = 2;\n    SCALING = 3;\n  }\n  .gz.msgs.Header header = 1;\n  uint32 id = 2;\n  string description = 3;\n  .gz.msgs.UserCmd.Type type = 4;\n  repeated .gz.msgs.Model model = 5;\n  repeated .gz.msgs.Light light = 6;\n  string entity_name = 7;\n  .gz.msgs.WorldControl world_control = 8;\n  .gz.msgs.Wrench wrench = 9;\n}\n\n"
+  },
+  "gz.msgs.UserCmdStats": {
+    "definition": "message UserCmdStats {\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.UserCmd undo_cmd = 2;\n  repeated .gz.msgs.UserCmd redo_cmd = 3;\n}\n",
+    "output": "Name: gz.msgs.UserCmdStats\nFile: gz/msgs/user_cmd_stats.proto\n\nmessage UserCmdStats {\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.UserCmd undo_cmd = 2;\n  repeated .gz.msgs.UserCmd redo_cmd = 3;\n}\n\n"
+  },
+  "gz.msgs.Vector2d": {
+    "definition": "message Vector2d {\n  .gz.msgs.Header header = 1;\n  double x = 2;\n  double y = 3;\n}\n",
+    "output": "Name: gz.msgs.Vector2d\nFile: gz/msgs/vector2d.proto\n\nmessage Vector2d {\n  .gz.msgs.Header header = 1;\n  double x = 2;\n  double y = 3;\n}\n\n"
+  },
+  "gz.msgs.Vector3d": {
+    "definition": "message Vector3d {\n  .gz.msgs.Header header = 1;\n  double x = 2;\n  double y = 3;\n  double z = 4;\n}\n",
+    "output": "Name: gz.msgs.Vector3d\nFile: gz/msgs/vector3d.proto\n\nmessage Vector3d {\n  .gz.msgs.Header header = 1;\n  double x = 2;\n  double y = 3;\n  double z = 4;\n}\n\n"
+  },
+  "gz.msgs.Version": {
+    "definition": "message Version {\n  int32 major = 1;\n  int32 minor = 2;\n  int32 patch = 3;\n  string prerelease = 4;\n  string build = 5;\n}\n",
+    "output": "Name: gz.msgs.Version\nFile: gz/msgs/version.proto\n\nmessage Version {\n  int32 major = 1;\n  int32 minor = 2;\n  int32 patch = 3;\n  string prerelease = 4;\n  string build = 5;\n}\n\n"
+  },
+  "gz.msgs.VersionRange": {
+    "definition": "message VersionRange {\n  .gz.msgs.Version min = 1;\n  .gz.msgs.Version max = 2;\n}\n",
+    "output": "Name: gz.msgs.VersionRange\nFile: gz/msgs/version_range.proto\n\nmessage VersionRange {\n  .gz.msgs.Version min = 1;\n  .gz.msgs.Version max = 2;\n}\n\n"
+  },
+  "gz.msgs.VersionedName": {
+    "definition": "message VersionedName {\n  .gz.msgs.Version version = 1;\n  string name = 2;\n}\n",
+    "output": "Name: gz.msgs.VersionedName\nFile: gz/msgs/versioned_name.proto\n\nmessage VersionedName {\n  .gz.msgs.Version version = 1;\n  string name = 2;\n}\n\n"
+  },
+  "gz.msgs.VideoRecord": {
+    "definition": "message VideoRecord {\n  .gz.msgs.Header header = 1;\n  bool start = 2;\n  bool stop = 3;\n  string format = 4;\n  string save_filename = 5;\n}\n",
+    "output": "Name: gz.msgs.VideoRecord\nFile: gz/msgs/video_record.proto\n\nmessage VideoRecord {\n  .gz.msgs.Header header = 1;\n  bool start = 2;\n  bool stop = 3;\n  string format = 4;\n  string save_filename = 5;\n}\n\n"
+  },
+  "gz.msgs.Visual": {
+    "definition": "message Visual {\n  message Meta {\n    int32 layer = 1;\n  }\n  enum Type {\n    ENTITY = 0;\n    MODEL = 1;\n    LINK = 2;\n    VISUAL = 3;\n    COLLISION = 4;\n    SENSOR = 5;\n    GUI = 6;\n    PHYSICS = 7;\n  }\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  uint32 id = 3;\n  string parent_name = 4;\n  uint32 parent_id = 5;\n  bool cast_shadows = 6;\n  double transparency = 7;\n  double laser_retro = 8;\n  .gz.msgs.Pose pose = 9;\n  .gz.msgs.Geometry geometry = 10;\n  .gz.msgs.Material material = 11;\n  bool visible = 12;\n  bool delete_me = 13;\n  bool is_static = 14;\n  repeated .gz.msgs.Plugin plugin = 15;\n  .gz.msgs.Vector3d scale = 16;\n  .gz.msgs.Visual.Meta meta = 17;\n  .gz.msgs.Visual.Type type = 18;\n}\n",
+    "output": "Name: gz.msgs.Visual\nFile: gz/msgs/visual.proto\n\nmessage Visual {\n  message Meta {\n    int32 layer = 1;\n  }\n  enum Type {\n    ENTITY = 0;\n    MODEL = 1;\n    LINK = 2;\n    VISUAL = 3;\n    COLLISION = 4;\n    SENSOR = 5;\n    GUI = 6;\n    PHYSICS = 7;\n  }\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  uint32 id = 3;\n  string parent_name = 4;\n  uint32 parent_id = 5;\n  bool cast_shadows = 6;\n  double transparency = 7;\n  double laser_retro = 8;\n  .gz.msgs.Pose pose = 9;\n  .gz.msgs.Geometry geometry = 10;\n  .gz.msgs.Material material = 11;\n  bool visible = 12;\n  bool delete_me = 13;\n  bool is_static = 14;\n  repeated .gz.msgs.Plugin plugin = 15;\n  .gz.msgs.Vector3d scale = 16;\n  .gz.msgs.Visual.Meta meta = 17;\n  .gz.msgs.Visual.Type type = 18;\n}\n\n"
+  },
+  "gz.msgs.Visual.Meta": {
+    "definition": "message Meta {\n  int32 layer = 1 [json_name = \"layer\"];\n}\n",
+    "output": "Name: gz.msgs.Visual.Meta\nFile: gz/msgs/visual.proto\n\nmessage Meta {\n  int32 layer = 1 [json_name = \"layer\"];\n}\n\n"
+  },
+  "gz.msgs.Visual_V": {
+    "definition": "message Visual_V {\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.Visual visuals = 2;\n}\n",
+    "output": "Name: gz.msgs.Visual_V\nFile: gz/msgs/visual_v.proto\n\nmessage Visual_V {\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.Visual visuals = 2;\n}\n\n"
+  },
+  "gz.msgs.WebRequest": {
+    "definition": "message WebRequest {\n  .gz.msgs.Header header = 1;\n  string operation = 2;\n  string topic = 3;\n  string msg_type = 4;\n  string compression = 5;\n  double hz = 6;\n}\n",
+    "output": "Name: gz.msgs.WebRequest\nFile: gz/msgs/web_request.proto\n\nmessage WebRequest {\n  .gz.msgs.Header header = 1;\n  string operation = 2;\n  string topic = 3;\n  string msg_type = 4;\n  string compression = 5;\n  double hz = 6;\n}\n\n"
+  },
+  "gz.msgs.WheelSlipParametersCmd": {
+    "definition": "message WheelSlipParametersCmd {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Entity entity = 2;\n  double slip_compliance_lateral = 4;\n  double slip_compliance_longitudinal = 5;\n  double friction_lateral = 6;\n  double friction_longitudinal = 7;\n}\n",
+    "output": "Name: gz.msgs.WheelSlipParametersCmd\nFile: gz/msgs/wheel_slip_parameters_cmd.proto\n\nmessage WheelSlipParametersCmd {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Entity entity = 2;\n  double slip_compliance_lateral = 4;\n  double slip_compliance_longitudinal = 5;\n  double friction_lateral = 6;\n  double friction_longitudinal = 7;\n}\n\n"
+  },
+  "gz.msgs.Wind": {
+    "definition": "message Wind {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Vector3d linear_velocity = 2;\n  bool enable_wind = 3;\n}\n",
+    "output": "Name: gz.msgs.Wind\nFile: gz/msgs/wind.proto\n\nmessage Wind {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Vector3d linear_velocity = 2;\n  bool enable_wind = 3;\n}\n\n"
+  },
+  "gz.msgs.WirelessNode": {
+    "definition": "message WirelessNode {\n  .gz.msgs.Header header = 1;\n  string essid = 2;\n  double frequency = 3;\n  double signal_level = 4;\n}\n",
+    "output": "Name: gz.msgs.WirelessNode\nFile: gz/msgs/wireless_node.proto\n\nmessage WirelessNode {\n  .gz.msgs.Header header = 1;\n  string essid = 2;\n  double frequency = 3;\n  double signal_level = 4;\n}\n\n"
+  },
+  "gz.msgs.WirelessNodes": {
+    "definition": "message WirelessNodes {\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.WirelessNode node = 2;\n}\n",
+    "output": "Name: gz.msgs.WirelessNodes\nFile: gz/msgs/wireless_nodes.proto\n\nmessage WirelessNodes {\n  .gz.msgs.Header header = 1;\n  repeated .gz.msgs.WirelessNode node = 2;\n}\n\n"
+  },
+  "gz.msgs.WorldControl": {
+    "definition": "message WorldControl {\n  .gz.msgs.Header header = 1;\n  bool pause = 2;\n  bool step = 3;\n  uint32 multi_step = 4;\n  .gz.msgs.WorldReset reset = 5;\n  uint32 seed = 6;\n  .gz.msgs.Time run_to_sim_time = 7;\n}\n",
+    "output": "Name: gz.msgs.WorldControl\nFile: gz/msgs/world_control.proto\n\nmessage WorldControl {\n  .gz.msgs.Header header = 1;\n  bool pause = 2;\n  bool step = 3;\n  uint32 multi_step = 4;\n  .gz.msgs.WorldReset reset = 5;\n  uint32 seed = 6;\n  .gz.msgs.Time run_to_sim_time = 7;\n}\n\n"
+  },
+  "gz.msgs.WorldControlState": {
+    "definition": "message WorldControlState {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.WorldControl world_control = 2;\n  .gz.msgs.SerializedState state = 3;\n}\n",
+    "output": "Name: gz.msgs.WorldControlState\nFile: gz/msgs/world_control_state.proto\n\nmessage WorldControlState {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.WorldControl world_control = 2;\n  .gz.msgs.SerializedState state = 3;\n}\n\n"
+  },
+  "gz.msgs.WorldModify": {
+    "definition": "message WorldModify {\n  .gz.msgs.Header header = 1;\n  string world_name = 2;\n  bool remove = 3;\n  bool create = 4;\n  bool cloned = 5;\n  string cloned_uri = 6;\n}\n",
+    "output": "Name: gz.msgs.WorldModify\nFile: gz/msgs/world_modify.proto\n\nmessage WorldModify {\n  .gz.msgs.Header header = 1;\n  string world_name = 2;\n  bool remove = 3;\n  bool create = 4;\n  bool cloned = 5;\n  string cloned_uri = 6;\n}\n\n"
+  },
+  "gz.msgs.WorldReset": {
+    "definition": "message WorldReset {\n  .gz.msgs.Header header = 1;\n  bool all = 2;\n  bool time_only = 3;\n  bool model_only = 4;\n}\n",
+    "output": "Name: gz.msgs.WorldReset\nFile: gz/msgs/world_reset.proto\n\nmessage WorldReset {\n  .gz.msgs.Header header = 1;\n  bool all = 2;\n  bool time_only = 3;\n  bool model_only = 4;\n}\n\n"
+  },
+  "gz.msgs.WorldStatistics": {
+    "definition": "message WorldStatistics {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Time sim_time = 2;\n  .gz.msgs.Time pause_time = 3;\n  .gz.msgs.Time real_time = 4;\n  bool paused = 5;\n  uint64 iterations = 6;\n  int32 model_count = 7;\n  .gz.msgs.LogPlaybackStatistics log_playback_stats = 8;\n  double real_time_factor = 9;\n  .gz.msgs.Time step_size = 10;\n  bool stepping = 11;\n}\n",
+    "output": "Name: gz.msgs.WorldStatistics\nFile: gz/msgs/world_stats.proto\n\nmessage WorldStatistics {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Time sim_time = 2;\n  .gz.msgs.Time pause_time = 3;\n  .gz.msgs.Time real_time = 4;\n  bool paused = 5;\n  uint64 iterations = 6;\n  int32 model_count = 7;\n  .gz.msgs.LogPlaybackStatistics log_playback_stats = 8;\n  double real_time_factor = 9;\n  .gz.msgs.Time step_size = 10;\n  bool stepping = 11;\n}\n\n"
+  },
+  "gz.msgs.Wrench": {
+    "definition": "message Wrench {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Vector3d force = 2;\n  .gz.msgs.Vector3d torque = 3;\n  .gz.msgs.Vector3d force_offset = 4;\n}\n",
+    "output": "Name: gz.msgs.Wrench\nFile: gz/msgs/wrench.proto\n\nmessage Wrench {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Vector3d force = 2;\n  .gz.msgs.Vector3d torque = 3;\n  .gz.msgs.Vector3d force_offset = 4;\n}\n\n"
+  }
+}

@@ -28,9 +28,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     if args.len() >= 2 && ["info", "--info", "-i"].contains(&args[0].as_str()) {
         for name in &args[1..] {
             let descriptor = gz_msgs::descriptor(name).ok_or("unknown message type")?;
-            let definition = gz_msgs::message_definition(descriptor.full_name())
-                .ok_or("message source is not bundled")?;
-            println!("{definition}");
+            let text = gz_msgs::message_info(descriptor.full_name())
+                .ok_or("message info is not bundled")?;
+            print!("{text}");
         }
         return Ok(());
     }

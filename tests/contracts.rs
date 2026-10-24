@@ -112,12 +112,12 @@ fn explicit_dynamic_edits_preserve_unmodified_unknown_fields() {
 }
 
 #[test]
-fn canonical_message_declarations_use_original_source_spans() {
+fn canonical_message_declarations_match_native_descriptor_text() {
     for file in files() {
         for message in file.messages() {
             let source = message_definition(message.full_name()).unwrap();
             assert!(source.starts_with(&format!("message {} {{", message.name())));
-            assert!(source.ends_with('}'));
+            assert!(source.trim_end().ends_with('}'));
         }
     }
     let nested = message_definition("gz.msgs.Discovery.Publisher.ServicePublisher").unwrap();

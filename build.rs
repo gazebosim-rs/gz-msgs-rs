@@ -60,53 +60,24 @@ fn main() {
         aliases += "}";
     }
     std::fs::write(out.join("aliases.rs"), aliases).unwrap();
-    // SourceCodeInfo supplies exact declaration spans; no .proto parser is needed.
+    // Native descriptor text is generated from the pinned canonical corpus.
+    // Keeping it as data avoids an incomplete handwritten .proto formatter.
+    println!("cargo:rerun-if-changed=schemas/cli-info.json");
+    let info: serde_json::Value =
+        serde_json::from_str(&std::fs::read_to_string("schemas/cli-info.json").unwrap()).unwrap();
     let mut definitions = String::from(
         "pub fn message_definition(name: &str) -> Option<&'static str> { match name {",
     );
-    for file in descriptors
-        .file
-        .iter()
-        .filter(|f| f.name().starts_with("gz/msgs/"))
-    {
-        let source =
-            std::fs::read_to_string(std::path::Path::new("schemas").join(file.name())).unwrap();
-        for location in &file
-            .source_code_info
-            .as_ref()
-            .expect("protoc source info")
-            .location
-        {
-            let path = &location.path;
-            if path.len() < 2
-                || path.len() % 2 != 0
-                || path[0] != 4
-                || path.iter().skip(2).step_by(2).any(|part| *part != 3)
-            {
-                continue;
-            }
-            let mut message = &file.message_type[path[1] as usize];
-            let mut name = format!("{}.{}", file.package(), message.name());
-            for index in path[2..].chunks_exact(2) {
-                message = &message.nested_type[index[1] as usize];
-                name += &format!(".{}", message.name());
-            }
-            let span = &location.span;
-            assert_eq!(span.len(), 4, "pinned canonical message source span");
-            let offset = |line: i32, column: i32| {
-                source
-                    .split_inclusive('\n')
-                    .take(line as usize)
-                    .map(str::len)
-                    .sum::<usize>()
-                    + column as usize
-            };
-            let definition = &source[offset(span[0], span[1])..offset(span[2], span[3])];
-            let brace = definition.find('{').expect("message declaration body");
-            let text = format!("message {} {}", message.name(), &definition[brace..]);
-            definitions += &format!("{name:?} => Some({text:?}),");
-        }
+    let mut outputs =
+        String::from("pub fn message_info(name: &str) -> Option<&'static str> { match name {");
+    for (name, entry) in info.as_object().unwrap() {
+        definitions += &format!(
+            "{name:?} => Some({:?}),",
+            entry["definition"].as_str().unwrap()
+        );
+        outputs += &format!("{name:?} => Some({:?}),", entry["output"].as_str().unwrap());
     }
     definitions += "_ => None } }";
-    std::fs::write(out.join("definitions.rs"), definitions).unwrap();
+    outputs += "_ => None } }";
+    std::fs::write(out.join("definitions.rs"), definitions + &outputs).unwrap();
 }

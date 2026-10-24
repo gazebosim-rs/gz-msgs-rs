@@ -75,10 +75,14 @@ positive zero, negative zero, nonzero, NaN and proto2 extension default queries.
 Errors exit nonzero and stdout is explicitly flushed. Text/JSON use compact
 protobuf formatting. Legacy --help/-h (including no arguments), --version/-v,
 --list/-l and --info/-i TYPE... are supported; info accepts both canonical type
-spellings and multiple types. Info prints exact canonical message declarations
-using protoc SourceCodeInfo spans, with the opening declaration line normalized
-for the original CLI contract. No handwritten .proto parser/formatter is used.
-The original licensed completion script is preserved. Five unchanged original
+spellings and multiple types. Info exactly reproduces pinned native Name/File
+headings and Descriptor::DebugString output, including qualified field types and
+synthetic map entries with empty bodies. A schema-bound generated corpus covers
+271 canonical/imported/nested/synthetic types; its native binary, protobuf version
+and schema-manifest hashes are recorded. No handwritten proto formatter or native
+runtime dependency is introduced. message_definition returns the descriptor body;
+message_info returns complete CLI text. The original licensed completion script
+is preserved. Five unchanged original
 C++ CLI tests run against the Rust binary in the gate, with only package-version
 and artifact-path bindings. This package does not own the gz dispatcher.
 External descriptor environment loading, retry/concurrency, full Any formatting
@@ -97,7 +101,8 @@ LLVM omits syntax-only delimiters and quoted proc-macro token text from line
 instrumentation; missing executable changes fail. The changed build predicates
 and all three reflection paths are measured separately per patched dependency.
 No claim is made that whole third-party crates exceed 95%. Generated canonical
-code and schema-derived aliases are excluded by OUT_DIR provenance only.
+code, schema-derived aliases and pinned native descriptor-text lookup tables are
+excluded by explicit corpus/OUT_DIR provenance only.
 
 ## Legacy enum names
 

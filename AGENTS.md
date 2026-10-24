@@ -32,3 +32,15 @@ Generate types from canonical schemas. Preserve field numbers, packages, types, 
 
 Do not apply the monorepo's internal crate layout here. Do not edit the active Fuel
 rewrite or another repository without a coordinated assignment.
+
+## Public progress reporting
+
+Keep this owner's status current at the public
+[rewrite dashboard](https://gazebosim-rs.github.io/rewrite-progress/).
+Follow the sibling rewrite-progress/status-contract.md; write the report to
+ignored artifacts/status.json, refresh UTC timestamps at slice/test/review/blocker
+changes, then run `python3 ../rewrite-progress/scripts/update-status.py gz-msgs-rs
+artifacts/status.json --dry-run` before publishing without --dry-run. Publish only
+this repository's status record. Only link quality.revision_url after verifying
+the commit is public. Accepted slices do not make MSG-01/MSG-02 complete while
+retained acceptance scope remains. Keep credentials and private paths out of reports.

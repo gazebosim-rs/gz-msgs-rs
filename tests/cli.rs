@@ -49,7 +49,7 @@ fn formats_and_commands() {
         &["nonsense"][..],
         &["nonsense", "gz.msgs.Time"],
         &["info", "missing"],
-        &["info", "google.protobuf.Any"],
+        &["info", "gz.msgs.PixelFormatType"],
     ] {
         assert!(!run(args, &[]).status.success());
     }
@@ -169,4 +169,44 @@ fn unchanged_cpp_cli_assertions() {
         .status()
         .unwrap()
         .success());
+}
+
+#[test]
+fn complete_native_info_output_corpus() {
+    let fixture: gz_msgs::serde_json::Value =
+        gz_msgs::serde_json::from_str(include_str!("../schemas/cli-info.json")).unwrap();
+    let records = fixture.as_object().unwrap();
+    let mut args = vec!["--info"];
+    let mut expected = String::new();
+    for (name, record) in records {
+        args.push(name);
+        expected.push_str(record["output"].as_str().unwrap());
+    }
+    let output = run(&args, &[]);
+    assert!(output.status.success());
+    assert_eq!(String::from_utf8(output.stdout).unwrap(), expected);
+    for (input, canonical) in [
+        ("gz.msgs.WorldControl", "gz.msgs.WorldControl"),
+        ("gz_msgs.WorldControl", "gz.msgs.WorldControl"),
+        ("gz.msgs.Param.ParamsEntry", "gz.msgs.Param.ParamsEntry"),
+        ("gz.msgs.Discovery.Publisher", "gz.msgs.Discovery.Publisher"),
+        ("google.protobuf.Any", "google.protobuf.Any"),
+    ] {
+        let output = run(&["--info", input], &[]);
+        assert!(output.status.success());
+        assert_eq!(
+            String::from_utf8(output.stdout).unwrap(),
+            records[canonical]["output"].as_str().unwrap()
+        );
+    }
+    assert_eq!(
+        gz_msgs::message_definition("gz.msgs.Param.ParamsEntry"),
+        Some("")
+    );
+    for message in gz_msgs::descriptors().all_messages() {
+        assert_eq!(
+            gz_msgs::message_info(message.full_name()),
+            Some(records[message.full_name()]["output"].as_str().unwrap())
+        );
+    }
 }

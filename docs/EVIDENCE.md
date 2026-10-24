@@ -176,3 +176,25 @@ and assignment assertions are also ported. Six original mappings stay pending
 independent review. The new module measured 94/94 lines and 95/95 regions; all
 other production/owned-patch coverage remains above 95%. The final staged gate
 runs 29 integration tests, including the unchanged original five-case CLI suite.
+
+## Complete canonical --info fidelity correction
+
+Independent SDF-owner review found a real gap beyond the original five CLI
+assertions: raw SourceCodeInfo text omitted Name/File headings, left types
+unqualified and retained comments; synthetic map-entry Info failed. The earlier
+CLI slice therefore stayed in review. Source-span generation is now removed.
+
+`python3 scripts/info-reference.py` captures complete actual native --info output
+for 271 canonical/imported/nested/synthetic descriptors and verifies combined
+output equals concatenated individual results. The 160 KiB generated corpus is
+bound to the pinned schema manifest, native binary SHA256 and protobuf 3.21.12.
+Build-time Rust emits lookup tables from this schema-derived data; runtime stays
+Rust-only, with no incomplete handwritten generic formatter. External descriptor
+formatting remains explicitly pending rather than being inferred from this corpus.
+
+Full byte-for-byte stdout comparisons now cover all 271 in one request plus
+WorldControl, underscore alias, Discovery.Publisher, Param.ParamsEntry and Google
+Any individually. Map-entry headings/empty body and qualified names match native.
+All five unchanged C++ tests remain enabled. Full local gate passes 30 integration
+tests and all required owned line/region thresholds; the CLI family remains pending
+independent acceptance. Tracker publication instructions are persisted in AGENTS.md.
