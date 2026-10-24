@@ -1,0 +1,33 @@
+{
+  "first_constructor": true,
+  "text_clears_constructor_fields": true,
+  "reentrant_created": true,
+  "constructors_listed": true,
+  "literal_dot_constructor": true,
+  "unrecognized_names_rejected": true,
+  "types_count": 274,
+  "upstream_commit": "89c0c3d1474f545cb889335daf930bfdab6ab852",
+  "source_sha256": {
+    "test/integration/Factory_TEST.cc": "a132a6f663ec29fa265819be82dc69ad6e3c900ee7a8a24052fb15b06e48e9d0",
+    "test/integration/factory_lazy.cc": "9cbd584ec3c34926efaec8512b329e849a5e006591ca0be98c12dcd747269dbb",
+    "test/integration/factory_concurrency.cc": "cb5ad5b4490f1c7cb8830b04c2d13737d5d11bcd588a39b6843dff2acacc5dde"
+  },
+  "native_binary_sha256": "86a03717d5abbdc2ccf98dcf202d696a5d627d5931b312b6eb95242b7f401649",
+  "original_native_tests": [
+    {
+      "case": "FactoryTest.DynamicMessageWithEnv",
+      "status": "passed",
+      "binary_sha256": "cea6f78abfb89dc02c0f26de5d6d369751fe36f74569765ad63a0cc6e9f11dbe"
+    },
+    {
+      "case": "FactoryLazyTest.DescriptorPathReadAtFirstDynamicUse",
+      "status": "passed",
+      "binary_sha256": "4668b8bd1febdad8f94f5c440d1fab9a887c6dc9c7a269725969bc7ec2f8ac21"
+    },
+    {
+      "case": "FactoryConcurrency.ParallelUse",
+      "status": "passed",
+      "binary_sha256": "0c79a4e6441b4250ffaa0d618b2898b191ebf0068a5a1d201a416775433732aa"
+    }
+  ]
+}

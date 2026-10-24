@@ -111,3 +111,5 @@ mod conversions;
 pub mod enum_names;
 
 pub mod registry;
+
+pub mod factory;

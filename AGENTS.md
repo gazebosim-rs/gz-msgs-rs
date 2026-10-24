@@ -2,8 +2,8 @@
 
 Read README.md and the linked canonical plan, this repository's contract, task
 packets, and test policy. Confirmed owner decisions override proposed defaults.
-This is a planning shell; production quality gates must be implemented before
-accepting the first production feature.
+MSG-01's canonical message foundation is accepted. MSG-02's full retained scope
+remains in the ledger; all production quality gates stay mandatory for every slice.
 
 Generate types from canonical schemas. Preserve field numbers, packages, types, enums, descriptors, and wire behavior. Evaluate runtime reflection and unknown-field handling explicitly. Test C++ interoperability in both directions. Do not depend on Bevy or simulator-specific math.
 

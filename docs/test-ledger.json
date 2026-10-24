@@ -80,9 +80,14 @@
       "id": "FactoryTest.DynamicMessageWithEnv",
       "source": "test/integration/Factory_TEST.cc",
       "source_sha256": "a132a6f663ec29fa265819be82dc69ad6e3c900ee7a8a24052fb15b06e48e9d0",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "factory::factory_names_text_and_original_explicit_dynamic_paths"
+      ],
+      "native_status": "passed",
+      "reviewer": "/root/sdformat",
+      "reviewed_diff_sha256": "e4ddb1143900595fdf75fe47ee7b3800cbe33afc0443c1c3f0959ca3a7ea428a",
+      "review_note": "Original explicit path, late environment and complete nine-thread/10000-iteration assertions independently compared. Four Rust tests, isolated single-thread env target, actual C++ callback probe and all three original native cases rerun; exact IDs/hashes verified. No TSan/global singleton/install-prefix/cache completeness claim."
     },
     {
       "id": "FactoryTest.NewAllRegisteredTypes",
@@ -731,9 +736,14 @@
       "id": "FactoryConcurrency.ParallelUse",
       "source": "test/integration/factory_concurrency.cc",
       "source_sha256": "cb5ad5b4490f1c7cb8830b04c2d13737d5d11bcd588a39b6843dff2acacc5dde",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "factory::original_parallel_use_counts_and_final_construction_assertions"
+      ],
+      "native_status": "passed",
+      "reviewer": "/root/sdformat",
+      "reviewed_diff_sha256": "e4ddb1143900595fdf75fe47ee7b3800cbe33afc0443c1c3f0959ca3a7ea428a",
+      "review_note": "Original explicit path, late environment and complete nine-thread/10000-iteration assertions independently compared. Four Rust tests, isolated single-thread env target, actual C++ callback probe and all three original native cases rerun; exact IDs/hashes verified. No TSan/global singleton/install-prefix/cache completeness claim."
     },
     {
       "id": "FactoryDescriptorRetryTest.ReloadAfterMissingImport",
@@ -752,9 +762,14 @@
       "id": "FactoryLazyTest.DescriptorPathReadAtFirstDynamicUse",
       "source": "test/integration/factory_lazy.cc",
       "source_sha256": "9cbd584ec3c34926efaec8512b329e849a5e006591ca0be98c12dcd747269dbb",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "factory_env::main"
+      ],
+      "native_status": "passed",
+      "reviewer": "/root/sdformat",
+      "reviewed_diff_sha256": "e4ddb1143900595fdf75fe47ee7b3800cbe33afc0443c1c3f0959ca3a7ea428a",
+      "review_note": "Original explicit path, late environment and complete nine-thread/10000-iteration assertions independently compared. Four Rust tests, isolated single-thread env target, actual C++ callback probe and all three original native cases rerun; exact IDs/hashes verified. No TSan/global singleton/install-prefix/cache completeness claim."
     },
     {
       "id": "CmdLine.Version",

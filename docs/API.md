@@ -198,5 +198,27 @@ retaining loaded descriptors (earlier per-file diagnostics are not returned with
 that listing error). No diagnostics are printed. Scanning does not recursively
 search nested directories or automatically retry imports. Repeated files/schemas
 remain idempotent by schema file name; there is still no canonical-path cache.
-Environment/install-prefix discovery and the lazy concurrent Factory facade
-remain unfinished. No external generated Rust types or callbacks are installed.
+Install-prefix discovery and canonical-path caching remain unfinished. No
+external generated Rust types are created by the registry.
+
+
+`factory::MessageFactory` is an instance-owned synchronized constructor registry.
+`new_message` returns a dynamic value; `new_text` returns a parsed value, a detailed
+parse error, or None for an unknown type. Canonical generated-type lookup and
+registration do not initialize external descriptors. First dynamic lookup, Types
+or explicit loading reads GZ_DESCRIPTOR_PATH once per default instance. Explicit
+`with_paths` avoids that process environment dependency. There is no background
+runtime, process-global mutable registration or install-prefix probing; the
+canonical descriptor base is bundled. Initial load errors remain available via
+`take_initial_errors`; `load_paths` drains pending initial diagnostics before
+returning explicit-load diagnostics. Returned messages own descriptor snapshots
+and can outlive the factory.
+
+`register` stores names literally, replacing previous constructors. Name/path
+argument conversion, constructor invocation and replacement destruction happen
+outside the state lock, allowing reentry. Constructors must be Send+Sync and
+return DynamicMessage; no null callable/value registration is exposed. Native
+Gazebo aliases are normalized on lookup, while other leading dots are rejected
+unless registered literally. Text construction clears constructor-populated
+fields as native ParseFromString does. Types returns a sorted union of canonical,
+registered and loaded names; native unordered traversal order is not portable.

@@ -14,9 +14,10 @@ Generated values discard unknown fields on decode. For lossless forwarding use
 verbatim. See [the API contract](docs/API.md), [test ledger](docs/test-ledger.json)
 and [runtime qualification](docs/RUNTIME_PROBE.md).
 
-This is a validated initial MSG-01/MSG-02 slice, not complete Gazebo Messages
-parity. Full conversion and descriptor-loading behavior remain
-pending. The canonical architecture and acceptance policy live in
+The MSG-01 message foundation is [formally accepted](https://github.com/gazebosim-rs/gz-sim-rs/blob/30ade168180f97aa0bcaf447b278aaf1c4c0a5ba/docs/acceptance/MSG-01.md).
+MSG-02 remains in progress: complete domain conversions, retained Factory/cloud
+behavior, tooling, packaging and performance qualification are still required.
+Complete Gazebo Messages parity is not claimed. The canonical architecture and acceptance policy live in
 [gz-sim-rs](https://github.com/gazebosim-rs/gz-sim-rs/blob/main/docs/PLAN.md).
 
 Requires Rust 1.94.1 and protoc (qualified baseline 3.21.12). `cargo test --locked`

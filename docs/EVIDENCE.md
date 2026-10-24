@@ -397,3 +397,51 @@ execute-only directory, verified all six fixtures against immutable Git objects,
 and compared both original assertion families including stderr behavior. The
 two mappings are marked reviewed. Source, scope and coverage remain as above;
 strict staged verification is required before publication.
+
+## Instance factory, lazy environment and parallel retained behavior
+
+New MessageFactory reuses DescriptorRegistry behind std Mutex. Canonical lookup
+and registration avoid external initialization; first dynamic lookup/Types/load
+reads a default instance's GZ_DESCRIPTOR_PATH once. Explicit paths avoid ambient
+environment. Callbacks and argument conversion run outside the lock; replaced
+constructors are destroyed after release. Load diagnostics stay observable, and
+returned messages retain descriptor snapshots. No worker runtime or process-global
+mutable registry is introduced. Install-prefix scanning/path caching are still
+explicitly outside this instance API's qualified scope.
+
+The original explicit two-path load, late environment setter and complete
+ParallelUse thread/iteration/final assertions are preserved. The environment port
+is a harness=false process with no background threads, so its standard environment
+mutation occurs safely on the sole thread. It also proves first dynamic use freezes
+paths. Four ordinary factory tests cover aliases/errors/text, initial diagnostics,
+constructor replacement/reentry and value lifetime. ParallelUse retains four times
+10000 generated creates, twice1000 dynamic creates,1000 registrations,100 type
+enumerations and20 repeated loads, followed by every original final assertion.
+
+scripts/factory-state-reference.py reruns the three selected original native cases,
+requiring exact gtest XML IDs and no failures/skips, and pins source/binary hashes.
+A supplemental actual native probe verifies replacement, text clearing, reentry,
+literal-dot registrations and enumeration. It found a real maintained-reflection
+lookup difference: reflection strips a leading dot; native Factory accepts only
+its three Gazebo aliases unless a literal constructor is registered. The facade
+preserves native lookup and dynamic-initialization timing without a runtime patch.
+Native helper invocations clear only the descriptor-path environment to isolate
+these baseline observations; originals may set it inside their own process.
+
+Full local verification passes47 harness tests plus the isolated environment probe
+(48 Rust checks), five snapshot regressions, native peers, clean consumer, fmt/
+clippy and strict coverage:597/597 owned Rust lines,874/883 regions; the factory
+is95/95 lines and143/143 regions. No dependency or exclusion added. Three original
+mappings await independent review; MSG-01's separate coordinator acceptance is
+linked in README while MSG-02 remains incomplete.
+
+/root/sdformat independently approved final implementation/test diff
+`e4ddb1143900595fdf75fe47ee7b3800cbe33afc0443c1c3f0959ca3a7ea428a`.
+It compared the three original cases, reran four Rust factory tests plus the
+single-thread environment executable, compiled/executed the actual native probe,
+and reran all three original native tests with exact one-run/no-failure XML.
+Source/native hashes, complete thread counts, aliases, text clearing, callback
+reentry/destruction, lifetimes and one-shot diagnostics were checked. An explicit
+reentrant-name enumeration assertion was added after review. Three mappings are
+marked reviewed; no TSan, global singleton, install-prefix or cache parity claim
+is made. The matching strict staged gate remains required for publication.
