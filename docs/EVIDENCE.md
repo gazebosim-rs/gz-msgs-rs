@@ -294,3 +294,34 @@ Factory cases against a7b99ec and reran the original text/all-type and complete
 native-list Rust tests. All five mappings are now reviewed; the coordinator
 accepted the chain through ab3fc90 for publication. This accepts bounded slices,
 not completed MSG-01/MSG-02 packets or unimplemented iterator operators.
+
+## Explicit descriptor loading and missing-import retry
+
+New instance-owned DescriptorRegistry reuses the existing patched maintained
+reflection pool. It loads descriptor files in encoded order, retains partial
+successes and returns per-file errors for retry. The descriptor set is itself
+reflected so custom options remain nested unknown bytes until schemas load;
+no custom protobuf parser, unsafe code or additional dependency is introduced.
+
+`python3 scripts/registry-reference.py` reruns the exact original native retry
+sequence and captures exact A/B descriptor-set wire inputs, original source SHA,
+upstream SHA and native helper binary SHA. The Rust port preserves each original
+missing/dependency/reload assertion. Supplementary tests cover partial success
+within a set, duplicate names, malformed and IO errors, cloned/surviving descriptor
+snapshots, and an actual protoc-generated custom MessageOptions extension whose
+string value survives loading. Only the retry case is mapped, pending independent
+review; environment/directory/lazy/concurrent factory scope remains unported.
+
+`python3 scripts/verify.py` passes 40 tests, downstream consumer, native interop,
+fmt/clippy and unchanged strict coverage gates. This explicit API starts with
+canonical descriptors; it does not claim the native dynamic pool's install-prefix
+or path-cache behavior. No new coverage exclusion is introduced.
+
+/root/sdformat independently approved the exact implementation/test diff
+`aa6e1fabfff654058458d2bc9dd21e45b80918b57173271a41534aced2595af6`.
+It compared the original descriptor fields and all three construction outcomes,
+reran the native helper and three Rust tests, and verified custom-option retention,
+partial retry/snapshots and provenance. Review requested explicit Bar construction
+beyond lookup; the final port includes it. Diagnostics now use a relative fixture
+directory, preserving native output without capturing a host-specific path. The
+single retry mapping is marked reviewed; remaining factory scope is unchanged.

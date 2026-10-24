@@ -160,3 +160,22 @@ from protobuf text with a detailed parse error. These public reexports cover the
 original well-formed and malformed Vector3d cases and instantiate all 271 native
 registered names. External descriptors and their lazy/retry/concurrency contracts
 remain separate unfinished work.
+
+`registry::DescriptorRegistry::default()` owns a canonical descriptor snapshot.
+`load_bytes` accepts binary FileDescriptorSet bytes and attempts files in their
+encoded order. It returns every per-file descriptor error while retaining
+successful files, so callers can provide a missing dependency and retry the
+failed file. Malformed outer protobuf bytes return DecodeError. `load_file`
+reads one explicit path, returning IO/InvalidData errors or the same validation
+error list. Duplicate schema file names are ignored, including changed content;
+this API does not replace schemas. The public pool supports normal maintained
+reflection construction, field access, text/JSON and binary codecs. Existing
+messages/descriptors retain their pool snapshots after registry mutation/drop.
+
+Reflection also decodes the descriptor set itself, preserving nested custom
+option bytes until their extension schema is available. A plain prost-types
+FileDescriptorSet decode would discard those bytes. The registry has no global
+mutation, native lifetime, path cache, directory scan, environment lookup or lazy
+singleton behavior. Its canonical base is explicit; callers synchronize exclusive
+mutation themselves when sharing it. Those remaining legacy factory contracts
+are tracked separately, and default canonical descriptor APIs remain immutable.

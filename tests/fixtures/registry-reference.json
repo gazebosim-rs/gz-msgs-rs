@@ -1,0 +1,11 @@
+{
+  "a_hex": "0a430a07612e70726f746f1206612e6d7367731a07622e70726f746f221f0a03466f6f12180a0362617218012001280b320b2e622e6d7367732e426172620670726f746f33",
+  "b_hex": "0a2b0a07622e70726f746f1206622e6d73677322100a0342617212090a0178180120012805620670726f746f33",
+  "initial_missing": true,
+  "dependency_loaded": true,
+  "retry_succeeded": true,
+  "upstream_commit": "89c0c3d1474f545cb889335daf930bfdab6ab852",
+  "source_sha256": "53f1f8ef2d995922ad51ddb6db61191742b94d7df8ae1aaca42c4c9d2365f00b",
+  "native_binary_sha256": "711bc13e1923042fa5a0c2c38e687d3e7cab7650c154aeec8e95bf676ae7b228",
+  "missing_import_stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"a.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   b.proto: Import \"b.proto\" has not been loaded.\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   a.msgs.Foo.bar: \".b.msgs.Bar\" is not defined.\nDynamicFactory(). Unable to place descriptors from [target/reference/registry-inputs/a.desc] in the descriptor pool\n"
+}

@@ -729,9 +729,14 @@
       "id": "FactoryDescriptorRetryTest.ReloadAfterMissingImport",
       "source": "test/integration/factory_descriptor_retry.cc",
       "source_sha256": "53f1f8ef2d995922ad51ddb6db61191742b94d7df8ae1aaca42c4c9d2365f00b",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "registry::original_missing_import_retry_assertions"
+      ],
+      "native_status": "passed",
+      "reviewer": "/root/sdformat",
+      "reviewed_diff_sha256": "aa6e1fabfff654058458d2bc9dd21e45b80918b57173271a41534aced2595af6",
+      "review_note": "Original source fields and missing/dependency/retry construction assertions independently compared. All three Rust registry tests and native helper rerun; exact A/B wire inputs and upstream/source/native hashes verified. Explicit canonical-base registry scope only."
     },
     {
       "id": "FactoryLazyTest.DescriptorPathReadAtFirstDynamicUse",

@@ -109,3 +109,5 @@ pub fn pose_components(pose: &Pose) -> ([f64; 3], [f64; 4]) {
 pub mod cloud;
 mod conversions;
 pub mod enum_names;
+
+pub mod registry;
