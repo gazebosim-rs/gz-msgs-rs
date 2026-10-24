@@ -352,3 +352,48 @@ The full-build staged broken Time/unstaged fix demonstration also passes with
 the new snapshot implementation. The full 40-test local gate passes with
 unchanged owned Rust coverage, 451/451 lines and 645/653 regions. A matching
 strict staged gate remains required for this commit.
+
+## Explicit descriptor path lists and one-level directories
+
+The next registry slice preserves the retained DynamicFactory path sequence and
+NoDuplicateDescriptors assertions with six upstream descriptor/source fixtures
+copied byte-for-byte and pinned in tests/reference/manifest.json. The exact native
+C++ path/missing/extension/content/file/directory outcomes and absence of duplicate
+errors are captured by scripts/registry-paths-reference.py. Original differing
+Bytes/BarBytes/FooBytes queries are retained rather than normalized away. Rust
+constructs each accessible dynamic message and isolates the duplicate test in a
+child process to preserve the original stderr-substring assertion.
+
+Supplementary tests cover native gz-msgs.gz_desc priority, duplicate directory
+reloads, empty path lists, recognized substrings in parent directory names,
+missing/invalid directory errors, and platform-reported permission errors. The
+API intentionally returns structured path-associated errors rather than printing
+native diagnostics. It has no environment/global/lazy or canonical-path-cache
+contract yet; those cases remain retained.
+
+The first fully generic traversal failed the strict per-file region gate at
+127/135 regions despite merged source views showing hits from different path
+argument instantiations. Traversal now shares one concrete implementation behind
+thin ergonomic argument adapters, avoiding duplicated traversal code and keeping
+all executable logic instrumented. The directory-entry failure region remains in
+the denominator. No gate or exclusion changed. Full verification passes 43 tests
+and five snapshot regressions: owned Rust 502/502 lines, 731/740 regions; registry
+80/80 lines and 136/137 regions. Both original mappings await independent review.
+
+
+Independent transport review identified an ordering side effect: native loads
+its known own descriptor before directory iteration and retains each successful
+entry before a listing failure. The eager Rust entry collection could lose that
+progress. Loading now attempts the own file first and streams entries. A native
+execute-only-directory probe confirms own type availability after the iterator
+throws; the Rust test preserves that state and checks the actual OS listing
+permission result. No permission-dependent assertion is skipped, including on
+systems where the current user can still read the directory.
+
+/root/transport independently approved corrected implementation diff
+`0d7e1fc027f17a523b8c5b7174db622e6daaeb1e76c7b182662ab6d0ad2c78ef`.
+It reran all three Rust path tests and the exact native binary with a fresh
+execute-only directory, verified all six fixtures against immutable Git objects,
+and compared both original assertion families including stderr behavior. The
+two mappings are marked reviewed. Source, scope and coverage remain as above;
+strict staged verification is required before publication.

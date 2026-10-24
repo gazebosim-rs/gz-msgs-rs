@@ -27,7 +27,49 @@
       "upstream_commit": "89c0c3d1474f545cb889335daf930bfdab6ab852",
       "upstream_path": "core/cmd/msgs.bash_completion.sh",
       "sha256": "8e468591f50743544755ae7d5dc09b96676e192dad3173a994815942d72175c9"
+    },
+    {
+      "path": "tests/reference/descriptors/stringmsg.desc",
+      "upstream_repository": "gz-msgs",
+      "upstream_commit": "89c0c3d1474f545cb889335daf930bfdab6ab852",
+      "upstream_path": "test/desc/stringmsg.desc",
+      "sha256": "e9377f041ad77e983e42670fc22acff2114934b68b8e8da2d58565e226905275"
+    },
+    {
+      "path": "tests/reference/descriptors/testing/bytes.proto",
+      "upstream_repository": "gz-msgs",
+      "upstream_commit": "89c0c3d1474f545cb889335daf930bfdab6ab852",
+      "upstream_path": "test/desc/testing/bytes.proto",
+      "sha256": "15e8ca7bbd69ef0411a130b267c53f4bdc4f9f921f6bfc7586ea15fb57a85393"
+    },
+    {
+      "path": "tests/reference/descriptors/testing/message.proto",
+      "upstream_repository": "gz-msgs",
+      "upstream_commit": "89c0c3d1474f545cb889335daf930bfdab6ab852",
+      "upstream_path": "test/desc/testing/message.proto",
+      "sha256": "2998ac77b413e4d3263f4145d2881a7ce9d188d9f89bd758f11fac50dadf83c4"
+    },
+    {
+      "path": "tests/reference/descriptors/testing.invalid",
+      "upstream_repository": "gz-msgs",
+      "upstream_commit": "89c0c3d1474f545cb889335daf930bfdab6ab852",
+      "upstream_path": "test/desc/testing.invalid",
+      "sha256": "3a46c5f6f66660227a188ad9a8fea4d5851086a121117f1f39c0d7e042f444fc"
+    },
+    {
+      "path": "tests/reference/descriptors/testing.proto",
+      "upstream_repository": "gz-msgs",
+      "upstream_commit": "89c0c3d1474f545cb889335daf930bfdab6ab852",
+      "upstream_path": "test/desc/testing.proto",
+      "sha256": "6dc2d891277494d3b9f4b86598478a8286c80b7528bb18466fff907c82b7d076"
+    },
+    {
+      "path": "tests/reference/descriptors/testing.proto.bin",
+      "upstream_repository": "gz-msgs",
+      "upstream_commit": "89c0c3d1474f545cb889335daf930bfdab6ab852",
+      "upstream_path": "test/desc/testing.proto.bin",
+      "sha256": "cb342cc15e6d567c14e78c769ba77414c38ac21c268c19b1bcb5ec0325572fa3"
     }
   ],
-  "harness": "Original CLI test body unchanged; compile-time version, executable and completion paths bind to Rust package artifacts."
+  "harness": "Original CLI test body and external descriptor fixtures unchanged; compile-time version, executable and completion paths bind CLI tests to Rust package artifacts."
 }

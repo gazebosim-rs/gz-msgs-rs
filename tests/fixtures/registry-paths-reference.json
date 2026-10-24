@@ -1,0 +1,115 @@
+{
+  "stages": [
+    {
+      "stage": "initial",
+      "types": [
+        "example.msgs.StringMsg",
+        "testing.Bytes",
+        "testing.FooMessage",
+        "testing.BarMessage",
+        "testing.BazMessage"
+      ],
+      "present": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "stage": "missing",
+      "types": [
+        "example.msgs.StringMsg",
+        "testing.Bytes",
+        "testing.FooMessage",
+        "testing.BarMessage",
+        "testing.BazMessage"
+      ],
+      "present": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "stage": "extension",
+      "types": [
+        "example.msgs.StringMsg",
+        "testing.Bytes",
+        "testing.FooMessage",
+        "testing.BarMessage",
+        "testing.BazMessage"
+      ],
+      "present": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "stage": "content",
+      "types": [
+        "example.msgs.StringMsg",
+        "testing.BarBytes",
+        "testing.FooMessage",
+        "testing.BarMessage",
+        "testing.BazMessage"
+      ],
+      "present": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "stage": "file",
+      "types": [
+        "example.msgs.StringMsg",
+        "testing.Bytes",
+        "testing.FooMessage",
+        "testing.BarMessage",
+        "testing.BazMessage"
+      ],
+      "present": [
+        true,
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "stage": "directory",
+      "types": [
+        "example.msgs.StringMsg",
+        "testing.FooBytes",
+        "testing.FooMessage",
+        "testing.BarMessage",
+        "testing.BazMessage"
+      ],
+      "present": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    }
+  ],
+  "duplicate_present": true,
+  "execute_only_directory": {
+    "listing_failed": true,
+    "own_loaded": true
+  },
+  "upstream_commit": "89c0c3d1474f545cb889335daf930bfdab6ab852",
+  "source_sha256": "857ef7fb91d33ec05becd2d1d3d08aec12dcf2009999c848596235061e3dd9b2",
+  "native_binary_sha256": "754ebf527416f68d502eb3fa97d6aaaff9c4eb126bbd511d4b3c03ff06b4627c",
+  "stderr": "DynamicFactory(): Unable to open [tests/reference/descriptors/does_not_exist.desc]\nDynamicFactory(): Unable to parse descriptor set from [tests/reference/descriptors/testing.proto]\nDynamicFactory(): Unable to parse descriptor set from [tests/reference/descriptors/testing.proto]\n"
+}

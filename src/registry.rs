@@ -6,7 +6,11 @@ use crate::{
     prost_reflect::{DescriptorError, DescriptorPool, DynamicMessage, ReflectMessage},
     prost_types::FileDescriptorSet,
 };
-use std::{io, path::Path};
+use std::{
+    ffi::OsStr,
+    io,
+    path::{Path, PathBuf},
+};
 
 /// A canonical descriptor snapshot extended by caller-supplied descriptor sets.
 /// Mutations require an exclusive borrow; existing dynamic values own snapshots.
@@ -24,6 +28,67 @@ impl Default for DescriptorRegistry {
 impl DescriptorRegistry {
     pub fn pool(&self) -> &DescriptorPool {
         &self.pool
+    }
+    /// Load a platform-separated list of explicit paths or directories.
+    /// Return path-associated IO/descriptor errors without printing diagnostics.
+    pub fn load_paths(&mut self, paths: impl AsRef<OsStr>) -> Vec<(PathBuf, io::Error)> {
+        self.load_os_paths(paths.as_ref())
+    }
+    // Share traversal code across path argument types instead of monomorphizing it.
+    fn load_os_paths(&mut self, paths: &OsStr) -> Vec<(PathBuf, io::Error)> {
+        let mut errors = Vec::new();
+        for path in std::env::split_paths(paths) {
+            if path.is_dir() {
+                match self.load_directory(&path) {
+                    Ok(mut found) => errors.append(&mut found),
+                    Err(error) => errors.push((path, error)),
+                }
+            } else {
+                self.load_candidate(&path, &mut errors);
+            }
+        }
+        errors
+    }
+    /// Scan one directory level, prioritizing the native gz-msgs.gz_desc file.
+    /// Other entries retain filesystem traversal order; imports are not retried
+    /// automatically. Callers may retry after supplying missing dependencies.
+    pub fn load_directory(
+        &mut self,
+        path: impl AsRef<Path>,
+    ) -> io::Result<Vec<(PathBuf, io::Error)>> {
+        self.load_directory_path(path.as_ref())
+    }
+    fn load_directory_path(&mut self, path: &Path) -> io::Result<Vec<(PathBuf, io::Error)>> {
+        let mut errors = Vec::new();
+        let own = path.join("gz-msgs.gz_desc");
+        if own.exists() {
+            self.load_candidate(&own, &mut errors);
+        }
+        for entry in std::fs::read_dir(path)? {
+            let entry = entry?.path();
+            if entry.file_name() != Some(OsStr::new("gz-msgs.gz_desc")) {
+                self.load_candidate(&entry, &mut errors);
+            }
+        }
+        Ok(errors)
+    }
+    fn load_candidate(&mut self, path: &Path, errors: &mut Vec<(PathBuf, io::Error)>) {
+        // Native recognition is a substring check on the full path, not a suffix.
+        if ![".desc", ".gz_desc", ".proto"]
+            .iter()
+            .any(|part| path.to_string_lossy().contains(part))
+        {
+            return;
+        }
+        match self.load_file(path) {
+            Ok(found) => errors.extend(found.into_iter().map(|error| {
+                (
+                    path.to_owned(),
+                    io::Error::new(io::ErrorKind::InvalidData, error),
+                )
+            })),
+            Err(error) => errors.push((path.to_owned(), error)),
+        }
     }
     /// Read a binary FileDescriptorSet; malformed bytes return InvalidData.
     /// The returned errors describe individual files that failed validation.

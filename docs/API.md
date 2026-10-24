@@ -180,7 +180,23 @@ messages/descriptors retain their pool snapshots after registry mutation/drop.
 Reflection also decodes the descriptor set itself, preserving nested custom
 option bytes until their extension schema is available. A plain prost-types
 FileDescriptorSet decode would discard those bytes. The registry has no global
-mutation, native lifetime, path cache, directory scan, environment lookup or lazy
+mutation, native lifetime, path cache, environment lookup or lazy
 singleton behavior. Its canonical base is explicit; callers synchronize exclusive
 mutation themselves when sharing it. Those remaining legacy factory contracts
 are tracked separately, and default canonical descriptor APIs remain immutable.
+
+
+`DescriptorRegistry::load_paths` accepts an explicit platform-separated path list.
+`load_directory` scans one level. Native filename recognition searches the entire
+path for `.desc`, `.gz_desc` or `.proto` (including `.proto.bin`), rather than
+checking just the suffix. A directory's `gz-msgs.gz_desc` is attempted first;
+remaining entries retain filesystem order. Each accepted file uses the existing
+ordered loader. A completed scan returns per-file IO/descriptor errors with paths
+and attempts every candidate. The own file loads before directory iteration;
+other entries load progressively. A listing failure returns an IO error while
+retaining loaded descriptors (earlier per-file diagnostics are not returned with
+that listing error). No diagnostics are printed. Scanning does not recursively
+search nested directories or automatically retry imports. Repeated files/schemas
+remain idempotent by schema file name; there is still no canonical-path cache.
+Environment/install-prefix discovery and the lazy concurrent Factory facade
+remain unfinished. No external generated Rust types or callbacks are installed.

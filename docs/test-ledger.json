@@ -705,17 +705,27 @@
       "id": "FactoryTest.DynamicFactory",
       "source": "test/integration/descriptors.cc",
       "source_sha256": "857ef7fb91d33ec05becd2d1d3d08aec12dcf2009999c848596235061e3dd9b2",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "registry_paths::original_dynamic_factory_path_and_directory_assertions"
+      ],
+      "native_status": "passed",
+      "reviewer": "/root/transport",
+      "reviewed_diff_sha256": "0d7e1fc027f17a523b8c5b7174db622e6daaeb1e76c7b182662ab6d0ad2c78ef",
+      "review_note": "Original assertions independently compared, including differing Bytes names and isolated duplicate stderr/type assertions. All three Rust tests and native fresh execute-only-directory probe rerun; six fixture bytes verified against immutable upstream objects. Own-first streaming side effects preserved."
     },
     {
       "id": "FactoryTest.NoDuplicateDescriptors",
       "source": "test/integration/descriptors.cc",
       "source_sha256": "857ef7fb91d33ec05becd2d1d3d08aec12dcf2009999c848596235061e3dd9b2",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "registry_paths::original_duplicate_descriptor_path_has_no_database_diagnostic"
+      ],
+      "native_status": "passed",
+      "reviewer": "/root/transport",
+      "reviewed_diff_sha256": "0d7e1fc027f17a523b8c5b7174db622e6daaeb1e76c7b182662ab6d0ad2c78ef",
+      "review_note": "Original assertions independently compared, including differing Bytes names and isolated duplicate stderr/type assertions. All three Rust tests and native fresh execute-only-directory probe rerun; six fixture bytes verified against immutable upstream objects. Own-first streaming side effects preserved."
     },
     {
       "id": "FactoryConcurrency.ParallelUse",
