@@ -44,3 +44,10 @@ artifacts/status.json --dry-run` before publishing without --dry-run. Publish on
 this repository's status record. Only link quality.revision_url after verifying
 the commit is public. Accepted slices do not make MSG-01/MSG-02 complete while
 retained acceptance scope remains. Keep credentials and private paths out of reports.
+
+## Licensing
+
+Repository-owned code, tests and experiments use Apache-2.0; declare
+`license = "Apache-2.0"` in every owned Cargo package. Preserve all original
+vendored third-party licenses, copyright notices and provenance; this rule does
+not relicense third-party source.
