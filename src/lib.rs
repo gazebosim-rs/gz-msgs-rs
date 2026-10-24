@@ -106,5 +106,6 @@ pub fn pose_components(pose: &Pose) -> ([f64; 3], [f64; 4]) {
     (position, orientation)
 }
 
+pub mod cloud;
 mod conversions;
 pub mod enum_names;

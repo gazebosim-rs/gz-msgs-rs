@@ -1,0 +1,474 @@
+{
+  "upstream_commit": "89c0c3d1474f545cb889335daf930bfdab6ab852",
+  "header_sha256": "383a3b5abf12d7fd6ba6cc4813ad3ab66dda1a08092b76c610650e1ac3b67747",
+  "native_binary_sha256": "068cf16293a0fadf9b63e4c4d84a707fad57eea639c82abe53a99a464b1ef5a9",
+  "word_bytes": 8,
+  "layouts": [
+    {
+      "aligned": false,
+      "frame": "frame",
+      "fields": [],
+      "wire_hex": "0a190a04082a101112110a086672616d655f696412056672616d6518022003280138cd0242046b6570744801",
+      "stderr": ""
+    },
+    {
+      "aligned": false,
+      "frame": "frame",
+      "fields": [
+        [
+          "xyz",
+          6
+        ],
+        [
+          "rgb",
+          6
+        ]
+      ],
+      "wire_hex": "0a190a04082a101112110a086672616d655f696412056672616d6512070a01781806200112090a017910041806200112090a017a100818062001120b0a03726762100c18062001180220032801301038cd0242046b6570744801",
+      "stderr": ""
+    },
+    {
+      "aligned": false,
+      "frame": "frame",
+      "fields": [
+        [
+          "xyz",
+          6
+        ],
+        [
+          "rgba",
+          6
+        ]
+      ],
+      "wire_hex": "0a190a04082a101112110a086672616d655f696412056672616d6512070a01781806200112090a017910041806200112090a017a100818062001120c0a0472676261100c18062001180220032801301038cd0242046b6570744801",
+      "stderr": ""
+    },
+    {
+      "aligned": false,
+      "frame": "frame",
+      "fields": [
+        [
+          "x",
+          0
+        ],
+        [
+          "y",
+          1
+        ],
+        [
+          "z",
+          2
+        ],
+        [
+          "r",
+          3
+        ],
+        [
+          "s",
+          4
+        ],
+        [
+          "t",
+          5
+        ],
+        [
+          "u",
+          7
+        ]
+      ],
+      "wire_hex": "0a190a04082a101112110a086672616d655f696412056672616d6512050a0178200112090a017910011801200112090a017a10021802200112090a017210041803200112090a017310061804200112090a0174100a1805200112090a0175100e18072001180220032801301638cd0242046b6570744801",
+      "stderr": ""
+    },
+    {
+      "aligned": false,
+      "frame": "frame",
+      "fields": [
+        [
+          "bad",
+          100
+        ]
+      ],
+      "wire_hex": "0a190a04082a101112110a086672616d655f696412056672616d6512090a036261641864200118022003280138cd0242046b6570744801",
+      "stderr": "PointCloudPacked field datatype of [100] is invalid.\n"
+    },
+    {
+      "aligned": false,
+      "frame": "frame",
+      "fields": [
+        [
+          "xyz",
+          100
+        ]
+      ],
+      "wire_hex": "0a190a04082a101112110a086672616d655f696412056672616d6512070a01781864200112070a01791864200112070a017a1864200118022003280138cd0242046b6570744801",
+      "stderr": "PointCloudPacked field datatype of [100] is invalid.\nPointCloudPacked field datatype of [100] is invalid.\nPointCloudPacked field datatype of [100] is invalid.\n"
+    },
+    {
+      "aligned": false,
+      "frame": "frame",
+      "fields": [
+        [
+          "value",
+          0
+        ]
+      ],
+      "wire_hex": "0a190a04082a101112110a086672616d655f696412056672616d6512090a0576616c75652001180220032801300138cd0242046b6570744801",
+      "stderr": ""
+    },
+    {
+      "aligned": false,
+      "frame": "frame",
+      "fields": [
+        [
+          "value",
+          1
+        ]
+      ],
+      "wire_hex": "0a190a04082a101112110a086672616d655f696412056672616d65120b0a0576616c756518012001180220032801300138cd0242046b6570744801",
+      "stderr": ""
+    },
+    {
+      "aligned": false,
+      "frame": "frame",
+      "fields": [
+        [
+          "value",
+          2
+        ]
+      ],
+      "wire_hex": "0a190a04082a101112110a086672616d655f696412056672616d65120b0a0576616c756518022001180220032801300238cd0242046b6570744801",
+      "stderr": ""
+    },
+    {
+      "aligned": false,
+      "frame": "frame",
+      "fields": [
+        [
+          "value",
+          3
+        ]
+      ],
+      "wire_hex": "0a190a04082a101112110a086672616d655f696412056672616d65120b0a0576616c756518032001180220032801300238cd0242046b6570744801",
+      "stderr": ""
+    },
+    {
+      "aligned": false,
+      "frame": "frame",
+      "fields": [
+        [
+          "value",
+          4
+        ]
+      ],
+      "wire_hex": "0a190a04082a101112110a086672616d655f696412056672616d65120b0a0576616c756518042001180220032801300438cd0242046b6570744801",
+      "stderr": ""
+    },
+    {
+      "aligned": false,
+      "frame": "frame",
+      "fields": [
+        [
+          "value",
+          5
+        ]
+      ],
+      "wire_hex": "0a190a04082a101112110a086672616d655f696412056672616d65120b0a0576616c756518052001180220032801300438cd0242046b6570744801",
+      "stderr": ""
+    },
+    {
+      "aligned": false,
+      "frame": "frame",
+      "fields": [
+        [
+          "value",
+          6
+        ]
+      ],
+      "wire_hex": "0a190a04082a101112110a086672616d655f696412056672616d65120b0a0576616c756518062001180220032801300438cd0242046b6570744801",
+      "stderr": ""
+    },
+    {
+      "aligned": false,
+      "frame": "frame",
+      "fields": [
+        [
+          "value",
+          7
+        ]
+      ],
+      "wire_hex": "0a190a04082a101112110a086672616d655f696412056672616d65120b0a0576616c756518072001180220032801300838cd0242046b6570744801",
+      "stderr": ""
+    },
+    {
+      "aligned": true,
+      "frame": "frame",
+      "fields": [],
+      "wire_hex": "0a190a04082a101112110a086672616d655f696412056672616d6518022003280138cd0242046b6570744801",
+      "stderr": ""
+    },
+    {
+      "aligned": true,
+      "frame": "frame",
+      "fields": [
+        [
+          "xyz",
+          6
+        ],
+        [
+          "rgb",
+          6
+        ]
+      ],
+      "wire_hex": "0a190a04082a101112110a086672616d655f696412056672616d6512070a01781806200112090a017910041806200112090a017a100818062001120b0a03726762101018062001180220032801301838cd0242046b6570744801",
+      "stderr": ""
+    },
+    {
+      "aligned": true,
+      "frame": "frame",
+      "fields": [
+        [
+          "xyz",
+          6
+        ],
+        [
+          "rgba",
+          6
+        ]
+      ],
+      "wire_hex": "0a190a04082a101112110a086672616d655f696412056672616d6512070a01781806200112090a017910041806200112090a017a100818062001120c0a0472676261101018062001180220032801301838cd0242046b6570744801",
+      "stderr": ""
+    },
+    {
+      "aligned": true,
+      "frame": "frame",
+      "fields": [
+        [
+          "x",
+          0
+        ],
+        [
+          "y",
+          1
+        ],
+        [
+          "z",
+          2
+        ],
+        [
+          "r",
+          3
+        ],
+        [
+          "s",
+          4
+        ],
+        [
+          "t",
+          5
+        ],
+        [
+          "u",
+          7
+        ]
+      ],
+      "wire_hex": "0a190a04082a101112110a086672616d655f696412056672616d6512050a0178200112090a017910081801200112090a017a10101802200112090a017210181803200112090a017310201804200112090a017410281805200112090a0175103018072001180220032801303838cd0242046b6570744801",
+      "stderr": ""
+    },
+    {
+      "aligned": true,
+      "frame": "frame",
+      "fields": [
+        [
+          "bad",
+          100
+        ]
+      ],
+      "wire_hex": "0a190a04082a101112110a086672616d655f696412056672616d6512090a036261641864200118022003280138cd0242046b6570744801",
+      "stderr": "PointCloudPacked field datatype of [100] is invalid.\n"
+    },
+    {
+      "aligned": true,
+      "frame": "frame",
+      "fields": [
+        [
+          "xyz",
+          100
+        ]
+      ],
+      "wire_hex": "0a190a04082a101112110a086672616d655f696412056672616d6512070a01781864200112070a01791864200112070a017a1864200118022003280138cd0242046b6570744801",
+      "stderr": "PointCloudPacked field datatype of [100] is invalid.\nPointCloudPacked field datatype of [100] is invalid.\nPointCloudPacked field datatype of [100] is invalid.\n"
+    },
+    {
+      "aligned": true,
+      "frame": "frame",
+      "fields": [
+        [
+          "value",
+          0
+        ]
+      ],
+      "wire_hex": "0a190a04082a101112110a086672616d655f696412056672616d6512090a0576616c75652001180220032801300838cd0242046b6570744801",
+      "stderr": ""
+    },
+    {
+      "aligned": true,
+      "frame": "frame",
+      "fields": [
+        [
+          "value",
+          1
+        ]
+      ],
+      "wire_hex": "0a190a04082a101112110a086672616d655f696412056672616d65120b0a0576616c756518012001180220032801300838cd0242046b6570744801",
+      "stderr": ""
+    },
+    {
+      "aligned": true,
+      "frame": "frame",
+      "fields": [
+        [
+          "value",
+          2
+        ]
+      ],
+      "wire_hex": "0a190a04082a101112110a086672616d655f696412056672616d65120b0a0576616c756518022001180220032801300838cd0242046b6570744801",
+      "stderr": ""
+    },
+    {
+      "aligned": true,
+      "frame": "frame",
+      "fields": [
+        [
+          "value",
+          3
+        ]
+      ],
+      "wire_hex": "0a190a04082a101112110a086672616d655f696412056672616d65120b0a0576616c756518032001180220032801300838cd0242046b6570744801",
+      "stderr": ""
+    },
+    {
+      "aligned": true,
+      "frame": "frame",
+      "fields": [
+        [
+          "value",
+          4
+        ]
+      ],
+      "wire_hex": "0a190a04082a101112110a086672616d655f696412056672616d65120b0a0576616c756518042001180220032801300838cd0242046b6570744801",
+      "stderr": ""
+    },
+    {
+      "aligned": true,
+      "frame": "frame",
+      "fields": [
+        [
+          "value",
+          5
+        ]
+      ],
+      "wire_hex": "0a190a04082a101112110a086672616d655f696412056672616d65120b0a0576616c756518052001180220032801300838cd0242046b6570744801",
+      "stderr": ""
+    },
+    {
+      "aligned": true,
+      "frame": "frame",
+      "fields": [
+        [
+          "value",
+          6
+        ]
+      ],
+      "wire_hex": "0a190a04082a101112110a086672616d655f696412056672616d65120b0a0576616c756518062001180220032801300838cd0242046b6570744801",
+      "stderr": ""
+    },
+    {
+      "aligned": true,
+      "frame": "frame",
+      "fields": [
+        [
+          "value",
+          7
+        ]
+      ],
+      "wire_hex": "0a190a04082a101112110a086672616d655f696412056672616d65120b0a0576616c756518072001180220032801300838cd0242046b6570744801",
+      "stderr": ""
+    },
+    {
+      "aligned": false,
+      "frame": "",
+      "fields": [
+        [
+          "xyz",
+          6
+        ]
+      ],
+      "wire_hex": "0a140a04082a1011120c0a086672616d655f6964120012070a01781806200112090a017910041806200112090a017a100818062001180220032801300c38cd0242046b6570744801",
+      "stderr": ""
+    },
+    {
+      "aligned": false,
+      "frame": "frame with spaces",
+      "fields": [
+        [
+          "xyz",
+          6
+        ]
+      ],
+      "wire_hex": "0a250a04082a1011121d0a086672616d655f696412116672616d6520776974682073706163657312070a01781806200112090a017910041806200112090a017a100818062001180220032801300c38cd0242046b6570744801",
+      "stderr": ""
+    }
+  ],
+  "sizes": [
+    {
+      "datatype": 0,
+      "size": 1,
+      "stderr": ""
+    },
+    {
+      "datatype": 1,
+      "size": 1,
+      "stderr": ""
+    },
+    {
+      "datatype": 2,
+      "size": 2,
+      "stderr": ""
+    },
+    {
+      "datatype": 3,
+      "size": 2,
+      "stderr": ""
+    },
+    {
+      "datatype": 4,
+      "size": 4,
+      "stderr": ""
+    },
+    {
+      "datatype": 5,
+      "size": 4,
+      "stderr": ""
+    },
+    {
+      "datatype": 6,
+      "size": 4,
+      "stderr": ""
+    },
+    {
+      "datatype": 7,
+      "size": 8,
+      "stderr": ""
+    },
+    {
+      "datatype": -1,
+      "size": -1,
+      "stderr": "PointCloudPacked::Field of type [-1] does not exist\n"
+    },
+    {
+      "datatype": 100,
+      "size": -1,
+      "stderr": "PointCloudPacked::Field of type [100] does not exist\n"
+    }
+  ]
+}

@@ -126,8 +126,11 @@
       "id": "PointCloudPackedUtilsTest.SizeOfPointField",
       "source": "test/integration/PointCloudPackedUtils_TEST.cc",
       "source_sha256": "3b310f335e73209b2db3a726d03ee223df64c2b29ef8350d53f783814792cb29",
-      "status": "not_ported",
-      "rust_tests": [],
+      "status": "ported_pending_review",
+      "rust_tests": [
+        "cloud::original_size_and_initializer_assertions",
+        "cloud::native_layout_and_size_corpus"
+      ],
       "native_status": "passed"
     },
     {
@@ -656,8 +659,11 @@
       "id": "UtilityTest.InitPointCloudPacked",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
+      "status": "ported_pending_review",
+      "rust_tests": [
+        "cloud::original_size_and_initializer_assertions",
+        "cloud::native_layout_and_size_corpus"
+      ],
       "native_status": "passed"
     },
     {

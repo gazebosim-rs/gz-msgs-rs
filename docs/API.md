@@ -119,3 +119,16 @@ Unknown protobuf enum integers remain intact in generated message fields; these
 human-name conversion functions deliberately retain upstream fallback behavior.
 A source/binary-hashed native fixture checks 197 format/parse cases, including
 unknown integers, bad/empty strings and opposite case.
+
+## Packed-cloud metadata
+
+`cloud::init_point_cloud_packed` resets the frame_id header entry and field list,
+expands the literal xyz group, and sets native word-aligned or packed offsets.
+Stamp, data and the cloud's other metadata remain unchanged. The size helper
+returns native widths or -1 with the legacy diagnostic for unknown types.
+Initialization likewise preserves native invalid-type zero-width field metadata
+and diagnostics; it does not validate or rewrite the existing data blob. Offset
+arithmetic is explicitly wrapping u32. No unsafe pointer/iterator API is exposed.
+A native corpus verifies 30 complete protobuf layouts and ten size cases on the
+recorded word-size target. Byte/scalar access, color aliases and iterator assertion
+families remain pending; metadata parity does not claim those features.

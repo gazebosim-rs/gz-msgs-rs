@@ -221,3 +221,21 @@ Hosted GitHub CI passed revision 22a0482fbf17e6469b59be4d217875262f916f94:
 https://github.com/gazebosim-rs/gz-msgs-rs/actions/runs/40111717896 . This hosted
 result does not qualify later unpushed gate changes; those have separate local
 staged-tree verification and await their own linked CI result.
+
+## Packed-cloud metadata slice
+
+The native packed-cloud initializer/size oracle captured 30 full encoded layouts
+and ten datatype-size results, with header/native-binary SHA256 and actual
+sizeof(size_t) recorded. Inputs cover all eight datatypes, packed/aligned groups,
+xyz+rgb/rgba, mixed widths, empty field/frame data, frame spaces and unknown types.
+The Rust initializer matches every wire byte while retaining stamp/data/other
+metadata and replacing frame/field layout. Diagnostic literals are source-inspected;
+returned sizes and encoded layout bytes are compared automatically. There are no
+unsafe accesses or iterator completeness claims in this bounded slice.
+
+Original UtilityTest.InitPointCloudPacked and PointCloudPackedUtilsTest.SizeOfPointField
+assertions are ported and marked pending independent review. Full local gate
+passes 32 integration tests, the five unchanged CLI C++ cases, native peers,
+complete info corpus and downstream consumer. cloud.rs measures 47/47 lines and
+56/56 regions (100%); all other owned source/predicate thresholds remain above 95%.
+New cloud code/probes carry the user-requested OSRF 2026 / Apache-2.0 notices.
