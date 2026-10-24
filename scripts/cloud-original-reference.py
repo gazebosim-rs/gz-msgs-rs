@@ -18,4 +18,4 @@ for filename,case in selected:
  cases.append(dict(case=case,binary_sha256=hashlib.sha256(binary.read_bytes()).hexdigest()))
 sources=['test/integration/PointCloudPackedUtils_TEST.cc','test/integration/Utility_TEST.cc']
 proof=dict(upstream_commit=revision,source_sha256={name:hashlib.sha256((reference/name).read_bytes()).hexdigest() for name in sources},original_native_tests=cases)
-(out/'cloud-originals.json').write_text(json.dumps(proof,indent=2)+'\n');print('four original native packed-cloud cases and initialization pass; operator identity is not a Rust indexed-access claim')
+(out/'cloud-originals.json').write_text(json.dumps(proof,indent=2)+'\n');print('four original native packed-cloud cases and initialization pass; cursor identity mapping requires independent review')

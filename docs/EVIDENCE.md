@@ -638,3 +638,29 @@ checks,5 snapshot regressions, fmt/clippy/clean consumer and788/788 owned lines,
 1123/1132 regions. Coordinate helpers are18/18 lines/regions, spherical helpers
 56/56 lines and53/53 regions. No dependencies/exclusions changed. Final strict
 staged gate remains required.
+
+## Borrowed packed-cloud cursors (pending independent review)
+
+NativeFieldCursor adds copied cursor identity, contiguous get, point-stride +/+=,
+end sentinels and standard Iterator values over an immutable cloud borrow. The
+original Operators field/loop/value/copy/advanced assertions are retained; writes
+use the existing exclusive indexed API instead of aliased mutable references.
+Three Rust tests include all eight native scalar fixture types and both color
+orders, unaligned values, missing/malformed fields and bounded end advancement.
+The original native four cloud cases plus initialization rerun unchanged and pass.
+Negative pointer movement and native malformed-pointer undefined behavior are not
+exposed; the Rust safe boundaries are explicit. No dependencies or exclusions change.
+Working coverage passes839/839 owned lines and1197/1209 regions, with cursor43/43
+lines and67/70 regions; strict final staged gate and independent review remain.
+
+/root/transport independently approved exact staged cursor diff
+`ccf35439e757a671e19c6646c1b79d649358d5e8712bb2b02615a6b5feb56a40`.
+Every original Operators41–109 assertion was compared; a private-index exported,
+raw-blob-validated staged-only snapshot passed three new cursor and four existing
+original Rust tests without unstaged Fuel sources/dependencies. All four native
+cloud originals and Initialization passed five exact XML runs; source/header and
+fixture lineage hashes match. The immutable cursor/exclusive-write API mapping,
+byte-alias identity, checked reads and bounded end semantics have no blocking
+finding. Operators is now reviewed, bringing original mappings to82/83; Fuel and
+all remaining MSG-02 packet obligations remain open. Matching strict staged gate
+is required before publication.

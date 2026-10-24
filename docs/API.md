@@ -137,8 +137,8 @@ Initialization likewise preserves native invalid-type zero-width field metadata
 and diagnostics; it does not validate or rewrite the existing data blob. Offset
 arithmetic is explicitly wrapping u32. No unsafe pointer/iterator API is exposed.
 A native corpus verifies 30 complete protobuf layouts and ten size cases on the
-recorded word-size target. Byte/scalar access, color aliases and iterator assertion
-families remain pending; metadata parity does not claim those features.
+recorded word-size target. Scalar access and the cursor contracts below are
+qualified separately from metadata layout.
 
 
 `cloud::read_native<T: bytemuck::Pod>` and `write_native` safely expose the
@@ -154,8 +154,21 @@ Missing fields, zero-size types/stride, arithmetic overflow, point indices outsi
 the complete-record count and byte ranges beyond the data return `None`. Writes
 then leave data unchanged. Safe unaligned Pod reads use pinned bytemuck 1.25.2;
 no owned pointer casts or unsafe code are needed. Empty/invalid blobs cannot
-reproduce the native iterator's undefined pointer operations. Borrowed mutable
-iterator and pointer-identity operators are not exposed or claimed ported.
+reproduce the native iterator's undefined pointer operations. Mutable pointer
+aliases are replaced by exclusive indexed writes.
+
+`cloud::NativeFieldCursor<T>` borrows the cloud immutably and copies its own
+position. `get(element)` reads contiguous scalar values, `+ usize`/`+= usize`
+advance by point strides, `end()` creates the complete-record end sentinel, and
+standard Iterator yields copied scalar values. Equality compares current byte
+addresses, so two fields aliasing the same byte compare equal; missing fields
+compare as absent addresses. The borrow keeps backing bytes alive and fixed.
+Out-of-range advancement clamps to end instead of creating native invalid
+pointers; malformed accesses yield None. End-sentinel traversal is qualified for
+valid layouts; use Iterator to stop at the first unreadable malformed record.
+Zero stride and zero-size types are empty. Negative native pointer movement is
+not exposed; indexed reads supply checked arbitrary point selection. No aliased
+mutable references or unsafe code are introduced.
 
 
 Factory-style creation needs no additional parser or registry wrapper:

@@ -1,6 +1,9 @@
 // Copyright (C) 2026 Open Source Robotics Foundation
 // SPDX-License-Identifier: Apache-2.0
 //! Packed-cloud metadata helpers matching the native initializer.
+mod cursor;
+pub use cursor::NativeFieldCursor;
+
 use crate::msgs::{
     header,
     point_cloud_packed::{field::DataType, Field},
@@ -92,6 +95,14 @@ fn byte_range<T: bytemuck::Pod>(
     point: usize,
     element: usize,
 ) -> Option<std::ops::Range<usize>> {
+    offset_range::<T>(cloud, field_offset(cloud, name)?, point, element)
+}
+fn offset_range<T: bytemuck::Pod>(
+    cloud: &PointCloudPacked,
+    offset: usize,
+    point: usize,
+    element: usize,
+) -> Option<std::ops::Range<usize>> {
     let stride = cloud.point_step as usize;
     let size = std::mem::size_of::<T>();
     if stride == 0 || size == 0 || point >= cloud.data.len() / stride {
@@ -99,7 +110,7 @@ fn byte_range<T: bytemuck::Pod>(
     }
     let start = point
         .checked_mul(stride)?
-        .checked_add(field_offset(cloud, name)?)?
+        .checked_add(offset)?
         .checked_add(element.checked_mul(size)?)?;
     let end = start.checked_add(size)?;
     (end <= cloud.data.len()).then_some(start..end)

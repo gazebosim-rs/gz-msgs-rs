@@ -132,12 +132,15 @@
       "id": "PointCloudPackedUtilsTest.Operators",
       "source": "test/integration/PointCloudPackedUtils_TEST.cc",
       "source_sha256": "3b310f335e73209b2db3a726d03ee223df64c2b29ef8350d53f783814792cb29",
-      "status": "not_ported",
+      "status": "ported",
       "rust_tests": [
-        "cloud_originals::original_operator_values_with_indexed_api"
+        "cloud_originals::original_operator_values_with_indexed_api",
+        "cloud_cursor::original_operator_identity_copy_and_advancement"
       ],
       "native_status": "passed",
-      "review_note": "Partial behavioral value coverage only: all original field/loop/read/copy-position/advanced-position values retained by safe indexed APIs. Iterator object equality/inequality and operator-overload identity are not exposed or claimed; mapping remains not_ported."
+      "review_note": "Independently compared every original field/loop/read/end/copy/+2/+=1 assertion. Three cursor and four existing original Rust tests pass from a raw-blob-validated staged-only snapshot excluding unstaged Fuel work. Four native cloud originals plus Initialization independently rerun, five exact XML cases pass; pinned source/header hashes verified. Immutable borrowed cursor and exclusive indexed writes preserve defined values/positions without mutable aliases. Negative movement and malformed native undefined behavior remain explicit safe API boundaries.",
+      "reviewer": "/root/transport",
+      "reviewed_diff": "ccf35439e757a671e19c6646c1b79d649358d5e8712bb2b02615a6b5feb56a40"
     },
     {
       "id": "PointCloudPackedUtilsTest.MultipleFields",
