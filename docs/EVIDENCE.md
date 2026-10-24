@@ -159,3 +159,20 @@ Full gate passes 26 Rust integration tests, including the unchanged 5-case C++
 suite, native peers, downstream consumer and coverage negative tests. build.rs
 107/107 lines, 164/164 regions; CLI 59/59 lines, 116/119 regions (97.48%). Other
 owned production Rust and the two narrow dependency changes stay at 100%.
+
+## Legacy enum conversion family
+
+`python3 scripts/enum-reference.py` compiled actual pinned JointType, GeometryType,
+ShaderType, PixelFormatType and DiscoveryType converters and captured 197 cases
+from the canonical descriptors. The fixture includes all known integers, -1/100,
+valid/unsupported Geometry values, both cases, bad/empty names and native stderr.
+Rust output values match every case. EnumKind reuses descriptor name/number
+lookup and implements only observed legacy casing, restricted Geometry subset,
+fallbacks and diagnostic policy. No numeric enum table is transcribed.
+
+Original roundtrip/fallback assertions for Joint/Geometry/Shader/PixelFormat and
+Discovery's ten strings/min/max/count are preserved. Image.PixelFormat's default
+and assignment assertions are also ported. Six original mappings stay pending
+independent review. The new module measured 94/94 lines and 95/95 regions; all
+other production/owned-patch coverage remains above 95%. The final staged gate
+runs 29 integration tests, including the unchanged original five-case CLI suite.

@@ -98,3 +98,16 @@ instrumentation; missing executable changes fail. The changed build predicates
 and all three reflection paths are measured separately per patched dependency.
 No claim is made that whole third-party crates exceed 95%. Generated canonical
 code and schema-derived aliases are excluded by OUT_DIR provenance only.
+
+## Legacy enum names
+
+`enum_names::EnumKind::{Joint,Geometry,Shader,PixelFormat,Discovery}` supplies
+case-sensitive parse(name)->i32 and format(raw_integer)->String policy matching
+Gazebo's native converters, including fallbacks and diagnostics. Canonical
+numbers/names come from prost-reflect. Only legacy spelling and Geometry's
+restricted conversion subset are handwritten: valid wire variants such as
+TRIANGLE_FAN/EMPTY are still unsupported by the legacy converter, as upstream.
+Unknown protobuf enum integers remain intact in generated message fields; these
+human-name conversion functions deliberately retain upstream fallback behavior.
+A source/binary-hashed native fixture checks 197 format/parse cases, including
+unknown integers, bad/empty strings and opposite case.

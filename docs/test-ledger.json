@@ -592,32 +592,44 @@
       "id": "MsgsTest.ConvertMsgsJointTypeToString",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
+      "status": "ported_pending_review",
+      "rust_tests": [
+        "enum_names::original_enum_roundtrip_and_discovery_bound_assertions",
+        "enum_names::native_enum_spelling_and_fallback_corpus"
+      ],
       "native_status": "passed"
     },
     {
       "id": "MsgsTest.ConvertMsgsGeometryTypeToString",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
+      "status": "ported_pending_review",
+      "rust_tests": [
+        "enum_names::original_enum_roundtrip_and_discovery_bound_assertions",
+        "enum_names::native_enum_spelling_and_fallback_corpus"
+      ],
       "native_status": "passed"
     },
     {
       "id": "MsgsTest.ConvertMsgsShaderTypeToString",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
+      "status": "ported_pending_review",
+      "rust_tests": [
+        "enum_names::original_enum_roundtrip_and_discovery_bound_assertions",
+        "enum_names::native_enum_spelling_and_fallback_corpus"
+      ],
       "native_status": "passed"
     },
     {
       "id": "MsgsTest.ConvertMsgsPixelFormatTypeToString",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
+      "status": "ported_pending_review",
+      "rust_tests": [
+        "enum_names::original_enum_roundtrip_and_discovery_bound_assertions",
+        "enum_names::native_enum_spelling_and_fallback_corpus"
+      ],
       "native_status": "passed"
     },
     {
@@ -640,8 +652,11 @@
       "id": "UtilityTest.DiscoveryTypeString",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
+      "status": "ported_pending_review",
+      "rust_tests": [
+        "enum_names::original_enum_roundtrip_and_discovery_bound_assertions",
+        "enum_names::native_enum_spelling_and_fallback_corpus"
+      ],
       "native_status": "passed"
     },
     {
@@ -744,8 +759,10 @@
       "id": "Image.PixelFormat",
       "source": "test/integration/image_msg.cc",
       "source_sha256": "816bf43cf1a05ef1a80dabcc897b8c55da2e5d97b782e15fce492297e86ce28f",
-      "status": "not_ported",
-      "rust_tests": [],
+      "status": "ported_pending_review",
+      "rust_tests": [
+        "enum_names::original_image_pixel_format_defaults_and_assignment"
+      ],
       "native_status": "passed"
     },
     {

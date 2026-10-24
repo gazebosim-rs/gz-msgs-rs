@@ -1,0 +1,1392 @@
+{
+  "upstream_commit": "89c0c3d1474f545cb889335daf930bfdab6ab852",
+  "header_sha256": {
+    "PixelFormatType.hh": "e0b8620b1e0c367e5003cbc87cb90a388680f49d5cfdd3b06eca1dd386dc394a",
+    "DiscoveryType.hh": "a89431de54e56cbc5265333d872ab287f6e6f84da2384160a7f91f7673be13b9",
+    "GeometryType.hh": "d260d70a3ecf44ff71581e12960dab543fb2cf752a9e7e9cce585650d9b48c39",
+    "ShaderType.hh": "ca0b4d097bb2ec558c4f06713c090a7930ce80d1205f251598208155192363cc",
+    "JointType.hh": "24946c8252b564dcf3105d4a2f01c804c0361ea6a63ba176810778c786040777"
+  },
+  "native_binary_sha256": "1677af21b362ba78bd21e28605b1006b4f16a81e218e7d2f620d381eba0a9e5d",
+  "cases": [
+    {
+      "family": "Joint",
+      "direction": "format",
+      "number": 0,
+      "name": "revolute",
+      "stderr": ""
+    },
+    {
+      "family": "Joint",
+      "direction": "format",
+      "number": 1,
+      "name": "revolute2",
+      "stderr": ""
+    },
+    {
+      "family": "Joint",
+      "direction": "format",
+      "number": 2,
+      "name": "prismatic",
+      "stderr": ""
+    },
+    {
+      "family": "Joint",
+      "direction": "format",
+      "number": 3,
+      "name": "universal",
+      "stderr": ""
+    },
+    {
+      "family": "Joint",
+      "direction": "format",
+      "number": 4,
+      "name": "ball",
+      "stderr": ""
+    },
+    {
+      "family": "Joint",
+      "direction": "format",
+      "number": 5,
+      "name": "screw",
+      "stderr": ""
+    },
+    {
+      "family": "Joint",
+      "direction": "format",
+      "number": 6,
+      "name": "gearbox",
+      "stderr": ""
+    },
+    {
+      "family": "Joint",
+      "direction": "format",
+      "number": 7,
+      "name": "fixed",
+      "stderr": ""
+    },
+    {
+      "family": "Joint",
+      "direction": "format",
+      "number": 8,
+      "name": "continuous",
+      "stderr": ""
+    },
+    {
+      "family": "Joint",
+      "direction": "format",
+      "number": -1,
+      "name": "unknown",
+      "stderr": "Unrecognized JointType [-1], returning 'unknown'\n"
+    },
+    {
+      "family": "Joint",
+      "direction": "format",
+      "number": 100,
+      "name": "unknown",
+      "stderr": "Unrecognized JointType [100], returning 'unknown'\n"
+    },
+    {
+      "family": "Joint",
+      "direction": "parse",
+      "name": "",
+      "number": 0,
+      "stderr": "Unrecognized JointType [], returning msgs::Joint::REVOLUTE\n"
+    },
+    {
+      "family": "Joint",
+      "direction": "parse",
+      "name": "BALL",
+      "number": 0,
+      "stderr": "Unrecognized JointType [BALL], returning msgs::Joint::REVOLUTE\n"
+    },
+    {
+      "family": "Joint",
+      "direction": "parse",
+      "name": "CONTINUOUS",
+      "number": 0,
+      "stderr": "Unrecognized JointType [CONTINUOUS], returning msgs::Joint::REVOLUTE\n"
+    },
+    {
+      "family": "Joint",
+      "direction": "parse",
+      "name": "FIXED",
+      "number": 0,
+      "stderr": "Unrecognized JointType [FIXED], returning msgs::Joint::REVOLUTE\n"
+    },
+    {
+      "family": "Joint",
+      "direction": "parse",
+      "name": "GEARBOX",
+      "number": 0,
+      "stderr": "Unrecognized JointType [GEARBOX], returning msgs::Joint::REVOLUTE\n"
+    },
+    {
+      "family": "Joint",
+      "direction": "parse",
+      "name": "PRISMATIC",
+      "number": 0,
+      "stderr": "Unrecognized JointType [PRISMATIC], returning msgs::Joint::REVOLUTE\n"
+    },
+    {
+      "family": "Joint",
+      "direction": "parse",
+      "name": "REVOLUTE",
+      "number": 0,
+      "stderr": "Unrecognized JointType [REVOLUTE], returning msgs::Joint::REVOLUTE\n"
+    },
+    {
+      "family": "Joint",
+      "direction": "parse",
+      "name": "REVOLUTE2",
+      "number": 0,
+      "stderr": "Unrecognized JointType [REVOLUTE2], returning msgs::Joint::REVOLUTE\n"
+    },
+    {
+      "family": "Joint",
+      "direction": "parse",
+      "name": "SCREW",
+      "number": 0,
+      "stderr": "Unrecognized JointType [SCREW], returning msgs::Joint::REVOLUTE\n"
+    },
+    {
+      "family": "Joint",
+      "direction": "parse",
+      "name": "UNIVERSAL",
+      "number": 0,
+      "stderr": "Unrecognized JointType [UNIVERSAL], returning msgs::Joint::REVOLUTE\n"
+    },
+    {
+      "family": "Joint",
+      "direction": "parse",
+      "name": "bad type",
+      "number": 0,
+      "stderr": "Unrecognized JointType [bad type], returning msgs::Joint::REVOLUTE\n"
+    },
+    {
+      "family": "Joint",
+      "direction": "parse",
+      "name": "ball",
+      "number": 4,
+      "stderr": ""
+    },
+    {
+      "family": "Joint",
+      "direction": "parse",
+      "name": "continuous",
+      "number": 8,
+      "stderr": ""
+    },
+    {
+      "family": "Joint",
+      "direction": "parse",
+      "name": "fixed",
+      "number": 7,
+      "stderr": ""
+    },
+    {
+      "family": "Joint",
+      "direction": "parse",
+      "name": "gearbox",
+      "number": 6,
+      "stderr": ""
+    },
+    {
+      "family": "Joint",
+      "direction": "parse",
+      "name": "prismatic",
+      "number": 2,
+      "stderr": ""
+    },
+    {
+      "family": "Joint",
+      "direction": "parse",
+      "name": "revolute",
+      "number": 0,
+      "stderr": ""
+    },
+    {
+      "family": "Joint",
+      "direction": "parse",
+      "name": "revolute2",
+      "number": 1,
+      "stderr": ""
+    },
+    {
+      "family": "Joint",
+      "direction": "parse",
+      "name": "screw",
+      "number": 5,
+      "stderr": ""
+    },
+    {
+      "family": "Joint",
+      "direction": "parse",
+      "name": "universal",
+      "number": 3,
+      "stderr": ""
+    },
+    {
+      "family": "Joint",
+      "direction": "parse",
+      "name": "unknown",
+      "number": 0,
+      "stderr": "Unrecognized JointType [unknown], returning msgs::Joint::REVOLUTE\n"
+    },
+    {
+      "family": "Geometry",
+      "direction": "format",
+      "number": 0,
+      "name": "box",
+      "stderr": ""
+    },
+    {
+      "family": "Geometry",
+      "direction": "format",
+      "number": 1,
+      "name": "cylinder",
+      "stderr": ""
+    },
+    {
+      "family": "Geometry",
+      "direction": "format",
+      "number": 2,
+      "name": "sphere",
+      "stderr": ""
+    },
+    {
+      "family": "Geometry",
+      "direction": "format",
+      "number": 3,
+      "name": "plane",
+      "stderr": ""
+    },
+    {
+      "family": "Geometry",
+      "direction": "format",
+      "number": 4,
+      "name": "image",
+      "stderr": ""
+    },
+    {
+      "family": "Geometry",
+      "direction": "format",
+      "number": 5,
+      "name": "heightmap",
+      "stderr": ""
+    },
+    {
+      "family": "Geometry",
+      "direction": "format",
+      "number": 6,
+      "name": "mesh",
+      "stderr": ""
+    },
+    {
+      "family": "Geometry",
+      "direction": "format",
+      "number": 7,
+      "name": "unknown",
+      "stderr": "Unrecognized Geometry::Type [7], returning 'unknown'\n"
+    },
+    {
+      "family": "Geometry",
+      "direction": "format",
+      "number": 8,
+      "name": "unknown",
+      "stderr": "Unrecognized Geometry::Type [8], returning 'unknown'\n"
+    },
+    {
+      "family": "Geometry",
+      "direction": "format",
+      "number": 9,
+      "name": "polyline",
+      "stderr": ""
+    },
+    {
+      "family": "Geometry",
+      "direction": "format",
+      "number": 10,
+      "name": "cone",
+      "stderr": ""
+    },
+    {
+      "family": "Geometry",
+      "direction": "format",
+      "number": 11,
+      "name": "unknown",
+      "stderr": "Unrecognized Geometry::Type [11], returning 'unknown'\n"
+    },
+    {
+      "family": "Geometry",
+      "direction": "format",
+      "number": 12,
+      "name": "unknown",
+      "stderr": "Unrecognized Geometry::Type [12], returning 'unknown'\n"
+    },
+    {
+      "family": "Geometry",
+      "direction": "format",
+      "number": 13,
+      "name": "unknown",
+      "stderr": "Unrecognized Geometry::Type [13], returning 'unknown'\n"
+    },
+    {
+      "family": "Geometry",
+      "direction": "format",
+      "number": 14,
+      "name": "capsule",
+      "stderr": ""
+    },
+    {
+      "family": "Geometry",
+      "direction": "format",
+      "number": 15,
+      "name": "ellipsoid",
+      "stderr": ""
+    },
+    {
+      "family": "Geometry",
+      "direction": "format",
+      "number": -1,
+      "name": "unknown",
+      "stderr": "Unrecognized Geometry::Type [-1], returning 'unknown'\n"
+    },
+    {
+      "family": "Geometry",
+      "direction": "format",
+      "number": 100,
+      "name": "unknown",
+      "stderr": "Unrecognized Geometry::Type [100], returning 'unknown'\n"
+    },
+    {
+      "family": "Geometry",
+      "direction": "parse",
+      "name": "",
+      "number": 0,
+      "stderr": "Unrecognized Geometry::Type [], returning msgs::Geometry::BOX\n"
+    },
+    {
+      "family": "Geometry",
+      "direction": "parse",
+      "name": "ARROW",
+      "number": 0,
+      "stderr": "Unrecognized Geometry::Type [ARROW], returning msgs::Geometry::BOX\n"
+    },
+    {
+      "family": "Geometry",
+      "direction": "parse",
+      "name": "AXIS",
+      "number": 0,
+      "stderr": "Unrecognized Geometry::Type [AXIS], returning msgs::Geometry::BOX\n"
+    },
+    {
+      "family": "Geometry",
+      "direction": "parse",
+      "name": "BOX",
+      "number": 0,
+      "stderr": "Unrecognized Geometry::Type [BOX], returning msgs::Geometry::BOX\n"
+    },
+    {
+      "family": "Geometry",
+      "direction": "parse",
+      "name": "CAPSULE",
+      "number": 0,
+      "stderr": "Unrecognized Geometry::Type [CAPSULE], returning msgs::Geometry::BOX\n"
+    },
+    {
+      "family": "Geometry",
+      "direction": "parse",
+      "name": "CONE",
+      "number": 0,
+      "stderr": "Unrecognized Geometry::Type [CONE], returning msgs::Geometry::BOX\n"
+    },
+    {
+      "family": "Geometry",
+      "direction": "parse",
+      "name": "CYLINDER",
+      "number": 0,
+      "stderr": "Unrecognized Geometry::Type [CYLINDER], returning msgs::Geometry::BOX\n"
+    },
+    {
+      "family": "Geometry",
+      "direction": "parse",
+      "name": "ELLIPSOID",
+      "number": 0,
+      "stderr": "Unrecognized Geometry::Type [ELLIPSOID], returning msgs::Geometry::BOX\n"
+    },
+    {
+      "family": "Geometry",
+      "direction": "parse",
+      "name": "EMPTY",
+      "number": 0,
+      "stderr": "Unrecognized Geometry::Type [EMPTY], returning msgs::Geometry::BOX\n"
+    },
+    {
+      "family": "Geometry",
+      "direction": "parse",
+      "name": "HEIGHTMAP",
+      "number": 0,
+      "stderr": "Unrecognized Geometry::Type [HEIGHTMAP], returning msgs::Geometry::BOX\n"
+    },
+    {
+      "family": "Geometry",
+      "direction": "parse",
+      "name": "IMAGE",
+      "number": 0,
+      "stderr": "Unrecognized Geometry::Type [IMAGE], returning msgs::Geometry::BOX\n"
+    },
+    {
+      "family": "Geometry",
+      "direction": "parse",
+      "name": "LINE_STRIP",
+      "number": 0,
+      "stderr": "Unrecognized Geometry::Type [LINE_STRIP], returning msgs::Geometry::BOX\n"
+    },
+    {
+      "family": "Geometry",
+      "direction": "parse",
+      "name": "MESH",
+      "number": 0,
+      "stderr": "Unrecognized Geometry::Type [MESH], returning msgs::Geometry::BOX\n"
+    },
+    {
+      "family": "Geometry",
+      "direction": "parse",
+      "name": "PLANE",
+      "number": 0,
+      "stderr": "Unrecognized Geometry::Type [PLANE], returning msgs::Geometry::BOX\n"
+    },
+    {
+      "family": "Geometry",
+      "direction": "parse",
+      "name": "POLYLINE",
+      "number": 0,
+      "stderr": "Unrecognized Geometry::Type [POLYLINE], returning msgs::Geometry::BOX\n"
+    },
+    {
+      "family": "Geometry",
+      "direction": "parse",
+      "name": "SPHERE",
+      "number": 0,
+      "stderr": "Unrecognized Geometry::Type [SPHERE], returning msgs::Geometry::BOX\n"
+    },
+    {
+      "family": "Geometry",
+      "direction": "parse",
+      "name": "TRIANGLE_FAN",
+      "number": 0,
+      "stderr": "Unrecognized Geometry::Type [TRIANGLE_FAN], returning msgs::Geometry::BOX\n"
+    },
+    {
+      "family": "Geometry",
+      "direction": "parse",
+      "name": "arrow",
+      "number": 0,
+      "stderr": "Unrecognized Geometry::Type [arrow], returning msgs::Geometry::BOX\n"
+    },
+    {
+      "family": "Geometry",
+      "direction": "parse",
+      "name": "axis",
+      "number": 0,
+      "stderr": "Unrecognized Geometry::Type [axis], returning msgs::Geometry::BOX\n"
+    },
+    {
+      "family": "Geometry",
+      "direction": "parse",
+      "name": "bad type",
+      "number": 0,
+      "stderr": "Unrecognized Geometry::Type [bad type], returning msgs::Geometry::BOX\n"
+    },
+    {
+      "family": "Geometry",
+      "direction": "parse",
+      "name": "box",
+      "number": 0,
+      "stderr": ""
+    },
+    {
+      "family": "Geometry",
+      "direction": "parse",
+      "name": "capsule",
+      "number": 14,
+      "stderr": ""
+    },
+    {
+      "family": "Geometry",
+      "direction": "parse",
+      "name": "cone",
+      "number": 10,
+      "stderr": ""
+    },
+    {
+      "family": "Geometry",
+      "direction": "parse",
+      "name": "cylinder",
+      "number": 1,
+      "stderr": ""
+    },
+    {
+      "family": "Geometry",
+      "direction": "parse",
+      "name": "ellipsoid",
+      "number": 15,
+      "stderr": ""
+    },
+    {
+      "family": "Geometry",
+      "direction": "parse",
+      "name": "empty",
+      "number": 0,
+      "stderr": "Unrecognized Geometry::Type [empty], returning msgs::Geometry::BOX\n"
+    },
+    {
+      "family": "Geometry",
+      "direction": "parse",
+      "name": "heightmap",
+      "number": 5,
+      "stderr": ""
+    },
+    {
+      "family": "Geometry",
+      "direction": "parse",
+      "name": "image",
+      "number": 4,
+      "stderr": ""
+    },
+    {
+      "family": "Geometry",
+      "direction": "parse",
+      "name": "line_strip",
+      "number": 0,
+      "stderr": "Unrecognized Geometry::Type [line_strip], returning msgs::Geometry::BOX\n"
+    },
+    {
+      "family": "Geometry",
+      "direction": "parse",
+      "name": "mesh",
+      "number": 6,
+      "stderr": ""
+    },
+    {
+      "family": "Geometry",
+      "direction": "parse",
+      "name": "plane",
+      "number": 3,
+      "stderr": ""
+    },
+    {
+      "family": "Geometry",
+      "direction": "parse",
+      "name": "polyline",
+      "number": 9,
+      "stderr": ""
+    },
+    {
+      "family": "Geometry",
+      "direction": "parse",
+      "name": "sphere",
+      "number": 2,
+      "stderr": ""
+    },
+    {
+      "family": "Geometry",
+      "direction": "parse",
+      "name": "triangle_fan",
+      "number": 0,
+      "stderr": "Unrecognized Geometry::Type [triangle_fan], returning msgs::Geometry::BOX\n"
+    },
+    {
+      "family": "Geometry",
+      "direction": "parse",
+      "name": "unknown",
+      "number": 0,
+      "stderr": "Unrecognized Geometry::Type [unknown], returning msgs::Geometry::BOX\n"
+    },
+    {
+      "family": "Shader",
+      "direction": "format",
+      "number": 0,
+      "name": "vertex",
+      "stderr": ""
+    },
+    {
+      "family": "Shader",
+      "direction": "format",
+      "number": 1,
+      "name": "pixel",
+      "stderr": ""
+    },
+    {
+      "family": "Shader",
+      "direction": "format",
+      "number": 2,
+      "name": "normal_map_object_space",
+      "stderr": ""
+    },
+    {
+      "family": "Shader",
+      "direction": "format",
+      "number": 3,
+      "name": "normal_map_tangent_space",
+      "stderr": ""
+    },
+    {
+      "family": "Shader",
+      "direction": "format",
+      "number": -1,
+      "name": "unknown",
+      "stderr": "Unrecognized Material::ShaderType [-1], returning 'unknown'\n"
+    },
+    {
+      "family": "Shader",
+      "direction": "format",
+      "number": 100,
+      "name": "unknown",
+      "stderr": "Unrecognized Material::ShaderType [100], returning 'unknown'\n"
+    },
+    {
+      "family": "Shader",
+      "direction": "parse",
+      "name": "",
+      "number": 0,
+      "stderr": "Unrecognized Material::ShaderType [], returning msgs::Material::VERTEX\n"
+    },
+    {
+      "family": "Shader",
+      "direction": "parse",
+      "name": "NORMAL_MAP_OBJECT_SPACE",
+      "number": 0,
+      "stderr": "Unrecognized Material::ShaderType [NORMAL_MAP_OBJECT_SPACE], returning msgs::Material::VERTEX\n"
+    },
+    {
+      "family": "Shader",
+      "direction": "parse",
+      "name": "NORMAL_MAP_TANGENT_SPACE",
+      "number": 0,
+      "stderr": "Unrecognized Material::ShaderType [NORMAL_MAP_TANGENT_SPACE], returning msgs::Material::VERTEX\n"
+    },
+    {
+      "family": "Shader",
+      "direction": "parse",
+      "name": "PIXEL",
+      "number": 0,
+      "stderr": "Unrecognized Material::ShaderType [PIXEL], returning msgs::Material::VERTEX\n"
+    },
+    {
+      "family": "Shader",
+      "direction": "parse",
+      "name": "VERTEX",
+      "number": 0,
+      "stderr": "Unrecognized Material::ShaderType [VERTEX], returning msgs::Material::VERTEX\n"
+    },
+    {
+      "family": "Shader",
+      "direction": "parse",
+      "name": "bad type",
+      "number": 0,
+      "stderr": "Unrecognized Material::ShaderType [bad type], returning msgs::Material::VERTEX\n"
+    },
+    {
+      "family": "Shader",
+      "direction": "parse",
+      "name": "normal_map_object_space",
+      "number": 2,
+      "stderr": ""
+    },
+    {
+      "family": "Shader",
+      "direction": "parse",
+      "name": "normal_map_tangent_space",
+      "number": 3,
+      "stderr": ""
+    },
+    {
+      "family": "Shader",
+      "direction": "parse",
+      "name": "pixel",
+      "number": 1,
+      "stderr": ""
+    },
+    {
+      "family": "Shader",
+      "direction": "parse",
+      "name": "unknown",
+      "number": 0,
+      "stderr": "Unrecognized Material::ShaderType [unknown], returning msgs::Material::VERTEX\n"
+    },
+    {
+      "family": "Shader",
+      "direction": "parse",
+      "name": "vertex",
+      "number": 0,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "format",
+      "number": 0,
+      "name": "UNKNOWN_PIXEL_FORMAT",
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "format",
+      "number": 1,
+      "name": "L_INT8",
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "format",
+      "number": 2,
+      "name": "L_INT16",
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "format",
+      "number": 3,
+      "name": "RGB_INT8",
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "format",
+      "number": 4,
+      "name": "RGBA_INT8",
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "format",
+      "number": 5,
+      "name": "BGRA_INT8",
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "format",
+      "number": 6,
+      "name": "RGB_INT16",
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "format",
+      "number": 7,
+      "name": "RGB_INT32",
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "format",
+      "number": 8,
+      "name": "BGR_INT8",
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "format",
+      "number": 9,
+      "name": "BGR_INT16",
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "format",
+      "number": 10,
+      "name": "BGR_INT32",
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "format",
+      "number": 11,
+      "name": "R_FLOAT16",
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "format",
+      "number": 12,
+      "name": "RGB_FLOAT16",
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "format",
+      "number": 13,
+      "name": "R_FLOAT32",
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "format",
+      "number": 14,
+      "name": "RGB_FLOAT32",
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "format",
+      "number": 15,
+      "name": "BAYER_RGGB8",
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "format",
+      "number": 16,
+      "name": "BAYER_BGGR8",
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "format",
+      "number": 17,
+      "name": "BAYER_GBRG8",
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "format",
+      "number": 18,
+      "name": "BAYER_GRBG8",
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "format",
+      "number": -1,
+      "name": "UNKNOWN_PIXEL_FORMAT",
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "format",
+      "number": 100,
+      "name": "UNKNOWN_PIXEL_FORMAT",
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "",
+      "number": 0,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "BAYER_BGGR8",
+      "number": 16,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "BAYER_GBRG8",
+      "number": 17,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "BAYER_GRBG8",
+      "number": 18,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "BAYER_RGGB8",
+      "number": 15,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "BGRA_INT8",
+      "number": 5,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "BGR_INT16",
+      "number": 9,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "BGR_INT32",
+      "number": 10,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "BGR_INT8",
+      "number": 8,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "L_INT16",
+      "number": 2,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "L_INT8",
+      "number": 1,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "RGBA_INT8",
+      "number": 4,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "RGB_FLOAT16",
+      "number": 12,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "RGB_FLOAT32",
+      "number": 14,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "RGB_INT16",
+      "number": 6,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "RGB_INT32",
+      "number": 7,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "RGB_INT8",
+      "number": 3,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "R_FLOAT16",
+      "number": 11,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "R_FLOAT32",
+      "number": 13,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "UNKNOWN_PIXEL_FORMAT",
+      "number": 0,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "bad type",
+      "number": 0,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "bayer_bggr8",
+      "number": 0,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "bayer_gbrg8",
+      "number": 0,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "bayer_grbg8",
+      "number": 0,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "bayer_rggb8",
+      "number": 0,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "bgr_int16",
+      "number": 0,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "bgr_int32",
+      "number": 0,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "bgr_int8",
+      "number": 0,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "bgra_int8",
+      "number": 0,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "l_int16",
+      "number": 0,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "l_int8",
+      "number": 0,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "r_float16",
+      "number": 0,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "r_float32",
+      "number": 0,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "rgb_float16",
+      "number": 0,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "rgb_float32",
+      "number": 0,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "rgb_int16",
+      "number": 0,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "rgb_int32",
+      "number": 0,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "rgb_int8",
+      "number": 0,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "rgba_int8",
+      "number": 0,
+      "stderr": ""
+    },
+    {
+      "family": "PixelFormat",
+      "direction": "parse",
+      "name": "unknown_pixel_format",
+      "number": 0,
+      "stderr": ""
+    },
+    {
+      "family": "Discovery",
+      "direction": "format",
+      "number": 0,
+      "name": "UNINITIALIZED",
+      "stderr": ""
+    },
+    {
+      "family": "Discovery",
+      "direction": "format",
+      "number": 1,
+      "name": "ADVERTISE",
+      "stderr": ""
+    },
+    {
+      "family": "Discovery",
+      "direction": "format",
+      "number": 2,
+      "name": "SUBSCRIBE",
+      "stderr": ""
+    },
+    {
+      "family": "Discovery",
+      "direction": "format",
+      "number": 3,
+      "name": "UNADVERTISE",
+      "stderr": ""
+    },
+    {
+      "family": "Discovery",
+      "direction": "format",
+      "number": 4,
+      "name": "HEARTBEAT",
+      "stderr": ""
+    },
+    {
+      "family": "Discovery",
+      "direction": "format",
+      "number": 5,
+      "name": "BYE",
+      "stderr": ""
+    },
+    {
+      "family": "Discovery",
+      "direction": "format",
+      "number": 6,
+      "name": "NEW_CONNECTION",
+      "stderr": ""
+    },
+    {
+      "family": "Discovery",
+      "direction": "format",
+      "number": 7,
+      "name": "END_CONNECTION",
+      "stderr": ""
+    },
+    {
+      "family": "Discovery",
+      "direction": "format",
+      "number": 8,
+      "name": "SUBSCRIBERS_REQ",
+      "stderr": ""
+    },
+    {
+      "family": "Discovery",
+      "direction": "format",
+      "number": 9,
+      "name": "SUBSCRIBERS_REP",
+      "stderr": ""
+    },
+    {
+      "family": "Discovery",
+      "direction": "format",
+      "number": -1,
+      "name": "UNINITIALIZED",
+      "stderr": ""
+    },
+    {
+      "family": "Discovery",
+      "direction": "format",
+      "number": 100,
+      "name": "UNINITIALIZED",
+      "stderr": ""
+    },
+    {
+      "family": "Discovery",
+      "direction": "parse",
+      "name": "",
+      "number": 0,
+      "stderr": "Unrecognized DiscoveryType[], returning msgs::Discovery::UNINITIALIZED\n"
+    },
+    {
+      "family": "Discovery",
+      "direction": "parse",
+      "name": "ADVERTISE",
+      "number": 1,
+      "stderr": ""
+    },
+    {
+      "family": "Discovery",
+      "direction": "parse",
+      "name": "BYE",
+      "number": 5,
+      "stderr": ""
+    },
+    {
+      "family": "Discovery",
+      "direction": "parse",
+      "name": "END_CONNECTION",
+      "number": 7,
+      "stderr": ""
+    },
+    {
+      "family": "Discovery",
+      "direction": "parse",
+      "name": "HEARTBEAT",
+      "number": 4,
+      "stderr": ""
+    },
+    {
+      "family": "Discovery",
+      "direction": "parse",
+      "name": "NEW_CONNECTION",
+      "number": 6,
+      "stderr": ""
+    },
+    {
+      "family": "Discovery",
+      "direction": "parse",
+      "name": "SUBSCRIBE",
+      "number": 2,
+      "stderr": ""
+    },
+    {
+      "family": "Discovery",
+      "direction": "parse",
+      "name": "SUBSCRIBERS_REP",
+      "number": 9,
+      "stderr": ""
+    },
+    {
+      "family": "Discovery",
+      "direction": "parse",
+      "name": "SUBSCRIBERS_REQ",
+      "number": 8,
+      "stderr": ""
+    },
+    {
+      "family": "Discovery",
+      "direction": "parse",
+      "name": "UNADVERTISE",
+      "number": 3,
+      "stderr": ""
+    },
+    {
+      "family": "Discovery",
+      "direction": "parse",
+      "name": "UNINITIALIZED",
+      "number": 0,
+      "stderr": ""
+    },
+    {
+      "family": "Discovery",
+      "direction": "parse",
+      "name": "advertise",
+      "number": 0,
+      "stderr": "Unrecognized DiscoveryType[advertise], returning msgs::Discovery::UNINITIALIZED\n"
+    },
+    {
+      "family": "Discovery",
+      "direction": "parse",
+      "name": "bad type",
+      "number": 0,
+      "stderr": "Unrecognized DiscoveryType[bad type], returning msgs::Discovery::UNINITIALIZED\n"
+    },
+    {
+      "family": "Discovery",
+      "direction": "parse",
+      "name": "bye",
+      "number": 0,
+      "stderr": "Unrecognized DiscoveryType[bye], returning msgs::Discovery::UNINITIALIZED\n"
+    },
+    {
+      "family": "Discovery",
+      "direction": "parse",
+      "name": "end_connection",
+      "number": 0,
+      "stderr": "Unrecognized DiscoveryType[end_connection], returning msgs::Discovery::UNINITIALIZED\n"
+    },
+    {
+      "family": "Discovery",
+      "direction": "parse",
+      "name": "heartbeat",
+      "number": 0,
+      "stderr": "Unrecognized DiscoveryType[heartbeat], returning msgs::Discovery::UNINITIALIZED\n"
+    },
+    {
+      "family": "Discovery",
+      "direction": "parse",
+      "name": "new_connection",
+      "number": 0,
+      "stderr": "Unrecognized DiscoveryType[new_connection], returning msgs::Discovery::UNINITIALIZED\n"
+    },
+    {
+      "family": "Discovery",
+      "direction": "parse",
+      "name": "subscribe",
+      "number": 0,
+      "stderr": "Unrecognized DiscoveryType[subscribe], returning msgs::Discovery::UNINITIALIZED\n"
+    },
+    {
+      "family": "Discovery",
+      "direction": "parse",
+      "name": "subscribers_rep",
+      "number": 0,
+      "stderr": "Unrecognized DiscoveryType[subscribers_rep], returning msgs::Discovery::UNINITIALIZED\n"
+    },
+    {
+      "family": "Discovery",
+      "direction": "parse",
+      "name": "subscribers_req",
+      "number": 0,
+      "stderr": "Unrecognized DiscoveryType[subscribers_req], returning msgs::Discovery::UNINITIALIZED\n"
+    },
+    {
+      "family": "Discovery",
+      "direction": "parse",
+      "name": "unadvertise",
+      "number": 0,
+      "stderr": "Unrecognized DiscoveryType[unadvertise], returning msgs::Discovery::UNINITIALIZED\n"
+    },
+    {
+      "family": "Discovery",
+      "direction": "parse",
+      "name": "uninitialized",
+      "number": 0,
+      "stderr": "Unrecognized DiscoveryType[uninitialized], returning msgs::Discovery::UNINITIALIZED\n"
+    }
+  ]
+}
