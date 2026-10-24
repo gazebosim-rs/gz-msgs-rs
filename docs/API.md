@@ -74,7 +74,9 @@ positive zero, negative zero, nonzero, NaN and proto2 extension default queries.
 `encode-json|decode-json|encode-text|decode-text gz.msgs.Type` use stdin/stdout.
 Errors exit nonzero and stdout is explicitly flushed. Text/JSON use compact
 protobuf formatting. Legacy --help/-h (including no arguments), --version/-v,
---list/-l and --info/-i TYPE... are supported; info accepts both canonical type
+--list/-l and --info/-i TYPE... are supported. List emits the complete 271-name
+native Factory set, including imported/nested/synthetic types, sorted by name;
+native registration-map traversal order is not portable. Info accepts both canonical type
 spellings and multiple types. Info exactly reproduces pinned native Name/File
 headings and Descriptor::DebugString output, including qualified field types and
 synthetic map entries with empty bodies. A schema-bound generated corpus covers
@@ -149,3 +151,12 @@ then leave data unchanged. Safe unaligned Pod reads use pinned bytemuck 1.25.2;
 no owned pointer casts or unsafe code are needed. Empty/invalid blobs cannot
 reproduce the native iterator's undefined pointer operations. Borrowed mutable
 iterator and pointer-identity operators are not exposed or claimed ported.
+
+
+Factory-style creation needs no additional parser or registry wrapper:
+`prost_reflect::DynamicMessage::new(descriptor(name)?)` constructs an empty value,
+and `DynamicMessage::parse_text_format(descriptor(name)?, text)` constructs one
+from protobuf text with a detailed parse error. These public reexports cover the
+original well-formed and malformed Vector3d cases and instantiate all 271 native
+registered names. External descriptors and their lazy/retry/concurrency contracts
+remain separate unfinished work.

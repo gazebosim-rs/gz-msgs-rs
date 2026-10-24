@@ -261,3 +261,27 @@ atomicity. No original iterator test is retired by these new conformance tests:
 mutable pointer aliases, pointer equality and C++ iterator operators remain
 unexposed. Missing/invalid native pointer operations are undefined and are not
 reproduced; the bounded Rust Option contract is documented explicitly.
+
+## Full native Factory set and text construction
+
+The actual pinned Factory revealed that CLI `--list` omitted 48 imported/nested/
+synthetic names: Rust traversed only 223 top-level canonical messages, while the
+native Factory registers 271. Listing now uses the maintained descriptor pool's
+all_messages iterator. Complete output is compared to the native name set sorted
+by name, retaining the documented deterministic Rust ordering. Native Types uses
+an unordered set (MessageFactory.cc:156); its traversal order is not portable.
+
+`python3 scripts/factory-reference.py` instantiates every native registered type
+and records all 271 names, original valid Vector3d text's exact wire bytes, and
+the original malformed text's null result/diagnostic. Binary/header SHA256 and
+upstream SHA are recorded in the fixture. The Rust tests use existing public
+prost-reflect construction/parsing rather than implementing another parser.
+Original NewWithWellFormedData, NewWithMalformedData and NewAllRegisteredTypes
+assertions are preserved and mapped pending independent review. Existing five
+unchanged C++ CLI tests remain unchanged and pass.
+
+`python3 scripts/verify.py` passes 37 integration tests, native interop, clean
+consumer, fmt/clippy and strict coverage: 422/422 owned lines, 595/603 regions.
+The smaller CLI denominator reflects replacing its nested top-level-only scan
+with a direct all_messages iterator, without new coverage exclusions. External
+factory descriptor loading/retry/lazy/concurrency scope remains unfinished.

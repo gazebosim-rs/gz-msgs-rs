@@ -212,3 +212,23 @@ fn complete_native_info_output_corpus() {
         );
     }
 }
+
+#[test]
+fn complete_native_factory_list() {
+    let fixture: gz_msgs::serde_json::Value =
+        gz_msgs::serde_json::from_str(include_str!("fixtures/factory-reference.json")).unwrap();
+    let expected = fixture["types"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .map(|name| name.as_str().unwrap())
+        .collect::<Vec<_>>()
+        .join("\n")
+        + "\n";
+    for command in ["list", "--list", "-l"] {
+        let output = run(&[command], &[]);
+        assert!(output.status.success());
+        assert!(output.stderr.is_empty());
+        assert_eq!(String::from_utf8(output.stdout).unwrap(), expected);
+    }
+}

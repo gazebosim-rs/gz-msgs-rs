@@ -30,16 +30,20 @@
       "id": "FactoryTest.NewWithWellFormedData",
       "source": "test/integration/Factory_TEST.cc",
       "source_sha256": "a132a6f663ec29fa265819be82dc69ad6e3c900ee7a8a24052fb15b06e48e9d0",
-      "status": "not_ported",
-      "rust_tests": [],
+      "status": "ported_pending_review",
+      "rust_tests": [
+        "upstream_ports::factory_original_text_construction_and_all_registered_types"
+      ],
       "native_status": "passed"
     },
     {
       "id": "FactoryTest.NewWithMalformedData",
       "source": "test/integration/Factory_TEST.cc",
       "source_sha256": "a132a6f663ec29fa265819be82dc69ad6e3c900ee7a8a24052fb15b06e48e9d0",
-      "status": "not_ported",
-      "rust_tests": [],
+      "status": "ported_pending_review",
+      "rust_tests": [
+        "upstream_ports::factory_original_text_construction_and_all_registered_types"
+      ],
       "native_status": "passed"
     },
     {
@@ -78,8 +82,10 @@
       "id": "FactoryTest.NewAllRegisteredTypes",
       "source": "test/integration/Factory_TEST.cc",
       "source_sha256": "a132a6f663ec29fa265819be82dc69ad6e3c900ee7a8a24052fb15b06e48e9d0",
-      "status": "not_ported",
-      "rust_tests": [],
+      "status": "ported_pending_review",
+      "rust_tests": [
+        "upstream_ports::factory_original_text_construction_and_all_registered_types"
+      ],
       "native_status": "passed"
     },
     {

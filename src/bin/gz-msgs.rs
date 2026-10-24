@@ -15,13 +15,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         return Ok(());
     }
     if args == ["list"] || args == ["--list"] || args == ["-l"] {
-        let mut names: Vec<_> = gz_msgs::files()
-            .into_iter()
-            .flat_map(|f| {
-                f.messages()
-                    .map(|m| m.full_name().to_owned())
-                    .collect::<Vec<_>>()
-            })
+        let mut names: Vec<_> = gz_msgs::descriptors()
+            .all_messages()
+            .map(|message| message.full_name().to_owned())
             .collect();
         names.sort();
         println!("{}", names.join("\n"));

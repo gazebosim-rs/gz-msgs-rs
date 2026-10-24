@@ -155,3 +155,52 @@ fn native_duration_reference_negative_and_boundary_values() {
         assert_eq!(time_to_nanos(&time), row["nanos"].as_i64());
     }
 }
+
+#[test]
+fn factory_original_text_construction_and_all_registered_types() {
+    use gz_msgs::{
+        prost::Message,
+        prost_reflect::{DynamicMessage, ReflectMessage},
+    };
+    let fixture: serde_json::Value =
+        serde_json::from_str(include_str!("fixtures/factory-reference.json")).unwrap();
+    let expected = vector3([1.0, 2.0, 3.0]);
+    let valid = DynamicMessage::parse_text_format(
+        descriptor("gz.msgs.Vector3d").unwrap(),
+        "x: 1.0, y: 2.0, z: 3.0",
+    )
+    .unwrap();
+    let filled = vector3d::Vector3d::decode(valid.encode_to_vec().as_slice()).unwrap();
+    assert_eq!(expected.x, filled.x);
+    assert_eq!(expected.y, filled.y);
+    assert_eq!(expected.z, filled.z);
+    let hex = valid
+        .encode_to_vec()
+        .iter()
+        .map(|byte| format!("{byte:02x}"))
+        .collect::<String>();
+    assert_eq!(hex, fixture["valid_wire_hex"].as_str().unwrap());
+    assert!(fixture["malformed_is_null"].as_bool().unwrap());
+    assert!(DynamicMessage::parse_text_format(
+        descriptor("gz.msgs.Vector3d").unwrap(),
+        "x: 1.0, y: asdf, z: 3.0"
+    )
+    .is_err());
+    let mut names: Vec<_> = descriptors()
+        .all_messages()
+        .map(|message| message.full_name().to_owned())
+        .collect();
+    names.sort();
+    let native: Vec<_> = fixture["types"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .map(|name| name.as_str().unwrap())
+        .collect();
+    assert!(!names.is_empty());
+    assert_eq!(names, native);
+    for name in names {
+        let message = DynamicMessage::new(descriptor(&name).unwrap());
+        assert_eq!(message.descriptor().full_name(), name);
+    }
+}
