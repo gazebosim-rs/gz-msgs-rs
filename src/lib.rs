@@ -37,24 +37,34 @@ pub fn time_to_nanos(time: &Time) -> Option<i64> {
 }
 
 pub fn vector3(value: [f64; 3]) -> vector3d::Vector3d {
-    vector3d::Vector3d {
-        x: value[0],
-        y: value[1],
-        z: value[2],
-        ..Default::default()
-    }
+    value.into()
 }
 
 /// Quaternion component order is x, y, z, w; values are not normalized.
 pub fn quaternion(value: [f64; 4]) -> quaternion::Quaternion {
-    quaternion::Quaternion {
-        x: value[0],
-        y: value[1],
-        z: value[2],
-        w: value[3],
+    value.into()
+}
+
+/// Constructs only a pose's geometric fields; names/IDs/headers remain default.
+pub fn pose(position: [f64; 3], orientation: [f64; 4]) -> Pose {
+    Pose {
+        position: Some(position.into()).into(),
+        orientation: Some(orientation.into()).into(),
         ..Default::default()
     }
 }
+
+/// Missing orientation means identity, matching Gazebo's domain conversion.
+/// An explicitly present all-zero quaternion remains all zero.
+pub fn pose_components(pose: &Pose) -> ([f64; 3], [f64; 4]) {
+    let position = pose.position.as_ref().map_or([0.; 3], |p| [p.x, p.y, p.z]);
+    let orientation = pose
+        .orientation
+        .as_ref()
+        .map_or([0., 0., 0., 1.], |q| [q.x, q.y, q.z, q.w]);
+    (position, orientation)
+}
+
 pub use protobuf_json_mapping;
 
 mod conversions;

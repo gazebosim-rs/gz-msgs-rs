@@ -86,3 +86,57 @@ fn python_basic_serialization() {
     decoded.merge_from_bytes(&bytes).unwrap();
     assert_eq!(decoded, message);
 }
+
+#[test]
+fn utility_vector_and_color_conversions() {
+    let vector2 = vector2d::Vector2d::from([1., 2.]);
+    assert_eq!([vector2.x, vector2.y], [1., 2.]);
+    assert_eq!(<[f64; 2]>::from(vector2), [1., 2.]);
+    let vector3 = vector3d::Vector3d::from([1., 2., 3.]);
+    assert_eq!([vector3.x, vector3.y, vector3.z], [1., 2., 3.]);
+    assert_eq!(<[f64; 3]>::from(vector3), [1., 2., 3.]);
+    let color = color::Color::from([0.1, 0.2, 0.3, 1.]);
+    assert_eq!([color.r, color.g, color.b, color.a], [0.1, 0.2, 0.3, 1.]);
+    assert_eq!(<[f32; 4]>::from(color), [0.1, 0.2, 0.3, 1.]);
+}
+
+#[test]
+fn pose_defaults_distinguish_missing_and_zero_orientation() {
+    let pose = Pose {
+        position: Some(vector3([1., 2., 2.])).into(),
+        ..Default::default()
+    };
+    let (_, orientation) = pose_components(&pose);
+    assert_eq!(orientation, [0., 0., 0., 1.]);
+    assert_eq!(
+        pose_components(&Pose::default()),
+        ([0.; 3], [0., 0., 0., 1.])
+    );
+    let explicit = gz_msgs::pose([1., 2., 3.], [0.; 4]);
+    assert_eq!(pose_components(&explicit), ([1., 2., 3.], [0.; 4]));
+    let quaternion = quaternion::Quaternion::from([0.1, 0.2, 0.3, 0.4]);
+    assert_eq!(<[f64; 4]>::from(quaternion), [0.1, 0.2, 0.3, 0.4]);
+}
+
+#[test]
+fn utility_primitive_assignment() {
+    let mut string = stringmsg::StringMsg::new();
+    string.data = "a string msg".into();
+    assert_eq!(string.data, "a string msg");
+    string.data = "a string msg2".into();
+    assert_eq!(string.data, "a string msg2");
+    macro_rules! assign {
+        ($message:path, $value:expr) => {
+            let mut message = <$message>::new();
+            message.data = $value;
+            assert_eq!(message.data, $value);
+        };
+    }
+    assign!(boolean::Boolean, false);
+    assign!(int32::Int32, 9976);
+    assign!(uint32::UInt32, 0);
+    assign!(int64::Int64, i64::MAX);
+    assign!(uint64::UInt64, u64::MIN);
+    assign!(double::Double, 0.123);
+    assign!(float::Float, -367.0);
+}

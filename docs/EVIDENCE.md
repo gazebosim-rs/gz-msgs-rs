@@ -70,3 +70,18 @@ self-approved test retirements. Eighty-three original native tests are reconcile
 The signed-zero postprocess now fails on drift from its expected 546 checks.
 Coverage: build.rs 42/42 lines, 63/63 regions; lib.rs 40/40 lines, 41/41 regions;
 conversions.rs 9/9 lines, 6/6 regions; CLI 53/53 lines, 95/99 regions (95.96%).
+
+Geometry slice: 18 integration tests pass. Array conversions cover XY, XYZ,
+XYZW and RGBA; pose extraction distinguishes absent identity from present zero
+orientation. Added original primitive assignment assertions. Fifteen additional
+mappings remain pending independent review; the prior 14 mappings are marked
+ported only after /root's explicit b941c01 review. Coverage: build.rs 42/42 lines,
+63/63 regions; lib.rs 46/46 lines, 64/64 regions; conversions.rs 13/13 lines,
+12/12 regions; CLI 53/53 lines, 95/99 regions (95.96%).
+
+Separate runtime-dependency experiment: run-prost-probe.py records 30 checks:
+29 required plus one unsupported typed-unknown diagnostic. Unmodified maintained
+crates fail 8 required signed-zero cases; patched target-only crates pass all 29.
+See RUNTIME_PROBE.md and exact dependency patches. The production runtime is not
+changed by this experiment. Neither this probe nor current formatting gap is
+misreported as completed MSG-02 compatibility.

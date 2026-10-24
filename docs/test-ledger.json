@@ -6,21 +6,25 @@
       "id": "FactoryTest.Type",
       "source": "test/integration/Factory_TEST.cc",
       "source_sha256": "a132a6f663ec29fa265819be82dc69ad6e3c900ee7a8a24052fb15b06e48e9d0",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "upstream_ports::factory_type_and_new"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root",
+      "reviewed_commit": "b941c012e324d0f4ab627ac24d723bb31f4e7448"
     },
     {
       "id": "FactoryTest.New",
       "source": "test/integration/Factory_TEST.cc",
       "source_sha256": "a132a6f663ec29fa265819be82dc69ad6e3c900ee7a8a24052fb15b06e48e9d0",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "upstream_ports::factory_type_and_new"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root",
+      "reviewed_commit": "b941c012e324d0f4ab627ac24d723bb31f4e7448"
     },
     {
       "id": "FactoryTest.NewWithWellFormedData",
@@ -42,21 +46,25 @@
       "id": "FactoryTest.DeprecatedNonFullyQualified",
       "source": "test/integration/Factory_TEST.cc",
       "source_sha256": "a132a6f663ec29fa265819be82dc69ad6e3c900ee7a8a24052fb15b06e48e9d0",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "upstream_ports::factory_type_and_new"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root",
+      "reviewed_commit": "b941c012e324d0f4ab627ac24d723bb31f4e7448"
     },
     {
       "id": "FactoryTest.DynamicMessageNoEnv",
       "source": "test/integration/Factory_TEST.cc",
       "source_sha256": "a132a6f663ec29fa265819be82dc69ad6e3c900ee7a8a24052fb15b06e48e9d0",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "upstream_ports::factory_type_and_new"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root",
+      "reviewed_commit": "b941c012e324d0f4ab627ac24d723bb31f4e7448"
     },
     {
       "id": "FactoryTest.DynamicMessageWithEnv",
@@ -126,32 +134,40 @@
       "id": "UtilityTest.CovertMathVector3ToMsgs",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
+      "status": "ported_pending_review",
+      "rust_tests": [
+        "upstream_ports::utility_vector_and_color_conversions"
+      ],
       "native_status": "passed"
     },
     {
       "id": "UtilityTest.ConvertMsgsVector3dToMath",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
+      "status": "ported_pending_review",
+      "rust_tests": [
+        "upstream_ports::utility_vector_and_color_conversions"
+      ],
       "native_status": "passed"
     },
     {
       "id": "UtilityTest.CovertMathVector2ToMsgs",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
+      "status": "ported_pending_review",
+      "rust_tests": [
+        "upstream_ports::utility_vector_and_color_conversions"
+      ],
       "native_status": "passed"
     },
     {
       "id": "UtilityTest.ConvertMsgsVector2dToMath",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
+      "status": "ported_pending_review",
+      "rust_tests": [
+        "upstream_ports::utility_vector_and_color_conversions"
+      ],
       "native_status": "passed"
     },
     {
@@ -190,24 +206,30 @@
       "id": "UtilityTest.ConvertMsgPoseToMathIdentity",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
+      "status": "ported_pending_review",
+      "rust_tests": [
+        "upstream_ports::pose_defaults_distinguish_missing_and_zero_orientation"
+      ],
       "native_status": "passed"
     },
     {
       "id": "MsgsTest.ConvertMathColorToMsgs",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
+      "status": "ported_pending_review",
+      "rust_tests": [
+        "upstream_ports::utility_vector_and_color_conversions"
+      ],
       "native_status": "passed"
     },
     {
       "id": "MsgsTest.ConvertMsgsColorToMath",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
+      "status": "ported_pending_review",
+      "rust_tests": [
+        "upstream_ports::utility_vector_and_color_conversions"
+      ],
       "native_status": "passed"
     },
     {
@@ -294,81 +316,97 @@
       "id": "UtilityTest.ConvertStringMsg",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "upstream_ports::utility_primitive_conversions"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root",
+      "reviewed_commit": "b941c012e324d0f4ab627ac24d723bb31f4e7448"
     },
     {
       "id": "UtilityTest.ConvertBoolean",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "upstream_ports::utility_primitive_conversions"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root",
+      "reviewed_commit": "b941c012e324d0f4ab627ac24d723bb31f4e7448"
     },
     {
       "id": "UtilityTest.ConvertInt32",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "upstream_ports::utility_primitive_conversions"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root",
+      "reviewed_commit": "b941c012e324d0f4ab627ac24d723bb31f4e7448"
     },
     {
       "id": "UtilityTest.ConvertUInt32",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "upstream_ports::utility_primitive_conversions"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root",
+      "reviewed_commit": "b941c012e324d0f4ab627ac24d723bb31f4e7448"
     },
     {
       "id": "UtilityTest.ConvertInt64",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "upstream_ports::utility_primitive_conversions"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root",
+      "reviewed_commit": "b941c012e324d0f4ab627ac24d723bb31f4e7448"
     },
     {
       "id": "UtilityTest.ConvertUInt64",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "upstream_ports::utility_primitive_conversions"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root",
+      "reviewed_commit": "b941c012e324d0f4ab627ac24d723bb31f4e7448"
     },
     {
       "id": "UtilityTest.ConvertDouble",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "upstream_ports::utility_primitive_conversions"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root",
+      "reviewed_commit": "b941c012e324d0f4ab627ac24d723bb31f4e7448"
     },
     {
       "id": "UtilityTest.ConvertFloat",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "upstream_ports::utility_primitive_conversions"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root",
+      "reviewed_commit": "b941c012e324d0f4ab627ac24d723bb31f4e7448"
     },
     {
       "id": "UtilityTest.ConvertFuelMetadata",
@@ -382,11 +420,13 @@
       "id": "UtilityTest.ConvertTimePoint",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "upstream_ports::utility_time_point"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root",
+      "reviewed_commit": "b941c012e324d0f4ab627ac24d723bb31f4e7448"
     },
     {
       "id": "UtilityTest.SetVector3",
@@ -464,64 +504,80 @@
       "id": "MsgsTest.SetStringMsg",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
+      "status": "ported_pending_review",
+      "rust_tests": [
+        "upstream_ports::utility_primitive_assignment"
+      ],
       "native_status": "passed"
     },
     {
       "id": "MsgsTest.SetBoolean",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
+      "status": "ported_pending_review",
+      "rust_tests": [
+        "upstream_ports::utility_primitive_assignment"
+      ],
       "native_status": "passed"
     },
     {
       "id": "MsgsTest.SetInt32",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
+      "status": "ported_pending_review",
+      "rust_tests": [
+        "upstream_ports::utility_primitive_assignment"
+      ],
       "native_status": "passed"
     },
     {
       "id": "MsgsTest.SetUInt32",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
+      "status": "ported_pending_review",
+      "rust_tests": [
+        "upstream_ports::utility_primitive_assignment"
+      ],
       "native_status": "passed"
     },
     {
       "id": "MsgsTest.SetInt64",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
+      "status": "ported_pending_review",
+      "rust_tests": [
+        "upstream_ports::utility_primitive_assignment"
+      ],
       "native_status": "passed"
     },
     {
       "id": "MsgsTest.SetUInt64",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
+      "status": "ported_pending_review",
+      "rust_tests": [
+        "upstream_ports::utility_primitive_assignment"
+      ],
       "native_status": "passed"
     },
     {
       "id": "MsgsTest.SetDouble",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
+      "status": "ported_pending_review",
+      "rust_tests": [
+        "upstream_ports::utility_primitive_assignment"
+      ],
       "native_status": "passed"
     },
     {
       "id": "MsgsTest.SetFloat",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
+      "status": "ported_pending_review",
+      "rust_tests": [
+        "upstream_ports::utility_primitive_assignment"
+      ],
       "native_status": "passed"
     },
     {
@@ -680,11 +736,13 @@
       "id": "basic_TEST.py:test_serialization",
       "source": "python/test/basic_TEST.py",
       "source_sha256": "ccd0c5d21d3845261263289b5481189e56452a7d8912595b3afac9fcf76e315c",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "upstream_ports::python_basic_serialization"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root",
+      "reviewed_commit": "b941c012e324d0f4ab627ac24d723bb31f4e7448"
     },
     {
       "id": "CmdLine.MsgHelpVsCompletionFlags",

@@ -1,0 +1,26 @@
+[package]
+name = "gazebo-prost-conformance-probe"
+version = "0.0.0"
+edition = "2021"
+publish = false
+
+build = "../prost-probe/build.rs"
+
+[[bin]]
+name = "gazebo-prost-conformance-probe"
+path = "../prost-probe/src/main.rs"
+
+[workspace]
+
+[dependencies]
+prost = "=0.14.4"
+prost-types = "=0.14.4"
+prost-reflect = { version = "=0.16.5", features = ["serde", "text-format"] }
+serde_json = "=1.0.149"
+
+[build-dependencies]
+prost-build = "=0.14.4"
+
+[patch.crates-io]
+prost-derive = { path = "../../target/prost-probe-vendor/prost-derive-0.14.4" }
+prost-reflect = { path = "../../target/prost-probe-vendor/prost-reflect-0.16.5" }

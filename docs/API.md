@@ -91,3 +91,22 @@ unsupported. External descriptor environment loading remains pending.
 
 The generated signed-zero correction expects exactly 546 replacements for the
 pinned schema hash manifest and generator version. Any count drift fails build.
+
+## Geometric values and remaining formatting gap
+
+Vector2d/Vector3d/Quaternion/Color implement From arrays and back, preserving
+XY/XYZ/XYZW/RGBA component order. Arrays are raw values without math-domain
+normalization or color clamping. `pose(position, orientation)` builds geometric
+fields; `pose_components(&pose)` returns XYZ/XYZW, substituting zero translation
+and identity rotation only when those fields are absent. Explicitly present
+zero quaternions remain zero. Message metadata is not part of these domain values.
+
+Known retained-scope gap: rust-protobuf reflection treats signed-zero floating
+scalars as absent defaults, even with corrected generated binary serialization.
+Consequently JSON/text formatting can omit scalar -0.0. For example encoding
+`Vector3d { x: -0.0 }` preserves wire bytes `110000000000000080` but current
+`decode-json` emits `{}` and `decode-text` empty output. This does not meet full
+MSG-02 formatting parity. It is recorded for a separately reviewed runtime-fix
+slice; no claim is made that the formatting surface is fully compatible. Binary
+publication and binary decode/reencode preserve these values. A whole-runtime
+vendor is intentionally deferred pending upstream-fix and ownership evaluation.
