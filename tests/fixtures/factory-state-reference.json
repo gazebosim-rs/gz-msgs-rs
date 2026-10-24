@@ -10,7 +10,8 @@
   "source_sha256": {
     "test/integration/Factory_TEST.cc": "a132a6f663ec29fa265819be82dc69ad6e3c900ee7a8a24052fb15b06e48e9d0",
     "test/integration/factory_lazy.cc": "9cbd584ec3c34926efaec8512b329e849a5e006591ca0be98c12dcd747269dbb",
-    "test/integration/factory_concurrency.cc": "cb5ad5b4490f1c7cb8830b04c2d13737d5d11bcd588a39b6843dff2acacc5dde"
+    "test/integration/factory_concurrency.cc": "cb5ad5b4490f1c7cb8830b04c2d13737d5d11bcd588a39b6843dff2acacc5dde",
+    "test/integration/headers.cc": "d5fc5a3c80da0592bc2475f926c2fc2c392ffbf2cc2b45842a519b222329d101"
   },
   "native_binary_sha256": "86a03717d5abbdc2ccf98dcf202d696a5d627d5931b312b6eb95242b7f401649",
   "original_native_tests": [
@@ -28,6 +29,16 @@
       "case": "FactoryConcurrency.ParallelUse",
       "status": "passed",
       "binary_sha256": "0c79a4e6441b4250ffaa0d618b2898b191ebf0068a5a1d201a416775433732aa"
+    },
+    {
+      "case": "FactoryTest.MultipleMessagesInAProto",
+      "status": "passed",
+      "binary_sha256": "cea6f78abfb89dc02c0f26de5d6d369751fe36f74569765ad63a0cc6e9f11dbe"
+    },
+    {
+      "case": "Messages.NestedHeaders",
+      "status": "passed",
+      "binary_sha256": "bbe3c5f5fc47e7f17c8a4cf5dce97430837c88fa84d95b00e742134170cb8f37"
     }
   ]
 }

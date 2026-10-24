@@ -445,3 +445,21 @@ reentry/destruction, lifetimes and one-shot diagnostics were checked. An explici
 reentrant-name enumeration assertion was added after review. Three mappings are
 marked reviewed; no TSan, global singleton, install-prefix or cache parity claim
 is made. The matching strict staged gate remains required for publication.
+
+The next bounded ports retain `FactoryTest.MultipleMessagesInAProto` and
+`Messages.NestedHeaders`. The former enumerates and constructs all three messages
+from serialized_map.proto. Its twelve nullable C++ unique/shared/const ownership
+checks map to typed nullable Rust Box/Arc owners and immutable borrows; these are
+Rust ownership forms rather than generated C++ pointer-alias names. The latter
+retains every successful serialization and exact 0/0/6/8/equal-inner size check.
+The native reference script reruns both exact original cases alongside the three
+previous factory cases, pinning sources and native binaries. Both mapping
+acceptance and this ownership translation await independent review.
+
+/root/sdformat approved exact corrected staged diff
+`666971ade045be1370754721b6b189779f897c3b4c7ea80fcfcb354ba416ed47`,
+independently comparing complete original assertions and rerunning both exact
+native cases plus both targeted Rust ports. It checked source/binary hashes and
+the documented nullable Box/Arc and immutable-borrow mapping. Review corrected
+the embedded header construction to be independent of the standalone wrench,
+as the original does. Both mappings are now reviewed; final staged gate required.

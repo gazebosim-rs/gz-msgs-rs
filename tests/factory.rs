@@ -225,3 +225,36 @@ fn original_parallel_use_counts_and_final_construction_assertions() {
         assert!(factory.new_message(name).is_some());
     }
 }
+
+#[test]
+fn original_multiple_messages_in_one_proto() {
+    use gz_msgs::msgs::{SerializedEntityMap, SerializedStateMap, SerializedStepMap};
+    let factory = MessageFactory::with_paths(OsString::new());
+    let types = factory.types();
+    assert!(!types.is_empty());
+    for name in [
+        "gz.msgs.SerializedEntityMap",
+        "gz.msgs.SerializedStateMap",
+        "gz.msgs.SerializedStepMap",
+    ] {
+        assert!(types.iter().any(|value| value == name));
+        assert!(factory.new_message(name).is_some());
+    }
+    // Nullable unique/shared ownership maps to Option<Box<T>>/Option<Arc<T>>.
+    // Immutable borrows are Rust's read-only access form, not new pointer aliases.
+    macro_rules! nullable_owners {
+        ($ty:ty) => {{
+            let unique: Option<Box<$ty>> = None;
+            assert!(unique.is_none());
+            let readonly_unique: &Option<Box<$ty>> = &None;
+            assert!(readonly_unique.is_none());
+            let shared: Option<Arc<$ty>> = None;
+            assert!(shared.is_none());
+            let readonly_shared: &Option<Arc<$ty>> = &None;
+            assert!(readonly_shared.is_none());
+        }};
+    }
+    nullable_owners!(SerializedEntityMap);
+    nullable_owners!(SerializedStateMap);
+    nullable_owners!(SerializedStepMap);
+}

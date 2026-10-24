@@ -106,9 +106,14 @@
       "id": "FactoryTest.MultipleMessagesInAProto",
       "source": "test/integration/Factory_TEST.cc",
       "source_sha256": "a132a6f663ec29fa265819be82dc69ad6e3c900ee7a8a24052fb15b06e48e9d0",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "factory::original_multiple_messages_in_one_proto"
+      ],
+      "native_status": "passed",
+      "review_note": "Complete original source/assertions independently compared; exact native one-run/no-failure XML and fixture source/binary hashes checked; corrected targeted Rust tests independently rerun. All encode-success/size assertions and three-type construction retained; twelve nullable ownership checks explicitly use Rust Box/Arc owners and immutable borrows, not generated C++ pointer aliases.",
+      "reviewer": "/root/sdformat",
+      "reviewed_diff": "666971ade045be1370754721b6b189779f897c3b4c7ea80fcfcb354ba416ed47"
     },
     {
       "id": "PointCloudPackedUtilsTest.BadFields",
@@ -835,9 +840,14 @@
       "id": "Messages.NestedHeaders",
       "source": "test/integration/headers.cc",
       "source_sha256": "d5fc5a3c80da0592bc2475f926c2fc2c392ffbf2cc2b45842a519b222329d101",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "nested_headers::original_nested_headers"
+      ],
+      "native_status": "passed",
+      "review_note": "Complete original source/assertions independently compared; exact native one-run/no-failure XML and fixture source/binary hashes checked; corrected targeted Rust tests independently rerun. All encode-success/size assertions and three-type construction retained; twelve nullable ownership checks explicitly use Rust Box/Arc owners and immutable borrows, not generated C++ pointer aliases.",
+      "reviewer": "/root/sdformat",
+      "reviewed_diff": "666971ade045be1370754721b6b189779f897c3b4c7ea80fcfcb354ba416ed47"
     },
     {
       "id": "Image.PixelFormat",
