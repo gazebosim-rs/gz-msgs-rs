@@ -139,3 +139,23 @@ claim. Nonnegative integration behavior is unchanged.
 The staged partial-source rejection demonstration was updated for the corrected
 operator spelling. Existing original ConvertTimePoint assertions stay unchanged;
 the new negative/boundary corpus is additional conformance evidence.
+
+## Original CLI workflow slice
+
+Restored legacy --help/-h/noargs, --version/-v, --list/-l and --info/-i TYPE...
+with canonical/underscore type spellings, multiple types and the unchanged
+licensed completion script. Info declarations come from canonical SourceCodeInfo
+spans generated at build time; no proto parser or descriptor-to-proto formatter
+was invented. The source/declaration corpus is still hash-gated.
+
+The original gz_TEST.cc is copied byte-for-byte with its two original test-macro
+headers and source SHA256 manifest. A small test-only harness binds package
+version and executable/completion paths, then runs all 5 original C++ gtests
+unchanged against the Rust binary: 5/5 pass. CI installs libgtest-dev for this
+required test. Rust assertion ports independently retain the same five cases.
+The mapping family remains pending /root review; no dispatcher ownership claim.
+
+Full gate passes 26 Rust integration tests, including the unchanged 5-case C++
+suite, native peers, downstream consumer and coverage negative tests. build.rs
+107/107 lines, 164/164 regions; CLI 59/59 lines, 116/119 regions (97.48%). Other
+owned production Rust and the two narrow dependency changes stay at 100%.

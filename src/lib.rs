@@ -10,6 +10,7 @@ pub mod msgs {
     include!(concat!(env!("OUT_DIR"), "/gz.msgs.rs"));
 }
 include!(concat!(env!("OUT_DIR"), "/aliases.rs"));
+include!(concat!(env!("OUT_DIR"), "/definitions.rs"));
 pub use msgs::{Clock, Imu as IMU, Pose, Time};
 use std::sync::OnceLock;
 

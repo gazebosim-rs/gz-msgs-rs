@@ -1,9 +1,18 @@
 //! Standalone protobuf inspection tool. Binary bytes only cross stdin/stdout.
 use gz_msgs::{prost::Message, prost_reflect::DynamicMessage};
 use std::io::{Read, Write};
+const HELP: &str = "gz-msgs --list|-l | --info|-i TYPE... | --version|-v | --help|-h\nCommands: list, info TYPE..., encode-json, decode-json, encode-text, decode-text\nFormat commands take one fully qualified type and use stdin/stdout.";
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let args: Vec<_> = std::env::args().skip(1).collect();
-    if args == ["list"] {
+    if args.is_empty() || args == ["--help"] || args == ["-h"] {
+        println!("{HELP}");
+        return Ok(());
+    }
+    if args == ["--version"] || args == ["-v"] {
+        println!("{}", env!("CARGO_PKG_VERSION"));
+        return Ok(());
+    }
+    if args == ["list"] || args == ["--list"] || args == ["-l"] {
         let mut names: Vec<_> = gz_msgs::files()
             .into_iter()
             .flat_map(|f| {
@@ -16,14 +25,19 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         println!("{}", names.join("\n"));
         return Ok(());
     }
-    if args.len() != 2 {
-        return Err("usage: gz-msgs list | info|encode-json|decode-json|encode-text|decode-text gz.msgs.Type".into());
-    }
-    let descriptor = gz_msgs::descriptor(&args[1]).ok_or("unknown message type")?;
-    if args[0] == "info" {
-        println!("{:#?}", descriptor.descriptor_proto());
+    if args.len() >= 2 && ["info", "--info", "-i"].contains(&args[0].as_str()) {
+        for name in &args[1..] {
+            let descriptor = gz_msgs::descriptor(name).ok_or("unknown message type")?;
+            let definition = gz_msgs::message_definition(descriptor.full_name())
+                .ok_or("message source is not bundled")?;
+            println!("{definition}");
+        }
         return Ok(());
     }
+    if args.len() != 2 {
+        return Err(HELP.into());
+    }
+    let descriptor = gz_msgs::descriptor(&args[1]).ok_or("unknown message type")?;
     let mut input = Vec::new();
     std::io::stdin().read_to_end(&mut input)?;
     let output = match args[0].as_str() {

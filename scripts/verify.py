@@ -13,6 +13,8 @@ manifest = json.loads(pathlib.Path('schemas/manifest.json').read_text())
 assert {p['path'] for p in manifest['schemas']} == {str(p) for p in pathlib.Path('schemas').rglob('*.proto')}
 for item in manifest['schemas']:
     assert hashlib.sha256(pathlib.Path(item['path']).read_bytes()).hexdigest() == item['sha256'], item['path']
+for item in json.loads(pathlib.Path('tests/reference/manifest.json').read_text())['files']:
+    assert hashlib.sha256(pathlib.Path(item['path']).read_bytes()).hexdigest() == item['sha256'], item['path']
 vendor = json.loads(pathlib.Path('vendor/manifest.json').read_text())
 for package in vendor['packages']:
     paths = {item['path'] for item in package['files']}

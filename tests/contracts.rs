@@ -110,3 +110,17 @@ fn explicit_dynamic_edits_preserve_unmodified_unknown_fields() {
         DynamicMessage::decode(descriptor("gz.msgs.Clock").unwrap(), nested.as_slice()).unwrap();
     assert_eq!(value.encode_to_vec(), nested);
 }
+
+#[test]
+fn canonical_message_declarations_use_original_source_spans() {
+    for file in files() {
+        for message in file.messages() {
+            let source = message_definition(message.full_name()).unwrap();
+            assert!(source.starts_with(&format!("message {} {{", message.name())));
+            assert!(source.ends_with('}'));
+        }
+    }
+    let nested = message_definition("gz.msgs.Discovery.Publisher.ServicePublisher").unwrap();
+    assert!(nested.contains("string request_type"));
+    assert!(message_definition("not.a.Message").is_none());
+}

@@ -45,7 +45,12 @@ fn formats_and_commands() {
         assert!(text.status.success());
         assert_eq!(String::from_utf8(text.stdout).unwrap(), "sec:7,nsec:8");
     }
-    for args in [&[][..], &["nonsense", "gz.msgs.Time"], &["info", "missing"]] {
+    for args in [
+        &["nonsense"][..],
+        &["nonsense", "gz.msgs.Time"],
+        &["info", "missing"],
+        &["info", "google.protobuf.Any"],
+    ] {
         assert!(!run(args, &[]).status.success());
     }
     for command in ["encode-json", "encode-text", "decode-json", "decode-text"] {
@@ -101,4 +106,67 @@ fn negative_zero_survives_tooling_formats() {
             assert_eq!(roundtrip.stdout, encoded.stdout);
         }
     }
+}
+
+#[test]
+fn native_cli_version_help_list_info_and_completion_assertions() {
+    for version in ["--version", "-v"] {
+        let output = run(&[version], &[]);
+        assert!(output.status.success());
+        assert!(String::from_utf8(output.stdout)
+            .unwrap()
+            .contains(env!("CARGO_PKG_VERSION")));
+    }
+    for help in [&["--help"][..], &["-h"], &[]] {
+        let output = run(help, &[]);
+        assert!(output.status.success());
+        let text = String::from_utf8(output.stdout).unwrap();
+        assert!(text.contains("list"));
+        assert!(text.contains("info"));
+    }
+    for list in ["--list", "-l"] {
+        let output = run(&[list], &[]);
+        assert!(output.status.success());
+        assert!(String::from_utf8(output.stdout)
+            .unwrap()
+            .contains("gz.msgs.WorldControl"));
+    }
+    for name in ["gz_msgs.WorldControl", "gz.msgs.WorldControl"] {
+        let output = run(&["--info", name], &[]);
+        assert!(output.status.success());
+        assert!(String::from_utf8(output.stdout)
+            .unwrap()
+            .contains("message WorldControl {"));
+    }
+    for info in ["--info", "-i"] {
+        let output = run(&[info, "gz.msgs.WorldControl", "gz.msgs.Wrench"], &[]);
+        assert!(output.status.success());
+        let text = String::from_utf8(output.stdout).unwrap();
+        assert!(text.contains("message WorldControl {"));
+        assert!(text.contains("message Wrench {"));
+    }
+    let completion = Command::new("bash")
+        .args([
+            "-c",
+            "source scripts/msgs.bash_completion.sh; _gz_msgs_flags",
+        ])
+        .output()
+        .unwrap();
+    assert!(completion.status.success());
+    let flags = String::from_utf8(completion.stdout).unwrap();
+    let flags: Vec<_> = flags.split_whitespace().collect();
+    assert!(!flags.is_empty());
+    let help = String::from_utf8(run(&["--help"], &[]).stdout).unwrap();
+    for flag in flags {
+        assert!(help.contains(flag));
+    }
+}
+
+#[test]
+fn unchanged_cpp_cli_assertions() {
+    assert!(Command::new("python3")
+        .args(["scripts/rehost-cli.py", env!("CARGO_BIN_EXE_gz-msgs")])
+        .status()
+        .unwrap()
+        .success());
 }

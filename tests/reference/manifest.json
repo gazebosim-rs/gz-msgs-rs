@@ -1,0 +1,33 @@
+{
+  "files": [
+    {
+      "path": "tests/reference/gz_TEST.cc",
+      "upstream_repository": "gz-msgs",
+      "upstream_commit": "89c0c3d1474f545cb889335daf930bfdab6ab852",
+      "upstream_path": "test/integration/gz_TEST.cc",
+      "sha256": "fcf8487aaf14ec95a60a1b8d042132189e47edbe5e3b93fe239185eacd6969db"
+    },
+    {
+      "path": "tests/reference/include/gz/utils/ExtraTestMacros.hh",
+      "upstream_repository": "gz-utils",
+      "upstream_commit": "eafd2035e344eeb28ccab03409093637b89bee35",
+      "upstream_path": "include/gz/utils/ExtraTestMacros.hh",
+      "sha256": "5d03aeee072e73b683160cb9cd57957000bd35e504023b95a040cceee918e2ab"
+    },
+    {
+      "path": "tests/reference/include/gz/utils/detail/ExtraTestMacros.hh",
+      "upstream_repository": "gz-utils",
+      "upstream_commit": "eafd2035e344eeb28ccab03409093637b89bee35",
+      "upstream_path": "include/gz/utils/detail/ExtraTestMacros.hh",
+      "sha256": "d6b2b4b09dba002b43189a2e0df37bfb839d5fcb6a369d81899a7a8f59dac5cb"
+    },
+    {
+      "path": "scripts/msgs.bash_completion.sh",
+      "upstream_repository": "gz-msgs",
+      "upstream_commit": "89c0c3d1474f545cb889335daf930bfdab6ab852",
+      "upstream_path": "core/cmd/msgs.bash_completion.sh",
+      "sha256": "8e468591f50743544755ae7d5dc09b96676e192dad3173a994815942d72175c9"
+    }
+  ],
+  "harness": "Original CLI test body unchanged; compile-time version, executable and completion paths bind to Rust package artifacts."
+}

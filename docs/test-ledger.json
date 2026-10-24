@@ -688,33 +688,49 @@
       "id": "CmdLine.Version",
       "source": "test/integration/gz_TEST.cc",
       "source_sha256": "fcf8487aaf14ec95a60a1b8d042132189e47edbe5e3b93fe239185eacd6969db",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported_pending_review",
+      "rust_tests": [
+        "cli::native_cli_version_help_list_info_and_completion_assertions"
+      ],
+      "native_status": "passed",
+      "rehosted_cpp": "cli::unchanged_cpp_cli_assertions",
+      "rehosted_source": "tests/reference/gz_TEST.cc"
     },
     {
       "id": "CmdLine.Help",
       "source": "test/integration/gz_TEST.cc",
       "source_sha256": "fcf8487aaf14ec95a60a1b8d042132189e47edbe5e3b93fe239185eacd6969db",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported_pending_review",
+      "rust_tests": [
+        "cli::native_cli_version_help_list_info_and_completion_assertions"
+      ],
+      "native_status": "passed",
+      "rehosted_cpp": "cli::unchanged_cpp_cli_assertions",
+      "rehosted_source": "tests/reference/gz_TEST.cc"
     },
     {
       "id": "CmdLine.MsgList",
       "source": "test/integration/gz_TEST.cc",
       "source_sha256": "fcf8487aaf14ec95a60a1b8d042132189e47edbe5e3b93fe239185eacd6969db",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported_pending_review",
+      "rust_tests": [
+        "cli::native_cli_version_help_list_info_and_completion_assertions"
+      ],
+      "native_status": "passed",
+      "rehosted_cpp": "cli::unchanged_cpp_cli_assertions",
+      "rehosted_source": "tests/reference/gz_TEST.cc"
     },
     {
       "id": "CmdLine.MsgInfo",
       "source": "test/integration/gz_TEST.cc",
       "source_sha256": "fcf8487aaf14ec95a60a1b8d042132189e47edbe5e3b93fe239185eacd6969db",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported_pending_review",
+      "rust_tests": [
+        "cli::native_cli_version_help_list_info_and_completion_assertions"
+      ],
+      "native_status": "passed",
+      "rehosted_cpp": "cli::unchanged_cpp_cli_assertions",
+      "rehosted_source": "tests/reference/gz_TEST.cc"
     },
     {
       "id": "Messages.NestedHeaders",
@@ -748,10 +764,14 @@
       "id": "CmdLine.MsgHelpVsCompletionFlags",
       "source": "test/integration/gz_TEST.cc",
       "source_sha256": "fcf8487aaf14ec95a60a1b8d042132189e47edbe5e3b93fe239185eacd6969db",
-      "status": "not_ported",
-      "rust_tests": [],
+      "status": "ported_pending_review",
+      "rust_tests": [
+        "cli::native_cli_version_help_list_info_and_completion_assertions"
+      ],
       "native_status": "passed",
-      "guard": "GZ_UTILS_TEST_DISABLED_ON_WIN32 (Linux retained)"
+      "guard": "GZ_UTILS_TEST_DISABLED_ON_WIN32 (Linux retained)",
+      "rehosted_cpp": "cli::unchanged_cpp_cli_assertions",
+      "rehosted_source": "tests/reference/gz_TEST.cc"
     }
   ],
   "runtime_test_ids": [
@@ -844,5 +864,6 @@
     "upstream_build_type": "RelWithDebInfo",
     "source_commit": "89c0c3d1474f545cb889335daf930bfdab6ab852",
     "binary_provenance": "existing local build; binary hashes and XML captured by scripts/reference-tests.py; not a reproduced reference image"
-  }
+  },
+  "cli_version_assertion": "Rust port compares compiletime CARGO_PKG_VERSION, matching upstream compiletime GZ_MSGS_VERSION_FULL assertion semantics for the rewritten package."
 }
