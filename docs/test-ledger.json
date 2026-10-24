@@ -555,9 +555,15 @@
       "id": "UtilityTest.ConvertFuelMetadata",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "fuel::original_convert_fuel_metadata",
+        "fuel::native_fuel_metadata_wire_and_xml_corpus"
+      ],
+      "native_status": "passed",
+      "review_note": "Independently compared every original parse failure, model/world field, invalid format, intermediate serialization and exact final XML assertion. Corrected TinyXML name/terminal-text rules match pinned header and native controls. Fresh independent173 native full-wire/XML rows plus11 edge controls agree; all4RustFuel tests rerun from own consumer excluding unstagedCLI; original exact1run0fail and source/probe/header/originalbinary hashes verified. Structured Result/new-value/stderr translation and safe null URI/invalid Unicode bounds explicitly reviewed; broader XML qualification remains open.",
+      "reviewer": "/root/sdformat",
+      "reviewed_diff": "e16abdcdee3b27845ec11116a82e81699b2473777d96de59dedfaf2b9516246b"
     },
     {
       "id": "UtilityTest.ConvertTimePoint",

@@ -285,3 +285,39 @@ radian/degree operation order matches native Angle rounding; there is no coordin
 transform/ellipsoid implementation or input quaternion math. As with other raw
 components, caller-computed surface parameters are copied by setters rather than
 rerunning native math constructors' physical normalization.
+
+## Fuel configuration metadata
+
+`fuel::from_xml(&str) -> Result<msgs::FuelMetadata, fuel::Error>` constructs a
+fresh metadata value; `fuel::to_xml(&FuelMetadata)` constructs its legacy XML.
+The new Rust API exposes structured errors instead of C++ boolean output mutation,
+integer exceptions and stderr diagnostics. Failed conversions do not replace a
+caller's existing owned value. Native stderr is captured in the reference corpus;
+Rust stderr equivalence is not claimed for this structured-error API.
+
+Model takes precedence over world among top-level elements. Names, descriptions,
+contacts and file names use native six-character ASCII trimming; dependency URIs
+retain whitespace. The parser uses pinned quick-xml for tokenization with a small
+adapter for TinyXML's first-text/CDATA/comments, literal qualified names, NUL
+C-string views and left-to-right CR/LF normalization. Namespace declarations do
+not change literal element matching. Native byte-name grammar applies to elements
+and attributes; permissive prolog text is retained. Terminal document text must
+be terminated by markup, matching native acceptance of leading text. The captured native nesting boundary is
+retained. Input is UTF-8; references requiring invalid UTF-8 or overflowing native
+character arithmetic return Xml errors. Empty dependency URI text, which reaches
+a native null-pointer setter, returns MissingUri safely.
+
+Native SemanticVersion is not strict SemVer: abbreviated and numeric-prefix
+components, leading zeros, arbitrary pre-release/build text and fourth/later
+components overwriting major are retained. Resource versions use checked signed
+32-bit integer prefixes. Malformed/range cases that throw in C++ return
+InvalidVersion. The native SDF selection loop never updates its maximum, so the
+last positive candidate wins rather than the highest version. This compatibility
+rule is deliberate; a strict SemVer library cannot represent these inputs.
+
+The serializer retains exact indentation, quote style, ordering, major.minor
+version and unescaped text, including legacy output that may not be valid XML.
+It requires file_format.name == "sdf" and ignores metadata fields the native
+serializer ignores. Applications requiring escaped XML need a separate writer.
+The native corpus qualifies the tested conversion behavior; complete XML parser
+or diagnostic equivalence beyond those observations remains unclaimed.

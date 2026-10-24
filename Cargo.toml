@@ -10,6 +10,7 @@ build = "build.rs"
 
 [dependencies]
 bytemuck = "=1.25.2"
+quick-xml = "=0.38.3"
 prost = "=0.14.4"
 prost-derive = { path = "vendor/prost-derive-0.14.4", version = "=0.14.4" }
 prost-types = "=0.14.4"

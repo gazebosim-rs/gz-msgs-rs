@@ -1,0 +1,1558 @@
+{
+  "native_libraries_sha256": {
+    "libgz-math.so.10": "288c6f52fac45359f5de67d97e0069b7f37420f5f78888e61406b8f565656c4f",
+    "libtinyxml2.so.10": "f9e01d87fb78af744a426af8c992e94abf8cd3810a256e117bcc94cd84d2be6d"
+  },
+  "tinyxml_header_sha256": "42510ef6ba83ee73c6b85a3ccc36cba1dffc0070713f2ee6a3b2101425891675",
+  "original_binary_sha256": "f49abdc7852a8bb429fc49ce1d072679abaab72bb39b6f93fcc6036f9081a6c8",
+  "upstream_commit": "89c0c3d1474f545cb889335daf930bfdab6ab852",
+  "source_sha256": {
+    "core/include/gz/msgs/convert/FuelMetadata.hh": "ddc6212509a57ff11b686e7d9d6b2100f083ec22973eddc160748ddb5083c5c3",
+    "test/integration/Utility_TEST.cc": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607"
+  },
+  "probe_source_sha256": "c2ea9feaf19fe7d5b3c8af0326f4c3c83e946b1bf0707abdaf5965bef67cb403",
+  "probe_binary_sha256": "33ef9d93b3e0a42eed34c73088979f5691fa88d7770df4c1c209042c2fcc3724",
+  "math_commit": "1316ed334f4d5bda7be59aae07cd6e8ff31cfe13",
+  "math_source_sha256": "fab45698ede3b162821d48d5637fec7590ff5420865e80c7a32b56f09554f5a9",
+  "rows": [
+    {
+      "id": "empty",
+      "xml": "",
+      "stderr": "Unable to parse model config XML string.\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "wrong_root",
+      "xml": "<test/>",
+      "stderr": "Model config string does not contain a <model> or <world> element\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "no_name",
+      "xml": "<model>test</model>",
+      "stderr": "Model config string does not contain a <name> element\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "no_sdf",
+      "xml": "<model><name>test_model</name></model>",
+      "stderr": "Model config string does not contain an <sdf> element\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "original_model",
+      "xml": "<?xml version='1.0'?>\n  <model>\n    <sdf version='1.7'>model.sdf</sdf>\n    <name>test_model</name>\n    <version>3</version>\n    <description>A model for testing</description>\n    <author>\n      <name>Foo Bar</name>\n      <email>foo@bar.org</email>\n    </author>\n    <depend>\n      <model>\n        <uri>model://some_model</uri>\n      </model>\n    </depend>\n  </model>\n",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0a746573745f6d6f64656c221341206d6f64656c20666f722074657374696e67280332160a07466f6f20426172120b666f6f406261722e6f726752140a126d6f64656c3a2f2f736f6d655f6d6f64656c",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e746573745f6d6f64656c3c2f6e616d653e0a202020203c76657273696f6e3e333c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e41206d6f64656c20666f722074657374696e673c2f6465736372697074696f6e3e0a202020203c617574686f723e0a2020202020203c6e616d653e466f6f204261723c2f6e616d653e0a2020202020203c656d61696c3e666f6f406261722e6f72673c2f656d61696c3e0a202020203c2f617574686f723e0a202020203c646570656e643e0a2020202020203c6d6f64656c3e0a20202020202020203c7572693e6d6f64656c3a2f2f736f6d655f6d6f64656c3c2f7572693e0a2020202020203c2f6d6f64656c3e0a202020203c2f646570656e643e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "original_world",
+      "xml": "<?xml version='1.0'?>\n  <world>\n    <sdf version='1.7'>world.sdf</sdf>\n    <name>test_world</name>\n    <version>2</version>\n    <description>A world for testing</description>\n  </world>\n",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "12180a09776f726c642e736466120b0a040801100712037364661a0a746573745f776f726c6422134120776f726c6420666f722074657374696e672802",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c776f726c643e0a202020203c7364662076657273696f6e3d27312e37273e776f726c642e7364663c2f7364663e0a202020203c6e616d653e746573745f776f726c643c2f6e616d653e0a202020203c76657273696f6e3e323c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e4120776f726c6420666f722074657374696e673c2f6465736372697074696f6e3e0a20203c2f776f726c643e0a"
+    },
+    {
+      "id": "text_0",
+      "xml": "<model><name></name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "Model config string does not contain a <name> element\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "text_1",
+      "xml": "<model><name> </name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "Model config string does not contain a <name> element\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "text_2",
+      "xml": "<model><name><![CDATA[]]></name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a04080110071203736466",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e3c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "text_3",
+      "xml": "<model><name><![CDATA[ ]]></name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a04080110071203736466",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e3c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "text_4",
+      "xml": "<model><name><!-- comment --></name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "Model config string does not contain a <name> element\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "text_5",
+      "xml": "<model><name>x<child/>after</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0178",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e783c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "text_6",
+      "xml": "<model><name><child/>after</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "Model config string does not contain a <name> element\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "text_7",
+      "xml": "<model><name>x<!-- c -->later</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0178",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e783c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "text_8",
+      "xml": "<model><name>  x  </name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0178",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e783c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "text_9",
+      "xml": "<model><name>&#32;</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a04080110071203736466",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e3c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "text_10",
+      "xml": "<model><name>&#32;x  </name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0178",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e783c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "text_11",
+      "xml": "<model><name>\u00a0</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a02c2a0",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653ec2a03c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "text_12",
+      "xml": "<model><name>x&unknown;y</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0b7826756e6b6e6f776e3b79",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e7826756e6b6e6f776e3b793c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "text_13",
+      "xml": "<model><name>&#0;x</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a04080110071203736466",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e3c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "text_14",
+      "xml": "<model><name>x\r\ny</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a03780a79",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e780a793c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "text_15",
+      "xml": "<model><name>x\n\ry</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a03780a79",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e780a793c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "text_16",
+      "xml": "<model><name><![CDATA[x\n\ry]]></name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a03780a79",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e780a793c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "text_17",
+      "xml": "<model><name><![CDATA[x\r\ny]]></name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a03780a79",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e780a793c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "text_18",
+      "xml": "<model><name>x<![CDATA[y]]>z</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0178",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e783c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "text_19",
+      "xml": "<model><name><!-- c -->x</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0178",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e783c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "text_20",
+      "xml": "<model><name><?pi x?>y</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "Unable to parse model config XML string.\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "text_21",
+      "xml": "<model><name>\u00e9\u540d</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a05c3a9e5908d",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653ec3a9e5908d3c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "text_22",
+      "xml": "<model><name>x&dangling</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0a782664616e676c696e67",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e782664616e676c696e673c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "text_23",
+      "xml": "<model><name><!DOCTYPE x>after</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "Model config string does not contain a <name> element\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "text_24",
+      "xml": "<model><name>&#0000;tail</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a04080110071203736466",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e3c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "text_25",
+      "xml": "<model><name>&#x00;tail</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a04080110071203736466",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e3c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "text_26",
+      "xml": "<model><name>\u000b</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "Model config string does not contain a <name> element\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "text_27",
+      "xml": "<model><name>\f</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "Model config string does not contain a <name> element\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "text_28",
+      "xml": "<model><name>&#11;</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a04080110071203736466",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e3c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "text_29",
+      "xml": "<model><name>&#12;</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a04080110071203736466",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e3c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "version_0",
+      "xml": "<model><name>name</name><sdf version=\"\">model.sdf</sdf></model>",
+      "stderr": "Model config string does not contain an <sdf> element\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "version_1",
+      "xml": "<model><name>name</name><sdf version=\"0\">model.sdf</sdf></model>",
+      "stderr": "Model config string does not contain an <sdf> element\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "version_2",
+      "xml": "<model><name>name</name><sdf version=\"0.0\">model.sdf</sdf></model>",
+      "stderr": "Model config string does not contain an <sdf> element\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "version_3",
+      "xml": "<model><name>name</name><sdf version=\"0.0.0\">model.sdf</sdf></model>",
+      "stderr": "Model config string does not contain an <sdf> element\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "version_4",
+      "xml": "<model><name>name</name><sdf version=\"0.0.0-alpha\">model.sdf</sdf></model>",
+      "stderr": "Model config string does not contain an <sdf> element\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "version_5",
+      "xml": "<model><name>name</name><sdf version=\"0.0.1\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a160a096d6f64656c2e73646612090a02180112037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27302e30273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "version_6",
+      "xml": "<model><name>name</name><sdf version=\"1\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a160a096d6f64656c2e73646612090a02080112037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e30273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "version_7",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "version_8",
+      "xml": "<model><name>name</name><sdf version=\"1.7.3-alpha+build\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a280a096d6f64656c2e736466121b0a140801100718032205616c7068612a056275696c6412037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "version_9",
+      "xml": "<model><name>name</name><sdf version=\"01.02.03\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a1a0a096d6f64656c2e736466120d0a0608011002180312037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e32273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "version_10",
+      "xml": "<model><name>name</name><sdf version=\"-1.2\">model.sdf</sdf></model>",
+      "stderr": "Model config string does not contain an <sdf> element\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "version_11",
+      "xml": "<model><name>name</name><sdf version=\"1.2.3.4\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a1a0a096d6f64656c2e736466120d0a0608041002180312037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27342e32273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "version_12",
+      "xml": "<model><name>name</name><sdf version=\"1x.7tail\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "version_13",
+      "xml": "<model><name>name</name><sdf version=\"1.2.\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100212037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e32273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "version_14",
+      "xml": "<model><name>name</name><sdf version=\"1..2\">model.sdf</sdf></model>",
+      "stderr": "",
+      "exception": "stoi"
+    },
+    {
+      "id": "version_15",
+      "xml": "<model><name>name</name><sdf version=\"word\">model.sdf</sdf></model>",
+      "stderr": "",
+      "exception": "stoi"
+    },
+    {
+      "id": "version_16",
+      "xml": "<model><name>name</name><sdf version=\"2147483648\">model.sdf</sdf></model>",
+      "stderr": "",
+      "exception": "stoi"
+    },
+    {
+      "id": "version_17",
+      "xml": "<model><name>name</name><sdf version=\"1+build-with-hyphen\">model.sdf</sdf></model>",
+      "stderr": "Model config string does not contain an <sdf> element\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "version_18",
+      "xml": "<model><name>name</name><sdf version=\"1.2.3-\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a1a0a096d6f64656c2e736466120d0a0608011002180312037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e32273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "version_19",
+      "xml": "<model><name>name</name><sdf version=\"1.2.3+\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a1a0a096d6f64656c2e736466120d0a0608011002180312037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e32273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "version_20",
+      "xml": "<model><name>name</name><sdf version=\"1.2..\">model.sdf</sdf></model>",
+      "stderr": "",
+      "exception": "stoi"
+    },
+    {
+      "id": "version_21",
+      "xml": "<model><name>name</name><sdf version=\"1.2.3.4.5\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a1a0a096d6f64656c2e736466120d0a0608051002180312037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27352e32273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "version_22",
+      "xml": "<model><name>name</name><sdf version=\"+build\">model.sdf</sdf></model>",
+      "stderr": "Model config string does not contain an <sdf> element\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "version_23",
+      "xml": "<model><name>name</name><sdf version=\"1.2.3-a.b+c.d\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a240a096d6f64656c2e73646612170a100801100218032203612e622a03632e6412037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e32273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "version_24",
+      "xml": "<model><name>name</name><sdf version=\"1.7&unknown;\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "version_25",
+      "xml": "<model><name>name</name><sdf version=\"1.7&#13;\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "version_26",
+      "xml": "<model><name>name</name><sdf version=\"1.7\r\n\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "version_27",
+      "xml": "<model><name>name</name><sdf version=\"1.7&#0;.9\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "version_28",
+      "xml": "<model><name>name</name><sdf version=\"1.7&#0000;.9\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "version_29",
+      "xml": "<model><name>name</name><sdf version=\"1.7&#x00;.9\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "version_30",
+      "xml": "<model><name>name</name><sdf version=\"1.7&dangling\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "version_31",
+      "xml": "<model><name>name</name><sdf version=\"1.7&#bad;\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "resource_version_0",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf><version>-1</version></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d6528ffffffffffffffffff01",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e2d313c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "resource_version_1",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf><version>+3suffix</version></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d652803",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e333c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "resource_version_2",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf><version>2147483647</version></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d6528ffffffff07",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e323134373438333634373c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "resource_version_3",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf><version>2147483648</version></model>",
+      "stderr": "",
+      "exception": "stoi"
+    },
+    {
+      "id": "resource_version_4",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf><version></version></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "resource_version_5",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf><version>  </version></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "resource_version_6",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf><version>word</version></model>",
+      "stderr": "",
+      "exception": "stoi"
+    },
+    {
+      "id": "extra_0",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf><author/></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d653200",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a202020203c617574686f723e0a2020202020203c6e616d653e3c2f6e616d653e0a2020202020203c656d61696c3e3c2f656d61696c3e0a202020203c2f617574686f723e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "extra_1",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf><author><name> A </name><email> B </email></author><author/></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d6532060a01411201423200",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a202020203c617574686f723e0a2020202020203c6e616d653e413c2f6e616d653e0a2020202020203c656d61696c3e423c2f656d61696c3e0a202020203c2f617574686f723e0a202020203c617574686f723e0a2020202020203c6e616d653e3c2f6e616d653e0a2020202020203c656d61696c3e3c2f656d61696c3e0a202020203c2f617574686f723e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "extra_2",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf><depend/></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "extra_3",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf><depend><world><uri>x</uri></world></depend></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "extra_4",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf><depend><model><uri> model://raw </uri></model></depend></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65520f0a0d206d6f64656c3a2f2f72617720",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a202020203c646570656e643e0a2020202020203c6d6f64656c3e0a20202020202020203c7572693e206d6f64656c3a2f2f726177203c2f7572693e0a2020202020203c2f6d6f64656c3e0a202020203c2f646570656e643e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "extra_5",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf><sdf version=\"1.6\">last.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a170a086c6173742e736466120b0a040801100612037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e36273e6c6173742e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "extra_6",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf><sdf version=\"0\">ignored.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "extra_7",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf><sdf version=\"1.6\"> </sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "extra_8",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf><description> x &amp; y </description></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d6522057820262079",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e78202620793c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "extra_9",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf><name>second</name></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "multiple_roots",
+      "xml": "<?xml version='1.0'?>\n  <world>\n    <sdf version='1.7'>world.sdf</sdf>\n    <name>test_world</name>\n    <version>2</version>\n    <description>A world for testing</description>\n  </world>\n<?xml version='1.0'?>\n  <model>\n    <sdf version='1.7'>model.sdf</sdf>\n    <name>test_model</name>\n    <version>3</version>\n    <description>A model for testing</description>\n    <author>\n      <name>Foo Bar</name>\n      <email>foo@bar.org</email>\n    </author>\n    <depend>\n      <model>\n        <uri>model://some_model</uri>\n      </model>\n    </depend>\n  </model>\n",
+      "stderr": "Unable to parse model config XML string.\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "prefixed",
+      "xml": "<p:model><name>x</name><sdf version=\"1.7\">m</sdf></p:model>",
+      "stderr": "Model config string does not contain a <model> or <world> element\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "namespace",
+      "xml": "<model xmlns=\"ignored\"><name>name</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "nul_tail",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf></model>\u0000<bad",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "bad_xml",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf></model",
+      "stderr": "Unable to parse model config XML string.\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "empty_file",
+      "xml": "<model><name>name</name><sdf version=\"1.7\"><![CDATA[]]></sdf></model>",
+      "stderr": "Model config string does not contain an <sdf> element\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "true_multiple_roots",
+      "xml": "<?xml version='1.0'?>\n  <world>\n    <sdf version='1.7'>world.sdf</sdf>\n    <name>test_world</name>\n    <version>2</version>\n    <description>A world for testing</description>\n  </world>\n\n  <model>\n    <sdf version='1.7'>model.sdf</sdf>\n    <name>test_model</name>\n    <version>3</version>\n    <description>A model for testing</description>\n    <author>\n      <name>Foo Bar</name>\n      <email>foo@bar.org</email>\n    </author>\n    <depend>\n      <model>\n        <uri>model://some_model</uri>\n      </model>\n    </depend>\n  </model>\n",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0a746573745f6d6f64656c221341206d6f64656c20666f722074657374696e67280332160a07466f6f20426172120b666f6f406261722e6f726752140a126d6f64656c3a2f2f736f6d655f6d6f64656c",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e746573745f6d6f64656c3c2f6e616d653e0a202020203c76657273696f6e3e333c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e41206d6f64656c20666f722074657374696e673c2f6465736372697074696f6e3e0a202020203c617574686f723e0a2020202020203c6e616d653e466f6f204261723c2f6e616d653e0a2020202020203c656d61696c3e666f6f406261722e6f72673c2f656d61696c3e0a202020203c2f617574686f723e0a202020203c646570656e643e0a2020202020203c6d6f64656c3e0a20202020202020203c7572693e6d6f64656c3a2f2f736f6d655f6d6f64656c3c2f7572693e0a2020202020203c2f6d6f64656c3e0a202020203c2f646570656e643e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "decl_after_comment",
+      "xml": "<!-- c --><?xml version='1.0'?>\n  <model>\n    <sdf version='1.7'>model.sdf</sdf>\n    <name>test_model</name>\n    <version>3</version>\n    <description>A model for testing</description>\n    <author>\n      <name>Foo Bar</name>\n      <email>foo@bar.org</email>\n    </author>\n    <depend>\n      <model>\n        <uri>model://some_model</uri>\n      </model>\n    </depend>\n  </model>\n",
+      "stderr": "Unable to parse model config XML string.\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "uri_whitespace",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf><depend><model><uri>  &amp;x </uri></model></depend></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d6552070a052020267820",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a202020203c646570656e643e0a2020202020203c6d6f64656c3e0a20202020202020203c7572693e20202678203c2f7572693e0a2020202020203c2f6d6f64656c3e0a202020203c2f646570656e643e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "depth_496",
+      "xml": "<model><name>n</name><sdf version=\"1.7\">m</sdf><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a100a016d120b0a040801100712037364661a016e",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d3c2f7364663e0a202020203c6e616d653e6e3c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "depth_497",
+      "xml": "<model><name>n</name><sdf version=\"1.7\">m</sdf><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a100a016d120b0a040801100712037364661a016e",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d3c2f7364663e0a202020203c6e616d653e6e3c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "depth_498",
+      "xml": "<model><name>n</name><sdf version=\"1.7\">m</sdf><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></model>",
+      "stderr": "Unable to parse model config XML string.\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "depth_499",
+      "xml": "<model><name>n</name><sdf version=\"1.7\">m</sdf><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x><x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></x></model>",
+      "stderr": "Unable to parse model config XML string.\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "duplicate_attr",
+      "xml": "<model><name>name</name><sdf version=\"1.7\" version=\"1.6\">model.sdf</sdf></model>",
+      "stderr": "Unable to parse model config XML string.\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "unquoted_attr",
+      "xml": "<model><name>name</name><sdf version=1.7>model.sdf</sdf></model>",
+      "stderr": "Unable to parse model config XML string.\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "bad_end",
+      "xml": "<model><name>name</wrong><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "Unable to parse model config XML string.\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "missing_close",
+      "xml": "<model>",
+      "stderr": "Unable to parse model config XML string.\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "attr_escapes",
+      "xml": "<model><name>name</name><sdf version=\"1.7\" ignored=\"&amp;&quot;&unknown;\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "numeric_ref_empty",
+      "xml": "<model><name>&#x;</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a04080110071203736466",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e3c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "numeric_ref_bad",
+      "xml": "<model><name>&#bad;</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0626236261643b",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e26236261643b3c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "invalid_char",
+      "xml": "<model><name>n</name><sdf version=\"1.7\">m</sdf><",
+      "stderr": "Unable to parse model config XML string.\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "newlines_1_0",
+      "xml": "<model><name>left\rright</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0a6c6566740a7269676874",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6c6566740a72696768743c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "newlines_1_1",
+      "xml": "<model><name>left\nright</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0a6c6566740a7269676874",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6c6566740a72696768743c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "newlines_2_0",
+      "xml": "<model><name>left\r\rright</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0b6c6566740a0a7269676874",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6c6566740a0a72696768743c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "newlines_2_1",
+      "xml": "<model><name>left\r\nright</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0a6c6566740a7269676874",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6c6566740a72696768743c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "newlines_2_2",
+      "xml": "<model><name>left\n\rright</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0a6c6566740a7269676874",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6c6566740a72696768743c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "newlines_2_3",
+      "xml": "<model><name>left\n\nright</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0b6c6566740a0a7269676874",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6c6566740a0a72696768743c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "newlines_3_0",
+      "xml": "<model><name>left\r\r\rright</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0c6c6566740a0a0a7269676874",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6c6566740a0a0a72696768743c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "newlines_3_1",
+      "xml": "<model><name>left\r\r\nright</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0b6c6566740a0a7269676874",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6c6566740a0a72696768743c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "newlines_3_2",
+      "xml": "<model><name>left\r\n\rright</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0b6c6566740a0a7269676874",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6c6566740a0a72696768743c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "newlines_3_3",
+      "xml": "<model><name>left\r\n\nright</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0b6c6566740a0a7269676874",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6c6566740a0a72696768743c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "newlines_3_4",
+      "xml": "<model><name>left\n\r\rright</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0b6c6566740a0a7269676874",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6c6566740a0a72696768743c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "newlines_3_5",
+      "xml": "<model><name>left\n\r\nright</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0b6c6566740a0a7269676874",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6c6566740a0a72696768743c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "newlines_3_6",
+      "xml": "<model><name>left\n\n\rright</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0b6c6566740a0a7269676874",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6c6566740a0a72696768743c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "newlines_3_7",
+      "xml": "<model><name>left\n\n\nright</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0c6c6566740a0a0a7269676874",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6c6566740a0a0a72696768743c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "newlines_4_0",
+      "xml": "<model><name>left\r\r\r\rright</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0d6c6566740a0a0a0a7269676874",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6c6566740a0a0a0a72696768743c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "newlines_4_1",
+      "xml": "<model><name>left\r\r\r\nright</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0c6c6566740a0a0a7269676874",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6c6566740a0a0a72696768743c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "newlines_4_2",
+      "xml": "<model><name>left\r\r\n\rright</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0c6c6566740a0a0a7269676874",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6c6566740a0a0a72696768743c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "newlines_4_3",
+      "xml": "<model><name>left\r\r\n\nright</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0c6c6566740a0a0a7269676874",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6c6566740a0a0a72696768743c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "newlines_4_4",
+      "xml": "<model><name>left\r\n\r\rright</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0c6c6566740a0a0a7269676874",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6c6566740a0a0a72696768743c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "newlines_4_5",
+      "xml": "<model><name>left\r\n\r\nright</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0b6c6566740a0a7269676874",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6c6566740a0a72696768743c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "newlines_4_6",
+      "xml": "<model><name>left\r\n\n\rright</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0b6c6566740a0a7269676874",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6c6566740a0a72696768743c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "newlines_4_7",
+      "xml": "<model><name>left\r\n\n\nright</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0c6c6566740a0a0a7269676874",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6c6566740a0a0a72696768743c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "newlines_4_8",
+      "xml": "<model><name>left\n\r\r\rright</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0c6c6566740a0a0a7269676874",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6c6566740a0a0a72696768743c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "newlines_4_9",
+      "xml": "<model><name>left\n\r\r\nright</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0b6c6566740a0a7269676874",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6c6566740a0a72696768743c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "newlines_4_10",
+      "xml": "<model><name>left\n\r\n\rright</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0b6c6566740a0a7269676874",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6c6566740a0a72696768743c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "newlines_4_11",
+      "xml": "<model><name>left\n\r\n\nright</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0c6c6566740a0a0a7269676874",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6c6566740a0a0a72696768743c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "newlines_4_12",
+      "xml": "<model><name>left\n\n\r\rright</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0c6c6566740a0a0a7269676874",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6c6566740a0a0a72696768743c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "newlines_4_13",
+      "xml": "<model><name>left\n\n\r\nright</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0c6c6566740a0a0a7269676874",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6c6566740a0a0a72696768743c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "newlines_4_14",
+      "xml": "<model><name>left\n\n\n\rright</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0c6c6566740a0a0a7269676874",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6c6566740a0a0a72696768743c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "newlines_4_15",
+      "xml": "<model><name>left\n\n\n\nright</name><sdf version=\"1.7\">model.sdf</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a0d6c6566740a0a0a0a7269676874",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6c6566740a0a0a0a72696768743c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "review_leading_text",
+      "xml": "prefix<model><name>n</name><sdf version='1.7'>m</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a100a016d120b0a040801100712037364661a016e",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d3c2f7364663e0a202020203c6e616d653e6e3c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "review_trailing_text",
+      "xml": "<model><name>n</name><sdf version='1.7'>m</sdf></model>suffix",
+      "stderr": "Unable to parse model config XML string.\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "review_bad_child_start",
+      "xml": "<model><name>n</name><sdf version='1.7'>m</sdf><1bad/></model>",
+      "stderr": "Unable to parse model config XML string.\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "review_bad_child_name",
+      "xml": "<model><name>n</name><sdf version='1.7'>m</sdf><bad!/></model>",
+      "stderr": "Unable to parse model config XML string.\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "review_bad_attr_name",
+      "xml": "<model><name>n</name><sdf version='1.7'>m</sdf><unused 1bad='x'/></model>",
+      "stderr": "Unable to parse model config XML string.\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "review_empty_prefix",
+      "xml": "<model><name>n</name><sdf version='1.7'>m</sdf><:/></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a100a016d120b0a040801100712037364661a016e",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d3c2f7364663e0a202020203c6e616d653e6e3c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "review_prolog_bad_pi",
+      "xml": "<?1bad?><model><name>n</name><sdf version='1.7'>m</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a100a016d120b0a040801100712037364661a016e",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d3c2f7364663e0a202020203c6e616d653e6e3c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "review_prolog_pi",
+      "xml": "<?pi x?><model><name>n</name><sdf version='1.7'>m</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a100a016d120b0a040801100712037364661a016e",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d3c2f7364663e0a202020203c6e616d653e6e3c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "review_name_ref_splits",
+      "xml": "<model><name> &amp;  </name><sdf version='1.7'>m</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a100a016d120b0a040801100712037364661a0126",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d3c2f7364663e0a202020203c6e616d653e263c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "review_comment_weird",
+      "xml": "<model><name>n</name><sdf version='1.7'>m</sdf><!-- a -- b --></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a100a016d120b0a040801100712037364661a016e",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d3c2f7364663e0a202020203c6e616d653e6e3c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "review_literal_controls",
+      "xml": "<model><name>\u0001n</name><sdf version='1.7'>m</sdf></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a100a016d120b0a040801100712037364661a02016e",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d3c2f7364663e0a202020203c6e616d653e016e3c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "terminal_0",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf></model> &amp;",
+      "stderr": "Unable to parse model config XML string.\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "terminal_1",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf></model>&#32;",
+      "stderr": "Unable to parse model config XML string.\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "terminal_2",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf></model>suffix<!--end-->",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "terminal_3",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf></model>suffix<extra/>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "terminal_4",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf></model><!--end-->",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "terminal_5",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf></model><![CDATA[tail]]>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "terminal_6",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf></model>\t\r\n",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "terminal_7",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf></model>suffix<![CDATA[tail]]>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "terminal_8",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf></model>suffix&#32;",
+      "stderr": "Unable to parse model config XML string.\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "terminal_9",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf></model> &dangling",
+      "stderr": "Unable to parse model config XML string.\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "element_name_0",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf><:/></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "attribute_name_0",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf><unused :=\"x\"/></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "element_name_1",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf><_/></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "attribute_name_1",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf><unused _=\"x\"/></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "element_name_2",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf><\u00e9/></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "attribute_name_2",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf><unused \u00e9=\"x\"/></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "element_name_3",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf><a:b/></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "attribute_name_3",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf><unused a:b=\"x\"/></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "element_name_4",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf><a.b-c0/></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "attribute_name_4",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf><unused a.b-c0=\"x\"/></model>",
+      "stderr": "",
+      "parsed": true,
+      "written": true,
+      "wire_hex": "0a180a096d6f64656c2e736466120b0a040801100712037364661a046e616d65",
+      "xml_hex": "3c3f786d6c2076657273696f6e3d27312e30273f3e0a20203c6d6f64656c3e0a202020203c7364662076657273696f6e3d27312e37273e6d6f64656c2e7364663c2f7364663e0a202020203c6e616d653e6e616d653c2f6e616d653e0a202020203c76657273696f6e3e303c2f76657273696f6e3e0a202020203c6465736372697074696f6e3e3c2f6465736372697074696f6e3e0a20203c2f6d6f64656c3e0a"
+    },
+    {
+      "id": "element_name_5",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf><.bad/></model>",
+      "stderr": "Unable to parse model config XML string.\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "attribute_name_5",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf><unused .bad=\"x\"/></model>",
+      "stderr": "Unable to parse model config XML string.\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "element_name_6",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf><-bad/></model>",
+      "stderr": "Unable to parse model config XML string.\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "attribute_name_6",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf><unused -bad=\"x\"/></model>",
+      "stderr": "Unable to parse model config XML string.\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "element_name_7",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf><bad!/></model>",
+      "stderr": "Unable to parse model config XML string.\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    },
+    {
+      "id": "attribute_name_7",
+      "xml": "<model><name>name</name><sdf version=\"1.7\">model.sdf</sdf><unused bad!=\"x\"/></model>",
+      "stderr": "Unable to parse model config XML string.\n",
+      "parsed": false,
+      "written": false,
+      "wire_hex": "1a0872657461696e6564",
+      "xml_hex": "72657461696e6564"
+    }
+  ]
+}

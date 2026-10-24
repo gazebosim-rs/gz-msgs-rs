@@ -131,3 +131,5 @@ pub use coordinate_values::*;
 
 mod spherical_values;
 pub use spherical_values::*;
+
+pub mod fuel;

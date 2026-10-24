@@ -664,3 +664,54 @@ byte-alias identity, checked reads and bounded end semantics have no blocking
 finding. Operators is now reviewed, bringing original mappings to82/83; Fuel and
 all remaining MSG-02 packet obligations remain open. Matching strict staged gate
 is required before publication.
+
+## Fuel metadata conversion
+
+The final unported original is UtilityTest.ConvertFuelMetadata558–683. Its four
+parse failures, complete model/world fields, invalid file-format failures,
+intermediate valid model serialization and exact final model/world XML strings
+are retained in tests/fuel.rs. The original C++ case reruns unchanged, exactly
+one run with zero failures. New Rust APIs return structured errors/new values;
+native boolean mutation, exceptions and stderr are explicitly mapped rather
+than claimed as identical language APIs.
+
+A fresh C++ conversion probe captures173 native observations with complete
+protobuf wires, exact serialized XML and stderr. It includes first-text/CDATA,
+comments/children, entities/NUL views, raw dependency whitespace, resource integer
+prefix/range exceptions, SemanticVersion quirks, last-positive SDF selection,
+model precedence/multiple roots, namespace spelling, malformed attributes and
+captured nesting limits. All30 CR/LF combinations up to four characters prove
+left-to-right pair precedence. Hashes bind upstream sources, helper/binary,
+original native binary, installed/build-identical math library and SemanticVersion
+source, and TinyXML header/runtime. Four Rust tests retain original assertions,
+compare native wires/XML, and check explicit safe null-URI/invalid-Unicode errors.
+Pinned quick-xml0.38.3 supplies maintained tokenization; native text/attribute and
+version quirks have bounded owned adapters. No unsafe code or exclusions added.
+Final full gate and independent review remain required; MSG-02 broader obligations
+remain open even when the last original mapping is accepted.
+
+Working full verifier passes79 Rust checks,5 snapshot regressions, fmt/clippy,
+clean downstream consumer and1136/1136 owned lines with1725/1736 regions. Both
+Fuel production files are100% covered (297/297 lines,527/527 regions). All owned
+vendored predicates remain measured; no denominator or threshold changed.
+
+Independent SDF review identified four false accepts outside the initial corpus:
+terminal document text and malformed element/attribute names. The corrected
+adapter applies pinned TinyXML byte-name grammar only to elements/attributes and
+requires document text to terminate before markup. All reviewer inputs and
+additional leading/terminal comment/CDATA/reference, permissive prolog/control
+and valid/invalid name controls are bound into the173-row native oracle. The
+corrections pass full gate; independent re-review remains required.
+
+/root/sdformat approved corrected exact staged diff
+`e16abdcdee3b27845ec11116a82e81699b2473777d96de59dedfaf2b9516246b`.
+It independently compared every original parse/field/format/intermediate/final XML
+assertion, freshly replayed all173 native full-wire/XML observations and11 extra
+edge controls, and ran four Rust tests in an independent consumer excluding the
+separate unstaged CLI work. The exact original C++ case passes one run/zero
+failures; source/probe/header/original-binary hashes agree. Name/terminal-text
+corrections and all declared structured-error/safety/API limits have no blocking
+finding. All83 original mappings are reviewed. Full XML/formatting, descriptor
+installation/global/cache behavior, packaging and equal-work performance remain
+open MSG-02 obligations; no whole-packet acceptance is claimed. Matching final
+strict staged gate is still required.
