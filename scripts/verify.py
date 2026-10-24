@@ -13,5 +13,13 @@ manifest = json.loads(pathlib.Path('schemas/manifest.json').read_text())
 assert {p['path'] for p in manifest['schemas']} == {str(p) for p in pathlib.Path('schemas').rglob('*.proto')}
 for item in manifest['schemas']:
     assert hashlib.sha256(pathlib.Path(item['path']).read_bytes()).hexdigest() == item['sha256'], item['path']
-for command in [[os.environ.get('CARGO', 'cargo'), 'fmt', '--all', '--', '--check'], [os.environ.get('CARGO', 'cargo'), 'clippy', '--locked', '--all-targets', '--', '-D', 'warnings'], ['python3', 'scripts/test-gates.py'], ['python3', 'scripts/coverage.py']]:
+vendor = json.loads(pathlib.Path('vendor/manifest.json').read_text())
+for package in vendor['packages']:
+    paths = {item['path'] for item in package['files']}
+    base = pathlib.Path('vendor') / (package['name'] + '-' + package['version'])
+    assert paths == {str(p) for p in base.rglob('*') if p.is_file()}, package['name']
+    for item in package['files']:
+        assert hashlib.sha256(pathlib.Path(item['path']).read_bytes()).hexdigest() == item['sha256'], item['path']
+        assert (item['upstream_sha256'] == item['sha256']) == ('owned_lines' not in item), item['path']
+for command in [[os.environ.get('CARGO', 'cargo'), 'fmt', '--all', '--', '--check'], [os.environ.get('CARGO', 'cargo'), 'clippy', '--locked', '--all-targets', '--', '-D', 'warnings'], ['python3', 'scripts/test-gates.py'], ['python3', 'scripts/test-downstream.py'], ['python3', 'scripts/coverage.py']]:
     subprocess.run(command, check=True)

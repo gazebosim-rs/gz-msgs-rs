@@ -1,112 +1,91 @@
 # Version 0.1 contract
 
-Package `gz-msgs` is independent of simulator, transport, Bevy and math libraries.
-All 216 pinned `.proto` files are copied unchanged under `schemas/gz/msgs`;
-`schemas/manifest.json` records their SHA256 and immutable upstream revision.
-Historical schema snapshots are not yet bundled; unknown binary fields survive
-read/write against this snapshot, but historical semantics have not been qualified.
+The standalone `gz-msgs` package depends on no simulator, transport, Bevy or math
+crate. It generates all 216 byte-for-byte canonical schemas from upstream
+89c0c3d1474f545cb889335daf930bfdab6ab852. SHA256 provenance is checked by the gate.
+Historical snapshots are not bundled or qualified yet.
 
-Modules preserve schema file names (`gz_msgs::pose::Pose`). Clock, Pose, IMU and
-Time are also root exports. Generated public fields use `MessageField<T>` for
-message presence and `EnumOrUnknown<E>` for enums. `protobuf::Message` supplies
-binary parse/write; `MessageFull` supplies static descriptors. `descriptor(name)`
-accepts canonical full names with an optional leading dot, including nested types.
-`files()` exposes all canonical file descriptors. No callback/runtime is created.
+## Rust values and wire forwarding
 
-`time_from_nanos` converts signed integer nanoseconds to a normalized sec/nsec
-pair using Euclidean division. `time_to_nanos` rejects invalid nanoseconds and
-i64 overflow. This is a simulator integer-time convenience contract, not a claim
-that arbitrary Gazebo Time wire values must have normalized nanos. Raw generated
-Time retains every i64/i32 field value. `vector3` preserves XYZ doubles;
-`quaternion` preserves XYZW doubles without normalization or default substitution.
-Generated absent orientation differs from the domain conversion's identity
-rotation; full upstream conversion API remains pending.
+Canonical generated values live in `gz_msgs::msgs`; file-based aliases preserve
+paths such as `gz_msgs::pose::Pose`, `gz_msgs::imu::IMU`, and
+`gz_msgs::discovery::discovery::Publisher`. Clock/Pose/Time/IMU are root exports.
+Generated prost values expose ordinary fields: messages are Option<T>, enum
+fields are i32, and oneofs are Option of Rust enums. Discovery uses
+DiscContents::{Sub,Pub}, publisher::PubType::{MsgPub,SrvPub}, Scope::{Process,Host,All}.
+`gz_msgs::prost::Message` supplies decode/encode_to_vec/encoded_len. Generated
+values implement prost::Name with canonical names and type.googleapis.com URLs.
+Standard prost/prost_types traits and Any values interoperate downstream.
 
-## Runtime choice
+**Generated values discard unknown fields during decode.** Use
+`WireMessage::<T>::decode(bytes)` for a typed read-only view and lossless
+forwarding: value() borrows T and bytes() returns the original bytes exactly,
+including nested unknowns, signed zeros, duplicates and field order. There is no
+mutable view or implicit reencoding API. Constructing a new typed message and
+encoding it is explicitly a new message, not a promise to preserve historical
+unknown fields. Descriptor-based DynamicMessage supports explicit reflective
+editing and preserves unknown fields; replacing/clearing a nested value removes
+that value's contents as expected. Binary/text/JSON roundtrips have separate
+contracts: protobuf JSON does not represent unknown binary fields.
 
-Pinned rust-protobuf runtime/codegen/json-mapping 3.7.2 supports static and dynamic
-reflection, protobuf text/JSON, unknown binary fields and unknown enum integers.
-Prost's generated ordinary messages discard unknown binary fields; prost-reflect
-would require a second dynamic representation for preservation and formatting.
-The single rust-protobuf representation avoids that mismatch. This choice is
-supported by the checked-in C++ binary conformance cases, not by schema identity
-alone. Generator and runtime are pinned together, Cargo.lock pins transitive deps.
-The pure parser generates Rust; system protoc independently produces native-peer
-descriptors. No build requires protoc; native tests do require protoc/libprotobuf.
+`descriptor(name)` accepts canonical full names and legacy gz_msgs.Type spellings
+with an optional leading dot; nested types are supported, unqualified names fail.
+`descriptors()` exposes the pool, including imported Google types; files() returns
+only canonical Gazebo files. No callbacks or runtime are created.
 
-Binary decode/reencode preserves unknown fields semantically; protobuf permits
-field reordering and duplicate known scalar field canonicalization. Byte equality
-is asserted only on controlled deterministic fixtures. JSON/text are tooling
-representations and do not promise binary unknown-field lossless roundtrips.
-Standard Any (`google.protobuf.Any`) and historical snapshot qualification,
-external descriptor loading, broad conversion families and command compatibility
-remain explicitly pending. Gazebo's `gz.msgs.Any` is its own canonical schema.
+## Plain domain values
 
-## Coverage provenance
+Time converts to/from signed integer nanoseconds using time_from_nanos and
+checked time_to_nanos. The constructor normalizes sec/nsec with Euclidean
+division; the inverse rejects invalid nanos or i64 overflow. Raw generated Time
+retains arbitrary i64/i32 fields without imposing a wall-clock range.
 
-Every handwritten production Rust file under `src` is required in coverage,
-including newly added files, plus handwritten build.rs; missing/zero denominators fail. LLVM source regions
-attribute generated code to `target/**/out/generated/*.rs` or `registry.rs`.
-These are exclusively build.rs output from the hashed schema corpus and pinned
-protobuf-codegen; no handwritten policies/conversions live there. Dependencies,
-tests and Python test tooling are outside the production runtime denominator.
-Generated exclusions await independent review and are not a general source glob.
+StringMsg/Boolean/Int32/UInt32/Int64/UInt64/Float/Double implement From in both
+directions for their standard Rust scalar/String values. New wrappers have no
+header. Public data fields support assignment while retaining existing metadata.
+Vector2d/Vector3d/Quaternion/Color convert to/from XY/XYZ/XYZW/RGBA arrays.
+Arrays are raw values without math-domain normalization or color clamping.
+vector3/quaternion are convenience constructors. pose(position, orientation)
+constructs geometric fields with default metadata; pose_components returns XYZ
+and XYZW, with absent translation zero and absent orientation identity. Explicit
+zero quaternions remain zero. Broad math conversions remain pending.
 
-`python3 scripts/verify.py` checks hashes, format, clippy, gate-negative cases,
-all Rust/native tests and >95% lines/regions. `.githooks/pre-commit` exports the
-exact index via git archive into a fresh temporary tree before running that gate.
-Install using `git config core.hooksPath .githooks`. CI runs the same verification.
-Each owned source file must pass independently, so crate and repository totals
-necessarily pass too. The CLI and build script are included. No GPU/native engine feature matrix exists in this message crate.
+## Runtime, tooling and provenance
 
-## Standalone tooling and signed zero
+The maintained stack uses prost/prost-build 0.14.4 and prost-reflect 0.16.5.
+Two narrowly patched dependencies are direct path dependencies, preserving fixes
+when this package is consumed without any consumer Cargo patch table. A supported
+prost-build prost_path facade combines standard prost traits with the patched
+derive macros; there is no generated-text rewrite. The independent downstream
+consumer gate proves signed zero, Any traits and nested unknown forwarding.
 
-`gz-msgs list`, `gz-msgs info gz.msgs.Time`, and
-`gz-msgs encode-json|decode-json|encode-text|decode-text gz.msgs.Type` operate via
-stdin/stdout. Errors exit nonzero; binary output has no text envelope. The tool
-owns the standalone `gz-msgs` binary only, not the upstream `gz` dispatcher.
-This additive CLI is not yet a parity claim for upstream `gz msg` grammar.
+The two source diffs under experiments/prost-probe fix float bit comparisons in
+prost-derive encode/encoded_len and prost-reflect's three default-query paths.
+All vendored files have original/archive and current SHA256 provenance in
+vendor/manifest.json; original licenses are retained. The old rust-protobuf
+baseline and failed unmodified maintained-runtime probes remain recorded in
+RUNTIME_PROBE.md. Production now tests the corrected stack, including f32/f64
+positive zero, negative zero, nonzero, NaN and proto2 extension default queries.
 
-System-protoc DescriptorProto output matches Rust-generated descriptors for every
-canonical top-level type, including nested field descriptors. The expanded C++
-corpus exposed rust-protobuf 3.7.2 dropping scalar negative zero during binary
-serialization. build.rs postprocesses only the pinned generator's scalar floating
-default checks (` != 0. {` becomes `.to_bits() != 0 {`). Both size computation
-and writing get the same correction; schemas and descriptors stay unchanged.
-The production build policy is handwritten and instrumented; only resulting
-schema-derived code is excluded. The C++ signed-zero regression is mandatory.
-Any future generator upgrade must rerun it and review/remove this patch.
+`gz-msgs list`, `info gz.msgs.Time`, and
+`encode-json|decode-json|encode-text|decode-text gz.msgs.Type` use stdin/stdout.
+Errors exit nonzero and stdout is explicitly flushed. Text/JSON use the new
+runtime's compact protobuf formatting; info displays descriptor fields. This
+additive standalone CLI does not claim upstream `gz msg` grammar/completion parity
+or own the `gz` dispatcher. External descriptor environment loading, retry and
+concurrency behavior, full Any formatting and point cloud utilities remain pending.
 
-## Primitive conversions and legacy type spellings
+Production builds require system protoc (qualified baseline 3.21.12); C++ peer
+tests additionally require C++17 and libprotobuf. `python3 scripts/verify.py`
+checks schema/vendor hashes, fmt/clippy, negative gate cases, a clean downstream
+consumer, all Rust/native tests and >95% line/region coverage. The staged hook
+exports the exact index to a fresh tree before running that gate.
 
-StringMsg/Boolean/Int32/UInt32/Int64/UInt64/Float/Double implement `From` in both
-directions for String/bool/i32/u32/i64/u64/f32/f64. Constructors initialize an
-empty header; existing messages expose `data` for assignment without changing
-headers or unknown fields. Conversion consumes its input; use generated fields
-for borrowed access. Scalar values are neither clamped nor normalized.
-
-Descriptor lookup also accepts the legacy `gz_msgs.Type` spelling (with optional
-leading dot), preserving original Factory behavior. Unqualified names stay
-unsupported. External descriptor environment loading remains pending.
-
-The generated signed-zero correction expects exactly 546 replacements for the
-pinned schema hash manifest and generator version. Any count drift fails build.
-
-## Geometric values and remaining formatting gap
-
-Vector2d/Vector3d/Quaternion/Color implement From arrays and back, preserving
-XY/XYZ/XYZW/RGBA component order. Arrays are raw values without math-domain
-normalization or color clamping. `pose(position, orientation)` builds geometric
-fields; `pose_components(&pose)` returns XYZ/XYZW, substituting zero translation
-and identity rotation only when those fields are absent. Explicitly present
-zero quaternions remain zero. Message metadata is not part of these domain values.
-
-Known retained-scope gap: rust-protobuf reflection treats signed-zero floating
-scalars as absent defaults, even with corrected generated binary serialization.
-Consequently JSON/text formatting can omit scalar -0.0. For example encoding
-`Vector3d { x: -0.0 }` preserves wire bytes `110000000000000080` but current
-`decode-json` emits `{}` and `decode-text` empty output. This does not meet full
-MSG-02 formatting parity. It is recorded for a separately reviewed runtime-fix
-slice; no claim is made that the formatting surface is fully compatible. Binary
-publication and binary decode/reencode preserve these values. A whole-runtime
-vendor is intentionally deferred pending upstream-fix and ownership evaluation.
+Every handwritten Rust file recursively under src and build.rs is measured. The denominator includes
+only executable changed lines/regions in the two vendored files; unchanged
+third-party lines are excluded by exact provenance, not a general vendor glob.
+LLVM omits syntax-only delimiters and quoted proc-macro token text from line
+instrumentation; missing executable changes fail. The changed build predicates
+and all three reflection paths are measured separately per patched dependency.
+No claim is made that whole third-party crates exceed 95%. Generated canonical
+code and schema-derived aliases are excluded by OUT_DIR provenance only.

@@ -1,13 +1,13 @@
 //! Standalone protobuf inspection tool. Binary bytes only cross stdin/stdout.
+use gz_msgs::{prost::Message, prost_reflect::DynamicMessage};
 use std::io::{Read, Write};
-
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let args: Vec<_> = std::env::args().skip(1).collect();
     if args == ["list"] {
         let mut names: Vec<_> = gz_msgs::files()
             .into_iter()
-            .flat_map(|file| {
-                file.messages()
+            .flat_map(|f| {
+                f.messages()
                     .map(|m| m.full_name().to_owned())
                     .collect::<Vec<_>>()
             })
@@ -21,36 +21,27 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     }
     let descriptor = gz_msgs::descriptor(&args[1]).ok_or("unknown message type")?;
     if args[0] == "info" {
-        println!(
-            "{}",
-            gz_msgs::protobuf::text_format::print_to_string(descriptor.proto())
-        );
+        println!("{:#?}", descriptor.descriptor_proto());
         return Ok(());
     }
     let mut input = Vec::new();
     std::io::stdin().read_to_end(&mut input)?;
     let output = match args[0].as_str() {
-        "encode-json" => gz_msgs::protobuf_json_mapping::parse_dyn_from_str(
-            &descriptor,
-            std::str::from_utf8(&input)?,
+        "encode-json" => DynamicMessage::deserialize(
+            descriptor,
+            &mut gz_msgs::serde_json::Deserializer::from_slice(&input),
         )?
-        .write_to_bytes_dyn()?,
+        .encode_to_vec(),
         "decode-json" => {
-            gz_msgs::protobuf_json_mapping::print_to_string(&*descriptor.parse_from_bytes(&input)?)?
-                .into_bytes()
+            gz_msgs::serde_json::to_vec(&DynamicMessage::decode(descriptor, input.as_slice())?)?
         }
         "encode-text" => {
-            let mut message = descriptor.new_instance();
-            gz_msgs::protobuf::text_format::merge_from_str(
-                &mut *message,
-                std::str::from_utf8(&input)?,
-            )?;
-            message.write_to_bytes_dyn()?
+            DynamicMessage::parse_text_format(descriptor, std::str::from_utf8(&input)?)?
+                .encode_to_vec()
         }
-        "decode-text" => {
-            gz_msgs::protobuf::text_format::print_to_string(&*descriptor.parse_from_bytes(&input)?)
-                .into_bytes()
-        }
+        "decode-text" => DynamicMessage::decode(descriptor, input.as_slice())?
+            .to_text_format()
+            .into_bytes(),
         _ => return Err("unknown command".into()),
     };
     let mut stdout = std::io::stdout().lock();

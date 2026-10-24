@@ -1,46 +1,63 @@
+use heck::{ToSnakeCase, ToUpperCamelCase};
+use prost::Message;
 fn main() {
     let mut schemas: Vec<_> = std::fs::read_dir("schemas/gz/msgs")
         .unwrap()
-        .map(|entry| entry.unwrap().path())
-        .filter(|path| {
-            path.extension()
-                .is_some_and(|extension| extension == "proto")
-        })
+        .map(|e| e.unwrap().path())
+        .filter(|p| p.extension().is_some_and(|e| e == "proto"))
         .collect();
     schemas.sort();
-    let registry = schemas
-        .iter()
-        .map(|path| {
-            format!(
-                "{}::file_descriptor().clone(),",
-                path.file_stem().unwrap().to_str().unwrap()
-            )
-        })
-        .collect::<String>();
-    std::fs::write(
-        std::path::Path::new(&std::env::var("OUT_DIR").unwrap()).join("registry.rs"),
-        format!("pub fn files() -> Vec<protobuf::reflect::FileDescriptor> {{ vec![{registry}] }}"),
+    println!("cargo:rerun-if-changed=schemas");
+    let out = std::path::PathBuf::from(std::env::var("OUT_DIR").unwrap());
+    prost_build::Config::new()
+        .prost_path("crate::runtime")
+        .enable_type_names()
+        .type_name_domain(["."], "type.googleapis.com")
+        .file_descriptor_set_path(out.join("messages.pb"))
+        .compile_protos(&schemas, &["schemas"])
+        .unwrap();
+    let descriptors = prost_types::FileDescriptorSet::decode(
+        std::fs::read(out.join("messages.pb")).unwrap().as_slice(),
     )
     .unwrap();
-    println!("cargo:rerun-if-changed=schemas");
-    protobuf_codegen::Codegen::new()
-        .pure()
-        .includes(["schemas"])
-        .inputs(schemas)
-        .cargo_out_dir("generated")
-        .run_from_script();
-    // rust-protobuf 3.7.2 compares float defaults numerically, losing -0.0.
-    // Protobuf's proto3 C++ serializer checks bits; preserve its wire semantics.
-    let generated = std::path::Path::new(&std::env::var("OUT_DIR").unwrap()).join("generated");
-    let mut float_checks = 0;
-    for entry in std::fs::read_dir(generated).unwrap() {
-        let path = entry.unwrap().path();
-        let source = std::fs::read_to_string(&path).unwrap();
-        float_checks += source.matches(" != 0. {").count();
-        std::fs::write(path, source.replace(" != 0. {", ".to_bits() != 0 {")).unwrap();
+    let mut aliases = String::new();
+    for file in descriptors
+        .file
+        .iter()
+        .filter(|f| f.name().starts_with("gz/msgs/"))
+    {
+        let stem = std::path::Path::new(file.name())
+            .file_stem()
+            .unwrap()
+            .to_str()
+            .unwrap()
+            .to_owned();
+        aliases += &format!("pub mod {stem} {{");
+        for message in &file.message_type {
+            aliases += &format!(
+                "pub use crate::msgs::{} as {};",
+                message.name().to_upper_camel_case(),
+                message.name()
+            );
+            if !message.enum_type.is_empty()
+                || !message.oneof_decl.is_empty()
+                || message
+                    .nested_type
+                    .iter()
+                    .any(|m| !m.options.as_ref().is_some_and(|o| o.map_entry()))
+            {
+                let nested = message.name().to_snake_case();
+                aliases += &format!("pub use crate::msgs::{nested};");
+            }
+        }
+        for enumeration in &file.enum_type {
+            aliases += &format!(
+                "pub use crate::msgs::{} as {};",
+                enumeration.name().to_upper_camel_case(),
+                enumeration.name()
+            );
+        }
+        aliases += "}";
     }
-    assert_eq!(
-        float_checks, 546,
-        "pinned generator/schema float patch drift"
-    );
+    std::fs::write(out.join("aliases.rs"), aliases).unwrap();
 }

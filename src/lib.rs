@@ -1,22 +1,64 @@
-//! Gazebo's canonical messages. Generated modules retain upstream file names.
-include!(concat!(env!("OUT_DIR"), "/generated/mod.rs"));
-pub use clock::Clock;
-pub use imu::IMU;
-pub use pose::Pose;
-pub use protobuf;
-pub use time::Time;
-include!(concat!(env!("OUT_DIR"), "/registry.rs"));
+//! Canonical Gazebo values and an explicit lossless wire envelope.
+pub use {prost, prost_reflect, prost_types, serde_json};
+/// Standard prost traits/types with the reviewed derive macro fixes.
+#[doc(hidden)]
+pub mod runtime {
+    pub use prost::*;
+    pub use prost_derive::{Enumeration, Message, Oneof};
+}
+pub mod msgs {
+    include!(concat!(env!("OUT_DIR"), "/gz.msgs.rs"));
+}
+include!(concat!(env!("OUT_DIR"), "/aliases.rs"));
+pub use msgs::{Clock, Imu as IMU, Pose, Time};
+use std::sync::OnceLock;
 
-/// Find a canonical descriptor by fully qualified protobuf name.
-pub fn descriptor(name: &str) -> Option<protobuf::reflect::MessageDescriptor> {
+pub fn descriptors() -> &'static prost_reflect::DescriptorPool {
+    static POOL: OnceLock<prost_reflect::DescriptorPool> = OnceLock::new();
+    POOL.get_or_init(|| {
+        prost_reflect::DescriptorPool::decode(
+            include_bytes!(concat!(env!("OUT_DIR"), "/messages.pb")).as_ref(),
+        )
+        .expect("generated descriptors")
+    })
+}
+
+/// Canonical files only; imported Google types remain available in the pool.
+pub fn files() -> Vec<prost_reflect::FileDescriptor> {
+    descriptors()
+        .files()
+        .filter(|f| f.name().starts_with("gz/msgs/"))
+        .collect()
+}
+
+pub fn descriptor(name: &str) -> Option<prost_reflect::MessageDescriptor> {
     let name = name.trim_start_matches('.');
-    let name = match name.strip_prefix("gz_msgs.") {
-        Some(local) => format!(".gz.msgs.{local}"),
-        None => format!(".{name}"),
+    let canonical = match name.strip_prefix("gz_msgs.") {
+        Some(local) => format!("gz.msgs.{local}"),
+        None => name.to_owned(),
     };
-    files()
-        .into_iter()
-        .find_map(|file| file.message_by_full_name(&name))
+    descriptors().get_message_by_name(&canonical)
+}
+
+/// A read-only typed view plus the original bytes, including all nested unknowns.
+/// Forward bytes() verbatim. Generated typed decode/encode alone drops unknowns.
+pub struct WireMessage<M> {
+    bytes: Vec<u8>,
+    value: M,
+}
+impl<M: prost::Message + Default> WireMessage<M> {
+    pub fn decode(bytes: &[u8]) -> Result<Self, prost::DecodeError> {
+        Ok(Self {
+            bytes: bytes.to_vec(),
+            value: M::decode(bytes)?,
+        })
+    }
+    pub fn value(&self) -> &M {
+        &self.value
+    }
+    pub fn bytes(&self) -> &[u8] {
+        &self.bytes
+    }
 }
 
 /// Convert integer nanoseconds without imposing wall-clock timestamp limits.
@@ -24,7 +66,6 @@ pub fn time_from_nanos(nanos: i64) -> Time {
     Time {
         sec: nanos.div_euclid(1_000_000_000),
         nsec: nanos.rem_euclid(1_000_000_000) as i32,
-        ..Default::default()
     }
 }
 
@@ -48,8 +89,8 @@ pub fn quaternion(value: [f64; 4]) -> quaternion::Quaternion {
 /// Constructs only a pose's geometric fields; names/IDs/headers remain default.
 pub fn pose(position: [f64; 3], orientation: [f64; 4]) -> Pose {
     Pose {
-        position: Some(position.into()).into(),
-        orientation: Some(orientation.into()).into(),
+        position: Some(position.into()),
+        orientation: Some(orientation.into()),
         ..Default::default()
     }
 }
@@ -64,7 +105,5 @@ pub fn pose_components(pose: &Pose) -> ([f64; 3], [f64; 4]) {
         .map_or([0., 0., 0., 1.], |q| [q.x, q.y, q.z, q.w]);
     (position, orientation)
 }
-
-pub use protobuf_json_mapping;
 
 mod conversions;

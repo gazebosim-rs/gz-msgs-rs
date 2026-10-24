@@ -38,12 +38,12 @@ fn formats_and_commands() {
         let json = run(&["decode-json", "gz.msgs.Time"], &encoded.stdout);
         assert!(json.status.success());
         assert_eq!(
-            String::from_utf8(json.stdout).unwrap(),
-            r#"{"sec": "7", "nsec": 8}"#
+            gz_msgs::serde_json::from_slice::<gz_msgs::serde_json::Value>(&json.stdout).unwrap(),
+            gz_msgs::serde_json::json!({"sec":"7","nsec":8})
         );
         let text = run(&["decode-text", "gz.msgs.Time"], &encoded.stdout);
         assert!(text.status.success());
-        assert_eq!(String::from_utf8(text.stdout).unwrap(), "sec: 7 nsec: 8");
+        assert_eq!(String::from_utf8(text.stdout).unwrap(), "sec:7,nsec:8");
     }
     for args in [&[][..], &["nonsense", "gz.msgs.Time"], &["info", "missing"]] {
         assert!(!run(args, &[]).status.success());
@@ -81,4 +81,24 @@ fn invalid_utf8_and_io_failure() {
         .unwrap();
     assert!(!output.status.success());
     assert!(String::from_utf8_lossy(&output.stderr).contains("space"));
+}
+
+#[test]
+fn negative_zero_survives_tooling_formats() {
+    for name in ["gz.msgs.Float", "gz.msgs.Double"] {
+        let encoded = run(&["encode-text", name], b"data: -0");
+        assert!(encoded.status.success());
+        assert!(!encoded.stdout.is_empty());
+        for (decode, encode) in [
+            ("decode-text", "encode-text"),
+            ("decode-json", "encode-json"),
+        ] {
+            let text = run(&[decode, name], &encoded.stdout);
+            assert!(text.status.success());
+            assert!(String::from_utf8_lossy(&text.stdout).contains("-0"));
+            let roundtrip = run(&[encode, name], &text.stdout);
+            assert!(roundtrip.status.success());
+            assert_eq!(roundtrip.stdout, encoded.stdout);
+        }
+    }
 }

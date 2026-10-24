@@ -1,25 +1,26 @@
 # Gazebo Messages in Rust
 
-Canonical Gazebo protobuf schemas, generated Rust types, runtime reflection and
-small dependency-free domain conversion helpers. Apache-2.0; upstream notices
-are retained with the schemas.
+Canonical Gazebo schemas, generated Rust values, runtime descriptors, conversion
+helpers and a standalone message tool. Apache-2.0; upstream notices are retained.
 
 ```rust
-use gz_msgs::{Clock, time_from_nanos, protobuf::Message};
-let clock = Clock { sim: Some(time_from_nanos(123)).into(), ..Default::default() };
-let bytes = clock.write_to_bytes()?;
-# Ok::<(), gz_msgs::protobuf::Error>(())
+use gz_msgs::{Clock, time_from_nanos, prost::Message};
+let clock = Clock { sim: Some(time_from_nanos(123)), ..Default::default() };
+let bytes = clock.encode_to_vec();
 ```
 
-See [the API contract](docs/API.md) and [test ledger](docs/test-ledger.json).
-This is a validated initial MSG-01 slice, not a complete Gazebo Messages rewrite.
-Full upstream conversion/tooling test parity and packaging remain pending.
+Generated values discard unknown fields on decode. For lossless forwarding use
+`WireMessage::<Clock>::decode(&bytes)`, inspect `value()` and forward `bytes()`
+verbatim. See [the API contract](docs/API.md), [test ledger](docs/test-ledger.json)
+and [runtime qualification](docs/RUNTIME_PROBE.md).
 
-Requires Rust 1.94.1. `cargo test --locked` runs binary conformance against system
-`protoc`, a C++17 compiler and libprotobuf development files. Production builds
-use pinned Rust-only codegen and do not need native protobuf. Run all quality
-gates with `python3 scripts/verify.py`; install the staged-tree pre-commit hook
-with `git config core.hooksPath .githooks`.
-
-The canonical architecture, scope and acceptance policy live in
+This is a validated initial MSG-01/MSG-02 slice, not complete Gazebo Messages
+parity. Full conversion, original CLI and descriptor-loading behavior remain
+pending. The canonical architecture and acceptance policy live in
 [gz-sim-rs](https://github.com/gazebosim-rs/gz-sim-rs/blob/main/docs/PLAN.md).
+
+Requires Rust 1.94.1 and protoc (qualified baseline 3.21.12). `cargo test --locked`
+also needs a C++17 compiler and libprotobuf development files. Run the quality
+gate with `python3 scripts/verify.py`; install staged-tree enforcement using
+`git config core.hooksPath .githooks`. The two vendored dependency fixes apply
+transitively without downstream Cargo patch configuration.

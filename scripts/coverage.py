@@ -13,12 +13,13 @@ for p in out.glob('*.profraw'): p.unlink()
 env['CARGO_TARGET_DIR'] = str(out / 'build')
 env['RUSTFLAGS'] = '-C instrument-coverage'
 env['LLVM_PROFILE_FILE'] = str(out / '%p-%m.profraw')
-subprocess.run([cargo, 'clean', '-p', 'gz-msgs'], env=env, check=True)
+subprocess.run([cargo, 'clean', '-p', 'gz-msgs', '-p', 'prost-derive', '-p', 'prost-reflect'], env=env, check=True)
 subprocess.run([cargo, 'test', '--locked', '--tests'], env=env, check=True)
 subprocess.run([str(llvm / 'llvm-profdata'), 'merge', '-sparse', *map(str, out.glob('*.profraw')), '-o', str(out / 'merged.profdata')], check=True)
 metadata = subprocess.check_output([cargo, 'test', '--locked', '--tests', '--no-run', '--message-format=json'], env=env, text=True)
 objects = [json.loads(line)['executable'] for line in metadata.splitlines() if line.startswith('{') and json.loads(line).get('executable')]
 objects += list(map(str, (out / 'build/debug/build').glob('gz-msgs-*/build-script-build')))
+objects += list(map(str, (out / 'build/debug/deps').glob('libprost_derive-*.so')))
 # Coverage's denominator is all handwritten production Rust; only compiler-generated
 # OUT_DIR artifacts and nonproduction dependencies/tests/tooling are outside it.
 # The handwritten build.rs is an explicitly required measured production source.
@@ -26,4 +27,6 @@ args = [str(llvm / 'llvm-cov'), 'export', '-instr-profile=' + str(out / 'merged.
 for obj in objects: args += ['-object', obj]
 with (out / 'coverage.json').open('w') as stream:
     subprocess.run(args, stdout=stream, check=True)
+with (out / 'coverage.lcov').open('w') as stream:
+    subprocess.run([*args, '-format=lcov'], stdout=stream, check=True)
 subprocess.run(['python3', 'scripts/check-coverage.py', str(out / 'coverage.json')], check=True)

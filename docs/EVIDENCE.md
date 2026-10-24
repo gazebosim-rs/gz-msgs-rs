@@ -85,3 +85,38 @@ crates fail 8 required signed-zero cases; patched target-only crates pass all 29
 See RUNTIME_PROBE.md and exact dependency patches. The production runtime is not
 changed by this experiment. Neither this probe nor current formatting gap is
 misreported as completed MSG-02 compatibility.
+
+## Maintained-runtime migration
+
+/root approved the exact two dependency patches, provenance-specific unchanged
+upstream exclusions, owned-predicate coverage accounting, supported prost_path
+facade and direct path dependency design. The production package now uses
+prost/prost-build 0.14.4, direct patched prost-derive 0.14.4 and prost-reflect
+0.16.5. No root Cargo patch table is required. Publishing stays disabled pending
+separate vendor/package release qualification; immutable Git consumption works.
+
+`python3 scripts/test-downstream.py` builds a clean separate Cargo consumer with
+no patches. Standard prost::Message, prost_types::Any packing/unpacking, canonical
+Parameter+Clock, generated/reflected signed zero and nested unknown forwarding
+pass. The gate repeats this test. `scripts/test-staged.py` still rejects staged
+broken time conversion despite an unstaged working fix under the new stack.
+
+`python3 scripts/verify.py` passes: 22 integration tests, schema/vendor hashes,
+fmt/clippy -Dwarnings, strict threshold negative tests, clean downstream and
+coverage. Additional tests cover all three reflection-default methods including
+real proto2 extension descriptors, f32/f64 positive zero/negative zero/nonzero/NaN,
+generated encoded_len, explicit dynamic edits preserving unknown fields, and
+standalone CLI negative-zero JSON/text roundtrips. Existing C++ descriptor, 1 MiB
+image, unknown enum, malformed and four-message peer tests all remain enabled.
+CLI compact JSON/text layout changed with the runtime; values and protobuf syntax
+remain equivalent. The original gz command-grammar ledger remains not_ported.
+
+Owned coverage: build.rs 63/63 lines, 82/82 regions; lib.rs 67/67 lines, 93/93
+regions; conversions.rs 13/13 lines, 12/12 regions; CLI 47/47 lines, 90/92 regions
+(97.83%). Changed vendored predicates: prost-derive 6/6 executable lines, 8/8
+regions; prost-reflect 9/9 executable lines, 28/28 regions. These are not whole
+third-party crate coverage claims. LLVM excludes delimiter-only and quoted token
+lines from executable line counts; every modified line remains provenance-listed
+and missing executable instrumentation fails. Combined host/runtime LLVM export
+also emits shared-function mismatch diagnostics; acceptance uses required owned
+source and owned-predicate counters, not third-party aggregate percentages.

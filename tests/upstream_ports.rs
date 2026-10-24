@@ -36,14 +36,7 @@ fn factory_type_and_new() {
         ".gz.msgs.Vector3d",
         ".gz_msgs.Vector3d",
     ] {
-        assert_eq!(
-            descriptor(name)
-                .unwrap()
-                .new_instance()
-                .descriptor_dyn()
-                .full_name(),
-            "gz.msgs.Vector3d"
-        );
+        assert_eq!(descriptor(name).unwrap().full_name(), "gz.msgs.Vector3d");
     }
     assert!(descriptor("StringMsg").is_none());
     assert!(descriptor("example.msgs.StringMsg").is_none());
@@ -53,14 +46,7 @@ fn factory_type_and_new() {
         "gz.msgs.SerializedStepMap",
     ] {
         assert!(names.contains(&name.into()));
-        assert_eq!(
-            descriptor(name)
-                .unwrap()
-                .new_instance()
-                .descriptor_dyn()
-                .full_name(),
-            name
-        );
+        assert_eq!(descriptor(name).unwrap().full_name(), name);
     }
 }
 
@@ -77,13 +63,13 @@ fn utility_time_point() {
 
 #[test]
 fn python_basic_serialization() {
-    use gz_msgs::protobuf::Message;
+    use gz_msgs::prost::Message;
     let message = vector3([1., 2., 3.]);
-    let bytes = message.write_to_bytes().unwrap();
+    let bytes = message.encode_to_vec();
     assert!(!bytes.is_empty());
     let mut decoded = vector3d::Vector3d::default();
     assert_ne!(decoded, message);
-    decoded.merge_from_bytes(&bytes).unwrap();
+    decoded.merge(bytes.as_slice()).unwrap();
     assert_eq!(decoded, message);
 }
 
@@ -103,7 +89,7 @@ fn utility_vector_and_color_conversions() {
 #[test]
 fn pose_defaults_distinguish_missing_and_zero_orientation() {
     let pose = Pose {
-        position: Some(vector3([1., 2., 2.])).into(),
+        position: Some(vector3([1., 2., 2.])),
         ..Default::default()
     };
     let (_, orientation) = pose_components(&pose);
@@ -119,15 +105,16 @@ fn pose_defaults_distinguish_missing_and_zero_orientation() {
 }
 
 #[test]
+#[allow(clippy::field_reassign_with_default)] // These preserve the original setter assertions.
 fn utility_primitive_assignment() {
-    let mut string = stringmsg::StringMsg::new();
+    let mut string = stringmsg::StringMsg::default();
     string.data = "a string msg".into();
     assert_eq!(string.data, "a string msg");
     string.data = "a string msg2".into();
     assert_eq!(string.data, "a string msg2");
     macro_rules! assign {
         ($message:path, $value:expr) => {
-            let mut message = <$message>::new();
+            let mut message = <$message>::default();
             message.data = $value;
             assert_eq!(message.data, $value);
         };
