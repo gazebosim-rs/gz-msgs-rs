@@ -100,7 +100,10 @@ third-party lines are excluded by exact provenance, not a general vendor glob.
 LLVM omits syntax-only delimiters and quoted proc-macro token text from line
 instrumentation; missing executable changes fail. The changed build predicates
 and all three reflection paths are measured separately per patched dependency.
-No claim is made that whole third-party crates exceed 95%. Generated canonical
+No claim is made that whole third-party crates exceed 95%. Only owned package
+manifests are instrumented by a content-fingerprinted wrapper; unrelated registry
+and Git dependencies are excluded from instrumentation. LLVM export rejects all
+warnings. Generated canonical
 code, schema-derived aliases and pinned native descriptor-text lookup tables are
 excluded by explicit corpus/OUT_DIR provenance only.
 

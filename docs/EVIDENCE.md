@@ -198,3 +198,26 @@ Any individually. Map-entry headings/empty body and qualified names match native
 All five unchanged C++ tests remain enabled. Full local gate passes 30 integration
 tests and all required owned line/region thresholds; the CLI family remains pending
 independent acceptance. Tracker publication instructions are persisted in AGENTS.md.
+
+## Owned instrumentation and reviewed mapping records
+
+Coverage now instruments only this package and the two exact vendored packages
+selected by their manifests. Registry/Git dependencies stay outside ownership and
+instrumentation. A wrapper-content digest enters Cargo's flag fingerprint; owned
+packages are forced to rebuild, and only the owned proc-macro object is exported.
+LLVM export uses --fatal-warnings and completes cleanly, eliminating prior shared
+dependency counter mismatch warnings. Selector tests cover root, both vendors,
+foreign crates and compiler-query invocations. All 30 integration tests, the
+unchanged CLI C++ suite, native info corpus and owned-predicate thresholds pass.
+
+/root reviewed and approved this gate update and the mapping records. Six enum
+mappings now record /root's source-by-source review; five CLI mappings record
+/root and /root/sdformat acceptance after complete-output native comparisons.
+Diagnostic text in the enum fixture is captured for reference and source-inspected;
+the 197-case automated comparison checks returned values. The ledger now has
+25 reviewed ports, 15 pending-review ports and 43 not-ported cases out of 83.
+
+Hosted GitHub CI passed revision 22a0482fbf17e6469b59be4d217875262f916f94:
+https://github.com/gazebosim-rs/gz-msgs-rs/actions/runs/40111717896 . This hosted
+result does not qualify later unpushed gate changes; those have separate local
+staged-tree verification and await their own linked CI result.

@@ -26,3 +26,14 @@ with tempfile.TemporaryDirectory() as directory:
         except ValueError:actual=False
         assert actual==expected
 print('Owned dependency gates: exactly 95 line/region and missing instrumentation rejected')
+
+# Global wrapper selection includes both patched dependencies, but not registries.
+import os, subprocess
+wrapper=root/'scripts/rustc-coverage.py'
+for manifest,expected in [(str(root),True),(str(root/'vendor/prost-derive-0.14.4'),True),(str(root/'vendor/prost-reflect-0.16.5'),True),('/tmp/unowned-protobuf',False),(None,False)]:
+    env=os.environ.copy();env['GZ_MSGS_COVERAGE_ROOT']=str(root)
+    if manifest is None:env.pop('CARGO_MANIFEST_DIR',None)
+    else:env['CARGO_MANIFEST_DIR']=manifest
+    output=subprocess.check_output([str(wrapper),'/bin/echo','--crate-name','fixture'],env=env,text=True).strip()
+    assert output=='--crate-name fixture'+(' -C instrument-coverage' if expected else '')
+print('Coverage selection: owned root/two patched vendors included; unowned/query invocations excluded')

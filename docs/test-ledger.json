@@ -592,45 +592,57 @@
       "id": "MsgsTest.ConvertMsgsJointTypeToString",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "enum_names::original_enum_roundtrip_and_discovery_bound_assertions",
         "enum_names::native_enum_spelling_and_fallback_corpus"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root",
+      "reviewed_commit": "2f283f382a3dd60477983f9770b1850d497775d0",
+      "review_note": "Original assertions independently compared. Native fixture compares returned values; diagnostic formatting was source-inspected."
     },
     {
       "id": "MsgsTest.ConvertMsgsGeometryTypeToString",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "enum_names::original_enum_roundtrip_and_discovery_bound_assertions",
         "enum_names::native_enum_spelling_and_fallback_corpus"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root",
+      "reviewed_commit": "2f283f382a3dd60477983f9770b1850d497775d0",
+      "review_note": "Original assertions independently compared. Native fixture compares returned values; diagnostic formatting was source-inspected."
     },
     {
       "id": "MsgsTest.ConvertMsgsShaderTypeToString",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "enum_names::original_enum_roundtrip_and_discovery_bound_assertions",
         "enum_names::native_enum_spelling_and_fallback_corpus"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root",
+      "reviewed_commit": "2f283f382a3dd60477983f9770b1850d497775d0",
+      "review_note": "Original assertions independently compared. Native fixture compares returned values; diagnostic formatting was source-inspected."
     },
     {
       "id": "MsgsTest.ConvertMsgsPixelFormatTypeToString",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "enum_names::original_enum_roundtrip_and_discovery_bound_assertions",
         "enum_names::native_enum_spelling_and_fallback_corpus"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root",
+      "reviewed_commit": "2f283f382a3dd60477983f9770b1850d497775d0",
+      "review_note": "Original assertions independently compared. Native fixture compares returned values; diagnostic formatting was source-inspected."
     },
     {
       "id": "UtilityTest.CovertMathAxisAlignedBox",
@@ -652,12 +664,15 @@
       "id": "UtilityTest.DiscoveryTypeString",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "enum_names::original_enum_roundtrip_and_discovery_bound_assertions",
         "enum_names::native_enum_spelling_and_fallback_corpus"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root",
+      "reviewed_commit": "2f283f382a3dd60477983f9770b1850d497775d0",
+      "review_note": "Original assertions independently compared. Native fixture compares returned values; diagnostic formatting was source-inspected."
     },
     {
       "id": "FactoryTest.DynamicFactory",
@@ -703,49 +718,61 @@
       "id": "CmdLine.Version",
       "source": "test/integration/gz_TEST.cc",
       "source_sha256": "fcf8487aaf14ec95a60a1b8d042132189e47edbe5e3b93fe239185eacd6969db",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "cli::native_cli_version_help_list_info_and_completion_assertions"
       ],
       "native_status": "passed",
       "rehosted_cpp": "cli::unchanged_cpp_cli_assertions",
-      "rehosted_source": "tests/reference/gz_TEST.cc"
+      "rehosted_source": "tests/reference/gz_TEST.cc",
+      "reviewer": "/root and /root/sdformat",
+      "reviewed_commit": "22a0482fbf17e6469b59be4d217875262f916f94",
+      "review_note": "Original five C++ tests unchanged; independent complete-output comparison for all 271 info descriptors closes broader fidelity gap."
     },
     {
       "id": "CmdLine.Help",
       "source": "test/integration/gz_TEST.cc",
       "source_sha256": "fcf8487aaf14ec95a60a1b8d042132189e47edbe5e3b93fe239185eacd6969db",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "cli::native_cli_version_help_list_info_and_completion_assertions"
       ],
       "native_status": "passed",
       "rehosted_cpp": "cli::unchanged_cpp_cli_assertions",
-      "rehosted_source": "tests/reference/gz_TEST.cc"
+      "rehosted_source": "tests/reference/gz_TEST.cc",
+      "reviewer": "/root and /root/sdformat",
+      "reviewed_commit": "22a0482fbf17e6469b59be4d217875262f916f94",
+      "review_note": "Original five C++ tests unchanged; independent complete-output comparison for all 271 info descriptors closes broader fidelity gap."
     },
     {
       "id": "CmdLine.MsgList",
       "source": "test/integration/gz_TEST.cc",
       "source_sha256": "fcf8487aaf14ec95a60a1b8d042132189e47edbe5e3b93fe239185eacd6969db",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "cli::native_cli_version_help_list_info_and_completion_assertions"
       ],
       "native_status": "passed",
       "rehosted_cpp": "cli::unchanged_cpp_cli_assertions",
-      "rehosted_source": "tests/reference/gz_TEST.cc"
+      "rehosted_source": "tests/reference/gz_TEST.cc",
+      "reviewer": "/root and /root/sdformat",
+      "reviewed_commit": "22a0482fbf17e6469b59be4d217875262f916f94",
+      "review_note": "Original five C++ tests unchanged; independent complete-output comparison for all 271 info descriptors closes broader fidelity gap."
     },
     {
       "id": "CmdLine.MsgInfo",
       "source": "test/integration/gz_TEST.cc",
       "source_sha256": "fcf8487aaf14ec95a60a1b8d042132189e47edbe5e3b93fe239185eacd6969db",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "cli::native_cli_version_help_list_info_and_completion_assertions"
       ],
       "native_status": "passed",
       "rehosted_cpp": "cli::unchanged_cpp_cli_assertions",
-      "rehosted_source": "tests/reference/gz_TEST.cc"
+      "rehosted_source": "tests/reference/gz_TEST.cc",
+      "reviewer": "/root and /root/sdformat",
+      "reviewed_commit": "22a0482fbf17e6469b59be4d217875262f916f94",
+      "review_note": "Original five C++ tests unchanged; independent complete-output comparison for all 271 info descriptors closes broader fidelity gap."
     },
     {
       "id": "Messages.NestedHeaders",
@@ -759,11 +786,14 @@
       "id": "Image.PixelFormat",
       "source": "test/integration/image_msg.cc",
       "source_sha256": "816bf43cf1a05ef1a80dabcc897b8c55da2e5d97b782e15fce492297e86ce28f",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "enum_names::original_image_pixel_format_defaults_and_assignment"
       ],
-      "native_status": "passed"
+      "native_status": "passed",
+      "reviewer": "/root",
+      "reviewed_commit": "2f283f382a3dd60477983f9770b1850d497775d0",
+      "review_note": "Original assertions independently compared. Native fixture compares returned values; diagnostic formatting was source-inspected."
     },
     {
       "id": "basic_TEST.py:test_serialization",
@@ -781,14 +811,17 @@
       "id": "CmdLine.MsgHelpVsCompletionFlags",
       "source": "test/integration/gz_TEST.cc",
       "source_sha256": "fcf8487aaf14ec95a60a1b8d042132189e47edbe5e3b93fe239185eacd6969db",
-      "status": "ported_pending_review",
+      "status": "ported",
       "rust_tests": [
         "cli::native_cli_version_help_list_info_and_completion_assertions"
       ],
       "native_status": "passed",
       "guard": "GZ_UTILS_TEST_DISABLED_ON_WIN32 (Linux retained)",
       "rehosted_cpp": "cli::unchanged_cpp_cli_assertions",
-      "rehosted_source": "tests/reference/gz_TEST.cc"
+      "rehosted_source": "tests/reference/gz_TEST.cc",
+      "reviewer": "/root and /root/sdformat",
+      "reviewed_commit": "22a0482fbf17e6469b59be4d217875262f916f94",
+      "review_note": "Original five C++ tests unchanged; independent complete-output comparison for all 271 info descriptors closes broader fidelity gap."
     }
   ],
   "runtime_test_ids": [
