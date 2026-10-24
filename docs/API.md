@@ -87,14 +87,19 @@ message_info returns complete CLI text. The original licensed completion script
 is preserved. Five unchanged original
 C++ CLI tests run against the Rust binary in the gate, with only package-version
 and artifact-path bindings. This package does not own the gz dispatcher.
-External descriptor environment loading, retry/concurrency, full Any formatting
+External descriptor environment/lazy loading, full factory cache/retry/concurrency, full Any formatting
 and point cloud utilities remain pending.
 
 Production builds require system protoc (qualified baseline 3.21.12); C++ peer
 tests additionally require C++17 and libprotobuf; the unchanged CLI suite uses system gtest. `python3 scripts/verify.py`
 checks schema/vendor hashes, fmt/clippy, negative gate cases, a clean downstream
 consumer, all Rust/native tests and >95% line/region coverage. The staged hook
-exports the exact index to a fresh tree before running that gate.
+freezes the index, exports every blob via a private Git index, and checks raw
+Git blob hashes, file/symlink types, owner-executable modes and complete path sets
+before compiling. This includes export-ignore inputs and rejects EOL/smudge
+transformations. It rejects concurrent index or HEAD changes after verification.
+Five scratch-Git regressions run in the gate, alongside the existing full-build
+partial-staging failure demonstration in CI.
 
 Every handwritten Rust file recursively under src and build.rs is measured. The denominator includes
 only executable changed lines/regions in the two vendored files; unchanged

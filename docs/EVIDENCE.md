@@ -325,3 +325,30 @@ partial retry/snapshots and provenance. Review requested explicit Bar constructi
 beyond lookup; the final port includes it. Diagnostics now use a relative fixture
 directory, preserving native output without capturing a host-specific path. The
 single retry mapping is marked reviewed; remaining factory scope is unchanged.
+
+## Exact staged Git blob hardening
+
+The old git archive export could honor export-ignore attributes and omit owned
+inputs from the staged denominator. The hook now freezes the index tree and
+checks out a private index, including every frozen blob. The independently
+reviewed transport 2bbbf8c validation helper is reused: exported path sets, raw
+SHA1/SHA256 Git blob identities, file/symlink types and owner-executable bits must
+match before build code executes. Checkout EOL/smudge transformations fail closed.
+After the full verifier returns, both the real index tree and HEAD must still
+match the captured values. No Rust source, coverage denominator, exclusions or
+threshold changes are part of this quality slice.
+
+Five scratch-Git tests cover exact staged bytes despite an unstaged fix and
+export-ignore, CRLF substitution rejection before the verifier runs, content/
+extra-path/file-type/mode substitutions (including mode0645 versus100755), valid
+and changed symlinks, unsupported gitlinks, and separate index/HEAD mutations.
+They run inside scripts/verify.py. The existing full-build broken Time conversion
+versus unstaged fix demonstration remains unchanged in CI.
+
+/root/transport independently approved exact five-file diff
+`a39637e54f778c54b65992885358f5f9eeb71f887ba3432e180eb4d96c52146a`
+after source review and independently rerunning all five snapshot regressions.
+The full-build staged broken Time/unstaged fix demonstration also passes with
+the new snapshot implementation. The full 40-test local gate passes with
+unchanged owned Rust coverage, 451/451 lines and 645/653 regions. A matching
+strict staged gate remains required for this commit.
