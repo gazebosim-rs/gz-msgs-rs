@@ -9,6 +9,7 @@ description = "Canonical Gazebo protobuf messages, reflection, and conversion he
 build = "build.rs"
 
 [dependencies]
+bytemuck = "=1.25.2"
 prost = "=0.14.4"
 prost-derive = { path = "vendor/prost-derive-0.14.4", version = "=0.14.4" }
 prost-types = "=0.14.4"

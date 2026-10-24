@@ -132,3 +132,20 @@ arithmetic is explicitly wrapping u32. No unsafe pointer/iterator API is exposed
 A native corpus verifies 30 complete protobuf layouts and ten size cases on the
 recorded word-size target. Byte/scalar access, color aliases and iterator assertion
 families remain pending; metadata parity does not claim those features.
+
+
+`cloud::read_native<T: bytemuck::Pod>` and `write_native` safely expose the
+legacy iterator's byte addressing without returning aliased references. `point`
+advances by `point_step`, and `element` advances by `size_of::<T>()` contiguously,
+including across point boundaries when still inside the blob. Declared field
+count/datatype and width/height/row_step do not constrain that addressing. Direct
+fields win over RGB/RGBA aliases; otherwise the first packed color field supplies
+r/g/b/a offsets selected by `is_bigendian`. Scalar bytes always use host byte order,
+matching the native iterator; these functions do not perform endian conversion.
+
+Missing fields, zero-size types/stride, arithmetic overflow, point indices outside
+the complete-record count and byte ranges beyond the data return `None`. Writes
+then leave data unchanged. Safe unaligned Pod reads use pinned bytemuck 1.25.2;
+no owned pointer casts or unsafe code are needed. Empty/invalid blobs cannot
+reproduce the native iterator's undefined pointer operations. Borrowed mutable
+iterator and pointer-identity operators are not exposed or claimed ported.

@@ -67,3 +67,71 @@ pub fn init_point_cloud_packed(
     }
     cloud.point_step = offset;
 }
+
+/// Resolve direct fields before legacy packed RGB/RGBA byte aliases.
+fn field_offset(cloud: &PointCloudPacked, name: &str) -> Option<usize> {
+    if let Some(field) = cloud.field.iter().find(|field| field.name == name) {
+        return Some(field.offset as usize);
+    }
+    let channel = match (name, cloud.is_bigendian) {
+        ("r", false) | ("g", true) => 2,
+        ("g", false) | ("r", true) => 1,
+        ("b", false) | ("a", true) => 0,
+        ("a", false) | ("b", true) => 3,
+        _ => return None,
+    };
+    let field = cloud
+        .field
+        .iter()
+        .find(|field| matches!(field.name.as_str(), "rgb" | "rgba"))?;
+    (field.offset as usize).checked_add(channel)
+}
+fn byte_range<T: bytemuck::Pod>(
+    cloud: &PointCloudPacked,
+    name: &str,
+    point: usize,
+    element: usize,
+) -> Option<std::ops::Range<usize>> {
+    let stride = cloud.point_step as usize;
+    let size = std::mem::size_of::<T>();
+    if stride == 0 || size == 0 || point >= cloud.data.len() / stride {
+        return None;
+    }
+    let start = point
+        .checked_mul(stride)?
+        .checked_add(field_offset(cloud, name)?)?
+        .checked_add(element.checked_mul(size)?)?;
+    let end = start.checked_add(size)?;
+    (end <= cloud.data.len()).then_some(start..end)
+}
+/// Read native-endian bytes, matching the legacy typed iterator.
+///
+/// `point` advances by `point_step`; `element` advances contiguously by the
+/// requested Rust type's size, independent of the declared datatype/count.
+/// The endian flag only selects packed color aliases. Dimensions and row_step
+/// are not consulted. Missing fields, zero stride/size, arithmetic overflow,
+/// points beyond the complete-record count and out-of-blob reads return None.
+/// Unaligned fields are supported; no reference into the blob is created.
+pub fn read_native<T: bytemuck::Pod>(
+    cloud: &PointCloudPacked,
+    name: &str,
+    point: usize,
+    element: usize,
+) -> Option<T> {
+    bytemuck::try_pod_read_unaligned(&cloud.data[byte_range::<T>(cloud, name, point, element)?])
+        .ok()
+}
+/// Write with the same byte addressing and failure contract as [`read_native`].
+/// Failure leaves the blob unchanged. The exclusive borrow prevents concurrent
+/// mutable iterator aliases; message metadata is untouched.
+pub fn write_native<T: bytemuck::Pod>(
+    cloud: &mut PointCloudPacked,
+    name: &str,
+    point: usize,
+    element: usize,
+    value: T,
+) -> Option<()> {
+    let range = byte_range::<T>(cloud, name, point, element)?;
+    cloud.data[range].copy_from_slice(bytemuck::bytes_of(&value));
+    Some(())
+}

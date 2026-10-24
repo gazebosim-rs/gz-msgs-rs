@@ -239,3 +239,25 @@ passes 32 integration tests, the five unchanged CLI C++ cases, native peers,
 complete info corpus and downstream consumer. cloud.rs measures 47/47 lines and
 56/56 regions (100%); all other owned source/predicate thresholds remain above 95%.
 New cloud code/probes carry the user-requested OSRF 2026 / Apache-2.0 notices.
+
+## Safe packed-cloud byte access
+
+Pinned bytemuck 1.25.2 supplies Pod byte conversion and safe unaligned reads;
+legacy addressing/color selection is the narrow owned logic. Ten new native
+complete-wire fixtures cover all eight scalar types and both RGBA endian-flag
+orders. `python3 scripts/cloud-scalar-reference.py` compiles the C++ reference
+against the pinned upstream headers and captures compiler-output binary SHA,
+header SHA and host byte order. The reference uses aligned fields; no native
+unaligned pointer dereference is required for this corpus.
+
+`python3 scripts/verify.py` passes 35 integration tests, unchanged five native
+CLI workflow tests, native interoperability, downstream no-patch consumption,
+fmt/clippy and strict coverage gates. Cloud production code: 103/103 lines and
+145/149 regions; owned generator/reflection patch denominators remain measured.
+Tests also cover all scalar widths, unaligned f32 access to declared FLOAT64,
+signed zero and NaN payload bits, direct/duplicate/first-packed field precedence,
+contiguous component indexing, invalid layout/ranges/overflow and failed-write
+atomicity. No original iterator test is retired by these new conformance tests:
+mutable pointer aliases, pointer equality and C++ iterator operators remain
+unexposed. Missing/invalid native pointer operations are undefined and are not
+reproduced; the bounded Rust Option contract is documented explicitly.
