@@ -76,3 +76,18 @@ and writing get the same correction; schemas and descriptors stay unchanged.
 The production build policy is handwritten and instrumented; only resulting
 schema-derived code is excluded. The C++ signed-zero regression is mandatory.
 Any future generator upgrade must rerun it and review/remove this patch.
+
+## Primitive conversions and legacy type spellings
+
+StringMsg/Boolean/Int32/UInt32/Int64/UInt64/Float/Double implement `From` in both
+directions for String/bool/i32/u32/i64/u64/f32/f64. Constructors initialize an
+empty header; existing messages expose `data` for assignment without changing
+headers or unknown fields. Conversion consumes its input; use generated fields
+for borrowed access. Scalar values are neither clamped nor normalized.
+
+Descriptor lookup also accepts the legacy `gz_msgs.Type` spelling (with optional
+leading dot), preserving original Factory behavior. Unqualified names stay
+unsupported. External descriptor environment loading remains pending.
+
+The generated signed-zero correction expects exactly 546 replacements for the
+pinned schema hash manifest and generator version. Any count drift fails build.

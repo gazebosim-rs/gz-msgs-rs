@@ -1,0 +1,440 @@
+[
+  {
+    "binary": "INTEGRATION_Factory_TEST",
+    "binary_sha256": "cea6f78abfb89dc02c0f26de5d6d369751fe36f74569765ad63a0cc6e9f11dbe",
+    "command": [
+      "/home/nkoenig/work/gazebo/rust/gz-msgs/build/bin/INTEGRATION_Factory_TEST",
+      "--gtest_output=xml:/home/nkoenig/work/gazebo/rust/gz-msgs-rs/target/reference/INTEGRATION_Factory_TEST.xml"
+    ],
+    "exit_code": 0,
+    "tests": [
+      {
+        "id": "FactoryTest.Type",
+        "status": "passed"
+      },
+      {
+        "id": "FactoryTest.New",
+        "status": "passed"
+      },
+      {
+        "id": "FactoryTest.NewWithWellFormedData",
+        "status": "passed"
+      },
+      {
+        "id": "FactoryTest.NewWithMalformedData",
+        "status": "passed"
+      },
+      {
+        "id": "FactoryTest.DeprecatedNonFullyQualified",
+        "status": "passed"
+      },
+      {
+        "id": "FactoryTest.DynamicMessageNoEnv",
+        "status": "passed"
+      },
+      {
+        "id": "FactoryTest.DynamicMessageWithEnv",
+        "status": "passed"
+      },
+      {
+        "id": "FactoryTest.NewAllRegisteredTypes",
+        "status": "passed"
+      },
+      {
+        "id": "FactoryTest.MultipleMessagesInAProto",
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "binary": "INTEGRATION_PointCloudPackedUtils_TEST",
+    "binary_sha256": "520beedd78e8db312bcd2755209335db8ebc55fa3f998a14a59321c716537b39",
+    "command": [
+      "/home/nkoenig/work/gazebo/rust/gz-msgs/build/bin/INTEGRATION_PointCloudPackedUtils_TEST",
+      "--gtest_output=xml:/home/nkoenig/work/gazebo/rust/gz-msgs-rs/target/reference/INTEGRATION_PointCloudPackedUtils_TEST.xml"
+    ],
+    "exit_code": 0,
+    "tests": [
+      {
+        "id": "PointCloudPackedUtilsTest.BadFields",
+        "status": "passed"
+      },
+      {
+        "id": "PointCloudPackedUtilsTest.Operators",
+        "status": "passed"
+      },
+      {
+        "id": "PointCloudPackedUtilsTest.MultipleFields",
+        "status": "passed"
+      },
+      {
+        "id": "PointCloudPackedUtilsTest.XYZRGBA",
+        "status": "passed"
+      },
+      {
+        "id": "PointCloudPackedUtilsTest.SizeOfPointField",
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "binary": "INTEGRATION_Utility_TEST",
+    "binary_sha256": "f49abdc7852a8bb429fc49ce1d072679abaab72bb39b6f93fcc6036f9081a6c8",
+    "command": [
+      "/home/nkoenig/work/gazebo/rust/gz-msgs/build/bin/INTEGRATION_Utility_TEST",
+      "--gtest_output=xml:/home/nkoenig/work/gazebo/rust/gz-msgs-rs/target/reference/INTEGRATION_Utility_TEST.xml"
+    ],
+    "exit_code": 0,
+    "tests": [
+      {
+        "id": "UtilityTest.CovertMathVector3ToMsgs",
+        "status": "passed"
+      },
+      {
+        "id": "UtilityTest.ConvertMsgsVector3dToMath",
+        "status": "passed"
+      },
+      {
+        "id": "UtilityTest.CovertMathVector2ToMsgs",
+        "status": "passed"
+      },
+      {
+        "id": "UtilityTest.ConvertMsgsVector2dToMath",
+        "status": "passed"
+      },
+      {
+        "id": "UtilityTest.ConvertMathQuaterionToMsgs",
+        "status": "passed"
+      },
+      {
+        "id": "UtilityTest.ConvertMsgsQuaterionToMath",
+        "status": "passed"
+      },
+      {
+        "id": "UtilityTest.ConvertPoseMathToMsgs",
+        "status": "passed"
+      },
+      {
+        "id": "UtilityTest.ConvertMsgPoseToMath",
+        "status": "passed"
+      },
+      {
+        "id": "UtilityTest.ConvertMsgPoseToMathIdentity",
+        "status": "passed"
+      },
+      {
+        "id": "UtilityTest.ConvertMathPlaneToMsgs",
+        "status": "passed"
+      },
+      {
+        "id": "UtilityTest.ConvertMsgsPlaneToMath",
+        "status": "passed"
+      },
+      {
+        "id": "UtilityTest.ConvertStringMsg",
+        "status": "passed"
+      },
+      {
+        "id": "UtilityTest.ConvertBoolean",
+        "status": "passed"
+      },
+      {
+        "id": "UtilityTest.ConvertInt32",
+        "status": "passed"
+      },
+      {
+        "id": "UtilityTest.ConvertUInt32",
+        "status": "passed"
+      },
+      {
+        "id": "UtilityTest.ConvertInt64",
+        "status": "passed"
+      },
+      {
+        "id": "UtilityTest.ConvertUInt64",
+        "status": "passed"
+      },
+      {
+        "id": "UtilityTest.ConvertDouble",
+        "status": "passed"
+      },
+      {
+        "id": "UtilityTest.ConvertFloat",
+        "status": "passed"
+      },
+      {
+        "id": "UtilityTest.ConvertFuelMetadata",
+        "status": "passed"
+      },
+      {
+        "id": "UtilityTest.ConvertTimePoint",
+        "status": "passed"
+      },
+      {
+        "id": "UtilityTest.SetVector3",
+        "status": "passed"
+      },
+      {
+        "id": "UtilityTest.SetVector2d",
+        "status": "passed"
+      },
+      {
+        "id": "UtilityTest.SetQuaternion",
+        "status": "passed"
+      },
+      {
+        "id": "UtilityTest.SetPose",
+        "status": "passed"
+      },
+      {
+        "id": "UtilityTest.SetPlane",
+        "status": "passed"
+      },
+      {
+        "id": "UtilityTest.Initialization",
+        "status": "passed"
+      },
+      {
+        "id": "UtilityTest.CovertMathAxisAlignedBox",
+        "status": "passed"
+      },
+      {
+        "id": "UtilityTest.InitPointCloudPacked",
+        "status": "passed"
+      },
+      {
+        "id": "UtilityTest.DiscoveryTypeString",
+        "status": "passed"
+      },
+      {
+        "id": "MsgsTest.ConvertMathColorToMsgs",
+        "status": "passed"
+      },
+      {
+        "id": "MsgsTest.ConvertMsgsColorToMath",
+        "status": "passed"
+      },
+      {
+        "id": "MsgsTest.ConvertMathInertialToMsgs",
+        "status": "passed"
+      },
+      {
+        "id": "MsgsTest.ConvertMsgsInertialToMath",
+        "status": "passed"
+      },
+      {
+        "id": "MsgsTest.ConvertMathInertialAddedMassToMsgs",
+        "status": "passed"
+      },
+      {
+        "id": "MsgsTest.ConvertMsgsInertialAddedMassToMath",
+        "status": "passed"
+      },
+      {
+        "id": "MsgsTest.ConvertMathMassMatrix3ToMsgs",
+        "status": "passed"
+      },
+      {
+        "id": "MsgsTest.ConvertMathSphericalCoordinatesToMsgs",
+        "status": "passed"
+      },
+      {
+        "id": "MsgsTest.ConvertMsgsSphericalCoordinatesTypeToMath",
+        "status": "passed"
+      },
+      {
+        "id": "MsgsTest.ConvertMathSphericalCoordinatedTypeToMsg",
+        "status": "passed"
+      },
+      {
+        "id": "MsgsTest.SetColor",
+        "status": "passed"
+      },
+      {
+        "id": "MsgsTest.SetInertial",
+        "status": "passed"
+      },
+      {
+        "id": "MsgsTest.SetMassMatrix3",
+        "status": "passed"
+      },
+      {
+        "id": "MsgsTest.SetSphericalCoordinates",
+        "status": "passed"
+      },
+      {
+        "id": "MsgsTest.SetStringMsg",
+        "status": "passed"
+      },
+      {
+        "id": "MsgsTest.SetBoolean",
+        "status": "passed"
+      },
+      {
+        "id": "MsgsTest.SetInt32",
+        "status": "passed"
+      },
+      {
+        "id": "MsgsTest.SetUInt32",
+        "status": "passed"
+      },
+      {
+        "id": "MsgsTest.SetInt64",
+        "status": "passed"
+      },
+      {
+        "id": "MsgsTest.SetUInt64",
+        "status": "passed"
+      },
+      {
+        "id": "MsgsTest.SetDouble",
+        "status": "passed"
+      },
+      {
+        "id": "MsgsTest.SetFloat",
+        "status": "passed"
+      },
+      {
+        "id": "MsgsTest.ConvertMsgsJointTypeToString",
+        "status": "passed"
+      },
+      {
+        "id": "MsgsTest.ConvertMsgsGeometryTypeToString",
+        "status": "passed"
+      },
+      {
+        "id": "MsgsTest.ConvertMsgsShaderTypeToString",
+        "status": "passed"
+      },
+      {
+        "id": "MsgsTest.ConvertMsgsPixelFormatTypeToString",
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "binary": "INTEGRATION_descriptors",
+    "binary_sha256": "6a834b3a34ef730d82f03078a1a21fbbe3a6d9a551a454c929cffa4e1d22b4ee",
+    "command": [
+      "/home/nkoenig/work/gazebo/rust/gz-msgs/build/bin/INTEGRATION_descriptors",
+      "--gtest_output=xml:/home/nkoenig/work/gazebo/rust/gz-msgs-rs/target/reference/INTEGRATION_descriptors.xml"
+    ],
+    "exit_code": 0,
+    "tests": [
+      {
+        "id": "FactoryTest.DynamicFactory",
+        "status": "passed"
+      },
+      {
+        "id": "FactoryTest.NoDuplicateDescriptors",
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "binary": "INTEGRATION_factory_concurrency",
+    "binary_sha256": "0c79a4e6441b4250ffaa0d618b2898b191ebf0068a5a1d201a416775433732aa",
+    "command": [
+      "/home/nkoenig/work/gazebo/rust/gz-msgs/build/bin/INTEGRATION_factory_concurrency",
+      "--gtest_output=xml:/home/nkoenig/work/gazebo/rust/gz-msgs-rs/target/reference/INTEGRATION_factory_concurrency.xml"
+    ],
+    "exit_code": 0,
+    "tests": [
+      {
+        "id": "FactoryConcurrency.ParallelUse",
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "binary": "INTEGRATION_factory_descriptor_retry",
+    "binary_sha256": "dd3c91d53eead2ccfeb0273cc89c1b18d8d26d6958f1f524aa23fc8aa187077b",
+    "command": [
+      "/home/nkoenig/work/gazebo/rust/gz-msgs/build/bin/INTEGRATION_factory_descriptor_retry",
+      "--gtest_output=xml:/home/nkoenig/work/gazebo/rust/gz-msgs-rs/target/reference/INTEGRATION_factory_descriptor_retry.xml"
+    ],
+    "exit_code": 0,
+    "tests": [
+      {
+        "id": "FactoryDescriptorRetryTest.ReloadAfterMissingImport",
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "binary": "INTEGRATION_factory_lazy",
+    "binary_sha256": "4668b8bd1febdad8f94f5c440d1fab9a887c6dc9c7a269725969bc7ec2f8ac21",
+    "command": [
+      "/home/nkoenig/work/gazebo/rust/gz-msgs/build/bin/INTEGRATION_factory_lazy",
+      "--gtest_output=xml:/home/nkoenig/work/gazebo/rust/gz-msgs-rs/target/reference/INTEGRATION_factory_lazy.xml"
+    ],
+    "exit_code": 0,
+    "tests": [
+      {
+        "id": "FactoryLazyTest.DescriptorPathReadAtFirstDynamicUse",
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "binary": "INTEGRATION_gz_TEST",
+    "binary_sha256": "f2ed14bcdecab25fcd41c9462a2541544b4ba6a7cfe0b3e88c4c2d404cf5cf8c",
+    "command": [
+      "/home/nkoenig/work/gazebo/rust/gz-msgs/build/bin/INTEGRATION_gz_TEST",
+      "--gtest_output=xml:/home/nkoenig/work/gazebo/rust/gz-msgs-rs/target/reference/INTEGRATION_gz_TEST.xml"
+    ],
+    "exit_code": 0,
+    "tests": [
+      {
+        "id": "CmdLine.Version",
+        "status": "passed"
+      },
+      {
+        "id": "CmdLine.Help",
+        "status": "passed"
+      },
+      {
+        "id": "CmdLine.MsgList",
+        "status": "passed"
+      },
+      {
+        "id": "CmdLine.MsgInfo",
+        "status": "passed"
+      },
+      {
+        "id": "CmdLine.MsgHelpVsCompletionFlags",
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "binary": "INTEGRATION_headers",
+    "binary_sha256": "bbe3c5f5fc47e7f17c8a4cf5dce97430837c88fa84d95b00e742134170cb8f37",
+    "command": [
+      "/home/nkoenig/work/gazebo/rust/gz-msgs/build/bin/INTEGRATION_headers",
+      "--gtest_output=xml:/home/nkoenig/work/gazebo/rust/gz-msgs-rs/target/reference/INTEGRATION_headers.xml"
+    ],
+    "exit_code": 0,
+    "tests": [
+      {
+        "id": "Messages.NestedHeaders",
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "binary": "INTEGRATION_image_msg",
+    "binary_sha256": "5b7e17ed60b0a97db9702513120f8c2c00ede4bd3deb64c4ec17cd55ef1b3862",
+    "command": [
+      "/home/nkoenig/work/gazebo/rust/gz-msgs/build/bin/INTEGRATION_image_msg",
+      "--gtest_output=xml:/home/nkoenig/work/gazebo/rust/gz-msgs-rs/target/reference/INTEGRATION_image_msg.xml"
+    ],
+    "exit_code": 0,
+    "tests": [
+      {
+        "id": "Image.PixelFormat",
+        "status": "passed"
+      }
+    ]
+  }
+]

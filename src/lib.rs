@@ -9,7 +9,11 @@ include!(concat!(env!("OUT_DIR"), "/registry.rs"));
 
 /// Find a canonical descriptor by fully qualified protobuf name.
 pub fn descriptor(name: &str) -> Option<protobuf::reflect::MessageDescriptor> {
-    let name = format!(".{}", name.trim_start_matches('.'));
+    let name = name.trim_start_matches('.');
+    let name = match name.strip_prefix("gz_msgs.") {
+        Some(local) => format!(".gz.msgs.{local}"),
+        None => format!(".{name}"),
+    };
     files()
         .into_iter()
         .find_map(|file| file.message_by_full_name(&name))
@@ -52,3 +56,5 @@ pub fn quaternion(value: [f64; 4]) -> quaternion::Quaternion {
     }
 }
 pub use protobuf_json_mapping;
+
+mod conversions;

@@ -61,3 +61,12 @@ from Rust migration status. No unmatched test was marked ported.
 Reviewed-slice coverage: build.rs 39/39 lines, 59/59 regions; src/lib.rs 37/37
 lines and regions; CLI 53/53 lines, 95/99 regions (95.96%). All 11 integration
 tests pass. `python3 scripts/verify.py` passes including owned build logic.
+
+Primitive-conversion follow-up: 15 integration tests pass; preserved original
+assertions map 8 scalar conversion cases, time conversion, Python serialization,
+and 4 static factory cases (14 mappings). These are `ported_pending_review`, not
+self-approved test retirements. Eighty-three original native tests are reconciled
+(82 gtests including the macro-guarded Linux CLI test plus 1 Python test).
+The signed-zero postprocess now fails on drift from its expected 546 checks.
+Coverage: build.rs 42/42 lines, 63/63 regions; lib.rs 40/40 lines, 41/41 regions;
+conversions.rs 9/9 lines, 6/6 regions; CLI 53/53 lines, 95/99 regions (95.96%).
