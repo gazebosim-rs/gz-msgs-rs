@@ -3,3 +3,4 @@
 /.cache/
 *.profraw
 *.profdata
+__pycache__/

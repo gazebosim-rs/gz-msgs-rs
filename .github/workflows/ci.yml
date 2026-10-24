@@ -1,0 +1,10 @@
+name: messages
+on: [push, pull_request]
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - run: sudo apt-get update && sudo apt-get install -y protobuf-compiler libprotobuf-dev
+      - run: rustup toolchain install 1.94.1 --profile minimal --component rustfmt,clippy,llvm-tools
+      - run: python3 scripts/verify.py

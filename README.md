@@ -1,22 +1,25 @@
 # Gazebo Messages in Rust
 
-Independent Gazebo message schemas, generated Rust types, descriptors, conversions, and tooling.
+Canonical Gazebo protobuf schemas, generated Rust types, runtime reflection and
+small dependency-free domain conversion helpers. Apache-2.0; upstream notices
+are retained with the schemas.
 
-This public repository is a planning shell. No Rust implementation, passing
-migration test suite, or coverage result is claimed yet.
+```rust
+use gz_msgs::{Clock, time_from_nanos, protobuf::Message};
+let clock = Clock { sim: Some(time_from_nanos(123)).into(), ..Default::default() };
+let bytes = clock.write_to_bytes()?;
+# Ok::<(), gz_msgs::protobuf::Error>(())
+```
 
-The architecture and dependency-ordered work packets live in
-[gz-sim-rs](https://github.com/gazebosim-rs/gz-sim-rs/blob/main/docs/PLAN.md). Read this repository's
-[implementation contract](https://github.com/gazebosim-rs/gz-sim-rs/blob/main/docs/EXTERNAL_REPOS.md#gz-msgs-rs),
-[test and coverage policy](https://github.com/gazebosim-rs/gz-sim-rs/blob/main/docs/TESTING.md), and
-[decision register](https://github.com/gazebosim-rs/gz-sim-rs/blob/main/docs/DECISIONS.md) before implementation.
+See [the API contract](docs/API.md) and [test ledger](docs/test-ledger.json).
+This is a validated initial MSG-01 slice, not a complete Gazebo Messages rewrite.
+Full upstream conversion/tooling test parity and packaging remain pending.
 
-The owner selected the upstream Gazebo main branches, behavior/file-format/protocol
-compatibility with new Rust APIs, faithful ports of existing tests verified against
-C++ reference runs, and Linux first. Handwritten production Rust must have coverage
-strictly above 95%, enforced through pre-commit and CI as implementation begins.
+Requires Rust 1.94.1. `cargo test --locked` runs binary conformance against system
+`protoc`, a C++17 compiler and libprotobuf development files. Production builds
+use pinned Rust-only codegen and do not need native protobuf. Run all quality
+gates with `python3 scripts/verify.py`; install the staged-tree pre-commit hook
+with `git config core.hooksPath .githooks`.
 
-This repository remains independent of the gz-sim-rs Cargo workspace. Publish a
-versioned Rust API and test it with the pinned cross-repository integration set.
-
-License: Apache-2.0. Preserve upstream notices and fixture provenance when porting.
+The canonical architecture, scope and acceptance policy live in
+[gz-sim-rs](https://github.com/gazebosim-rs/gz-sim-rs/blob/main/docs/PLAN.md).

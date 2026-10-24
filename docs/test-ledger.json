@@ -1,0 +1,580 @@
+{
+  "upstream_commit": "89c0c3d1474f545cb889335daf930bfdab6ab852",
+  "runtime_expansion": "pending full upstream CTest/gtest baseline build; static declarations only",
+  "tests": [
+    {
+      "id": "FactoryTest.Type",
+      "source": "test/integration/Factory_TEST.cc",
+      "source_sha256": "a132a6f663ec29fa265819be82dc69ad6e3c900ee7a8a24052fb15b06e48e9d0",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "FactoryTest.New",
+      "source": "test/integration/Factory_TEST.cc",
+      "source_sha256": "a132a6f663ec29fa265819be82dc69ad6e3c900ee7a8a24052fb15b06e48e9d0",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "FactoryTest.NewWithWellFormedData",
+      "source": "test/integration/Factory_TEST.cc",
+      "source_sha256": "a132a6f663ec29fa265819be82dc69ad6e3c900ee7a8a24052fb15b06e48e9d0",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "FactoryTest.NewWithMalformedData",
+      "source": "test/integration/Factory_TEST.cc",
+      "source_sha256": "a132a6f663ec29fa265819be82dc69ad6e3c900ee7a8a24052fb15b06e48e9d0",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "FactoryTest.DeprecatedNonFullyQualified",
+      "source": "test/integration/Factory_TEST.cc",
+      "source_sha256": "a132a6f663ec29fa265819be82dc69ad6e3c900ee7a8a24052fb15b06e48e9d0",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "FactoryTest.DynamicMessageNoEnv",
+      "source": "test/integration/Factory_TEST.cc",
+      "source_sha256": "a132a6f663ec29fa265819be82dc69ad6e3c900ee7a8a24052fb15b06e48e9d0",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "FactoryTest.DynamicMessageWithEnv",
+      "source": "test/integration/Factory_TEST.cc",
+      "source_sha256": "a132a6f663ec29fa265819be82dc69ad6e3c900ee7a8a24052fb15b06e48e9d0",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "FactoryTest.NewAllRegisteredTypes",
+      "source": "test/integration/Factory_TEST.cc",
+      "source_sha256": "a132a6f663ec29fa265819be82dc69ad6e3c900ee7a8a24052fb15b06e48e9d0",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "FactoryTest.MultipleMessagesInAProto",
+      "source": "test/integration/Factory_TEST.cc",
+      "source_sha256": "a132a6f663ec29fa265819be82dc69ad6e3c900ee7a8a24052fb15b06e48e9d0",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "PointCloudPackedUtilsTest.BadFields",
+      "source": "test/integration/PointCloudPackedUtils_TEST.cc",
+      "source_sha256": "3b310f335e73209b2db3a726d03ee223df64c2b29ef8350d53f783814792cb29",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "PointCloudPackedUtilsTest.Operators",
+      "source": "test/integration/PointCloudPackedUtils_TEST.cc",
+      "source_sha256": "3b310f335e73209b2db3a726d03ee223df64c2b29ef8350d53f783814792cb29",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "PointCloudPackedUtilsTest.MultipleFields",
+      "source": "test/integration/PointCloudPackedUtils_TEST.cc",
+      "source_sha256": "3b310f335e73209b2db3a726d03ee223df64c2b29ef8350d53f783814792cb29",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "PointCloudPackedUtilsTest.XYZRGBA",
+      "source": "test/integration/PointCloudPackedUtils_TEST.cc",
+      "source_sha256": "3b310f335e73209b2db3a726d03ee223df64c2b29ef8350d53f783814792cb29",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "PointCloudPackedUtilsTest.SizeOfPointField",
+      "source": "test/integration/PointCloudPackedUtils_TEST.cc",
+      "source_sha256": "3b310f335e73209b2db3a726d03ee223df64c2b29ef8350d53f783814792cb29",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "UtilityTest.CovertMathVector3ToMsgs",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "UtilityTest.ConvertMsgsVector3dToMath",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "UtilityTest.CovertMathVector2ToMsgs",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "UtilityTest.ConvertMsgsVector2dToMath",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "UtilityTest.ConvertMathQuaterionToMsgs",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "UtilityTest.ConvertMsgsQuaterionToMath",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "UtilityTest.ConvertPoseMathToMsgs",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "UtilityTest.ConvertMsgPoseToMath",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "UtilityTest.ConvertMsgPoseToMathIdentity",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "MsgsTest.ConvertMathColorToMsgs",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "MsgsTest.ConvertMsgsColorToMath",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "UtilityTest.ConvertMathPlaneToMsgs",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "UtilityTest.ConvertMsgsPlaneToMath",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "MsgsTest.ConvertMathInertialToMsgs",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "MsgsTest.ConvertMsgsInertialToMath",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "MsgsTest.ConvertMathInertialAddedMassToMsgs",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "MsgsTest.ConvertMsgsInertialAddedMassToMath",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "MsgsTest.ConvertMathMassMatrix3ToMsgs",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "MsgsTest.ConvertMathSphericalCoordinatesToMsgs",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "MsgsTest.ConvertMsgsSphericalCoordinatesTypeToMath",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "MsgsTest.ConvertMathSphericalCoordinatedTypeToMsg",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "UtilityTest.ConvertStringMsg",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "UtilityTest.ConvertBoolean",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "UtilityTest.ConvertInt32",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "UtilityTest.ConvertUInt32",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "UtilityTest.ConvertInt64",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "UtilityTest.ConvertUInt64",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "UtilityTest.ConvertDouble",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "UtilityTest.ConvertFloat",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "UtilityTest.ConvertFuelMetadata",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "UtilityTest.ConvertTimePoint",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "UtilityTest.SetVector3",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "UtilityTest.SetVector2d",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "UtilityTest.SetQuaternion",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "UtilityTest.SetPose",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "MsgsTest.SetColor",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "UtilityTest.SetPlane",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "MsgsTest.SetInertial",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "MsgsTest.SetMassMatrix3",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "MsgsTest.SetSphericalCoordinates",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "MsgsTest.SetStringMsg",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "MsgsTest.SetBoolean",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "MsgsTest.SetInt32",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "MsgsTest.SetUInt32",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "MsgsTest.SetInt64",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "MsgsTest.SetUInt64",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "MsgsTest.SetDouble",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "MsgsTest.SetFloat",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "UtilityTest.Initialization",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "MsgsTest.ConvertMsgsJointTypeToString",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "MsgsTest.ConvertMsgsGeometryTypeToString",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "MsgsTest.ConvertMsgsShaderTypeToString",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "MsgsTest.ConvertMsgsPixelFormatTypeToString",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "UtilityTest.CovertMathAxisAlignedBox",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "UtilityTest.InitPointCloudPacked",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "UtilityTest.DiscoveryTypeString",
+      "source": "test/integration/Utility_TEST.cc",
+      "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "FactoryTest.DynamicFactory",
+      "source": "test/integration/descriptors.cc",
+      "source_sha256": "857ef7fb91d33ec05becd2d1d3d08aec12dcf2009999c848596235061e3dd9b2",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "FactoryTest.NoDuplicateDescriptors",
+      "source": "test/integration/descriptors.cc",
+      "source_sha256": "857ef7fb91d33ec05becd2d1d3d08aec12dcf2009999c848596235061e3dd9b2",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "FactoryConcurrency.ParallelUse",
+      "source": "test/integration/factory_concurrency.cc",
+      "source_sha256": "cb5ad5b4490f1c7cb8830b04c2d13737d5d11bcd588a39b6843dff2acacc5dde",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "FactoryDescriptorRetryTest.ReloadAfterMissingImport",
+      "source": "test/integration/factory_descriptor_retry.cc",
+      "source_sha256": "53f1f8ef2d995922ad51ddb6db61191742b94d7df8ae1aaca42c4c9d2365f00b",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "FactoryLazyTest.DescriptorPathReadAtFirstDynamicUse",
+      "source": "test/integration/factory_lazy.cc",
+      "source_sha256": "9cbd584ec3c34926efaec8512b329e849a5e006591ca0be98c12dcd747269dbb",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "CmdLine.Version",
+      "source": "test/integration/gz_TEST.cc",
+      "source_sha256": "fcf8487aaf14ec95a60a1b8d042132189e47edbe5e3b93fe239185eacd6969db",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "CmdLine.Help",
+      "source": "test/integration/gz_TEST.cc",
+      "source_sha256": "fcf8487aaf14ec95a60a1b8d042132189e47edbe5e3b93fe239185eacd6969db",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "CmdLine.MsgList",
+      "source": "test/integration/gz_TEST.cc",
+      "source_sha256": "fcf8487aaf14ec95a60a1b8d042132189e47edbe5e3b93fe239185eacd6969db",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "CmdLine.MsgInfo",
+      "source": "test/integration/gz_TEST.cc",
+      "source_sha256": "fcf8487aaf14ec95a60a1b8d042132189e47edbe5e3b93fe239185eacd6969db",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "Messages.NestedHeaders",
+      "source": "test/integration/headers.cc",
+      "source_sha256": "d5fc5a3c80da0592bc2475f926c2fc2c392ffbf2cc2b45842a519b222329d101",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "Image.PixelFormat",
+      "source": "test/integration/image_msg.cc",
+      "source_sha256": "816bf43cf1a05ef1a80dabcc897b8c55da2e5d97b782e15fce492297e86ce28f",
+      "status": "not_ported",
+      "rust_tests": []
+    },
+    {
+      "id": "basic_TEST.py:test_serialization",
+      "source": "python/test/basic_TEST.py",
+      "source_sha256": "ccd0c5d21d3845261263289b5481189e56452a7d8912595b3afac9fcf76e315c",
+      "status": "not_ported",
+      "rust_tests": []
+    }
+  ]
+}
