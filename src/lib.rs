@@ -122,3 +122,6 @@ pub fn set_pose(message: &mut Pose, position: [f64; 3], orientation: [f64; 4]) {
 }
 
 pub use conversions::{set_color, set_quaternion, set_vector2, set_vector3};
+
+mod inertial_values;
+pub use inertial_values::*;

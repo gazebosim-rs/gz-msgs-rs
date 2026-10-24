@@ -352,41 +352,66 @@
       "id": "MsgsTest.ConvertMathInertialToMsgs",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "inertial::original_inertial_conversions_and_setter"
+      ],
+      "native_status": "passed",
+      "review_note": "All seven original assertions and native Inertial/Pose source independently compared; fixture/source/binary hashes verified, fresh native probe reproduced24 complete wire/reverse-bit rows, seven exact native originals and five Rust tests rerun. Raw array/new domain API preserves original pose bounds, W-only mass mutation, exact21 symmetric decode and repeated upper-triangle appends. Caller owns physical/math validation; no full math API claim.",
+      "reviewer": "/root/sdformat",
+      "reviewed_diff": "6438ccb9577d1eb6ddef0141d978cdf0f014dc2f22ceed6d5f2b108f03445322"
     },
     {
       "id": "MsgsTest.ConvertMsgsInertialToMath",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "inertial::original_inertial_conversions_and_setter"
+      ],
+      "native_status": "passed",
+      "review_note": "All seven original assertions and native Inertial/Pose source independently compared; fixture/source/binary hashes verified, fresh native probe reproduced24 complete wire/reverse-bit rows, seven exact native originals and five Rust tests rerun. Raw array/new domain API preserves original pose bounds, W-only mass mutation, exact21 symmetric decode and repeated upper-triangle appends. Caller owns physical/math validation; no full math API claim.",
+      "reviewer": "/root/sdformat",
+      "reviewed_diff": "6438ccb9577d1eb6ddef0141d978cdf0f014dc2f22ceed6d5f2b108f03445322"
     },
     {
       "id": "MsgsTest.ConvertMathInertialAddedMassToMsgs",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "inertial::original_added_mass_conversions"
+      ],
+      "native_status": "passed",
+      "review_note": "All seven original assertions and native Inertial/Pose source independently compared; fixture/source/binary hashes verified, fresh native probe reproduced24 complete wire/reverse-bit rows, seven exact native originals and five Rust tests rerun. Raw array/new domain API preserves original pose bounds, W-only mass mutation, exact21 symmetric decode and repeated upper-triangle appends. Caller owns physical/math validation; no full math API claim.",
+      "reviewer": "/root/sdformat",
+      "reviewed_diff": "6438ccb9577d1eb6ddef0141d978cdf0f014dc2f22ceed6d5f2b108f03445322"
     },
     {
       "id": "MsgsTest.ConvertMsgsInertialAddedMassToMath",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "inertial::original_added_mass_conversions"
+      ],
+      "native_status": "passed",
+      "review_note": "All seven original assertions and native Inertial/Pose source independently compared; fixture/source/binary hashes verified, fresh native probe reproduced24 complete wire/reverse-bit rows, seven exact native originals and five Rust tests rerun. Raw array/new domain API preserves original pose bounds, W-only mass mutation, exact21 symmetric decode and repeated upper-triangle appends. Caller owns physical/math validation; no full math API claim.",
+      "reviewer": "/root/sdformat",
+      "reviewed_diff": "6438ccb9577d1eb6ddef0141d978cdf0f014dc2f22ceed6d5f2b108f03445322"
     },
     {
       "id": "MsgsTest.ConvertMathMassMatrix3ToMsgs",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "inertial::original_mass_matrix_conversion_and_setter"
+      ],
+      "native_status": "passed",
+      "review_note": "All seven original assertions and native Inertial/Pose source independently compared; fixture/source/binary hashes verified, fresh native probe reproduced24 complete wire/reverse-bit rows, seven exact native originals and five Rust tests rerun. Raw array/new domain API preserves original pose bounds, W-only mass mutation, exact21 symmetric decode and repeated upper-triangle appends. Caller owns physical/math validation; no full math API claim.",
+      "reviewer": "/root/sdformat",
+      "reviewed_diff": "6438ccb9577d1eb6ddef0141d978cdf0f014dc2f22ceed6d5f2b108f03445322"
     },
     {
       "id": "MsgsTest.ConvertMathSphericalCoordinatesToMsgs",
@@ -610,17 +635,27 @@
       "id": "MsgsTest.SetInertial",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "inertial::original_inertial_conversions_and_setter"
+      ],
+      "native_status": "passed",
+      "review_note": "All seven original assertions and native Inertial/Pose source independently compared; fixture/source/binary hashes verified, fresh native probe reproduced24 complete wire/reverse-bit rows, seven exact native originals and five Rust tests rerun. Raw array/new domain API preserves original pose bounds, W-only mass mutation, exact21 symmetric decode and repeated upper-triangle appends. Caller owns physical/math validation; no full math API claim.",
+      "reviewer": "/root/sdformat",
+      "reviewed_diff": "6438ccb9577d1eb6ddef0141d978cdf0f014dc2f22ceed6d5f2b108f03445322"
     },
     {
       "id": "MsgsTest.SetMassMatrix3",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "inertial::original_mass_matrix_conversion_and_setter"
+      ],
+      "native_status": "passed",
+      "review_note": "All seven original assertions and native Inertial/Pose source independently compared; fixture/source/binary hashes verified, fresh native probe reproduced24 complete wire/reverse-bit rows, seven exact native originals and five Rust tests rerun. Raw array/new domain API preserves original pose bounds, W-only mass mutation, exact21 symmetric decode and repeated upper-triangle appends. Caller owns physical/math validation; no full math API claim.",
+      "reviewer": "/root/sdformat",
+      "reviewed_diff": "6438ccb9577d1eb6ddef0141d978cdf0f014dc2f22ceed6d5f2b108f03445322"
     },
     {
       "id": "MsgsTest.SetSphericalCoordinates",

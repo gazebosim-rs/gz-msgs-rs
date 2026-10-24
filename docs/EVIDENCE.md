@@ -558,3 +558,37 @@ and reproduced18 complete wire rows and three orientation inputs from the probe.
 All nine mappings are reviewed. Full local gate passes62 Rust checks,5 snapshot
 regressions, fmt/clippy/clean consumer and643/643 owned lines,966/975 regions.
 No dependency/exclusion changed; final matching strict staged gate required.
+
+Inertial/mass-matrix slice supplies raw domain component values and fresh/message
+setter/read APIs without implementing physical math algorithms or normalizing
+quaternions. Native math setter return values are ignored by the original
+conversion wrappers and assignments still occur; negative mass/moments are
+copied faithfully, with physical validation left to the caller. Source review
+identified stateful details: mass-only Set forces only nested orientation W=1,
+retains other pose fields and fluid data; full Set appends21 upper coefficients
+for Some, leaves old fluid data for None; decode accepts exactly21 entries and
+symmetrizes, ignoring all other lengths. These are explicit API contracts.
+
+The actual pinned native probe records24 complete wire and reverse-state rows:
+fresh/seeded outer+nested metadata, mass-only/full/optional symmetric/asymmetric
+fluid values, repeated appends, and valid/negative physical values. It compares
+reverse mass/pose/matrix IEEE bits, not only schema agreement. Header/helper/
+source/native binary hashes are recorded; seven exact original native cases
+pass with one-run/zero-failure XML. Five Rust tests preserve every original
+mass/moment/pose/default/21-coefficient/matrix assertion, compare all24 native
+wires and reverse-state bit patterns, and cover absent pose/orientation and bad
+fluid lengths. The original <=1e-3 pose component bounds, <=1e-1 zero-pose bound,
+and all scalar assertions are retained or strengthened; no quaternion-sign
+relaxation is used. Seven mappings await independent review. No dependency or
+exclusion changed.
+
+/root/sdformat approved exact inertial staged diff
+`6438ccb9577d1eb6ddef0141d978cdf0f014dc2f22ceed6d5f2b108f03445322`.
+All seven original assertions and native Inertial/Pose source were independently
+compared. It verified fixture/source/binary hashes, freshly compiled the native
+probe and reproduced24 complete wire/reverse-bit rows, reran seven exact native
+original cases with one-run/zero-failure XML and all five Rust tests. All seven
+mappings are reviewed. Full local gate passes67 Rust checks,5 snapshot regressions,
+fmt/clippy/clean consumer and714/714 owned lines,1052/1061 regions; inertial values
+are71/71 lines,86/86 regions. Physical/math validation remains caller-owned.
+No dependency/exclusion changed; final strict staged gate remains required.

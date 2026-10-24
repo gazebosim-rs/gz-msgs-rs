@@ -238,3 +238,17 @@ position/orientation headers and the outer name/ID. Quaternion order remains XYZ
 no normalization is introduced, including explicitly zero or non-unit rotations.
 These setters consume caller-computed math values; Euler conversion and color
 clamping remain responsibilities of the caller's math implementation.
+
+`MassMatrixComponents` stores mass, diagonal XX/YY/ZZ and off-diagonal XY/XZ/YZ.
+`InertialComponents` adds raw XYZ/XYZW pose components and optional6x6 fluid mass.
+`mass_matrix`/`inertial` construct fresh messages; component readers and setters
+copy these values without physical validity checks or math operations. Native
+conversion wrappers ignore math setter validity returns; callers retain that
+validation responsibility. `set_mass_matrix` sets only orientation W=1 and keeps
+all other existing pose components, metadata and fluid entries. `set_inertial`
+updates pose geometry and **appends**21 upper-triangle coefficients when present;
+None leaves old entries intact. Repeated Some therefore appends again. Reading a
+fresh component value accepts fluid data only at exactly21 entries and reflects
+the upper triangle into the lower; all other lengths yield None. This matches
+native conversion, including discarded asymmetric lower-triangle values. Use
+fresh construction when replacing the complete message is intended.
