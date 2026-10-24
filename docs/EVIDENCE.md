@@ -29,3 +29,35 @@ utilities; comprehensive bytes/float/Any/maps/duplicate-field corpus; performanc
 packaging and historical schema qualification. These stay not_ported in the
 ledger. New conformance tests do not retire or replace unmatched upstream tests.
 No performance improvement or completed MSG-01/MSG-02 claim is made.
+
+## Reviewed follow-up slice
+
+Independent root review required including owned build.rs in coverage; this is
+now measured, with no exclusion. Instrumentation derives the host target from
+rustc and cleans only this crate before execution to force build-script profiles.
+`scripts/test-staged.py` demonstrated a staged broken time conversion fails even
+when the working file is fixed. CI repeats this demonstration.
+
+CLI tests exercise every command, malformed input, unknown commands/types,
+invalid UTF-8 and Linux IO failures. /dev/full exposed a swallowed buffered-write
+failure; explicit stdout flush fixes it. Expanded native tests cover 1 MiB image
+bytes, unknown pixel enum, Any oneofs, infinities, NaN, signed zero, empty message
+presence and duplicate scalar fields. A signed-zero incompatibility was found in
+the third-party generator and corrected in measured build logic. The native peer
+compares every canonical top-level DescriptorProto exactly against system protoc.
+
+Native reference expansion: existing local pinned build contains 10 integration
+executables. `python3 scripts/reference-tests.py` ran all 82 original gtests:
+82 passed, zero failures/skips. `ctest --test-dir ../gz-msgs/build
+--show-only=json-v1` enumerated 21 entries (10 gtest binaries, 10 XML existence
+wrappers, 1 Python test); wrapper commands were not separately rerun. Running
+`/usr/bin/python3 -m pytest ../gz-msgs/python/test/basic_TEST.py` with native-build
+PYTHONPATH, owned XML/cache destinations and bytecode writing disabled passed
+1/1 (three deprecation warnings). This is an existing local build against the
+pinned source, not a reproduced immutable image. Binary SHA256, exact commands,
+XML and logs are in target/reference; ledger records native status separately
+from Rust migration status. No unmatched test was marked ported.
+
+Reviewed-slice coverage: build.rs 39/39 lines, 59/59 regions; src/lib.rs 37/37
+lines and regions; CLI 53/53 lines, 95/99 regions (95.96%). All 11 integration
+tests pass. `python3 scripts/verify.py` passes including owned build logic.

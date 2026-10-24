@@ -29,4 +29,12 @@ fn main() {
         .inputs(schemas)
         .cargo_out_dir("generated")
         .run_from_script();
+    // rust-protobuf 3.7.2 compares float defaults numerically, losing -0.0.
+    // Protobuf's proto3 C++ serializer checks bits; preserve its wire semantics.
+    let generated = std::path::Path::new(&std::env::var("OUT_DIR").unwrap()).join("generated");
+    for entry in std::fs::read_dir(generated).unwrap() {
+        let path = entry.unwrap().path();
+        let source = std::fs::read_to_string(&path).unwrap();
+        std::fs::write(path, source.replace(" != 0. {", ".to_bits() != 0 {")).unwrap();
+    }
 }

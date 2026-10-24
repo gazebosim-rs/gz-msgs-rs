@@ -51,3 +51,4 @@ pub fn quaternion(value: [f64; 4]) -> quaternion::Quaternion {
         ..Default::default()
     }
 }
+pub use protobuf_json_mapping;

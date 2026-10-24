@@ -70,3 +70,67 @@ fn unknown_and_malformed_cross_language() {
     assert!(Time::parse_from_bytes(&bytes).is_err());
     assert!(!peer("gz.msgs.Time", "roundtrip", &bytes).status.success());
 }
+
+#[test]
+fn bytes_oneofs_floats_and_duplicate_fields() {
+    let image = image::Image {
+        width: 1024,
+        height: 1024,
+        step: 1024,
+        data: (0..=255).cycle().take(1024 * 1024).collect(),
+        pixel_format_type: gz_msgs::protobuf::EnumOrUnknown::from_i32(12345),
+        ..Default::default()
+    };
+    let cpp = peer(
+        "gz.msgs.Image",
+        "roundtrip",
+        &image.write_to_bytes().unwrap(),
+    );
+    assert!(cpp.status.success());
+    assert_eq!(image::Image::parse_from_bytes(&cpp.stdout).unwrap(), image);
+    for (name, text) in [
+        ("gz.msgs.Any", "type: DOUBLE double_value: nan"),
+        (
+            "gz.msgs.Any",
+            "type: STRING string_value: 'hello \\342\\230\\203'",
+        ),
+        ("gz.msgs.Pose", "position {} orientation {}"),
+        ("gz.msgs.Vector3d", "x: inf y: -inf z: -0"),
+    ] {
+        let encoded = peer(name, "encode", text.as_bytes());
+        assert!(encoded.status.success());
+        let rust = descriptor(name)
+            .unwrap()
+            .parse_from_bytes(&encoded.stdout)
+            .unwrap();
+        let bytes = rust.write_to_bytes_dyn().unwrap();
+        assert_eq!(
+            peer(name, "decode", &bytes).stdout,
+            peer(name, "decode", &encoded.stdout).stdout
+        );
+    }
+    let duplicate = [8, 1, 8, 2];
+    let cpp = peer("gz.msgs.Time", "roundtrip", &duplicate);
+    assert!(cpp.status.success());
+    assert_eq!(cpp.stdout, [8, 2]);
+    assert_eq!(
+        Time::parse_from_bytes(&duplicate)
+            .unwrap()
+            .write_to_bytes()
+            .unwrap(),
+        cpp.stdout
+    );
+}
+
+#[test]
+fn protoc_and_rust_schema_descriptors() {
+    for file in files() {
+        for descriptor in file.messages() {
+            let cpp = peer(descriptor.full_name(), "descriptor", &[]);
+            assert!(cpp.status.success());
+            let cpp = gz_msgs::protobuf::descriptor::DescriptorProto::parse_from_bytes(&cpp.stdout)
+                .unwrap();
+            assert_eq!(&cpp, descriptor.proto(), "{}", descriptor.full_name());
+        }
+    }
+}

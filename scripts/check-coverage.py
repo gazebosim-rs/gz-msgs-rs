@@ -3,7 +3,7 @@
 import json, pathlib, sys
 
 def check(report, root):
-    wanted = {str(p.resolve()) for p in (root / 'src').rglob('*.rs')}
+    wanted = {str(p.resolve()) for p in (root / 'src').rglob('*.rs')} | {str((root / 'build.rs').resolve())}
     files = {f['filename']: f for data in report['data'] for f in data['files'] if f['filename'] in wanted}
     if not wanted or set(files) != wanted:
         raise ValueError('missing production source or instrumentation')

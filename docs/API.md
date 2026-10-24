@@ -45,16 +45,34 @@ remain explicitly pending. Gazebo's `gz.msgs.Any` is its own canonical schema.
 ## Coverage provenance
 
 Every handwritten production Rust file under `src` is required in coverage,
-including newly added files; missing/zero denominators fail. LLVM source regions
+including newly added files, plus handwritten build.rs; missing/zero denominators fail. LLVM source regions
 attribute generated code to `target/**/out/generated/*.rs` or `registry.rs`.
 These are exclusively build.rs output from the hashed schema corpus and pinned
 protobuf-codegen; no handwritten policies/conversions live there. Dependencies,
-tests and build/test tooling are outside the production runtime denominator.
+tests and Python test tooling are outside the production runtime denominator.
 Generated exclusions await independent review and are not a general source glob.
 
 `python3 scripts/verify.py` checks hashes, format, clippy, gate-negative cases,
 all Rust/native tests and >95% lines/regions. `.githooks/pre-commit` exports the
 exact index via git archive into a fresh temporary tree before running that gate.
 Install using `git config core.hooksPath .githooks`. CI runs the same verification.
-The initial crate has a single production source file; file and crate totals are
-equivalent. No GPU/native engine feature matrix exists in this message crate.
+Each owned source file must pass independently, so crate and repository totals
+necessarily pass too. The CLI and build script are included. No GPU/native engine feature matrix exists in this message crate.
+
+## Standalone tooling and signed zero
+
+`gz-msgs list`, `gz-msgs info gz.msgs.Time`, and
+`gz-msgs encode-json|decode-json|encode-text|decode-text gz.msgs.Type` operate via
+stdin/stdout. Errors exit nonzero; binary output has no text envelope. The tool
+owns the standalone `gz-msgs` binary only, not the upstream `gz` dispatcher.
+This additive CLI is not yet a parity claim for upstream `gz msg` grammar.
+
+System-protoc DescriptorProto output matches Rust-generated descriptors for every
+canonical top-level type, including nested field descriptors. The expanded C++
+corpus exposed rust-protobuf 3.7.2 dropping scalar negative zero during binary
+serialization. build.rs postprocesses only the pinned generator's scalar floating
+default checks (` != 0. {` becomes `.to_bits() != 0 {`). Both size computation
+and writing get the same correction; schemas and descriptors stay unchanged.
+The production build policy is handwritten and instrumented; only resulting
+schema-derived code is excluded. The C++ signed-zero regression is mandatory.
+Any future generator upgrade must rerun it and review/remove this patch.

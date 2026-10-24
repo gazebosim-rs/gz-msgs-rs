@@ -15,6 +15,11 @@ int main(int argc, char **argv) {
   for (const auto &file : set.file()) if (!pool.BuildFile(file)) return 4;
   auto descriptor = pool.FindMessageTypeByName(argv[2]);
   if (!descriptor) return 5;
+  if (std::string(argv[3]) == "descriptor") {
+    google::protobuf::DescriptorProto schema;
+    descriptor->CopyTo(&schema);
+    return schema.SerializeToOstream(&std::cout) ? 0 : 8;
+  }
   google::protobuf::DynamicMessageFactory factory(&pool);
   std::unique_ptr<google::protobuf::Message> message(factory.GetPrototype(descriptor)->New());
   std::string input(std::istreambuf_iterator<char>(std::cin), {});
