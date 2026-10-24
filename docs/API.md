@@ -222,3 +222,12 @@ Gazebo aliases are normalized on lookup, while other leading dots are rejected
 unless registered literally. Text construction clears constructor-populated
 fields as native ParseFromString does. Types returns a sorted union of canonical,
 registered and loaded names; native unordered traversal order is not portable.
+
+Plane and box component helpers use raw arrays without an additional math crate.
+`plane(normal_xyz, size_xy, offset)` and `axis_aligned_box(min_xyz, max_xyz)`
+create messages; `set_plane` and `set_axis_aligned_box` update existing geometric
+fields while retaining outer and nested headers. Component readers return zero
+for missing nested vectors. They copy values directly: plane normals are not
+normalized and box corners are not sorted. In particular these represent already
+assigned native math components, not the native AxisAlignedBox constructor's
+corner ordering policy. Existing generated typed unknown-field limits still apply.

@@ -463,3 +463,32 @@ native cases plus both targeted Rust ports. It checked source/binary hashes and
 the documented nullable Box/Arc and immutable-borrow mapping. Review corrected
 the embedded header construction to be independent of the standalone wrench,
 as the original does. Both mappings are now reviewed; final staged gate required.
+
+Plane/AABB conversion slice: public raw-array constructors, component readers and
+setters mirror the native conversion headers' pure field assignments. Setters
+retain outer/nested metadata, including headers on preexisting normal/size/corner
+messages. Missing nested values read as zero; signed zeros and inverted corners
+are preserved. This does not implement native math algorithms or the bounding-box
+constructor's sorting policy. The original box test explicitly assigns inverted
+corners through mutable Min/Max references; our helper retains those values.
+
+`geometry-reference.py` compiles the actual native conversion probe and records16
+complete protobuf wire messages across plane/box/default/non-unit/inverted/
+signed-zero inputs and both fresh/seeded nested-header messages. It checks reverse
+native values and absent-message zero defaults, pins helper/header/original-source
+and binary hashes, and reruns four exact original native cases with one-run/
+zero-failure XML. Four Rust tests preserve every original plane/box assertion and
+compare all16 native bytes, supplementary raw component bits, defaults and header
+retention. Four mapping dispositions remain pending independent review.
+
+/root/sdformat approved exact staged plane/AABB diff
+`8acacd9cc0a70c59ae27e9360a6eacc27007388ab82884a21ce5a38d63c8708f`.
+It independently compared every original assertion, reran four exact original
+native cases, freshly compiled the native probe and matched all16 complete wire
+rows and default reverse checks, checked all source/header/helper/binary hashes,
+and reran four Rust tests. Array component mapping and explicit sorting limits
+are accepted. Original scalar tolerances are retained or strengthened. All four
+mappings are reviewed. Full local gate passes54 Rust checks,5 snapshot regressions,
+fmt/clippy/clean consumer,643/643 owned Rust lines and955/964 regions (geometry
+46/46 lines,81/81 regions). No dependency or exclusion changed. Final strict
+staged gate remains required for publication.

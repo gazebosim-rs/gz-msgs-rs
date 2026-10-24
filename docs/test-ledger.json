@@ -267,17 +267,27 @@
       "id": "UtilityTest.ConvertMathPlaneToMsgs",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "geometry::original_plane_conversion_and_assignment"
+      ],
+      "native_status": "passed",
+      "review_note": "Complete original source/assertions independently reviewed; four exact native cases and fresh native probe rerun, all16 wire rows/default reverse/source/header/helper/binary hashes checked, four Rust tests rerun. Raw arrays represent assigned math components; no normalization/sorting claim; original tolerances retained or strengthened. Outer/nested headers and signed-zero bytes match.",
+      "reviewer": "/root/sdformat",
+      "reviewed_diff": "8acacd9cc0a70c59ae27e9360a6eacc27007388ab82884a21ce5a38d63c8708f"
     },
     {
       "id": "UtilityTest.ConvertMsgsPlaneToMath",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "geometry::original_plane_conversion_and_assignment"
+      ],
+      "native_status": "passed",
+      "review_note": "Complete original source/assertions independently reviewed; four exact native cases and fresh native probe rerun, all16 wire rows/default reverse/source/header/helper/binary hashes checked, four Rust tests rerun. Raw arrays represent assigned math components; no normalization/sorting claim; original tolerances retained or strengthened. Outer/nested headers and signed-zero bytes match.",
+      "reviewer": "/root/sdformat",
+      "reviewed_diff": "8acacd9cc0a70c59ae27e9360a6eacc27007388ab82884a21ce5a38d63c8708f"
     },
     {
       "id": "MsgsTest.ConvertMathInertialToMsgs",
@@ -503,9 +513,14 @@
       "id": "UtilityTest.SetPlane",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "geometry::original_plane_conversion_and_assignment"
+      ],
+      "native_status": "passed",
+      "review_note": "Complete original source/assertions independently reviewed; four exact native cases and fresh native probe rerun, all16 wire rows/default reverse/source/header/helper/binary hashes checked, four Rust tests rerun. Raw arrays represent assigned math components; no normalization/sorting claim; original tolerances retained or strengthened. Outer/nested headers and signed-zero bytes match.",
+      "reviewer": "/root/sdformat",
+      "reviewed_diff": "8acacd9cc0a70c59ae27e9360a6eacc27007388ab82884a21ce5a38d63c8708f"
     },
     {
       "id": "MsgsTest.SetInertial",
@@ -679,9 +694,14 @@
       "id": "UtilityTest.CovertMathAxisAlignedBox",
       "source": "test/integration/Utility_TEST.cc",
       "source_sha256": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607",
-      "status": "not_ported",
-      "rust_tests": [],
-      "native_status": "passed"
+      "status": "ported",
+      "rust_tests": [
+        "geometry::original_axis_aligned_box_conversion_and_assignment"
+      ],
+      "native_status": "passed",
+      "review_note": "Complete original source/assertions independently reviewed; four exact native cases and fresh native probe rerun, all16 wire rows/default reverse/source/header/helper/binary hashes checked, four Rust tests rerun. Raw arrays represent assigned math components; no normalization/sorting claim; original tolerances retained or strengthened. Outer/nested headers and signed-zero bytes match.",
+      "reviewer": "/root/sdformat",
+      "reviewed_diff": "8acacd9cc0a70c59ae27e9360a6eacc27007388ab82884a21ce5a38d63c8708f"
     },
     {
       "id": "UtilityTest.InitPointCloudPacked",

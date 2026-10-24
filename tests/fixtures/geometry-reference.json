@@ -1,0 +1,116 @@
+{
+  "rows": [
+    {
+      "kind": 0,
+      "index": 0,
+      "seeded": 0,
+      "wire_hex": "120921000000000000f03f1a12110000000000c05e40190000000000807c4021000000000000f03f"
+    },
+    {
+      "kind": 0,
+      "index": 0,
+      "seeded": 1,
+      "wire_hex": "0a040a02080b120f0a040a02081621000000000000f03f1a180a040a020821110000000000c05e40190000000000807c4021000000000000f03f"
+    },
+    {
+      "kind": 0,
+      "index": 1,
+      "seeded": 0,
+      "wire_hex": "121b1100000000000000c01900000000000008402100000000000010401a121100000000000014c0190000000000001840210000000000001cc0"
+    },
+    {
+      "kind": 0,
+      "index": 1,
+      "seeded": 1,
+      "wire_hex": "0a040a02080b12210a040a0208161100000000000000c01900000000000008402100000000000010401a180a040a0208211100000000000014c0190000000000001840210000000000001cc0"
+    },
+    {
+      "kind": 0,
+      "index": 2,
+      "seeded": 0,
+      "wire_hex": "121211000000000000008021000000000000f03f1a12110000000000000080190000000000000040210000000000000080"
+    },
+    {
+      "kind": 0,
+      "index": 2,
+      "seeded": 1,
+      "wire_hex": "0a040a02080b12180a040a02081611000000000000008021000000000000f03f1a180a040a020821110000000000000080190000000000000040210000000000000080"
+    },
+    {
+      "kind": 0,
+      "index": 3,
+      "seeded": 0,
+      "wire_hex": "12001a00"
+    },
+    {
+      "kind": 0,
+      "index": 3,
+      "seeded": 1,
+      "wire_hex": "0a040a02080b12060a040a0208161a060a040a020821"
+    },
+    {
+      "kind": 1,
+      "index": 0,
+      "seeded": 0,
+      "wire_hex": "121b11000000000000f0bf1900000000000000c02100000000000008c01a1b110000000000002840190000000000002e40210000000000003440"
+    },
+    {
+      "kind": 1,
+      "index": 0,
+      "seeded": 1,
+      "wire_hex": "0a040a02080b12210a040a02081611000000000000f0bf1900000000000000c02100000000000008c01a210a040a020821110000000000002840190000000000002e40210000000000003440"
+    },
+    {
+      "kind": 1,
+      "index": 1,
+      "seeded": 0,
+      "wire_hex": "121b1166666666666637c0199a99999999194c40210000000000e05ec01a1b11cdcccccccc0c4140196666666666065740219a999999999986c0"
+    },
+    {
+      "kind": 1,
+      "index": 1,
+      "seeded": 1,
+      "wire_hex": "0a040a02080b12210a040a0208161166666666666637c0199a99999999194c40210000000000e05ec01a210a040a02082111cdcccccccc0c4140196666666666065740219a999999999986c0"
+    },
+    {
+      "kind": 1,
+      "index": 2,
+      "seeded": 0,
+      "wire_hex": "12001a00"
+    },
+    {
+      "kind": 1,
+      "index": 2,
+      "seeded": 1,
+      "wire_hex": "0a040a02080b12060a040a0208161a060a040a020821"
+    },
+    {
+      "kind": 1,
+      "index": 3,
+      "seeded": 0,
+      "wire_hex": "121b1100000000000000801900000000000000402100000000000008401a1b110000000000001040190000000000000080210000000000001840"
+    },
+    {
+      "kind": 1,
+      "index": 3,
+      "seeded": 1,
+      "wire_hex": "0a040a02080b12210a040a0208161100000000000000801900000000000000402100000000000008401a210a040a020821110000000000001040190000000000000080210000000000001840"
+    }
+  ],
+  "upstream_commit": "89c0c3d1474f545cb889335daf930bfdab6ab852",
+  "source_sha256": {
+    "core/include/gz/msgs/convert/Plane.hh": "679f0a33531170f44f54a95380fc0b0598c1ee167465b9484ed868ec9f91c951",
+    "core/include/gz/msgs/convert/AxisAlignedBox.hh": "fe304b316152f2295b718d9da4cb6c9dd2367d74802ca27e4d5091d339bd814c",
+    "core/include/gz/msgs/convert/Vector3.hh": "ff6db5affe1c6f634490c790afbe55bc84aedd1b516c627e2f996b398d641a7d",
+    "test/integration/Utility_TEST.cc": "3ea770f29ee9ea287e04e3befb19914f961779e2b5797943fe1cecf0b462c607"
+  },
+  "probe_source_sha256": "9a49d14eabf82e73d37a4dfb33e2244f231a35dc4a1e34d38379fe9cdd438d06",
+  "probe_binary_sha256": "5d4470c0970959c558d04f50c7dd2bbd304847ef0b97d5c25d1837c1daaedf81",
+  "original_native_binary_sha256": "f49abdc7852a8bb429fc49ce1d072679abaab72bb39b6f93fcc6036f9081a6c8",
+  "original_native_tests": [
+    "UtilityTest.ConvertMathPlaneToMsgs",
+    "UtilityTest.ConvertMsgsPlaneToMath",
+    "UtilityTest.SetPlane",
+    "UtilityTest.CovertMathAxisAlignedBox"
+  ]
+}
