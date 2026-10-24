@@ -127,3 +127,29 @@ fn utility_primitive_assignment() {
     assign!(double::Double, 0.123);
     assign!(float::Float, -367.0);
 }
+
+#[test]
+fn native_duration_reference_negative_and_boundary_values() {
+    use gz_msgs::prost::Message;
+    let fixture: serde_json::Value =
+        serde_json::from_str(include_str!("fixtures/time-reference.json")).unwrap();
+    for row in fixture["encode"].as_array().unwrap() {
+        let time = time_from_nanos(row["nanos"].as_i64().unwrap());
+        assert_eq!(time.sec, row["sec"].as_i64().unwrap());
+        assert_eq!(i64::from(time.nsec), row["nsec"].as_i64().unwrap());
+        let hex = time
+            .encode_to_vec()
+            .iter()
+            .map(|byte| format!("{byte:02x}"))
+            .collect::<String>();
+        assert_eq!(hex, row["wire_hex"].as_str().unwrap());
+        assert_eq!(time_to_nanos(&time), row["nanos"].as_i64());
+    }
+    for row in fixture["decode"].as_array().unwrap() {
+        let time = Time {
+            sec: row["sec"].as_i64().unwrap(),
+            nsec: row["nsec"].as_i64().unwrap() as i32,
+        };
+        assert_eq!(time_to_nanos(&time), row["nanos"].as_i64());
+    }
+}

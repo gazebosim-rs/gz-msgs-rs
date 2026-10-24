@@ -120,3 +120,22 @@ lines from executable line counts; every modified line remains provenance-listed
 and missing executable instrumentation fails. Combined host/runtime LLVM export
 also emits shared-function mismatch diagnostics; acceptance uses required owned
 source and owned-predicate counters, not third-party aggregate percentages.
+
+## Signed Time compatibility correction
+
+A root review identified that normalized convenience time helpers did not match
+native negative duration fields. `python3 scripts/time-reference.py` compiled
+against the actual pinned StdTypes.hh and installed native gz-math/protobuf,
+then captured 13 duration encodes (including signed i64 limits) and 9 Time decodes.
+The committed fixture records source/header/math and native binary hashes plus
+exact serialized hex. -1 ns encodes sec=0,nsec=-1; -1,000,000,001 ns encodes
+sec=-1,nsec=-1. Native inverse accepts unnormalized signed nanos, including i32
+limits. The default Rust helpers now match that behavior, truncating toward zero
+and summing signed fields with a checked i128 intermediate. True i64 total overflow
+returns None; C++ undefined signed overflow is explicitly not a compatibility
+claim. Nonnegative integration behavior is unchanged.
+
+23 integration tests pass, including exact native fields/bytes and inverse values.
+The staged partial-source rejection demonstration was updated for the corrected
+operator spelling. Existing original ConvertTimePoint assertions stay unchanged;
+the new negative/boundary corpus is additional conformance evidence.

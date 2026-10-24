@@ -36,9 +36,12 @@ only canonical Gazebo files. No callbacks or runtime are created.
 ## Plain domain values
 
 Time converts to/from signed integer nanoseconds using time_from_nanos and
-checked time_to_nanos. The constructor normalizes sec/nsec with Euclidean
-division; the inverse rejects invalid nanos or i64 overflow. Raw generated Time
-retains arbitrary i64/i32 fields without imposing a wall-clock range.
+checked time_to_nanos. The constructor truncates signed sec/nsec toward zero,
+matching native Gazebo duration conversion (-1 ns is {0,-1}). The inverse sums
+signed fields and accepts unnormalized i32 nanos, rejecting only true i64 total
+overflow. Raw generated Time retains arbitrary i64/i32 values without imposing
+a wall-clock range. Source/binary-hashed native positive/negative/boundary
+fixtures verify fields and exact protobuf bytes.
 
 StringMsg/Boolean/Int32/UInt32/Int64/UInt64/Float/Double implement From in both
 directions for their standard Rust scalar/String values. New wrappers have no

@@ -4,7 +4,12 @@ fn time_contract() {
     for nanos in [i64::MIN, -1_000_000_001, -1, 0, 1, i64::MAX] {
         assert_eq!(time_to_nanos(&time_from_nanos(nanos)), Some(nanos));
     }
-    for (sec, nsec) in [(0, -1), (0, 1_000_000_000), (i64::MAX, 0), (i64::MIN, 0)] {
+    for (sec, nsec) in [
+        (9223372036, 854775808),
+        (-9223372036, -854775809),
+        (i64::MAX, 0),
+        (i64::MIN, 0),
+    ] {
         assert_eq!(time_to_nanos(&Time { sec, nsec }), None);
     }
 }

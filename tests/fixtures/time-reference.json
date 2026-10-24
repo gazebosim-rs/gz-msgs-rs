@@ -1,0 +1,135 @@
+{
+  "upstream_commit": "89c0c3d1474f545cb889335daf930bfdab6ab852",
+  "header_sha256": "47309cfb226a3fb17dc5d9a59fc47ee558d335b3a623a8056aedbdb043232f3d",
+  "native_binary_sha256": "a43ebc54085c15b4a883f28a65d18d8f8469a3e2c8383d11ce1b1daf07e5701d",
+  "math_commit": "1316ed334f4d5bda7be59aae07cd6e8ff31cfe13",
+  "math_helpers_sha256": "9cc56808a570abefa5a61e2cb5c327101b1f0316b2e934a6ab77a9308b0c8eaf",
+  "native_protobuf": "3.21.12",
+  "encode": [
+    {
+      "nanos": -9223372036854775808,
+      "sec": -9223372036,
+      "nsec": -854775808,
+      "wire_hex": "08fc85fad1ddffffffff011080d0b4e8fcffffffff01"
+    },
+    {
+      "nanos": -200000000999,
+      "sec": -200,
+      "nsec": -999,
+      "wire_hex": "08b8feffffffffffffff011099f8ffffffffffffff01"
+    },
+    {
+      "nanos": -1000000001,
+      "sec": -1,
+      "nsec": -1,
+      "wire_hex": "08ffffffffffffffffff0110ffffffffffffffffff01"
+    },
+    {
+      "nanos": -1000000000,
+      "sec": -1,
+      "nsec": 0,
+      "wire_hex": "08ffffffffffffffffff01"
+    },
+    {
+      "nanos": -999999999,
+      "sec": 0,
+      "nsec": -999999999,
+      "wire_hex": "1081ec94a3fcffffffff01"
+    },
+    {
+      "nanos": -1,
+      "sec": 0,
+      "nsec": -1,
+      "wire_hex": "10ffffffffffffffffff01"
+    },
+    {
+      "nanos": 0,
+      "sec": 0,
+      "nsec": 0,
+      "wire_hex": ""
+    },
+    {
+      "nanos": 1,
+      "sec": 0,
+      "nsec": 1,
+      "wire_hex": "1001"
+    },
+    {
+      "nanos": 999999999,
+      "sec": 0,
+      "nsec": 999999999,
+      "wire_hex": "10ff93ebdc03"
+    },
+    {
+      "nanos": 1000000000,
+      "sec": 1,
+      "nsec": 0,
+      "wire_hex": "0801"
+    },
+    {
+      "nanos": 1000000001,
+      "sec": 1,
+      "nsec": 1,
+      "wire_hex": "08011001"
+    },
+    {
+      "nanos": 200000000999,
+      "sec": 200,
+      "nsec": 999,
+      "wire_hex": "08c80110e707"
+    },
+    {
+      "nanos": 9223372036854775807,
+      "sec": 9223372036,
+      "nsec": 854775807,
+      "wire_hex": "0884fa85ae2210ffafcb9703"
+    }
+  ],
+  "decode": [
+    {
+      "sec": 0,
+      "nsec": -1,
+      "nanos": -1
+    },
+    {
+      "sec": 1,
+      "nsec": -1,
+      "nanos": 999999999
+    },
+    {
+      "sec": -1,
+      "nsec": 1,
+      "nanos": -999999999
+    },
+    {
+      "sec": 0,
+      "nsec": 1000000000,
+      "nanos": 1000000000
+    },
+    {
+      "sec": 0,
+      "nsec": -1000000000,
+      "nanos": -1000000000
+    },
+    {
+      "sec": 0,
+      "nsec": 2147483647,
+      "nanos": 2147483647
+    },
+    {
+      "sec": 0,
+      "nsec": -2147483648,
+      "nanos": -2147483648
+    },
+    {
+      "sec": 9223372036,
+      "nsec": 854775807,
+      "nanos": 9223372036854775807
+    },
+    {
+      "sec": -9223372036,
+      "nsec": -854775808,
+      "nanos": -9223372036854775808
+    }
+  ]
+}

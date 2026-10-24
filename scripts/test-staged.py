@@ -11,7 +11,7 @@ with tempfile.TemporaryDirectory(prefix='gz-msgs-partial-stage-') as directory:
     def git(*args): subprocess.run(['git', *args], cwd=root, check=True, stdout=subprocess.DEVNULL)
     git('init', '-q')
     original = (root / 'src/lib.rs').read_text()
-    broken = original.replace('nanos.rem_euclid(1_000_000_000)', 'nanos.div_euclid(1_000_000_000)')
+    broken = original.replace('(nanos % 1_000_000_000)', '(nanos / 1_000_000_000)')
     assert broken != original
     (root / 'src/lib.rs').write_text(broken)
     git('add', '.')

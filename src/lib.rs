@@ -61,19 +61,16 @@ impl<M: prost::Message + Default> WireMessage<M> {
     }
 }
 
-/// Convert integer nanoseconds without imposing wall-clock timestamp limits.
+/// Match Gazebo duration conversion: signed seconds/remainder truncate toward zero.
 pub fn time_from_nanos(nanos: i64) -> Time {
     Time {
-        sec: nanos.div_euclid(1_000_000_000),
-        nsec: nanos.rem_euclid(1_000_000_000) as i32,
+        sec: nanos / 1_000_000_000,
+        nsec: (nanos % 1_000_000_000) as i32,
     }
 }
 
-/// Reject non-normalized or out-of-range input instead of wrapping.
+/// Sum signed fields as Gazebo does, accepting unnormalized nanos; reject overflow.
 pub fn time_to_nanos(time: &Time) -> Option<i64> {
-    if !(0..1_000_000_000).contains(&time.nsec) {
-        return None;
-    }
     i64::try_from(i128::from(time.sec) * 1_000_000_000 + i128::from(time.nsec)).ok()
 }
 
