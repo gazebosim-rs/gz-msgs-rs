@@ -51,3 +51,9 @@ Repository-owned code, tests and experiments use Apache-2.0; declare
 `license = "Apache-2.0"` in every owned Cargo package. Preserve all original
 vendored third-party licenses, copyright notices and provenance; this rule does
 not relicense third-party source.
+
+For new repository-owned Rust, Python, C++ and shell source/probes, include
+`Copyright (C) 2026 Open Source Robotics Foundation` and
+`SPDX-License-Identifier: Apache-2.0`; place comments after a shebang where present.
+Keep root NOTICE and README attribution consistent. Preserve original imported
+copyright holders/years and all vendored third-party attribution unchanged.

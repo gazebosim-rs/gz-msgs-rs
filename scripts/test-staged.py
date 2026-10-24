@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Copyright (C) 2026 Open Source Robotics Foundation
+# SPDX-License-Identifier: Apache-2.0
 """Demonstrate that unstaged working-copy fixes cannot validate a broken index."""
 import os, pathlib, shutil, subprocess, tempfile
 source = pathlib.Path(__file__).resolve().parents[1]

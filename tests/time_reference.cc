@@ -1,3 +1,5 @@
+// Copyright (C) 2026 Open Source Robotics Foundation
+// SPDX-License-Identifier: Apache-2.0
 // Native reference only: compile against the pinned Gazebo conversion header.
 #include <gz/msgs/convert/StdTypes.hh>
 #include <chrono>

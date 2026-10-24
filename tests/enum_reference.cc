@@ -1,3 +1,5 @@
+// Copyright (C) 2026 Open Source Robotics Foundation
+// SPDX-License-Identifier: Apache-2.0
 // Native reference only: use the actual pinned conversion policy headers.
 #include <iostream>
 #include <gz/msgs/convert/JointType.hh>

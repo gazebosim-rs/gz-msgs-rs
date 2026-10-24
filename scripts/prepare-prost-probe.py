@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Copyright (C) 2026 Open Source Robotics Foundation
+# SPDX-License-Identifier: Apache-2.0
 """Prepare target-only exact crates for a bounded patch probe, never shared cache edits."""
 import difflib, hashlib, pathlib, shutil, tarfile, tomllib
 root=pathlib.Path(__file__).resolve().parents[1]

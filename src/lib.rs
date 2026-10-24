@@ -1,3 +1,5 @@
+// Copyright (C) 2026 Open Source Robotics Foundation
+// SPDX-License-Identifier: Apache-2.0
 //! Canonical Gazebo values and an explicit lossless wire envelope.
 pub use {prost, prost_reflect, prost_types, serde_json};
 /// Standard prost traits/types with the reviewed derive macro fixes.

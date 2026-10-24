@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Copyright (C) 2026 Open Source Robotics Foundation
+# SPDX-License-Identifier: Apache-2.0
 """Run the unchanged upstream C++ CLI assertions against the Rust executable."""
 import pathlib, subprocess, sys, tomllib
 root=pathlib.Path(__file__).resolve().parents[1]

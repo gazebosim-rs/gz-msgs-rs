@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Copyright (C) 2026 Open Source Robotics Foundation
+# SPDX-License-Identifier: Apache-2.0
 """Instrument owned message code and patched vendors; leave upstream deps untouched."""
 import json, os, pathlib, sys
 root=pathlib.Path(os.environ['GZ_MSGS_COVERAGE_ROOT']).resolve()

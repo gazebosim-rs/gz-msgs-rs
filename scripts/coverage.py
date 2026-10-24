@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Copyright (C) 2026 Open Source Robotics Foundation
+# SPDX-License-Identifier: Apache-2.0
 import hashlib, json, os, pathlib, shutil, subprocess
 root = pathlib.Path(__file__).resolve().parents[1]
 os.chdir(root)

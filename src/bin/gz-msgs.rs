@@ -1,3 +1,5 @@
+// Copyright (C) 2026 Open Source Robotics Foundation
+// SPDX-License-Identifier: Apache-2.0
 //! Standalone protobuf inspection tool. Binary bytes only cross stdin/stdout.
 use gz_msgs::{prost::Message, prost_reflect::DynamicMessage};
 use std::io::{Read, Write};

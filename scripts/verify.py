@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Copyright (C) 2026 Open Source Robotics Foundation
+# SPDX-License-Identifier: Apache-2.0
 import hashlib, json, os, pathlib, subprocess, sys, tempfile
 root = pathlib.Path(__file__).resolve().parents[1]
 if '--staged' in sys.argv:

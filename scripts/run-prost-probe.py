@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Copyright (C) 2026 Open Source Robotics Foundation
+# SPDX-License-Identifier: Apache-2.0
 """Record candidate failures and patched results; do not count expected failures as passes."""
 import json, os, pathlib, subprocess
 root=pathlib.Path(__file__).resolve().parents[1]

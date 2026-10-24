@@ -24,3 +24,7 @@ also needs a C++17 compiler, libprotobuf and gtest development files. Run the qu
 gate with `python3 scripts/verify.py`; install staged-tree enforcement using
 `git config core.hooksPath .githooks`. The two vendored dependency fixes apply
 transitively without downstream Cargo patch configuration.
+
+New repository-owned contributions are Copyright (C) 2026 Open Source Robotics
+Foundation, SPDX-License-Identifier: Apache-2.0. See [NOTICE](NOTICE). Imported
+schemas/tests and vendored dependencies retain their original notices and licenses.

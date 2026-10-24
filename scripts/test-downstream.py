@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Copyright (C) 2026 Open Source Robotics Foundation
+# SPDX-License-Identifier: Apache-2.0
 """Verify transitive patched behavior from a clean consumer with no Cargo patches."""
 import json, os, pathlib, subprocess, tempfile
 root=pathlib.Path(__file__).resolve().parents[1]

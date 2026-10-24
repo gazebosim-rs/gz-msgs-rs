@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Copyright (C) 2026 Open Source Robotics Foundation
+# SPDX-License-Identifier: Apache-2.0
 """Capture complete canonical native --info output, including synthetic messages."""
 import hashlib, json, pathlib, subprocess
 from google.protobuf import descriptor_pb2, descriptor_pool

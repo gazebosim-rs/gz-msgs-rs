@@ -1,3 +1,5 @@
+// Copyright (C) 2026 Open Source Robotics Foundation
+// SPDX-License-Identifier: Apache-2.0
 // Independent C++ protobuf oracle; descriptors come from system protoc.
 #include <google/protobuf/descriptor.pb.h>
 #include <google/protobuf/dynamic_message.h>

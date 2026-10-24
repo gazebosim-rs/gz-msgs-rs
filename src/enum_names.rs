@@ -1,3 +1,5 @@
+// Copyright (C) 2026 Open Source Robotics Foundation
+// SPDX-License-Identifier: Apache-2.0
 //! Legacy Gazebo enum spelling/fallback policy layered over canonical descriptors.
 use crate::prost_reflect::EnumDescriptor;
 

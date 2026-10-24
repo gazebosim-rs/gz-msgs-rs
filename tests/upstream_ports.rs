@@ -1,3 +1,5 @@
+// Copyright (C) 2026 Open Source Robotics Foundation
+// SPDX-License-Identifier: Apache-2.0
 // Assertion-preserving ports from Gazebo msgs 89c0c3d Utility_TEST.cc/Factory_TEST.cc.
 // Copyright (C) Open Source Robotics Foundation; Apache-2.0.
 use gz_msgs::*;

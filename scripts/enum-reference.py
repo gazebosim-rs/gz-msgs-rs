@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Copyright (C) 2026 Open Source Robotics Foundation
+# SPDX-License-Identifier: Apache-2.0
 """Capture native enum conversion policy against canonical enum descriptors."""
 import hashlib, json, pathlib, shlex, subprocess
 from google.protobuf import descriptor_pb2, descriptor_pool

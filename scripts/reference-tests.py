@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Copyright (C) 2026 Open Source Robotics Foundation
+# SPDX-License-Identifier: Apache-2.0
 """Run an existing pinned native build, retaining all successes and failures."""
 import hashlib, json, os, pathlib, subprocess, sys, xml.etree.ElementTree as ET
 root = pathlib.Path(__file__).resolve().parents[1]
