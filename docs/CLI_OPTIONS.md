@@ -23,7 +23,8 @@ the same option policy and are checked against corresponding native flag forms.
 The fifteen formerly unsupported long flag assignments are retained verbatim
 and now compare against native outcomes. A further 171-case corpus qualifies
 boolean words, numeric radices/range behavior and callback precedence; see
-[flag values](CLI_FLAG_VALUES.md). Full CLI11 grammar,
+[flag values](CLI_FLAG_VALUES.md). Bracketed info values and empty-vector required
+consumption have a separate [119-row corpus](CLI_INFO_VECTORS.md). Full CLI11 grammar,
 non-UTF-8 argv, every diagnostic/help formatting case and dynamic-descriptor CLI
 info remain unqualified. External descriptor installation/global-cache decisions,
 full message formatting and performance/release matrix work remain MSG-02 scope.

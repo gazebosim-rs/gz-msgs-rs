@@ -72,21 +72,39 @@ fn flag(value: &str, name: &str) -> Result<bool, Error> {
         _ => Err(invalid()),
     }
 }
+fn add_names(value: &str, names: &mut Vec<String>) {
+    // Native recursively splits bracket-wrapped comma lists without trimming.
+    // An explicit stack preserves that order without consuming the call stack.
+    let mut pending = vec![value];
+    while let Some(value) = pending.pop() {
+        if value.starts_with('[') && value.ends_with(']') {
+            pending.extend(
+                value[1..value.len() - 1]
+                    .split(',')
+                    .rev()
+                    .filter(|v| !v.is_empty()),
+            );
+        } else {
+            names.push(value.to_owned());
+        }
+    }
+}
 fn info(
     value: Option<&OsStr>,
     raw: &RawArgs,
     cursor: &mut ArgCursor,
     names: &mut Vec<String>,
 ) -> Result<(), Error> {
-    let value = match value {
-        Some(value) if !value.is_empty() => value,
-        Some(_) => return Err(error(114, "--info: 1 required TEXT missing")),
-        None => raw
+    let before = names.len();
+    if let Some(value) = value.filter(|v| !v.is_empty()) {
+        add_names(value.to_str().expect("String arguments"), names);
+    }
+    while names.len() == before {
+        let value = raw
             .next_os(cursor)
-            .ok_or_else(|| error(114, "--info: 1 required TEXT missing"))?,
-    };
-    // CLI11 consumes the first required value even if it looks like a flag.
-    names.push(value.to_str().expect("String arguments").to_owned());
+            .ok_or_else(|| error(114, "--info: 1 required TEXT missing"))?;
+        add_names(value.to_str().expect("String arguments"), names);
+    }
     Ok(())
 }
 
@@ -119,7 +137,7 @@ pub fn normalize(mut args: Vec<String>) -> Result<Vec<String>, Error> {
             && value.starts_with('-')
             && value.as_bytes().get(1).is_some_and(u8::is_ascii_digit)
         {
-            names.push(value.to_owned());
+            add_names(value, &mut names);
             continue;
         }
         if arg.is_escape() {
@@ -183,7 +201,7 @@ pub fn normalize(mut args: Vec<String>) -> Result<Vec<String>, Error> {
                 }
             }
         } else if collecting {
-            names.push(arg.to_value().expect("String arguments").to_owned());
+            add_names(arg.to_value().expect("String arguments"), &mut names);
         } else {
             extras.push(arg.to_value().expect("String arguments").to_owned());
         }

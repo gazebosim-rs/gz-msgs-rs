@@ -966,3 +966,34 @@ source. The [receipt](reviews/cli-flag-values.json) distinguishes targeted revie
 from the author's full coverage gate. No producer target was shared. Matching
 strict staged and hosted verification remain required; broader grammar remains
 open.
+
+## Native info vector values
+
+The info option now uses literal bracket/comma expansion in native order, with
+an explicit Rust stack rather than recursive calls. Empty expansions do not
+satisfy a required value; every info occurrence consumes further argv, including
+flag-looking strings, until it contributes a name. An empty attached assignment
+also falls through to argv, while a separate empty string remains a name. The
+119 native rows compare complete outputs/statuses, including whitespace, nesting,
+malformed brackets, aliases, short/attached/repeated options and required-value
+precedence. All earlier option/flag corpora are unchanged. An ignored prototype
+also matched 264 generated nesting cases; those do not replace checked fixtures.
+
+The full working gate passes 86 Rust checks, five snapshot regressions, archive
+QA and the clean downstream consumer. Owned coverage is 1465/1467 lines and
+2303/2317 regions; the CLI helper is 205/205 lines and 365/365 regions. No new
+dependency, unsafe code, threshold/exclusion change or original mapping retirement
+is introduced. Independent review and matching staged/hosted gates remain pending.
+Full CLI11 grammar, non-UTF-8 argv and external descriptor info remain open.
+
+Independent /root/transport_recovery approved the immutable vector tree 22a3e9bf
+and its bounded c4f7228b diff after verifying all 638 raw blobs and eight source
+bindings, including equality to the earlier reviewed flag parent. A fresh private
+target passes all twelve CLI tests plus five unchanged C++ cases. All 119 native
+observations reproduce the complete author proof. It checked literal untrimmed
+comma splitting, iterative order and per-occurrence required consumption against
+installed CLI11 source, and verified the prior 90 and 171 corpora remain unchanged.
+The [receipt](reviews/cli-info-vectors.json) excludes separate external-list work
+and distinguishes this targeted replay from the author's full coverage gate.
+Final integration retains the now-public flag review metadata unchanged; matching
+strict staged and hosted checks remain required. No broad MSG-02 claim is made.

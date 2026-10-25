@@ -1,0 +1,26 @@
+{
+  "decision": "approved for immutable vector snapshot; final reviewed-parent integration required",
+  "author": "/root/msgs",
+  "reviewer": "/root/transport_recovery",
+  "date": "2026-10-25T04:02:34.378981+00:00",
+  "candidate_tree": "22a3e9bf172e34e4c71be94b5ebd6d545f2cd58e",
+  "base_index_tree": "8c45c122ce0b85f2b6ceeb17312d8ddbf58130b7",
+  "diff_sha256": "c4f7228bb657b22ecd22cd179feb95f0e8b467c62697358b9729fbff315c0f89",
+  "scope": "Bounded native info-vector literal splitting and required-value consumption. No full CLI11 grammar, generic container parser, non-UTF8 argv, external descriptor info or whole MSG-02 acceptance. Later external-list main changes are excluded from this immutable tree.",
+  "source_review": "Inspected installed CLI11 Option::_add_result as primary source: only first/last brackets trigger recursive literal comma splitting, empty fragments skipped, whitespace/quotes/nested depth unnormalized. Rust uses maintained str::split and an explicit reverse-push stack to preserve native order without recursive Rust calls; UTF8 slicing is at literal ASCII bracket boundaries. No generic CSV/JSON semantics or arbitrary new depth threshold added. Each info occurrence must add at least one name, repeatedly consuming raw argv if attached/expanded values are empty, including flag-looking names. Separate empty scalar counts as a name. Prior flag conversion/callback and formatting branches remain intact.",
+  "assertion_preservation": "Incremental parent tree equals every one of the 636 previously reviewed flag snapshot blobs. All old 90 options/171 flag observations and shared assertions remain unchanged; new 119 rows compare exact statuses/info/errors and complete sorted lists with existing package-version/help bindings. Inspected native first-required-value/empty expansion behavior, short/attached/repeated options, aliases, markers and exclusions. No original C++ assertion or retained mapping weakened/retired.",
+  "independent_checks": "Exported and OID/SHA/mode-verified all 638 blobs from immutable tree 22a3e9bf, including all eight candidate file hashes and exact incremental diff c4f7228b. Fresh distinct private target passes all 12 CLI Rust tests, including five unchanged original C++ CLI cases. Fresh native script reproduces all 119 new observations, with complete proof equality to author including source/binary/schema/fixture/argv0 identities. Snapshot source hashes and immutable diff reverified after build. No producer target shared.",
+  "author_reported": "Full working 86 Rust/five snapshot/archive/downstream gate: 1465/1467 owned lines, 2303/2317 regions; CLI helper 205/205 lines and 365/365 regions. Coverage/package gate not independently recomputed. Reported ignored 264 generated nesting probes were not independently replayed and are supplementary only.",
+  "limits": "This source tree predates the final flag-review receipt/EVIDENCE paragraph now integrated on public flag commit 5a68646. Final integration must retain exact vector production/test/corpus delta and bind that additive metadata overlap, without blind receipt reuse. Mandatory final exact staged hook and hosted qualification remain required. Native evidence is pinned installed Linux reference rather than a newly reproduced complete dependency image. Broader grammar, malformed-input completeness, resource/performance/format/platform and global cache scope remain pending.",
+  "source_sha256": {
+    "src/bin/legacy_cli/mod.rs": "56a7db5247c760be08ae69a1ec08d1504933ebb39c5e419507c367849bc8af26",
+    "tests/cli.rs": "103b7b630b733ff01f66edb08de143400392a6d9b551291bbd8ce1255883d25e",
+    "tests/fixtures/cli-info-vectors.json": "ef569b2cd8b61beadb0ae79cd03291a25ba57f521d90245f1342ea66f1b405ee",
+    "scripts/verify.py": "087dfa01cd39c6f0aa5f28ac43a6277ac7bbc8732894f4bc5dc031f95b804d80",
+    "docs/CLI_INFO_VECTORS.md": "ea85607039f280564089e5aef597e6f5f5ce45ffa52b100b21a2b2c05d8f3573",
+    "docs/CLI_OPTIONS.md": "92bc3c4ef91bf56ed1e5349c7fec4385605bf8c27b60ca16c0875e494023b31b",
+    "docs/API.md": "39b0adbec3901d075648d2fb34c890b7583960e29c5f8efd5e2d9a02d1c0f6db",
+    "docs/EVIDENCE.md": "67f13c58a05a7109ca001c6d6f46a691ca671b88a6e962fd202cbcf0a812b969"
+  },
+  "primary_header_sha256": "e732700bf0a7976ef6dcc465ad104c8ac979fc5e2c812e00666fb361c757af9a"
+}

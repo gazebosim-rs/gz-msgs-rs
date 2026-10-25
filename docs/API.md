@@ -108,7 +108,8 @@ and artifact-path bindings. This package does not own the gz dispatcher.
 Attached/repeated info options, short flag groups, exclusions and observed native
 error codes are qualified by the [bounded option corpus](CLI_OPTIONS.md). Native
 long flag-value conversion has its [own corpus](CLI_FLAG_VALUES.md); full legacy
-grammar remains unqualified.
+grammar remains unqualified. Bracketed info vectors and per-occurrence required
+consumption follow the [bounded native rules](CLI_INFO_VECTORS.md).
 Install-prefix/canonical-path-cache behavior, dynamic-descriptor CLI info and
 broader Any/formatting qualification remain pending. Factory environment/lazy,
 retry/concurrency and packed-cloud APIs are described below with their own limits.

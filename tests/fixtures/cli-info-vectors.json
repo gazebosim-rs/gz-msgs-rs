@@ -1,0 +1,1276 @@
+{
+  "upstream_commit": "89c0c3d1474f545cb889335daf930bfdab6ab852",
+  "native_binary_sha256": "6160c5d48314c32f36fceecd6a0637fc84b7fb09f1dada790ab6fcefd729bcc8",
+  "native_source_sha256": "61eda9083e2802e406695d7b84e35284911bc936c834dc20505b2fb248eba609",
+  "schema_manifest_sha256": "4762e2101674aa2cdd3a6518f8a71a50acde2ce417452e46b44f42e9d02c1d39",
+  "native_argv0": "gz-msgs",
+  "cases": [
+    {
+      "args": [
+        "--info",
+        "[]"
+      ],
+      "status": 114,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "--info: 1 required TEXT missing\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info=[]"
+      ],
+      "status": 114,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "--info: 1 required TEXT missing\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[]",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--info",
+        "[]",
+        "--list"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "Unable to create message of type[--list]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[]",
+        "--info",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[--info]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[,]"
+      ],
+      "status": 114,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "--info: 1 required TEXT missing\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info=[,]"
+      ],
+      "status": 114,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "--info: 1 required TEXT missing\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[,]",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--info",
+        "[,]",
+        "--list"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "Unable to create message of type[--list]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[,]",
+        "--info",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[--info]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[,,]"
+      ],
+      "status": 114,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "--info: 1 required TEXT missing\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info=[,,]"
+      ],
+      "status": 114,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "--info: 1 required TEXT missing\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[,,]",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--info",
+        "[,,]",
+        "--list"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "Unable to create message of type[--list]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[,,]",
+        "--info",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[--info]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[gz.msgs.Time,gz.msgs.Pose]"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\nName: gz.msgs.Pose\nFile: gz/msgs/pose.proto\n\nmessage Pose {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  uint32 id = 3;\n  .gz.msgs.Vector3d position = 4;\n  .gz.msgs.Quaternion orientation = 5;\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--info=[gz.msgs.Time,gz.msgs.Pose]"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\nName: gz.msgs.Pose\nFile: gz/msgs/pose.proto\n\nmessage Pose {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  uint32 id = 3;\n  .gz.msgs.Vector3d position = 4;\n  .gz.msgs.Quaternion orientation = 5;\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--info",
+        "[gz.msgs.Time,gz.msgs.Pose]",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\nName: gz.msgs.Pose\nFile: gz/msgs/pose.proto\n\nmessage Pose {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  uint32 id = 3;\n  .gz.msgs.Vector3d position = 4;\n  .gz.msgs.Quaternion orientation = 5;\n}\n\nName: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--info",
+        "[gz.msgs.Time,gz.msgs.Pose]",
+        "--list"
+      ],
+      "status": 108,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "--list excludes --info\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[gz.msgs.Time,gz.msgs.Pose]",
+        "--info",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\nName: gz.msgs.Pose\nFile: gz/msgs/pose.proto\n\nmessage Pose {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  uint32 id = 3;\n  .gz.msgs.Vector3d position = 4;\n  .gz.msgs.Quaternion orientation = 5;\n}\n\nName: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--info",
+        "[gz.msgs.Time, gz.msgs.Pose]"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[ gz.msgs.Pose]\n"
+    },
+    {
+      "args": [
+        "--info=[gz.msgs.Time, gz.msgs.Pose]"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[ gz.msgs.Pose]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[gz.msgs.Time, gz.msgs.Pose]",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\nName: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[ gz.msgs.Pose]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[gz.msgs.Time, gz.msgs.Pose]",
+        "--list"
+      ],
+      "status": 108,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "--list excludes --info\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[gz.msgs.Time, gz.msgs.Pose]",
+        "--info",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\nName: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[ gz.msgs.Pose]\n"
+    },
+    {
+      "args": [
+        "--info",
+        " [gz.msgs.Time]"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "Unable to create message of type[ [gz.msgs.Time]]\n"
+    },
+    {
+      "args": [
+        "--info= [gz.msgs.Time]"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "Unable to create message of type[ [gz.msgs.Time]]\n"
+    },
+    {
+      "args": [
+        "--info",
+        " [gz.msgs.Time]",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[ [gz.msgs.Time]]\n"
+    },
+    {
+      "args": [
+        "--info",
+        " [gz.msgs.Time]",
+        "--list"
+      ],
+      "status": 108,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "--list excludes --info\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info",
+        " [gz.msgs.Time]",
+        "--info",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[ [gz.msgs.Time]]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[gz.msgs.Time] "
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "Unable to create message of type[[gz.msgs.Time] ]\n"
+    },
+    {
+      "args": [
+        "--info=[gz.msgs.Time] "
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "Unable to create message of type[[gz.msgs.Time] ]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[gz.msgs.Time] ",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[[gz.msgs.Time] ]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[gz.msgs.Time] ",
+        "--list"
+      ],
+      "status": 108,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "--list excludes --info\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[gz.msgs.Time] ",
+        "--info",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[[gz.msgs.Time] ]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[[gz.msgs.Time]]"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--info=[[gz.msgs.Time]]"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--info",
+        "[[gz.msgs.Time]]",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\nName: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--info",
+        "[[gz.msgs.Time]]",
+        "--list"
+      ],
+      "status": 108,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "--list excludes --info\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[[gz.msgs.Time]]",
+        "--info",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\nName: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--info",
+        "[[gz.msgs.Time,gz.msgs.Pose]]"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "Unable to create message of type[[gz.msgs.Time]\nUnable to create message of type[gz.msgs.Pose]]\n"
+    },
+    {
+      "args": [
+        "--info=[[gz.msgs.Time,gz.msgs.Pose]]"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "Unable to create message of type[[gz.msgs.Time]\nUnable to create message of type[gz.msgs.Pose]]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[[gz.msgs.Time,gz.msgs.Pose]]",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[[gz.msgs.Time]\nUnable to create message of type[gz.msgs.Pose]]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[[gz.msgs.Time,gz.msgs.Pose]]",
+        "--list"
+      ],
+      "status": 108,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "--list excludes --info\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[[gz.msgs.Time,gz.msgs.Pose]]",
+        "--info",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[[gz.msgs.Time]\nUnable to create message of type[gz.msgs.Pose]]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[gz.msgs.Time,,gz.msgs.Pose]"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\nName: gz.msgs.Pose\nFile: gz/msgs/pose.proto\n\nmessage Pose {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  uint32 id = 3;\n  .gz.msgs.Vector3d position = 4;\n  .gz.msgs.Quaternion orientation = 5;\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--info=[gz.msgs.Time,,gz.msgs.Pose]"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\nName: gz.msgs.Pose\nFile: gz/msgs/pose.proto\n\nmessage Pose {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  uint32 id = 3;\n  .gz.msgs.Vector3d position = 4;\n  .gz.msgs.Quaternion orientation = 5;\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--info",
+        "[gz.msgs.Time,,gz.msgs.Pose]",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\nName: gz.msgs.Pose\nFile: gz/msgs/pose.proto\n\nmessage Pose {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  uint32 id = 3;\n  .gz.msgs.Vector3d position = 4;\n  .gz.msgs.Quaternion orientation = 5;\n}\n\nName: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--info",
+        "[gz.msgs.Time,,gz.msgs.Pose]",
+        "--list"
+      ],
+      "status": 108,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "--list excludes --info\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[gz.msgs.Time,,gz.msgs.Pose]",
+        "--info",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\nName: gz.msgs.Pose\nFile: gz/msgs/pose.proto\n\nmessage Pose {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  uint32 id = 3;\n  .gz.msgs.Vector3d position = 4;\n  .gz.msgs.Quaternion orientation = 5;\n}\n\nName: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--info",
+        "[\"gz.msgs.Time\"]"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "Unable to create message of type[\"gz.msgs.Time\"]\n"
+    },
+    {
+      "args": [
+        "--info=[\"gz.msgs.Time\"]"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "Unable to create message of type[\"gz.msgs.Time\"]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[\"gz.msgs.Time\"]",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[\"gz.msgs.Time\"]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[\"gz.msgs.Time\"]",
+        "--list"
+      ],
+      "status": 108,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "--list excludes --info\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[\"gz.msgs.Time\"]",
+        "--info",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[\"gz.msgs.Time\"]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[gz.msgs.Time\n]"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "Unable to create message of type[gz.msgs.Time\n]\n"
+    },
+    {
+      "args": [
+        "--info=[gz.msgs.Time\n]"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "Unable to create message of type[gz.msgs.Time\n]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[gz.msgs.Time\n]",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[gz.msgs.Time\n]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[gz.msgs.Time\n]",
+        "--list"
+      ],
+      "status": 108,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "--list excludes --info\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[gz.msgs.Time\n]",
+        "--info",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[gz.msgs.Time\n]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[{}]"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "Unable to create message of type[{}]\n"
+    },
+    {
+      "args": [
+        "--info=[{}]"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "Unable to create message of type[{}]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[{}]",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[{}]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[{}]",
+        "--list"
+      ],
+      "status": 108,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "--list excludes --info\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[{}]",
+        "--info",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[{}]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[[]]"
+      ],
+      "status": 114,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "--info: 1 required TEXT missing\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info=[[]]"
+      ],
+      "status": 114,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "--info: 1 required TEXT missing\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[[]]",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--info",
+        "[[]]",
+        "--list"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "Unable to create message of type[--list]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[[]]",
+        "--info",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[--info]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[[],gz.msgs.Time]"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--info=[[],gz.msgs.Time]"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--info",
+        "[[],gz.msgs.Time]",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\nName: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--info",
+        "[[],gz.msgs.Time]",
+        "--list"
+      ],
+      "status": 108,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "--list excludes --info\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[[],gz.msgs.Time]",
+        "--info",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\nName: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--info",
+        "[gz.msgs.Time,[]]"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--info=[gz.msgs.Time,[]]"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--info",
+        "[gz.msgs.Time,[]]",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\nName: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--info",
+        "[gz.msgs.Time,[]]",
+        "--list"
+      ],
+      "status": 108,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "--list excludes --info\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[gz.msgs.Time,[]]",
+        "--info",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\nName: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--info",
+        "["
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "Unable to create message of type[[]\n"
+    },
+    {
+      "args": [
+        "--info=["
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "Unable to create message of type[[]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[[]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[",
+        "--list"
+      ],
+      "status": 108,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "--list excludes --info\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[",
+        "--info",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[[]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "]"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "Unable to create message of type[]]\n"
+    },
+    {
+      "args": [
+        "--info=]"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "Unable to create message of type[]]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "]",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[]]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "]",
+        "--list"
+      ],
+      "status": 108,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "--list excludes --info\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info",
+        "]",
+        "--info",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[]]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "Unable to create message of type[[gz.msgs.Time]\n"
+    },
+    {
+      "args": [
+        "--info=[gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "Unable to create message of type[[gz.msgs.Time]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[gz.msgs.Time",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[[gz.msgs.Time]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[gz.msgs.Time",
+        "--list"
+      ],
+      "status": 108,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "--list excludes --info\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[gz.msgs.Time",
+        "--info",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[[gz.msgs.Time]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "gz.msgs.Time]"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "Unable to create message of type[gz.msgs.Time]]\n"
+    },
+    {
+      "args": [
+        "--info=gz.msgs.Time]"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "Unable to create message of type[gz.msgs.Time]]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "gz.msgs.Time]",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[gz.msgs.Time]]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "gz.msgs.Time]",
+        "--list"
+      ],
+      "status": 108,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "--list excludes --info\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info",
+        "gz.msgs.Time]",
+        "--info",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[gz.msgs.Time]]\n"
+    },
+    {
+      "args": [
+        "--info=",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--info=",
+        "--list"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "Unable to create message of type[--list]\n"
+    },
+    {
+      "args": [
+        "--info=",
+        ""
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "Unable to create message of type[]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "",
+        "--list"
+      ],
+      "status": 108,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "--list excludes --info\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "-i[gz.msgs.Time,gz.msgs.Pose]"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\nName: gz.msgs.Pose\nFile: gz/msgs/pose.proto\n\nmessage Pose {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  uint32 id = 3;\n  .gz.msgs.Vector3d position = 4;\n  .gz.msgs.Quaternion orientation = 5;\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "-i",
+        "[]",
+        "--list"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "Unable to create message of type[--list]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "gz.msgs.Time",
+        "[]"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--info",
+        "gz.msgs.Time",
+        "--info",
+        "[]"
+      ],
+      "status": 114,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "--info: 1 required TEXT missing\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info",
+        "gz.msgs.Time",
+        "--info=[]"
+      ],
+      "status": 114,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "--info: 1 required TEXT missing\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info=[]",
+        "--version"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "Unable to create message of type[--version]\n"
+    },
+    {
+      "args": [
+        "--info=[]",
+        "--help"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "Unable to create message of type[--help]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[]",
+        "[]",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--info",
+        "[]",
+        "[]"
+      ],
+      "status": 114,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "--info: 1 required TEXT missing\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[ ]"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "Unable to create message of type[ ]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[gz.msgs.Time\t,gz.msgs.Pose]"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Pose\nFile: gz/msgs/pose.proto\n\nmessage Pose {\n  .gz.msgs.Header header = 1;\n  string name = 2;\n  uint32 id = 3;\n  .gz.msgs.Vector3d position = 4;\n  .gz.msgs.Quaternion orientation = 5;\n}\n\n",
+      "stderr": "Unable to create message of type[gz.msgs.Time\t]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "gz.msgs.Time",
+        "[]",
+        "--list"
+      ],
+      "status": 108,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "--list excludes --info\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[gz.msgs.Time]",
+        "--info",
+        "[]",
+        "--list"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[--list]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[]",
+        "--",
+        "gz.msgs.Time"
+      ],
+      "status": 0,
+      "mode": "exact",
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[--]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "[gz.msgs.Time]",
+        "--",
+        "gz.msgs.Pose"
+      ],
+      "status": 109,
+      "mode": "exact",
+      "stdout": "",
+      "stderr": "The following argument was not expected: gz.msgs.Pose\nRun with --help for more information.\n"
+    }
+  ]
+}

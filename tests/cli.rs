@@ -417,3 +417,13 @@ fn native_flag_value_conversions_and_callback_precedence() {
         assert_native_option(row);
     }
 }
+
+#[test]
+fn native_info_vector_values_and_required_consumption() {
+    let fixture: gz_msgs::serde_json::Value =
+        gz_msgs::serde_json::from_str(include_str!("fixtures/cli-info-vectors.json")).unwrap();
+    assert_eq!(fixture["cases"].as_array().unwrap().len(), 119);
+    for row in fixture["cases"].as_array().unwrap() {
+        assert_native_option(row);
+    }
+}

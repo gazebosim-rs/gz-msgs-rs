@@ -21,6 +21,9 @@ assert options['schema_manifest_sha256'] == hashlib.sha256(pathlib.Path('schemas
 flags = json.loads(pathlib.Path('tests/fixtures/cli-flag-values.json').read_text())
 for key in ['upstream_commit', 'native_binary_sha256', 'native_source_sha256', 'schema_manifest_sha256', 'native_argv0']:
     assert flags[key] == options[key], key
+vectors = json.loads(pathlib.Path('tests/fixtures/cli-info-vectors.json').read_text())
+for key in ['upstream_commit', 'native_binary_sha256', 'native_source_sha256', 'schema_manifest_sha256', 'native_argv0']:
+    assert vectors[key] == options[key], key
 info = json.loads(pathlib.Path('schemas/cli-info.manifest.json').read_text())
 assert hashlib.sha256(pathlib.Path('schemas/cli-info.json').read_bytes()).hexdigest() == info['corpus_sha256']
 assert hashlib.sha256(pathlib.Path('schemas/manifest.json').read_bytes()).hexdigest() == info['schema_manifest_sha256']
