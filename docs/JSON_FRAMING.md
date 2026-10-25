@@ -69,3 +69,24 @@ actual native/Rust acceptance and full binary output. The
 mapping after a private 43-row replay, full Rust test run and an array-rule
 negative control. General JSON grammar, diagnostic text and all-message
 qualification remain open; the normal staged hook and hosted CI are required.
+
+## Single-quoted strings
+
+Native protobuf 3.21.12 accepts single-quoted field names and string values.
+The lexical adapter now converts those delimiters to JSON double quotes outside
+existing double-quoted strings, escapes literal double quotes inside them and
+preserves escaped apostrophes and JSON-compatible escapes. The existing dynamic
+decoder and complete-document check still decide field and value validity.
+
+A separate 21-row native corpus compares actual acceptance and full binary
+output for Time, StringMsg and StringMsg_V. It covers combined bare names and
+trailing commas, apostrophes, double quotes, backslash escapes, Unicode escapes
+and malformed suffixes. Two additional native-positive rows remain explicit
+gaps: protobuf accepts an unknown `\x` escape and a raw newline within a string,
+while the bounded adapter leaves both for serde_json to reject. The 43 earlier
+fixtures are unchanged. `scripts/json-reference.py` replays all 66 native rows.
+The [independent review](reviews/json-single-quote.json) approved the bounded
+21-row mapping after a private 66-row replay, full Rust test run and a
+single-quote-rule negative control. General protobuf JSON grammar, diagnostics
+and all-message equivalence remain open; the normal staged hook and hosted CI
+are required.

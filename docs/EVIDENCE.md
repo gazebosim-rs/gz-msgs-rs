@@ -1447,3 +1447,41 @@ unchanged [semantic receipt](reviews/json-array-grammar.json) binds the seven
 reviewed inputs and qualifies only repeated-field array commas. Final metadata
 binding, normal staged hook and hosted qualification remain required. General
 protobuf JSON grammar, diagnostics and MSG-02 completion remain open.
+
+## Bounded protobuf JSON single-quoted-string candidate
+
+Native protobuf 3.21.12 accepts single-quoted keys and string values rejected
+by the published CLI. A bounded lexical correction converts quote delimiters,
+escapes literal double quotes and preserves escaped apostrophes before the
+existing dynamic deserializer and final-document check. The 43 previously
+reviewed JSON rows and three fixture files remain byte-for-byte unchanged.
+A new 21-row source-bound corpus compares native/Rust acceptance and complete
+binary output across Time, StringMsg and StringMsg_V. Two further native-positive
+rows remain explicit negative Rust dispositions: unknown `\x` escapes and raw
+newlines inside strings. The native proof replays all 66 rows and binds fixture,
+schema, peer source and binary hashes.
+
+The full working strict gate exits zero with 109 harness checks plus FactoryLazy,
+negative gates, snapshots/archive/downstream and source package checks. Root
+production coverage is 1939/1942 lines and 3086/3104 regions; the CLI source
+is 174/176 lines and 306/312 regions. Owned vendor patches remain 6/6 lines
+and 8/8 regions for prost-derive, 96/97 lines and 205/206 regions for
+prost-reflect. Working gate log SHA256 is
+`e23fb1468719655a5e399e05470962cec0b1d8aa7a755ca3b1cd698a7d980f3e`.
+An initial formatting check found two test layout differences and was corrected;
+it is not positive gate evidence. A parallel native peer rebuild caused a
+temporary executable-permission race in the reference script; sequential replay
+then passed without a source or assertion change. The exact seven-file staged
+export gate passes at tree `04d88ac5c056e58a668318953810ba5f8f6e7408`;
+its log SHA256 is
+`e82cca648b482a1fc8811eabe75f125cb34fc315fa0ee45e477c037ea64f1056`.
+A separate author control removing only the single-quote branch fails at the
+exact native-positive `{'sec':7}` row.
+
+Independent /root/transport_fallback approved the frozen bounded source, API
+and assertions. Its private Git archive and separate target regenerated the
+66-row native proof byte-for-byte, passed all 109 Rust harness checks and failed
+an independent single-quote-rule removal control at the same row. The unchanged
+[semantic receipt](reviews/json-single-quote.json) binds the seven reviewed
+inputs and preserves both explicit native-positive gaps. Final metadata binding,
+normal staged hook and hosted qualification remain required; MSG-02 remains open.

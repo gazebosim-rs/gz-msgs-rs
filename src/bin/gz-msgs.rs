@@ -9,7 +9,7 @@ use std::io::{Read, Write};
 mod legacy_cli;
 const HELP: &str = "gz-msgs --list|-l | --info|-i TYPE... | --version|-v | --help|-h\nCommands: list, info TYPE..., encode-json, decode-json, encode-text, decode-text\nFormat commands take one fully qualified type and use stdin/stdout.";
 
-// Protobuf's JSON parser accepts bare field names and trailing container commas.
+// Protobuf's JSON parser accepts bare names, single quotes and trailing commas.
 // Rewrite only those tokens; serde_json still validates the entire document.
 fn normalize_proto_json(input: &[u8]) -> Vec<u8> {
     #[derive(Clone, Copy, PartialEq, Eq)]
@@ -36,6 +36,33 @@ fn normalize_proto_json(input: &[u8]) -> Vec<u8> {
                     index += 1;
                 } else if current == b'"' {
                     break;
+                }
+            }
+            previous = Some(b'"');
+            continue;
+        }
+        if byte == b'\'' {
+            output.push(b'"');
+            index += 1;
+            while index < input.len() {
+                let current = input[index];
+                index += 1;
+                match current {
+                    b'\\' if index < input.len() => {
+                        let escaped = input[index];
+                        index += 1;
+                        if escaped == b'\'' {
+                            output.push(b'\'');
+                        } else {
+                            output.extend_from_slice(&[b'\\', escaped]);
+                        }
+                    }
+                    b'"' => output.extend_from_slice(br#"\""#),
+                    b'\'' => {
+                        output.push(b'"');
+                        break;
+                    }
+                    _ => output.push(current),
                 }
             }
             previous = Some(b'"');

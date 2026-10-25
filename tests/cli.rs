@@ -274,12 +274,22 @@ fn json_requires_exactly_one_complete_document() {
     let arrays: gz_msgs::serde_json::Value =
         gz_msgs::serde_json::from_str(include_str!("fixtures/json-array-grammar.json")).unwrap();
     assert_eq!(arrays["rows"].as_array().unwrap().len(), 14);
+    let single_quotes: gz_msgs::serde_json::Value =
+        gz_msgs::serde_json::from_str(include_str!("fixtures/json-single-quote.json")).unwrap();
+    assert_eq!(single_quotes["matching"].as_array().unwrap().len(), 21);
+    assert_eq!(
+        single_quotes["native_permissive_pending"]
+            .as_array()
+            .unwrap()
+            .len(),
+        2
+    );
     assert!(Command::new("python3")
         .arg("scripts/native-peer.py")
         .status()
         .unwrap()
         .success());
-    let check = |row: &gz_msgs::serde_json::Value, type_name: &str| {
+    let check = |row: &gz_msgs::serde_json::Value, type_name: &str, match_native: bool| {
         let unhex = |s: &str| {
             s.as_bytes()
                 .chunks_exact(2)
@@ -305,12 +315,18 @@ fn json_requires_exactly_one_complete_document() {
             unhex(row["cpp_stdout_hex"].as_str().unwrap())
         );
         let actual = run(&["encode-json", type_name], &input);
-        assert_eq!(
-            actual.status.success(),
-            native.status.success(),
-            "{input:?}"
-        );
-        assert_eq!(actual.stdout, native.stdout, "{input:?}");
+        if match_native {
+            assert_eq!(
+                actual.status.success(),
+                native.status.success(),
+                "{input:?}"
+            );
+            assert_eq!(actual.stdout, native.stdout, "{input:?}");
+        } else {
+            assert!(native.status.success(), "{input:?}");
+            assert!(!actual.status.success(), "{input:?}");
+            assert!(actual.stdout.is_empty(), "{input:?}");
+        }
     };
     for rows in [
         &fixture["matching"],
@@ -318,11 +334,20 @@ fn json_requires_exactly_one_complete_document() {
         &grammar["rows"],
     ] {
         for row in rows.as_array().unwrap() {
-            check(row, "gz.msgs.Time");
+            check(row, "gz.msgs.Time", true);
         }
     }
     for row in arrays["rows"].as_array().unwrap() {
-        check(row, row["type"].as_str().unwrap());
+        check(row, row["type"].as_str().unwrap(), true);
+    }
+    for row in single_quotes["matching"].as_array().unwrap() {
+        check(row, row["type"].as_str().unwrap(), true);
+    }
+    for row in single_quotes["native_permissive_pending"]
+        .as_array()
+        .unwrap()
+    {
+        check(row, row["type"].as_str().unwrap(), false);
     }
 }
 
