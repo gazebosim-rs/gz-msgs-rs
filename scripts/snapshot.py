@@ -58,6 +58,13 @@ def verify_staged(root):
         subprocess.run(['git', 'read-tree', frozen], cwd=root, env=env, check=True)
         subprocess.run(['git', 'checkout-index', '--all', f'--prefix={candidate}/'], cwd=root, env=env, check=True)
         validate_snapshot(root, frozen, candidate)
-        subprocess.run([sys.executable, 'scripts/verify.py'], cwd=candidate, check=True)
+        # Keep the hook's index context in the parent, never in foreign Git fixtures.
+        child_env = dict(os.environ)
+        for name in subprocess.check_output(
+            ['git', 'rev-parse', '--local-env-vars'], cwd=root, text=True
+        ).splitlines():
+            child_env.pop(name, None)
+        subprocess.run([sys.executable, 'scripts/verify.py'], cwd=candidate,
+                       env=child_env, check=True)
         if tree(root) != frozen or head(root) != original_head:
             raise ValueError('Git index or HEAD changed during staged verification')

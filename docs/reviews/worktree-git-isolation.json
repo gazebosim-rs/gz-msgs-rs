@@ -1,0 +1,30 @@
+{
+  "reviewer": "gz-transport-rs independent owner",
+  "base": "771eb2163cd2835043ef9c2c390605b069db734c",
+  "staged_diff_sha256": "e4aa1af69c5cba6534e48a517f282546edc9dd5439afe8f66f6253d12bfcd889",
+  "tree": "f579cf9ff409b58820c5970a7045cf583b917aae",
+  "decision": "approved within bounded tooling scope",
+  "reviewed_paths": [
+    "scripts/snapshot.py",
+    "scripts/test-snapshot.py",
+    "AGENTS.md",
+    "docs/EVIDENCE.md"
+  ],
+  "independent_checks": [
+    "Raw-exported and hash-verified all 661 staged Git blobs to a private source directory. No Cargo target was shared or used.",
+    "All 6 snapshot regressions pass, including actual disposable linked-worktree commit with divergent alternate index, foreign normal/bare Git fixtures and preserved nonlocal SSH setting.",
+    "Replacing only the private snapshot driver with its public baseline makes the new real-worktree regression fail during foreign bare initialization. Restored reviewed bytes and reran all 6 checks successfully.",
+    "Inspected parent intended-index capture, private-index export and final index/HEAD guards; only the exported verifier child loses official Git local variables.",
+    "Verified owner full production worktree-hook proof executable hashes and log digest against the staged export."
+  ],
+  "qualification": [
+    "Independent replay covers tooling only; owner 94 Rust checks, full production hook, archive/downstream and coverage are author-reported evidence, not independently rerun here.",
+    "No live producer repository reproduction or mutation was attempted. Baseline failure occurred only in disposable test repositories.",
+    "No Rust/dependency/ledger/coverage threshold or exclusion changes; normal exact staged hook and hosted qualification remain required."
+  ],
+  "artifacts": {
+    "export": "export.json",
+    "pass": "restored-tests.log",
+    "negative_control": "baseline.log"
+  }
+}

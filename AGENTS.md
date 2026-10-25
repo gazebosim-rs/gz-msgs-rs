@@ -34,6 +34,12 @@ Generate types from canonical schemas. Preserve field numbers, packages, types, 
   Verify binary provenance and fresh-source results; Cargo's Fresh message or a
   newer binary mtime alone does not identify the source that was checked.
 
+Staged verification must retain the parent hook's intended Git index/context,
+then remove only `git rev-parse --local-env-vars` from the exported build/test
+child. Foreign fixture/reference Git commands must not inherit caller repository
+paths. Preserve nonlocal settings such as `GIT_SSH_COMMAND`. Keep the real
+worktree/alternate-index/foreign-repository regression mandatory.
+
 Do not apply the monorepo's internal crate layout here. Do not edit the active Fuel
 rewrite or another repository without a coordinated assignment.
 

@@ -1079,3 +1079,32 @@ panic evidence, raw JSON-name omission mismatch and remaining grammar/loading
 limits. Its focused checks remain distinct from the author's full 94-check gate.
 Matching final metadata, normal strict staged verification and hosted success
 remain required before declaring a published revision qualified.
+
+## Worktree hook Git-context isolation
+
+The staged exported verifier previously inherited repository-local Git variables
+from its parent hook. A real linked-worktree pre-commit regression reproduced a
+foreign bare-fixture initialization failure under absolute `GIT_DIR`/common-dir
+context. The failure is retained in ignored evidence; it ran only in disposable
+repositories. The exported child now removes Git's official local-variable list,
+while the parent retains the hook context needed to capture and recheck the actual
+intended index. A deliberately different normal index proves that distinction.
+Six snapshot tests pass, including foreign normal/bare creation, unchanged caller
+HEAD/index/config, preserved nonlocal settings and the previous identity/mutation
+checks. A full production normal pre-commit hook in a disposable linked
+worktree passes, preserving its config and source tree. The complete working
+gate also passes 94 Rust checks, six snapshot regressions, archive QA and the
+clean downstream consumer, with unchanged 1642/1646 owned lines and 2633/2651
+regions. Independent review and matching staged/hosted qualification remain
+pending. No Rust/dependency/ledger/threshold/exclusion changes occur.
+
+Independent /root/transport_recovery approved staged e4aa1af6. It raw-exported
+and verified all 661 blobs, passed all six snapshot regressions, and confirmed
+that substituting only the old private driver makes the real-worktree test fail
+foreign bare initialization. Restoring the reviewed source passes all six again.
+It checked intended alternate-index preservation, unchanged parent guards and
+child-only official variable removal. The exact authored
+[receipt](reviews/worktree-git-isolation.json) distinguishes those independent
+checks from the author's full production-worktree-hook and working coverage
+runs; no live repository reproduction or shared Cargo target was used. Matching
+final metadata and normal staged/hosted qualification remain required.
