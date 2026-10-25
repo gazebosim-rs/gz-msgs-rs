@@ -21,6 +21,7 @@ quoted_hex = json.loads((root / 'tests/fixtures/json-quoted-hex.json').read_text
 repeated_data = json.loads((root / 'tests/fixtures/json-repeated-data.json').read_text())
 repeated_integer = json.loads((root / 'tests/fixtures/json-repeated-integer-data.json').read_text())
 repeated_string = json.loads((root / 'tests/fixtures/json-repeated-string-data.json').read_text())
+single_scalar = json.loads((root / 'tests/fixtures/json-single-scalar-data.json').read_text())
 version = subprocess.check_output(['pkg-config', '--modversion', 'protobuf'], text=True).strip()
 assert version == fixture['native_protobuf']
 assert version == grammar['native_protobuf']
@@ -36,6 +37,7 @@ assert version == quoted_hex['native_protobuf']
 assert version == repeated_data['native_protobuf']
 assert version == repeated_integer['native_protobuf']
 assert version == repeated_string['native_protobuf']
+assert version == single_scalar['native_protobuf']
 subprocess.run(['python3', str(root / 'scripts/native-peer.py')], check=True)
 assert hashlib.sha256((root / 'tests/protobuf_peer.cc').read_bytes()).hexdigest() == escaped_bytes['probe_source_sha256']
 assert hashlib.sha256((root / 'target/native/protobuf-peer').read_bytes()).hexdigest() == escaped_bytes['probe_binary_sha256']
@@ -55,6 +57,8 @@ assert hashlib.sha256((root / 'tests/protobuf_peer.cc').read_bytes()).hexdigest(
 assert hashlib.sha256((root / 'target/native/protobuf-peer').read_bytes()).hexdigest() == repeated_integer['probe_binary_sha256']
 assert hashlib.sha256((root / 'tests/protobuf_peer.cc').read_bytes()).hexdigest() == repeated_string['probe_source_sha256']
 assert hashlib.sha256((root / 'target/native/protobuf-peer').read_bytes()).hexdigest() == repeated_string['probe_binary_sha256']
+assert hashlib.sha256((root / 'tests/protobuf_peer.cc').read_bytes()).hexdigest() == single_scalar['probe_source_sha256']
+assert hashlib.sha256((root / 'target/native/protobuf-peer').read_bytes()).hexdigest() == single_scalar['probe_binary_sha256']
 for name, expected in quoted_hex['prior_fixture_sha256'].items():
     assert hashlib.sha256((root / 'tests/fixtures' / f'{name}.json').read_bytes()).hexdigest() == expected, name
 assert len(quoted_hex['rows']) == quoted_hex['baseline_cases'] + quoted_hex['boundary_cases'] == 216
@@ -70,7 +74,13 @@ assert len(repeated_string['rows']) == 46
 assert sum(row['cpp_status'] == 0 for row in repeated_string['rows']) == 34
 for name, expected in repeated_string['prior_fixture_sha256'].items():
     assert hashlib.sha256((root / name).read_bytes()).hexdigest() == expected, name
-rows = fixture['matching'] + fixture['native_permissive_grammar_pending'] + grammar['rows'] + arrays['rows'] + single_quotes['matching'] + single_quotes['native_permissive_pending'] + raw_controls['matching'] + raw_controls['rejected'] + escaped_bytes['matching'] + escaped_bytes['rejected'] + escaped_utf8['matching'] + escaped_utf8['rejected'] + trailing_dot['scalar_rows'] + trailing_dot['composite_rows'] + trailing_dot['fraction_or_exponent_rejected'] + trailing_dot['native_permissive_pending'] + negative_zero['scalar_rows'] + negative_zero['composite_rows'] + negative_zero['native_permissive_pending'] + vtff['rows'] + quoted_hex['rows'] + quoted_hex['repeated_data_pending'] + repeated_data['rows'] + repeated_integer['rows'] + repeated_string['rows']
+assert single_scalar['types'] == ['Double_V', 'Float_V', 'Int32_V', 'UInt32_V', 'Int64_V', 'StringMsg_V']
+assert len(single_scalar['rows']) == 95
+assert sum(row['cpp_status'] == 0 for row in single_scalar['rows']) == 64
+assert len(single_scalar['unquoted_hex_pending']) == 2
+for name, expected in single_scalar['prior_fixture_sha256'].items():
+    assert hashlib.sha256((root / name).read_bytes()).hexdigest() == expected, name
+rows = fixture['matching'] + fixture['native_permissive_grammar_pending'] + grammar['rows'] + arrays['rows'] + single_quotes['matching'] + single_quotes['native_permissive_pending'] + raw_controls['matching'] + raw_controls['rejected'] + escaped_bytes['matching'] + escaped_bytes['rejected'] + escaped_utf8['matching'] + escaped_utf8['rejected'] + trailing_dot['scalar_rows'] + trailing_dot['composite_rows'] + trailing_dot['fraction_or_exponent_rejected'] + trailing_dot['native_permissive_pending'] + negative_zero['scalar_rows'] + negative_zero['composite_rows'] + negative_zero['native_permissive_pending'] + vtff['rows'] + quoted_hex['rows'] + quoted_hex['repeated_data_pending'] + repeated_data['rows'] + repeated_integer['rows'] + repeated_string['rows'] + single_scalar['rows'] + single_scalar['unquoted_hex_pending']
 for row in rows:
     result = subprocess.run([str(root / 'target/native/protobuf-peer'), str(root / 'target/native/messages.pb'), row.get('type', 'gz.msgs.Time'), 'encode-json'], input=bytes.fromhex(row['input_hex']), capture_output=True)
     assert result.returncode == row['cpp_status'] and result.stdout.hex() == row['cpp_stdout_hex'], row
@@ -88,7 +98,8 @@ proof = dict(protobuf_version=version, cases=len(rows), matching_cases=len(fixtu
              repeated_data_cases=len(repeated_data['rows']), repeated_data_fixture_sha256=sha(root / 'tests/fixtures/json-repeated-data.json'),
              repeated_integer_cases=len(repeated_integer['rows']), repeated_integer_fixture_sha256=sha(root / 'tests/fixtures/json-repeated-integer-data.json'),
              repeated_string_cases=len(repeated_string['rows']), repeated_string_fixture_sha256=sha(root / 'tests/fixtures/json-repeated-string-data.json'),
+             single_scalar_cases=len(single_scalar['rows']), single_scalar_unquoted_hex_pending=len(single_scalar['unquoted_hex_pending']), single_scalar_fixture_sha256=sha(root / 'tests/fixtures/json-single-scalar-data.json'),
              probe_source_sha256=sha(root / 'tests/protobuf_peer.cc'), probe_binary_sha256=sha(root / 'target/native/protobuf-peer'))
 args.output.parent.mkdir(parents=True, exist_ok=True)
 args.output.write_text(json.dumps(proof, indent=2) + '\n')
-print(f'{len(rows)} native JSON outcomes reproduced: 992 retained rows and {len(repeated_string["rows"])} string rows')
+print(f'{len(rows)} native JSON outcomes reproduced: 1038 retained rows and {len(single_scalar["rows"])} scalar parity rows plus {len(single_scalar["unquoted_hex_pending"])} explicit gaps')

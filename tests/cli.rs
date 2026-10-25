@@ -1068,6 +1068,59 @@ fn repeated_string_data_keys_append_in_native_order() {
     }
 }
 
+#[test]
+fn single_scalar_repeated_data_matches_native_where_admitted() {
+    let fixture: gz_msgs::serde_json::Value =
+        gz_msgs::serde_json::from_str(include_str!("fixtures/json-single-scalar-data.json"))
+            .unwrap();
+    assert_eq!(fixture["native_protobuf"], "3.21.12");
+    assert_eq!(
+        fixture["types"],
+        gz_msgs::serde_json::json!([
+            "Double_V",
+            "Float_V",
+            "Int32_V",
+            "UInt32_V",
+            "Int64_V",
+            "StringMsg_V"
+        ])
+    );
+    let rows = fixture["rows"].as_array().unwrap();
+    assert_eq!(rows.len(), 95);
+    assert_eq!(rows.iter().filter(|row| row["cpp_status"] == 0).count(), 64);
+    let unhex = |s: &str| {
+        s.as_bytes()
+            .chunks_exact(2)
+            .map(|pair| u8::from_str_radix(std::str::from_utf8(pair).unwrap(), 16).unwrap())
+            .collect::<Vec<_>>()
+    };
+    for row in rows {
+        let type_name = row["type"].as_str().unwrap();
+        let label = row["label"].as_str().unwrap();
+        let input = unhex(row["input_hex"].as_str().unwrap());
+        let expected = unhex(row["cpp_stdout_hex"].as_str().unwrap());
+        let result = run(&["encode-json", type_name], &input);
+        assert_eq!(
+            result.status.success(),
+            row["cpp_status"] == 0,
+            "{type_name} {label}: {}",
+            String::from_utf8_lossy(&result.stderr)
+        );
+        assert_eq!(result.stdout, expected, "{type_name} {label}");
+    }
+    let pending = fixture["unquoted_hex_pending"].as_array().unwrap();
+    assert_eq!(pending.len(), 2);
+    for row in pending {
+        assert_eq!(row["cpp_status"], 0);
+        let result = run(
+            &["encode-json", row["type"].as_str().unwrap()],
+            &unhex(row["input_hex"].as_str().unwrap()),
+        );
+        assert!(!result.status.success());
+        assert!(result.stdout.is_empty());
+    }
+}
+
 fn assert_native_option(row: &gz_msgs::serde_json::Value) {
     let args: Vec<_> = row["args"]
         .as_array()

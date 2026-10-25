@@ -364,5 +364,35 @@ The [independent review](reviews/json-repeated-string.json) reproduced all
 1,038 native outcomes in a private source and target, passed the selected Rust
 test, and independently failed the descriptor-removal mutant on `two_arrays`.
 The exact six-file staged gate passed on tree
-`88519e778897ad719cdf4a4605bb2b47c14cf1b9`. Final metadata binding,
-the normal hook and hosted qualification remain pending.
+`88519e778897ad719cdf4a4605bb2b47c14cf1b9`. Final metadata binding
+and the normal hook passed on public commit
+`115b467f612c41b9c0b4706b5032a4280a731e41`; exact hosted run
+`40225573548` passed.
+
+## Single scalar repeated `data`
+
+For the same six reviewed repeated descriptors (`Double_V`, `Float_V`,
+`Int32_V`, `UInt32_V`, `Int64_V` and `StringMsg_V`), the occurrence path now
+accepts one scalar `data` value. Native protobuf treats it as a one-element
+repeated list; the maintained Rust decoder otherwise rejects it. One-key
+arrays and `null` keep their previous decoder path. Quoted hexadecimal float
+scalars reuse the existing `fhex` conversion and spelling guard. The complete
+document is still checked by the maintained reflected decoder.
+
+The pinned C++ fixture contains 95 matching rows (64 accepted, 31 rejected)
+across all six descriptors, plus two explicit native-positive/Rust-negative
+unquoted `0x7.` float scalar gaps. The native replay checks all 1,135 rows:
+1,038 retained outcomes plus those 97 new controls. Fourteen earlier fixture
+hashes are unchanged. Native rejects unquoted `p`-exponent hex; this slice
+does not treat the quoted hex parser as a general unquoted numeric parser.
+Broader repeated descriptors, JSON grammar, diagnostics and MSG-02 acceptance
+remain open. The full working strict gate passed 114 Rust tests, the five
+retained C++ CLI tests, root coverage 2239/2249 lines and 3599/3632 regions,
+and CLI coverage 474/483 lines and 819/840 regions. A private raw-parent
+negative control fails the new scalar assertion on `{"data":7}`.
+The [independent review](reviews/json-single-scalar.json) approved the exact
+six-file source freeze and privately replayed all 1,135 native outcomes.
+Its 348-case supplemental differential found no status or accepted-wire
+mismatch. The exact staged gate passed on tree
+`6295fc2f7468ed452dbaf83898bcb996a649b0c5`.
+Final metadata binding, normal hook and hosted qualification remain pending.

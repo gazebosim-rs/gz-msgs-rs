@@ -1795,5 +1795,37 @@ and separate descriptor-removal mutant. The exact six-file staged gate passed
 on tree `88519e778897ad719cdf4a4605bb2b47c14cf1b9` with log SHA256
 `7a17b561a664a21f4980cc51ab697ce0cadaecde4ca3c10ba4a5da67b50d85f6`.
 Single-key scalar values, other repeated descriptors, general duplicate-field
-behavior and MSG-02 acceptance remain open. Final metadata binding, the normal
-hook and hosted qualification remain pending for this candidate.
+behavior and MSG-02 acceptance remained open at this review point. Final
+metadata binding and the normal hook passed on public commit
+`115b467f612c41b9c0b4706b5032a4280a731e41`; exact hosted run
+`40225573548` passed.
+
+## Bounded single-key scalar repeated `data`
+
+The existing occurrence decoder also handles one scalar `data` value for the
+six already admitted repeated descriptors: `Double_V`, `Float_V`, `Int32_V`,
+`UInt32_V`, `Int64_V` and `StringMsg_V`. A one-key array or `null` stays on
+the maintained decoder's prior path. The occurrence path wraps a scalar in an
+array, lets the maintained reflected decoder validate that element and the
+complete document, then restores the repeated list. Quoted hexadecimal float
+values reuse the pinned `fhex` adapter; it adds no general numeric parser.
+The pinned C++ probe recorded 95 parity rows, 64 accepted and 31 rejected,
+including integer bounds, nonfinite float spellings, quoted hex, signed zero,
+literal and escaped strings, permissive keys, `header`, arrays, `null` and
+unrelated-field errors. All 1,038 prior rows and 14 fixture hashes are retained
+unchanged; the native replay checks 1,135 outcomes. Two native-positive
+unquoted hex scalar rows (`0x7.` for each float type) remain explicit
+Rust-negative gaps. Native rejects unquoted `p`-exponent hex forms that the
+quoted float adapter accepts, so this slice does not extend that adapter to
+unquoted hex. Other repeated descriptors, broader JSON grammar and MSG-02
+acceptance remain open. The full working gate passed 114 Rust tests, five
+original C++ CLI tests, formatting, Clippy, downstream and strict coverage
+checks. Root production coverage was 2239/2249 lines and 3599/3632 regions;
+the CLI had 474/483 lines and 819/840 regions. A private raw-parent source
+with this exact new test and fixture fails the first native-positive scalar
+`{"data":7}` control, confirming the assertion detects the added path.
+The [independent review](reviews/json-single-scalar.json) approved the exact
+six-file source freeze and private replay of all 1,135 native outcomes. Its
+348-case supplemental differential found no status or accepted-wire mismatch.
+The exact staged gate passed on tree `6295fc2f7468ed452dbaf83898bcb996a649b0c5`.
+Final metadata binding, normal hook and hosted qualification remain pending.

@@ -455,7 +455,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 array_ranges,
                 data_ranges,
             } = normalize_proto_json(&input, float_data, repeated_data);
-            if data_ranges.len() > 1 {
+            let single_scalar = data_ranges.len() == 1 && {
+                let (start, end) = data_ranges[0];
+                let value = normalized[start..end].trim_ascii();
+                value.first() != Some(&b'[') && value != b"null"
+            };
+            if data_ranges.len() > 1 || single_scalar {
                 // The maintained decoder keeps only the last repeated key.
                 // Decode each native repeated-field occurrence independently,
                 // then let the decoder validate all other fields unchanged.

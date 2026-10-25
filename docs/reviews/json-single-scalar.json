@@ -1,0 +1,46 @@
+{
+  "author": "/root/msgs_review_fallback",
+  "base": "115b467f612c41b9c0b4706b5032a4280a731e41",
+  "decision": "approved",
+  "exact_staged_gate_log_sha256": "2cad13acc53f92b6dd77890b6928771460413ee0670cc1f90c7efa6af36db72e",
+  "files_sha256": {
+    "docs/EVIDENCE.md": "419b1a042f3a201d84ababdcc16b46e77c298111628cfde2c843bb78f987631a",
+    "docs/JSON_FRAMING.md": "ff2318d98ffc99f82c9fc4c22954e3e2819a1fe2dd58bebf708c35673bc3f954",
+    "scripts/json-reference.py": "db12fea35609473301905de55d2d4390a24c57e2fad4bc38aa25376c934d21fb",
+    "src/bin/gz-msgs.rs": "9020c0b17c8c69bc4896ca201bc8ba4c297cee59a1c86204f2b431973015c6c8",
+    "tests/cli.rs": "2d718765a58334428463f575b935506fca5662b3ac60d58cdc410bfde946027a",
+    "tests/fixtures/json-single-scalar-data.json": "73ffb8903ac250171a5e1a66145f9e17f5b3373351abd9bdbd93213b4f574219"
+  },
+  "judgment": "One scalar data value is wrapped as a one-element list only for the six eligible descriptors; native-compatible quoted hex float bit patch and existing duplicate source-order handling remain. Empty value is explicitly rejected before wrapping, and maintained decoder still validates non-data fields and rejected type/range inputs. The 95 new fixture rows include positive and negative controls; two unquoted hexadecimal native-positive forms remain explicitly unqualified. No source/API/gate/exclusion weakening found.",
+  "limits": [
+    "Two explicit native-positive unquoted hexadecimal scalar forms remain Rust-negative.",
+    "UInt64_V is excluded due separately demonstrated overflow overacceptance risk.",
+    "This review does not qualify general protobuf JSON parsing, all duplicate keys or MSG-02 completion.",
+    "Normal worktree hook, publication and exact hosted qualification remain pending."
+  ],
+  "native": {
+    "binary_sha256": "16744aebb5531163dc87224e6d6cec56bba40d4d1a62035ae465342649ac540b",
+    "full_replay_cases": 1135,
+    "full_replay_sha256": "2e8f834e15e925ce308a5424cc1baf8b90e525704d1e8970b6bd5b3c1316c136",
+    "native_only_unquoted_hex_rows": 2,
+    "new_accepted_rows": 64,
+    "new_matching_rows": 95,
+    "prior_fixture_hashes": "All fourteen exact hashes rechecked in private raw export",
+    "protobuf_version": "3.21.12",
+    "source_sha256": "48835b169eb8e2e490729391718e223e8905632f2b04d2fa2facd50b2fbaf1f5"
+  },
+  "private_review": {
+    "differential": "348 scalar and duplicate-key forms, zero status or accepted-wire mismatches",
+    "differential_result_sha256": "fdd7a0bcf3bca2895e3dacea2ea6b91129dba026900a545d1486ffb2f7be1e2a",
+    "differential_script_sha256": "670f9998ded6f7d417b58d4efd54fa021312ce0b48b81dd35ce73cc792fa3e98",
+    "native": "scripts/json-reference.py replay 1135/1135 exact status/wire outputs",
+    "negative_log_sha256": "abba612357f364bb6b08cc3ed8d0083b525aff69efd240fe5b7fd1c37380b20c",
+    "raw_parent_negative": "private exact public-parent parser plus frozen new test/fixture fails first native-positive Double_V {\"data\":7} with invalid-list error",
+    "selected_rust": "single_scalar_repeated_data_matches_native_where_admitted 1/0",
+    "source": "raw Git export of exact staged tree into separate reviewer source and Cargo target"
+  },
+  "reviewer": "/root/transport_fallback",
+  "scope": "Six reviewed repeated-field descriptors only: Double_V, Float_V, Int32_V, UInt32_V, Int64_V and StringMsg_V single top-level scalar data. Prior arrays, nulls, duplicate keys and fourteen fixtures retain their exact source-backed behavior. UInt64_V and broader JSON grammar remain open.",
+  "staged_diff_sha256": "b67376f4171684aadab950f33fcf84641bf298f25896e7e6a417c783acce347b",
+  "staged_tree": "6295fc2f7468ed452dbaf83898bcb996a649b0c5"
+}
