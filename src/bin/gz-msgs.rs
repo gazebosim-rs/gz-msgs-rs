@@ -118,6 +118,35 @@ fn normalize_proto_json(input: &[u8]) -> Vec<u8> {
             previous = Some(input[index - 1]);
             continue;
         }
+        // Native accepts one dot after an integral token, including before an
+        // exponent. A second dot after a fraction or exponent stays invalid.
+        if byte == b'.'
+            && index > 0
+            && input[index - 1].is_ascii_digit()
+            && input.get(index + 1).is_some_and(|next| {
+                matches!(
+                    *next,
+                    b',' | b'}' | b']' | b'e' | b'E' | b' ' | b'\t' | b'\r' | b'\n'
+                )
+            })
+        {
+            let mut start = index;
+            while start > 0
+                && matches!(
+                    input[start - 1],
+                    b'0'..=b'9' | b'+' | b'-' | b'.' | b'e' | b'E'
+                )
+            {
+                start -= 1;
+            }
+            if !input[start..index]
+                .iter()
+                .any(|part| matches!(*part, b'.' | b'e' | b'E'))
+            {
+                index += 1;
+                continue;
+            }
+        }
         if byte == b',' && matches!(frames.last(), Some(Frame::ObjectValue | Frame::Array)) {
             let mut after = index + 1;
             while after < input.len() && input[after].is_ascii_whitespace() {

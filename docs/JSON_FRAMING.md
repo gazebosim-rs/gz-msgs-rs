@@ -158,4 +158,35 @@ six-file source gate passed all strict checks, and the
 [independent review](reviews/json-escaped-utf8.json) approved the bounded
 mapping after a private 440-row replay, full Rust suite and a separate U+0080
 branch-removal control. Final metadata binding, the normal hook and hosted CI
-remain required before publication.
+passed on public commit `f46db31af457a2a2c815c823e46389d2cc7aaf9b`.
+
+## Bare numbers with a trailing decimal point
+
+Pinned protobuf 3.21.12 accepts bare numeric forms such as `7.`, `-0.` and
+`7.e2` in numeric fields. The published Rust CLI rejected them. Outside
+quoted strings, the adapter now removes a dot immediately after an ASCII
+digit only when the preceding numeric run has no dot or exponent and the next
+byte is a JSON delimiter, whitespace or exponent marker. The existing
+dynamic decoder still applies the field's integer or floating-point type and
+complete-document syntax. Ordinary fractions,
+quoted numeric strings, invalid comments and malformed exponents remain on
+their existing paths. A bare `-0` Double_V sign difference and quoted
+hexadecimal numeric strings remain separate MSG-02 gaps.
+
+The source-bound 63-row fixture covers Time.sec and Double_V.data scalar
+forms, signed zero, exponent variants, repeated commas, object closure,
+quoted controls, malformed comments and whitespace before a dot. An
+independent pre-approval audit caught a second-dot error: native rejects
+`1.2.e3`, `7e2.` and related forms that the initial rule accepted. Fourteen
+negative rows now guard fractions and prior exponents; five native-positive
+`07.`, `0x7.` and `0x7.e3` cases remain explicit Rust-negative grammar gaps. The fixture
+asserts native acceptance and complete binary output. The prior 440 rows and
+seven fixtures are unchanged; `scripts/json-reference.py` replays all 503
+native outcomes. The focused Rust comparison first failed on `{"sec":0.}`
+and passes after the correction. The exact six-file staged gate passed 109
+Rust harness checks plus FactoryLazy, five original C++ CLI tests, all 503
+native rows, formatting, Clippy, strict coverage and negative gates. The
+[independent review](reviews/json-trailing-dot.json) approved the corrected
+source and assertions after a private 503-row replay, full Rust suite and
+second-dot guard mutation. The normal hook and hosted qualification remain
+pending; broad numeric grammar and MSG-02 acceptance remain open.

@@ -290,6 +290,8 @@ fn json_requires_exactly_one_complete_document() {
         gz_msgs::serde_json::from_str(include_str!("fixtures/json-escaped-bytes.json")).unwrap();
     let escaped_utf8: gz_msgs::serde_json::Value =
         gz_msgs::serde_json::from_str(include_str!("fixtures/json-escaped-utf8.json")).unwrap();
+    let trailing_dot: gz_msgs::serde_json::Value =
+        gz_msgs::serde_json::from_str(include_str!("fixtures/json-trailing-dot.json")).unwrap();
     let raw_rows = raw_controls["matching"].as_array().unwrap();
     assert_eq!(raw_rows.len(), 64);
     assert_eq!(raw_controls["rejected"].as_array().unwrap().len(), 10);
@@ -380,6 +382,186 @@ fn json_requires_exactly_one_complete_document() {
         actual.sort();
         assert_eq!(*actual, expected_sequences);
     }
+    let expected_forms = [
+        "0.", "-0.", "7.", "-7.", "7.e2", "7.E+2", "7.e-2", "7.5", "7.0", "7.e", "7.e+", "7..",
+        "7.  ", "7.\n", "\"7.\"", "\"-7.\"", "\"7.e2\"", "7.f",
+    ];
+    assert_eq!(
+        trailing_dot["scalar_forms"].as_array().unwrap(),
+        &expected_forms
+            .iter()
+            .map(|form| gz_msgs::serde_json::Value::String((*form).to_owned()))
+            .collect::<Vec<_>>()
+    );
+    let scalar_rows = trailing_dot["scalar_rows"].as_array().unwrap();
+    assert_eq!(scalar_rows.len(), 36);
+    for (index, row) in scalar_rows.iter().enumerate() {
+        let type_name = if index < 18 {
+            "gz.msgs.Time"
+        } else {
+            "gz.msgs.Double_V"
+        };
+        let form = expected_forms[index % 18];
+        assert_eq!(row["type"], type_name);
+        assert_eq!(row["form"], form);
+        let input = if index < 18 {
+            format!("{{\"sec\":{form}}}")
+        } else {
+            format!("{{\"data\":[{form}]}}")
+        };
+        assert_eq!(
+            row["input_hex"],
+            input
+                .as_bytes()
+                .iter()
+                .map(|byte| format!("{byte:02x}"))
+                .collect::<String>()
+        );
+    }
+    assert_eq!(
+        scalar_rows[..18]
+            .iter()
+            .filter(|row| row["cpp_status"].as_i64() == Some(0))
+            .count(),
+        9
+    );
+    assert_eq!(
+        scalar_rows[18..]
+            .iter()
+            .filter(|row| row["cpp_status"].as_i64() == Some(0))
+            .count(),
+        14
+    );
+    let composite_rows = trailing_dot["composite_rows"].as_array().unwrap();
+    let expected_composites: [(&str, &str, &[u8], bool); 8] = [
+        (
+            "time_two_fields",
+            "gz.msgs.Time",
+            br#"{"sec":7.,"nsec":8.}"#,
+            true,
+        ),
+        (
+            "double_two_values",
+            "gz.msgs.Double_V",
+            br#"{"data":[7.,8.]}"#,
+            true,
+        ),
+        (
+            "double_trailing_comma",
+            "gz.msgs.Double_V",
+            br#"{"data":[7.,]}"#,
+            true,
+        ),
+        (
+            "time_trailing_comma",
+            "gz.msgs.Time",
+            br#"{"sec":7.,}"#,
+            true,
+        ),
+        (
+            "time_block_comment",
+            "gz.msgs.Time",
+            br#"{"sec":7. /*x*/}"#,
+            false,
+        ),
+        (
+            "time_line_comment",
+            "gz.msgs.Time",
+            b"{\"sec\":7.//x\n}",
+            false,
+        ),
+        (
+            "time_space_before_dot",
+            "gz.msgs.Time",
+            br#"{"sec":7 .}"#,
+            false,
+        ),
+        (
+            "double_space_before_dot",
+            "gz.msgs.Double_V",
+            br#"{"data":[7 .]}"#,
+            false,
+        ),
+    ];
+    assert_eq!(composite_rows.len(), expected_composites.len());
+    for (row, (name, type_name, input, accepted)) in composite_rows.iter().zip(expected_composites)
+    {
+        assert_eq!(row["name"], name);
+        assert_eq!(row["type"], type_name);
+        assert_eq!(row["cpp_status"].as_i64() == Some(0), accepted);
+        assert_eq!(
+            row["input_hex"],
+            input
+                .iter()
+                .map(|byte| format!("{byte:02x}"))
+                .collect::<String>()
+        );
+    }
+    let second_dot_rejected = trailing_dot["fraction_or_exponent_rejected"]
+        .as_array()
+        .unwrap();
+    let rejected_forms = [
+        "1.2.e3", "1.2.E+3", "1.2.", "1.2. ", "1.2.e-3", "7e2.", "7.e2.", "1e+2.", "1e-2.", "7.0.",
+        "7.0.e2", "1.2.e3", "7e2.", "7.0.",
+    ];
+    assert_eq!(second_dot_rejected.len(), rejected_forms.len());
+    for (index, row) in second_dot_rejected.iter().enumerate() {
+        let type_name = if index < 11 {
+            "gz.msgs.Double_V"
+        } else {
+            "gz.msgs.Time"
+        };
+        let form = rejected_forms[index];
+        let input = if index < 11 {
+            format!("{{\"data\":[{form}]}}")
+        } else {
+            format!("{{\"sec\":{form}}}")
+        };
+        assert_eq!(row["type"], type_name);
+        assert_eq!(row["form"], form);
+        assert_ne!(row["cpp_status"].as_i64(), Some(0));
+        assert_eq!(
+            row["input_hex"],
+            input
+                .as_bytes()
+                .iter()
+                .map(|byte| format!("{byte:02x}"))
+                .collect::<String>()
+        );
+    }
+    let numeric_pending = trailing_dot["native_permissive_pending"]
+        .as_array()
+        .unwrap();
+    assert_eq!(numeric_pending.len(), 5);
+    for (index, row) in numeric_pending.iter().enumerate() {
+        let type_name = if index < 2 {
+            "gz.msgs.Time"
+        } else {
+            "gz.msgs.Double_V"
+        };
+        let form = match index {
+            0 | 2 => "07.",
+            1 | 3 => "0x7.",
+            4 => "0x7.e3",
+            _ => unreachable!(),
+        };
+        let input = if index < 2 {
+            format!("{{\"sec\":{form}}}")
+        } else {
+            format!("{{\"data\":[{form}]}}")
+        };
+        assert_eq!(row["type"], type_name);
+        assert_eq!(row["form"], form);
+        assert_eq!(row["cpp_status"].as_i64(), Some(0));
+        assert_eq!(
+            row["input_hex"],
+            input
+                .as_bytes()
+                .iter()
+                .map(|byte| format!("{byte:02x}"))
+                .collect::<String>()
+        );
+    }
     assert!(Command::new("python3")
         .arg("scripts/native-peer.py")
         .status()
@@ -456,6 +638,15 @@ fn json_requires_exactly_one_complete_document() {
     }
     for row in utf8_matches.iter().chain(utf8_rejected) {
         check(row, "gz.msgs.StringMsg", true);
+    }
+    for row in scalar_rows.iter().chain(composite_rows) {
+        check(row, row["type"].as_str().unwrap(), true);
+    }
+    for row in second_dot_rejected {
+        check(row, row["type"].as_str().unwrap(), true);
+    }
+    for row in numeric_pending {
+        check(row, row["type"].as_str().unwrap(), false);
     }
 }
 

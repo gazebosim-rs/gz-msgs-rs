@@ -1571,5 +1571,44 @@ Independent /root/transport_fallback approved the frozen source/API/assertions
 after a private 440-row replay and separate U+0080 mutant failure. The
 unchanged [semantic receipt](reviews/json-escaped-utf8.json) binds the six
 reviewed inputs and six retained fixture hashes. Final metadata binding,
-normal hook and hosted qualification remain pending. Broader protobuf
+normal hook and exact hosted CI passed on public commit
+`f46db31af457a2a2c815c823e46389d2cc7aaf9b`. Broader protobuf
 JSON/Unicode grammar, diagnostics and MSG-02 acceptance remain open.
+
+## Bounded protobuf JSON trailing-dot-number candidate
+
+A pinned protobuf 3.21.12 probe found bare `0.`, `-0.`, `7.`, `-7.` and
+`7.e2` native-positive in Time.sec and Double_V.data, while the published
+Rust CLI rejected them. A 63-row source/binary-bound corpus covers 18 scalar
+forms for each type plus two-field, repeated-comma, trailing-comma, comment
+and whitespace-before-dot controls. It compares native acceptance and
+complete binary stdout.
+The selected test first failed at native-positive `{"sec":0.}`. The lexical
+adapter now drops only a dot immediately after a digit and before a numeric
+terminator, JSON whitespace or exponent marker, provided the preceding
+numeric run contains no earlier dot or exponent. The maintained dynamic
+decoder and full-document check remain in place. The selected native/Rust
+comparison passes the matching rows after that correction.
+
+An independent pre-approval audit rejected the first frozen candidate:
+it accepted native-rejected second-dot forms after a fraction or exponent,
+including `1.2.e3`, `7e2.` and `1e+2.`. Fourteen new negative rows enforce
+that boundary. Five native-positive `07.`, `0x7.` and `0x7.e3` rows under Time
+and Double_V remain explicit Rust-negative gaps, rather than silently
+broadening the accepted grammar. The revised native script replays all 503 rows.
+
+The prior 440 native rows and seven fixture files remain byte-for-byte
+unchanged. Quoted numeric strings, ordinary fractions, malformed exponents
+and comments retain their old path. Bare `-0` Double_V sign preservation and
+quoted hexadecimal numeric strings remain explicit separate gaps. The
+corrected six-file exact staged gate exits zero with 109 Rust harness checks
+plus FactoryLazy, five original C++ CLI tests, native 503-row replay,
+formatting, Clippy, strict coverage and negative gates; its log SHA256 is
+`7e90468b8a047ec35cc3b261a5c3994b38060c94cd031338dd1355e9b3c4762b`.
+Independent /root/transport_fallback approved the corrected source and
+assertions after a private 503-row replay, full Rust suite, additional numeric
+probes and a second-dot guard mutant. The unchanged
+[semantic receipt](reviews/json-trailing-dot.json) binds the six reviewed
+inputs and seven retained fixture hashes. The normal hook and hosted
+qualification remain pending; broad numeric grammar and MSG-02 acceptance
+remain open.
