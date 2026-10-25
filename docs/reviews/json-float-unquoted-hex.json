@@ -1,0 +1,36 @@
+{
+  "verdict": "approved_bounded_source_api_and_assertions",
+  "base_public": "81f38c8225453a3c36b9b4a2bfee3fe7dc779a36",
+  "staged_tree": "5f1ce979bfeb7e5b21c34f5fc977009b62bee8cd",
+  "binary_diff_sha256": "6eb5af0ae223cfeb563862175a9ac0445d4e9de8e00217ad26415a37c3a01d25",
+  "files_sha256": {
+    "docs/EVIDENCE.md": "4d3ac0a2da7ea6bc4380f78fedb71245c594c0b2e032364cb0e26af18249a350",
+    "docs/JSON_FRAMING.md": "355c03228166765bc0fd6e60cd39f881db4e96cc91fdcbb64edca7c9a514dcca",
+    "scripts/json-reference.py": "6fb8a5e3298946452cb626986f6f70d58c174868718095597d518971490f4576",
+    "src/bin/gz-msgs.rs": "a16cc4560674094edadbb50f9f5dd58f5f6149e5b85f67e91042d416ed80e45c",
+    "tests/cli.rs": "e5851d311d133b297f004c35fd7d1d28e85b24917b561f54672b6c7fa8a4170a",
+    "tests/fixtures/json-float-unquoted-hex.json": "9aba03d1c8d29b13f09995d75027957cea975c34022c650064faf280d35dac71"
+  },
+  "unstaged_diff_empty": true,
+  "reviewed_scope": "Only gz.msgs.Double_V and Float_V top-level data unquoted lowercase 0x numeric tokens at scalar/array/duplicate value starts. Finite fhex conversion and existing reflected F64/F32 patch preserve wire bits. Other descriptors and general JSON grammar remain open.",
+  "assertion_review": "All 318 new parity rows assert exact native status and entire wire output; six 07. native-positive/Rust-negative rows assert the explicit gap. Historical 1842 rows and 19 prior fixture hashes retained. Source gate does not retire MSG-02.",
+  "independent_evidence": {
+    "raw_export": "Git raw archive of exact staged tree; all six path hashes verified in private source.",
+    "native_proof_sha256": "588c79e9214297deb56c261724aa2498b9d4e5f8cc9bb83ded0efe6d7b36baa9",
+    "native_proof": "Pinned protobuf 3.21.12 binary recompiled in private source and 2166 exact outcomes reproduced.",
+    "selected_rust_log_sha256": "27479cb4415f24bf3b1221596ebf8a8ff0aec80e5266b2ba91cfe74fd1c373cb",
+    "selected_rust": "Exact new CLI test 1/0 in exclusive Cargo target.",
+    "mutant_diff_sha256": "7be808eef22d833344e98f716a9c38055941daad63925f7174c700ddd4bb7420",
+    "mutant_log_sha256": "c2266b40e34840f7b990c36b35a7224abe3a8f0e471e9b2cbc0e42457c1507bb",
+    "mutant": "Disabling only new unquoted float admission fails native-positive float_unquoted_006 at status false versus true.",
+    "differential_sha256": "c9a7be0e0452087e74b101c25f1ac103da6932f53e54b8bfefae02b39c6a7c8e",
+    "differential": "Independent deterministic seed219 420 scalar/array/duplicate and Double/Float forms: exactly six mismatches, all six declared 07. rows, zero unexpected status/wire mismatches."
+  },
+  "author_staged_gate_sha256": "fa04a5106b03785b224ff3953ed8d36cb249071641306c1bce68f077b6a74843",
+  "author_staged_gate_result": "EXIT0, 119 Rust and five original C++ CLI tests, strict coverage and native proof.",
+  "limits": [
+    "No general protobuf JSON grammar, diagnostic, resource-bound or MSG-02 completion claim.",
+    "The earlier invalid verify.py --help | head BrokenPipe invocation is excluded; exact unpiped gate passed.",
+    "Metadata-only final binding, final staged gate, normal hook/publication/hosted are still pending."
+  ]
+}

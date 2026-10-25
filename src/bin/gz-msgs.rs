@@ -144,6 +144,50 @@ fn proto_uint64_hex(value: &[u8]) -> Option<(usize, u64)> {
     Some((end, number as u64))
 }
 
+fn proto_unquoted_hex_float(value: &[u8], width: FloatWidth) -> Option<(usize, Value)> {
+    // The numeric lexer treats e/E as a double marker; strtod then reads the
+    // same byte as a hexadecimal mantissa digit after lowercase 0x.
+    let start = usize::from(value.first() == Some(&b'-'));
+    if !value.get(start..)?.starts_with(b"0x") {
+        return None;
+    }
+    let mut end = start + 2;
+    let mut digits = 0;
+    let mut has_e = false;
+    while value
+        .get(end)
+        .is_some_and(|byte| byte.is_ascii_digit() || matches!(*byte, b'e' | b'E'))
+    {
+        has_e |= matches!(value[end], b'e' | b'E');
+        digits += 1;
+        end += 1;
+    }
+    let dotted = value.get(end) == Some(&b'.');
+    if dotted {
+        end += 1;
+        while value
+            .get(end)
+            .is_some_and(|byte| byte.is_ascii_digit() || matches!(*byte, b'e' | b'E'))
+        {
+            digits += 1;
+            end += 1;
+        }
+    }
+    if digits == 0 || (!dotted && !has_e) {
+        return None;
+    }
+    if value.get(end).is_some_and(|byte| {
+        !matches!(
+            *byte,
+            b',' | b'}' | b']' | b' ' | b'\t' | b'\r' | b'\n' | b'\x0b' | b'\x0c'
+        )
+    }) {
+        return None;
+    }
+    let token = std::str::from_utf8(&value[..end]).ok()?;
+    proto_hex_float(token, width).map(|number| (end, number))
+}
+
 fn proto_uint64_array(
     value: &[u8],
 ) -> Result<Option<UInt64ArrayNumbers>, Box<dyn std::error::Error>> {
@@ -343,6 +387,26 @@ fn normalize_proto_json(
             }
             previous = Some(input[index - 1]);
             continue;
+        }
+        if data_value_start.is_some()
+            && matches!(previous, Some(b':' | b'[' | b','))
+            && (frames.len() == 1 || float_array_depth == Some(frames.len()))
+        {
+            if let Some((length, number)) =
+                float_data.and_then(|width| proto_unquoted_hex_float(&input[index..], width))
+            {
+                if float_array_depth == Some(frames.len()) {
+                    output.extend_from_slice(b"\"0\"");
+                    float_patches.push((float_array_count - 1, float_item_index, number));
+                } else {
+                    output.push(b'"');
+                    output.extend_from_slice(&input[index..index + length]);
+                    output.push(b'"');
+                }
+                previous = Some(b'"');
+                index += length;
+                continue;
+            }
         }
         if uint64_data && data_value_start.is_some() && matches!(previous, Some(b':' | b'[' | b','))
         {

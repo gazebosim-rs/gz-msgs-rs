@@ -1948,5 +1948,29 @@ and hosted run `40236392686` passed. The exact six-file staged verifier passed
 [review](reviews/json-uint64-undotted-hex.json) reproduced all 1,842 native
 outcomes in a private raw export and approved the bounded source and
 assertions; its undotted-branch mutant fails the exact `0xe` row. The normal
-hook and hosted qualification for this new slice remain pending; MSG-02 stays
-open.
+protected hook passed on public `81f38c8225453a3c36b9b4a2bfee3fe7dc779a36`;
+hosted run `40237849828` passed. MSG-02 stays open.
+
+## Bounded unquoted floating hexadecimal controls
+
+The pinned protobuf 3.21.12 numeric parser accepts selected unquoted lowercase
+`0x` tokens in `Double_V.data` and `Float_V.data`: a dot or an `e`/`E` hex digit
+selects the double-conversion path. The adapter confines recognition to those
+top-level data values, reuses pinned `fhex` and the existing reflected IEEE
+bit-patch path, and leaves other descriptor and quoted values untouched.
+
+The new source-bound fixture contains 318 exact native status/full-wire parity
+rows across scalar, array and duplicate placements, plus six explicit
+native-positive/Rust-negative `07.` leading-zero grammar gaps. Its precision,
+signed-zero, underflow and overflow controls preserve complete binary output.
+All 1,842 prior rows and 19 older fixture hashes are exact; the combined native
+script replays 2,166 outcomes. The preceding UInt64 undotted slice is public
+at `81f38c8225453a3c36b9b4a2bfee3fe7dc779a36` after a passing normal
+protected hook and hosted run `40237849828`. This new float slice
+passed the exact six-file staged verifier with 119 Rust checks and five original
+C++ CLI cases. An independent
+[review](reviews/json-float-unquoted-hex.json) reproduced all 2,166 native
+outcomes and approved the bounded source and assertions; its separate
+admission-disable mutant fails the exact native-positive row
+`float_unquoted_006`. Final metadata binding, the normal protected hook and
+hosted qualification remain pending. MSG-02 remains open.

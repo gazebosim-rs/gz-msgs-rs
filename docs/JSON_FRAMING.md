@@ -530,5 +530,33 @@ The exact six-file staged verifier passed 118 Rust tests with 2364/2376 root
 lines and 3827/3868 regions. The
 [independent review](reviews/json-uint64-undotted-hex.json) approved this
 bounded source and fixture after a private 1,842-row native replay and a
-failing undotted-branch mutant. The normal protected hook and hosted CI remain
-pending.
+failing undotted-branch mutant. The normal protected hook passed on public
+`81f38c8225453a3c36b9b4a2bfee3fe7dc779a36`; hosted run `40237849828`
+passed.
+
+## Unquoted hexadecimal floating data
+
+Pinned protobuf 3.21.12 starts numeric tokens at an ASCII digit or `-` and
+selects its double conversion when the token contains a dot or `e`/`E`. For
+`Double_V` and `Float_V` top-level `data`, a lowercase `0x` token can therefore
+carry decimal digits and hex `e`/`E` digits around a dot, or an undotted
+mantissa containing `e`/`E`. Native accepts signed `-0x7.`, `0x.7`, `0x7.e3`
+and `0x7e1`. It rejects uppercase `0X`, other alphabetic hex digits,
+`p` exponents, and malformed exponent suffixes. The adapter recognizes only
+those descriptor and value positions and uses pinned `fhex 2.0.2` for finite
+IEEE conversion. Scalar and repeated-array values use the existing reflected
+bit-patch path, so signed zero and float precision survive JSON normalization.
+Other descriptors, strings and unquoted decimal grammar retain their paths.
+
+A new fixture binds 318 matching native status/full-wire observations, including
+signed zero, precision, underflow and overflow boundaries, and six explicit
+native-positive `07.` leading-zero rows outside this hex slice. The unchanged
+historical Double_V/Float_V `0x7.` rows now require current parity. All 1,842
+older native outcomes and 19 prior fixture hashes remain exact; the combined
+native replay checks 2,166 outcomes. General JSON grammar, diagnostic parity
+and MSG-02 acceptance remain open. The exact six-file staged gate passed 119
+Rust checks and five original C++ CLI cases. An independent
+[review](reviews/json-float-unquoted-hex.json) reproduced the 2,166 native
+outcomes, found only the six declared leading-zero gaps in a separate 420-case
+differential, and approved the bounded source and assertions. Final metadata
+binding, normal hook and hosted qualification remain pending.
