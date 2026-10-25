@@ -49,12 +49,7 @@ fn formats_and_commands() {
         assert!(text.status.success());
         assert_eq!(String::from_utf8(text.stdout).unwrap(), "sec:7,nsec:8");
     }
-    for args in [
-        &["nonsense"][..],
-        &["nonsense", "gz.msgs.Time"],
-        &["info", "missing"],
-        &["info", "gz.msgs.PixelFormatType"],
-    ] {
+    for args in [&["nonsense"][..], &["nonsense", "gz.msgs.Time"]] {
         assert!(!run(args, &[]).status.success());
     }
     for command in ["encode-json", "encode-text", "decode-json", "decode-text"] {
@@ -233,4 +228,38 @@ fn complete_native_factory_list() {
         assert!(output.stderr.is_empty());
         assert_eq!(String::from_utf8(output.stdout).unwrap(), expected);
     }
+}
+
+#[test]
+fn native_info_errors_continue_with_success_and_exact_diagnostics() {
+    let fixture: gz_msgs::serde_json::Value =
+        gz_msgs::serde_json::from_str(include_str!("fixtures/cli-errors-reference.json")).unwrap();
+    assert_eq!(fixture["rows"].as_array().unwrap().len(), 9);
+    for row in fixture["rows"].as_array().unwrap() {
+        let args: Vec<_> = row["args"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .map(|a| a.as_str().unwrap())
+            .collect();
+        let output = run(&args, &[]);
+        assert_eq!(
+            output.status.code(),
+            Some(row["exit_code"].as_i64().unwrap() as i32),
+            "{row}"
+        );
+        assert_eq!(
+            output.stdout,
+            row["stdout"].as_str().unwrap().as_bytes(),
+            "{row}"
+        );
+        assert_eq!(
+            output.stderr,
+            row["stderr"].as_str().unwrap().as_bytes(),
+            "{row}"
+        );
+    }
+    let alias = run(&["info", "missing"], &[]);
+    assert!(alias.status.success());
+    assert_eq!(alias.stderr, b"Unable to create message of type[missing]\n");
 }

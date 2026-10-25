@@ -321,3 +321,13 @@ It requires file_format.name == "sdf" and ignores metadata fields the native
 serializer ignores. Applications requiring escaped XML need a separate writer.
 The native corpus qualifies the tested conversion behavior; complete XML parser
 or diagnostic equivalence beyond those observations remains unclaimed.
+
+## CLI info failures
+
+For canonical/imported bundled types, legacy --info/-i reports missing names as
+`Unable to create message of type[NAME]` on stderr, continues later names and
+exits zero, matching native runMsgInfo. Only the explicit Gazebo leading-dot
+aliases are accepted; a dot before a Google type or multiple leading dots fails.
+The new `info` command alias has the same policy. Nine native complete-output and
+exit-status observations qualify this boundary; full argument grammar and
+external-descriptor info formatting remain separate unfinished contracts.

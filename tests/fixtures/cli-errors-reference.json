@@ -1,0 +1,97 @@
+{
+  "upstream_commit": "89c0c3d1474f545cb889335daf930bfdab6ab852",
+  "source_sha256": {
+    "core/cmd/msgs_main.cc": "61eda9083e2802e406695d7b84e35284911bc936c834dc20505b2fb248eba609",
+    "core/src/MessageFactory.cc": "58eb3d4d9a4541812f6042ddd8a8fd8c9bc984424fd46194eb8041e4d6be93b5"
+  },
+  "native_binary_sha256": "6160c5d48314c32f36fceecd6a0637fc84b7fb09f1dada790ab6fcefd729bcc8",
+  "rows": [
+    {
+      "args": [
+        "--info",
+        "missing"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "Unable to create message of type[missing]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "gz.msgs.Time",
+        "missing",
+        "gz.msgs.StringMsg"
+      ],
+      "exit_code": 0,
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\nName: gz.msgs.StringMsg\nFile: gz/msgs/stringmsg.proto\n\nmessage StringMsg {\n  .gz.msgs.Header header = 1;\n  string data = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[missing]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "gz.msgs.PixelFormatType"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "Unable to create message of type[gz.msgs.PixelFormatType]\n"
+    },
+    {
+      "args": [
+        "--info",
+        ""
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "Unable to create message of type[]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "missing",
+        "missing"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "Unable to create message of type[missing]\nUnable to create message of type[missing]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "..gz.msgs.Time",
+        ".google.protobuf.Any",
+        "google.protobuf.Any"
+      ],
+      "exit_code": 0,
+      "stdout": "Name: google.protobuf.Any\nFile: google/protobuf/any.proto\n\nmessage Any {\n  string type_url = 1 [json_name = \"typeUrl\"];\n  bytes value = 2 [json_name = \"value\"];\n}\n\n",
+      "stderr": "Unable to create message of type[..gz.msgs.Time]\nUnable to create message of type[.google.protobuf.Any]\n"
+    },
+    {
+      "args": [
+        "--info",
+        ".gz.msgs.Time",
+        ".gz_msgs.Time"
+      ],
+      "exit_code": 0,
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\nName: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "-i",
+        "missing"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "Unable to create message of type[missing]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "snow\u2603\nname"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "Unable to create message of type[snow\u2603\nname]\n"
+    }
+  ]
+}

@@ -715,3 +715,27 @@ finding. All83 original mappings are reviewed. Full XML/formatting, descriptor
 installation/global/cache behavior, packaging and equal-work performance remain
 open MSG-02 obligations; no whole-packet acceptance is claimed. Matching final
 strict staged gate is still required.
+
+## CLI missing-type continuation (pending independent review)
+
+Native runMsgInfo reports each unknown type to stderr, keeps processing later
+names and exits successfully. The Rust tool previously returned early/nonzero;
+two supplementary Rust assertions incorrectly expected that behavior. They are
+replaced with exact native stdout/stderr/status comparisons for nine invocations,
+including mixed valid/invalid names, repeated failures, empty/Unicode names,
+short flags and the precise leading-dot alias whitelist. All original five C++
+CLI tests and271 successful descriptor outputs remain unchanged and pass.
+New source/helper/native binary hashes bind the oracle. Working full gate passes
+80 Rust checks,5 snapshot regressions, fmt/clippy/clean consumer and1143/1143
+owned lines,1731/1742 regions. Full CLI grammar/dynamic descriptor formatting,
+packaging and other MSG-02 obligations remain open. Independent review and matching
+strict staged gate are required before publication.
+
+/root/transport approved exact CLI staged diff
+`d09bfe16e13b7e80f9e2410ce9051d331ca472f09f9474647eee15c0fcab513f`.
+It independently compared native runMsgInfo and MessageFactory alias conversion,
+replayed all nine native stdout/stderr/status observations, verified source and
+binary hashes, and ran all eight Rust CLI tests including271 unchanged successful
+goldens and the unchanged five C++ originals (five run/zero failures). No blocking
+finding within the documented bundled-type/grammar scope; original assertions
+remain unchanged. Matching strict staged gate remains required.
