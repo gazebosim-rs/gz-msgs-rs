@@ -1641,5 +1641,38 @@ targeted boundary cases. No Rust overacceptance or matched-positive wire
 mismatch appeared. Twelve native-positive vertical-tab/form-feed cases remain
 Rust-negative outside this standard-whitespace slice. The byte-identical
 [semantic receipt](reviews/json-negative-zero.json) binds all six reviewed
-files and eight unchanged prior fixtures. Normal hook and hosted CI remain
-pending; broader numeric grammar and MSG-02 acceptance remain open.
+files and eight unchanged prior fixtures. The normal hook and hosted CI passed
+on public commit `11ea55557d9a6a111a440f05b9ad3b65c9a8427a`; broader
+numeric grammar and MSG-02 acceptance remain open.
+
+## Bounded protobuf JSON vertical-tab/form-feed candidate
+
+A pinned protobuf 3.21.12 source/binary probe covers 42 literal VT/FF rows:
+32 native-positive cases rejected by published Rust, two already matching
+raw-string controls, and eight matching native rejections. The focused test
+with the new fixture failed against the preceding parser at leading VT. The
+adapter now normalizes only unquoted VT/FF to ASCII spaces, preserving quoted
+control bytes. Native token lookahead and the existing bare `-0` and
+trailing-dot guards recognize both bytes before the rewrite. Complete-document
+validation remains with the maintained decoder.
+
+The new fixture binds the unchanged native probe source/binary and asserts
+all 42 exact inputs, native statuses and complete binary stdout. The nine
+prior fixtures and 549 rows remain byte-for-byte unchanged. The native script
+replays 591 rows. Invalid split digits, split sign, suffix data and comments
+remain rejected. The working strict gate exits zero with 109 Rust harness
+checks plus FactoryLazy, five original C++ CLI tests, all 591 comparisons,
+formatting, Clippy, strict negative and downstream gates. Root production
+coverage is 2004/2007 lines and 3182/3200 regions; CLI coverage is 239/241
+lines and 402/408 regions. The working gate log SHA256 is
+`db5b451ba636c58adfbc7c040821078b5ee39f64975c56d868230d81e27bcb60`.
+The exact six-file staged gate also exits zero on tree `b178e1ff67e8aaf92a04321adb7649f6a441f047`;
+its log SHA256 is
+`c687ef3b93978a05040c6f221aa3366df52a0aa1b1706c2c032d420adc79e2c5`.
+Independent /root/transport_fallback approved the exact source and assertions
+after a separate raw-source 591-row replay, full 109-check Rust suite,
+normalization-removal mutant and 138 insertion placements with no status or
+wire mismatch. The unchanged [semantic receipt](reviews/json-vtff.json) binds
+all six reviewed files and nine retained fixture hashes. Final metadata
+binding, normal hook and hosted CI remain pending; broader JSON grammar,
+diagnostics and MSG-02 remain open.

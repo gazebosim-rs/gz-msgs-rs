@@ -16,6 +16,7 @@ escaped_bytes = json.loads((root / 'tests/fixtures/json-escaped-bytes.json').rea
 escaped_utf8 = json.loads((root / 'tests/fixtures/json-escaped-utf8.json').read_text())
 trailing_dot = json.loads((root / 'tests/fixtures/json-trailing-dot.json').read_text())
 negative_zero = json.loads((root / 'tests/fixtures/json-negative-zero.json').read_text())
+vtff = json.loads((root / 'tests/fixtures/json-vtff-whitespace.json').read_text())
 version = subprocess.check_output(['pkg-config', '--modversion', 'protobuf'], text=True).strip()
 assert version == fixture['native_protobuf']
 assert version == grammar['native_protobuf']
@@ -26,6 +27,7 @@ assert version == escaped_bytes['native_protobuf']
 assert version == escaped_utf8['native_protobuf']
 assert version == trailing_dot['native_protobuf']
 assert version == negative_zero['native_protobuf']
+assert version == vtff['native_protobuf']
 subprocess.run(['python3', str(root / 'scripts/native-peer.py')], check=True)
 assert hashlib.sha256((root / 'tests/protobuf_peer.cc').read_bytes()).hexdigest() == escaped_bytes['probe_source_sha256']
 assert hashlib.sha256((root / 'target/native/protobuf-peer').read_bytes()).hexdigest() == escaped_bytes['probe_binary_sha256']
@@ -35,7 +37,9 @@ assert hashlib.sha256((root / 'tests/protobuf_peer.cc').read_bytes()).hexdigest(
 assert hashlib.sha256((root / 'target/native/protobuf-peer').read_bytes()).hexdigest() == trailing_dot['probe_binary_sha256']
 assert hashlib.sha256((root / 'tests/protobuf_peer.cc').read_bytes()).hexdigest() == negative_zero['probe_source_sha256']
 assert hashlib.sha256((root / 'target/native/protobuf-peer').read_bytes()).hexdigest() == negative_zero['probe_binary_sha256']
-rows = fixture['matching'] + fixture['native_permissive_grammar_pending'] + grammar['rows'] + arrays['rows'] + single_quotes['matching'] + single_quotes['native_permissive_pending'] + raw_controls['matching'] + raw_controls['rejected'] + escaped_bytes['matching'] + escaped_bytes['rejected'] + escaped_utf8['matching'] + escaped_utf8['rejected'] + trailing_dot['scalar_rows'] + trailing_dot['composite_rows'] + trailing_dot['fraction_or_exponent_rejected'] + trailing_dot['native_permissive_pending'] + negative_zero['scalar_rows'] + negative_zero['composite_rows'] + negative_zero['native_permissive_pending']
+assert hashlib.sha256((root / 'tests/protobuf_peer.cc').read_bytes()).hexdigest() == vtff['probe_source_sha256']
+assert hashlib.sha256((root / 'target/native/protobuf-peer').read_bytes()).hexdigest() == vtff['probe_binary_sha256']
+rows = fixture['matching'] + fixture['native_permissive_grammar_pending'] + grammar['rows'] + arrays['rows'] + single_quotes['matching'] + single_quotes['native_permissive_pending'] + raw_controls['matching'] + raw_controls['rejected'] + escaped_bytes['matching'] + escaped_bytes['rejected'] + escaped_utf8['matching'] + escaped_utf8['rejected'] + trailing_dot['scalar_rows'] + trailing_dot['composite_rows'] + trailing_dot['fraction_or_exponent_rejected'] + trailing_dot['native_permissive_pending'] + negative_zero['scalar_rows'] + negative_zero['composite_rows'] + negative_zero['native_permissive_pending'] + vtff['rows']
 for row in rows:
     result = subprocess.run([str(root / 'target/native/protobuf-peer'), str(root / 'target/native/messages.pb'), row.get('type', 'gz.msgs.Time'), 'encode-json'], input=bytes.fromhex(row['input_hex']), capture_output=True)
     assert result.returncode == row['cpp_status'] and result.stdout.hex() == row['cpp_stdout_hex'], row
@@ -48,7 +52,8 @@ proof = dict(protobuf_version=version, cases=len(rows), matching_cases=len(fixtu
              escaped_utf8_cases=len(escaped_utf8['matching']), escaped_utf8_rejected=len(escaped_utf8['rejected']), escaped_utf8_fixture_sha256=sha(root / 'tests/fixtures/json-escaped-utf8.json'),
              trailing_dot_scalar_cases=len(trailing_dot['scalar_rows']), trailing_dot_composite_cases=len(trailing_dot['composite_rows']), trailing_dot_second_dot_rejected=len(trailing_dot['fraction_or_exponent_rejected']), trailing_dot_pending=len(trailing_dot['native_permissive_pending']), trailing_dot_fixture_sha256=sha(root / 'tests/fixtures/json-trailing-dot.json'),
              negative_zero_scalar_cases=len(negative_zero['scalar_rows']), negative_zero_composite_cases=len(negative_zero['composite_rows']), negative_zero_pending=len(negative_zero['native_permissive_pending']), negative_zero_fixture_sha256=sha(root / 'tests/fixtures/json-negative-zero.json'),
+             vtff_cases=len(vtff['rows']), vtff_fixture_sha256=sha(root / 'tests/fixtures/json-vtff-whitespace.json'),
              probe_source_sha256=sha(root / 'tests/protobuf_peer.cc'), probe_binary_sha256=sha(root / 'target/native/protobuf-peer'))
 args.output.parent.mkdir(parents=True, exist_ok=True)
 args.output.write_text(json.dumps(proof, indent=2) + '\n')
-print(f'{len(rows)} native JSON outcomes reproduced: 503 retained rows, {len(negative_zero["scalar_rows"])} scalar, {len(negative_zero["composite_rows"])} composite and {len(negative_zero["native_permissive_pending"])} explicit quoted-hex gaps')
+print(f'{len(rows)} native JSON outcomes reproduced: 549 retained rows and {len(vtff["rows"])} VT/FF rows')

@@ -217,5 +217,32 @@ and assertions after a private 549-row replay, full Rust suite, rule-removal
 mutant and 234 targeted boundary cases. It found no Rust overacceptance or
 matched-wire mismatch; twelve native-positive cases containing vertical tab
 or form feed remain Rust-negative outside this standard-whitespace slice.
-The normal hook and hosted CI remain required before publication. Broader
-numeric grammar, diagnostics and MSG-02 completion remain open.
+The normal hook and hosted CI passed on public commit
+`11ea55557d9a6a111a440f05b9ad3b65c9a8427a`. Broader numeric grammar,
+diagnostics and MSG-02 completion remain open.
+
+## Vertical tab and form feed outside strings
+
+Pinned protobuf 3.21.12 treats literal vertical tab and form feed as JSON
+token whitespace. A 42-row native probe found 32 accepted cases rejected by
+the published Rust CLI. The adapter now emits ordinary spaces for only those
+two bytes outside quoted strings. Its existing bare-key and trailing-comma
+lookahead recognizes them, as do the bare `-0` and integral trailing-dot
+guards. Quoted raw control bytes keep their existing string-value path.
+
+The source-bound fixture covers both bytes at 21 positions each, including
+leading and trailing document whitespace, object and array separators,
+trailing commas, bare keys, negative-zero wire bits, trailing dots, Time
+integers, raw quoted controls, and rejected adjacent tokens, suffixes and
+comments. All 549 earlier rows and nine fixture files remain byte-for-byte
+unchanged. The focused comparison first failed at leading vertical tab before
+the parser change and now passes. The native script replays all 591 full
+status and binary stdout outcomes. The working strict gate passes 109 Rust
+harness checks plus FactoryLazy, five original C++ CLI tests, formatting,
+Clippy, coverage, negative gates and downstream checks. The exact six-file
+staged gate also passed. The [independent review](reviews/json-vtff.json)
+approved the bounded source and assertions after a private 591-row replay,
+full Rust suite, normalization-removal mutant and 138 supplemental placements
+with no status or wire mismatch. Final metadata binding, the normal hook and
+hosted CI remain pending. This slice does not claim complete protobuf JSON
+grammar, diagnostic parity or MSG-02 acceptance.

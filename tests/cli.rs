@@ -294,6 +294,8 @@ fn json_requires_exactly_one_complete_document() {
         gz_msgs::serde_json::from_str(include_str!("fixtures/json-trailing-dot.json")).unwrap();
     let negative_zero: gz_msgs::serde_json::Value =
         gz_msgs::serde_json::from_str(include_str!("fixtures/json-negative-zero.json")).unwrap();
+    let vtff: gz_msgs::serde_json::Value =
+        gz_msgs::serde_json::from_str(include_str!("fixtures/json-vtff-whitespace.json")).unwrap();
     let raw_rows = raw_controls["matching"].as_array().unwrap();
     assert_eq!(raw_rows.len(), 64);
     assert_eq!(raw_controls["rejected"].as_array().unwrap().len(), 10);
@@ -693,6 +695,143 @@ fn json_requires_exactly_one_complete_document() {
         assert_eq!(row["input_hex"], "7b2264617461223a5b22307837225d7d");
         assert_eq!(row["cpp_status"].as_i64(), Some(0));
     }
+    let vtff_rows = vtff["rows"].as_array().unwrap();
+    let vtff_cases: [(&str, &str, &str, bool); 21] = [
+        ("leading", "gz.msgs.Double_V", "{w}{\"data\":[1]}", true),
+        ("trailing", "gz.msgs.Double_V", "{\"data\":[1]}{w}", true),
+        (
+            "after_open",
+            "gz.msgs.Double_V",
+            "{{{w}\"data\":[1]}}",
+            true,
+        ),
+        (
+            "before_colon",
+            "gz.msgs.Double_V",
+            "{{\"data\"{w}:[1]}}",
+            true,
+        ),
+        (
+            "after_colon",
+            "gz.msgs.Double_V",
+            "{{\"data\":{w}[1]}}",
+            true,
+        ),
+        (
+            "after_array_open",
+            "gz.msgs.Double_V",
+            "{{\"data\":[{w}1]}}",
+            true,
+        ),
+        (
+            "after_number",
+            "gz.msgs.Double_V",
+            "{{\"data\":[1{w}]}}",
+            true,
+        ),
+        (
+            "after_comma",
+            "gz.msgs.Double_V",
+            "{{\"data\":[1,{w}2]}}",
+            true,
+        ),
+        (
+            "before_comma",
+            "gz.msgs.Double_V",
+            "{{\"data\":[1{w},2]}}",
+            true,
+        ),
+        (
+            "trailing_comma",
+            "gz.msgs.Double_V",
+            "{{\"data\":[1,{w}]}}",
+            true,
+        ),
+        ("bare_key", "gz.msgs.Double_V", "{{data{w}:[1]}}", true),
+        (
+            "negative_zero",
+            "gz.msgs.Double_V",
+            "{{\"data\":[-0{w}]}}",
+            true,
+        ),
+        (
+            "negative_zero_float",
+            "gz.msgs.Float_V",
+            "{{\"data\":[-0{w}]}}",
+            true,
+        ),
+        (
+            "trailing_dot",
+            "gz.msgs.Double_V",
+            "{{\"data\":[7.{w}]}}",
+            true,
+        ),
+        ("time_integer", "gz.msgs.Time", "{{\"sec\":7{w}}}", true),
+        (
+            "time_negative_zero",
+            "gz.msgs.Time",
+            "{{\"sec\":-0{w}}}",
+            true,
+        ),
+        (
+            "raw_in_string",
+            "gz.msgs.StringMsg",
+            "{{\"data\":\"a{w}b\"}}",
+            true,
+        ),
+        (
+            "between_digits",
+            "gz.msgs.Double_V",
+            "{{\"data\":[1{w}2]}}",
+            false,
+        ),
+        (
+            "after_minus",
+            "gz.msgs.Double_V",
+            "{{\"data\":[-{w}0]}}",
+            false,
+        ),
+        (
+            "before_suffix",
+            "gz.msgs.Double_V",
+            "{{\"data\":[1]}}{w}junk",
+            false,
+        ),
+        (
+            "comment",
+            "gz.msgs.Double_V",
+            "{{\"data\":[1{w}/*x*/]}}",
+            false,
+        ),
+    ];
+    assert_eq!(vtff_rows.len(), vtff_cases.len() * 2);
+    for (index, row) in vtff_rows.iter().enumerate() {
+        let (name, type_name, template, accepted) = vtff_cases[index % vtff_cases.len()];
+        let whitespace = [b'\x0b', b'\x0c'][index / vtff_cases.len()];
+        assert_eq!(row["name"], name);
+        assert_eq!(row["type"], type_name);
+        assert_eq!(row["whitespace_hex"], format!("{whitespace:02x}"));
+        assert_eq!(row["cpp_status"].as_i64() == Some(0), accepted);
+        let input = template
+            .replace("{{", "{")
+            .replace("}}", "}")
+            .replace("{w}", &String::from(whitespace as char));
+        assert_eq!(
+            row["input_hex"],
+            input
+                .as_bytes()
+                .iter()
+                .map(|byte| format!("{byte:02x}"))
+                .collect::<String>()
+        );
+        if !accepted {
+            assert_eq!(row["cpp_stdout_hex"], "");
+        }
+    }
+    assert_eq!(vtff_rows[11]["cpp_stdout_hex"], "0a080000000000000000");
+    assert_eq!(vtff_rows[12]["cpp_stdout_hex"], "120400000000");
+    assert_eq!(vtff_rows[16]["cpp_stdout_hex"], "1203610b62");
+    assert_eq!(vtff_rows[37]["cpp_stdout_hex"], "1203610c62");
     assert!(Command::new("python3")
         .arg("scripts/native-peer.py")
         .status()
@@ -784,6 +923,9 @@ fn json_requires_exactly_one_complete_document() {
     }
     for row in quoted_hex_pending {
         check(row, row["type"].as_str().unwrap(), false);
+    }
+    for row in vtff_rows {
+        check(row, row["type"].as_str().unwrap(), true);
     }
 }
 

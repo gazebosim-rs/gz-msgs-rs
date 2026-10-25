@@ -31,6 +31,10 @@ fn push_proto_escape(output: &mut Vec<u8>, escaped: u8) {
     }
 }
 
+fn is_proto_whitespace(byte: u8) -> bool {
+    byte.is_ascii_whitespace() || matches!(byte, b'\x0b' | b'\x0c')
+}
+
 fn normalize_proto_json(input: &[u8]) -> Vec<u8> {
     #[derive(Clone, Copy, PartialEq, Eq)]
     enum Frame {
@@ -95,6 +99,12 @@ fn normalize_proto_json(input: &[u8]) -> Vec<u8> {
             previous = Some(b'"');
             continue;
         }
+        // Protobuf treats these C whitespace bytes as separators outside strings.
+        if matches!(byte, b'\x0b' | b'\x0c') {
+            output.push(b' ');
+            index += 1;
+            continue;
+        }
         if frames.last() == Some(&Frame::ObjectKey) && (byte.is_ascii_alphabetic() || byte == b'_')
         {
             let start = index;
@@ -105,7 +115,7 @@ fn normalize_proto_json(input: &[u8]) -> Vec<u8> {
                 index += 1;
             }
             let mut after = index;
-            while after < input.len() && input[after].is_ascii_whitespace() {
+            while after < input.len() && is_proto_whitespace(input[after]) {
                 after += 1;
             }
             if input.get(after) == Some(&b':') {
@@ -125,7 +135,10 @@ fn normalize_proto_json(input: &[u8]) -> Vec<u8> {
             && matches!(previous, Some(b':' | b'[' | b','))
             && input.get(index + 1) == Some(&b'0')
             && input.get(index + 2).is_some_and(|next| {
-                matches!(*next, b',' | b'}' | b']' | b' ' | b'\t' | b'\r' | b'\n')
+                matches!(
+                    *next,
+                    b',' | b'}' | b']' | b' ' | b'\t' | b'\r' | b'\n' | b'\x0b' | b'\x0c'
+                )
             })
         {
             index += 1;
@@ -139,7 +152,16 @@ fn normalize_proto_json(input: &[u8]) -> Vec<u8> {
             && input.get(index + 1).is_some_and(|next| {
                 matches!(
                     *next,
-                    b',' | b'}' | b']' | b'e' | b'E' | b' ' | b'\t' | b'\r' | b'\n'
+                    b',' | b'}'
+                        | b']'
+                        | b'e'
+                        | b'E'
+                        | b' '
+                        | b'\t'
+                        | b'\r'
+                        | b'\n'
+                        | b'\x0b'
+                        | b'\x0c'
                 )
             })
         {
@@ -162,7 +184,7 @@ fn normalize_proto_json(input: &[u8]) -> Vec<u8> {
         }
         if byte == b',' && matches!(frames.last(), Some(Frame::ObjectValue | Frame::Array)) {
             let mut after = index + 1;
-            while after < input.len() && input[after].is_ascii_whitespace() {
+            while after < input.len() && is_proto_whitespace(input[after]) {
                 after += 1;
             }
             let closing = if frames.last() == Some(&Frame::Array) {
