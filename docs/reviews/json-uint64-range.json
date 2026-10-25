@@ -1,0 +1,29 @@
+{
+  "author": "/root/msgs_review_fallback",
+  "base": "6dc8845eb8584c16832aebe19f635cc0e7d34275",
+  "coverage": "Exact staged gate EXIT0 with115 Rust and five native C++ CLI originals; root2279/2290 lines3673/3709 regions, CLI514/524 lines893/917 regions; no exclusion/threshold change.",
+  "decision": "approved",
+  "exact_staged_gate_log_sha256": "66642f5a6a40bd5e18b299803cdf3e423242f72d0df299bc7f0130b48f4c5fe1",
+  "files_sha256": {
+    "Cargo.toml": "abf677c6fa8b6d0c63ff6ffd4acc8278bb488151e8d11435eec9c735f6ee895c",
+    "docs/EVIDENCE.md": "cf19de119b5a15ae94e13a74ff31d1958402d1bf6919906bcb024cfc70be4e26",
+    "docs/JSON_FRAMING.md": "a9f9a1eaa34c38ab892411063e0ec2e7a8b32e1541bec49f3438ca927880971a",
+    "scripts/json-reference.py": "e767b7dba6fae0f1ef1cb82685e1786b97ed16cab69bb53714b8f69085a1fdf0",
+    "src/bin/gz-msgs.rs": "c4922126c6ae9f76882ab68ed9f7c96d491f5eb706f25e51b04d2e33de34d8c1",
+    "tests/cli.rs": "8077eb8575759e36e7823b0ed13f8077b05633a7b6a98315f142b01a57c70ae0",
+    "tests/fixtures/json-uint64-range.json": "0bfeb9b15946061c97fcb2a243cec1c348b248538ffc92aa77a565e0930e48e0"
+  },
+  "judgment": "Maintained serde_json 1.0.149 raw_value retains array numeric lexemes; exact integer parsing rejects >u64 and decimal/exponent forms use finite/integral/<2^64 double semantics before replacing decoded UInt64_V values. Descriptor-specific branch leaves other schemas and prior data handling unchanged; no new package or public API.",
+  "native_reference": "Private raw-source replay 1275/1275 byte-identical to exact pinned native proof SHA70f42a6d; prior1135 rows and all15 fixture hashes preserved.",
+  "private_negative": "Separate raw public-parent source with new test/fixture fails exact native-rejected uint64_025 overflow input [18446744073709551616]; no shared Cargo target.",
+  "private_negative_log_sha256": "9d338a24c92489a42bf4baa4e4266a4620a379d673439fefcfad1b92019415b6",
+  "private_numeric": "Fresh private 674-case numeric sweep has zero native/Rust status or accepted-wire mismatches and exact author observations SHAefa9cd5d2e8fa0aa7cb15f36b91ce408a5eebe2e630f26d7d8f9334eb7c01b2f.",
+  "private_selected": "Raw public-parent archive plus exact seven reviewed files in separate source and Cargo target; UInt64 selected Rust test 1/0.",
+  "private_selected_log_sha256": "15af10c6ded1fbaa2e683417aa810e25a1c3187b843ad22d661a58e6c5add144",
+  "proposal_sha256": "266dcba20000dc8b4e41b73b30eb7e069995fab87b5b97bc71324df55fda9c86",
+  "reviewer": "/root/transport_fallback",
+  "scope": "Only top-level UInt64_V data arrays numeric token precision/range. Of 140 new rows,107 status/wire parity and33 explicit unqualified scalar/null/duplicate forms; one native-positive duplicate remains Rust-positive with wrong wire and is asserted as a gap. No scalar/duplicate admission, broad UInt64/MSG-02 completion, or production gate change.",
+  "staged_diff_sha256": "6a699c528cf0581845a578d59e1944670b22bd36b10e9ad0938230746b9aa4de",
+  "staged_tree": "932109277ea195f23f36284809bebdc07f59e06f",
+  "status": "Semantic/API/assertion review approved on exact seven-file frozen tree; final metadata binding, normal hook, publication and hosted qualification pending."
+}

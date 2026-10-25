@@ -1828,4 +1828,38 @@ The [independent review](reviews/json-single-scalar.json) approved the exact
 six-file source freeze and private replay of all 1,135 native outcomes. Its
 348-case supplemental differential found no status or accepted-wire mismatch.
 The exact staged gate passed on tree `6295fc2f7468ed452dbaf83898bcb996a649b0c5`.
-Final metadata binding, normal hook and hosted qualification remain pending.
+Final metadata binding and the normal protected hook passed on public commit
+`6dc8845eb8584c16832aebe19f635cc0e7d34275`; exact hosted run
+`40227905407` passed.
+
+## Bounded UInt64 array numeric precision and range
+
+Native protobuf rejects numeric array elements above `u64::MAX` and decimal
+values whose double conversion reaches 2^64. The maintained reflected decoder
+can saturate those values; its JSON number conversion can also round large
+in-range decimals differently or round a fractional exponent to an integer.
+For `UInt64_V` top-level `data` arrays only, pinned `serde_json` 1.0.149
+`raw_value` retains each numeric token. Rust's maintained float parser checks
+decimal/exponent integrality and the native range; exact in-range integer tokens
+use `u64` parsing. The reflected decoder still validates the complete document,
+then receives the exact numeric array values. This change does not admit scalar
+or repeated `data` keys.
+
+The new source-bound native fixture has 107 parity rows and 33 explicit
+unqualified scalar, nested-null or duplicate-key rows. All 1,135 prior native
+outcomes and fifteen fixture hashes stay unchanged, so the replay covers 1,275
+native outcomes. A separate 674-form numeric boundary differential had zero
+status or accepted-wire mismatches after the change; its raw rows include
+overflow, underflow, exponent, precision and signed-zero controls. This is a
+bounded prerequisite for future UInt64 admission. General duplicate-key JSON,
+other descriptors and MSG-02 completion remain open. The full working gate
+passed 115 Rust checks, all five original C++ CLI tests, formatting, Clippy,
+downstream and strict coverage checks. Root coverage was 2279/2290 lines and
+3673/3709 regions; the CLI had 514/524 lines and 893/917 regions. A private
+raw-parent parser with the new test and fixture fails on the native-rejected
+`{"data":[18446744073709551616]}` control. The [independent review](reviews/json-uint64-range.json)
+approved the exact seven-file source freeze after a private 1,275-row native
+replay and 674-form differential; it also failed the exact overflow control
+against the public-parent parser. The exact staged gate passed on tree
+`932109277ea195f23f36284809bebdc07f59e06f`. Final metadata binding,
+normal hook and hosted qualification remain pending.

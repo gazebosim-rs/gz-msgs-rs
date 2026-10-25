@@ -93,6 +93,40 @@ fn proto_hex_float(value: &str, width: FloatWidth) -> Option<Value> {
     }
 }
 
+type UInt64ArrayNumbers = Vec<(usize, u64)>;
+
+fn proto_uint64_array(
+    value: &[u8],
+) -> Result<Option<UInt64ArrayNumbers>, Box<dyn std::error::Error>> {
+    const LIMIT: f64 = 18446744073709551616.0;
+    let Ok(items) =
+        gz_msgs::serde_json::from_slice::<Vec<Box<gz_msgs::serde_json::value::RawValue>>>(value)
+    else {
+        return Ok(None);
+    };
+    let mut numbers = Vec::new();
+    for (index, item) in items.iter().enumerate() {
+        let token = item.get().trim();
+        if !token.as_bytes().first().is_some_and(u8::is_ascii_digit) && !token.starts_with('-') {
+            continue;
+        }
+        let number = if token.bytes().any(|byte| matches!(byte, b'.' | b'e' | b'E')) {
+            // Native parses decimal/exponent forms as double before checking
+            // integrality and range. Retain the raw token: serde_json's numeric
+            // conversion can round differently near large integer boundaries.
+            let parsed: f64 = token.parse()?;
+            if !parsed.is_finite() || !(0.0..LIMIT).contains(&parsed) || parsed.fract() != 0.0 {
+                return Err("invalid native uint64 decimal value".into());
+            }
+            parsed as u64
+        } else {
+            token.parse::<u64>()?
+        };
+        numbers.push((index, number));
+    }
+    Ok(Some(numbers))
+}
+
 struct NormalizedProtoJson {
     bytes: Vec<u8>,
     patches: Vec<(usize, usize, Value)>,
@@ -449,18 +483,29 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                         | "gz.msgs.Int64_V"
                         | "gz.msgs.StringMsg_V"
                 );
+            let uint64_data = descriptor.full_name() == "gz.msgs.UInt64_V";
             let NormalizedProtoJson {
                 bytes: normalized,
                 patches,
                 array_ranges,
                 data_ranges,
-            } = normalize_proto_json(&input, float_data, repeated_data);
+            } = normalize_proto_json(&input, float_data, repeated_data || uint64_data);
+            let mut uint64_patches = None;
+            if uint64_data {
+                for (start, end) in &data_ranges {
+                    if let Some(numbers) =
+                        proto_uint64_array(normalized[*start..*end].trim_ascii())?
+                    {
+                        uint64_patches = Some(numbers);
+                    }
+                }
+            }
             let single_scalar = data_ranges.len() == 1 && {
                 let (start, end) = data_ranges[0];
                 let value = normalized[start..end].trim_ascii();
                 value.first() != Some(&b'[') && value != b"null"
             };
-            if data_ranges.len() > 1 || single_scalar {
+            if repeated_data && (data_ranges.len() > 1 || single_scalar) {
                 // The maintained decoder keeps only the last repeated key.
                 // Decode each native repeated-field occurrence independently,
                 // then let the decoder validate all other fields unchanged.
@@ -557,6 +602,16 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 let mut json = gz_msgs::serde_json::Deserializer::from_slice(&normalized);
                 let mut message = DynamicMessage::deserialize(descriptor, &mut json)?;
                 json.end()?;
+                if let Some(numbers) = uint64_patches {
+                    let Some(Value::List(values)) = message.get_field_by_name_mut("data") else {
+                        return Err("uint64 data field was not a list".into());
+                    };
+                    for (index, number) in numbers {
+                        *values
+                            .get_mut(index)
+                            .ok_or("uint64 data index was absent")? = Value::U64(number);
+                    }
+                }
                 if !patches.is_empty() {
                     let values = match message.get_field_by_name_mut("data") {
                         Some(Value::List(values)) => values,

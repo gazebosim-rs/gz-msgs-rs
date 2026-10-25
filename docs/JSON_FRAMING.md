@@ -395,4 +395,34 @@ six-file source freeze and privately replayed all 1,135 native outcomes.
 Its 348-case supplemental differential found no status or accepted-wire
 mismatch. The exact staged gate passed on tree
 `6295fc2f7468ed452dbaf83898bcb996a649b0c5`.
-Final metadata binding, normal hook and hosted qualification remain pending.
+Final metadata binding and the normal protected hook passed on public commit
+`6dc8845eb8584c16832aebe19f635cc0e7d34275`; exact hosted run
+`40227905407` passed.
+
+## UInt64 array numeric precision and range
+
+For `gz.msgs.UInt64_V` top-level `data` arrays, the pinned maintained
+`serde_json` raw-value feature preserves numeric token spelling through the
+existing protobuf JSON normalizer. Integer tokens use exact `u64` parsing.
+Decimal and exponent tokens use Rust's float parser with native-style finite,
+integral and `<2^64` checks. Only numeric array elements are replaced after
+the maintained reflected decoder validates the whole document. This prevents
+overflow saturation and large-decimal wire rounding differences. Scalars,
+duplicate keys, nested null/empty elements and other descriptors retain their
+prior behavior.
+
+The pinned native fixture adds 107 matching and 33 explicitly unqualified
+rows to 1,135 unchanged prior cases, for 1,275 native outcomes. Fifteen earlier
+fixture hashes are unchanged. A supplemental 674-form numeric sweep found no
+remaining status or accepted-wire mismatch for the bounded array-number path.
+This prerequisite does not qualify UInt64 scalar/duplicate admission or broad
+MSG-02 JSON behavior. The working strict gate passed 115 Rust checks, five
+unchanged native C++ CLI tests, root coverage 2279/2290 lines and 3673/3709
+regions, and CLI coverage 514/524 lines and 893/917 regions. The exact public
+parent parser fails the new overflow assertion on
+`{"data":[18446744073709551616]}`. The [independent review](reviews/json-uint64-range.json)
+privately reproduced the 1,275-row native proof and 674 numeric controls,
+then failed that exact overflow assertion against the public-parent parser.
+The exact staged gate passed on tree
+`932109277ea195f23f36284809bebdc07f59e06f`.
+Final metadata binding, normal hook and hosted CI are pending.

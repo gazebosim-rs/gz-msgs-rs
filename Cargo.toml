@@ -18,7 +18,7 @@ prost = "=0.14.4"
 prost-derive = { path = "vendor/prost-derive-0.14.4", version = "=0.14.4" }
 prost-types = "=0.14.4"
 prost-reflect = { path = "vendor/prost-reflect-0.16.5", version = "=0.16.5", features = ["serde", "text-format"] }
-serde_json = "=1.0.149"
+serde_json = { version = "=1.0.149", features = ["raw_value"] }
 
 [build-dependencies]
 prost = "=0.14.4"
