@@ -81,12 +81,34 @@ decoder and complete-document check still decide field and value validity.
 A separate 21-row native corpus compares actual acceptance and full binary
 output for Time, StringMsg and StringMsg_V. It covers combined bare names and
 trailing commas, apostrophes, double quotes, backslash escapes, Unicode escapes
-and malformed suffixes. Two additional native-positive rows remain explicit
-gaps: protobuf accepts an unknown `\x` escape and a raw newline within a string,
-while the bounded adapter leaves both for serde_json to reject. The 43 earlier
+and malformed suffixes. At that slice, two additional native-positive rows were
+explicit gaps: protobuf accepts an unknown `\x` escape and a raw newline within a
+string, while the bounded adapter left both for serde_json to reject. The 43 earlier
 fixtures are unchanged. `scripts/json-reference.py` replays all 66 native rows.
 The [independent review](reviews/json-single-quote.json) approved the bounded
 21-row mapping after a private 66-row replay, full Rust test run and a
 single-quote-rule negative control. General protobuf JSON grammar, diagnostics
 and all-message equivalence remain open; the normal staged hook and hosted CI
 are required.
+
+## Raw control bytes inside strings
+
+Native protobuf 3.21.12 accepts every unescaped byte `0x00..0x1f` inside both
+single- and double-quoted `StringMsg.data` values. The lexical adapter now
+rewrites only those bytes to JSON `\u00XX` escapes before the maintained
+deserializer; the decoded string keeps each original byte. Escape pairs,
+outside-string bytes, invalid UTF-8 and the complete-document check retain
+their existing behavior. The raw-newline row in the unchanged single-quote
+fixture now matches native output. Its unknown `\x` row remains an explicit gap.
+
+The source-bound 64-row positive corpus covers all 32 bytes under both quote
+styles. Ten native-rejected controls exercise misplaced NUL bytes, a trailing
+document, unterminated strings and invalid UTF-8. `scripts/json-reference.py`
+replays all 140 native rows, including the prior 66 unchanged rows, and binds
+the protobuf version, fixture hashes and native peer source/binary hashes.
+Unknown escapes and broader protobuf JSON grammar remain MSG-02 work.
+The [independent review](reviews/json-raw-controls.json) approved this bounded
+mapping after a private 140-row native/Rust replay, full Rust suite and an
+embedded-NUL branch-removal control. The exact six-file source gate passes all
+strict checks. Matching final metadata verification, the normal hook and hosted
+qualification remain required before publication.

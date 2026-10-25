@@ -9,8 +9,16 @@ use std::io::{Read, Write};
 mod legacy_cli;
 const HELP: &str = "gz-msgs --list|-l | --info|-i TYPE... | --version|-v | --help|-h\nCommands: list, info TYPE..., encode-json, decode-json, encode-text, decode-text\nFormat commands take one fully qualified type and use stdin/stdout.";
 
-// Protobuf's JSON parser accepts bare names, single quotes and trailing commas.
+// Protobuf's JSON parser accepts bare names, single quotes, trailing commas and
+// raw control bytes in strings.
 // Rewrite only those tokens; serde_json still validates the entire document.
+fn push_control_escape(output: &mut Vec<u8>, byte: u8) {
+    const HEX: &[u8; 16] = b"0123456789abcdef";
+    output.extend_from_slice(b"\\u00");
+    output.push(HEX[usize::from(byte >> 4)]);
+    output.push(HEX[usize::from(byte & 0x0f)]);
+}
+
 fn normalize_proto_json(input: &[u8]) -> Vec<u8> {
     #[derive(Clone, Copy, PartialEq, Eq)]
     enum Frame {
@@ -29,7 +37,11 @@ fn normalize_proto_json(input: &[u8]) -> Vec<u8> {
             index += 1;
             while index < input.len() {
                 let current = input[index];
-                output.push(current);
+                if current < b' ' {
+                    push_control_escape(&mut output, current);
+                } else {
+                    output.push(current);
+                }
                 index += 1;
                 if current == b'\\' && index < input.len() {
                     output.push(input[index]);
@@ -62,6 +74,7 @@ fn normalize_proto_json(input: &[u8]) -> Vec<u8> {
                         output.push(b'"');
                         break;
                     }
+                    _ if current < b' ' => push_control_escape(&mut output, current),
                     _ => output.push(current),
                 }
             }

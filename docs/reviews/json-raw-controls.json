@@ -1,0 +1,50 @@
+{
+  "decision": "approved",
+  "author": "/root/msgs_review_fallback",
+  "reviewer": "/root/transport_fallback",
+  "reviewed_at": "2026-10-25T14:21:02.969301+00:00",
+  "base": "d6090c73d8dfc1d532224d6273a712f2820d4a41",
+  "tree": "badae984b1641e083cffa8d7c45db181b5505e81",
+  "diff_sha256": "521afeb8943c1d43a970883714bacefeec310258e5a6d4fc25ae159a9ad75ae8",
+  "files": {
+    "docs/EVIDENCE.md": "44dee1a97d13f8c69bf5eb1cfb0cdc91906975b57d1e4a1d31339fa548f0dc61",
+    "docs/JSON_FRAMING.md": "f07df4936ad8f2b859e1e984e6d70db729a0892e9781af9088b7ce995c5296b3",
+    "scripts/json-reference.py": "d76d2ea2f035c032f9d868bf27cc447d4b3f9b53fa8230d4fee28c2e1a3b5b44",
+    "src/bin/gz-msgs.rs": "857782e7fb33094fb96104bf5a22d9c7ce0159d69fa584790aa2079f220631a5",
+    "tests/cli.rs": "dfb4bc25b7d72d1f1cd1b4c1a236ebcfc30532a217fdea6c9f86ffd2d9caa52f",
+    "tests/fixtures/json-raw-controls.json": "c65520e7656a2ef91d7104b2b9b8cd866f736078fd65825295d5f81bd68e5c9d"
+  },
+  "scope": "Bounded protobuf JSON lexical correction for unescaped bytes 0x00..0x1f inside single- and double-quoted StringMsg.data; each byte becomes JSON \\u00XX before the maintained deserializer. Existing complete-document, dynamic-field, escape-pair and outside-string paths remain in place. The formerly native-positive raw-newline single-quote row now matches; the unknown \\x row remains a gap.",
+  "native_reference": {
+    "proof_sha256": "95dda76db8122bf732a82e9795d55746ea70487ff3939f1e67e16a330386ce2e",
+    "rows": 140,
+    "retained_rows": 66,
+    "new_positive_rows": 64,
+    "new_rejected_rows": 10,
+    "retained_fixture_sha256": {
+      "tests/fixtures/json-framing.json": "2cccfedc630e3ca56dcff617d3bd8233287dfc17271fa1b477ef4fcbdaaa24f0",
+      "tests/fixtures/json-grammar.json": "4005df0bb062002197e712a70b2cf5fd56969819dd2ce85b06c5a6ab0e9fbf71",
+      "tests/fixtures/json-array-grammar.json": "c6b095ffbf102683dfe24b6b05c8fd5d3b2f5aab36578cc0d389ba19f38d97c3",
+      "tests/fixtures/json-single-quote.json": "9bca126b76edc3e1b8ead5ab968943b32268fedfff0acbfa95363a82cc80079f"
+    },
+    "original_cli_tests": "Five original C++ CLI gtests retained and passed by the exact author staged gate."
+  },
+  "independent_replay": {
+    "source": "Private raw Git export of base plus six frozen files; all six hashes and four retained fixture hashes reproduced with separate Cargo target.",
+    "native": "Fresh protobuf peer reproduced all 140 native statuses and full output bytes, identical proof SHA.",
+    "selected": "json_requires_exactly_one_complete_document passed 1/0, comparing Rust/native acceptance and full stdout on all rows.",
+    "full_rust": "109 passed, 0 failed, 0 ignored in exclusive target; formatting and Clippy passed.",
+    "negative": "Separate source/target removing only double-quote raw-control branch fails selected test 0/1 at embedded-NUL input_hex 7b2264617461223a22610062227d; reviewer log SHA c8d6e8f0e6358be3e55bea86393ef1aa9ff24b05dd5e6144ae31668be87ca0a8.",
+    "out_of_scope_boundary": "Six direct probes with backslash followed by raw 0x00,0x0a,0x1f in each quote style remain native-positive/Rust-negative; no escaped-control claim."
+  },
+  "gates": {
+    "author_exact_staged_log_sha256": "7f4aa71b3da8d39ad2ccc387af029fdfe06c25989c018d105c6d6b6ed09ba072",
+    "status": "EXIT0 on exact frozen six-file tree; strict root/CLI and owned vendor coverage unchanged, 109 Rust harness checks and five original C++ CLI tests."
+  },
+  "findings": [],
+  "limits": [
+    "Only the StringMsg raw unescaped control corpus is qualified; unknown printable escapes and broader protobuf JSON grammar remain open MSG-02 work.",
+    "Ten native-rejected placement/suffix/unterminated/invalid-UTF8 rows preserve rejection; prior 66 rows and four fixture hashes remain unchanged.",
+    "Final metadata binding, normal strict commit hook, public publication and hosted CI remain required."
+  ]
+}

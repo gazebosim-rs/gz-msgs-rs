@@ -284,6 +284,29 @@ fn json_requires_exactly_one_complete_document() {
             .len(),
         2
     );
+    let raw_controls: gz_msgs::serde_json::Value =
+        gz_msgs::serde_json::from_str(include_str!("fixtures/json-raw-controls.json")).unwrap();
+    let raw_rows = raw_controls["matching"].as_array().unwrap();
+    assert_eq!(raw_rows.len(), 64);
+    assert_eq!(raw_controls["rejected"].as_array().unwrap().len(), 10);
+    let mut seen = [[false; 32]; 2];
+    for row in raw_rows {
+        let quote = row["quote"].as_str().unwrap();
+        let quote_index = match quote {
+            "'" => 0,
+            "\"" => 1,
+            _ => panic!("unexpected quote {quote}"),
+        };
+        let byte = usize::try_from(row["byte"].as_u64().unwrap()).unwrap();
+        assert!(byte < 32 && !seen[quote_index][byte]);
+        seen[quote_index][byte] = true;
+        let delimiter = quote.as_bytes()[0];
+        assert_eq!(
+            row["input_hex"],
+            format!("7b2264617461223a{delimiter:02x}61{byte:02x}62{delimiter:02x}7d")
+        );
+    }
+    assert!(seen.into_iter().flatten().all(|value| value));
     assert!(Command::new("python3")
         .arg("scripts/native-peer.py")
         .status()
@@ -343,11 +366,20 @@ fn json_requires_exactly_one_complete_document() {
     for row in single_quotes["matching"].as_array().unwrap() {
         check(row, row["type"].as_str().unwrap(), true);
     }
-    for row in single_quotes["native_permissive_pending"]
+    for (index, row) in single_quotes["native_permissive_pending"]
         .as_array()
         .unwrap()
+        .iter()
+        .enumerate()
     {
-        check(row, row["type"].as_str().unwrap(), false);
+        // The second retained gap is the raw-newline case corrected here.
+        check(row, row["type"].as_str().unwrap(), index == 1);
+    }
+    for row in raw_rows
+        .iter()
+        .chain(raw_controls["rejected"].as_array().unwrap())
+    {
+        check(row, "gz.msgs.StringMsg", true);
     }
 }
 

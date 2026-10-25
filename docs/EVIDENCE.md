@@ -1485,3 +1485,35 @@ an independent single-quote-rule removal control at the same row. The unchanged
 [semantic receipt](reviews/json-single-quote.json) binds the seven reviewed
 inputs and preserves both explicit native-positive gaps. Final metadata binding,
 normal staged hook and hosted qualification remain required; MSG-02 remains open.
+
+## Bounded protobuf JSON raw-control-string candidate
+
+The 66 previously accepted native rows and all four fixture files remain
+byte-for-byte unchanged. A protobuf 3.21.12 source/binary-bound probe found
+all 32 unescaped control bytes accepted inside each quote style of
+`StringMsg.data` while the published Rust CLI rejected them. The adapter now
+encodes only those in-string bytes as JSON `\u00XX` escapes before serde_json;
+escape pairs, bytes outside strings, invalid UTF-8 and the final-document
+check retain their prior path. The formerly pending raw-newline row now matches;
+the unknown `\x` row remains a native-positive Rust-negative gap.
+
+A new fixture has all 64 positive combinations and ten native-rejected
+placement, suffix, unterminated and invalid-UTF-8 controls. The native script
+replays all 140 rows and binds the unchanged old fixture hashes, new fixture,
+schema manifest, protobuf version and native source/binary hashes. The focused
+Rust/native comparison passes. The exact six-file staged gate exits zero with
+109 Rust harness checks, five unchanged original C++ CLI assertions, formatting,
+Clippy, negative coverage gates, snapshots, source package and downstream checks;
+strict root/CLI and owned vendor coverage thresholds remain intact. Its log
+SHA256 is `7f4aa71b3da8d39ad2ccc387af029fdfe06c25989c018d105c6d6b6ed09ba072`.
+A private branch-removal control fails the native-positive double-quoted NUL
+row `7b2264617461223a22610062227d`.
+
+Independent /root/transport_fallback approved the frozen source/API/assertions.
+Its private raw export and exclusive target regenerated the 140-row native proof
+byte-for-byte, passed all 109 Rust checks and failed its own NUL branch-removal
+control. Six direct escaped-raw probes remain native-positive/Rust-negative,
+outside this unescaped-byte scope. The unchanged [semantic receipt](reviews/json-raw-controls.json)
+binds the six source/test/docs inputs and four retained fixture hashes. Final
+metadata binding, normal hook and hosted qualification remain required. General
+protobuf JSON grammar and MSG-02 completion remain open.

@@ -1,0 +1,590 @@
+{
+  "native_protobuf": "3.21.12",
+  "scope": "Raw unescaped bytes 0x00..0x1f within single/double quoted StringMsg data; rejected controls stay outside the correction.",
+  "matching": [
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "'",
+      "byte": 0,
+      "input_hex": "7b2264617461223a27610062277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203610062"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "'",
+      "byte": 1,
+      "input_hex": "7b2264617461223a27610162277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203610162"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "'",
+      "byte": 2,
+      "input_hex": "7b2264617461223a27610262277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203610262"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "'",
+      "byte": 3,
+      "input_hex": "7b2264617461223a27610362277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203610362"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "'",
+      "byte": 4,
+      "input_hex": "7b2264617461223a27610462277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203610462"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "'",
+      "byte": 5,
+      "input_hex": "7b2264617461223a27610562277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203610562"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "'",
+      "byte": 6,
+      "input_hex": "7b2264617461223a27610662277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203610662"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "'",
+      "byte": 7,
+      "input_hex": "7b2264617461223a27610762277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203610762"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "'",
+      "byte": 8,
+      "input_hex": "7b2264617461223a27610862277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203610862"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "'",
+      "byte": 9,
+      "input_hex": "7b2264617461223a27610962277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203610962"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "'",
+      "byte": 10,
+      "input_hex": "7b2264617461223a27610a62277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203610a62"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "'",
+      "byte": 11,
+      "input_hex": "7b2264617461223a27610b62277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203610b62"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "'",
+      "byte": 12,
+      "input_hex": "7b2264617461223a27610c62277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203610c62"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "'",
+      "byte": 13,
+      "input_hex": "7b2264617461223a27610d62277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203610d62"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "'",
+      "byte": 14,
+      "input_hex": "7b2264617461223a27610e62277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203610e62"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "'",
+      "byte": 15,
+      "input_hex": "7b2264617461223a27610f62277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203610f62"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "'",
+      "byte": 16,
+      "input_hex": "7b2264617461223a27611062277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203611062"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "'",
+      "byte": 17,
+      "input_hex": "7b2264617461223a27611162277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203611162"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "'",
+      "byte": 18,
+      "input_hex": "7b2264617461223a27611262277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203611262"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "'",
+      "byte": 19,
+      "input_hex": "7b2264617461223a27611362277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203611362"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "'",
+      "byte": 20,
+      "input_hex": "7b2264617461223a27611462277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203611462"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "'",
+      "byte": 21,
+      "input_hex": "7b2264617461223a27611562277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203611562"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "'",
+      "byte": 22,
+      "input_hex": "7b2264617461223a27611662277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203611662"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "'",
+      "byte": 23,
+      "input_hex": "7b2264617461223a27611762277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203611762"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "'",
+      "byte": 24,
+      "input_hex": "7b2264617461223a27611862277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203611862"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "'",
+      "byte": 25,
+      "input_hex": "7b2264617461223a27611962277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203611962"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "'",
+      "byte": 26,
+      "input_hex": "7b2264617461223a27611a62277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203611a62"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "'",
+      "byte": 27,
+      "input_hex": "7b2264617461223a27611b62277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203611b62"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "'",
+      "byte": 28,
+      "input_hex": "7b2264617461223a27611c62277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203611c62"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "'",
+      "byte": 29,
+      "input_hex": "7b2264617461223a27611d62277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203611d62"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "'",
+      "byte": 30,
+      "input_hex": "7b2264617461223a27611e62277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203611e62"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "'",
+      "byte": 31,
+      "input_hex": "7b2264617461223a27611f62277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203611f62"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "\"",
+      "byte": 0,
+      "input_hex": "7b2264617461223a22610062227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203610062"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "\"",
+      "byte": 1,
+      "input_hex": "7b2264617461223a22610162227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203610162"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "\"",
+      "byte": 2,
+      "input_hex": "7b2264617461223a22610262227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203610262"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "\"",
+      "byte": 3,
+      "input_hex": "7b2264617461223a22610362227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203610362"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "\"",
+      "byte": 4,
+      "input_hex": "7b2264617461223a22610462227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203610462"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "\"",
+      "byte": 5,
+      "input_hex": "7b2264617461223a22610562227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203610562"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "\"",
+      "byte": 6,
+      "input_hex": "7b2264617461223a22610662227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203610662"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "\"",
+      "byte": 7,
+      "input_hex": "7b2264617461223a22610762227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203610762"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "\"",
+      "byte": 8,
+      "input_hex": "7b2264617461223a22610862227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203610862"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "\"",
+      "byte": 9,
+      "input_hex": "7b2264617461223a22610962227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203610962"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "\"",
+      "byte": 10,
+      "input_hex": "7b2264617461223a22610a62227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203610a62"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "\"",
+      "byte": 11,
+      "input_hex": "7b2264617461223a22610b62227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203610b62"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "\"",
+      "byte": 12,
+      "input_hex": "7b2264617461223a22610c62227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203610c62"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "\"",
+      "byte": 13,
+      "input_hex": "7b2264617461223a22610d62227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203610d62"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "\"",
+      "byte": 14,
+      "input_hex": "7b2264617461223a22610e62227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203610e62"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "\"",
+      "byte": 15,
+      "input_hex": "7b2264617461223a22610f62227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203610f62"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "\"",
+      "byte": 16,
+      "input_hex": "7b2264617461223a22611062227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203611062"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "\"",
+      "byte": 17,
+      "input_hex": "7b2264617461223a22611162227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203611162"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "\"",
+      "byte": 18,
+      "input_hex": "7b2264617461223a22611262227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203611262"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "\"",
+      "byte": 19,
+      "input_hex": "7b2264617461223a22611362227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203611362"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "\"",
+      "byte": 20,
+      "input_hex": "7b2264617461223a22611462227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203611462"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "\"",
+      "byte": 21,
+      "input_hex": "7b2264617461223a22611562227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203611562"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "\"",
+      "byte": 22,
+      "input_hex": "7b2264617461223a22611662227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203611662"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "\"",
+      "byte": 23,
+      "input_hex": "7b2264617461223a22611762227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203611762"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "\"",
+      "byte": 24,
+      "input_hex": "7b2264617461223a22611862227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203611862"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "\"",
+      "byte": 25,
+      "input_hex": "7b2264617461223a22611962227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203611962"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "\"",
+      "byte": 26,
+      "input_hex": "7b2264617461223a22611a62227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203611a62"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "\"",
+      "byte": 27,
+      "input_hex": "7b2264617461223a22611b62227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203611b62"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "\"",
+      "byte": 28,
+      "input_hex": "7b2264617461223a22611c62227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203611c62"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "\"",
+      "byte": 29,
+      "input_hex": "7b2264617461223a22611d62227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203611d62"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "\"",
+      "byte": 30,
+      "input_hex": "7b2264617461223a22611e62227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203611e62"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "\"",
+      "byte": 31,
+      "input_hex": "7b2264617461223a22611f62227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203611f62"
+    }
+  ],
+  "rejected": [
+    {
+      "case": "prefix_nul",
+      "type": "gz.msgs.StringMsg",
+      "input_hex": "007b2264617461223a2261227d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "case": "suffix_nul",
+      "type": "gz.msgs.StringMsg",
+      "input_hex": "7b2264617461223a2261227d00",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "case": "outside_before_value_nul",
+      "type": "gz.msgs.StringMsg",
+      "input_hex": "7b2264617461223a002261227d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "case": "outside_after_value_nul",
+      "type": "gz.msgs.StringMsg",
+      "input_hex": "7b2264617461223a226122007d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "case": "outside_between_key_nul",
+      "type": "gz.msgs.StringMsg",
+      "input_hex": "7b226461746122003a2261227d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "case": "bad_suffix_object",
+      "type": "gz.msgs.StringMsg",
+      "input_hex": "7b2264617461223a22610062227d7b7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "case": "unfinished_double",
+      "type": "gz.msgs.StringMsg",
+      "input_hex": "7b2264617461223a226100627d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "case": "unfinished_single",
+      "type": "gz.msgs.StringMsg",
+      "input_hex": "7b2764617461273a276100627d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "case": "invalid_utf8_double",
+      "type": "gz.msgs.StringMsg",
+      "input_hex": "7b2264617461223a2261ff62227d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "case": "invalid_utf8_single",
+      "type": "gz.msgs.StringMsg",
+      "input_hex": "7b2764617461273a2761ff62277d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    }
+  ]
+}
