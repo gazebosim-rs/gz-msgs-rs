@@ -1154,15 +1154,57 @@ fn uint64_array_numeric_range_and_precision_match_native() {
     }
     for row in unqualified {
         let input = unhex(row["input_hex"].as_str().unwrap());
-        let expected = unhex(row["rust_stdout_hex"].as_str().unwrap());
+        assert_eq!(row["cpp_status"], 0);
+        assert!(row["rust_status"] != 0 || row["rust_stdout_hex"] != row["cpp_stdout_hex"]);
+        let expected = unhex(row["cpp_stdout_hex"].as_str().unwrap());
+        let result = run(&["encode-json", "gz.msgs.UInt64_V"], &input);
+        assert!(result.status.success(), "{}", row["label"]);
+        assert_eq!(result.stdout, expected, "{}", row["label"]);
+    }
+}
+
+#[test]
+fn uint64_scalar_nested_null_and_duplicate_data_match_native() {
+    let fixture: gz_msgs::serde_json::Value =
+        gz_msgs::serde_json::from_str(include_str!("fixtures/json-uint64-occurrences.json"))
+            .unwrap();
+    assert_eq!(fixture["native_protobuf"], "3.21.12");
+    let rows = fixture["matching"].as_array().unwrap();
+    assert_eq!(rows.len(), 185);
+    assert_eq!(
+        rows.iter().filter(|row| row["cpp_status"] == 0).count(),
+        119
+    );
+    let unqualified = fixture["unqualified"].as_array().unwrap();
+    assert_eq!(unqualified.len(), 8);
+    let unhex = |s: &str| {
+        s.as_bytes()
+            .chunks_exact(2)
+            .map(|pair| u8::from_str_radix(std::str::from_utf8(pair).unwrap(), 16).unwrap())
+            .collect::<Vec<_>>()
+    };
+    for row in rows {
+        let input = unhex(row["input_hex"].as_str().unwrap());
+        let expected = unhex(row["cpp_stdout_hex"].as_str().unwrap());
         let result = run(&["encode-json", "gz.msgs.UInt64_V"], &input);
         assert_eq!(
             result.status.success(),
-            row["rust_status"] == 0,
+            row["cpp_status"] == 0,
             "{}",
             row["label"]
         );
         assert_eq!(result.stdout, expected, "{}", row["label"]);
+    }
+    for row in unqualified {
+        assert_eq!(row["cpp_status"], 0, "{}", row["label"]);
+        assert_ne!(row["rust_status"], 0, "{}", row["label"]);
+        assert!(row["rust_stdout_hex"].as_str().unwrap().is_empty());
+        let result = run(
+            &["encode-json", "gz.msgs.UInt64_V"],
+            &unhex(row["input_hex"].as_str().unwrap()),
+        );
+        assert!(!result.status.success(), "{}", row["label"]);
+        assert!(result.stdout.is_empty(), "{}", row["label"]);
     }
 }
 

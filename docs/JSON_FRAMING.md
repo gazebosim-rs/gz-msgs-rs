@@ -425,4 +425,40 @@ privately reproduced the 1,275-row native proof and 674 numeric controls,
 then failed that exact overflow assertion against the public-parent parser.
 The exact staged gate passed on tree
 `932109277ea195f23f36284809bebdc07f59e06f`.
-Final metadata binding, normal hook and hosted CI are pending.
+Final metadata binding and the normal protected hook passed on public commit
+`cf0c44de2a40fe52310c03b7261abaea13103212`; exact hosted run
+`40229507091` passed.
+
+## UInt64 scalar, nested, null and repeated `data`
+
+The bounded `UInt64_V` occurrence path now accepts one scalar or several
+top-level `data` keys. It flattens nested arrays in source order, omits `null`
+elements and appends values from repeated keys. Raw numeric tokens continue
+through the reviewed range and precision parser before the maintained
+reflected decoder validates each fragment and the complete document. The
+path is limited to `UInt64_V`; other descriptors keep their existing decode
+path.
+
+The pinned native fixture has 185 parity forms (119 accepted and 66 rejected)
+plus eight explicitly native-only unquoted hexadecimal trailing-dot forms
+such as `{"data":0x7.}`. Those eight remain Rust-negative, including scalar,
+array, nested and duplicate-key placements. The parity forms cover scalar
+strings and numbers, nested arrays, nulls, duplicate keys, overflow,
+exponents and unrelated-field errors. All 1,275 prior native rows and 16
+prior fixture hashes are unchanged, bringing the replay to 1,468 outcomes.
+The earlier UInt64 range fixture remains byte-identical: its 33 recorded
+native-positive/Rust-mismatch rows now assert the historical mismatch and
+require the new result to equal native status and wire bytes. Separate 171-form
+and 568-form scalar/nested/duplicate characterizations found no mismatch
+within their declared forms. The public-parent parser fails the first new
+native-positive scalar assertion `{"data":"1"}`. The working strict
+gate passed 116 Rust tests, the five unchanged native C++ CLI tests, root
+coverage 2310/2322 lines and 3740/3779 regions, and CLI coverage 545/556
+lines and 960/987 regions. Native-only hex forms, broader JSON grammar, other
+descriptors and MSG-02 completion remain open. The
+[independent review](reviews/json-uint64-occurrences.json) approved the V2
+source and assertions after a separate 1,468-row native replay, eight hex-gap
+checks and an admission-removal mutant that failed the first scalar case. The
+exact six-file staged gate passed on tree
+`b5bef5195548044f74a3d50265a28aac79f4cddc`. Normal protected hook and
+hosted CI remain pending.

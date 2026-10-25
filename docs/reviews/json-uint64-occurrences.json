@@ -1,0 +1,46 @@
+{
+  "author": "/root/msgs_review_fallback",
+  "author_gate": {
+    "exact_staged_log_sha256": "03d4e26207e98720387a4af924c6c397e539d434e9c6b6512bc6c8cb67f6a431",
+    "result": "EXIT0;116 Rust/five pinned C++ CLI originals and unchanged strict >95% gates; source/test/fixture hash bound."
+  },
+  "base": "cf0c44de2a40fe52310c03b7261abaea13103212",
+  "decision": "approved",
+  "files_sha256": {
+    "docs/EVIDENCE.md": "edb8661313b359c4ecddc4711886c247a6e04d84bebb6c8e4f93c40cbb76b4b0",
+    "docs/JSON_FRAMING.md": "66cab50782a022ed94707c209d331f4bda440aa68f7905d17a9feb22531e1d8d",
+    "scripts/json-reference.py": "531c01114d6c937a10c8386b987ded64b56cd478cea3760574545f13def991b2",
+    "src/bin/gz-msgs.rs": "6fce867298f0186686406590839151dbbc41e5f491c97d686ae46d9750a0debc",
+    "tests/cli.rs": "6db9b31ef85923a58047a954695995a009e921f7b1d3f95f5af3ac1aa16309a3",
+    "tests/fixtures/json-uint64-occurrences.json": "d93992e89f72fef746c476683929d3aa7d765c8011683432822c0f7a8ab5feb6"
+  },
+  "findings": [],
+  "limits": [
+    "Eight unquoted hexadecimal trailing-dot forms are explicit native-only gaps, not claimed parity.",
+    "No complete UInt64_V JSON grammar or other descriptor generalization.",
+    "Final metadata binding, exact final gate, normal hook, publication and hosted CI remain required."
+  ],
+  "native": {
+    "fixture_sha256": "d93992e89f72fef746c476683929d3aa7d765c8011683432822c0f7a8ab5feb6",
+    "old_matching_rows": "Old185 parity records byte-identical to first proposal.",
+    "prior_fixture_hashes": "All16 prior fixture hashes exact",
+    "private_full_replay": "1468/1468 exact status and stdout using separately compiled pinned peer; proof SHA e7cb2de4ffa814a75a616a08dc91387243e28eb53e61efb6f15de9b022419754",
+    "probe_binary_sha256": "16744aebb5531163dc87224e6d6cec56bba40d4d1a62035ae465342649ac540b",
+    "probe_source_sha256": "48835b169eb8e2e490729391718e223e8905632f2b04d2fa2facd50b2fbaf1f5",
+    "protobuf": "3.21.12"
+  },
+  "private_review": {
+    "hex_gap_spotcheck": "Eight independent native-positive/Rust-negative observations, source-bound proof SHA e795847e984ab13426a02076a80587151d4b0b91b07d1bd1ec175b2a1e796921.",
+    "negative": "Separate exact V2 test/fixture with only UInt64_V repeated-data admission removed fails native-positive occurrence_000 {\"data\":\"1\"}; log SHA ed78048d7a99e4e9556a8a546c7459ddaf838711e39a8b63e0678729aebb0e30.",
+    "selected_rust": "2/0: retained UInt64 range and new 185 parity plus eight explicit gap assertion test.",
+    "source": "Raw Git archive of public base plus exact six V2 candidate files; exclusive Cargo target; all hashes/staged tree/diff/no unstaged verified; parser byte-identical to first proposal.",
+    "two_and_three_key_differential": "Retained first-review independent 196 two-key plus120 three-key decimal/null/overflow forms, zero status or accepted-wire mismatches; excludes unquoted hex boundary."
+  },
+  "proposal": "artifacts/json-uint64-occurrence/proposal-v2.json",
+  "proposal_sha256": "070025b163997f1a9ef0c8480d2e0616b53d896047d292be8bda198d30018b8f",
+  "reviewer": "/root/transport_fallback",
+  "scope": "Bounded gz.msgs.UInt64_V top-level repeated data occurrence flatten/append for scalar, nested array, null and duplicate keys, preserving published exact unsigned numeric precision/range. 185 parity rows and prior1275 statuses/wires replay exactly; eight unquoted 0x7./0x7.0 scalar/array/nested/duplicate forms remain explicit native-positive/Rust-negative gaps. Other descriptors and general JSON grammar remain open.",
+  "staged_diff_sha256": "ac185136639d4f1117dbaf1514223be425e0f4d1b07fb640961683d9f4a8a0b4",
+  "staged_tree": "b5bef5195548044f74a3d50265a28aac79f4cddc",
+  "supersedes_review_sha256": "899975db1c6f20e5bc24862ae9354a75ae09ae3872f4232045120b13cb302eaa"
+}

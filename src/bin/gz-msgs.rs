@@ -127,6 +127,25 @@ fn proto_uint64_array(
     Ok(Some(numbers))
 }
 
+fn flatten_uint64_data(value: &[u8]) -> Result<Vec<Vec<u8>>, Box<dyn std::error::Error>> {
+    let raw: Box<gz_msgs::serde_json::value::RawValue> = gz_msgs::serde_json::from_slice(value)?;
+    let mut pending = vec![raw.get().to_owned()];
+    let mut leaves = Vec::new();
+    while let Some(token) = pending.pop() {
+        if token == "null" {
+            continue;
+        }
+        if token.starts_with('[') {
+            let items: Vec<Box<gz_msgs::serde_json::value::RawValue>> =
+                gz_msgs::serde_json::from_str(&token)?;
+            pending.extend(items.into_iter().rev().map(|item| item.get().to_owned()));
+        } else {
+            leaves.push(token.into_bytes());
+        }
+    }
+    Ok(leaves)
+}
+
 struct NormalizedProtoJson {
     bytes: Vec<u8>,
     patches: Vec<(usize, usize, Value)>,
@@ -481,6 +500,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     "gz.msgs.Int32_V"
                         | "gz.msgs.UInt32_V"
                         | "gz.msgs.Int64_V"
+                        | "gz.msgs.UInt64_V"
                         | "gz.msgs.StringMsg_V"
                 );
             let uint64_data = descriptor.full_name() == "gz.msgs.UInt64_V";
@@ -489,23 +509,17 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 patches,
                 array_ranges,
                 data_ranges,
-            } = normalize_proto_json(&input, float_data, repeated_data || uint64_data);
-            let mut uint64_patches = None;
-            if uint64_data {
-                for (start, end) in &data_ranges {
-                    if let Some(numbers) =
-                        proto_uint64_array(normalized[*start..*end].trim_ascii())?
-                    {
-                        uint64_patches = Some(numbers);
-                    }
-                }
-            }
+            } = normalize_proto_json(&input, float_data, repeated_data);
             let single_scalar = data_ranges.len() == 1 && {
                 let (start, end) = data_ranges[0];
                 let value = normalized[start..end].trim_ascii();
                 value.first() != Some(&b'[') && value != b"null"
             };
-            if repeated_data && (data_ranges.len() > 1 || single_scalar) {
+            if repeated_data
+                && (data_ranges.len() > 1
+                    || single_scalar
+                    || (uint64_data && !data_ranges.is_empty()))
+            {
                 // The maintained decoder keeps only the last repeated key.
                 // Decode each native repeated-field occurrence independently,
                 // then let the decoder validate all other fields unchanged.
@@ -515,6 +529,37 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     let value = normalized[start..end].trim_ascii();
                     if value.is_empty() {
                         return Err("empty repeated data value".into());
+                    }
+                    if uint64_data {
+                        let leaves = flatten_uint64_data(value)?;
+                        let mut array = vec![b'['];
+                        for (index, token) in leaves.iter().enumerate() {
+                            if index != 0 {
+                                array.push(b',');
+                            }
+                            array.extend_from_slice(token);
+                        }
+                        array.push(b']');
+                        let numbers =
+                            proto_uint64_array(&array)?.ok_or("invalid uint64 data array")?;
+                        let mut document = b"{\"data\":".to_vec();
+                        document.extend_from_slice(&array);
+                        document.push(b'}');
+                        let mut json = gz_msgs::serde_json::Deserializer::from_slice(&document);
+                        let mut fragment =
+                            DynamicMessage::deserialize(descriptor.clone(), &mut json)?;
+                        json.end()?;
+                        let Some(Value::List(values)) = fragment.get_field_by_name_mut("data")
+                        else {
+                            return Err("uint64 data field was not a list".into());
+                        };
+                        for (index, number) in numbers {
+                            *values
+                                .get_mut(index)
+                                .ok_or("uint64 data index was absent")? = Value::U64(number);
+                        }
+                        combined.append(values);
+                        continue;
                     }
                     let mut document = b"{\"data\":".to_vec();
                     let scalar_hex = if value.first() == Some(&b'[') || value == b"null" {
@@ -602,16 +647,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 let mut json = gz_msgs::serde_json::Deserializer::from_slice(&normalized);
                 let mut message = DynamicMessage::deserialize(descriptor, &mut json)?;
                 json.end()?;
-                if let Some(numbers) = uint64_patches {
-                    let Some(Value::List(values)) = message.get_field_by_name_mut("data") else {
-                        return Err("uint64 data field was not a list".into());
-                    };
-                    for (index, number) in numbers {
-                        *values
-                            .get_mut(index)
-                            .ok_or("uint64 data index was absent")? = Value::U64(number);
-                    }
-                }
                 if !patches.is_empty() {
                     let values = match message.get_field_by_name_mut("data") {
                         Some(Value::List(values)) => values,

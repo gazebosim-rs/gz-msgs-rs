@@ -1861,5 +1861,42 @@ raw-parent parser with the new test and fixture fails on the native-rejected
 approved the exact seven-file source freeze after a private 1,275-row native
 replay and 674-form differential; it also failed the exact overflow control
 against the public-parent parser. The exact staged gate passed on tree
-`932109277ea195f23f36284809bebdc07f59e06f`. Final metadata binding,
-normal hook and hosted qualification remain pending.
+`932109277ea195f23f36284809bebdc07f59e06f`. Final metadata binding and
+the normal protected hook passed on public commit
+`cf0c44de2a40fe52310c03b7261abaea13103212`; exact hosted run
+`40229507091` passed.
+
+## Bounded UInt64 scalar, nested, null and repeated `data`
+
+Only `gz.msgs.UInt64_V` top-level `data` values take the new occurrence path.
+It uses pinned `serde_json` raw values to flatten nested arrays, skip `null`
+elements and append repeated field occurrences in source order. Numeric leaves
+reuse the independently reviewed exact integer and native-style decimal/range
+conversion; reflected decoding still checks each occurrence and the complete
+document. Other descriptors do not enter this branch.
+
+A new source-bound fixture records 185 parity cases (119 accepted, 66
+rejected) for scalar, nested, null, duplicate, exponent, overflow and
+unrelated-field forms. Eight additional native-positive unquoted hexadecimal
+trailing-dot forms, including `{"data":0x7.}`, remain Rust-negative and are
+asserted separately across scalar, array, nested and duplicate-key placements.
+The native replay reproduces 1,468 outcomes, retaining all 1,275 prior rows
+and 16 unchanged prior fixture hashes. The old UInt64 range fixture's 33
+native-positive/Rust-mismatch observations remain verbatim: its test first
+checks that old mismatch, then requires current Rust to match the stored native
+status and wire result. Separate 171-case and 568-case characterizations had
+zero status or accepted-wire mismatches within their declared forms; the exact
+public-parent parser fails new case `{"data":"1"}`. This is bounded UInt64
+repeated-field parity, not general duplicate-key JSON support or completion of
+MSG-02. The native-only hexadecimal gap remains explicit. The full
+working strict gate passed 116 Rust tests, five unchanged native C++ CLI tests,
+formatting, Clippy, downstream and coverage checks. Root coverage was
+2310/2322 lines and 3740/3779 regions; CLI coverage was 545/556 lines and
+960/987 regions. The [independent review](reviews/json-uint64-occurrences.json)
+approved the V2 six-file freeze after a separate 1,468-row native replay and
+eight explicit hex-gap checks. A private removal of UInt64 occurrence admission
+failed the exact first scalar assertion. The initial source review was
+superseded when the hex gap was found; the V2 receipt binds this disposition.
+The exact staged gate passed on tree
+`b5bef5195548044f74a3d50265a28aac79f4cddc`. Normal protected hook and
+hosted qualification remain pending.
