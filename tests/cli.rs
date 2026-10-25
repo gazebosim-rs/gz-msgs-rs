@@ -292,6 +292,8 @@ fn json_requires_exactly_one_complete_document() {
         gz_msgs::serde_json::from_str(include_str!("fixtures/json-escaped-utf8.json")).unwrap();
     let trailing_dot: gz_msgs::serde_json::Value =
         gz_msgs::serde_json::from_str(include_str!("fixtures/json-trailing-dot.json")).unwrap();
+    let negative_zero: gz_msgs::serde_json::Value =
+        gz_msgs::serde_json::from_str(include_str!("fixtures/json-negative-zero.json")).unwrap();
     let raw_rows = raw_controls["matching"].as_array().unwrap();
     assert_eq!(raw_rows.len(), 64);
     assert_eq!(raw_controls["rejected"].as_array().unwrap().len(), 10);
@@ -562,6 +564,135 @@ fn json_requires_exactly_one_complete_document() {
                 .collect::<String>()
         );
     }
+    let negative_forms = [
+        "-0", "-0 ", "-0\t", "-0\n", "-0.", "-0.0", "-0e0", "-0E+0", "\"-0\"", "\"-0.0\"", "-00",
+        "-0x0", "-0e", "0",
+    ];
+    assert_eq!(
+        negative_zero["scalar_forms"].as_array().unwrap(),
+        &negative_forms
+            .iter()
+            .map(|form| gz_msgs::serde_json::Value::String((*form).to_owned()))
+            .collect::<Vec<_>>()
+    );
+    let negative_scalars = negative_zero["scalar_rows"].as_array().unwrap();
+    assert_eq!(negative_scalars.len(), 28);
+    for (index, row) in negative_scalars.iter().enumerate() {
+        let type_name = if index < 14 {
+            "gz.msgs.Double_V"
+        } else {
+            "gz.msgs.Float_V"
+        };
+        let form = negative_forms[index % 14];
+        assert_eq!(row["type"], type_name);
+        assert_eq!(row["form"], form);
+        assert_eq!(
+            row["input_hex"],
+            format!("{{\"data\":[{form}]}}")
+                .as_bytes()
+                .iter()
+                .map(|byte| format!("{byte:02x}"))
+                .collect::<String>()
+        );
+        assert_eq!(
+            row["cpp_status"].as_i64() == Some(0),
+            !matches!(index % 14, 10..=12)
+        );
+    }
+    assert_eq!(
+        negative_scalars[0]["cpp_stdout_hex"],
+        "0a080000000000000000"
+    );
+    assert_eq!(negative_scalars[14]["cpp_stdout_hex"], "120400000000");
+    assert_eq!(
+        negative_scalars[8]["cpp_stdout_hex"],
+        "0a080000000000000080"
+    );
+    let negative_composites = negative_zero["composite_rows"].as_array().unwrap();
+    let expected_negative_composites: [(&str, &str, &str); 16] = [
+        ("double_middle", "gz.msgs.Double_V", "{\"data\":[1,-0,2]}"),
+        ("float_last", "gz.msgs.Float_V", "{\"data\":[0,-0]}"),
+        (
+            "double_trailing_comma",
+            "gz.msgs.Double_V",
+            "{\"data\":[-0,]}",
+        ),
+        ("double_bare_key", "gz.msgs.Double_V", "{data:[-0]}"),
+        ("double_single_key", "gz.msgs.Double_V", "{'data':[-0]}"),
+        (
+            "double_quoted_value",
+            "gz.msgs.Double_V",
+            "{\"data\":[\"-0\"]}",
+        ),
+        ("time_integer", "gz.msgs.Time", "{\"sec\":-0}"),
+        (
+            "vector_two_fields",
+            "gz.msgs.Vector3d",
+            "{\"x\":-0,\"y\":-0.0}",
+        ),
+        ("string_value", "gz.msgs.StringMsg", "{\"data\":\"-0\"}"),
+        (
+            "double_missing_comma",
+            "gz.msgs.Double_V",
+            "{\"data\":[-0 -0]}",
+        ),
+        (
+            "double_suffix",
+            "gz.msgs.Double_V",
+            "{\"data\":[-0]}garbage",
+        ),
+        (
+            "double_comment",
+            "gz.msgs.Double_V",
+            "{\"data\":[-0/*comment*/]}",
+        ),
+        (
+            "double_bad_exponent",
+            "gz.msgs.Double_V",
+            "{\"data\":[-0e]}",
+        ),
+        (
+            "double_adjacent_minus",
+            "gz.msgs.Double_V",
+            "{\"data\":[1-0]}",
+        ),
+        ("double_two_minus", "gz.msgs.Double_V", "{\"data\":[-0-0]}"),
+        ("time_adjacent_minus", "gz.msgs.Time", "{\"sec\":1-0}"),
+    ];
+    assert_eq!(
+        negative_composites.len(),
+        expected_negative_composites.len()
+    );
+    for (row, (name, type_name, input)) in
+        negative_composites.iter().zip(expected_negative_composites)
+    {
+        assert_eq!(row["name"], name);
+        assert_eq!(row["type"], type_name);
+        assert_eq!(
+            row["input_hex"],
+            input
+                .as_bytes()
+                .iter()
+                .map(|byte| format!("{byte:02x}"))
+                .collect::<String>()
+        );
+    }
+    assert_eq!(
+        negative_composites[7]["cpp_stdout_hex"],
+        "190000000000000080"
+    );
+    let quoted_hex_pending = negative_zero["native_permissive_pending"]
+        .as_array()
+        .unwrap();
+    assert_eq!(quoted_hex_pending.len(), 2);
+    for (row, type_name) in quoted_hex_pending
+        .iter()
+        .zip(["gz.msgs.Double_V", "gz.msgs.Float_V"])
+    {
+        assert_eq!(row["type"], type_name);
+        assert_eq!(row["input_hex"], "7b2264617461223a5b22307837225d7d");
+        assert_eq!(row["cpp_status"].as_i64(), Some(0));
+    }
     assert!(Command::new("python3")
         .arg("scripts/native-peer.py")
         .status()
@@ -646,6 +777,12 @@ fn json_requires_exactly_one_complete_document() {
         check(row, row["type"].as_str().unwrap(), true);
     }
     for row in numeric_pending {
+        check(row, row["type"].as_str().unwrap(), false);
+    }
+    for row in negative_scalars.iter().chain(negative_composites) {
+        check(row, row["type"].as_str().unwrap(), true);
+    }
+    for row in quoted_hex_pending {
         check(row, row["type"].as_str().unwrap(), false);
     }
 }

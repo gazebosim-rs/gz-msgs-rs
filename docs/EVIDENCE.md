@@ -1599,8 +1599,8 @@ broadening the accepted grammar. The revised native script replays all 503 rows.
 
 The prior 440 native rows and seven fixture files remain byte-for-byte
 unchanged. Quoted numeric strings, ordinary fractions, malformed exponents
-and comments retain their old path. Bare `-0` Double_V sign preservation and
-quoted hexadecimal numeric strings remain explicit separate gaps. The
+and comments retain their old path. At this slice, bare `-0` Double_V sign
+and quoted hexadecimal numeric strings remained explicit separate gaps. The
 corrected six-file exact staged gate exits zero with 109 Rust harness checks
 plus FactoryLazy, five original C++ CLI tests, native 503-row replay,
 formatting, Clippy, strict coverage and negative gates; its log SHA256 is
@@ -1609,6 +1609,37 @@ Independent /root/transport_fallback approved the corrected source and
 assertions after a private 503-row replay, full Rust suite, additional numeric
 probes and a second-dot guard mutant. The unchanged
 [semantic receipt](reviews/json-trailing-dot.json) binds the six reviewed
-inputs and seven retained fixture hashes. The normal hook and hosted
-qualification remain pending; broad numeric grammar and MSG-02 acceptance
-remain open.
+inputs and seven retained fixture hashes. The normal hook and exact hosted CI
+passed on public commit `c2e15df04e8983d07879fdef0344e207996d643d`.
+Broad numeric grammar and MSG-02 acceptance remain open.
+
+## Bounded protobuf JSON negative-zero candidate
+
+Pinned protobuf 3.21.12 converts a bare integral `-0` into positive floating
+zero; published Rust emitted negative-zero wire bits for Double_V and Float_V
+and an extra negative-zero Vector3d.x field. The lexical adapter now removes
+the sign only for exact unquoted `-0` at an array/object value boundary before
+a JSON delimiter or standard JSON whitespace. Fractional `-0.`, exponent
+`-0e0` and quoted `"-0"` remain negative as native requires. Adjacent `1-0`
+and `-0-0` stay invalid; integer Time.sec and StringMsg controls keep their
+old output.
+
+The new source/binary-bound fixture asserts 28 scalar rows, 16 combined or
+malformed rows and two native-positive quoted-hex rows left Rust-negative.
+It checks actual acceptance and complete binary stdout; the prior 503 rows
+and eight fixtures remain byte-for-byte unchanged. The native script replays
+all 549 rows. The focused Rust/native comparison first failed at bare
+`{"data":[-0]}` with opposite sign bits; the retained before-failure log
+SHA256 is `ffe8f7b44de324ae0dd76c3508985a42dad41a178c202bd30f4fb45cb7b4ac9b`.
+The selected comparison passes after the correction. The strict staged gate
+passes 109 Rust harness checks plus FactoryLazy, five original C++ CLI tests,
+all 549 native rows, formatting, Clippy, coverage and negative gates. The
+separate raw-source rule-removal mutant fails the exact bare `-0` wire row.
+Independent /root/transport_fallback approved the exact source and assertions
+after a private 549-row replay, full Rust suite, rule-removal mutant and 234
+targeted boundary cases. No Rust overacceptance or matched-positive wire
+mismatch appeared. Twelve native-positive vertical-tab/form-feed cases remain
+Rust-negative outside this standard-whitespace slice. The byte-identical
+[semantic receipt](reviews/json-negative-zero.json) binds all six reviewed
+files and eight unchanged prior fixtures. Normal hook and hosted CI remain
+pending; broader numeric grammar and MSG-02 acceptance remain open.

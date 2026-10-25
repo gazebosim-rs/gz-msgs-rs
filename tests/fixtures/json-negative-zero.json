@@ -1,0 +1,349 @@
+{
+  "native_protobuf": "3.21.12",
+  "probe_source_sha256": "48835b169eb8e2e490729391718e223e8905632f2b04d2fa2facd50b2fbaf1f5",
+  "probe_binary_sha256": "16744aebb5531163dc87224e6d6cec56bba40d4d1a62035ae465342649ac540b",
+  "scalar_forms": [
+    "-0",
+    "-0 ",
+    "-0\t",
+    "-0\n",
+    "-0.",
+    "-0.0",
+    "-0e0",
+    "-0E+0",
+    "\"-0\"",
+    "\"-0.0\"",
+    "-00",
+    "-0x0",
+    "-0e",
+    "0"
+  ],
+  "scalar_rows": [
+    {
+      "type": "gz.msgs.Double_V",
+      "input_hex": "7b2264617461223a5b2d305d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "0a080000000000000000",
+      "form": "-0"
+    },
+    {
+      "type": "gz.msgs.Double_V",
+      "input_hex": "7b2264617461223a5b2d30205d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "0a080000000000000000",
+      "form": "-0 "
+    },
+    {
+      "type": "gz.msgs.Double_V",
+      "input_hex": "7b2264617461223a5b2d30095d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "0a080000000000000000",
+      "form": "-0\t"
+    },
+    {
+      "type": "gz.msgs.Double_V",
+      "input_hex": "7b2264617461223a5b2d300a5d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "0a080000000000000000",
+      "form": "-0\n"
+    },
+    {
+      "type": "gz.msgs.Double_V",
+      "input_hex": "7b2264617461223a5b2d302e5d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "0a080000000000000080",
+      "form": "-0."
+    },
+    {
+      "type": "gz.msgs.Double_V",
+      "input_hex": "7b2264617461223a5b2d302e305d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "0a080000000000000080",
+      "form": "-0.0"
+    },
+    {
+      "type": "gz.msgs.Double_V",
+      "input_hex": "7b2264617461223a5b2d3065305d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "0a080000000000000080",
+      "form": "-0e0"
+    },
+    {
+      "type": "gz.msgs.Double_V",
+      "input_hex": "7b2264617461223a5b2d30452b305d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "0a080000000000000080",
+      "form": "-0E+0"
+    },
+    {
+      "type": "gz.msgs.Double_V",
+      "input_hex": "7b2264617461223a5b222d30225d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "0a080000000000000080",
+      "form": "\"-0\""
+    },
+    {
+      "type": "gz.msgs.Double_V",
+      "input_hex": "7b2264617461223a5b222d302e30225d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "0a080000000000000080",
+      "form": "\"-0.0\""
+    },
+    {
+      "type": "gz.msgs.Double_V",
+      "input_hex": "7b2264617461223a5b2d30305d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": "",
+      "form": "-00"
+    },
+    {
+      "type": "gz.msgs.Double_V",
+      "input_hex": "7b2264617461223a5b2d3078305d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": "",
+      "form": "-0x0"
+    },
+    {
+      "type": "gz.msgs.Double_V",
+      "input_hex": "7b2264617461223a5b2d30655d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": "",
+      "form": "-0e"
+    },
+    {
+      "type": "gz.msgs.Double_V",
+      "input_hex": "7b2264617461223a5b305d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "0a080000000000000000",
+      "form": "0"
+    },
+    {
+      "type": "gz.msgs.Float_V",
+      "input_hex": "7b2264617461223a5b2d305d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "120400000000",
+      "form": "-0"
+    },
+    {
+      "type": "gz.msgs.Float_V",
+      "input_hex": "7b2264617461223a5b2d30205d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "120400000000",
+      "form": "-0 "
+    },
+    {
+      "type": "gz.msgs.Float_V",
+      "input_hex": "7b2264617461223a5b2d30095d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "120400000000",
+      "form": "-0\t"
+    },
+    {
+      "type": "gz.msgs.Float_V",
+      "input_hex": "7b2264617461223a5b2d300a5d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "120400000000",
+      "form": "-0\n"
+    },
+    {
+      "type": "gz.msgs.Float_V",
+      "input_hex": "7b2264617461223a5b2d302e5d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "120400000080",
+      "form": "-0."
+    },
+    {
+      "type": "gz.msgs.Float_V",
+      "input_hex": "7b2264617461223a5b2d302e305d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "120400000080",
+      "form": "-0.0"
+    },
+    {
+      "type": "gz.msgs.Float_V",
+      "input_hex": "7b2264617461223a5b2d3065305d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "120400000080",
+      "form": "-0e0"
+    },
+    {
+      "type": "gz.msgs.Float_V",
+      "input_hex": "7b2264617461223a5b2d30452b305d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "120400000080",
+      "form": "-0E+0"
+    },
+    {
+      "type": "gz.msgs.Float_V",
+      "input_hex": "7b2264617461223a5b222d30225d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "120400000080",
+      "form": "\"-0\""
+    },
+    {
+      "type": "gz.msgs.Float_V",
+      "input_hex": "7b2264617461223a5b222d302e30225d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "120400000080",
+      "form": "\"-0.0\""
+    },
+    {
+      "type": "gz.msgs.Float_V",
+      "input_hex": "7b2264617461223a5b2d30305d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": "",
+      "form": "-00"
+    },
+    {
+      "type": "gz.msgs.Float_V",
+      "input_hex": "7b2264617461223a5b2d3078305d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": "",
+      "form": "-0x0"
+    },
+    {
+      "type": "gz.msgs.Float_V",
+      "input_hex": "7b2264617461223a5b2d30655d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": "",
+      "form": "-0e"
+    },
+    {
+      "type": "gz.msgs.Float_V",
+      "input_hex": "7b2264617461223a5b305d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "120400000000",
+      "form": "0"
+    }
+  ],
+  "composite_rows": [
+    {
+      "type": "gz.msgs.Double_V",
+      "input_hex": "7b2264617461223a5b312c2d302c325d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "0a18000000000000f03f00000000000000000000000000000040",
+      "name": "double_middle"
+    },
+    {
+      "type": "gz.msgs.Float_V",
+      "input_hex": "7b2264617461223a5b302c2d305d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "12080000000000000000",
+      "name": "float_last"
+    },
+    {
+      "type": "gz.msgs.Double_V",
+      "input_hex": "7b2264617461223a5b2d302c5d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "0a080000000000000000",
+      "name": "double_trailing_comma"
+    },
+    {
+      "type": "gz.msgs.Double_V",
+      "input_hex": "7b646174613a5b2d305d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "0a080000000000000000",
+      "name": "double_bare_key"
+    },
+    {
+      "type": "gz.msgs.Double_V",
+      "input_hex": "7b2764617461273a5b2d305d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "0a080000000000000000",
+      "name": "double_single_key"
+    },
+    {
+      "type": "gz.msgs.Double_V",
+      "input_hex": "7b2264617461223a5b222d30225d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "0a080000000000000080",
+      "name": "double_quoted_value"
+    },
+    {
+      "type": "gz.msgs.Time",
+      "input_hex": "7b22736563223a2d307d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "",
+      "name": "time_integer"
+    },
+    {
+      "type": "gz.msgs.Vector3d",
+      "input_hex": "7b2278223a2d302c2279223a2d302e307d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "190000000000000080",
+      "name": "vector_two_fields"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "input_hex": "7b2264617461223a222d30227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "12022d30",
+      "name": "string_value"
+    },
+    {
+      "type": "gz.msgs.Double_V",
+      "input_hex": "7b2264617461223a5b2d30202d305d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": "",
+      "name": "double_missing_comma"
+    },
+    {
+      "type": "gz.msgs.Double_V",
+      "input_hex": "7b2264617461223a5b2d305d7d67617262616765",
+      "cpp_status": 6,
+      "cpp_stdout_hex": "",
+      "name": "double_suffix"
+    },
+    {
+      "type": "gz.msgs.Double_V",
+      "input_hex": "7b2264617461223a5b2d302f2a636f6d6d656e742a2f5d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": "",
+      "name": "double_comment"
+    },
+    {
+      "type": "gz.msgs.Double_V",
+      "input_hex": "7b2264617461223a5b2d30655d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": "",
+      "name": "double_bad_exponent"
+    },
+    {
+      "type": "gz.msgs.Double_V",
+      "input_hex": "7b2264617461223a5b312d305d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": "",
+      "name": "double_adjacent_minus"
+    },
+    {
+      "type": "gz.msgs.Double_V",
+      "input_hex": "7b2264617461223a5b2d302d305d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": "",
+      "name": "double_two_minus"
+    },
+    {
+      "type": "gz.msgs.Time",
+      "input_hex": "7b22736563223a312d307d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": "",
+      "name": "time_adjacent_minus"
+    }
+  ],
+  "native_permissive_pending": [
+    {
+      "type": "gz.msgs.Double_V",
+      "input_hex": "7b2264617461223a5b22307837225d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "0a080000000000001c40",
+      "name": "quoted_hex_double"
+    },
+    {
+      "type": "gz.msgs.Float_V",
+      "input_hex": "7b2264617461223a5b22307837225d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "12040000e040",
+      "name": "quoted_hex_float"
+    }
+  ]
+}

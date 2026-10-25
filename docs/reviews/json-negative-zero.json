@@ -1,0 +1,64 @@
+{
+  "decision": "approved",
+  "author": "/root/msgs_review_fallback",
+  "reviewer": "/root/transport_fallback",
+  "base": "c2e15df04e8983d07879fdef0344e207996d643d",
+  "tree": "851c6e9d9074d087789e2ce23b7b8cb5716d3420",
+  "diff_sha256": "4c0a981b9455cf8fceb9010435248b180a54f552522aabb1c6da0d20069f1a8a",
+  "files": {
+    "docs/EVIDENCE.md": "43008277e82e5641815bd3b059b9867cf4c9f6630401d11de74078fd130e3b69",
+    "docs/JSON_FRAMING.md": "594a834e97c18eb79a375bb0f11cd8b223c4b1b7506e476ccbd75cb3b4589b56",
+    "scripts/json-reference.py": "f4d4a57ea12a09610c5ea309290a902e6356ba66a5ca156a35e7b6c83f316c2d",
+    "src/bin/gz-msgs.rs": "c47688e0450718639fa346e1c254ae149d316170ad2be2b5a90275006d1286ca",
+    "tests/cli.rs": "f613382277726c25c5209c8d816ce2e73bccd66dabba0df8c92b5ba9188430ea",
+    "tests/fixtures/json-negative-zero.json": "36ec2c5c39763d817f3268e9f01a1a9d31ab8b07c721edb3ed1250fb64eb9a64"
+  },
+  "prior_fixture_sha256": {
+    "tests/fixtures/json-array-grammar.json": "c6b095ffbf102683dfe24b6b05c8fd5d3b2f5aab36578cc0d389ba19f38d97c3",
+    "tests/fixtures/json-escaped-bytes.json": "88ab74e155140fddc76f2eace37e97e69ad0cf7e97b6419b96468c7dbc842c53",
+    "tests/fixtures/json-escaped-utf8.json": "6f9e071d3044997d8aead2f5f60df7006d7d40cacd1b93bd802fa7cc13d7c881",
+    "tests/fixtures/json-framing.json": "2cccfedc630e3ca56dcff617d3bd8233287dfc17271fa1b477ef4fcbdaaa24f0",
+    "tests/fixtures/json-grammar.json": "4005df0bb062002197e712a70b2cf5fd56969819dd2ce85b06c5a6ab0e9fbf71",
+    "tests/fixtures/json-raw-controls.json": "c65520e7656a2ef91d7104b2b9b8cd866f736078fd65825295d5f81bd68e5c9d",
+    "tests/fixtures/json-single-quote.json": "9bca126b76edc3e1b8ead5ab968943b32268fedfff0acbfa95363a82cc80079f",
+    "tests/fixtures/json-trailing-dot.json": "bca96c00805ae274268c3a7a4057e6ba40ca6cc3b1337541a6861bb4df2026e0"
+  },
+  "scope": "Outside quoted strings, the adapter drops the minus only from exact integral -0 at an array/object value start before a delimiter or standard JSON whitespace. Pinned protobuf3.21.12 then matches positive-zero Double_V/Float_V wire bits and Vector3d field omission; fractions, exponents, quoted forms and malformed adjacency retain prior behavior. Maintained dynamic decoder and complete-document check remain.",
+  "private_replay": {
+    "method": "Exact raw frozen Git tree export and exclusive reviewer Cargo target; native peer built from frozen source with source/binary SHA guards",
+    "native_rows": 549,
+    "retained_rows": 503,
+    "native_proof_sha256": "6c23583098a49b6e77df931338e3b6f0ab949ffdfce438b65ed7f90a2317f46f",
+    "selected_rust_tests": 1,
+    "selected_log_sha256": "577ca4d81f4e2281c6e6a5c8d725f217e4aaa1964c008bc098ee00eadc68169f",
+    "full_rust_tests": 109,
+    "full_log_sha256": "a852e34f9a142a0eeeebe303e7a60533c193d27f39b35b5e8db787106b1546db",
+    "fmt": "pass",
+    "clippy_all_targets": "pass",
+    "clippy_log_sha256": "10d20fd22bd79cb95ab40c7576617c8da6acd38ef89dc41011ce5e807f265c95"
+  },
+  "independent_negative": {
+    "method": "Separate raw source and target with only the new sign-removal rule deleted",
+    "log_sha256": "f1898efa4258b4c1905034e7c25a3f497ffd3a0d1b012b792fd9d763c4b1c6b1",
+    "result": "selected Rust test fails the native-positive Double_V bare -0 sign-bit stdout assertion"
+  },
+  "boundary_probe": {
+    "cases": 234,
+    "script_sha256": "d6deb0fd2f25da891d7b481c176cd8b0d4413c450d85654a5ed24c1554a2292d",
+    "report_sha256": "6d8c5dd36779ba54ef93490831b1e045b12d6ee110ac5d137beb5bcf82ea2772",
+    "rust_positive_native_negative": 0,
+    "matched_positive_wire_mismatch": 0,
+    "native_positive_rust_negative": 12,
+    "qualification": "All 12 native-only cases contain vertical tab or form feed after bare -0. Those bytes are outside standard JSON whitespace and outside the frozen slice; no broader native whitespace parity is claimed."
+  },
+  "author_gate": {
+    "exact_staged_log_sha256": "e93ac6848ea3892043b45c90233af4ebb6d7fcfae87f31a8a186bae9a0bed523",
+    "result": "EXIT0 on exact six-file tree; 109 Rust harness checks plus FactoryLazy, five original C++ CLI tests, native549, fmt/Clippy, strict root/CLI/vendor coverage, source archive/downstream/negative gates"
+  },
+  "findings": [],
+  "limits": [
+    "Two quoted-hex native-positive rows remain Rust-negative.",
+    "Native vertical-tab/form-feed whitespace after bare -0 remains Rust-negative; broader numeric grammar and MSG-02 completion are open.",
+    "Metadata binding, normal exact hook, public push and hosted CI remain pending."
+  ]
+}

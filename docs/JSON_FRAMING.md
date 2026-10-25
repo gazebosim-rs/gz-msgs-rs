@@ -168,10 +168,10 @@ quoted strings, the adapter now removes a dot immediately after an ASCII
 digit only when the preceding numeric run has no dot or exponent and the next
 byte is a JSON delimiter, whitespace or exponent marker. The existing
 dynamic decoder still applies the field's integer or floating-point type and
-complete-document syntax. Ordinary fractions,
-quoted numeric strings, invalid comments and malformed exponents remain on
-their existing paths. A bare `-0` Double_V sign difference and quoted
-hexadecimal numeric strings remain separate MSG-02 gaps.
+complete-document syntax. Ordinary fractions, quoted numeric strings,
+invalid comments and malformed exponents remain on their existing paths.
+At this slice, bare `-0` floating-point sign and quoted hexadecimal numeric
+strings remained separate MSG-02 gaps.
 
 The source-bound 63-row fixture covers Time.sec and Double_V.data scalar
 forms, signed zero, exponent variants, repeated commas, object closure,
@@ -179,8 +179,8 @@ quoted controls, malformed comments and whitespace before a dot. An
 independent pre-approval audit caught a second-dot error: native rejects
 `1.2.e3`, `7e2.` and related forms that the initial rule accepted. Fourteen
 negative rows now guard fractions and prior exponents; five native-positive
-`07.`, `0x7.` and `0x7.e3` cases remain explicit Rust-negative grammar gaps. The fixture
-asserts native acceptance and complete binary output. The prior 440 rows and
+`07.`, `0x7.` and `0x7.e3` cases remain explicit Rust-negative grammar gaps.
+The fixture asserts native acceptance and complete binary output. The prior 440 rows and
 seven fixtures are unchanged; `scripts/json-reference.py` replays all 503
 native outcomes. The focused Rust comparison first failed on `{"sec":0.}`
 and passes after the correction. The exact six-file staged gate passed 109
@@ -188,5 +188,34 @@ Rust harness checks plus FactoryLazy, five original C++ CLI tests, all 503
 native rows, formatting, Clippy, strict coverage and negative gates. The
 [independent review](reviews/json-trailing-dot.json) approved the corrected
 source and assertions after a private 503-row replay, full Rust suite and
-second-dot guard mutation. The normal hook and hosted qualification remain
-pending; broad numeric grammar and MSG-02 acceptance remain open.
+second-dot guard mutation. The normal hook and exact hosted CI passed on public
+commit `c2e15df04e8983d07879fdef0344e207996d643d`. Broad numeric grammar
+and MSG-02 acceptance remain open.
+
+## Bare integer negative zero
+
+Pinned protobuf 3.21.12 parses an unquoted integral `-0` as positive zero in
+Double_V, Float_V and Vector3d numeric fields. The published Rust CLI
+preserved a negative-zero bit, including an otherwise absent Vector3d.x field.
+The adapter now removes the minus only at a value boundary before the exact
+integral token `0` and a delimiter or standard JSON whitespace. A decimal
+point, exponent or quoted value keeps its sign.
+The maintained decoder still handles field types and complete-document syntax.
+
+A source-bound 46-row fixture covers both repeated floating types, four
+delimiter/whitespace contexts, signed decimal/exponent and quoted controls,
+multi-value arrays, Vector3d field presence, malformed adjacent tokens and
+trailing document data. Two native-positive quoted hexadecimal numbers remain
+explicit Rust-negative gaps. The prior 503 native rows and eight fixtures are
+unchanged; `scripts/json-reference.py` replays all 549 native outcomes and full
+binary stdout. The selected comparison first failed on `{"data":[-0]}` and
+passes after the correction. The strict staged gate passes 109 Rust harness
+checks plus FactoryLazy, five original C++ CLI tests, all 549 native rows,
+formatting, Clippy, coverage and negative gates. The
+[independent review](reviews/json-negative-zero.json) approved the exact source
+and assertions after a private 549-row replay, full Rust suite, rule-removal
+mutant and 234 targeted boundary cases. It found no Rust overacceptance or
+matched-wire mismatch; twelve native-positive cases containing vertical tab
+or form feed remain Rust-negative outside this standard-whitespace slice.
+The normal hook and hosted CI remain required before publication. Broader
+numeric grammar, diagnostics and MSG-02 completion remain open.

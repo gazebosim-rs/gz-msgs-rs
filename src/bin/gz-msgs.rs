@@ -118,6 +118,19 @@ fn normalize_proto_json(input: &[u8]) -> Vec<u8> {
             previous = Some(input[index - 1]);
             continue;
         }
+        // Native parses bare integer -0 as positive zero. Fractions,
+        // exponents and quoted values retain their negative zero sign.
+        if byte == b'-'
+            && matches!(frames.last(), Some(Frame::ObjectValue | Frame::Array))
+            && matches!(previous, Some(b':' | b'[' | b','))
+            && input.get(index + 1) == Some(&b'0')
+            && input.get(index + 2).is_some_and(|next| {
+                matches!(*next, b',' | b'}' | b']' | b' ' | b'\t' | b'\r' | b'\n')
+            })
+        {
+            index += 1;
+            continue;
+        }
         // Native accepts one dot after an integral token, including before an
         // exponent. A second dot after a fraction or exponent stays invalid.
         if byte == b'.'
