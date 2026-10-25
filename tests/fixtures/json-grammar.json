@@ -1,0 +1,80 @@
+{
+  "native_protobuf": "3.21.12",
+  "rows": [
+    {
+      "input_hex": "7b7365633a372c6e7365633a382c7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "08071008"
+    },
+    {
+      "input_hex": "7b7365633a312c7365633a372c7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "0807"
+    },
+    {
+      "input_hex": "7b20736563203a20223722202c207d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "0807"
+    },
+    {
+      "input_hex": "7b22736563223a372c20226e736563223a382c7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "08071008"
+    },
+    {
+      "input_hex": "7b22736563223a372c207d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "0807"
+    },
+    {
+      "input_hex": "7b2c7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "input_hex": "7b7365633a372c2c7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "input_hex": "7b22736563223a372c2f2a782a2f7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "input_hex": "7b22736563223a372c7d78",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "input_hex": "7b22736563223a372c5d0a",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "input_hex": "7b5365633a377d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "input_hex": "7b73652d633a377d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "input_hex": "7b22736563223a225c7530303337222c7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "0807"
+    },
+    {
+      "input_hex": "5b7b22736563223a372c7d5d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "input_hex": "7b22736563223a22372c7d227d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    }
+  ]
+}

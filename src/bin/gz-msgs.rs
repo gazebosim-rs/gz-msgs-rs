@@ -8,6 +8,94 @@ use gz_msgs::{
 use std::io::{Read, Write};
 mod legacy_cli;
 const HELP: &str = "gz-msgs --list|-l | --info|-i TYPE... | --version|-v | --help|-h\nCommands: list, info TYPE..., encode-json, decode-json, encode-text, decode-text\nFormat commands take one fully qualified type and use stdin/stdout.";
+
+// Protobuf's JSON parser accepts bare field names and trailing object commas.
+// Rewrite only those tokens; serde_json still validates the entire document.
+fn normalize_proto_json(input: &[u8]) -> Vec<u8> {
+    #[derive(Clone, Copy, PartialEq, Eq)]
+    enum Frame {
+        ObjectKey,
+        ObjectValue,
+        Array,
+    }
+    let mut output = Vec::with_capacity(input.len());
+    let mut frames = Vec::new();
+    let mut index = 0;
+    let mut previous = None;
+    while index < input.len() {
+        let byte = input[index];
+        if byte == b'"' {
+            output.push(byte);
+            index += 1;
+            while index < input.len() {
+                let current = input[index];
+                output.push(current);
+                index += 1;
+                if current == b'\\' && index < input.len() {
+                    output.push(input[index]);
+                    index += 1;
+                } else if current == b'"' {
+                    break;
+                }
+            }
+            previous = Some(b'"');
+            continue;
+        }
+        if frames.last() == Some(&Frame::ObjectKey) && (byte.is_ascii_alphabetic() || byte == b'_')
+        {
+            let start = index;
+            index += 1;
+            while index < input.len()
+                && (input[index].is_ascii_alphanumeric() || input[index] == b'_')
+            {
+                index += 1;
+            }
+            let mut after = index;
+            while after < input.len() && input[after].is_ascii_whitespace() {
+                after += 1;
+            }
+            if input.get(after) == Some(&b':') {
+                output.push(b'"');
+                output.extend_from_slice(&input[start..index]);
+                output.push(b'"');
+            } else {
+                output.extend_from_slice(&input[start..index]);
+            }
+            previous = Some(input[index - 1]);
+            continue;
+        }
+        if byte == b',' && frames.last() == Some(&Frame::ObjectValue) {
+            let mut after = index + 1;
+            while after < input.len() && input[after].is_ascii_whitespace() {
+                after += 1;
+            }
+            if input.get(after) == Some(&b'}') && !matches!(previous, Some(b'{' | b',' | b':')) {
+                index += 1;
+                continue;
+            }
+        }
+        match byte {
+            b'{' => frames.push(Frame::ObjectKey),
+            b'[' => frames.push(Frame::Array),
+            b'}' | b']' => {
+                frames.pop();
+            }
+            b':' if frames.last() == Some(&Frame::ObjectKey) => {
+                *frames.last_mut().unwrap() = Frame::ObjectValue
+            }
+            b',' if frames.last() == Some(&Frame::ObjectValue) => {
+                *frames.last_mut().unwrap() = Frame::ObjectKey
+            }
+            _ => {}
+        }
+        output.push(byte);
+        if !byte.is_ascii_whitespace() {
+            previous = Some(byte);
+        }
+        index += 1;
+    }
+    output
+}
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let args = match legacy_cli::normalize(std::env::args().skip(1).collect()) {
         Ok(args) => args,
@@ -70,7 +158,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     std::io::stdin().read_to_end(&mut input)?;
     let output = match args[0].as_str() {
         "encode-json" => {
-            let mut json = gz_msgs::serde_json::Deserializer::from_slice(&input);
+            let normalized = normalize_proto_json(&input);
+            let mut json = gz_msgs::serde_json::Deserializer::from_slice(&normalized);
             let message = DynamicMessage::deserialize(descriptor, &mut json)?;
             json.end()?;
             message.encode_to_vec()

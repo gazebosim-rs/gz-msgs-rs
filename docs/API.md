@@ -91,7 +91,9 @@ positive zero, negative zero, nonzero, NaN and proto2 extension default queries.
 `gz-msgs list`, `info gz.msgs.Time`, and
 `encode-json|decode-json|encode-text|decode-text gz.msgs.Type` use stdin/stdout.
 Errors exit nonzero and stdout is explicitly flushed. Text/JSON use compact
-protobuf formatting. Legacy --help/-h (including no arguments), --version/-v,
+protobuf formatting. `encode-json` accepts bare ASCII field names and trailing
+object commas through a bounded lexical normalization; see [JSON framing](JSON_FRAMING.md).
+Legacy --help/-h (including no arguments), --version/-v,
 --list/-l and --info/-i TYPE... are supported. List emits the complete 271-name
 native Factory set with no external paths, including imported/nested/synthetic
 types, sorted by name. [Descriptor-aware listing](CLI_EXTERNAL_LIST.md) extends

@@ -11,8 +11,8 @@ The 14-row native fixture uses protobuf3.21.12 JsonStringToMessage for Time. The
 CLI test freshly replays each native complete status/output. Twelve rows compare
 Rust/native success and complete output, including duplicate fields, trailing
 ASCII whitespace, invalid input and comments. Two separate native-supported
-syntax rows (unquoted keys and a trailing comma) remain rejected by serde_json;
-these are explicit pending grammar obligations, not passing parity rows. The
+syntax rows (unquoted keys and a trailing comma) were left as explicit grammar
+obligations by the framing slice. The
 standalone format commands are Rust additions, not original gz-msgs CLI options.
 No complete JSON grammar, native diagnostic or formatting equivalence is claimed.
 
@@ -38,3 +38,19 @@ the correct executable. All nine CLI tests then passed, including the five
 unchanged original C++ assertions. Source and assertions were not changed to
 resolve the discrepancy. Reviewer targets must remain isolated from producer
 targets; mtimes alone do not establish checked-source identity.
+
+## Bare keys and trailing object commas
+
+The next bounded correction quotes bare ASCII field-name tokens and removes a
+trailing comma before an object close. It operates outside quoted strings and
+leaves comments, repeated commas, array delimiters and trailing document bytes
+for the existing deserializer to reject. Dynamic message decoding, duplicate
+field behavior and the complete-document check remain in their existing order.
+
+The two former grammar-gap rows now compare Rust and native output. A separate
+15-row native fixture covers combined syntax, whitespace, duplicate fields and
+malformed controls. `scripts/json-reference.py` replays all 29 source-bound
+native rows. General protobuf JSON grammar and diagnostics remain unqualified;
+the [independent review](reviews/json-grammar.json) approved this bounded
+mapping after a private full test replay and additional lexical controls. The
+normal staged hook and hosted qualification remain required.

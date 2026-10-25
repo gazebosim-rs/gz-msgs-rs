@@ -1370,3 +1370,43 @@ gate-only approval and requires final metadata binding, normal strict staged
 verification and hosted qualification. Only this additive evidence, its exact-gate
 update and the unchanged receipt follow the reviewed inputs; production, tests,
 fixtures, scripts, API/contract and provenance inputs remain unchanged.
+
+## Bounded protobuf JSON bare-key and trailing-object-comma candidate
+
+Native protobuf 3.21.12 accepts the two previously retained grammar-gap inputs
+`{sec:7}` and `{"sec":7,}`. A byte-level adapter now quotes bare ASCII field
+names and removes a trailing object comma outside strings before the existing
+DynamicMessage deserializer. The complete-document check remains mandatory.
+The original 14 fixture rows remain byte-for-byte unchanged; both former gap
+rows now compare Rust/native status and full binary output. Fifteen additional
+native rows cover combined syntax, duplicate fields, whitespace, escaped string
+content, array and malformed boundary controls. The refreshed native proof
+replays all 29 rows against the pinned peer and binds both fixture hashes,
+protobuf version, schema manifest and peer source/binary hashes.
+
+The working strict gate passes formatting, Clippy, policy/negative gate tests,
+snapshot and source-package checks, clean downstream compilation and all owned
+Rust/native checks. Root production coverage is 1913/1916 lines and 3047/3065
+regions; the CLI source is 148/150 lines and 267/273 regions. Patched vendor
+ownership remains 6/6 lines and 8/8 regions for prost-derive and 96/97 lines
+and 205/206 regions for prost-reflect. The exact working gate log SHA256 is
+`6608e5ac3e95d45ed4d426174c828fe953cb6358d2167a0cfae0e31232514c03`.
+An initial parallel native-peer build in a separate new test hit an executable
+busy race; all rows now execute in the existing single JSON test. A subsequent
+working gate missed CLI region coverage by one region; native-backed escaped
+string and array-boundary rows cover those lexical branches. Neither failed
+run is treated as a passing qualification. The exact frozen seven-file staged
+export gate also passes at tree `430ceb4e645aad1ca3cf5de9a90401b3e3e7f155`;
+its log SHA256 is `812af20cfc84dc4fc2a0aeff86e506f4edbadb46126fc8d0a36c5e3abbe8dbf2`.
+
+Independent /root/transport_fallback approved the bounded source, API and
+assertions. Its private Git export and target passed all 109 harness checks,
+including the complete 29-row actual native/Rust replay. Fresh native proof
+bytes matched the author proof; 277 additional lexical variants had no
+acceptance or binary-output mismatch. Private formatting, Clippy, negative
+gates, snapshots and source-package checks passed. A separate no-normalizer
+control failed on the exact `{sec:7}` original gap. The unchanged
+[semantic receipt](reviews/json-grammar.json) binds the seven source/test/docs
+inputs and distinguishes earlier failed attempts from qualified evidence.
+Final metadata binding, normal staged hook and hosted CI remain required.
+General protobuf JSON grammar, diagnostics and MSG-02 completion remain open.

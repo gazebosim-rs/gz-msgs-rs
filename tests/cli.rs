@@ -268,16 +268,20 @@ fn native_info_errors_continue_with_success_and_exact_diagnostics() {
 fn json_requires_exactly_one_complete_document() {
     let fixture: gz_msgs::serde_json::Value =
         gz_msgs::serde_json::from_str(include_str!("fixtures/json-framing.json")).unwrap();
+    let grammar: gz_msgs::serde_json::Value =
+        gz_msgs::serde_json::from_str(include_str!("fixtures/json-grammar.json")).unwrap();
+    assert_eq!(grammar["rows"].as_array().unwrap().len(), 15);
     assert!(Command::new("python3")
         .arg("scripts/native-peer.py")
         .status()
         .unwrap()
         .success());
-    for (category, parity) in [
-        ("matching", true),
-        ("native_permissive_grammar_pending", false),
+    for rows in [
+        &fixture["matching"],
+        &fixture["native_permissive_grammar_pending"],
+        &grammar["rows"],
     ] {
-        for row in fixture[category].as_array().unwrap() {
+        for row in rows.as_array().unwrap() {
             let unhex = |s: &str| {
                 s.as_bytes()
                     .chunks_exact(2)
@@ -303,17 +307,12 @@ fn json_requires_exactly_one_complete_document() {
                 unhex(row["cpp_stdout_hex"].as_str().unwrap())
             );
             let actual = run(&["encode-json", "gz.msgs.Time"], &input);
-            if parity {
-                assert_eq!(
-                    actual.status.success(),
-                    native.status.success(),
-                    "{input:?}"
-                );
-                assert_eq!(actual.stdout, native.stdout, "{input:?}");
-            } else {
-                assert!(native.status.success());
-                assert!(!actual.status.success());
-            }
+            assert_eq!(
+                actual.status.success(),
+                native.status.success(),
+                "{input:?}"
+            );
+            assert_eq!(actual.stdout, native.stdout, "{input:?}");
         }
     }
 }

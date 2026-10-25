@@ -1,0 +1,29 @@
+{
+  "author": "/root/msgs_review_fallback",
+  "base": "f0f236f028be20274dc8bf58f594fc849289769f",
+  "decision": "approved",
+  "diff_sha256": "2a0cdbd02f16e79d76fd02169a3edebce4d33e0b36f27bb5555e21252ce6b632",
+  "files": {
+    "docs/API.md": "2e475d2be55cd437b05926f4fe2165f212bfed5b74560cae3e1b479fe956f114",
+    "docs/EVIDENCE.md": "2798814d8c46ec7341a50b06dd03338ee9e565dc2cc4eb76f8da441cda304e96",
+    "docs/JSON_FRAMING.md": "511be93a28963f60628a19a3f182956f52190873f2b78e7f3cea8103e0776cbf",
+    "scripts/json-reference.py": "1355a89bd6aa6e78c713e8cb506de3d7f20805bc3dbab97ab3007201b71b28de",
+    "src/bin/gz-msgs.rs": "648fe3264a5d7a63dda8a3b199886a548f7a10aad6c42f958d9b3ed00c9d019f",
+    "tests/cli.rs": "f9895d6064087f2389d0314a56b449ac57112c5e903b3497677cbe38f27f816d",
+    "tests/fixtures/json-grammar.json": "4005df0bb062002197e712a70b2cf5fd56969819dd2ce85b06c5a6ab0e9fbf71"
+  },
+  "independent_checks": {
+    "coverage": "Author exact staged export gate EXIT0 SHA812af20cfc84dc4fc2a0aeff86e506f4edbadb46126fc8d0a36c5e3abbe8dbf2; root1913/1916 lines3047/3065 regions, CLI148/150 lines267/273 regions, vendor ownership unchanged. Replayed check-coverage.py on actual author report with strict >95 and all vendor patches retained. Full instrumentation not independently regenerated.",
+    "lexer": "Reviewed quoted-string/escape skipping, object/array frame transitions, bare-key token and colon boundary, trailing-comma lookahead, and unchanged complete-document check. Supplemental277 focused lexical variants produced zero native/Rust acceptance or stdout mismatches; they do not qualify general JSON grammar.",
+    "mutation": "Separate private source/target replacing only normalize_proto_json call with input.clone() makes exact selected test fail on original native-only {sec:7} row (Rust rejection versus native acceptance).",
+    "native": "Fresh private native peer build and scripts/json-reference.py replay 29 rows; generated native proof byte-identical to author SHA425661b8, binding protobuf3.21.12, schema, peer source and binary. Selected private CLI test compares exact native/Rust success and stdout for all29 rows.",
+    "rust": "Private Git archive source with separate CARGO_TARGET_DIR: selected JSON test1/0 and all109 harness checks pass, including12 CLI checks. Private fmt, Clippy -D warnings, gate negative tests, six snapshot tests and source-package test pass.",
+    "source_and_provenance": "Exact frozen seven-file staged tree/diff and all source hashes checked before/after private raw Git export; no unstaged producer diff. Original json-framing fixture SHA256 2cccfedc630e3ca56dcff617d3bd8233287dfc17271fa1b477ef4fcbdaaa24f0 preserved."
+  },
+  "limits": "Only JSON Time encode-json bounded syntax scope; comments, repeated commas, arrays, invalid UTF-8/trailing bytes still use existing deserializer rejection. No native diagnostic text, general JSON grammar, all message shapes or equal-work performance claim. Final metadata binding, mandatory normal staged hook/publication and hosted CI remain pending.",
+  "reviewed_at_utc": "2026-10-25T12:54:26Z",
+  "reviewer": "/root/transport_fallback",
+  "reviewer_setup_disposition": "No private source/target reuse. Producer earlier retained failed separate-test race and 26-row 259/273 CLI coverage log are pre-freeze attempts; frozen29-row working and exact staged gates pass. No failed attempt is counted as positive evidence.",
+  "scope": "Bounded encode-json lexical adapter for bare ASCII field keys and trailing object commas before existing DynamicMessage serde parser. The original fourteen fixture rows remain byte-identical; two former native-only rows and fifteen added native boundary rows now compare actual acceptance and full binary output. No complete protobuf JSON grammar, diagnostic or performance claim.",
+  "tree": "430ceb4e645aad1ca3cf5de9a90401b3e3e7f155"
+}
