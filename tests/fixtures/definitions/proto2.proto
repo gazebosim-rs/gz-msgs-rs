@@ -1,0 +1,19 @@
+// Copyright (C) 2026 Open Source Robotics Foundation
+// SPDX-License-Identifier: Apache-2.0
+syntax = "proto2";
+package definition.proto2;
+message Plain {
+  optional int32 count = 1;
+  required string name = 2;
+  repeated sint64 samples = 3 [packed = true];
+  optional Child child = 4;
+  message Child { optional bool enabled = 1; }
+  enum Mode { FIRST = 7; SECOND = -1; }
+  optional Mode mode = 5 [deprecated = false];
+  oneof choice { bytes payload = 6; double number = 7; }
+  map<string, Child> children = 8;
+  reserved 20 to 30;
+  reserved "old";
+}
+message Defaults { optional int32 count = 1 [default = 8]; }
+message Groups { optional group Data = 1 { optional bool flag = 2; } }

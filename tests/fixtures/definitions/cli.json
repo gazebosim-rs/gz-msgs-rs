@@ -23,7 +23,9 @@
     "tests/fixtures/definitions/reserved.proto": "7921de8c3710c1eb01667fd34b0649be60c5110c34c1fddca89f3e73d05db776",
     "tests/fixtures/definitions/reserved.desc": "250e50999933b5f4cc0d83e3aa0f4d7eafa3ff2f1316576c38ba168c38ec45a2",
     "tests/fixtures/definitions/ranges.proto": "12fab9515dfbd4b272f57643dc2b9db26c275da2d7256c24d6aadc395cc81e37",
-    "tests/fixtures/definitions/ranges.desc": "8ff5a2dd8dc848f218da2e13ff48b5759b87003657e7663c1ddda1b7308a170e"
+    "tests/fixtures/definitions/ranges.desc": "8ff5a2dd8dc848f218da2e13ff48b5759b87003657e7663c1ddda1b7308a170e",
+    "tests/fixtures/definitions/proto2.proto": "182dbbcc0eb95f0c2854db9b308836d253ca0fb8c31d2ba9561b82fd08e78542",
+    "tests/fixtures/definitions/proto2.desc": "19906f6bd0273fe234d0f07fbc88c3be128c48712757b56c9b2c0e9ba6ab5144"
   },
   "cases": [
     {
@@ -193,7 +195,7 @@
       "status": 0,
       "stdout": "Name: definition.legacy.Legacy\nFile: legacy.proto\n\nmessage Legacy {\n  optional string value = 1 [default = \"legacy\", json_name = \"value\"];\n  extensions 100 to 200;\n}\n\n",
       "stderr": "",
-      "unsupported": "proto2"
+      "unsupported": "extension declarations"
     },
     {
       "descriptor": "tests/fixtures/definitions/unknown-options.desc",
@@ -307,6 +309,68 @@
       ],
       "status": 0,
       "stdout": "Name: definition.next.Ranges\nFile: ranges.proto\n\nmessage Ranges {\n  enum Values {\n    ZERO = 0;\n    reserved 2147483647, -1, 1, 20 to 21;\n    reserved \"with space\", \"quote\\\"\", \"single\\'\", \"caf\\303\\251\";\n  }\n  reserved 536870911, 2, 7 to 9;\n  reserved \"with space\", \"quote\\\"\", \"single\\'\", \"caf\\303\\251\";\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "descriptor": "tests/fixtures/definitions/proto2.desc",
+      "args": [
+        "--info",
+        "definition.proto2.Plain"
+      ],
+      "status": 0,
+      "stdout": "Name: definition.proto2.Plain\nFile: proto2.proto\n\nmessage Plain {\n  message Child {\n    optional bool enabled = 1 [json_name = \"enabled\"];\n  }\n  enum Mode {\n    FIRST = 7;\n    SECOND = -1;\n  }\n  optional int32 count = 1 [json_name = \"count\"];\n  required string name = 2 [json_name = \"name\"];\n  repeated sint64 samples = 3 [json_name = \"samples\", packed = true];\n  optional .definition.proto2.Plain.Child child = 4 [json_name = \"child\"];\n  optional .definition.proto2.Plain.Mode mode = 5 [json_name = \"mode\", deprecated = false];\n  oneof choice {\n    bytes payload = 6 [json_name = \"payload\"];\n    double number = 7 [json_name = \"number\"];\n  }\n  map<string, .definition.proto2.Plain.Child> children = 8 [json_name = \"children\"];\n  reserved 20 to 30;\n  reserved \"old\";\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "descriptor": "tests/fixtures/definitions/proto2.desc",
+      "args": [
+        "--info",
+        "definition.proto2.Plain.Child"
+      ],
+      "status": 0,
+      "stdout": "Name: definition.proto2.Plain.Child\nFile: proto2.proto\n\nmessage Child {\n  optional bool enabled = 1 [json_name = \"enabled\"];\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "descriptor": "tests/fixtures/definitions/proto2.desc",
+      "args": [
+        "--info",
+        "definition.proto2.Plain.ChildrenEntry"
+      ],
+      "status": 0,
+      "stdout": "Name: definition.proto2.Plain.ChildrenEntry\nFile: proto2.proto\n\n\n",
+      "stderr": ""
+    },
+    {
+      "descriptor": "tests/fixtures/definitions/proto2.desc",
+      "args": [
+        "--info",
+        "definition.proto2.Defaults"
+      ],
+      "status": 0,
+      "stdout": "Name: definition.proto2.Defaults\nFile: proto2.proto\n\nmessage Defaults {\n  optional int32 count = 1 [default = 8, json_name = \"count\"];\n}\n\n",
+      "stderr": "",
+      "unsupported": "proto2 default"
+    },
+    {
+      "descriptor": "tests/fixtures/definitions/proto2.desc",
+      "args": [
+        "--info",
+        "definition.proto2.Groups"
+      ],
+      "status": 0,
+      "stdout": "Name: definition.proto2.Groups\nFile: proto2.proto\n\nmessage Groups {\n  optional group Data = 1 [json_name = \"data\"] {\n    optional bool flag = 2 [json_name = \"flag\"];\n  }\n}\n\n",
+      "stderr": "",
+      "unsupported": "groups"
+    },
+    {
+      "descriptor": "tests/fixtures/definitions/proto2.desc",
+      "args": [
+        "--info",
+        "definition.proto2.Groups.Data"
+      ],
+      "status": 0,
+      "stdout": "Name: definition.proto2.Groups.Data\nFile: proto2.proto\n\nmessage Data {\n  optional bool flag = 2 [json_name = \"flag\"];\n}\n\n",
       "stderr": ""
     }
   ]

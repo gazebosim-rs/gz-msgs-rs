@@ -1,0 +1,64 @@
+{
+  "decision": "approved",
+  "author": "/root/msgs",
+  "reviewer": "/root/sdformat",
+  "reviewed_at": "2026-10-25T10:01:21.623499Z",
+  "scope": "Bounded common proto2 declaration formatting with native layout, retaining unsupported defaults/groups/extensions and declared reflection-loader/validation limits. No codec, dependency, unsafe, ledger, policy or whole MSG-02 acceptance.",
+  "base": "617079cdafc8e20dc008967e27ddbba8b6d100fa",
+  "tree": "759cb4ca5e6b70eac66632f54e5698cc7a3678d1",
+  "staged_diff_sha256": "94a37435d7fb51a66db594534ef5300bbb6957840106cac8d4feec9d107fe1e2",
+  "files": {
+    "docs/API.md": "c5135977ff71e8ab9454ba5a9baf2ed1693b8f569f7b02b1e91a91bf08d117b1",
+    "docs/CLI_EXTERNAL_INFO.md": "1457ee9822130a75b1a44a3cec48e3e3f27664069268c61a3493bfcf86ee7f25",
+    "docs/EVIDENCE.md": "e8d18a190ef070d3ef7b9a2b73456a37e449b4f09e82d76cbf384f92fad9d789",
+    "scripts/definition-reference.py": "2d0252474a277e579751befb3444ed3837668948b764a519ca4f583f1e482f54",
+    "src/definition.rs": "bb1aadbcc317452ca6282e5f97b7b2e38f7dadfdac603f4ce66e545a11b39389",
+    "tests/definitions.rs": "5e30230983c44fdb99486a21ebeba83112321390320fe2b5bd18e326f5002639",
+    "tests/fixtures/definitions/cli.json": "ab864a8f70250b87c7097cabf490facddc651d35b680cb94f7889a4157c3d309",
+    "tests/fixtures/definitions/proto2.desc": "19906f6bd0273fe234d0f07fbc88c3be128c48712757b56c9b2c0e9ba6ab5144",
+    "tests/fixtures/definitions/proto2.proto": "182dbbcc0eb95f0c2854db9b308836d253ca0fb8c31d2ba9561b82fd08e78542"
+  },
+  "source_review_binding": {
+    "tree": "684579a340c54c36b3d11ea074a7cee46311fd3d",
+    "staged_diff_sha256": "cce80bcc614be35421fd1d75d5d8b2a05186b48f9d96e1fc0dba7bfb19a17813",
+    "final_delta": [
+      "docs/EVIDENCE.md"
+    ],
+    "note": "Only an accurate additive independent-review paragraph changed; all eight other source/test/API/contract/fixture/script inputs unchanged."
+  },
+  "independent_checks": [
+    {
+      "check": "670 raw Git blobs exported and hash/type/mode/path-set verified; nine frozen input hashes bound",
+      "result": "pass"
+    },
+    {
+      "check": "Fresh private source/target cargo test --locked --offline",
+      "result": "100 harness tests plus actual standalone FactoryLazy executable pass, 101 checks total; includes all 14 definition tests. Zero doctest examples, compilation only."
+    },
+    {
+      "check": "Fresh native definition-reference replay and descriptor regeneration",
+      "result": "33 complete native CLI observations and full provenance proof equal author, including every hash; six descriptor fixtures regenerate byte-identically."
+    },
+    {
+      "check": "Prior native CLI observations and explicit unsupported disposition",
+      "result": "All prior 27 native status/stdout/stderr/argument inputs unchanged. Only legacy Rust unsupported reason changes proto2 to extension declarations; same legacy input remains explicitly rejected, disposition approved."
+    },
+    {
+      "check": "Source/assertion/licensing review",
+      "result": "Required/optional/repeated labels, map/nested/first-nonzero enum/reserved/options and oneof formatting match native controls. Default/group/invalid-oneof guards and canonical immutable output paths inspected; original notices retained."
+    }
+  ],
+  "findings": [],
+  "scope_judgments": [
+    "Generated proto2 fixture omits syntax in its FileDescriptorProto; maintained reflection correctly identifies Proto2.",
+    "Required/repeated malformed oneof labels return typed Unsupported; no complete malformed-descriptor validator is claimed.",
+    "Explicit proto2 defaults, groups/extensions and advanced options remain Unsupported; separate raw integer-default interpretation mismatch is documented without codec normalization or runtime claims.",
+    "Whole definition is built before success; unsupported paths expose no partial declaration."
+  ],
+  "author_evidence_separate": "Author full local gate 101 Rust plus six snapshot checks, 1789/1792 production lines and 2870/2888 regions, formatter 270/271 lines and 468/471 regions inspected as reported. Independent reviewer did not recompute full coverage/archive/downstream/snapshot gates.",
+  "limits": [
+    "No new upstream assertion mapping or retirement; existing 83 reviewed originals unchanged.",
+    "No proto2 wire/default-value behavior, complete descriptor validation, broad MSG-02 or performance acceptance.",
+    "Exact receipt copy/final staged binding, mandatory normal strict hook and hosted checks remain required."
+  ]
+}

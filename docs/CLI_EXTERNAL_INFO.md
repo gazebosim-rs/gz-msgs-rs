@@ -1,6 +1,6 @@
 # External descriptor definitions
 
-`descriptor_definition(&MessageDescriptor)` formats the qualified common proto3
+`descriptor_definition(&MessageDescriptor)` formats the qualified common proto2/proto3
 message declaration subset using native protobuf DebugString layout. The existing
 `message_definition` and `message_info` canonical corpus stays immutable. Generated
 C++ descriptors and dynamic descriptors can differ in explicit JSON-name metadata;
@@ -15,8 +15,9 @@ allow_alias/deprecated, enum-value deprecated and field packed/deprecated boolea
 options, including explicit false. Synthetic map entries produce an empty body.
 A definition is assembled before return, so a failure exposes no partial string.
 
-`DefinitionError::Unsupported` identifies proto2, extension declarations,
-unsupported standard/custom/unknown options, malformed synthetic map entries,
+`DefinitionError::Unsupported` identifies proto2 explicit defaults and groups,
+extension declarations, unsupported standard/custom/unknown options, malformed
+synthetic map entries,
 empty oneofs, invalid/overflowing reserved boundaries, proto3 default/required fields or
 nesting beyond 100 message levels. Reflection accepts the raw default/required
 features and malformed map shapes that native validation rejects; checked access
@@ -33,6 +34,23 @@ INT_MAX and ends at INT_MIN return Unsupported instead of targeting overflow.
 The pinned [protobuf source](https://github.com/protocolbuffers/protobuf/blob/v21.12/src/google/protobuf/descriptor.cc#L2928-L2941)
 and native-backed controls bind that boundary. Invalid message starts are also
 rejected; these checks do not constitute a complete descriptor validator.
+
+Basic proto2 declarations preserve optional/required/repeated labels, oneofs,
+maps, nested messages/enums (including a nonzero first enum value), reserved
+declarations and the same supported boolean options. Oneof fields carry no
+optional label. Explicit defaults, groups and extensions still return Unsupported;
+legacy inputs remain tested, with their first unsupported-feature diagnostic now
+identifying extensions rather than blanket proto2 rejection. Malformed required
+or repeated oneof labels accepted by reflection but rejected by native return a
+typed error. This does not qualify proto2 wire/value behavior or general validation.
+
+Directly supplied raw proto2 integer defaults expose a separate maintained-loader
+boundary: native interprets `010` as eight and accepts `0x2a` as 42, while the
+pinned reflection pool treats `010` as decimal ten and rejects `0x2a`. Protoc
+normalizes these literals before emitting descriptors, masking the difference in
+ordinary generated fixtures. Explicit defaults remain outside this formatter's
+supported subset; no runtime patch, descriptor normalization or arbitrary native
+proto2 default-value contract is introduced. Canonical proto3 schemas are unchanged.
 
 The descriptor-only API formats metadata exposed by reflection. Its loader
 synthesizes a JSON name when the raw field omitted one; that omission cannot be
@@ -76,10 +94,10 @@ external serialization are not qualified by this formatter.
 `tests/definitions.rs` compares all 271 canonical dynamic message descriptors with
 a freshly compiled C++ protobuf peer, checks supported custom descriptors and
 the unchanged upstream binary fixture, asserts explicit errors, regenerates
-descriptor fixtures and tests 27 complete CLI rows. Additional freshly compiled
+descriptor fixtures and tests 33 complete CLI rows. Additional freshly compiled
 native comparisons cover raw JSON-name presence, failed/duplicate loads, snapshot
 lifetimes and omitted names in map/oneof/optional fields.
-`scripts/definition-reference.py` independently replays those 27 native CLI rows,
+`scripts/definition-reference.py` independently replays those 33 native CLI rows,
 regenerates fixtures and binds the upstream commit, source/binary/libraries,
 schema manifest, peer and fixture hashes. Unsupported rows capture native output
 but deliberately assert the Rust error instead of claiming output parity.

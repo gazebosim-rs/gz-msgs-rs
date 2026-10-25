@@ -70,7 +70,14 @@ fn native_definitions(peer: &Path, descriptor_set: &Path) -> BTreeMap<String, St
 fn descriptor_fixtures_regenerate_from_their_sources() {
     let directory = Directory::new();
     let peer = directory.native();
-    for name in ["supported", "unsupported", "legacy", "reserved", "ranges"] {
+    for name in [
+        "supported",
+        "unsupported",
+        "legacy",
+        "reserved",
+        "ranges",
+        "proto2",
+    ] {
         let output = directory.0.join(format!("{name}.desc"));
         let result = Command::new("protoc")
             .args([
@@ -149,7 +156,7 @@ fn custom_definitions_are_native_exact_or_explicitly_unsupported() {
                 "definition.unsupported.StandardMessageOption"
                 | "definition.unsupported.StandardFieldOption" => Some("option"),
                 "definition.unsupported.DeclaresExtension" => Some("extension declarations"),
-                "definition.legacy.Legacy" => Some("proto2"),
+                "definition.legacy.Legacy" => Some("extension declarations"),
                 name if name.starts_with("definition.unsupported.Custom") => Some("custom options"),
                 "definition.example.Surface" if file == "unknown-options" => {
                     Some("unknown options")
@@ -741,5 +748,102 @@ fn source_definitions_preserve_omissions_in_maps_oneofs_and_optional_fields() {
     assert!(registry.load_bytes(&bytes).unwrap().is_empty());
     for (name, body) in native_definitions(&peer, &input) {
         assert_eq!(registry.definition(&name).unwrap(), Some(body), "{name}");
+    }
+}
+
+#[test]
+fn basic_proto2_declarations_match_native_with_explicit_unsupported_features() {
+    let directory = Directory::new();
+    let peer = directory.native();
+    let input = Path::new("tests/fixtures/definitions/proto2.desc");
+    let expected = native_definitions(&peer, input);
+    let mut registry = DescriptorRegistry::default();
+    assert!(registry.load_file(input).unwrap().is_empty());
+    for (name, native) in expected {
+        let descriptor = registry.pool().get_message_by_name(&name).unwrap();
+        let error = match name.as_str() {
+            "definition.proto2.Defaults" => Some("proto2 default"),
+            "definition.proto2.Groups" => Some("groups"),
+            _ => None,
+        };
+        if let Some(feature) = error {
+            assert_eq!(
+                descriptor_definition(&descriptor),
+                Err(DefinitionError::Unsupported(feature))
+            );
+            assert_eq!(
+                registry.definition(&name),
+                Err(DefinitionError::Unsupported(feature))
+            );
+        } else {
+            assert_eq!(descriptor_definition(&descriptor).unwrap(), native);
+            assert_eq!(registry.definition(&name).unwrap(), Some(native));
+        }
+    }
+}
+
+#[test]
+fn malformed_proto2_oneof_labels_are_explicitly_unsupported() {
+    use gz_msgs::{
+        prost_reflect::DescriptorPool,
+        prost_types::{
+            DescriptorProto, FieldDescriptorProto, FileDescriptorProto, FileDescriptorSet,
+            OneofDescriptorProto,
+        },
+    };
+    let directory = Directory::new();
+    let peer = directory.native();
+    for label in [1, 2, 3] {
+        let set = FileDescriptorSet {
+            file: vec![FileDescriptorProto {
+                name: Some("oneof.proto".into()),
+                syntax: Some("proto2".into()),
+                message_type: vec![DescriptorProto {
+                    name: Some("Choice".into()),
+                    oneof_decl: vec![OneofDescriptorProto {
+                        name: Some("choice".into()),
+                        ..Default::default()
+                    }],
+                    field: vec![FieldDescriptorProto {
+                        name: Some("value".into()),
+                        number: Some(1),
+                        label: Some(label),
+                        r#type: Some(5),
+                        oneof_index: Some(0),
+                        ..Default::default()
+                    }],
+                    ..Default::default()
+                }],
+                ..Default::default()
+            }],
+        };
+        let input = directory.0.join("oneof.desc");
+        std::fs::write(&input, set.encode_to_vec()).unwrap();
+        let native = Command::new(&peer).arg(&input).output().unwrap();
+        let pool = DescriptorPool::from_file_descriptor_set(set).unwrap();
+        let result = descriptor_definition(&pool.get_message_by_name("Choice").unwrap());
+        if label == 1 {
+            assert!(native.status.success());
+            assert!(native.stderr.is_empty());
+            // Compare the normalized metadata on both sides for this descriptor-only API.
+            let same = directory.0.join("same.desc");
+            std::fs::write(
+                &same,
+                FileDescriptorSet {
+                    file: pool.file_descriptor_protos().cloned().collect(),
+                }
+                .encode_to_vec(),
+            )
+            .unwrap();
+            assert_eq!(result.unwrap(), native_definitions(&peer, &same)["Choice"]);
+        } else {
+            assert_eq!(native.status.code(), Some(5));
+            assert!(native.stdout.is_empty());
+            assert!(!native.stderr.is_empty());
+            assert_eq!(
+                result,
+                Err(DefinitionError::Unsupported("malformed oneof field"))
+            );
+        }
     }
 }

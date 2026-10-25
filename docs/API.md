@@ -361,7 +361,7 @@ external-descriptor info formatting remain separate unfinished contracts.
 ## Dynamic descriptor definitions
 
 `descriptor_definition(&MessageDescriptor) -> Result<String, DefinitionError>`
-formats the qualified common proto3 declaration subset. It preserves explicit
+formats the qualified common proto2/proto3 declaration subset. It preserves explicit
 metadata and returns `Unsupported` for unhandled grammar/options. Existing
 canonical `message_definition`/`message_info` output remains immutable; generated
 and dynamic descriptors can differ in explicit JSON-name metadata. External CLI
@@ -382,5 +382,8 @@ checking the registry/factory/CLI output against the original descriptor bytes.
 
 The formatter includes reserved names/ranges and C-style escaping for UTF-8 JSON
 names. It preserves defined raw-range display quirks and rejects the two message
-boundaries whose native signed arithmetic overflows. Proto2, extensions and
-advanced options remain unsupported; this is not a complete descriptor validator.
+boundaries whose native signed arithmetic overflows. Basic proto2 labels/oneofs
+are supported; explicit defaults, groups, extensions and advanced options remain
+unsupported. Raw proto2 integer-default interpretation also differs in the pinned
+reflection loader; no native default-value or wire contract is added by declaration
+formatting. This is not a complete descriptor validator.

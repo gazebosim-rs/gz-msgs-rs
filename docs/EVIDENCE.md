@@ -1188,3 +1188,50 @@ passed without changing producer source or targets. Focused independent evidence
 is distinct from the author's full 99-check/coverage gate. The descriptor-only
 normalized view and remaining advanced-feature limits remain explicit. Final
 metadata binding, normal strict staged hook and hosted qualification are required.
+
+## Basic proto2 declaration subset
+
+Ordinary proto2 optional/required/repeated labels, nested messages/enums, oneofs,
+maps and reserved declarations now use the existing native layout. The new fixture
+includes a nonzero first enum value and packed/deprecated options. Six new complete
+CLI observations bring the native corpus to 33; all prior 27 native outputs remain
+unchanged. Explicit defaults, groups, extensions and advanced options stay
+Unsupported. The legacy default/extension input remains rejected at its first
+extension guard rather than the former blanket syntax guard. Known malformed
+required/repeated oneof fields accepted by reflection but rejected by native
+return a typed error. This does not add a proto2 wire/value contract.
+
+Isolated directly mutated descriptor probes expose a separate maintained-loader
+boundary: raw default `010` yields native eight versus reflection ten; native
+accepts raw `0x2a` as 42 while reflection rejects it. Protoc normalizes those
+literals before writing descriptor sets, so ordinary generated fixtures hide the
+difference. Fresh C++ output and isolated Rust assertions are retained in ignored
+evidence. No descriptor normalization, runtime fork or general native proto2
+default-value equivalence is claimed; explicit defaults remain unsupported here.
+
+The focused 14-test definition replay and fresh 33-row native script pass. An
+initial prototype harness accidentally included the default-bearing fixture in
+the reserved-only equality loop; that original loop was restored unchanged, and
+the dedicated proto2 matrix asserts either complete native output or the explicit
+Unsupported result for every message. The failed prototype log is retained.
+The full working gate passes 101 Rust checks (100 harness tests plus standalone
+environment executable), six snapshot regressions, archive QA, downstream and
+owned-patch gates. Root production measures 1774/1777 lines and 2834/2852 regions;
+owned patches add 15/15 lines and 36/36 regions, yielding 1789/1792 owned lines
+and 2870/2888 regions. The formatter measures 270/271 lines and 468/471 regions.
+Independent review and exact staged/hosted qualification remain pending. Canonical
+schemas/cache, runtime codecs, dependencies, exclusions and all 83 reviewed
+original mappings are unchanged; broad MSG-02 remains open.
+
+Independent /root/sdformat approved staged cce80bcc/tree 684579a3 within this
+subset. Its raw-Git export and fresh private target passed all 100 harness tests
+plus the actual standalone FactoryLazy executable (101 checks), including all 14
+definition tests. Fresh native replay reproduced all 33 CLI observations and the
+entire author proof; all prior 27 native status/stdout/stderr triples remain
+unchanged. It reviewed the declaration labels and default/group/oneof guards,
+canonical paths and generated omitted-proto2 syntax. The legacy Rust diagnostic
+change is explicitly approved while its input remains rejected. The authored
+[receipt](reviews/proto2-definitions.json) preserves the explicit default/loader,
+group/extension, complete-validation and codec limits. Source, tests, fixtures and
+native inputs remain unchanged by this review metadata. Matching final binding,
+normal strict staged hook and hosted qualification remain required.

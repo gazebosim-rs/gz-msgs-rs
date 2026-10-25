@@ -18,7 +18,7 @@ impl std::fmt::Display for DefinitionError {
 }
 impl std::error::Error for DefinitionError {}
 
-/// Format the qualified common proto3 declaration subset using native layout.
+/// Format the qualified common declaration subset using native layout.
 ///
 /// This does not replace the immutable canonical `message_definition` corpus.
 /// Unhandled metadata returns Unsupported instead of being silently omitted.
@@ -31,9 +31,6 @@ pub(crate) fn definition_with_omissions(
     descriptor: &MessageDescriptor,
     omissions: &BTreeSet<String>,
 ) -> Result<String, DefinitionError> {
-    if descriptor.parent_file().syntax() != Syntax::Proto3 {
-        return Err(DefinitionError::Unsupported("proto2"));
-    }
     let mut output = String::new();
     message(&mut output, 0, descriptor, omissions)?;
     Ok(output)
@@ -167,10 +164,24 @@ fn field(
     omissions: &BTreeSet<String>,
 ) -> Result<(), DefinitionError> {
     let raw = field.field_descriptor_proto();
-    if raw.default_value.is_some() || field.cardinality() == Cardinality::Required {
+    let proto2 = field.parent_file().syntax() == Syntax::Proto2;
+    if raw.default_value.is_some() {
+        return Err(DefinitionError::Unsupported(if proto2 {
+            "proto2 default"
+        } else {
+            "proto3 default or required field"
+        }));
+    }
+    if field.cardinality() == Cardinality::Required && !proto2 {
         return Err(DefinitionError::Unsupported(
             "proto3 default or required field",
         ));
+    }
+    if field.is_group() {
+        return Err(DefinitionError::Unsupported("groups"));
+    }
+    if field.containing_oneof().is_some() && field.cardinality() != Cardinality::Optional {
+        return Err(DefinitionError::Unsupported("malformed oneof field"));
     }
     let mut field_options = Vec::new();
     if let Some(name) = raw
@@ -194,7 +205,9 @@ fn field(
         kind => (
             if field.is_list() {
                 "repeated "
-            } else if raw.proto3_optional() {
+            } else if field.cardinality() == Cardinality::Required {
+                "required "
+            } else if raw.proto3_optional() || (proto2 && field.containing_oneof().is_none()) {
                 "optional "
             } else {
                 ""

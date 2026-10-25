@@ -29,7 +29,7 @@ with tempfile.TemporaryDirectory(prefix='gz-msgs-definition-') as temporary:
     temporary = pathlib.Path(temporary)
     peer = temporary / 'peer'
     subprocess.run(['c++', '-std=c++17', '-Wall', '-Wextra', '-Werror', str(root / 'tests/definition_peer.cc'), '-lprotobuf', '-o', str(peer)], check=True)
-    for name in ['supported', 'unsupported', 'legacy', 'reserved', 'ranges']:
+    for name in ['supported', 'unsupported', 'legacy', 'reserved', 'ranges', 'proto2']:
         output = temporary / (name + '.desc')
         subprocess.run(['protoc', '--proto_path=' + str(root / 'tests/fixtures/definitions'), '--proto_path=' + str(root / 'schemas'), '--include_imports', '--descriptor_set_out=' + str(output), name + '.proto'], check=True)
         assert output.read_bytes() == (root / f'tests/fixtures/definitions/{name}.desc').read_bytes()
