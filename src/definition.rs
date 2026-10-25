@@ -36,6 +36,61 @@ fn line(output: &mut String, depth: usize, value: impl std::fmt::Display) {
     writeln!(output, "{}{value}", "  ".repeat(depth)).unwrap();
 }
 
+fn quoted(value: &str) -> String {
+    let mut output = String::from("\"");
+    for byte in value.bytes() {
+        let escaped = std::ascii::escape_default(byte);
+        // Protobuf CEscape uses byte-octal escapes where Rust uses hex.
+        if escaped.len() == 4 {
+            write!(output, "\\{byte:03o}").unwrap();
+        } else {
+            output.extend(escaped.map(char::from));
+        }
+    }
+    output.push('"');
+    output
+}
+
+fn reserved<'a>(
+    output: &mut String,
+    depth: usize,
+    ranges: impl Iterator<Item = Result<(i64, i64), DefinitionError>>,
+    names: impl Iterator<Item = &'a str>,
+    minimum: i64,
+    maximum: i64,
+) -> Result<(), DefinitionError> {
+    let mut items = Vec::new();
+    for range in ranges {
+        let (start, end) = range?;
+        if start < minimum {
+            return Err(DefinitionError::Unsupported("invalid reserved range"));
+        }
+        items.push(if start == end {
+            start.to_string()
+        } else if end >= maximum {
+            format!("{start} to max")
+        } else {
+            format!("{start} to {end}")
+        });
+    }
+    if !items.is_empty() {
+        line(
+            output,
+            depth,
+            format_args!("reserved {};", items.join(", ")),
+        );
+    }
+    let names: Vec<_> = names.map(quoted).collect();
+    if !names.is_empty() {
+        line(
+            output,
+            depth,
+            format_args!("reserved {};", names.join(", ")),
+        );
+    }
+    Ok(())
+}
+
 fn options(value: DynamicMessage, allowed: &[&str]) -> Result<Vec<String>, DefinitionError> {
     if value.unknown_fields().next().is_some() {
         return Err(DefinitionError::Unsupported("unknown options"));
@@ -111,10 +166,7 @@ fn field(
     }
     let mut field_options = Vec::new();
     if let Some(name) = &raw.json_name {
-        if !name.bytes().all(|b| b.is_ascii_alphanumeric() || b == b'_') {
-            return Err(DefinitionError::Unsupported("non-identifier JSON name"));
-        }
-        field_options.push(format!("json_name = \"{name}\""));
+        field_options.push(format!("json_name = {}", quoted(name)));
     }
     field_options.extend(options(field.options(), &["packed", "deprecated"])?);
     let suffix = if field_options.is_empty() {
@@ -155,9 +207,6 @@ fn enumeration(
     depth: usize,
     value: &EnumDescriptor,
 ) -> Result<(), DefinitionError> {
-    if value.reserved_ranges().len() != 0 || value.reserved_names().len() != 0 {
-        return Err(DefinitionError::Unsupported("enum reserved declarations"));
-    }
     line(output, depth, format_args!("enum {} {{", value.name()));
     for option in options(value.options(), &["allow_alias", "deprecated"])? {
         line(output, depth + 1, format_args!("option {option};"));
@@ -177,6 +226,16 @@ fn enumeration(
             format_args!("{} = {}{suffix};", value.name(), value.number()),
         );
     }
+    reserved(
+        output,
+        depth + 1,
+        value
+            .reserved_ranges()
+            .map(|range| Ok((i64::from(*range.start()), i64::from(*range.end())))),
+        value.reserved_names(),
+        i64::from(i32::MIN),
+        i64::from(i32::MAX),
+    )?;
     line(output, depth, "}");
     Ok(())
 }
@@ -203,11 +262,7 @@ fn message(
     if value.extension_ranges().len() != 0 || value.child_extensions().len() != 0 {
         return Err(DefinitionError::Unsupported("extension declarations"));
     }
-    if value.reserved_ranges().len() != 0 || value.reserved_names().len() != 0 {
-        return Err(DefinitionError::Unsupported(
-            "message reserved declarations",
-        ));
-    }
+
     for oneof in value.oneofs() {
         options(oneof.options(), &[])?;
         if oneof.fields().len() == 0 {
@@ -241,6 +296,22 @@ fn message(
             field(output, depth + 1, &item)?;
         }
     }
+    reserved(
+        output,
+        depth + 1,
+        value.descriptor_proto().reserved_range.iter().map(|range| {
+            // Native DebugString performs signed int start+1 and end-1.
+            if range.start() == i32::MAX || range.end() == i32::MIN {
+                return Err(DefinitionError::Unsupported(
+                    "reserved range boundary overflow",
+                ));
+            }
+            Ok((i64::from(range.start()), i64::from(range.end()) - 1))
+        }),
+        value.reserved_names(),
+        1,
+        i64::from(crate::prost::encoding::MAX_TAG),
+    )?;
     line(output, depth, "}");
     Ok(())
 }

@@ -1,0 +1,48 @@
+{
+  "decision": "approved",
+  "author": "/root/msgs",
+  "reviewer": "/root/transport_recovery",
+  "base": "25a2b884",
+  "staged_diff_sha256": "195dc86eb7bb8693732a0f388a1f13767e066e5a817c76991feb337f527038b6",
+  "tree": "609d7021128c425c713b939995851050a3ae2cb1",
+  "scope": "Bounded proto3 reserved declarations and native C-style byte escaping; prior raw JSON-name omission provenance and advanced grammar/validator limits remain explicit. No original retirement or complete MSG packet claim.",
+  "file_sha256": {
+    "docs/API.md": "b1463306fe1b9cd167c431dac00b4bc77fb75603e976fa76d1e634babf9818cb",
+    "docs/CLI_EXTERNAL_INFO.md": "5eebad5c438738db167ae97ebf4e780483cfaadd6047d83babdf320167c37bd1",
+    "docs/EVIDENCE.md": "16a60416b1ef2d3d75e26c2441c5baa93453bfadefdaacf5e57625f478673f06",
+    "scripts/definition-reference.py": "26a5fa92b482e56d75eb1c48390680aef8719a39e0dd3b6f57ceaf456392bb78",
+    "src/definition.rs": "64b69b8f2ce96348805f96af7f63326adf9a2dc8cc96047e8d7b2cae4f814045",
+    "tests/definitions.rs": "44aae770d4f2917e432b69ff939ee4789995e17ab5dc53e59d43e7cc50d3fb30",
+    "tests/fixtures/definitions/cli.json": "8b191febc04e4173b9834c14fce0838b2d2a5b6889bb27c2153c166c349773ff",
+    "tests/fixtures/definitions/ranges.desc": "8ff5a2dd8dc848f218da2e13ff48b5759b87003657e7663c1ddda1b7308a170e",
+    "tests/fixtures/definitions/ranges.proto": "12fab9515dfbd4b272f57643dc2b9db26c275da2d7256c24d6aadc395cc81e37",
+    "tests/fixtures/definitions/reserved.desc": "250e50999933b5f4cc0d83e3aa0f4d7eafa3ff2f1316576c38ba168c38ec45a2",
+    "tests/fixtures/definitions/reserved.proto": "7921de8c3710c1eb01667fd34b0649be60c5110c34c1fddca89f3e73d05db776"
+  },
+  "independent_checks": [
+    "Raw-exported and hash-verified all 666 staged blobs into a new private source directory with its own Cargo target. No producer Cargo target was used.",
+    "All nine candidate definitions tests pass, including 271 canonical normalized-metadata native comparisons, regenerated five fixtures, custom supported/Unsupported controls, malformed-map guards, explicit raw-name provenance mismatch and complete CLI behavior.",
+    "Nine defined raw signed message-range controls match native acceptance/layout or explicit rejection. The two message arithmetic-overflow boundaries are tested only as Rust Unsupported, not executed through native undefined signed arithmetic.",
+    "Independently inspected the official protobuf v21.12 descriptor formatter source: message singleton formatting increments the signed start, and the non-max range branch decrements the signed end. The targeted INT_MAX/INT_MIN guards avoid those undefined boundaries; Rust uses raw i32 values widened to i64 rather than lossy reflection Range<u32>.",
+    "Additional reviewer-only native differential passes 132 ASCII/Unicode descriptor inputs covering both JSON and reserved names, including all ASCII controls, quotes, backslashes and selected multibyte UTF-8. Retained probe source and successful replay; exact candidate test bytes restored afterward.",
+    "Independent native reference script regenerates five fixtures and reproduces all 27 complete native CLI observations. Its entire proof equals the author proof, including immutable source/binary/library/schema/peer/fixture bindings.",
+    "Compared every prior 25 CLI observation args/descriptor/status/stdout/stderr with the public parent: unchanged. Three prior unsupported Rust cases now compare native bodies and two new cases extend the corpus; prior unsupported scope and continuation checks remain."
+  ],
+  "native_format_source": "https://github.com/protocolbuffers/protobuf/blob/v21.12/src/google/protobuf/descriptor.cc#L2928-L2941",
+  "qualifications": [
+    "Independent checks are the focused definition/CLI/native scope above, not a rerun of author full 96 Rust, six snapshot tests, archive/downstream/patch gates or 1704/1708-line and 2715/2734-region coverage.",
+    "A reviewer-only probe preservation copy initially had a missing delimiter; its compile failure is retained separately. Corrected retained probe source passes all 132 comparisons; no candidate source change or product failure was inferred.",
+    "Raw omitted-json-name provenance remains unrecoverable through normalized reflection and stays a native-backed mismatch. Proto2/extensions/advanced options, general descriptor validation and complete arbitrary external info remain pending.",
+    "Native evidence qualifies the current installed baseline and bindings. Two C++ signed-overflow cases deliberately have no native output equivalence claim.",
+    "Normal matching staged hook and hosted qualification remain required before published qualification."
+  ],
+  "artifacts": {
+    "export": "export.json",
+    "candidate_tests": "definitions.log",
+    "extra_probe_source": "reviewer-escape-probe.rs",
+    "extra_probe_pass": "escape-probe-preserved.log",
+    "probe_compile_failure": "escape-probe-preservation-compile-failure.log",
+    "native_cli": "native-replay.log",
+    "native_proof": "snapshot/artifacts/definition-reference.json"
+  }
+}

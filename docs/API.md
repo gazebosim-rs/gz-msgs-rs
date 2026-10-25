@@ -375,3 +375,9 @@ JSON names, so original raw omission provenance cannot be recovered from a
 sets without those names. The native-backed mismatch regression remains part of
 the gate. Native-layout equality uses identical reflection metadata and the
 qualified CLI corpus, not a claim of arbitrary raw-descriptor fidelity.
+
+
+The formatter now includes reserved names/ranges and C-style escaping for UTF-8
+JSON names. It preserves defined raw-range display quirks and rejects the two
+message-boundary cases whose native signed arithmetic overflows. This does not
+recover omitted JSON-name provenance or enable proto2/extension/advanced options.

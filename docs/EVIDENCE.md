@@ -1108,3 +1108,39 @@ child-only official variable removal. The exact authored
 checks from the author's full production-worktree-hook and working coverage
 runs; no live repository reproduction or shared Cargo target was used. Matching
 final metadata and normal staged/hosted qualification remain required.
+
+
+## Proto3 reserved declarations and byte escaping
+
+The formatter extends its bounded scope to reserved message/enum ranges/names and
+arbitrary UTF-8 JSON names using Rust's standard ASCII escape iterator, with the
+native byte-octal form substituted for hex escapes. Existing native output/status
+for all previous 25 CLI rows remains byte-identical; three formerly Unsupported
+rows now compare their full native output. Two new complete CLI rows cover
+range/name/escaping combinations. Five source descriptor fixtures regenerate
+exactly, and the 271 dynamic canonical definitions remain unchanged.
+
+Native raw-range probes exposed permissive behavior that a strict Rust Range
+interpretation would lose: empty/reversed ranges, negative ends and over-max
+ends are accepted and have specific display rules. Nine defined native controls
+are preserved. Two additional source-grounded message-boundary guards reject
+native signed arithmetic overflow; observed undefined output is not a target.
+Earlier stricter prototype failures remain in ignored evidence. Existing malformed
+maps/default/Required/options/depth guards and the raw JSON-name omission mismatch
+regression remain. The full working gate passes 96 Rust checks (95 harness
+tests plus the standalone environment executable), six snapshot regressions,
+archive QA and downstream/owned-patch checks. Owned coverage is 1704/1708 lines
+and 2715/2734 regions; the formatter measures 245/247 lines and 433/439 regions.
+Independent review and exact staged/hosted qualification are pending; no original mapping or MSG-02 acceptance changes occur.
+
+Independent /root/transport_recovery approved staged 195dc86e within these bounds.
+It raw-exported and verified all 666 blobs, passed all nine definition tests and
+132 additional ASCII/Unicode native descriptor comparisons for JSON/reserved
+names, and reproduced the complete 27-row CLI proof. All prior 25 native outputs
+remain byte-identical. It independently checked the pinned message-range signed
+arithmetic source; the two overflow guards remain outside native execution.
+The exact authored [receipt](reviews/reserved-definitions.json) records the
+reviewer-only probe compile correction and restored candidate bytes, distinguishes
+focused checks from the author's full 96-check gate, and retains the raw-name
+provenance/advanced-grammar limits. Matching final metadata and normal exact
+staged/hosted qualification remain required.

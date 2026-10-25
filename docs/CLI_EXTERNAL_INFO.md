@@ -8,20 +8,31 @@ matching schemas alone does not make their declaration strings identical.
 
 The formatter preserves declaration order, nested messages/enums, source-ordered
 enum aliases and signed values, maps, real oneofs, proto3 optional fields, qualified
-message/enum references and explicit JSON names containing ASCII letters, digits
-or underscores (including the empty name). It supports message deprecated, enum
+message/enum references, reserved ranges/names and arbitrary UTF-8 JSON names
+(including the empty name). Native C-style byte escaping preserves quotes,
+backslashes, controls and non-ASCII UTF-8 bytes using octal escapes. It supports message deprecated, enum
 allow_alias/deprecated, enum-value deprecated and field packed/deprecated boolean
 options, including explicit false. Synthetic map entries produce an empty body.
 A definition is assembled before return, so a failure exposes no partial string.
 
-`DefinitionError::Unsupported` identifies proto2, extension declarations, reserved
-names/ranges, unsupported standard/custom/unknown options, other JSON-name bytes,
-malformed synthetic map entries, empty oneofs, proto3 default/required fields or
+`DefinitionError::Unsupported` identifies proto2, extension declarations,
+unsupported standard/custom/unknown options, malformed synthetic map entries,
+empty oneofs, invalid/overflowing reserved boundaries, proto3 default/required fields or
 nesting beyond 100 message levels. Reflection accepts the raw default/required
 features and malformed map shapes that native validation rejects; checked access
 returns errors instead of omitting them or calling panic-assuming map helpers.
 This is a finite feature guard, not a complete native descriptor validator. The
 formatter does not emit file declarations, comments or source locations.
+
+Reserved declarations retain source order and native output placement. Message
+ranges use raw signed descriptor integers rather than the reflection Range<u32>
+view. Defined native behavior includes empty/reversed spans, negative ends and
+over-max ends printed as `max`; enum bounds remain signed/inclusive. Native
+DebugString performs signed int start+1/end-1 for message ranges, so starts at
+INT_MAX and ends at INT_MIN return Unsupported instead of targeting overflow.
+The pinned [protobuf source](https://github.com/protocolbuffers/protobuf/blob/v21.12/src/google/protobuf/descriptor.cc#L2928-L2941)
+and native-backed controls bind that boundary. Invalid message starts are also
+rejected; these checks do not constitute a complete descriptor validator.
 
 The API formats the metadata exposed by reflection. Its loader synthesizes a
 JSON name when the raw field omitted one, losing that omission provenance. A
@@ -29,7 +40,7 @@ hand-built descriptor set without JSON names can therefore produce extra
 `json_name` options compared with native loading of those original bytes; the
 CLI currently shares this known gap. A native-backed regression preserves the
 difference explicitly. The 271-definition differential instead supplies exactly
-the reflection metadata to both formatters. The 25 qualified CLI rows include
+the reflection metadata to both formatters. The 27 qualified CLI rows include
 the unchanged upstream binary fixture and encoded JSON-name metadata. Arbitrary
 raw-omission fidelity requires a separate descriptor-provenance extension.
 
@@ -53,8 +64,8 @@ external serialization are not qualified by this formatter.
 `tests/definitions.rs` compares all 271 canonical dynamic message descriptors with
 a freshly compiled C++ protobuf peer, checks supported custom descriptors and
 the unchanged upstream binary fixture, asserts explicit errors, regenerates
-descriptor fixtures and tests 25 complete CLI rows.
-`scripts/definition-reference.py` independently replays those 25 native CLI rows,
+descriptor fixtures and tests 27 complete CLI rows.
+`scripts/definition-reference.py` independently replays those 27 native CLI rows,
 regenerates fixtures and binds the upstream commit, source/binary/libraries,
 schema manifest, peer and fixture hashes. Unsupported rows capture native output
 but deliberately assert the Rust error instead of claiming output parity.

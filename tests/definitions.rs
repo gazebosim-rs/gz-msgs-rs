@@ -70,7 +70,7 @@ fn native_definitions(peer: &Path, descriptor_set: &Path) -> BTreeMap<String, St
 fn descriptor_fixtures_regenerate_from_their_sources() {
     let directory = Directory::new();
     let peer = directory.native();
-    for name in ["supported", "unsupported", "legacy"] {
+    for name in ["supported", "unsupported", "legacy", "reserved", "ranges"] {
         let output = directory.0.join(format!("{name}.desc"));
         let result = Command::new("protoc")
             .args([
@@ -146,11 +146,8 @@ fn custom_definitions_are_native_exact_or_explicitly_unsupported() {
             let descriptor = registry.pool().get_message_by_name(&name).unwrap();
             let actual = descriptor_definition(&descriptor);
             let feature = match name.as_str() {
-                "definition.unsupported.ReservedMessage" => Some("message reserved declarations"),
-                "definition.unsupported.ReservedEnum" => Some("enum reserved declarations"),
                 "definition.unsupported.StandardMessageOption"
                 | "definition.unsupported.StandardFieldOption" => Some("option"),
-                "definition.unsupported.JsonName" => Some("non-identifier JSON name"),
                 "definition.unsupported.DeclaresExtension" => Some("extension declarations"),
                 "definition.legacy.Legacy" => Some("proto2"),
                 name if name.starts_with("definition.unsupported.Custom") => Some("custom options"),
@@ -307,6 +304,112 @@ fn external_cli_info_preserves_canonical_output_and_continuation() {
                 result.stderr,
                 row["stderr"].as_str().unwrap().as_bytes(),
                 "{args:?}"
+            );
+        }
+    }
+}
+
+#[test]
+fn reserved_ranges_names_and_json_escaping_match_native() {
+    let directory = Directory::new();
+    let peer = directory.native();
+    for file in ["reserved", "ranges"] {
+        let input = PathBuf::from(format!("tests/fixtures/definitions/{file}.desc"));
+        let mut registry = DescriptorRegistry::default();
+        assert!(registry.load_file(&input).unwrap().is_empty());
+        for (name, expected) in native_definitions(&peer, &input) {
+            let descriptor = registry.pool().get_message_by_name(&name).unwrap();
+            assert_eq!(
+                descriptor_definition(&descriptor).unwrap(),
+                expected,
+                "{name}"
+            );
+        }
+    }
+}
+
+#[test]
+fn raw_reserved_ranges_preserve_native_acceptance_and_layout() {
+    use gz_msgs::{
+        prost_reflect::DescriptorPool,
+        prost_types::{
+            descriptor_proto::ReservedRange, DescriptorProto, FileDescriptorProto,
+            FileDescriptorSet,
+        },
+    };
+    let directory = Directory::new();
+    let peer = directory.native();
+    for (start, end) in [(i32::MAX, i32::MAX), (1, i32::MIN)] {
+        let pool = DescriptorPool::from_file_descriptor_set(FileDescriptorSet {
+            file: vec![FileDescriptorProto {
+                name: Some("overflow.proto".into()),
+                syntax: Some("proto3".into()),
+                message_type: vec![DescriptorProto {
+                    name: Some("Overflow".into()),
+                    reserved_range: vec![ReservedRange {
+                        start: Some(start),
+                        end: Some(end),
+                    }],
+                    ..Default::default()
+                }],
+                ..Default::default()
+            }],
+        })
+        .unwrap();
+        // Avoid reproducing native signed-overflow behavior as a compatibility target.
+        assert_eq!(
+            descriptor_definition(&pool.get_message_by_name("Overflow").unwrap()),
+            Err(DefinitionError::Unsupported(
+                "reserved range boundary overflow"
+            ))
+        );
+    }
+    for (start, end, status) in [
+        (-1, 2, 5),
+        (0, 1, 5),
+        (1, -1, 0),
+        (1, 0, 0),
+        (2, 2, 0),
+        (5, 4, 0),
+        (1, 536870913, 0),
+        (536870912, 536870913, 0),
+        (1, i32::MAX, 0),
+    ] {
+        let set = FileDescriptorSet {
+            file: vec![FileDescriptorProto {
+                name: Some("invalid.proto".into()),
+                syntax: Some("proto3".into()),
+                message_type: vec![DescriptorProto {
+                    name: Some("Invalid".into()),
+                    reserved_range: vec![ReservedRange {
+                        start: Some(start),
+                        end: Some(end),
+                    }],
+                    ..Default::default()
+                }],
+                ..Default::default()
+            }],
+        };
+        let input = directory.0.join("range.desc");
+        std::fs::write(&input, set.encode_to_vec()).unwrap();
+        let pool = DescriptorPool::from_file_descriptor_set(set).unwrap();
+        let native = Command::new(&peer).arg(&input).output().unwrap();
+        assert_eq!(
+            native.status.code(),
+            Some(status),
+            "{start}/{end}: {native:?}"
+        );
+        let result = descriptor_definition(&pool.get_message_by_name("Invalid").unwrap());
+        if status == 0 {
+            assert!(native.stderr.is_empty());
+            let expected = native_definitions(&peer, &input);
+            assert_eq!(result.unwrap(), expected["Invalid"]);
+        } else {
+            assert!(native.stdout.is_empty());
+            assert!(!native.stderr.is_empty());
+            assert_eq!(
+                result,
+                Err(DefinitionError::Unsupported("invalid reserved range"))
             );
         }
     }

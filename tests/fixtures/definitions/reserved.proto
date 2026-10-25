@@ -1,0 +1,14 @@
+// Copyright (C) 2026 Open Source Robotics Foundation
+// SPDX-License-Identifier: Apache-2.0
+syntax = "proto3";
+package definition.next;
+message Reserved {
+  reserved 8, 2 to 4, 10 to max;
+  reserved "old", "other_name";
+  enum Example {
+    reserved -9 to -3, 5 to max;
+    reserved "OLD", "OTHER";
+    ZERO = 0;
+  }
+  string actual = 1 [json_name="space \" slash \\ newline\n tab\t café"];
+}

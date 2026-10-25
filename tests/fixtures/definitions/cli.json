@@ -19,7 +19,11 @@
     "tests/fixtures/definitions/unknown-options.desc": "fd8ac65c205a20a6fcb993c3f7d936789c221439266246f061a97a1d16f97e35",
     "tests/fixtures/definitions/unsupported.desc": "4f70607fe37eef7708f2d955d702566f25449dff1092820d70cc183eff63e4ff",
     "tests/fixtures/definitions/unsupported.proto": "17ff0a5e9918be48d4a955db2937814e28e39ce3d69dc6e33db643a83c6dbd2a",
-    "tests/reference/descriptors/testing.proto.bin": "cb342cc15e6d567c14e78c769ba77414c38ac21c268c19b1bcb5ec0325572fa3"
+    "tests/reference/descriptors/testing.proto.bin": "cb342cc15e6d567c14e78c769ba77414c38ac21c268c19b1bcb5ec0325572fa3",
+    "tests/fixtures/definitions/reserved.proto": "7921de8c3710c1eb01667fd34b0649be60c5110c34c1fddca89f3e73d05db776",
+    "tests/fixtures/definitions/reserved.desc": "250e50999933b5f4cc0d83e3aa0f4d7eafa3ff2f1316576c38ba168c38ec45a2",
+    "tests/fixtures/definitions/ranges.proto": "12fab9515dfbd4b272f57643dc2b9db26c275da2d7256c24d6aadc395cc81e37",
+    "tests/fixtures/definitions/ranges.desc": "8ff5a2dd8dc848f218da2e13ff48b5759b87003657e7663c1ddda1b7308a170e"
   },
   "cases": [
     {
@@ -70,8 +74,7 @@
       ],
       "status": 0,
       "stdout": "Name: definition.unsupported.ReservedMessage\nFile: unsupported.proto\n\nmessage ReservedMessage {\n  bool active = 1 [json_name = \"active\"];\n  reserved 2;\n  reserved \"old\";\n}\n\n",
-      "stderr": "",
-      "unsupported": "message reserved declarations"
+      "stderr": ""
     },
     {
       "descriptor": "tests/fixtures/definitions/unsupported.desc",
@@ -81,8 +84,7 @@
       ],
       "status": 0,
       "stdout": "Name: definition.unsupported.ReservedEnum\nFile: unsupported.proto\n\nmessage ReservedEnum {\n  enum E {\n    ZERO = 0;\n    reserved 1;\n    reserved \"OLD\";\n  }\n  .definition.unsupported.ReservedEnum.E value = 1 [json_name = \"value\"];\n}\n\n",
-      "stderr": "",
-      "unsupported": "enum reserved declarations"
+      "stderr": ""
     },
     {
       "descriptor": "tests/fixtures/definitions/unsupported.desc",
@@ -114,8 +116,7 @@
       ],
       "status": 0,
       "stdout": "Name: definition.unsupported.JsonName\nFile: unsupported.proto\n\nmessage JsonName {\n  string value = 1 [json_name = \"punctuated-name\"];\n}\n\n",
-      "stderr": "",
-      "unsupported": "non-identifier JSON name"
+      "stderr": ""
     },
     {
       "descriptor": "tests/fixtures/definitions/unsupported.desc",
@@ -286,6 +287,26 @@
       ],
       "status": 0,
       "stdout": "Name: testing.FooMessage\nFile: testing/message.proto\n\nmessage FooMessage {\n  string data = 1 [json_name = \"data\"];\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "descriptor": "tests/fixtures/definitions/reserved.desc",
+      "args": [
+        "--info",
+        "definition.next.Reserved"
+      ],
+      "status": 0,
+      "stdout": "Name: definition.next.Reserved\nFile: reserved.proto\n\nmessage Reserved {\n  enum Example {\n    ZERO = 0;\n    reserved -9 to -3, 5 to max;\n    reserved \"OLD\", \"OTHER\";\n  }\n  string actual = 1 [json_name = \"space \\\" slash \\\\ newline\\n tab\\t caf\\303\\251\"];\n  reserved 8, 2 to 4, 10 to max;\n  reserved \"old\", \"other_name\";\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "descriptor": "tests/fixtures/definitions/ranges.desc",
+      "args": [
+        "--info",
+        "definition.next.Ranges"
+      ],
+      "status": 0,
+      "stdout": "Name: definition.next.Ranges\nFile: ranges.proto\n\nmessage Ranges {\n  enum Values {\n    ZERO = 0;\n    reserved 2147483647, -1, 1, 20 to 21;\n    reserved \"with space\", \"quote\\\"\", \"single\\'\", \"caf\\303\\251\";\n  }\n  reserved 536870911, 2, 7 to 9;\n  reserved \"with space\", \"quote\\\"\", \"single\\'\", \"caf\\303\\251\";\n}\n\n",
       "stderr": ""
     }
   ]
