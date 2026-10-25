@@ -289,8 +289,9 @@ also passed on tree `278a47c644417657ca9dcf7d7de4c6865ed3a626`.
 The [independent review](reviews/json-quoted-hex.json) approved this bounded
 source and assertions after a private native 809-row replay, 110 Rust tests,
 2,656 extra lexical variants without status or wire mismatch, and a
-descriptor-handling negative control. The normal hook and hosted CI remain
-pending.
+descriptor-handling negative control. The normal hook passed on public commit
+`1c3c0b802cd17fd8c1f49fac4370db3103ba9028`, and hosted run `40216034480`
+passed.
 
 ## Repeated float `data` keys
 
@@ -320,5 +321,27 @@ protobuf JSON grammar, diagnostics and MSG-02 acceptance remain open.
 The [independent review](reviews/json-repeated-data.json) approved this
 bounded source and assertions after a private 875-row native replay, 111 Rust
 tests, 1,170 further variants with no mismatch and an append-removal control.
-The exact six-file staged gate passed; final metadata binding, the normal hook
-and hosted CI remain pending.
+The exact seven-file staged gate, normal hook and hosted run `40218476323`
+passed on public commit `0d267506915119344467a56956ddb4408777158c`.
+
+## Repeated integer `data` keys
+
+The same occurrence-by-occurrence reflected decoding now applies to top-level
+`data` keys of `Int32_V`, `UInt32_V` and `Int64_V`. Native protobuf appends
+each repeated occurrence in source order; the maintained decoder otherwise
+keeps the last key. Arrays, scalar values and `null` retain native behavior,
+while the full document still validates `header` and trailing input. A
+117-row pinned C++ fixture covers 82 accepted and 35 rejected cases across
+the three descriptors, including integer bounds, quoted numbers, permissive
+keys, commas and malformed values. All 875 prior rows and 12 prior JSON
+fixture hashes remain unchanged; the native replay now checks 992 outcomes.
+The [independent review](reviews/json-repeated-integer.json) approved the
+source and assertions after a private 992-row replay, 112 Rust tests, 270
+supplemental pairs without mismatch and an Int32 admission-removal mutant.
+The exact six-file staged gate passed on tree
+`0b3832bd5eb01f40c036324b1d20125d0131cfba`. Final metadata binding,
+the normal hook and hosted CI remain pending.
+`UInt64_V` remains outside this slice because the maintained decoder saturates
+an unquoted value above `u64::MAX` that native rejects. Other repeated fields,
+single-key scalar values, general duplicate-field behavior and MSG-02 remain
+open.

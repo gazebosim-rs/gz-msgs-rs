@@ -100,7 +100,11 @@ struct NormalizedProtoJson {
     data_ranges: Vec<(usize, usize)>,
 }
 
-fn normalize_proto_json(input: &[u8], float_data: Option<FloatWidth>) -> NormalizedProtoJson {
+fn normalize_proto_json(
+    input: &[u8],
+    float_data: Option<FloatWidth>,
+    repeated_data: bool,
+) -> NormalizedProtoJson {
     #[derive(Clone, Copy, PartialEq, Eq)]
     enum Frame {
         ObjectKey,
@@ -336,7 +340,7 @@ fn normalize_proto_json(input: &[u8], float_data: Option<FloatWidth>) -> Normali
                 frames.pop();
             }
             b':' if frames.last() == Some(&Frame::ObjectKey) => {
-                if frames.len() == 1 && data_field && float_data.is_some() {
+                if frames.len() == 1 && data_field && repeated_data {
                     data_value_start = Some(output.len() + 1);
                 }
                 *frames.last_mut().unwrap() = Frame::ObjectValue
@@ -437,12 +441,17 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 "gz.msgs.Float_V" => Some(FloatWidth::Single),
                 _ => None,
             };
+            let repeated_data = float_data.is_some()
+                || matches!(
+                    descriptor.full_name(),
+                    "gz.msgs.Int32_V" | "gz.msgs.UInt32_V" | "gz.msgs.Int64_V"
+                );
             let NormalizedProtoJson {
                 bytes: normalized,
                 patches,
                 array_ranges,
                 data_ranges,
-            } = normalize_proto_json(&input, float_data);
+            } = normalize_proto_json(&input, float_data, repeated_data);
             if data_ranges.len() > 1 {
                 // The maintained decoder keeps only the last repeated key.
                 // Decode each native repeated-field occurrence independently,
@@ -479,7 +488,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     json.end()?;
                     let values = match fragment.get_field_by_name_mut("data") {
                         Some(Value::List(values)) => values,
-                        _ => return Err("repeated data field was not a float list".into()),
+                        _ => return Err("repeated data field was not a list".into()),
                     };
                     if value.first() == Some(&b'[') {
                         for (_, index, number) in patches
@@ -490,7 +499,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                                 .get_mut(*index)
                                 .ok_or("quoted hex data index was absent")? = number.clone();
                         }
-                        array_index += 1;
+                        if float_data.is_some() {
+                            array_index += 1;
+                        }
                     } else if let Some(number) = scalar_hex {
                         *values.first_mut().ok_or("quoted hex scalar was absent")? = number;
                     }
@@ -531,7 +542,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 json.end()?;
                 match message.get_field_by_name_mut("data") {
                     Some(Value::List(values)) => *values = combined,
-                    _ => return Err("repeated data field was not a float list".into()),
+                    _ => return Err("repeated data field was not a list".into()),
                 }
                 message.encode_to_vec()
             } else {

@@ -1,0 +1,62 @@
+{
+  "author": "/root/msgs_review_fallback",
+  "author_gate": {
+    "cli_lines": [
+      463,
+      476
+    ],
+    "cli_regions": [
+      795,
+      827
+    ],
+    "exact_staged_log_sha256": "638054bf8b1fc4fad6a310e9a337abccd1666b62b3d1c6f54fd3a0c7e8ad006b",
+    "production_lines": [
+      2228,
+      2242
+    ],
+    "production_regions": [
+      3575,
+      3619
+    ],
+    "rust_tests": 112
+  },
+  "base_commit": "0d267506915119344467a56956ddb4408777158c",
+  "checks": [
+    "Exact six staged hashes, tree and binary diff match manifest; no unstaged delta.",
+    "Only descriptor-specific repeated-data admission and generic list error text changed in production; old Double_V/Float_V behavior and all 875 prior native rows are retained.",
+    "Each duplicate occurrence is decoded through the maintained descriptor, combined in order, then the complete sanitized document is decoded to validate other fields and trailing input. Empty/malformed duplicate values reject; integer range and quoted-number rows match native status and full wire bytes.",
+    "UInt64_V remains excluded: exploratory admission saturates a native-rejected overflow. No broad JSON grammar, diagnostics or unrelated descriptor claim."
+  ],
+  "decision": "approved",
+  "files_sha256": {
+    "docs/EVIDENCE.md": "18b1ec619d092b7b411b81be2aaeea4f34ae9ba3b5e8914afa23f6dd83c0c607",
+    "docs/JSON_FRAMING.md": "49b95e3bb7d943abc01805c3701d2ebd6486d84594c4f1213d17f618af78c473",
+    "scripts/json-reference.py": "a05cb40983e1188ece9457ba7e5b9c8d943cf86438bb0f9a9be807faf7f0d5d5",
+    "src/bin/gz-msgs.rs": "0cfea4f518250ae4f014a31fb194d9eac315597044a856886ac1bca2e243402e",
+    "tests/cli.rs": "460ca7e8fa23a4608f28e9021e3986e952f4db3cfc29a5c36db586fbd5fae217",
+    "tests/fixtures/json-repeated-integer-data.json": "faaf668a6583ec4e0e5437d4aeac53b7fc2f90fff8acbc04ecf47bb642135f88"
+  },
+  "limits": "Source/test/native script and 117-row fixture are approved only for this bounded slice. Prior historical prose saying older hooks were pending may be corrected metadata-only with exact source hashes preserved. Final metadata binding, normal hook, public push and hosted qualification remain pending.",
+  "proposal_sha256": "c7df2f750f747a9c3df43548162f3dbbcd60b980cf20bf1564128f56d27a941c",
+  "reviewer": "/root/transport_fallback",
+  "reviewer_evidence": {
+    "differential_sha256": "970e46a97c676ff768bbcdb963002e662e6aa17e40e90fe55d38f43dbee126f5",
+    "exclusive_cargo_target": true,
+    "full_log_sha256": "fe3d289002440fd9baf19b420312cbe7ef4e6665e9fa3cd2db0e719cc000161c",
+    "full_rust": "112 passed, zero failed",
+    "independent_differential": "270 duplicate-pair cases across three descriptors, 90 native accepted, zero status or wire mismatches",
+    "mutant_log_sha256": "bb633586e67f047eb5182919c422eb35c522f8fe60b55d65fc9b1ce1551b48b9",
+    "native_proof_sha256": "353113cdad30f98b09c03b4f7e62b6f280f508d184503b341b597f9b09dbc081",
+    "native_replay_cases": 992,
+    "new_native_accepted": 82,
+    "new_rows": 117,
+    "prior_native_rows_unchanged": 875,
+    "private_int32_admission_removal_mutant": "0/1; exact two_arrays native wire [18,2,1,2] became [18,1,2]",
+    "private_raw_base_export_with_exact_six_staged_files": true,
+    "selected_log_sha256": "2a6d16e682089aeaee90fbf6b3a68dff53ec8bf7612ab497a2c7481cfed457c0",
+    "selected_rust": "1 passed, zero failed"
+  },
+  "scope": "Top-level duplicate data keys for Int32_V, UInt32_V and Int64_V only; each occurrence appended in native order. UInt64_V and other repeated fields excluded.",
+  "staged_diff_sha256": "8170dc16f3a9f50b0a505d8090a0a63e8eeb4eef0a454bd117a82cf30ecf8bcc",
+  "staged_tree": "0b3832bd5eb01f40c036324b1d20125d0131cfba"
+}

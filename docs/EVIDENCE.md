@@ -1709,8 +1709,9 @@ tests, 2,656 supplemental numeric/quote variants with no mismatch and a
 descriptor-disable mutant. The copied
 [semantic receipt](reviews/json-quoted-hex.json) binds all eight source files,
 the ten retained fixture hashes and the independent proof. Final metadata
-binding, normal hook and hosted qualification remain pending. This candidate
-does not complete MSG-02.
+binding and the normal hook passed on public commit
+`1c3c0b802cd17fd8c1f49fac4370db3103ba9028`; hosted run `40216034480`
+passed. This candidate does not complete MSG-02.
 
 ## Bounded repeated float `data` keys
 
@@ -1737,7 +1738,37 @@ The [independent review](reviews/json-repeated-data.json) approved this
 bounded source after a private 875-row native replay, all 111 Rust tests,
 1,170 additional variants with no mismatch and an append-removal mutant that
 fails the original two-decimal wire assertion. The superseded first candidate
-is excluded from the approval. Final metadata binding, normal hook and hosted
-qualification remain pending.
+is excluded from the approval. Final metadata binding and the normal hook
+passed on public commit `0d267506915119344467a56956ddb4408777158c`;
+hosted run `40218476323` passed.
 Other descriptor types and broader duplicate-field/JSON behavior remain
 MSG-02 work.
+
+## Bounded repeated integer `data` keys
+
+The same reflected occurrence decoder now appends duplicate top-level `data`
+values for `Int32_V`, `UInt32_V` and `Int64_V`. This adds no integer parser:
+the maintained decoder still validates each value and the complete document.
+The pinned C++ probe recorded 117 rows, with 82 accepted and 35 rejected,
+covering arrays, scalars, nulls, three keys, header preservation, native
+permissive syntax, type bounds and malformed input. All 875 prior rows and
+12 fixture hashes remain unchanged; the native replay checks 992 outcomes.
+A separate 495-case boundary differential across these three types found zero
+acceptance or wire mismatch. The strict working gate passed 112 Rust tests,
+the retained native C++ controls, formatting, Clippy, downstream checks and
+>95% coverage. Measured production coverage is 2228/2242 lines and
+3575/3619 regions; the CLI has 463/476 lines and 795/827 regions. The log
+SHA256 is `53ee727497bd26d8012a9fc6284cbd56419c851f080536ff517ec6abadaaaa03`.
+An isolated source/target mutant that removes `Int32_V` admission fails the
+first native wire assertion, `[1]` plus `[2]`, as expected. The
+[independent review](reviews/json-repeated-integer.json) approved the six
+frozen source files after a private raw export and 992-row native replay,
+112 Rust tests, 270 further duplicate pairs without mismatch, and a separate
+Int32 admission mutant. The exact six-file staged gate passed on tree
+`0b3832bd5eb01f40c036324b1d20125d0131cfba` with log SHA256
+`638054bf8b1fc4fad6a310e9a337abccd1666b62b3d1c6f54fd3a0c7e8ad006b`.
+`UInt64_V` remains pending: the maintained
+decoder saturates an unquoted integer above `u64::MAX`, while native rejects
+it. Single-key scalar values, other repeated types, broader JSON grammar and
+MSG-02 acceptance remain open. Final metadata binding, the normal hook and
+hosted qualification remain pending for this candidate.

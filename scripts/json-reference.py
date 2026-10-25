@@ -19,6 +19,7 @@ negative_zero = json.loads((root / 'tests/fixtures/json-negative-zero.json').rea
 vtff = json.loads((root / 'tests/fixtures/json-vtff-whitespace.json').read_text())
 quoted_hex = json.loads((root / 'tests/fixtures/json-quoted-hex.json').read_text())
 repeated_data = json.loads((root / 'tests/fixtures/json-repeated-data.json').read_text())
+repeated_integer = json.loads((root / 'tests/fixtures/json-repeated-integer-data.json').read_text())
 version = subprocess.check_output(['pkg-config', '--modversion', 'protobuf'], text=True).strip()
 assert version == fixture['native_protobuf']
 assert version == grammar['native_protobuf']
@@ -32,6 +33,7 @@ assert version == negative_zero['native_protobuf']
 assert version == vtff['native_protobuf']
 assert version == quoted_hex['native_protobuf']
 assert version == repeated_data['native_protobuf']
+assert version == repeated_integer['native_protobuf']
 subprocess.run(['python3', str(root / 'scripts/native-peer.py')], check=True)
 assert hashlib.sha256((root / 'tests/protobuf_peer.cc').read_bytes()).hexdigest() == escaped_bytes['probe_source_sha256']
 assert hashlib.sha256((root / 'target/native/protobuf-peer').read_bytes()).hexdigest() == escaped_bytes['probe_binary_sha256']
@@ -47,6 +49,8 @@ assert hashlib.sha256((root / 'tests/protobuf_peer.cc').read_bytes()).hexdigest(
 assert hashlib.sha256((root / 'target/native/protobuf-peer').read_bytes()).hexdigest() == quoted_hex['probe_binary_sha256']
 assert hashlib.sha256((root / 'tests/protobuf_peer.cc').read_bytes()).hexdigest() == repeated_data['probe_source_sha256']
 assert hashlib.sha256((root / 'target/native/protobuf-peer').read_bytes()).hexdigest() == repeated_data['probe_binary_sha256']
+assert hashlib.sha256((root / 'tests/protobuf_peer.cc').read_bytes()).hexdigest() == repeated_integer['probe_source_sha256']
+assert hashlib.sha256((root / 'target/native/protobuf-peer').read_bytes()).hexdigest() == repeated_integer['probe_binary_sha256']
 for name, expected in quoted_hex['prior_fixture_sha256'].items():
     assert hashlib.sha256((root / 'tests/fixtures' / f'{name}.json').read_bytes()).hexdigest() == expected, name
 assert len(quoted_hex['rows']) == quoted_hex['baseline_cases'] + quoted_hex['boundary_cases'] == 216
@@ -54,7 +58,11 @@ assert len(quoted_hex['repeated_data_pending']) == 2
 for name, expected in repeated_data['prior_fixture_sha256'].items():
     assert hashlib.sha256((root / name).read_bytes()).hexdigest() == expected, name
 assert len(repeated_data['rows']) == 66
-rows = fixture['matching'] + fixture['native_permissive_grammar_pending'] + grammar['rows'] + arrays['rows'] + single_quotes['matching'] + single_quotes['native_permissive_pending'] + raw_controls['matching'] + raw_controls['rejected'] + escaped_bytes['matching'] + escaped_bytes['rejected'] + escaped_utf8['matching'] + escaped_utf8['rejected'] + trailing_dot['scalar_rows'] + trailing_dot['composite_rows'] + trailing_dot['fraction_or_exponent_rejected'] + trailing_dot['native_permissive_pending'] + negative_zero['scalar_rows'] + negative_zero['composite_rows'] + negative_zero['native_permissive_pending'] + vtff['rows'] + quoted_hex['rows'] + quoted_hex['repeated_data_pending'] + repeated_data['rows']
+assert len(repeated_integer['rows']) == 117
+assert repeated_integer['types'] == ['Int32_V', 'UInt32_V', 'Int64_V']
+for name, expected in repeated_integer['prior_fixture_sha256'].items():
+    assert hashlib.sha256((root / name).read_bytes()).hexdigest() == expected, name
+rows = fixture['matching'] + fixture['native_permissive_grammar_pending'] + grammar['rows'] + arrays['rows'] + single_quotes['matching'] + single_quotes['native_permissive_pending'] + raw_controls['matching'] + raw_controls['rejected'] + escaped_bytes['matching'] + escaped_bytes['rejected'] + escaped_utf8['matching'] + escaped_utf8['rejected'] + trailing_dot['scalar_rows'] + trailing_dot['composite_rows'] + trailing_dot['fraction_or_exponent_rejected'] + trailing_dot['native_permissive_pending'] + negative_zero['scalar_rows'] + negative_zero['composite_rows'] + negative_zero['native_permissive_pending'] + vtff['rows'] + quoted_hex['rows'] + quoted_hex['repeated_data_pending'] + repeated_data['rows'] + repeated_integer['rows']
 for row in rows:
     result = subprocess.run([str(root / 'target/native/protobuf-peer'), str(root / 'target/native/messages.pb'), row.get('type', 'gz.msgs.Time'), 'encode-json'], input=bytes.fromhex(row['input_hex']), capture_output=True)
     assert result.returncode == row['cpp_status'] and result.stdout.hex() == row['cpp_stdout_hex'], row
@@ -70,7 +78,8 @@ proof = dict(protobuf_version=version, cases=len(rows), matching_cases=len(fixtu
              vtff_cases=len(vtff['rows']), vtff_fixture_sha256=sha(root / 'tests/fixtures/json-vtff-whitespace.json'),
              quoted_hex_cases=len(quoted_hex['rows']), quoted_hex_repeated_data_pending=len(quoted_hex['repeated_data_pending']), quoted_hex_fixture_sha256=sha(root / 'tests/fixtures/json-quoted-hex.json'),
              repeated_data_cases=len(repeated_data['rows']), repeated_data_fixture_sha256=sha(root / 'tests/fixtures/json-repeated-data.json'),
+             repeated_integer_cases=len(repeated_integer['rows']), repeated_integer_fixture_sha256=sha(root / 'tests/fixtures/json-repeated-integer-data.json'),
              probe_source_sha256=sha(root / 'tests/protobuf_peer.cc'), probe_binary_sha256=sha(root / 'target/native/protobuf-peer'))
 args.output.parent.mkdir(parents=True, exist_ok=True)
 args.output.write_text(json.dumps(proof, indent=2) + '\n')
-print(f'{len(rows)} native JSON outcomes reproduced: 809 retained rows and {len(repeated_data["rows"])} repeated-key rows')
+print(f'{len(rows)} native JSON outcomes reproduced: 875 retained rows and {len(repeated_integer["rows"])} integer rows')
