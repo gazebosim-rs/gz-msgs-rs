@@ -470,7 +470,7 @@ passed.
 The pinned protobuf 3.21.12 [numeric lexer](https://github.com/protocolbuffers/protobuf/blob/v3.21.12/src/google/protobuf/util/internal/json_stream_parser.cc)
 starts a number at an ASCII digit or `-`, scans digits plus `.`, `e`, `E`,
 `+`, `-` and `x`, and stops at other letters. A dot or `e`/`E` selects
-`safe_strtod`; undotted positive `0x` is rejected. Its
+`safe_strtod`; undotted positive `0x` without an `e`/`E` digit is rejected. Its
 [UInt64 conversion](https://github.com/protocolbuffers/protobuf/blob/v3.21.12/src/google/protobuf/util/internal/datapiece.cc)
 checks the parsed double's integer conversion. The bounded corpus confirms
 that this path accepts some unquoted hexadecimal
@@ -479,7 +479,7 @@ digits or `e`/`E` before a dot, and an integral finite result below `2^64`.
 Here `e` and `E` are hex digits: native accepts `0xe.` and `0x7e1.`. It
 rejects an undotted `0x7`, alphabetic digits other than `e`/`E` on either
 side of the dot, uppercase `0X`, signs, `p` exponents and fractional results.
-The undotted `0xe` and `0x7e1` are native-positive but remain explicit gaps.
+At that review checkpoint, the undotted `0xe` and `0x7e1` were explicit gaps.
 The allowed fractional digits can round away, as `0x7.000000000000001`
 and a larger `0x9878635522291.e1` do in the pinned native parser.
 
@@ -504,5 +504,31 @@ JSON grammar, diagnostics and MSG-02 acceptance remain open. The exact
 six-file staged gate passed with 2356/2368 root lines and 3816/3857 regions;
 the [independent review](reviews/json-uint64-unquoted-hex.json) approved the
 bounded mapping after a private 1,690-row native replay and numeric-boundary
-controls. Final metadata binding, the normal hook and hosted qualification
-remain pending.
+controls. The protected normal hook passed on public `387b859d0ca7b43555b5ef7d7a1d5db0711b8420`;
+hosted run `40236392686` passed.
+
+## UInt64 undotted hexadecimal values containing e/E
+
+The pinned protobuf 3.21.12 numeric lexer selects its double conversion when
+the scanned number contains `e` or `E`, even without a dot. For a lowercase
+`0x` token, those bytes can be hexadecimal mantissa digits. Native therefore
+accepts `0xe`, `0x7e1`, and matching uppercase-`E` digits, but rejects an
+undotted `0x7`, other alphabetic hex digits, an uppercase `0X` prefix, signs,
+and trailing exponent syntax such as `0x1e+0`. The adapter extends only the
+existing `UInt64_V.data` value-start guard: an undotted token requires an
+`e`/`E` digit, then the same pinned `fhex 2.0.2` finite, integral and
+`<2^64` check. Quoted values and other descriptors are unchanged.
+
+The new 152-row scalar, array, duplicate and nested fixture records 76 native
+accepted and 76 rejected outcomes. It preserves all 1,690 earlier rows and
+the 18 earlier fixture hashes. The two old undotted gap rows remain
+byte-identical historical observations and now require exact native status and
+wire parity. The combined native replay checks 1,842 outcomes. Broader
+protobuf JSON grammar, diagnostics and MSG-02 acceptance remain open.
+
+The exact six-file staged verifier passed 118 Rust tests with 2364/2376 root
+lines and 3827/3868 regions. The
+[independent review](reviews/json-uint64-undotted-hex.json) approved this
+bounded source and fixture after a private 1,842-row native replay and a
+failing undotted-branch mutant. The normal protected hook and hosted CI remain
+pending.

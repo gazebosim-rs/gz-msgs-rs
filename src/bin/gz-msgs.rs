@@ -107,12 +107,22 @@ fn proto_uint64_hex(value: &[u8]) -> Option<(usize, u64)> {
     {
         end += 1;
     }
-    if end == 2 || value.get(end) != Some(&b'.') {
+    if end == 2 {
         return None;
     }
-    end += 1;
-    // The protobuf number lexer stops at a-f/A-F even though strtod would
-    // accept them as hex digits. Only e/E remain in the numeric token.
+    // Protobuf's number lexer selects its double conversion for e/E even
+    // without a dot. In a lowercase 0x token those bytes are hex digits.
+    // A bare hex integer with neither marker stays on the rejected path.
+    let has_exponent_marker = value[2..end].iter().any(|byte| matches!(byte, b'e' | b'E'));
+    let dotted = value.get(end) == Some(&b'.');
+    if !dotted && !has_exponent_marker {
+        return None;
+    }
+    if dotted {
+        end += 1;
+    }
+    // The protobuf number lexer stops at alphabetic hex digits other than
+    // e/E even though strtod would accept them.
     while value
         .get(end)
         .is_some_and(|byte| byte.is_ascii_digit() || matches!(*byte, b'e' | b'E'))

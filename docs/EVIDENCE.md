@@ -1917,10 +1917,36 @@ token-spelling and value-start guards. Pinned protobuf 3.21.12
 alphabetic hex digits, then `DataPiece::ToUint64` checks the floating
 conversion. The first source freeze overaccepted `10x7.`; the second missed
 native-positive `0xe.` and `0x7e1.`. Both are
-excluded. Undotted `0xe` and `0x7e1` remain native-only gaps. Other
+excluded. At that checkpoint, undotted `0xe` and `0x7e1` were native-only gaps. Other
 descriptors and general JSON parsing are unchanged. The exact six-file staged
 gate passed with 2356/2368 root lines and 3816/3857 regions. The
 [independent review](reviews/json-uint64-unquoted-hex.json) approved the
 bounded mapping after a separate 1,690-row native replay and explicit
-undotted-gap checks. Final metadata binding, the normal protected hook and
-hosted CI remain pending.
+undotted-gap checks. The normal protected hook passed on public
+`387b859d0ca7b43555b5ef7d7a1d5db0711b8420`, and hosted run `40236392686`
+passed.
+
+## Bounded UInt64 undotted e/E hexadecimal controls
+
+Pinned protobuf 3.21.12 scans `e`/`E` in an undotted lowercase `0x` numeric
+token and selects `safe_strtod`; the same byte is a hexadecimal mantissa digit.
+The `UInt64_V.data` adapter now recognizes those tokens at an admitted value
+start, using the existing pinned `fhex` conversion and finite, integral,
+`<2^64` checks. Undotted `0x7`, other alphabetic digits, uppercase `0X`,
+signs and exponent-like suffixes remain rejected. No general JSON or other
+descriptor path changes.
+
+The new fixture has 152 source-bound status and full-wire rows across scalar,
+array, duplicate and nested placements, with 76 native positives and 76
+negatives. Its 18 prior fixture hashes are exact; the native script replays all
+1,842 rows, including 1,690 retained outcomes. The old two native-only rows
+remain unchanged historical evidence and now require current parity.
+The preceding dotted-hex slice is public at `387b859d0ca7b43555b5ef7d7a1d5db0711b8420`
+and hosted run `40236392686` passed. The exact six-file staged verifier passed
+118 Rust checks with 2364/2376 root lines and 3827/3868 regions, including
+599/610 CLI lines and 1047/1076 CLI regions. An independent
+[review](reviews/json-uint64-undotted-hex.json) reproduced all 1,842 native
+outcomes in a private raw export and approved the bounded source and
+assertions; its undotted-branch mutant fails the exact `0xe` row. The normal
+hook and hosted qualification for this new slice remain pending; MSG-02 stays
+open.

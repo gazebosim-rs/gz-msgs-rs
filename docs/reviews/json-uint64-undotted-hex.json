@@ -1,0 +1,38 @@
+{
+  "decision": "approved",
+  "author": "/root/msgs_review_fallback",
+  "reviewer": "/root/transport_fallback",
+  "base": "387b859d0ca7b43555b5ef7d7a1d5db0711b8420",
+  "staged_tree": "ee93572e797ef68c764c1239c1fc4e9f31ce52be",
+  "staged_diff_sha256": "efa41cc746ee9918dde67f9928b7ac6087559f4d2188622b881805707c6d3df1",
+  "files_sha256": {
+    "docs/EVIDENCE.md": "a868b98b4c7d4cb2149f440346e4bbb98569e14bedf6f19faaf450ba6401026e",
+    "docs/JSON_FRAMING.md": "1fed117212107f26a91846c2f751bce73974b377ff37e9e3cf203446b0e79a22",
+    "scripts/json-reference.py": "24b41cdc8a4f222b7e78281ec9f35efa5989a8b7c2cd8c7ad1399714f9a5248c",
+    "src/bin/gz-msgs.rs": "8a94e30975df01b2e5ec20a383f6cd059e5151436c27412e3b68ce46fed3ccf9",
+    "tests/cli.rs": "f12d329a1d92f7783d468556c3197f537b9fa09fc0bdff00b701d0d8ea81e417",
+    "tests/fixtures/json-uint64-undotted-hex.json": "da6e587c9dbfd39f3321803a17c762149211c1bc6230deda16ab55bf296a8d6a"
+  },
+  "findings": [],
+  "scope": "Only gz.msgs.UInt64_V top-level data value starts: lowercase undotted 0x mantissa with ASCII decimal digits and at least one e/E digit, converted through pinned fhex under finite, nonnegative integral <2^64 bounds. Scalar, array, duplicate and nested values are covered. All 152 new status/full-wire rows match native; 1690 prior rows and 18 prior fixture hashes remain exact.",
+  "native": {
+    "protobuf": "3.21.12",
+    "pinned_source_audit_sha256": "1603192009896a165dbe983fbeb173d02fd8e5a6a5e39679f6539352ff27c4ab",
+    "private_full_replay": "1842/1842 exact status and stdout from separately compiled pinned C++ peer",
+    "private_full_proof_sha256": "1579a167ea3d3cecce3e5d4f5d29f8f55f507c0c1922246600047b098979c189"
+  },
+  "private_review": {
+    "source": "Private raw Git export of public base plus exact six frozen files; exclusive Cargo target. Six hashes, staged tree/diff and no unstaged diff independently verified.",
+    "selected_rust": "uint64_undotted_hex_with_e_digit_matches_native passed 1/0 in the private source and target; selected log SHA256 796f251387c1d3ecbc38db42965f3489b909328b10dce4e51f696224b2f366d0.",
+    "boundary": "120 independently chosen token/placement combinations across scalar, array, duplicate and nested forms had zero status or accepted-wire mismatch; proof SHA256 c04873d93c59fda8d418635ace353f38d38835293c77e97e8ad88b6da81bb432.",
+    "negative": "A separate private source/target removed only undotted e/E admission while retaining dotted handling; selected test failed exact native-positive uint64_undotted_016 0xe with false versus true. Log SHA256 273567ebb0039a27569ffc2dcb79a6c94c347b35937fbba76f2aaa8ae0981b7a."
+  },
+  "author_gate": {
+    "exact_staged_log_sha256": "5f179bf940c6dd1fc693c646350303ab4e1416c3fd969050afe5e56dc67fff19",
+    "result": "EXIT0; 118 Rust and five original C++ CLI tests, strict tooling and coverage; root2364/2376 lines3827/3868 regions, CLI599/610 lines1047/1076 regions."
+  },
+  "limits": [
+    "Other descriptors, quoted numeric values, general protobuf JSON grammar and pathological resource bounds remain unqualified.",
+    "Metadata-only final binding, final exact staged gate, normal protected hook, public push and hosted CI remain required."
+  ]
+}
