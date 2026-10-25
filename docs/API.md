@@ -369,15 +369,18 @@ info uses this bounded formatter after the existing factory resolves the type.
 See [the definition contract](CLI_EXTERNAL_INFO.md) for supported features, native
 qualification and CLI failure behavior.
 
-This API formats reflection metadata. The maintained loader synthesizes absent
-JSON names, so original raw omission provenance cannot be recovered from a
-`MessageDescriptor`; the CLI shares that explicit gap for hand-built descriptor
-sets without those names. The native-backed mismatch regression remains part of
-the gate. Native-layout equality uses identical reflection metadata and the
-qualified CLI corpus, not a claim of arbitrary raw-descriptor fidelity.
+The descriptor-only API formats reflection metadata; absent raw JSON names are
+synthesized by the maintained loader and cannot be recovered from a standalone
+`MessageDescriptor`. `DescriptorRegistry::definition(name)` and
+`MessageFactory::registry_definition(name)` instead retain accepted raw JSON-name
+presence with their descriptor snapshot, and the CLI uses this source-aware path.
+Duplicates and failed loads do not replace provenance. Factory definition lookup
+does not execute constructor callbacks or format their foreign descriptors.
+Canonical definitions retain their immutable cached output and explicit aliases.
+The native-backed regression keeps the descriptor-only distinction visible while
+checking the registry/factory/CLI output against the original descriptor bytes.
 
-
-The formatter now includes reserved names/ranges and C-style escaping for UTF-8
-JSON names. It preserves defined raw-range display quirks and rejects the two
-message-boundary cases whose native signed arithmetic overflows. This does not
-recover omitted JSON-name provenance or enable proto2/extension/advanced options.
+The formatter includes reserved names/ranges and C-style escaping for UTF-8 JSON
+names. It preserves defined raw-range display quirks and rejects the two message
+boundaries whose native signed arithmetic overflows. Proto2, extensions and
+advanced options remain unsupported; this is not a complete descriptor validator.

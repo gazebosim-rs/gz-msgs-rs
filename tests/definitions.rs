@@ -567,7 +567,7 @@ fn synthesized_json_names_are_an_explicit_source_provenance_gap() {
     let input = directory.0.join("omitted.desc");
     std::fs::write(&input, set.encode_to_vec()).unwrap();
     let native = native_definitions(&peer, &input);
-    let pool = DescriptorPool::from_file_descriptor_set(set).unwrap();
+    let pool = DescriptorPool::from_file_descriptor_set(set.clone()).unwrap();
     let reflected = descriptor_definition(&pool.get_message_by_name("Omitted").unwrap()).unwrap();
     assert_eq!(
         native["Omitted"],
@@ -578,4 +578,168 @@ fn synthesized_json_names_are_an_explicit_source_provenance_gap() {
         "message Omitted {\n  int32 value = 1 [json_name = \"value\"];\n}\n"
     );
     assert_ne!(reflected, native["Omitted"]);
+    let mut registry = DescriptorRegistry::default();
+    assert!(registry
+        .load_bytes(&set.encode_to_vec())
+        .unwrap()
+        .is_empty());
+    assert_eq!(
+        registry.definition("Omitted").unwrap(),
+        Some(native["Omitted"].clone())
+    );
+    let factory = gz_msgs::factory::MessageFactory::with_paths(input.as_os_str());
+    assert_eq!(
+        factory.registry_definition("Omitted").unwrap(),
+        Some(native["Omitted"].clone())
+    );
+    let output = Command::new(env!("CARGO_BIN_EXE_gz-msgs"))
+        .args(["--info", "Omitted"])
+        .env("GZ_DESCRIPTOR_PATH", &input)
+        .output()
+        .unwrap();
+    assert!(output.status.success());
+    assert!(output.stderr.is_empty());
+    assert_eq!(
+        String::from_utf8(output.stdout).unwrap(),
+        format!(
+            "Name: Omitted\nFile: omitted-name.proto\n\n{}\n",
+            native["Omitted"]
+        )
+    );
+}
+
+#[test]
+fn registry_definitions_keep_source_presence_across_duplicates_failures_and_snapshots() {
+    use gz_msgs::prost_types::{
+        DescriptorProto, FieldDescriptorProto, FileDescriptorProto, FileDescriptorSet,
+    };
+    let directory = Directory::new();
+    let peer = directory.native();
+    let file = |explicit: bool| FileDescriptorProto {
+        name: Some("presence.proto".into()),
+        package: Some("presence".into()),
+        syntax: Some("proto3".into()),
+        message_type: vec![DescriptorProto {
+            name: Some("Outer".into()),
+            nested_type: vec![DescriptorProto {
+                name: Some("Inner".into()),
+                field: [None, Some(""), Some("third")]
+                    .into_iter()
+                    .enumerate()
+                    .map(|(i, json)| FieldDescriptorProto {
+                        name: Some(["first", "second", "third"][i].into()),
+                        number: Some(i as i32 + 1),
+                        r#type: Some(5),
+                        label: Some(1),
+                        json_name: if explicit {
+                            Some(format!("explicit{i}"))
+                        } else {
+                            json.map(str::to_owned)
+                        },
+                        ..Default::default()
+                    })
+                    .collect(),
+                ..Default::default()
+            }],
+            ..Default::default()
+        }],
+        ..Default::default()
+    };
+    let encode = |file| FileDescriptorSet { file: vec![file] }.encode_to_vec();
+    for explicit in [false, true] {
+        let original = file(explicit);
+        let input = directory.0.join("presence.desc");
+        std::fs::write(&input, encode(original.clone())).unwrap();
+        let native = native_definitions(&peer, &input);
+        let mut registry = DescriptorRegistry::default();
+        assert!(
+            registry.load_bytes(&encode(original)).unwrap().is_empty(),
+            "explicit={explicit}"
+        );
+        let snapshot = registry.clone();
+        assert!(registry
+            .load_bytes(&encode(file(!explicit)))
+            .unwrap()
+            .is_empty());
+        for (name, body) in native {
+            assert_eq!(registry.definition(&name).unwrap(), Some(body.clone()));
+            assert_eq!(snapshot.definition(&name).unwrap(), Some(body));
+        }
+        assert_eq!(registry.definition("absent").unwrap(), None);
+    }
+    let mut registry = DescriptorRegistry::default();
+    let mut failed = file(false);
+    failed.dependency.push("missing.proto".into());
+    assert_eq!(registry.load_bytes(&encode(failed)).unwrap().len(), 1);
+    assert_eq!(registry.definition("presence.Outer").unwrap(), None);
+    let snapshot = registry.clone();
+    let accepted = file(true);
+    let input = directory.0.join("accepted.desc");
+    std::fs::write(&input, encode(accepted.clone())).unwrap();
+    assert!(registry.load_bytes(&encode(accepted)).unwrap().is_empty());
+    for (name, body) in native_definitions(&peer, &input) {
+        assert_eq!(registry.definition(&name).unwrap(), Some(body));
+        assert_eq!(snapshot.definition(&name).unwrap(), None);
+    }
+}
+
+#[test]
+fn registry_definition_does_not_execute_registered_constructors() {
+    assert_eq!(
+        DescriptorRegistry::default()
+            .definition("gz.msgs.Clock")
+            .unwrap()
+            .as_deref(),
+        gz_msgs::message_definition("gz.msgs.Clock")
+    );
+    let factory = gz_msgs::factory::MessageFactory::with_paths("");
+    factory.register("gz.msgs.Clock", || {
+        panic!("definition executed constructor")
+    });
+    factory.register("custom", || panic!("definition executed constructor"));
+    for name in [
+        "gz.msgs.Clock",
+        "gz_msgs.Clock",
+        ".gz.msgs.Clock",
+        ".gz_msgs.Clock",
+    ] {
+        assert_eq!(
+            factory.registry_definition(name).unwrap().as_deref(),
+            gz_msgs::message_definition("gz.msgs.Clock")
+        );
+    }
+    for name in ["custom", "absent", ".custom"] {
+        assert_eq!(factory.registry_definition(name).unwrap(), None);
+    }
+}
+
+#[test]
+fn source_definitions_preserve_omissions_in_maps_oneofs_and_optional_fields() {
+    use gz_msgs::prost_types::{DescriptorProto, FileDescriptorSet};
+    fn omit(message: &mut DescriptorProto) {
+        for field in &mut message.field {
+            field.json_name = None;
+        }
+        for nested in &mut message.nested_type {
+            omit(nested);
+        }
+    }
+    let directory = Directory::new();
+    let peer = directory.native();
+    let mut set =
+        FileDescriptorSet::decode(include_bytes!("fixtures/definitions/supported.desc").as_slice())
+            .unwrap();
+    for file in &mut set.file {
+        for message in &mut file.message_type {
+            omit(message);
+        }
+    }
+    let bytes = set.encode_to_vec();
+    let input = directory.0.join("omissions.desc");
+    std::fs::write(&input, &bytes).unwrap();
+    let mut registry = DescriptorRegistry::default();
+    assert!(registry.load_bytes(&bytes).unwrap().is_empty());
+    for (name, body) in native_definitions(&peer, &input) {
+        assert_eq!(registry.definition(&name).unwrap(), Some(body), "{name}");
+    }
 }

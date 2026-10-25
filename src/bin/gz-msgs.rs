@@ -50,7 +50,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             if let Some(text) = gz_msgs::message_info(descriptor.full_name()) {
                 print!("{text}");
             } else {
-                let text = gz_msgs::descriptor_definition(&descriptor)?;
+                let text = factory
+                    .registry_definition(descriptor.full_name())?
+                    .ok_or("external descriptor source unavailable")?;
                 print!(
                     "Name: {}\nFile: {}\n\n{text}\n",
                     descriptor.full_name(),

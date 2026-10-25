@@ -4,12 +4,14 @@
 use crate::{
     prost::{DecodeError, Message},
     prost_reflect::{DescriptorError, DescriptorPool, DynamicMessage, ReflectMessage},
-    prost_types::FileDescriptorSet,
+    prost_types::{DescriptorProto, FileDescriptorProto, FileDescriptorSet},
 };
 use std::{
+    collections::BTreeSet,
     ffi::OsStr,
     io,
     path::{Path, PathBuf},
+    sync::Arc,
 };
 
 /// A canonical descriptor snapshot extended by caller-supplied descriptor sets.
@@ -17,17 +19,29 @@ use std::{
 #[derive(Clone)]
 pub struct DescriptorRegistry {
     pool: DescriptorPool,
+    json_omissions: Arc<BTreeSet<String>>,
 }
 impl Default for DescriptorRegistry {
     fn default() -> Self {
         Self {
             pool: crate::descriptors().clone(),
+            json_omissions: Arc::default(),
         }
     }
 }
 impl DescriptorRegistry {
     pub fn pool(&self) -> &DescriptorPool {
         &self.pool
+    }
+    /// Format a registry-owned descriptor with accepted raw JSON-name provenance.
+    pub fn definition(&self, name: &str) -> Result<Option<String>, crate::DefinitionError> {
+        let Some(descriptor) = self.pool.get_message_by_name(name) else {
+            return Ok(None);
+        };
+        if let Some(body) = crate::message_definition(descriptor.full_name()) {
+            return Ok(Some(body.to_owned()));
+        }
+        crate::definition::definition_with_omissions(&descriptor, &self.json_omissions).map(Some)
     }
     /// Load a platform-separated list of explicit paths or directories.
     /// Return path-associated IO/descriptor errors without printing diagnostics.
@@ -113,10 +127,36 @@ impl DescriptorRegistry {
                 .as_message()
                 .expect("FileDescriptorProto")
                 .encode_to_vec();
-            if let Err(error) = self.pool.decode_file_descriptor_proto(bytes.as_slice()) {
-                errors.push(error);
+            let raw = FileDescriptorProto::decode(bytes.as_slice())?;
+            let existed = self.pool.get_file_by_name(raw.name()).is_some();
+            match self.pool.decode_file_descriptor_proto(bytes.as_slice()) {
+                Err(error) => errors.push(error),
+                Ok(()) if !existed => {
+                    let mut omissions = BTreeSet::new();
+                    for message in &raw.message_type {
+                        missing_json_names(raw.package(), message, &mut omissions);
+                    }
+                    Arc::make_mut(&mut self.json_omissions).extend(omissions);
+                }
+                Ok(()) => {}
             }
         }
         Ok(errors)
+    }
+}
+
+fn missing_json_names(prefix: &str, message: &DescriptorProto, missing: &mut BTreeSet<String>) {
+    let name = if prefix.is_empty() {
+        message.name().to_owned()
+    } else {
+        format!("{prefix}.{}", message.name())
+    };
+    for field in &message.field {
+        if field.json_name.is_none() {
+            missing.insert(format!("{name}.{}", field.name()));
+        }
+    }
+    for child in &message.nested_type {
+        missing_json_names(&name, child, missing);
     }
 }

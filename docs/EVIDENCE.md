@@ -1144,3 +1144,47 @@ reviewer-only probe compile correction and restored candidate bytes, distinguish
 focused checks from the author's full 96-check gate, and retains the raw-name
 provenance/advanced-grammar limits. Matching final metadata and normal exact
 staged/hosted qualification remain required.
+
+## Source-aware external definitions
+
+The registry now retains only accepted raw JSON-name omission metadata alongside
+its descriptor pool. `DescriptorRegistry::definition` binds formatting to that
+snapshot; `MessageFactory::registry_definition` clones it under the lock and
+formats outside the lock without executing constructor callbacks. Canonical
+cached definitions and aliases retain precedence. The CLI uses this source-aware
+path. The standalone descriptor formatter remains a normalized reflection view,
+and its native-backed mismatch assertion remains visible rather than rewritten.
+
+New native comparisons cover omitted/explicit empty/default names, nested fields,
+maps, oneofs and optional fields. Both duplicate load orders preserve the first
+accepted file; failed imports cannot poison a later accepted file; clones retain
+their matching descriptor/provenance snapshots. Existing custom-option retention
+and ordered retry tests pass, since original reflective bytes still feed the pool.
+An initial supplemental fixture used repeated explicit JSON names and was rejected
+by reflection; the corrected unique-name fixture is retained with the earlier
+failure log in ignored evidence. No production behavior or assertion was weakened.
+
+The full working gate passes 99 Rust checks (98 harness tests plus the standalone
+environment executable), six snapshot regressions, archive QA, clean downstream
+and owned-patch gates. Root handwritten production measures 1763/1766 lines and
+2815/2834 regions; the two owned vendor patches add 15/15 lines and 36/36 regions,
+for 1778/1781 owned lines and 2851/2870 regions. Registry/factory/formatter/CLI
+files each exceed both 95% thresholds. All 27 previously qualified native CLI
+rows and all 271 same-metadata dynamic definitions remain tested. Independent
+review and exact staged/hosted qualification are pending. Advanced descriptor
+features, broader CLI/loading/install/performance scope and MSG-02 remain open;
+all 83 reviewed original mappings remain unchanged.
+
+Independent /root/transport_recovery approved staged 8d71cb2c/tree 275209ce.
+It raw-exported and verified all 667 blobs into private source/target directories,
+passed all 20 definition/factory/registry checks and a supplementary rollback,
+constructor-collision and actual native CLI omission matrix. Fresh native replay
+reproduced the complete 27-row proof with identical bindings. It reviewed new-file
+acceptance, failed-build rollback, duplicate filtering, COW snapshots, by-name
+source binding and factory lock release. The authored
+[receipt](reviews/source-aware-definitions.json) records a reviewer
+reference-link setup race and overwritten initial log honestly; corrected replay
+passed without changing producer source or targets. Focused independent evidence
+is distinct from the author's full 99-check/coverage gate. The descriptor-only
+normalized view and remaining advanced-feature limits remain explicit. Final
+metadata binding, normal strict staged hook and hosted qualification are required.

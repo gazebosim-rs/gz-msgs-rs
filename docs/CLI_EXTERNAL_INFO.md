@@ -34,20 +34,32 @@ The pinned [protobuf source](https://github.com/protocolbuffers/protobuf/blob/v2
 and native-backed controls bind that boundary. Invalid message starts are also
 rejected; these checks do not constitute a complete descriptor validator.
 
-The API formats the metadata exposed by reflection. Its loader synthesizes a
-JSON name when the raw field omitted one, losing that omission provenance. A
-hand-built descriptor set without JSON names can therefore produce extra
-`json_name` options compared with native loading of those original bytes; the
-CLI currently shares this known gap. A native-backed regression preserves the
-difference explicitly. The 271-definition differential instead supplies exactly
-the reflection metadata to both formatters. The 27 qualified CLI rows include
-the unchanged upstream binary fixture and encoded JSON-name metadata. Arbitrary
-raw-omission fidelity requires a separate descriptor-provenance extension.
+The descriptor-only API formats metadata exposed by reflection. Its loader
+synthesizes a JSON name when the raw field omitted one; that omission cannot be
+recovered from a standalone `MessageDescriptor`. The native-backed regression
+retains this distinction explicitly. The 271-definition differential supplies
+identical reflection metadata to both formatters.
+
+`DescriptorRegistry::definition(name)` instead formats the registry's own accepted
+raw descriptor metadata. It preserves omitted versus explicit JSON names, including
+empty/default names and nested/map/oneof fields. Metadata is added only after a
+new file loads successfully; ignored duplicate filenames and failed imports cannot
+change it. Clones retain the matching pool and source-metadata snapshot. The
+canonical cached corpus retains precedence. This does not expose a general raw
+source serializer or enable unsupported descriptor features.
+
+`MessageFactory::registry_definition(name)` applies the existing Gazebo aliases,
+then uses that source-aware registry snapshot. It does not invoke registered
+constructor callbacks: callback-produced foreign descriptors have no registry
+source identity. Canonical lookup stays lazy, and external formatting occurs
+outside the factory lock. The CLI uses this source-aware path after resolving the
+external message; hand-built raw JSON-name omissions now match native output in
+the supported subset.
 
 The CLI `--info`, `-i` and `info` paths keep the canonical cached output, headings,
 alias policy, missing-name continuation and zero exit behavior. For other names,
 they use the existing lazy `MessageFactory` and its accepted external descriptors,
-then this formatter. A supported external type has native Name/File headings and
+then the source-aware registry formatter. A supported external type has native Name/File headings and
 a complete body. An unsupported known external definition exits nonzero with its
 feature diagnostic before printing that type; earlier types may already have
 printed and later types are not processed. This explicit limit differs from the
@@ -64,7 +76,9 @@ external serialization are not qualified by this formatter.
 `tests/definitions.rs` compares all 271 canonical dynamic message descriptors with
 a freshly compiled C++ protobuf peer, checks supported custom descriptors and
 the unchanged upstream binary fixture, asserts explicit errors, regenerates
-descriptor fixtures and tests 27 complete CLI rows.
+descriptor fixtures and tests 27 complete CLI rows. Additional freshly compiled
+native comparisons cover raw JSON-name presence, failed/duplicate loads, snapshot
+lifetimes and omitted names in map/oneof/optional fields.
 `scripts/definition-reference.py` independently replays those 27 native CLI rows,
 regenerates fixtures and binds the upstream commit, source/binary/libraries,
 schema manifest, peer and fixture hashes. Unsupported rows capture native output

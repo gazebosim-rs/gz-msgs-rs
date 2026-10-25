@@ -1,0 +1,43 @@
+{
+  "decision": "approved",
+  "author": "/root/msgs",
+  "reviewer": "/root/transport_recovery",
+  "base": "25f7d611b553c0d4d72fcd84aec5f2cab9339712",
+  "staged_diff_sha256": "8d71cb2c19becabed817e0b3fd869b8c96cc6308c1ef35f1cc16277533588dfa",
+  "tree": "275209ce8dd546509cbe81431dcc54289a19ec52",
+  "scope": "Source-aware JSON-name omission provenance for registry-owned supported definitions and CLI opt-in. Standalone descriptor formatter remains normalized; no complete raw serializer, general descriptor validator or original retirement.",
+  "file_sha256": {
+    "docs/API.md": "7295e0fdc1a8b16e65b624d7f72c0014fb6d88377913807199632c9ca058c11e",
+    "docs/CLI_EXTERNAL_INFO.md": "c44ac1001c3e9555cb4df0964d667e4c3239b62c53a46d1519f817bad35336ab",
+    "docs/EVIDENCE.md": "b80fb660a29cd015058124b968045008453d49a88d3cd1c083224a3d461ecd9b",
+    "src/bin/gz-msgs.rs": "6800dae3493cb9527424d034e3785db178f5b6f376329471180cd263d9c55f42",
+    "src/definition.rs": "337e04db9266eea56120f4c5121efd4a22feb73729ed791b2076ea42349665b6",
+    "src/factory.rs": "ab7b1017197cb90bdb9f5e9a0e993aec75cfc529b82cac58aeaa1428fd41c2a9",
+    "src/registry.rs": "08c15791947a09467934d2d9feb8931795883706bb21e57ea767a04627a8832f",
+    "tests/definitions.rs": "188a213e73b05678fa571e95a2dc2fc07ce866690dff2aad0ef2fa1d4fc18234"
+  },
+  "independent_checks": [
+    "Raw-exported and hash-verified all 667 staged blobs into a new private source directory and separate reviewer-owned Cargo target.",
+    "All 20 focused candidate tests pass: 12 definitions, five factory and three registry tests. This includes all 271 canonical/native layouts, raw omission distinction, duplicate orders, failed import retry, cloned snapshots, nested/empty/explicit/default names, map/oneof/optional fields, existing custom-option retention and constructor behavior.",
+    "Inspected maintained pool duplicate filtering and failed-build rollback; provenance is added only after a successful new file acceptance. Derived Clone and Arc COW retain matching pool/omission snapshots, including the factory clone taken under its state lock and formatted after guard release.",
+    "Reviewed by-name binding: the formatter obtains its descriptor from that same registry, cannot be given a foreign descriptor with unrelated provenance, and keeps immutable canonical body/alias precedence. Constructor callbacks are not used by the new registry-definition method. Existing partial-success/load-order/error aggregation policy is unchanged.",
+    "Additional reviewer probe passes a deeper unresolved-type rollback then same-filename acceptance, an external accepted-schema constructor-name collision without invoking the callback, and exact stdout/stderr/status against actual native CLI for a raw-omission global-name descriptor. Retained probe source/log, exact candidate test source restored.",
+    "Fresh native script regenerates five descriptor fixtures and reproduces all 27 complete native CLI rows. Its entire proof equals author evidence including source/binary/library/schema/peer/fixture bindings."
+  ],
+  "qualifications": [
+    "Independent checks are the focused 20 tests plus one reviewer matrix and native replay above, not a rerun of author full 99 Rust, six snapshot/archives/downstream gates or coverage. Author totals 1778/1781 lines and 2851/2870 regions include the owned patch crates.",
+    "The descriptor-only API deliberately retains its native-backed normalized metadata mismatch. New raw-presence fidelity is bound to accepted registry schemas in the supported subset; no arbitrary foreign-descriptor/raw-source serialization or constructor-produced definition claim.",
+    "Proto2/extensions/advanced options, general descriptor validation and native arithmetic-overflow metadata boundaries remain explicit pending/Unsupported scope. No dependency, unsafe, runtime codec, coverage threshold/exclusion or ledger changes.",
+    "Reviewer native launch initially preceded completion of the private reference link. This was a setup failure before cases, not a feature result. Its initial full log was overwritten during a relative-path correction; captured trace/context and corrected successful replay are honestly described in reviewer-setup-note.json. No producer source/target changes occurred.",
+    "Normal exact matching staged hook and hosted qualification remain required."
+  ],
+  "artifacts": {
+    "export": "export.json",
+    "focused_tests": "tests.log",
+    "reviewer_probe": "reviewer-source-probe.rs",
+    "reviewer_probe_pass": "probe.log",
+    "native_replay": "native.log",
+    "native_proof": "snapshot/artifacts/definition-reference.json",
+    "reviewer_setup": "reviewer-setup-note.json"
+  }
+}

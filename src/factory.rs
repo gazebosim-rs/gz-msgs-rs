@@ -116,6 +116,21 @@ impl MessageFactory {
         names.extend(state.constructors.keys().cloned());
         names.into_iter().collect()
     }
+    /// Source-aware registry definition; constructor callbacks are not invoked.
+    pub fn registry_definition(
+        &self,
+        name: &str,
+    ) -> Result<Option<String>, crate::DefinitionError> {
+        let name = canonical_name(name);
+        if name.starts_with('.') {
+            return Ok(None);
+        }
+        if let Some(body) = crate::message_definition(&name) {
+            return Ok(Some(body.to_owned()));
+        }
+        let registry = self.state.lock().expect("factory state").registry().clone();
+        registry.definition(&name)
+    }
     /// Load more paths and return pending initial-path errors plus these errors.
     pub fn load_paths(&self, paths: impl AsRef<OsStr>) -> Vec<(PathBuf, io::Error)> {
         let paths = paths.as_ref();

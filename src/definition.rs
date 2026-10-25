@@ -24,11 +24,18 @@ impl std::error::Error for DefinitionError {}
 /// Unhandled metadata returns Unsupported instead of being silently omitted.
 /// The whole definition is produced before return; an error exposes no partial text.
 pub fn descriptor_definition(descriptor: &MessageDescriptor) -> Result<String, DefinitionError> {
+    definition_with_omissions(descriptor, &BTreeSet::new())
+}
+
+pub(crate) fn definition_with_omissions(
+    descriptor: &MessageDescriptor,
+    omissions: &BTreeSet<String>,
+) -> Result<String, DefinitionError> {
     if descriptor.parent_file().syntax() != Syntax::Proto3 {
         return Err(DefinitionError::Unsupported("proto2"));
     }
     let mut output = String::new();
-    message(&mut output, 0, descriptor)?;
+    message(&mut output, 0, descriptor, omissions)?;
     Ok(output)
 }
 
@@ -157,6 +164,7 @@ fn field(
     output: &mut String,
     depth: usize,
     field: &FieldDescriptor,
+    omissions: &BTreeSet<String>,
 ) -> Result<(), DefinitionError> {
     let raw = field.field_descriptor_proto();
     if raw.default_value.is_some() || field.cardinality() == Cardinality::Required {
@@ -165,7 +173,11 @@ fn field(
         ));
     }
     let mut field_options = Vec::new();
-    if let Some(name) = &raw.json_name {
+    if let Some(name) = raw
+        .json_name
+        .as_ref()
+        .filter(|_| !omissions.contains(field.full_name()))
+    {
         field_options.push(format!("json_name = {}", quoted(name)));
     }
     field_options.extend(options(field.options(), &["packed", "deprecated"])?);
@@ -251,6 +263,7 @@ fn message(
     output: &mut String,
     depth: usize,
     value: &MessageDescriptor,
+    omissions: &BTreeSet<String>,
 ) -> Result<(), DefinitionError> {
     if depth >= 100 {
         return Err(DefinitionError::Unsupported("definition nesting limit"));
@@ -274,7 +287,7 @@ fn message(
         line(output, depth + 1, format_args!("option {option};"));
     }
     for child in value.child_messages() {
-        message(output, depth + 1, &child)?;
+        message(output, depth + 1, &child, omissions)?;
     }
     for child in value.child_enums() {
         enumeration(output, depth + 1, &child)?;
@@ -288,12 +301,12 @@ fn message(
             if seen.insert(oneof.name().to_owned()) {
                 line(output, depth + 1, format_args!("oneof {} {{", oneof.name()));
                 for item in source_fields(oneof.fields()) {
-                    field(output, depth + 2, &item)?;
+                    field(output, depth + 2, &item, omissions)?;
                 }
                 line(output, depth + 1, "}");
             }
         } else {
-            field(output, depth + 1, &item)?;
+            field(output, depth + 1, &item, omissions)?;
         }
     }
     reserved(
