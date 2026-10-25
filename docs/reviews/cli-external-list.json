@@ -1,0 +1,15 @@
+{
+  "decision": "approved within valid external-descriptor listing scope",
+  "author": "/root/msgs",
+  "reviewer": "/root/transport_recovery",
+  "date": "2026-10-25T04:20:03.365480+00:00",
+  "staged_diff_sha256": "efd6fe09b200d75cb52112cfe02bde037c0dfe3164153d645e626f6bd7f050aa",
+  "tree": "08e47951cd6138a434a87f7f6907c1d28294779c",
+  "base": "873a2e2eac23aeafda45fc7d2c7574db76a66ff2",
+  "scope": "Standalone CLI list delegates to existing instance-owned MessageFactory::types. Qualified valid-descriptor name sets only; malformed diagnostics, canonical-base conflicts, arbitrary external info formatting, install/global caches and whole MSG-02 remain explicit gaps.",
+  "source_review": "Inspected exact main change and existing factory lazy path lookup/inventory behavior. No duplicate registry, new dependency, unsafe, schema change, exclusion or threshold change. Default factory inventory is sorted/deduplicated canonical plus successfully loaded external message names, including nested/map entries and canonical imports. Child process environments are explicitly set/removed in the new test; no global mutation. Native priority file and one-level directory behavior reuse existing reviewed registry semantics. Structured load errors remain available at the library API; CLI does not print them in this valid-input slice.",
+  "independent_checks": "Froze actual Git index tree 08e47951, raw-exported and OID/SHA/mode-verified all 646 blobs. Fresh distinct reviewer-owned Cargo target passes all 12 existing CLI tests plus the external-list test; five unchanged C++ CLI cases pass against the private Rust binary. External test checks all three aliases for each of 11 cases, complete sorted names/status/stderr and regenerated nested/map/import descriptor bytes. Fresh native script reproduces all 11 complete lists; entire proof equals author including upstream source/binary, linked Gazebo/protobuf libraries, schema manifest and fixture inputs. Snapshot hashes and producer staged digest reverified after build. No producer target reused.",
+  "assertion_preservation": "All previous CLI option/vector/flag/framing assertions remain; no original imported binary fixture is altered. New custom .proto has OSRF/Apache attribution and its descriptor is regenerated with protoc. Main delegates enumeration to an existing production-counted factory; removal of the old canonical-only loop is functional reuse, not an exclusion. No original mapping retired.",
+  "author_reported": "Full 87 Rust/five snapshot/archive/downstream gate passes 1460/1462 lines and 2297/2311 regions. This full coverage/package gate was not independently recomputed.",
+  "limits": "Finite valid-input Linux reference corpus; no claim of malformed-descriptor console equality, native environment-first replacement of canonical schema files, dynamic CLI info DebugString, complete cache/install/platform/format/performance behavior or full CLI grammar. Final matching metadata receipt, mandatory normal staged hook and hosted qualification remain required before publication."
+}

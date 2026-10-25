@@ -997,3 +997,43 @@ The [receipt](reviews/cli-info-vectors.json) excludes separate external-list wor
 and distinguishes this targeted replay from the author's full coverage gate.
 Final integration retains the now-public flag review metadata unchanged; matching
 strict staged and hosted checks remain required. No broad MSG-02 claim is made.
+
+## Descriptor-aware CLI listing
+
+The list command reuses the existing MessageFactory inventory to combine the
+immutable canonical base with accepted GZ_DESCRIPTOR_PATH types. This removes
+its separate canonical-only enumeration without adding a registry or dependency.
+Eleven native complete-name-set/status/stderr cases cover unset/empty paths,
+direct files, combinations/order/duplicates, directories/priority and ignored
+paths. Rust tests exercise --list, -l and list per case. Imported Time, custom
+nested types and a synthetic map entry are present. The checked source regenerates
+exact descriptor bytes through protoc. Shared canonical expected names are stored
+once; each case still compares its complete sorted output without dropping names
+or allowing duplicates. Original descriptor fixture bytes remain unchanged.
+
+Native replay binds the CLI source/commit/binary, linked Gazebo/protobuf library
+hashes, schema manifest and each fixture input. Fresh replay reproduces all eleven
+sets. The full working gate passes 87 Rust checks, five snapshot regressions,
+archive QA and the clean downstream consumer: 1460/1462 owned lines and 2297/2311
+regions. No dependency, unsafe code, original mapping or threshold/exclusion
+changes occur. The final provenance guard and factored-fixture checks are included
+in this full pass. Independent review and matching staged/hosted gates remain
+required before publication.
+
+The qualified extension is accepted descriptor names. External info formatting,
+native malformed-path diagnostics, environment-first conflicting canonical file
+redefinitions, install/global/path-cache behavior, non-UTF-8 argv and broader
+formatting/release/performance contracts remain explicit unfinished scope; see
+[the listing contract](CLI_EXTERNAL_LIST.md). No MSG-02 acceptance is claimed.
+
+Independent /root/transport_recovery approved staged efd6fe09 within the stated
+valid-descriptor scope. It verified all 646 raw blobs from index tree 08e47951,
+used a fresh private target, and passed all twelve existing CLI tests, the new
+external-list test and five unchanged C++ cases. All eleven complete native
+lists and their full proof reproduce exactly, including linked library/fixture
+hashes and the regenerated nested/map/import descriptor. It checked all three
+Rust aliases and the existing production factory reuse. The exact authored
+[receipt](reviews/cli-external-list.json) distinguishes targeted replay from the
+author's full gate and preserves diagnostic/conflict/info/install/cache limits.
+No producer target was reused. Matching final metadata, strict staged and hosted
+qualification remain required before claiming a published revision passed.

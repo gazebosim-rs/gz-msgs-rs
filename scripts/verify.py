@@ -24,6 +24,11 @@ for key in ['upstream_commit', 'native_binary_sha256', 'native_source_sha256', '
 vectors = json.loads(pathlib.Path('tests/fixtures/cli-info-vectors.json').read_text())
 for key in ['upstream_commit', 'native_binary_sha256', 'native_source_sha256', 'schema_manifest_sha256', 'native_argv0']:
     assert vectors[key] == options[key], key
+external = json.loads(pathlib.Path('tests/fixtures/cli-external-list.json').read_text())
+for key in ['upstream_commit', 'native_binary_sha256', 'native_source_sha256', 'schema_manifest_sha256', 'native_argv0']:
+    assert external[key] == options[key], key
+for item in external['inputs'].values():
+    assert hashlib.sha256(pathlib.Path(item['path']).read_bytes()).hexdigest() == item['sha256'], item['path']
 info = json.loads(pathlib.Path('schemas/cli-info.manifest.json').read_text())
 assert hashlib.sha256(pathlib.Path('schemas/cli-info.json').read_bytes()).hexdigest() == info['corpus_sha256']
 assert hashlib.sha256(pathlib.Path('schemas/manifest.json').read_bytes()).hexdigest() == info['schema_manifest_sha256']

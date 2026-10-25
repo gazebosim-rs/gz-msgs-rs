@@ -93,7 +93,9 @@ positive zero, negative zero, nonzero, NaN and proto2 extension default queries.
 Errors exit nonzero and stdout is explicitly flushed. Text/JSON use compact
 protobuf formatting. Legacy --help/-h (including no arguments), --version/-v,
 --list/-l and --info/-i TYPE... are supported. List emits the complete 271-name
-native Factory set, including imported/nested/synthetic types, sorted by name;
+native Factory set with no external paths, including imported/nested/synthetic
+types, sorted by name. [Descriptor-aware listing](CLI_EXTERNAL_LIST.md) extends
+that set with successfully loaded GZ_DESCRIPTOR_PATH types;
 native registration-map traversal order is not portable. Info accepts both canonical type
 spellings and multiple types. Info exactly reproduces pinned native Name/File
 headings and Descriptor::DebugString output, including qualified field types and

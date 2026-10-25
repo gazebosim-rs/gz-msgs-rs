@@ -22,11 +22,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         return Ok(());
     }
     if args == ["list"] || args == ["--list"] || args == ["-l"] {
-        let mut names: Vec<_> = gz_msgs::descriptors()
-            .all_messages()
-            .map(|message| message.full_name().to_owned())
-            .collect();
-        names.sort();
+        let names = gz_msgs::factory::MessageFactory::default().types();
         println!("{}", names.join("\n"));
         return Ok(());
     }
