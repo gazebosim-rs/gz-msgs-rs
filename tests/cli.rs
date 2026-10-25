@@ -288,6 +288,8 @@ fn json_requires_exactly_one_complete_document() {
         gz_msgs::serde_json::from_str(include_str!("fixtures/json-raw-controls.json")).unwrap();
     let escaped_bytes: gz_msgs::serde_json::Value =
         gz_msgs::serde_json::from_str(include_str!("fixtures/json-escaped-bytes.json")).unwrap();
+    let escaped_utf8: gz_msgs::serde_json::Value =
+        gz_msgs::serde_json::from_str(include_str!("fixtures/json-escaped-utf8.json")).unwrap();
     let raw_rows = raw_controls["matching"].as_array().unwrap();
     assert_eq!(raw_rows.len(), 64);
     assert_eq!(raw_controls["rejected"].as_array().unwrap().len(), 10);
@@ -335,6 +337,49 @@ fn json_requires_exactly_one_complete_document() {
         );
     }
     assert!(escaped_seen.into_iter().flatten().all(|value| value));
+    let utf8_matches = escaped_utf8["matching"].as_array().unwrap();
+    let utf8_rejected = escaped_utf8["rejected"].as_array().unwrap();
+    assert_eq!((utf8_matches.len(), utf8_rejected.len()), (24, 20));
+    let valid_sequences: Vec<_> = escaped_utf8["valid_sequence_hex"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .map(|value| value.as_str().unwrap().to_owned())
+        .collect();
+    let mut expected_sequences = valid_sequences.clone();
+    expected_sequences.extend(
+        escaped_utf8["invalid_sequence_hex"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .map(|value| value.as_str().unwrap().to_owned()),
+    );
+    expected_sequences.sort();
+    expected_sequences.dedup();
+    assert_eq!(expected_sequences.len(), 22);
+    let mut observed = [Vec::new(), Vec::new()];
+    for row in utf8_matches.iter().chain(utf8_rejected) {
+        let (quote_index, delimiter) = match row["quote"].as_str().unwrap() {
+            "double" => (0, b'"'),
+            "single" => (1, b'\''),
+            quote => panic!("unexpected quote {quote}"),
+        };
+        let sequence = row["sequence_hex"].as_str().unwrap();
+        assert_eq!(row["type"], "gz.msgs.StringMsg");
+        assert_eq!(
+            row["input_hex"],
+            format!("7b2264617461223a{delimiter:02x}415c{sequence}42{delimiter:02x}7d")
+        );
+        assert_eq!(
+            row["cpp_status"].as_i64().unwrap() == 0,
+            valid_sequences.iter().any(|value| value == sequence)
+        );
+        observed[quote_index].push(sequence.to_owned());
+    }
+    for actual in &mut observed {
+        actual.sort();
+        assert_eq!(*actual, expected_sequences);
+    }
     assert!(Command::new("python3")
         .arg("scripts/native-peer.py")
         .status()
@@ -407,6 +452,9 @@ fn json_requires_exactly_one_complete_document() {
         check(row, "gz.msgs.StringMsg", true);
     }
     for row in escape_rows.iter().chain(rejected_escapes) {
+        check(row, "gz.msgs.StringMsg", true);
+    }
+    for row in utf8_matches.iter().chain(utf8_rejected) {
         check(row, "gz.msgs.StringMsg", true);
     }
 }

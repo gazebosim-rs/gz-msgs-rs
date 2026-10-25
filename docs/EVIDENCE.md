@@ -1543,4 +1543,33 @@ Independent /root/transport_fallback approved the frozen source/API/assertions
 after a private 396-row replay and a separate unknown-escape mutant failure.
 The unchanged [semantic receipt](reviews/json-escaped-bytes.json) binds the six
 reviewed inputs and five retained fixture hashes. Final metadata binding,
-normal hook and hosted qualification remain pending.
+normal hook and exact hosted CI passed on public commit
+`5fa067f47273f2ac46c8af7ba27bef66b6a3251e`.
+
+## Bounded protobuf JSON escaped-UTF-8 candidate
+
+A source/binary-bound protobuf 3.21.12 probe checks 12 valid and ten malformed
+UTF-8 sequences after a backslash within each quote style of
+`StringMsg.data`. It includes scalar width boundaries, a BOM, common
+multibyte characters, isolated continuation/lead bytes, overlong encodings,
+surrogate encoding, out-of-range scalars and truncated sequences. Native
+accepts the 24 complete valid inputs, preserving full decoded bytes, and
+rejects all 20 malformed inputs. The published Rust CLI rejected all 24 valid
+rows. The selected Rust/native comparison first failed at escaped U+0080; a
+one-line lexical change consumes the slash before a non-ASCII byte and lets
+the unchanged JSON deserializer enforce UTF-8 validity. The selected test now
+passes all 440 rows.
+
+The 396 accepted earlier native rows and all six old fixtures remain
+byte-for-byte unchanged. The new 44-row fixture asserts input structure,
+native acceptance and full binary stdout; `scripts/json-reference.py` replays
+all 440 source-bound native outcomes. The exact six-file staged gate exits zero
+with 109 Rust harness checks plus FactoryLazy, five original C++ CLI tests,
+formatting, Clippy, strict coverage and negative gates; its log SHA256 is
+`53f782fc85dcac71ddfda8f3979b784cf423dc0cdda3641bdf2dc23e4b6cc93e`.
+Independent /root/transport_fallback approved the frozen source/API/assertions
+after a private 440-row replay and separate U+0080 mutant failure. The
+unchanged [semantic receipt](reviews/json-escaped-utf8.json) binds the six
+reviewed inputs and six retained fixture hashes. Final metadata binding,
+normal hook and hosted qualification remain pending. Broader protobuf
+JSON/Unicode grammar, diagnostics and MSG-02 acceptance remain open.

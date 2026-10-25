@@ -1,0 +1,387 @@
+{
+  "native_protobuf": "3.21.12",
+  "probe_source_sha256": "48835b169eb8e2e490729391718e223e8905632f2b04d2fa2facd50b2fbaf1f5",
+  "probe_binary_sha256": "16744aebb5531163dc87224e6d6cec56bba40d4d1a62035ae465342649ac540b",
+  "valid_sequence_hex": [
+    "c280",
+    "c3a9",
+    "dfbf",
+    "e0a080",
+    "e99baa",
+    "ed9fbf",
+    "ee8080",
+    "efbbbf",
+    "efbfbf",
+    "f0908080",
+    "f09f9880",
+    "f48fbfbf"
+  ],
+  "invalid_sequence_hex": [
+    "80",
+    "c0af",
+    "c2",
+    "c220",
+    "df",
+    "e08080",
+    "eda080",
+    "f48fbf",
+    "f4908080",
+    "f5808080"
+  ],
+  "matching": [
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "double",
+      "sequence_hex": "c280",
+      "input_hex": "7b2264617461223a22415cc28042227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "120441c28042"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "double",
+      "sequence_hex": "dfbf",
+      "input_hex": "7b2264617461223a22415cdfbf42227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "120441dfbf42"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "double",
+      "sequence_hex": "e0a080",
+      "input_hex": "7b2264617461223a22415ce0a08042227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "120541e0a08042"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "double",
+      "sequence_hex": "ed9fbf",
+      "input_hex": "7b2264617461223a22415ced9fbf42227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "120541ed9fbf42"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "double",
+      "sequence_hex": "ee8080",
+      "input_hex": "7b2264617461223a22415cee808042227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "120541ee808042"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "double",
+      "sequence_hex": "efbfbf",
+      "input_hex": "7b2264617461223a22415cefbfbf42227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "120541efbfbf42"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "double",
+      "sequence_hex": "f0908080",
+      "input_hex": "7b2264617461223a22415cf090808042227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "120641f090808042"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "double",
+      "sequence_hex": "f48fbfbf",
+      "input_hex": "7b2264617461223a22415cf48fbfbf42227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "120641f48fbfbf42"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "double",
+      "sequence_hex": "c3a9",
+      "input_hex": "7b2264617461223a22415cc3a942227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "120441c3a942"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "double",
+      "sequence_hex": "e99baa",
+      "input_hex": "7b2264617461223a22415ce99baa42227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "120541e99baa42"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "double",
+      "sequence_hex": "f09f9880",
+      "input_hex": "7b2264617461223a22415cf09f988042227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "120641f09f988042"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "double",
+      "sequence_hex": "efbbbf",
+      "input_hex": "7b2264617461223a22415cefbbbf42227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "120541efbbbf42"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "single",
+      "sequence_hex": "c280",
+      "input_hex": "7b2264617461223a27415cc28042277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "120441c28042"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "single",
+      "sequence_hex": "dfbf",
+      "input_hex": "7b2264617461223a27415cdfbf42277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "120441dfbf42"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "single",
+      "sequence_hex": "e0a080",
+      "input_hex": "7b2264617461223a27415ce0a08042277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "120541e0a08042"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "single",
+      "sequence_hex": "ed9fbf",
+      "input_hex": "7b2264617461223a27415ced9fbf42277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "120541ed9fbf42"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "single",
+      "sequence_hex": "ee8080",
+      "input_hex": "7b2264617461223a27415cee808042277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "120541ee808042"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "single",
+      "sequence_hex": "efbfbf",
+      "input_hex": "7b2264617461223a27415cefbfbf42277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "120541efbfbf42"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "single",
+      "sequence_hex": "f0908080",
+      "input_hex": "7b2264617461223a27415cf090808042277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "120641f090808042"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "single",
+      "sequence_hex": "f48fbfbf",
+      "input_hex": "7b2264617461223a27415cf48fbfbf42277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "120641f48fbfbf42"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "single",
+      "sequence_hex": "c3a9",
+      "input_hex": "7b2264617461223a27415cc3a942277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "120441c3a942"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "single",
+      "sequence_hex": "e99baa",
+      "input_hex": "7b2264617461223a27415ce99baa42277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "120541e99baa42"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "single",
+      "sequence_hex": "f09f9880",
+      "input_hex": "7b2264617461223a27415cf09f988042277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "120641f09f988042"
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "single",
+      "sequence_hex": "efbbbf",
+      "input_hex": "7b2264617461223a27415cefbbbf42277d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "120541efbbbf42"
+    }
+  ],
+  "rejected": [
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "double",
+      "sequence_hex": "80",
+      "input_hex": "7b2264617461223a22415c8042227d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "double",
+      "sequence_hex": "c2",
+      "input_hex": "7b2264617461223a22415cc242227d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "double",
+      "sequence_hex": "c0af",
+      "input_hex": "7b2264617461223a22415cc0af42227d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "double",
+      "sequence_hex": "eda080",
+      "input_hex": "7b2264617461223a22415ceda08042227d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "double",
+      "sequence_hex": "f4908080",
+      "input_hex": "7b2264617461223a22415cf490808042227d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "double",
+      "sequence_hex": "c220",
+      "input_hex": "7b2264617461223a22415cc22042227d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "double",
+      "sequence_hex": "f5808080",
+      "input_hex": "7b2264617461223a22415cf580808042227d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "double",
+      "sequence_hex": "e08080",
+      "input_hex": "7b2264617461223a22415ce0808042227d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "double",
+      "sequence_hex": "f48fbf",
+      "input_hex": "7b2264617461223a22415cf48fbf42227d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "double",
+      "sequence_hex": "df",
+      "input_hex": "7b2264617461223a22415cdf42227d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "single",
+      "sequence_hex": "80",
+      "input_hex": "7b2264617461223a27415c8042277d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "single",
+      "sequence_hex": "c2",
+      "input_hex": "7b2264617461223a27415cc242277d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "single",
+      "sequence_hex": "c0af",
+      "input_hex": "7b2264617461223a27415cc0af42277d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "single",
+      "sequence_hex": "eda080",
+      "input_hex": "7b2264617461223a27415ceda08042277d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "single",
+      "sequence_hex": "f4908080",
+      "input_hex": "7b2264617461223a27415cf490808042277d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "single",
+      "sequence_hex": "c220",
+      "input_hex": "7b2264617461223a27415cc22042277d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "single",
+      "sequence_hex": "f5808080",
+      "input_hex": "7b2264617461223a27415cf580808042277d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "single",
+      "sequence_hex": "e08080",
+      "input_hex": "7b2264617461223a27415ce0808042277d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "single",
+      "sequence_hex": "f48fbf",
+      "input_hex": "7b2264617461223a27415cf48fbf42277d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "type": "gz.msgs.StringMsg",
+      "quote": "single",
+      "sequence_hex": "df",
+      "input_hex": "7b2264617461223a27415cdf42277d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    }
+  ]
+}

@@ -134,4 +134,28 @@ the strict six-file source gate passed all checks. The
 [independent review](reviews/json-escaped-bytes.json) approved the bounded
 mapping after a private 396-row replay, full Rust suite and a separate
 unknown-escape branch-removal control. Final metadata binding, the normal
-hook and hosted CI remain required before publication.
+hook and exact hosted CI passed on public commit
+`5fa067f47273f2ac46c8af7ba27bef66b6a3251e`.
+
+## Escaped UTF-8 sequences inside strings
+
+Pinned protobuf 3.21.12 consumes the backslash before a complete UTF-8
+sequence inside both quote styles of `StringMsg.data`. A source/binary-bound
+boundary probe covers 12 valid sequences, including two-, three- and four-byte
+scalar boundaries, and ten malformed sequences in each quote style. Native
+accepts the 24 valid inputs and preserves their complete bytes; it rejects the
+20 malformed inputs. The published CLI rejected the valid inputs. The lexical
+adapter now consumes the backslash before the first non-ASCII byte, leaving
+UTF-8 validity to the unchanged JSON deserializer. Outside-string bytes,
+standard escapes, `\u` parsing and document completion retain their prior path.
+
+The new 44-row fixture asserts exact input shapes, native acceptance and full
+binary output. The prior 396 rows and six fixtures are unchanged.
+`scripts/json-reference.py` replays all 440 native outcomes. The focused Rust
+comparison passes after an actual before-failure on U+0080. Broader Unicode
+grammar, diagnostic parity and MSG-02 acceptance remain open. The exact
+six-file source gate passed all strict checks, and the
+[independent review](reviews/json-escaped-utf8.json) approved the bounded
+mapping after a private 440-row replay, full Rust suite and a separate U+0080
+branch-removal control. Final metadata binding, the normal hook and hosted CI
+remain required before publication.

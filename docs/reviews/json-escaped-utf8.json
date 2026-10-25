@@ -1,0 +1,54 @@
+{
+  "decision": "approved",
+  "author": "/root/msgs_review_fallback",
+  "reviewer": "/root/transport_fallback",
+  "reviewed_at": "2026-10-25T14:58:09.890836+00:00",
+  "base": "5fa067f47273f2ac46c8af7ba27bef66b6a3251e",
+  "tree": "3b0065c5da28c7c02f98f6d2f6781e778b582715",
+  "diff_sha256": "6ef7b583cb3501f9d1e9bde4a4436abbee4b45c0fa97992699cbb538c175816d",
+  "files": {
+    "docs/EVIDENCE.md": "ccd0675d50b4ea2305c9d7b88454b476701f09550666241b980997d8eb1d01b6",
+    "docs/JSON_FRAMING.md": "772d312b35473c5a95d80b7c2db89e3a8e22fb1da3cbbab1f5926c1d1b968a8c",
+    "scripts/json-reference.py": "554e5f00843f1adf26225fee75ffb0d77cdfc7aab69b4b4329701b1ffe1f573e",
+    "src/bin/gz-msgs.rs": "82512b48ef58c7d56411513ed1114c27ee5dfaf71cf79258938e83106cd917e7",
+    "tests/cli.rs": "e40a91cc65d2b43bcb5ef2e152e4df2515615a28d767bc0837fc4e79c22de48c",
+    "tests/fixtures/json-escaped-utf8.json": "6f9e071d3044997d8aead2f5f60df7006d7d40cacd1b93bd802fa7cc13d7c881"
+  },
+  "scope": "Within double- and single-quoted StringMsg.data, protobuf 3.21.12 accepts a backslash before complete valid UTF-8 and consumes that slash. The one-line adapter removes high-byte slash preservation, leaving the unchanged serde_json parser to validate complete UTF-8 and document syntax.",
+  "native_reference": {
+    "proof_sha256": "eaa69c3aee4a9bf0ef3b987af59fbeb691e794a742519515386efefb410e65c8",
+    "rows": 440,
+    "retained_rows": 396,
+    "new_valid_rows": 24,
+    "new_rejected_rows": 20,
+    "retained_fixture_sha256": {
+      "tests/fixtures/json-framing.json": "2cccfedc630e3ca56dcff617d3bd8233287dfc17271fa1b477ef4fcbdaaa24f0",
+      "tests/fixtures/json-grammar.json": "4005df0bb062002197e712a70b2cf5fd56969819dd2ce85b06c5a6ab0e9fbf71",
+      "tests/fixtures/json-array-grammar.json": "c6b095ffbf102683dfe24b6b05c8fd5d3b2f5aab36578cc0d389ba19f38d97c3",
+      "tests/fixtures/json-single-quote.json": "9bca126b76edc3e1b8ead5ab968943b32268fedfff0acbfa95363a82cc80079f",
+      "tests/fixtures/json-raw-controls.json": "c65520e7656a2ef91d7104b2b9b8cd866f736078fd65825295d5f81bd68e5c9d",
+      "tests/fixtures/json-escaped-bytes.json": "88ab74e155140fddc76f2eace37e97e69ad0cf7e97b6419b96468c7dbc842c53"
+    },
+    "probe_source_sha256": "48835b169eb8e2e490729391718e223e8905632f2b04d2fa2facd50b2fbaf1f5",
+    "probe_binary_sha256": "16744aebb5531163dc87224e6d6cec56bba40d4d1a62035ae465342649ac540b",
+    "original_cli_tests": "Five unchanged original C++ CLI gtests pass in the exact author staged gate."
+  },
+  "independent_replay": {
+    "source": "Private raw Git export of base plus six frozen files; all six source hashes, six retained fixture hashes, staged tree/diff and no unstaged changes verified with exclusive Cargo target.",
+    "native": "Fresh pinned protobuf peer reproduced all 440 statuses and complete binary stdout, proof SHA identical.",
+    "selected": "json_requires_exactly_one_complete_document passed 1/0 on all 440 native/Rust comparisons; test verifies two quote styles across each of 22 unique valid/malformed sequences and exact input framing.",
+    "full_rust": "109 passed, zero failed or ignored; private formatting and Clippy passed.",
+    "negative": "Separate private source/target restoring only high-byte backslash preservation fails selected test 0/1 at exact native-positive U+0080 input_hex 7b2264617461223a22415cc28042227d; reviewer log SHA256 de7770b600902343158c092c682828b2a8ea5169596486fc6a69f161cb706046.",
+    "before_failure": "Author retained actual pre-fix selected failure on the same U+0080 row, log SHA 430d77a4cbb1b4fb702971b6f355e6434a3c721bd540f6cf842a7a2034dbd60f."
+  },
+  "gates": {
+    "author_exact_staged_log_sha256": "53f782fc85dcac71ddfda8f3979b784cf423dc0cdda3641bdf2dc23e4b6cc93e",
+    "status": "EXIT0 on exact frozen six-file tree; 109 Rust harness checks plus FactoryLazy, five original C++ CLI gtests, native440 replay, formatting, Clippy, strict root/CLI/owned vendor coverage and negative gates."
+  },
+  "findings": [],
+  "limits": [
+    "Only the 12 complete valid and ten malformed UTF-8 sequence examples in each quote style, plus prior 396 rows, are qualified. Broader Unicode grammar and diagnostic parity remain open MSG-02 work.",
+    "All six previously accepted fixture files remain byte-identical; no schema, dependency, production coverage exclusion or gate changes.",
+    "Final metadata binding, normal strict commit hook, public publication and hosted CI remain required."
+  ]
+}

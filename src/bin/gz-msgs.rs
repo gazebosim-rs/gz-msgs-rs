@@ -20,14 +20,13 @@ fn push_control_escape(output: &mut Vec<u8>, byte: u8) {
 }
 
 fn push_proto_escape(output: &mut Vec<u8>, escaped: u8) {
-    // Native protobuf consumes the slash on unknown pairs and recognizes \v.
+    // Native protobuf consumes unknown slashes and recognizes \v; serde validates UTF-8.
     match escaped {
         b'\x00'..=b'\x1f' => push_control_escape(output, escaped),
         b'v' => push_control_escape(output, b'\x0b'),
         b'"' | b'\\' | b'/' | b'b' | b'f' | b'n' | b'r' | b't' | b'u' => {
             output.extend_from_slice(&[b'\\', escaped]);
         }
-        0x80..=0xff => output.extend_from_slice(&[b'\\', escaped]),
         _ => output.push(escaped),
     }
 }
