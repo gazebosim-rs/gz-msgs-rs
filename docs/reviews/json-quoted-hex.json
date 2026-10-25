@@ -1,0 +1,38 @@
+{
+  "decision": "approved",
+  "author": "/root/msgs_review_fallback",
+  "reviewer": "/root/transport_fallback",
+  "scope": "Bounded protobuf 3.21.12 quoted hexadecimal floating strings in canonical gz.msgs.Double_V and gz.msgs.Float_V data arrays only.",
+  "base": "60e67ade72142d71c812b180bb7628c3bddcd4a1",
+  "tree": "278a47c644417657ca9dcf7d7de4c6865ed3a626",
+  "diff_sha256": "3adc522fe7a9cf501ded84045f96ad9d5a5240816b9451dc7107863c90b7ecbf",
+  "proposal_sha256": "780ffebf010744b42154e54c1dcdae662741c1976eb037dd520173121a2e1436",
+  "files": {
+    "Cargo.lock": "6fcb43a066140dab75ab57798068750d05f1d7a77a0bf587f1375b85a15d7b25",
+    "Cargo.toml": "f1aed6ef895548cab332ae1e6d45b7bc64ac462458efbd9df2d922d41d098f6b",
+    "docs/EVIDENCE.md": "f7f597ab33efc595aec378794481e440153d21a8c751cf5ed40f780d36939190",
+    "docs/JSON_FRAMING.md": "588c9d2bb3d8ea226bcbdf4a2b60ba712ee5ca33329c2b7efd930043d85b96fc",
+    "scripts/json-reference.py": "ef49aa3882e805ef971d34ffc4ba2891333926feaf94e064050e07c1fbf625af",
+    "src/bin/gz-msgs.rs": "3c6c89e2a618ecf944df4c5c44ccebc6c9e121226c074ada1f99a451ce9b5c1b",
+    "tests/cli.rs": "3daa0160edafc38c452cf1019ca61fdf5ef0ffeb73fc14be3b3ac5e4505cd162",
+    "tests/fixtures/json-quoted-hex.json": "a0f49fc679fd02022deae5af3476c0f86908e9c064a21b9cca1bb2bbe0ec39c4"
+  },
+  "reviewer_evidence": {
+    "selected_rust_log_sha256": "3e813780316e0e657a8abac2c5efe4aa2f3d62f6953e79a1f6d9c644e45f9746",
+    "full_110_rust_log_sha256": "888744ca7c31d2494e05227d211207e0cc0feeaa79065ff7c60947141c102a24",
+    "fresh_native_809_proof_sha256": "6908ee4844f7ffe9b88cbc60fd12c2e2fa1c7464e6b3fab9a3dd43cc4fedbd92",
+    "fresh_native_log_sha256": "9eea1893feb4d3740bfe75f42decfc2b462fcd8a1e2a67d448b7280de112d82f",
+    "independent_2656_case_script_sha256": "2960ca2579131a87a5fb7a07e4ce5ec6a7483d826d356e4ac0862c94eb8ee3f3",
+    "independent_2656_case_result_sha256": "eb74aa5c66aba7502b43b8e727e5787a2790b11c3c75a8010f3296db6f3fa485",
+    "private_disabled_hex_mutant_log_sha256": "ff11c9dca966c64a552827658b8a2bcd21fc82d6325c89d35f72d3f40c723fbd",
+    "author_exact_staged_gate_log_sha256": "ccf5d7d84ac38fb9086f128c4dcd3868de8647d0cfc1f377fa53b9915c30f054"
+  },
+  "checks": [
+    "All eight staged hashes, staged tree and binary diff match the frozen proposal with no unstaged changes. Ten prior JSON fixture hashes are unchanged.",
+    "Private raw public-base export plus the exact eight staged files and exclusive Cargo target passes selected 216-row parity plus two explicit duplicate-key negative cases, all 110 Rust tests, rustfmt and all-target Clippy.",
+    "A freshly compiled native protobuf peer replays all 809 pinned outcomes with full binary stdout; proof is byte-identical to author proof. An independent 2656-case sign/prefix/mantissa/exponent and quote-style sweep across Double_V/Float_V found zero status or wire mismatches.",
+    "The parser accepts only fully spelled finite hexadecimal numbers in the data array of the two exact canonical descriptors. It patches reflected f32/f64 values only after complete JSON validation. Pinned Apache-2.0 fhex 2.0.2 supplies IEEE conversion; its broader whitespace/underscore/special syntax is guarded out. StringMsg and Time paths remain unaffected.",
+    "A separate private source mutation disabling only descriptor-qualified hex handling fails the exact native-positive Double_V 0x7 assertion. Author exact staged strict gate passes 110 Rust, five original C++ CLI tests, source/package/negative gates and production coverage root2122/2128 lines3378/3403 regions, CLI357/362 lines598/611 regions."
+  ],
+  "limits": "Native appends repeated data keys, whereas the reflected Rust decoder keeps only the last. Two native-positive repeated-key cases are explicitly Rust-negative and broader repeated-key parity is unqualified. Scalar float fields, other descriptors, diagnostics, general protobuf JSON grammar and MSG-02 completion remain open. This approval does not cover normal commit hook, publication or hosted CI."
+}

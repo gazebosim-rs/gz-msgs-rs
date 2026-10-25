@@ -244,5 +244,50 @@ staged gate also passed. The [independent review](reviews/json-vtff.json)
 approved the bounded source and assertions after a private 591-row replay,
 full Rust suite, normalization-removal mutant and 138 supplemental placements
 with no status or wire mismatch. Final metadata binding, the normal hook and
-hosted CI remain pending. This slice does not claim complete protobuf JSON
+hosted run `40213285366` passed on public commit
+`60e67ade72142d71c812b180bb7628c3bddcd4a1`. This slice does not claim complete protobuf JSON
 grammar, diagnostic parity or MSG-02 acceptance.
+
+## Quoted hexadecimal floating values
+
+Pinned protobuf 3.21.12 accepts quoted C-style hexadecimal floats in
+`Double_V.data` and `Float_V.data`, including binary exponents, signed zero,
+subnormals and exponentless forms. The existing decoder rejected them. This
+bounded adapter recognizes the `data` array only for those two message
+descriptors, validates the native hex spelling, and uses pinned `fhex 2.0.2`
+for IEEE conversion. It substitutes a valid zero string while the maintained
+JSON decoder validates the complete document, then writes the exact parsed
+float bits into the reflected repeated field. Other message types and string
+fields are unchanged. Overflow remains rejected; underflow yields zero, and
+negative zero keeps its sign.
+
+The parser choice was measured against native behavior. `lexical-core 1.0.6`
+panicked in debug and miscomputed binary exponents in release; `hexponent
+0.3.1` lost signed zero and minimum subnormals; `hexf-parse 0.2.1` rejected
+native-valid exponentless and rounded forms. `fhex 2.0.2` matched the tested
+native bits, but permits whitespace and underscores that native rejects, so
+the adapter validates the spelling and rejects nonfinite conversion before
+calling it. `Cargo.toml` and `Cargo.lock` pin that dependency.
+
+The new source-bound corpus has 78 initial numeric rows and 138 fresh boundary
+rows across Double_V, Float_V, Time and StringMsg. It compares acceptance and
+full wire bytes, including precision ties, overflow, underflow, signed zero,
+malformed exponents and unchanged string payloads. All 591 prior rows and ten
+fixture files retain their hashes. Two additional native-positive duplicate
+`data` key rows remain explicit Rust-negative gaps: native appends both arrays,
+while the existing reflected JSON decoder retains only the last repeated key.
+The adapter rejects a hex patch in that ambiguous shape rather than returning
+the wrong wire bytes. The native script replays all 809 rows. A deterministic
+418-case supplemental float differential found no acceptance or wire
+mismatch. Broader
+hexadecimal numeric placement, repeated-key parity, diagnostics and MSG-02
+completion remain open. The working strict gate passes 110 Rust integration
+checks, formatting, Clippy, native C++ controls, downstream and negative gates.
+Coverage is 2122/2128 production lines and 3378/3403 regions, including
+357/362 CLI lines and 598/611 CLI regions. The exact eight-file staged gate
+also passed on tree `278a47c644417657ca9dcf7d7de4c6865ed3a626`.
+The [independent review](reviews/json-quoted-hex.json) approved this bounded
+source and assertions after a private native 809-row replay, 110 Rust tests,
+2,656 extra lexical variants without status or wire mismatch, and a
+descriptor-handling negative control. The normal hook and hosted CI remain
+pending.

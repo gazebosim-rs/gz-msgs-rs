@@ -1,9 +1,10 @@
 // Copyright (C) 2026 Open Source Robotics Foundation
 // SPDX-License-Identifier: Apache-2.0
 //! Standalone protobuf inspection tool. Binary bytes only cross stdin/stdout.
+use fhex::FromHex;
 use gz_msgs::{
     prost::Message,
-    prost_reflect::{DynamicMessage, ReflectMessage},
+    prost_reflect::{DynamicMessage, ReflectMessage, Value},
 };
 use std::io::{Read, Write};
 mod legacy_cli;
@@ -35,7 +36,67 @@ fn is_proto_whitespace(byte: u8) -> bool {
     byte.is_ascii_whitespace() || matches!(byte, b'\x0b' | b'\x0c')
 }
 
-fn normalize_proto_json(input: &[u8]) -> Vec<u8> {
+#[derive(Clone, Copy)]
+enum FloatWidth {
+    Double,
+    Single,
+}
+
+fn proto_hex_float(value: &str, width: FloatWidth) -> Option<Value> {
+    let mut bytes = value.as_bytes();
+    if matches!(bytes.first(), Some(b'+' | b'-')) {
+        bytes = &bytes[1..];
+    }
+    if bytes.len() < 3 || bytes[0] != b'0' || !matches!(bytes[1], b'x' | b'X') {
+        return None;
+    }
+    let mut index = 2;
+    let mut digits = 0;
+    while bytes.get(index).is_some_and(u8::is_ascii_hexdigit) {
+        digits += 1;
+        index += 1;
+    }
+    if bytes.get(index) == Some(&b'.') {
+        index += 1;
+        while bytes.get(index).is_some_and(u8::is_ascii_hexdigit) {
+            digits += 1;
+            index += 1;
+        }
+    }
+    if digits == 0 {
+        return None;
+    }
+    if matches!(bytes.get(index), Some(b'p' | b'P')) {
+        index += 1;
+        if matches!(bytes.get(index), Some(b'+' | b'-')) {
+            index += 1;
+        }
+        let exponent_start = index;
+        while bytes.get(index).is_some_and(u8::is_ascii_digit) {
+            index += 1;
+        }
+        if index == exponent_start {
+            return None;
+        }
+    }
+    if index != bytes.len() {
+        return None;
+    }
+    // fhex does the IEEE conversion; native rejects overflow rather than encoding Inf.
+    match width {
+        FloatWidth::Double => f64::from_hex(value)
+            .filter(|number| number.is_finite())
+            .map(Value::F64),
+        FloatWidth::Single => f32::from_hex(value)
+            .filter(|number| number.is_finite())
+            .map(Value::F32),
+    }
+}
+
+fn normalize_proto_json(
+    input: &[u8],
+    float_data: Option<FloatWidth>,
+) -> (Vec<u8>, Vec<(usize, Value)>, usize) {
     #[derive(Clone, Copy, PartialEq, Eq)]
     enum Frame {
         ObjectKey,
@@ -46,9 +107,15 @@ fn normalize_proto_json(input: &[u8]) -> Vec<u8> {
     let mut frames = Vec::new();
     let mut index = 0;
     let mut previous = None;
+    let mut data_field = false;
+    let mut float_array_depth = None;
+    let mut float_item_index = 0;
+    let mut float_patches = Vec::new();
+    let mut float_array_count = 0;
     while index < input.len() {
         let byte = input[index];
         if byte == b'"' {
+            let output_start = output.len();
             output.push(byte);
             index += 1;
             while index < input.len() {
@@ -68,10 +135,26 @@ fn normalize_proto_json(input: &[u8]) -> Vec<u8> {
                     break;
                 }
             }
+            if frames.len() == 1 && frames.last() == Some(&Frame::ObjectKey) {
+                data_field = gz_msgs::serde_json::from_slice::<String>(&output[output_start..])
+                    .is_ok_and(|key| key == "data");
+            } else if float_array_depth == Some(frames.len()) {
+                if let (Some(width), Ok(value)) = (
+                    float_data,
+                    gz_msgs::serde_json::from_slice::<String>(&output[output_start..]),
+                ) {
+                    if let Some(number) = proto_hex_float(&value, width) {
+                        output.truncate(output_start);
+                        output.extend_from_slice(b"\"0\"");
+                        float_patches.push((float_item_index, number));
+                    }
+                }
+            }
             previous = Some(b'"');
             continue;
         }
         if byte == b'\'' {
+            let output_start = output.len();
             output.push(b'"');
             index += 1;
             while index < input.len() {
@@ -94,6 +177,21 @@ fn normalize_proto_json(input: &[u8]) -> Vec<u8> {
                     }
                     _ if current < b' ' => push_control_escape(&mut output, current),
                     _ => output.push(current),
+                }
+            }
+            if frames.len() == 1 && frames.last() == Some(&Frame::ObjectKey) {
+                data_field = gz_msgs::serde_json::from_slice::<String>(&output[output_start..])
+                    .is_ok_and(|key| key == "data");
+            } else if float_array_depth == Some(frames.len()) {
+                if let (Some(width), Ok(value)) = (
+                    float_data,
+                    gz_msgs::serde_json::from_slice::<String>(&output[output_start..]),
+                ) {
+                    if let Some(number) = proto_hex_float(&value, width) {
+                        output.truncate(output_start);
+                        output.extend_from_slice(b"\"0\"");
+                        float_patches.push((float_item_index, number));
+                    }
                 }
             }
             previous = Some(b'"');
@@ -122,6 +220,9 @@ fn normalize_proto_json(input: &[u8]) -> Vec<u8> {
                 output.push(b'"');
                 output.extend_from_slice(&input[start..index]);
                 output.push(b'"');
+                if frames.len() == 1 {
+                    data_field = &input[start..index] == b"data";
+                }
             } else {
                 output.extend_from_slice(&input[start..index]);
             }
@@ -201,15 +302,31 @@ fn normalize_proto_json(input: &[u8]) -> Vec<u8> {
         }
         match byte {
             b'{' => frames.push(Frame::ObjectKey),
-            b'[' => frames.push(Frame::Array),
+            b'[' => {
+                if frames.len() == 1 && data_field && float_data.is_some() {
+                    float_array_depth = Some(2);
+                    float_item_index = 0;
+                    float_array_count += 1;
+                }
+                frames.push(Frame::Array);
+            }
             b'}' | b']' => {
+                if float_array_depth == Some(frames.len()) {
+                    float_array_depth = None;
+                }
                 frames.pop();
             }
             b':' if frames.last() == Some(&Frame::ObjectKey) => {
                 *frames.last_mut().unwrap() = Frame::ObjectValue
             }
             b',' if frames.last() == Some(&Frame::ObjectValue) => {
-                *frames.last_mut().unwrap() = Frame::ObjectKey
+                *frames.last_mut().unwrap() = Frame::ObjectKey;
+                if frames.len() == 1 {
+                    data_field = false;
+                }
+            }
+            b',' if float_array_depth == Some(frames.len()) => {
+                float_item_index += 1;
             }
             _ => {}
         }
@@ -219,7 +336,7 @@ fn normalize_proto_json(input: &[u8]) -> Vec<u8> {
         }
         index += 1;
     }
-    output
+    (output, float_patches, float_array_count)
 }
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let args = match legacy_cli::normalize(std::env::args().skip(1).collect()) {
@@ -283,10 +400,29 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     std::io::stdin().read_to_end(&mut input)?;
     let output = match args[0].as_str() {
         "encode-json" => {
-            let normalized = normalize_proto_json(&input);
+            let float_data = match descriptor.full_name() {
+                "gz.msgs.Double_V" => Some(FloatWidth::Double),
+                "gz.msgs.Float_V" => Some(FloatWidth::Single),
+                _ => None,
+            };
+            let (normalized, patches, float_array_count) = normalize_proto_json(&input, float_data);
+            if !patches.is_empty() && float_array_count != 1 {
+                return Err("quoted hex across repeated data keys is not supported".into());
+            }
             let mut json = gz_msgs::serde_json::Deserializer::from_slice(&normalized);
-            let message = DynamicMessage::deserialize(descriptor, &mut json)?;
+            let mut message = DynamicMessage::deserialize(descriptor, &mut json)?;
             json.end()?;
+            if !patches.is_empty() {
+                let values = match message.get_field_by_name_mut("data") {
+                    Some(Value::List(values)) => values,
+                    _ => return Err("quoted hex data field was not a float list".into()),
+                };
+                for (index, number) in patches {
+                    *values
+                        .get_mut(index)
+                        .ok_or("quoted hex data index was absent")? = number;
+                }
+            }
             message.encode_to_vec()
         }
         "decode-json" => {

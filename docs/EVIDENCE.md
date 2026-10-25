@@ -1674,5 +1674,40 @@ after a separate raw-source 591-row replay, full 109-check Rust suite,
 normalization-removal mutant and 138 insertion placements with no status or
 wire mismatch. The unchanged [semantic receipt](reviews/json-vtff.json) binds
 all six reviewed files and nine retained fixture hashes. Final metadata
-binding, normal hook and hosted CI remain pending; broader JSON grammar,
+binding, the normal hook and hosted run `40213285366` passed on public commit
+`60e67ade72142d71c812b180bb7628c3bddcd4a1`; broader JSON grammar,
 diagnostics and MSG-02 remain open.
+
+## Bounded protobuf JSON quoted-hex candidate
+
+The preceding published parser rejected quoted hexadecimal floats accepted by
+pinned protobuf 3.21.12. A source/binary-bound fixture now covers 216
+Double_V, Float_V, Time and StringMsg forms: 78 initial characterization rows
+and 138 boundary rows. It asserts exact native status and full binary output,
+including f32/f64 rounding, subnormals, overflow, signed zero and non-float
+field isolation. The selected Rust test first failed on `"0x7"`, then passes
+after the descriptor-scoped conversion. All 591 retained rows and ten prior
+fixture hashes remain intact. Two native-positive duplicate-key rows stay
+explicit Rust-negative gaps to avoid a wrong accepted wire value.
+
+The pinned `fhex 2.0.2` dependency performs bit-level conversion behind a
+strict native spelling and finite-result guard. Other evaluated parsers had
+concrete precision, grammar or panic failures recorded in
+`docs/JSON_FRAMING.md`. `scripts/json-reference.py` freshly replays all 809
+native outcomes. A separate deterministic 418-case f32/f64 differential has
+zero acceptance or wire mismatches. The working full strict gate exits zero:
+110 Rust integration checks, native C++ controls, formatting, Clippy, negative
+and downstream gates; root production coverage 2122/2128 lines and
+3378/3403 regions, CLI 357/362 lines and 598/611 regions. Its retained log
+SHA256 is `790b8f4b474f790fcc6edd788561d5c8701d9ba0710d502c20aa8e762658a5a1`.
+The exact eight-file staged gate also exits zero on tree
+`278a47c644417657ca9dcf7d7de4c6865ed3a626`; log SHA256
+`ccf5d7d84ac38fb9086f128c4dcd3868de8647d0cfc1f377fa53b9915c30f054`.
+Independent /root/transport_fallback approved the source, assertion mapping
+and duplicate-key disposition after a private 809-row native replay, 110 Rust
+tests, 2,656 supplemental numeric/quote variants with no mismatch and a
+descriptor-disable mutant. The copied
+[semantic receipt](reviews/json-quoted-hex.json) binds all eight source files,
+the ten retained fixture hashes and the independent proof. Final metadata
+binding, normal hook and hosted qualification remain pending. This candidate
+does not complete MSG-02.

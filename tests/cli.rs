@@ -922,10 +922,52 @@ fn json_requires_exactly_one_complete_document() {
         check(row, row["type"].as_str().unwrap(), true);
     }
     for row in quoted_hex_pending {
-        check(row, row["type"].as_str().unwrap(), false);
+        check(row, row["type"].as_str().unwrap(), true);
     }
     for row in vtff_rows {
         check(row, row["type"].as_str().unwrap(), true);
+    }
+}
+
+#[test]
+fn quoted_hex_float_strings_match_native() {
+    let fixture: gz_msgs::serde_json::Value =
+        gz_msgs::serde_json::from_str(include_str!("fixtures/json-quoted-hex.json")).unwrap();
+    assert_eq!(fixture["native_protobuf"], "3.21.12");
+    assert_eq!(fixture["baseline_cases"], 78);
+    assert_eq!(fixture["boundary_cases"], 138);
+    let rows = fixture["rows"].as_array().unwrap();
+    assert_eq!(rows.len(), 216);
+    let unhex = |s: &str| {
+        s.as_bytes()
+            .chunks_exact(2)
+            .map(|pair| u8::from_str_radix(std::str::from_utf8(pair).unwrap(), 16).unwrap())
+            .collect::<Vec<_>>()
+    };
+    for row in rows {
+        let type_name = row["type"].as_str().unwrap();
+        let input = unhex(row["input_hex"].as_str().unwrap());
+        let expected = unhex(row["cpp_stdout_hex"].as_str().unwrap());
+        let result = run(&["encode-json", type_name], &input);
+        assert_eq!(
+            result.status.success(),
+            row["cpp_status"].as_i64().unwrap() == 0,
+            "{type_name}: {}: {}",
+            row["form"],
+            String::from_utf8_lossy(&result.stderr)
+        );
+        assert_eq!(result.stdout, expected, "{type_name}: {}", row["form"]);
+    }
+    let pending = fixture["repeated_data_pending"].as_array().unwrap();
+    assert_eq!(pending.len(), 2);
+    for row in pending {
+        let type_name = row["type"].as_str().unwrap();
+        let input = unhex(row["input_hex"].as_str().unwrap());
+        assert_eq!(row["cpp_status"], 0);
+        assert!(!unhex(row["cpp_stdout_hex"].as_str().unwrap()).is_empty());
+        let result = run(&["encode-json", type_name], &input);
+        assert!(!result.status.success(), "{type_name}");
+        assert!(result.stdout.is_empty(), "{type_name}");
     }
 }
 

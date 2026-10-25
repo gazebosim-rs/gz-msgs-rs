@@ -10,6 +10,7 @@ repository = "https://github.com/gazebosim-rs/gz-msgs-rs"
 build = "build.rs"
 
 [dependencies]
+fhex = "=2.0.2"
 bytemuck = "=1.25.2"
 clap_lex = "=1.1.1"
 quick-xml = "=0.38.3"
