@@ -1,7 +1,10 @@
 // Copyright (C) 2026 Open Source Robotics Foundation
 // SPDX-License-Identifier: Apache-2.0
 //! Standalone protobuf inspection tool. Binary bytes only cross stdin/stdout.
-use gz_msgs::{prost::Message, prost_reflect::DynamicMessage};
+use gz_msgs::{
+    prost::Message,
+    prost_reflect::{DynamicMessage, ReflectMessage},
+};
 use std::io::{Read, Write};
 mod legacy_cli;
 const HELP: &str = "gz-msgs --list|-l | --info|-i TYPE... | --version|-v | --help|-h\nCommands: list, info TYPE..., encode-json, decode-json, encode-text, decode-text\nFormat commands take one fully qualified type and use stdin/stdout.";
@@ -27,18 +30,33 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         return Ok(());
     }
     if args.len() >= 2 && ["info", "--info", "-i"].contains(&args[0].as_str()) {
+        let factory = gz_msgs::factory::MessageFactory::default();
         for name in &args[1..] {
-            let Some(descriptor) = gz_msgs::descriptor(name).filter(|_| {
-                !name.starts_with('.')
-                    || name.starts_with(".gz.msgs.")
-                    || name.starts_with(".gz_msgs.")
-            }) else {
+            let descriptor = gz_msgs::descriptor(name)
+                .filter(|_| {
+                    !name.starts_with('.')
+                        || name.starts_with(".gz.msgs.")
+                        || name.starts_with(".gz_msgs.")
+                })
+                .or_else(|| {
+                    factory
+                        .new_message(name)
+                        .map(|message| message.descriptor())
+                });
+            let Some(descriptor) = descriptor else {
                 eprintln!("Unable to create message of type[{name}]");
                 continue;
             };
-            let text = gz_msgs::message_info(descriptor.full_name())
-                .ok_or("message info is not bundled")?;
-            print!("{text}");
+            if let Some(text) = gz_msgs::message_info(descriptor.full_name()) {
+                print!("{text}");
+            } else {
+                let text = gz_msgs::descriptor_definition(&descriptor)?;
+                print!(
+                    "Name: {}\nFile: {}\n\n{text}\n",
+                    descriptor.full_name(),
+                    descriptor.parent_file().name()
+                );
+            }
         }
         return Ok(());
     }

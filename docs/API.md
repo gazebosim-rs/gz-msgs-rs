@@ -357,3 +357,21 @@ aliases are accepted; a dot before a Google type or multiple leading dots fails.
 The new `info` command alias has the same policy. Nine native complete-output and
 exit-status observations qualify this boundary; full argument grammar and
 external-descriptor info formatting remain separate unfinished contracts.
+
+## Dynamic descriptor definitions
+
+`descriptor_definition(&MessageDescriptor) -> Result<String, DefinitionError>`
+formats the qualified common proto3 declaration subset. It preserves explicit
+metadata and returns `Unsupported` for unhandled grammar/options. Existing
+canonical `message_definition`/`message_info` output remains immutable; generated
+and dynamic descriptors can differ in explicit JSON-name metadata. External CLI
+info uses this bounded formatter after the existing factory resolves the type.
+See [the definition contract](CLI_EXTERNAL_INFO.md) for supported features, native
+qualification and CLI failure behavior.
+
+This API formats reflection metadata. The maintained loader synthesizes absent
+JSON names, so original raw omission provenance cannot be recovered from a
+`MessageDescriptor`; the CLI shares that explicit gap for hand-built descriptor
+sets without those names. The native-backed mismatch regression remains part of
+the gate. Native-layout equality uses identical reflection metadata and the
+qualified CLI corpus, not a claim of arbitrary raw-descriptor fidelity.

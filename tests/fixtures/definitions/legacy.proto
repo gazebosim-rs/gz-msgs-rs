@@ -1,0 +1,5 @@
+// Copyright (C) 2026 Open Source Robotics Foundation
+// SPDX-License-Identifier: Apache-2.0
+syntax = "proto2";
+package definition.legacy;
+message Legacy { optional string value = 1 [default = "legacy"]; extensions 100 to 200; }

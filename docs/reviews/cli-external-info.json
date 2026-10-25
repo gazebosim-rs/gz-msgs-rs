@@ -1,0 +1,51 @@
+{
+  "reviewer": "/root/transport_recovery",
+  "date": "2026-10-25T06:06:29.274725+00:00",
+  "decision": "approved within the explicitly partial normalized-reflection/native-layout scope",
+  "base": "0104b887c7c4dda2efe1bd23edb52243430592f4",
+  "staged_diff_sha256": "9d4d3fa5e666bc0cdfa3bbad97ae91fa929b2544a48828e220ae4ab013a84362",
+  "tree": "6d59916c86b163ab2ba6677a76e768c33e2ace50",
+  "source_sha256": {
+    "docs/API.md": "893c8d8683b06819a029d6b5f68f7378cf5464bfe95d256e843b9f77dd95cb9a",
+    "docs/CLI_EXTERNAL_INFO.md": "06eb90a58a05ca98c7d01a9c59e3b9a49f68b2c6e6105887be36ed43cc2250ec",
+    "docs/EVIDENCE.md": "3b5a4317403d751573787fbbaeeb93107951ad1109f8a2558ecc0f71f5e69a59",
+    "scripts/definition-reference.py": "2b89e010c95d38b11fe3d2288e20f37d05d8bdcd72a61aa8b760af264e594c4f",
+    "scripts/verify.py": "e155eb97f0bf0525acf5d644554d34e94ee8aed54672877567597476f77e52fc",
+    "src/bin/gz-msgs.rs": "a48cb3d082c92a87d83eb7565fcc1405716db49933ef7bd1e61ef469f2d92f70",
+    "src/definition.rs": "eae7a533fe1d6ef8450971fd29d7cf37acdcbf4e09548f29a0c5a17043f78be8",
+    "src/lib.rs": "16db1b541c110f32801baf83e18e41ab95d11e49aa736f6b184af02a6e918307",
+    "tests/definition_peer.cc": "0be30a4dd4da763defd6762883cfc05aaad70a4b500e6fa1af3916712926fce0",
+    "tests/definitions.rs": "5e73eb4f6ad3b7c5369e1bbbc59c0333abf60cfaad8a4e3f39bbe5ffa778af8c",
+    "tests/fixtures/definitions/cli.json": "767507737695fa97af54c06718b663b5b08f33fd845a64afbecd72220a94e4ad",
+    "tests/fixtures/definitions/legacy.desc": "8c9dde0ace86035439deb9bc71f9823233375ec76beb518ebf3b41f1eff58d5d",
+    "tests/fixtures/definitions/legacy.proto": "17d09521e5cfbefde7c4513bb101c0eb62add2858cab99749ba248bee1875fda",
+    "tests/fixtures/definitions/supported.desc": "2a5655cafac937448dc8df6f2e1936670b8e304160b2e93620351e56beda89af",
+    "tests/fixtures/definitions/supported.proto": "f13c2c0bbe4387ba0b72a2ca7e0a1a2c8bc15f5672ea72bae1077a187e8152bf",
+    "tests/fixtures/definitions/unknown-options.desc": "fd8ac65c205a20a6fcb993c3f7d936789c221439266246f061a97a1d16f97e35",
+    "tests/fixtures/definitions/unsupported.desc": "4f70607fe37eef7708f2d955d702566f25449dff1092820d70cc183eff63e4ff",
+    "tests/fixtures/definitions/unsupported.proto": "17ff0a5e9918be48d4a955db2937814e28e39ce3d69dc6e33db643a83c6dbd2a"
+  },
+  "independent_checks": [
+    "Raw-exported the immutable staged tree and verified all 660 regular blobs against Git object identities plus SHA256 content. Final source remains exactly bound. All reviewer builds use a new transport-owned private target, never the producer target.",
+    "Final focused replay passes 25 Rust checks: 12 existing canonical CLI tests, external-list test, seven definition tests, four native interoperability tests and the unchanged reviewer malformed-map probe. The definition suite independently compares all 271 canonical dynamic definitions to a freshly compiled C++ peer, qualified custom/upstream fixtures, unsupported metadata and regeneration controls.",
+    "Independently reproduced the concrete reflection-accepted malformed-map panic in the earlier 9c0b605c snapshot. Original failing source/log/native rejection controls are preserved. The exact unchanged reviewer probe now passes with the checked key/value access and direct synthetic-entry validation. Reviewed layout/cardinality/default/oneof/key-kind guards, plus author valid/eight-invalid native controls. No catch_unwind or vendor/runtime workaround.",
+    "Raw proto3 default/Required descriptors are explicitly rejected after native-backed self-audit; supported declaration order, source-ordered enum aliases, options including explicit false, maps, real/synthetic oneofs, qualified type names and JSON-name restrictions were inspected against native output. Whole strings assemble before return; no partial type body escapes an error.",
+    "Fresh definition-reference.py replay reproduces all 25 complete native CLI rows; every proof field matches the authored proof, including pinned upstream/source/binary/libraries/schema/peer/fixture hashes and descriptor regeneration. Unsupported rows deliberately assert Rust errors rather than Native body parity.",
+    "Additional private CLI replay tests --info, -i and info with a canonical type followed by an unsupported known type and a later valid external type. Each preserves exactly the earlier canonical output, fails with its feature diagnostic, and stops before printing unsupported/later types. Factory alias policy, canonical cached output, missing-name continuation and immutable canonical precedence remain intact.",
+    "An initial reviewer invocation selected a nonexistent cpp Cargo target; it failed selection before tests and is preserved in unsupported-target.log. Corrected native target replay above passes; this selection error is not counted as a feature pass."
+  ],
+  "qualified_gap": "The API formats metadata already exposed by prost-reflect. The maintained loader synthesizes absent raw json_name, losing omission provenance; original hand-built raw descriptor CLI text can therefore differ from native loading of the same bytes. The new native-backed mismatch regression intentionally preserves that difference. The 271-definition equality test supplies identical normalized reflection metadata to both printers; only the 25 explicit CLI fixtures establish raw CLI equality. Arbitrary original raw-descriptor fidelity remains pending; no blanket CLI parity or new original retirement is approved.",
+  "author_gate": {
+    "rust_checks": 94,
+    "lines": [
+      1642,
+      1646
+    ],
+    "regions": [
+      2633,
+      2651
+    ],
+    "qualification": "Author full core/five-snapshot/archive/downstream/owned-patch gate, distinct from the independent focused/native checks above."
+  },
+  "limits": "Bounded common proto3 definition formatter and qualified CLI corpus only. Finite feature guard is not a complete native descriptor validator. Proto2/advanced grammar/options, omitted-name raw provenance, malformed-loader diagnostics, canonical conflict policy, install/global/cache behavior, arbitrary external serialization and full MSG-02 remain open. No dependency/unsafe/vendor/exclusion/original-retirement changes. Final readable metadata binding, exact normal staged hook and hosted qualification remain required."
+}

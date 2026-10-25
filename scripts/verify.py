@@ -29,6 +29,12 @@ for key in ['upstream_commit', 'native_binary_sha256', 'native_source_sha256', '
     assert external[key] == options[key], key
 for item in external['inputs'].values():
     assert hashlib.sha256(pathlib.Path(item['path']).read_bytes()).hexdigest() == item['sha256'], item['path']
+definitions = json.loads(pathlib.Path('tests/fixtures/definitions/cli.json').read_text())
+for key in ['upstream_commit', 'native_binary_sha256', 'native_source_sha256', 'schema_manifest_sha256', 'native_argv0']:
+    assert definitions[key] == options[key], key
+assert definitions['peer_source_sha256'] == hashlib.sha256(pathlib.Path('tests/definition_peer.cc').read_bytes()).hexdigest()
+for path, expected in definitions['inputs'].items():
+    assert hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest() == expected, path
 info = json.loads(pathlib.Path('schemas/cli-info.manifest.json').read_text())
 assert hashlib.sha256(pathlib.Path('schemas/cli-info.json').read_bytes()).hexdigest() == info['corpus_sha256']
 assert hashlib.sha256(pathlib.Path('schemas/manifest.json').read_bytes()).hexdigest() == info['schema_manifest_sha256']

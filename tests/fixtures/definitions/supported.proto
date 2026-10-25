@@ -1,0 +1,32 @@
+// Copyright (C) 2026 Open Source Robotics Foundation
+// SPDX-License-Identifier: Apache-2.0
+syntax = "proto3";
+package definition.example;
+import "gz/msgs/time.proto";
+message Surface {
+  option deprecated = false;
+  message Child { bool enabled = 3; string name = 1; }
+  enum Choice {
+    option allow_alias = true;
+    option deprecated = true;
+    ZERO = 0 [deprecated = false];
+    NEGATIVE = -1;
+    NEGATIVE_ALIAS = -1;
+    HIGH = 2147483647;
+    LOW = -2147483648;
+  }
+  repeated sint32 many = 8 [packed = false, deprecated = false, json_name = "manyValues"];
+  optional string note = 6 [json_name = "customName"];
+  Child child = 3;
+  oneof selection { int32 count = 7 [deprecated = true]; bytes blob = 2; }
+  gz.msgs.Time stamp = 5;
+  map<string, Child> children = 4;
+  Choice choice = 1;
+  string empty_json_name = 9 [json_name = ""];
+  sint64 signed_value = 10;
+  sfixed32 fixed_value = 11;
+  sfixed64 fixed_long = 12;
+  fixed32 unsigned_fixed = 13;
+  fixed64 unsigned_long = 14;
+}
+message Empty {}

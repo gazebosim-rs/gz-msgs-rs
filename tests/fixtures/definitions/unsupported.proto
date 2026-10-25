@@ -1,0 +1,22 @@
+// Copyright (C) 2026 Open Source Robotics Foundation
+// SPDX-License-Identifier: Apache-2.0
+syntax = "proto3";
+package definition.unsupported;
+import "google/protobuf/descriptor.proto";
+extend google.protobuf.MessageOptions { optional bool custom_message = 50000; }
+extend google.protobuf.EnumOptions { optional bool custom_enum = 50001; }
+extend google.protobuf.OneofOptions { optional bool custom_oneof = 50002; }
+extend google.protobuf.EnumValueOptions { optional bool custom_value = 50003; }
+message ReservedMessage { reserved 2; reserved "old"; bool active = 1; }
+message ReservedEnum { enum E { reserved 1; reserved "OLD"; ZERO = 0; } E value = 1; }
+message StandardMessageOption { option no_standard_descriptor_accessor = true; }
+message StandardFieldOption { string value = 1 [ctype = CORD]; }
+message JsonName { string value = 1 [json_name = "punctuated-name"]; }
+message CustomMessage { option (custom_message) = true; }
+message CustomEnum { enum E { option (custom_enum) = true; ZERO = 0; } }
+message CustomOneof { oneof selection { option (custom_oneof) = true; int32 value = 1; } }
+message CustomValue { enum E { ZERO = 0 [(custom_value) = true]; } }
+message DeclaresExtension {
+  extend google.protobuf.FieldOptions { optional bool custom_field = 50004; }
+}
+message CustomField { string value = 1 [(DeclaresExtension.custom_field) = true]; }

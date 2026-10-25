@@ -1037,3 +1037,45 @@ Rust aliases and the existing production factory reuse. The exact authored
 author's full gate and preserves diagnostic/conflict/info/install/cache limits.
 No producer target was reused. Matching final metadata, strict staged and hosted
 qualification remain required before claiming a published revision passed.
+
+## Bounded external descriptor definitions
+
+The new maintained-reflection formatter compares all 271 canonical dynamic
+message definitions with freshly compiled C++ protobuf DebugString output. This
+uses identical descriptor inputs; it does not substitute dynamic JSON-name
+metadata for the existing immutable generated canonical CLI goldens. Custom
+fixtures qualify maps, nested declarations, source order, aliases, oneofs,
+proto3 optional fields, explicit false options and JSON-name presence. Proto2,
+reserved/extension declarations and unsupported options return typed errors.
+Twenty-five complete native CLI observations include supported output, explicit
+unsupported cases and missing/canonical/external continuation. Descriptor fixture
+regeneration and source/schema/binary/library bindings are checked independently.
+See [the contract](CLI_EXTERNAL_INFO.md). The final working gate passes 94 Rust
+checks (93 harness tests and the standalone factory environment executable),
+five snapshot regressions, archive QA and a clean downstream consumer. Owned
+production coverage is 1642/1646 lines and 2633/2651 regions; the new formatter
+measures 183/185 lines and 351/356 regions. A follow-up raw-descriptor guard
+rejects proto3 defaults and Required labels that reflection accepts but native
+validation rejects; both native failure paths
+are tested. Independent review found a malformed-map panic in reflection
+convenience accessors; checked map layout/type access now rejects it. One valid
+and eight malformed raw map cases have matching native acceptance/rejection
+controls. Four unchanged upstream descriptor-fixture types extend actual CLI
+coverage beyond the custom corpus. A further native-backed regression retains
+the observed JSON-name synthesis gap rather than comparing only normalized
+metadata and hiding the original-byte difference. Its complete gate passes with
+the same production coverage. Existing patched-vendor ownership remains covered.
+No original mapping or MSG-02 acceptance changes are claimed.
+
+
+Independent /root/transport_recovery approved staged 9d4d3fa5 within the partial
+normalized-reflection/native-layout scope. It raw-exported and verified all 660
+blobs, used a fresh private source/target and passed 25 focused Rust checks,
+including the unchanged probe that previously exposed the map panic. All 271
+dynamic definitions and 25 complete native CLI rows/proof bindings reproduce.
+Additional mixed good/unsupported/later requests pass for all three aliases.
+The exact authored [receipt](reviews/cli-external-info.json) preserves the original
+panic evidence, raw JSON-name omission mismatch and remaining grammar/loading
+limits. Its focused checks remain distinct from the author's full 94-check gate.
+Matching final metadata, normal strict staged verification and hosted success
+remain required before declaring a published revision qualified.
