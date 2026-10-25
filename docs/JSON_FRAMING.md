@@ -338,10 +338,31 @@ fixture hashes remain unchanged; the native replay now checks 992 outcomes.
 The [independent review](reviews/json-repeated-integer.json) approved the
 source and assertions after a private 992-row replay, 112 Rust tests, 270
 supplemental pairs without mismatch and an Int32 admission-removal mutant.
-The exact six-file staged gate passed on tree
-`0b3832bd5eb01f40c036324b1d20125d0131cfba`. Final metadata binding,
-the normal hook and hosted CI remain pending.
+The exact seven-file staged gate, normal hook and hosted run `40220925335`
+passed on public commit `8ab936c491305e7c4517225d9e58ef162081ef9e`.
 `UInt64_V` remains outside this slice because the maintained decoder saturates
 an unquoted value above `u64::MAX` that native rejects. Other repeated fields,
 single-key scalar values, general duplicate-field behavior and MSG-02 remain
 open.
+
+## Repeated string `data` keys
+
+The same bounded occurrence path now handles `StringMsg_V.data`, retaining
+each array or scalar string in document order and letting the maintained
+decoder validate strings and the complete document. The pinned 46-row corpus
+has 34 accepted and 12 rejected cases across empty/null values, escaped and
+literal Unicode, raw controls, alternate key syntax, headers and malformed
+input. All 992 earlier native rows and 13 fixture hashes remain byte-identical;
+the native replay checks 1,038 outcomes. Other repeated fields and broader
+JSON/MSG-02 contracts remain open. An additional 400-pair native/Rust sweep
+found no acceptance or wire mismatch across the stated string forms.
+The working strict gate passed 113 Rust tests and all five original C++ CLI
+tests, with root and CLI production line and region coverage above 95%. An
+isolated StringMsg_V admission-removal mutant failed the exact two-array wire
+assertion.
+The [independent review](reviews/json-repeated-string.json) reproduced all
+1,038 native outcomes in a private source and target, passed the selected Rust
+test, and independently failed the descriptor-removal mutant on `two_arrays`.
+The exact six-file staged gate passed on tree
+`88519e778897ad719cdf4a4605bb2b47c14cf1b9`. Final metadata binding,
+the normal hook and hosted qualification remain pending.

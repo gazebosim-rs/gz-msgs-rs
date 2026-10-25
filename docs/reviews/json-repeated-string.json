@@ -1,0 +1,64 @@
+{
+  "author": "/root/msgs_review_fallback",
+  "base_commit": "8ab936c491305e7c4517225d9e58ef162081ef9e",
+  "decision": "approved",
+  "evidence": {
+    "author_400_case_differential_log_sha256": "dab8382567c398c92ddcb4f2b2d21c9a98a9ed80a5ef582c67a3c46a6cb93df7",
+    "author_exact_staged_gate_sha256": "7a17b561a664a21f4980cc51ab697ce0cadaecde4ca3c10ba4a5da67b50d85f6",
+    "coverage": {
+      "cli_lines": [
+        467,
+        479
+      ],
+      "cli_regions": [
+        798,
+        828
+      ],
+      "production_lines": [
+        2228,
+        2242
+      ],
+      "production_regions": [
+        3575,
+        3619
+      ]
+    },
+    "private_descriptor_removal_mutant": "0/1, exact two_arrays wire [b] vs native [a,b]; log SHA256 251f8e44709f3cf4a65f5ed6e4a6f12b60d4936025a3ff18ae8796edc6f72e9e; source SHA256 bb16a421efbeab0e14852c8abd4ff95117413d078626852356372e9b9bdf3c0d",
+    "private_native_log_sha256": "e627cf9f832a1631b44c5405594b2b773dfa41fa8253085e964f2aae337a1051",
+    "private_native_replay": "1038/1038 outcomes and exact wire bytes; native proof SHA256 68c6c40303ceb2c78b4a554afb82a42b2a9c3115407a9bf8ab0650a2f2f2f131",
+    "private_selected_test": "1/0; log SHA256 82d5a7395422d80b033fc90c63bcdb58cf152954eaf69661bcae0ac77c309e57",
+    "retained_13_fixture_hashes": {
+      "tests/fixtures/json-array-grammar.json": "c6b095ffbf102683dfe24b6b05c8fd5d3b2f5aab36578cc0d389ba19f38d97c3",
+      "tests/fixtures/json-escaped-bytes.json": "88ab74e155140fddc76f2eace37e97e69ad0cf7e97b6419b96468c7dbc842c53",
+      "tests/fixtures/json-escaped-utf8.json": "6f9e071d3044997d8aead2f5f60df7006d7d40cacd1b93bd802fa7cc13d7c881",
+      "tests/fixtures/json-framing.json": "2cccfedc630e3ca56dcff617d3bd8233287dfc17271fa1b477ef4fcbdaaa24f0",
+      "tests/fixtures/json-grammar.json": "4005df0bb062002197e712a70b2cf5fd56969819dd2ce85b06c5a6ab0e9fbf71",
+      "tests/fixtures/json-negative-zero.json": "36ec2c5c39763d817f3268e9f01a1a9d31ab8b07c721edb3ed1250fb64eb9a64",
+      "tests/fixtures/json-quoted-hex.json": "a0f49fc679fd02022deae5af3476c0f86908e9c064a21b9cca1bb2bbe0ec39c4",
+      "tests/fixtures/json-raw-controls.json": "c65520e7656a2ef91d7104b2b9b8cd866f736078fd65825295d5f81bd68e5c9d",
+      "tests/fixtures/json-repeated-data.json": "e1b90c69a24d2ed097f28b184e917545540afd2a2e1ee98f93e265a629919def",
+      "tests/fixtures/json-repeated-integer-data.json": "faaf668a6583ec4e0e5437d4aeac53b7fc2f90fff8acbc04ecf47bb642135f88",
+      "tests/fixtures/json-single-quote.json": "9bca126b76edc3e1b8ead5ab968943b32268fedfff0acbfa95363a82cc80079f",
+      "tests/fixtures/json-trailing-dot.json": "bca96c00805ae274268c3a7a4057e6ba40ca6cc3b1337541a6861bb4df2026e0",
+      "tests/fixtures/json-vtff-whitespace.json": "b01e7543d61f9d00cdb189f86dcbd340b39e9160e0eac0c0776b7c505a5ef2a9"
+    }
+  },
+  "files_sha256": {
+    "docs/EVIDENCE.md": "8cbaeccabdeb09df230722c48b147d13084321c0c5fdf9a0075aea6f046e9a94",
+    "docs/JSON_FRAMING.md": "86695a4bb60e276680ca46be2710d08de936c56aacbd62fa4ce3be6bdc06d41c",
+    "scripts/json-reference.py": "cb0d7edad1892441f70b3f7057c538c210fbaa3a2060dad952c9687e68c9a241",
+    "src/bin/gz-msgs.rs": "60fb27540f7c3b7f74d5816151e72cddf1e8004d37426a2abfcaba5cf2a2ffad",
+    "tests/cli.rs": "08fdae8d5d665923dc8b5c389864c55301144a02386d29f6b52245cc111f8166",
+    "tests/fixtures/json-repeated-string-data.json": "2376737953843b1d536715963365862cdf9c9d8f37e5a12e3fd4d3d3ce13e7c9"
+  },
+  "review_notes": [
+    "All six staged file hashes and 13 retained fixture hashes matched the raw private source; source tree and diff remained frozen with no unstaged delta.",
+    "The only parser change adds StringMsg_V to the existing descriptor-specific repeated-data path; no other descriptor or native probe source changed.",
+    "Fresh private native peer and selected Rust test passed; the isolated descriptor-removal mutant failed the first original new wire assertion.",
+    "This receipt approves source and assertions only. Final metadata binding, final staged gate, normal hook, publication and hosted result remain separate."
+  ],
+  "reviewer": "/root/transport_fallback",
+  "scope": "Only top-level duplicate StringMsg_V.data occurrences append scalar/array values in source order, with null and empty arrays contributing no values. Other repeated fields, general duplicate JSON keys, and broader MSG-02 remain unqualified.",
+  "source_diff_sha256": "a59f9f6aeed0cb9d2cda15a29e2c2eed4f7405258d6102f4f89007b64876f854",
+  "source_tree": "88519e778897ad719cdf4a4605bb2b47c14cf1b9"
+}

@@ -1770,5 +1770,30 @@ Int32 admission mutant. The exact six-file staged gate passed on tree
 `UInt64_V` remains pending: the maintained
 decoder saturates an unquoted integer above `u64::MAX`, while native rejects
 it. Single-key scalar values, other repeated types, broader JSON grammar and
-MSG-02 acceptance remain open. Final metadata binding, the normal hook and
-hosted qualification remain pending for this candidate.
+MSG-02 acceptance remain open. Final metadata binding and the normal hook
+passed on public commit `8ab936c491305e7c4517225d9e58ef162081ef9e`;
+hosted run `40220925335` passed.
+
+## Bounded repeated string `data` keys
+
+The occurrence decoder now appends duplicate top-level `StringMsg_V.data`
+values in source order using the maintained reflected string decoder. The
+source-bound C++ fixture covers arrays, scalar strings, nulls, header retention,
+permissive keys and escapes, Unicode/control bytes and malformed input. Its
+46 rows contain 34 native-positive and 12 native-negative outcomes. All 992
+prior JSON rows and 13 fixture hashes remain unchanged; the native replay now
+checks 1,038 outcomes. A reproducible 400-pair sweep across Unicode, escape,
+null, malformed and scalar/array forms found no status or wire mismatch. The
+working strict gate passed 113 Rust tests and all five original C++ CLI tests;
+root production coverage was 2,228/2,242 lines and 3,575/3,619 regions,
+and CLI coverage was 467/479 lines and 798/828 regions. In an isolated
+source/target mutant, removing StringMsg_V admission failed the exact
+`two_arrays` wire assertion (one element instead of two).
+The [independent review](reviews/json-repeated-string.json) approved the six
+frozen files after a private 1,038-row native replay, selected Rust assertion
+and separate descriptor-removal mutant. The exact six-file staged gate passed
+on tree `88519e778897ad719cdf4a4605bb2b47c14cf1b9` with log SHA256
+`7a17b561a664a21f4980cc51ab697ce0cadaecde4ca3c10ba4a5da67b50d85f6`.
+Single-key scalar values, other repeated descriptors, general duplicate-field
+behavior and MSG-02 acceptance remain open. Final metadata binding, the normal
+hook and hosted qualification remain pending for this candidate.

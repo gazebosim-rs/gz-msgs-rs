@@ -444,7 +444,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             let repeated_data = float_data.is_some()
                 || matches!(
                     descriptor.full_name(),
-                    "gz.msgs.Int32_V" | "gz.msgs.UInt32_V" | "gz.msgs.Int64_V"
+                    "gz.msgs.Int32_V"
+                        | "gz.msgs.UInt32_V"
+                        | "gz.msgs.Int64_V"
+                        | "gz.msgs.StringMsg_V"
                 );
             let NormalizedProtoJson {
                 bytes: normalized,
