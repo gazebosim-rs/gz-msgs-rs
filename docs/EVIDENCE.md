@@ -1898,5 +1898,29 @@ eight explicit hex-gap checks. A private removal of UInt64 occurrence admission
 failed the exact first scalar assertion. The initial source review was
 superseded when the hex gap was found; the V2 receipt binds this disposition.
 The exact staged gate passed on tree
-`b5bef5195548044f74a3d50265a28aac79f4cddc`. Normal protected hook and
-hosted qualification remain pending.
+`b5bef5195548044f74a3d50265a28aac79f4cddc`. Final metadata binding and
+the normal protected hook passed on public commit
+`755c185e3f9cb4c341d07fc3c6a9092608c8ba7c`; hosted run `40232275992`
+passed.
+
+## Bounded UInt64 unquoted hexadecimal controls
+
+The pinned C++ JSON peer now checks 220 bounded `UInt64_V.data` trailing-dot
+hexadecimal cases and two native-only undotted `e`/`E` cases in scalar, array,
+duplicate and nested placements, for 1,690 native status and full-wire
+outcomes total. All 17 older fixture hashes are
+held exact, and the previous eight native-only hex observations remain in their
+original fixture as historical negatives before the current parity check.
+The corrected adapter reuses pinned `fhex 2.0.2` under descriptor,
+token-spelling and value-start guards. Pinned protobuf 3.21.12
+`JsonStreamParser::ParseNumberHelper` scans `e`/`E` but stops at other
+alphabetic hex digits, then `DataPiece::ToUint64` checks the floating
+conversion. The first source freeze overaccepted `10x7.`; the second missed
+native-positive `0xe.` and `0x7e1.`. Both are
+excluded. Undotted `0xe` and `0x7e1` remain native-only gaps. Other
+descriptors and general JSON parsing are unchanged. The exact six-file staged
+gate passed with 2356/2368 root lines and 3816/3857 regions. The
+[independent review](reviews/json-uint64-unquoted-hex.json) approved the
+bounded mapping after a separate 1,690-row native replay and explicit
+undotted-gap checks. Final metadata binding, the normal protected hook and
+hosted CI remain pending.

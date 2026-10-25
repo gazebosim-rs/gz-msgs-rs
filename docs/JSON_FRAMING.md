@@ -460,5 +460,49 @@ descriptors and MSG-02 completion remain open. The
 source and assertions after a separate 1,468-row native replay, eight hex-gap
 checks and an admission-removal mutant that failed the first scalar case. The
 exact six-file staged gate passed on tree
-`b5bef5195548044f74a3d50265a28aac79f4cddc`. Normal protected hook and
-hosted CI remain pending.
+`b5bef5195548044f74a3d50265a28aac79f4cddc`. Final metadata binding and
+the normal protected hook passed on public commit
+`755c185e3f9cb4c341d07fc3c6a9092608c8ba7c`; hosted run `40232275992`
+passed.
+
+## UInt64 unquoted hexadecimal trailing-dot values
+
+The pinned protobuf 3.21.12 [numeric lexer](https://github.com/protocolbuffers/protobuf/blob/v3.21.12/src/google/protobuf/util/internal/json_stream_parser.cc)
+starts a number at an ASCII digit or `-`, scans digits plus `.`, `e`, `E`,
+`+`, `-` and `x`, and stops at other letters. A dot or `e`/`E` selects
+`safe_strtod`; undotted positive `0x` is rejected. Its
+[UInt64 conversion](https://github.com/protocolbuffers/protobuf/blob/v3.21.12/src/google/protobuf/util/internal/datapiece.cc)
+checks the parsed double's integer conversion. The bounded corpus confirms
+that this path accepts some unquoted hexadecimal
+`UInt64_V.data` values with a lowercase `0x`, a mantissa of ASCII decimal
+digits or `e`/`E` before a dot, and an integral finite result below `2^64`.
+Here `e` and `E` are hex digits: native accepts `0xe.` and `0x7e1.`. It
+rejects an undotted `0x7`, alphabetic digits other than `e`/`E` on either
+side of the dot, uppercase `0X`, signs, `p` exponents and fractional results.
+The undotted `0xe` and `0x7e1` are native-positive but remain explicit gaps.
+The allowed fractional digits can round away, as `0x7.000000000000001`
+and a larger `0x9878635522291.e1` do in the pinned native parser.
+
+The `UInt64_V` top-level data adapter recognizes that spelling only outside
+strings and uses the existing pinned `fhex 2.0.2` conversion followed by
+finite, integral and range checks. It writes the resulting decimal integer
+into the normalized JSON before the maintained raw-value and reflected
+decoders validate each occurrence and the full document. Other descriptors,
+quoted strings and unrelated fields retain their existing path.
+
+The corrected fixture has 220 bounded native status and full-wire controls across
+scalar, array, duplicate and nested data placements: 116 accepted and 104
+rejected, plus two separately asserted native-only undotted gaps. Twelve
+rejected concatenations such as `10x7.` ensure the rewrite
+starts at a value boundary. The first frozen source omitted that guard; the
+second omitted native `e`/`E` mantissas. Both were held without approval.
+The native replay retains all 1,468 earlier outcomes and 17 earlier fixture
+hashes. The prior occurrence fixture remains byte-identical; its eight
+native-positive/Rust-negative hex observations remain historical evidence,
+and their test now requires current native parity. Broader hexadecimal and
+JSON grammar, diagnostics and MSG-02 acceptance remain open. The exact
+six-file staged gate passed with 2356/2368 root lines and 3816/3857 regions;
+the [independent review](reviews/json-uint64-unquoted-hex.json) approved the
+bounded mapping after a private 1,690-row native replay and numeric-boundary
+controls. Final metadata binding, the normal hook and hosted qualification
+remain pending.

@@ -1,0 +1,39 @@
+{
+  "author": "/root/msgs_review_fallback",
+  "base": "755c185e3f9cb4c341d07fc3c6a9092608c8ba7c",
+  "decision": "approved",
+  "files_sha256": {
+    "docs/EVIDENCE.md": "1fc7616c28edc100f862566501b95f2e418902ec2e5c66215d8f2f80dbbbe91e",
+    "docs/JSON_FRAMING.md": "83a0f8ddd7862e376d17d8494d021ba35eb9fe77e0aa21f0c8f2477562bb1b0c",
+    "scripts/json-reference.py": "11299661e3eb9dad195eccd51069c7c862b78e40d4ee82c9ee2f32999fd89033",
+    "src/bin/gz-msgs.rs": "558f8dc5e4d53a1adce9c1cfe72d5fd904ccd3c11000969247d43eab5a5af6c7",
+    "tests/cli.rs": "5e9c49f6ccd6d928a421e0175b0c4f078d9c9e6de6f20fcde95e223c6e9b442b",
+    "tests/fixtures/json-uint64-unquoted-hex.json": "7559db0b4138008375f38e22c637a95fd3a6d437d89eba1fd28454f50b41eaa8"
+  },
+  "findings": [],
+  "limits": [
+    "This is bounded to gz.msgs.UInt64_V top-level data values. General JSON/protobuf numeric grammar, other descriptors, diagnostics and pathological resource limits remain open.",
+    "Native-positive undotted 0xe and 0x7e1 remain asserted Rust-negative gaps; V1 and V2 proposals were revoked and are not approved.",
+    "Final metadata binding, final exact staged gate, normal protected hook, publication and hosted CI remain required."
+  ],
+  "native": {
+    "protobuf": "3.21.12",
+    "private_full_replay": "1690/1690 exact status and stdout from a separately compiled pinned C++ peer; 1468 prior outcomes and 17 fixture hashes retained",
+    "private_full_proof_sha256": "c6cbbac95f5f402de53a6bfff22a8b84771fce3b4967e65c877c9993ab0af721",
+    "source_audit_sha256": "3acc3aa0b1a973215b74f4f780a7dd02c4daa54b0ac59b8945ba4101afcfa2fc"
+  },
+  "private_review": {
+    "source": "Raw Git export of public base overlaid with exact six frozen files; exclusive Cargo target. Six SHA-256 hashes, staged tree/diff and no unstaged changes independently verified.",
+    "selected_rust": "uint64_unquoted_hex_trailing_dot_matches_native passed 1/0 on private source and target.",
+    "differential": "144 token/placement forms showed only the eight declared undotted 0xe and 0x7e1 gaps; 16 nested, other-key, comment and suffix forms showed zero additional status or accepted-wire mismatches.",
+    "negative": "Removing only the true-value-start guard in a separate private source/target fails exact native-rejected uint64_hex_164 (10x7. concatenation), false versus true; log SHA256 b9e6da2560d374ddf15e67cf2e5de4105c0cb4a13481284b3456996fc0b510a7."
+  },
+  "reviewer": "/root/transport_fallback",
+  "scope": "Dotted unquoted lowercase 0x numeric normalization for UInt64_V top-level data, including scalar, array, nested and duplicate occurrences: digits/e/E in mantissa and fraction, finite nonnegative integral values below 2^64, with a true data-value-start and delimiter guard. All 220 new bounded rows match native status and accepted full wire bytes; two undotted native-only gaps remain explicit.",
+  "staged_diff_sha256": "02419d747ad8b1859317335981b3425c8d1fcbdac938c189a868a57ee168f193",
+  "staged_tree": "2e02e448a28cc6009f3fa542bcfe36fff19870c8",
+  "author_gate": {
+    "exact_staged_log_sha256": "04edff3b910d88c35f37d3730c9a4c10a7b791e29789f2a31da2e75407eea01b",
+    "result": "EXIT0, strict staged Rust/native/tooling and coverage gates; CLI 591/602 lines and 1036/1065 regions, root 2356/2368 lines and 3816/3857 regions."
+  }
+}

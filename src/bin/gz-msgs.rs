@@ -95,6 +95,45 @@ fn proto_hex_float(value: &str, width: FloatWidth) -> Option<Value> {
 
 type UInt64ArrayNumbers = Vec<(usize, u64)>;
 
+fn proto_uint64_hex(value: &[u8]) -> Option<(usize, u64)> {
+    const LIMIT: f64 = 18446744073709551616.0;
+    if !value.starts_with(b"0x") {
+        return None;
+    }
+    let mut end = 2;
+    while value
+        .get(end)
+        .is_some_and(|byte| byte.is_ascii_digit() || matches!(*byte, b'e' | b'E'))
+    {
+        end += 1;
+    }
+    if end == 2 || value.get(end) != Some(&b'.') {
+        return None;
+    }
+    end += 1;
+    // The protobuf number lexer stops at a-f/A-F even though strtod would
+    // accept them as hex digits. Only e/E remain in the numeric token.
+    while value
+        .get(end)
+        .is_some_and(|byte| byte.is_ascii_digit() || matches!(*byte, b'e' | b'E'))
+    {
+        end += 1;
+    }
+    if value.get(end).is_some_and(|byte| {
+        !matches!(
+            *byte,
+            b',' | b'}' | b']' | b' ' | b'\t' | b'\r' | b'\n' | b'\x0b' | b'\x0c'
+        )
+    }) {
+        return None;
+    }
+    let number = f64::from_hex(std::str::from_utf8(&value[..end]).ok()?)?;
+    if !number.is_finite() || !(0.0..LIMIT).contains(&number) || number.fract() != 0.0 {
+        return None;
+    }
+    Some((end, number as u64))
+}
+
 fn proto_uint64_array(
     value: &[u8],
 ) -> Result<Option<UInt64ArrayNumbers>, Box<dyn std::error::Error>> {
@@ -157,6 +196,7 @@ fn normalize_proto_json(
     input: &[u8],
     float_data: Option<FloatWidth>,
     repeated_data: bool,
+    uint64_data: bool,
 ) -> NormalizedProtoJson {
     #[derive(Clone, Copy, PartialEq, Eq)]
     enum Frame {
@@ -293,6 +333,16 @@ fn normalize_proto_json(
             }
             previous = Some(input[index - 1]);
             continue;
+        }
+        if uint64_data && data_value_start.is_some() && matches!(previous, Some(b':' | b'[' | b','))
+        {
+            if let Some((length, number)) = proto_uint64_hex(&input[index..]) {
+                let decimal = number.to_string();
+                output.extend_from_slice(decimal.as_bytes());
+                previous = decimal.as_bytes().last().copied();
+                index += length;
+                continue;
+            }
         }
         // Native parses bare integer -0 as positive zero. Fractions,
         // exponents and quoted values retain their negative zero sign.
@@ -509,7 +559,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 patches,
                 array_ranges,
                 data_ranges,
-            } = normalize_proto_json(&input, float_data, repeated_data);
+            } = normalize_proto_json(&input, float_data, repeated_data, uint64_data);
             let single_scalar = data_ranges.len() == 1 && {
                 let (start, end) = data_ranges[0];
                 let value = normalized[start..end].trim_ascii();
