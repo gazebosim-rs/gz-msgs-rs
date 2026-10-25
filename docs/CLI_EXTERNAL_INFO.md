@@ -44,13 +44,14 @@ identifying extensions rather than blanket proto2 rejection. Malformed required
 or repeated oneof labels accepted by reflection but rejected by native return a
 typed error. This does not qualify proto2 wire/value behavior or general validation.
 
-Directly supplied raw proto2 integer defaults expose a separate maintained-loader
-boundary: native interprets `010` as eight and accepts `0x2a` as 42, while the
-pinned reflection pool treats `010` as decimal ten and rejects `0x2a`. Protoc
-normalizes these literals before emitting descriptors, masking the difference in
-ordinary generated fixtures. Explicit defaults remain outside this formatter's
-supported subset; no runtime patch, descriptor normalization or arbitrary native
-proto2 default-value contract is introduced. Canonical proto3 schemas are unchanged.
+Standard reflection pool entry points retain their raw proto2 integer-default
+boundary: `010` is decimal ten and `0x2a` is rejected. The registry/factory now use
+an [opt-in integer policy](INTEGER_DEFAULTS.md) matching the qualified native
+Linux LP64/C23 effective values while preserving raw spelling. Protoc normalizes
+source literals, so directly constructed descriptor bytes qualify this boundary.
+Explicit defaults remain outside this formatter's supported subset; no descriptor
+normalization or arbitrary native proto2 default/formatting contract is introduced.
+Canonical proto3 schemas are unchanged.
 
 The descriptor-only API formats metadata exposed by reflection. Its loader
 synthesizes a JSON name when the raw field omitted one; that omission cannot be

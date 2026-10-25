@@ -105,6 +105,17 @@ impl DescriptorPool {
     where
         I: IntoIterator<Item = FileDescriptorProto>,
     {
+        self.build_files_with_integer_defaults(files, false)
+    }
+
+    pub(crate) fn build_files_with_integer_defaults<I>(
+        &mut self,
+        files: I,
+        integer_defaults: bool,
+    ) -> Result<(), DescriptorError>
+    where
+        I: IntoIterator<Item = FileDescriptorProto>,
+    {
         let offsets = DescriptorPoolOffsets::new(&self.inner);
 
         let deduped_files: Vec<_> = files
@@ -112,7 +123,7 @@ impl DescriptorPool {
             .filter(|f| !self.inner.file_names.contains_key(f.name()))
             .collect();
 
-        let result = self.build_files_deduped(offsets, &deduped_files);
+        let result = self.build_files_deduped(offsets, &deduped_files, integer_defaults);
         if result.is_err() {
             debug_assert_eq!(Arc::strong_count(&self.inner), 1);
             offsets.rollback(Arc::get_mut(&mut self.inner).unwrap());
@@ -125,6 +136,7 @@ impl DescriptorPool {
         &mut self,
         offsets: DescriptorPoolOffsets,
         deduped_files: &[FileDescriptorProto],
+        integer_defaults: bool,
     ) -> Result<(), DescriptorError> {
         if deduped_files.is_empty() {
             return Ok(());
@@ -134,7 +146,7 @@ impl DescriptorPool {
 
         inner.collect_names(offsets, deduped_files)?;
 
-        inner.resolve_names(offsets, deduped_files)?;
+        inner.resolve_names(offsets, deduped_files, integer_defaults)?;
 
         self.resolve_options(offsets, deduped_files)?;
 

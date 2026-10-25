@@ -1,0 +1,1712 @@
+[
+  {
+    "kind": 5,
+    "input": "0",
+    "descriptor": "0.desc",
+    "descriptor_sha256": "cb2480e8156176b17f96a769a2035dea252208a64df1d6fe2c27280231e376eb",
+    "status": 0,
+    "body": "message Default {\n  optional int32 value = 1 [default = 0, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 5,
+    "input": "010",
+    "descriptor": "1.desc",
+    "descriptor_sha256": "ac45cfcbc774fc256c18c857ae1f0c11cc1b2f01246836cc59975931300e55de",
+    "status": 0,
+    "body": "message Default {\n  optional int32 value = 1 [default = 8, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 5,
+    "input": "09",
+    "descriptor": "2.desc",
+    "descriptor_sha256": "b52b420b045e11f176c8bfa6cd39e4c488d651265b255c1b34e69a5deabe3762",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"09\".\n"
+  },
+  {
+    "kind": 5,
+    "input": "0x2a",
+    "descriptor": "3.desc",
+    "descriptor_sha256": "d59b7845df82682185eea250667deac71cce389d9ba3577b2d7545884f1e8aaa",
+    "status": 0,
+    "body": "message Default {\n  optional int32 value = 1 [default = 42, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 5,
+    "input": "0X2A",
+    "descriptor": "4.desc",
+    "descriptor_sha256": "11ce69b363b4bd736eefa8161851e23308106c26175ae086726c461b4c830060",
+    "status": 0,
+    "body": "message Default {\n  optional int32 value = 1 [default = 42, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 5,
+    "input": "-010",
+    "descriptor": "5.desc",
+    "descriptor_sha256": "5f81f4bd06a0aa57a0652ccecfae6382705735d2a4d7ac433d29c2178ec47530",
+    "status": 0,
+    "body": "message Default {\n  optional int32 value = 1 [default = -8, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 5,
+    "input": "-0x2a",
+    "descriptor": "6.desc",
+    "descriptor_sha256": "6316298ac0fc23005a4d8e0fa5bb0cc256cb67d59bdb9d40e6d351be9d91cb0e",
+    "status": 0,
+    "body": "message Default {\n  optional int32 value = 1 [default = -42, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 5,
+    "input": "+010",
+    "descriptor": "7.desc",
+    "descriptor_sha256": "78f9e9c36439def21e45c91303c4465be56210eeeb49f1ca784030c400b16ba8",
+    "status": 0,
+    "body": "message Default {\n  optional int32 value = 1 [default = 8, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 5,
+    "input": " +010",
+    "descriptor": "8.desc",
+    "descriptor_sha256": "00f5e64076888dfb9334c68a7ea7bd3670d968d940bad68e1a8e1ce96f087f5f",
+    "status": 0,
+    "body": "message Default {\n  optional int32 value = 1 [default = 8, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 5,
+    "input": "010 ",
+    "descriptor": "9.desc",
+    "descriptor_sha256": "610469e91804c53b1318803c61603da5e43a86b660086aae60d86f0ce113c809",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"010 \".\n"
+  },
+  {
+    "kind": 5,
+    "input": "",
+    "descriptor": "10.desc",
+    "descriptor_sha256": "f3f428ef836b8e50a8089333e2a7e7bc6c24ce0ab2b33b55b2c160bf175e41f3",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"\".\n"
+  },
+  {
+    "kind": 5,
+    "input": "00",
+    "descriptor": "11.desc",
+    "descriptor_sha256": "22c0d563c25e16411c65c46b7650f91483a923fbd06de75f1179bbbe4db76270",
+    "status": 0,
+    "body": "message Default {\n  optional int32 value = 1 [default = 0, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 5,
+    "input": "0x",
+    "descriptor": "12.desc",
+    "descriptor_sha256": "36e90e8e5a02d01c23d2843e27545ce18f13cef5abe0c6745948ddd8d0c984e8",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"0x\".\n"
+  },
+  {
+    "kind": 5,
+    "input": "2147483648",
+    "descriptor": "13.desc",
+    "descriptor_sha256": "cf510326fca197ac8287a67ae189dfac50362f6fbab183530c425ba5206e1893",
+    "status": 0,
+    "body": "message Default {\n  optional int32 value = 1 [default = -2147483648, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 5,
+    "input": "4294967296",
+    "descriptor": "14.desc",
+    "descriptor_sha256": "940d96029c34b638096bb76560ff367889b357e8130bd26d22e9750bdc0e9db9",
+    "status": 0,
+    "body": "message Default {\n  optional int32 value = 1 [default = 0, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 5,
+    "input": "18446744073709551616",
+    "descriptor": "15.desc",
+    "descriptor_sha256": "ea67e8193b9eec4573453d0d1c2717ccc548322294229a13f9e1f8d4a64aefef",
+    "status": 0,
+    "body": "message Default {\n  optional int32 value = 1 [default = -1, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 5,
+    "input": "-1",
+    "descriptor": "16.desc",
+    "descriptor_sha256": "504b75113b3388e05edab31c0c669f644dad79e9f53c70a8ed027250f5c072ab",
+    "status": 0,
+    "body": "message Default {\n  optional int32 value = 1 [default = -1, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 5,
+    "input": "0b10",
+    "descriptor": "17.desc",
+    "descriptor_sha256": "f8382230d3f17ca781fd7a753991b681c787244d4bc4db1fbf9c1721b9c4f2b2",
+    "status": 0,
+    "body": "message Default {\n  optional int32 value = 1 [default = 2, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 5,
+    "input": "42x",
+    "descriptor": "18.desc",
+    "descriptor_sha256": "7a13e97662f9d95c85b7007d03d8d1261a9dcfd0ee397aa9fea6750fc176611d",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"42x\".\n"
+  },
+  {
+    "kind": 3,
+    "input": "0",
+    "descriptor": "19.desc",
+    "descriptor_sha256": "955f5ec5dd651235451a8c5319bb4a6327da3e01f6e57f0e6cd8a0ca72674894",
+    "status": 0,
+    "body": "message Default {\n  optional int64 value = 1 [default = 0, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 3,
+    "input": "010",
+    "descriptor": "20.desc",
+    "descriptor_sha256": "2dafe26134a54f5614449202015b76143cbae1d2170dda46dd1d6a83e74caa21",
+    "status": 0,
+    "body": "message Default {\n  optional int64 value = 1 [default = 8, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 3,
+    "input": "09",
+    "descriptor": "21.desc",
+    "descriptor_sha256": "ff326ff09f60f9dde33ac626ce3108436b7ce703b1027d0e404a012414ddec34",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"09\".\n"
+  },
+  {
+    "kind": 3,
+    "input": "0x2a",
+    "descriptor": "22.desc",
+    "descriptor_sha256": "027ef222012cd9324fdb52a631d6d596ab8adc5e04a11013fc0a45a423d731eb",
+    "status": 0,
+    "body": "message Default {\n  optional int64 value = 1 [default = 42, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 3,
+    "input": "0X2A",
+    "descriptor": "23.desc",
+    "descriptor_sha256": "6d48c7ac4ac5a7dfbc4340b335ec02d2abf6502e5aa110922283b6cfbb2ef235",
+    "status": 0,
+    "body": "message Default {\n  optional int64 value = 1 [default = 42, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 3,
+    "input": "-010",
+    "descriptor": "24.desc",
+    "descriptor_sha256": "76f63acde7208d956f5c4d63c26b3abe682bc5c7411032c2c38b18b68cc3e6ef",
+    "status": 0,
+    "body": "message Default {\n  optional int64 value = 1 [default = -8, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 3,
+    "input": "-0x2a",
+    "descriptor": "25.desc",
+    "descriptor_sha256": "3ce0a05943a12ad401d9a9c0dc3cebe6059330f62a20f82de3958a5aaae3a2e2",
+    "status": 0,
+    "body": "message Default {\n  optional int64 value = 1 [default = -42, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 3,
+    "input": "+010",
+    "descriptor": "26.desc",
+    "descriptor_sha256": "16a84ea42d73d44a5b3453c694a0fd4b0496bc52365464ce83aa724b346efa11",
+    "status": 0,
+    "body": "message Default {\n  optional int64 value = 1 [default = 8, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 3,
+    "input": " +010",
+    "descriptor": "27.desc",
+    "descriptor_sha256": "3bb244aeaac1e3696dbd94360a7cc1f6aefcc721d950e85948517c20a269b138",
+    "status": 0,
+    "body": "message Default {\n  optional int64 value = 1 [default = 8, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 3,
+    "input": "010 ",
+    "descriptor": "28.desc",
+    "descriptor_sha256": "838b55c8f23338ab5894a7acdcf01d663a4674654a0e300e113fb46dd5e39994",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"010 \".\n"
+  },
+  {
+    "kind": 3,
+    "input": "",
+    "descriptor": "29.desc",
+    "descriptor_sha256": "ce202c8ffc4341e906021065d10a406e8bb2b1e277af85a2690aa92bd3e38111",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"\".\n"
+  },
+  {
+    "kind": 3,
+    "input": "00",
+    "descriptor": "30.desc",
+    "descriptor_sha256": "f606402a4cd6d942a13a7c5accbaa8acb3bdae09d8136ec8b1ac0bcb5ff9eec9",
+    "status": 0,
+    "body": "message Default {\n  optional int64 value = 1 [default = 0, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 3,
+    "input": "0x",
+    "descriptor": "31.desc",
+    "descriptor_sha256": "b2f6fc9470d2928641ceafa6913de51d3a00cc1dfe7492388cd081b9e30af496",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"0x\".\n"
+  },
+  {
+    "kind": 3,
+    "input": "2147483648",
+    "descriptor": "32.desc",
+    "descriptor_sha256": "1000aa768bfefa2865a61d7fa2282c97e93a6379dfe249d9eb4b0125def375b7",
+    "status": 0,
+    "body": "message Default {\n  optional int64 value = 1 [default = 2147483648, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 3,
+    "input": "4294967296",
+    "descriptor": "33.desc",
+    "descriptor_sha256": "9ebf6ba67dd50642c12a12fea86dedcc97ea9b157e292d2b4b919bdf8d38c1cf",
+    "status": 0,
+    "body": "message Default {\n  optional int64 value = 1 [default = 4294967296, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 3,
+    "input": "18446744073709551616",
+    "descriptor": "34.desc",
+    "descriptor_sha256": "4aaaed8a7629eaf8e51e3a69952be2baa5acea6a7a7a5f99c25cc75b6ec5b02c",
+    "status": 0,
+    "body": "message Default {\n  optional int64 value = 1 [default = 9223372036854775807, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 3,
+    "input": "-1",
+    "descriptor": "35.desc",
+    "descriptor_sha256": "3eedb96d9ac1a0bdfc25f978e8fb6a00180473aebb0068be21097b45e0583757",
+    "status": 0,
+    "body": "message Default {\n  optional int64 value = 1 [default = -1, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 3,
+    "input": "0b10",
+    "descriptor": "36.desc",
+    "descriptor_sha256": "15c5125e37d930044f80c79fdc10e5eb5526c0552aaf8dca4e43387a434c7f50",
+    "status": 0,
+    "body": "message Default {\n  optional int64 value = 1 [default = 2, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 3,
+    "input": "42x",
+    "descriptor": "37.desc",
+    "descriptor_sha256": "54565fd68bf94509caeb4191cd0d37c7f18a63ecfe39a5cb00b618728c045af6",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"42x\".\n"
+  },
+  {
+    "kind": 13,
+    "input": "0",
+    "descriptor": "38.desc",
+    "descriptor_sha256": "2f1ff95962f8533b621936ef683718a8cda24ac373e5aaa18a5619575e9e93f6",
+    "status": 0,
+    "body": "message Default {\n  optional uint32 value = 1 [default = 0, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 13,
+    "input": "010",
+    "descriptor": "39.desc",
+    "descriptor_sha256": "40c9f32abed15d32beafdd3d98f45cfb898e402fc593f2428de28961a9a0c099",
+    "status": 0,
+    "body": "message Default {\n  optional uint32 value = 1 [default = 8, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 13,
+    "input": "09",
+    "descriptor": "40.desc",
+    "descriptor_sha256": "a080b0e9c736361a7c8dd89a4d832f5a11bdd5b2179a7b225255a0bdeac3ee77",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"09\".\n"
+  },
+  {
+    "kind": 13,
+    "input": "0x2a",
+    "descriptor": "41.desc",
+    "descriptor_sha256": "93c07866f4e4e0eeab49cad0c5a097a13089ae9391a4e23a10d8eda9d894171b",
+    "status": 0,
+    "body": "message Default {\n  optional uint32 value = 1 [default = 42, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 13,
+    "input": "0X2A",
+    "descriptor": "42.desc",
+    "descriptor_sha256": "ca0ee0acfb5cc7cfb09f69c17d7ce6e41285ad81d36a9f4f67643bd1359c8ccf",
+    "status": 0,
+    "body": "message Default {\n  optional uint32 value = 1 [default = 42, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 13,
+    "input": "-010",
+    "descriptor": "43.desc",
+    "descriptor_sha256": "a342b96c19046941576ac5d99cd0da4f4a8b1cfbe780f8506174163b0395120d",
+    "status": 0,
+    "body": "message Default {\n  optional uint32 value = 1 [default = 4294967288, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 13,
+    "input": "-0x2a",
+    "descriptor": "44.desc",
+    "descriptor_sha256": "7a38a2acc9542cb48c91c80c5cb76bfce9961933d00dfe125400ef6244079139",
+    "status": 0,
+    "body": "message Default {\n  optional uint32 value = 1 [default = 4294967254, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 13,
+    "input": "+010",
+    "descriptor": "45.desc",
+    "descriptor_sha256": "218b7885022a2683009c31dd4d7e535bf55382baac01eb1f8c784af3b2b93082",
+    "status": 0,
+    "body": "message Default {\n  optional uint32 value = 1 [default = 8, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 13,
+    "input": " +010",
+    "descriptor": "46.desc",
+    "descriptor_sha256": "47f739d2ccadf7fb58a57f4debf6111977cabe06d2d11711d7192f83fbb72af5",
+    "status": 0,
+    "body": "message Default {\n  optional uint32 value = 1 [default = 8, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 13,
+    "input": "010 ",
+    "descriptor": "47.desc",
+    "descriptor_sha256": "152b238488bc6a51dd1cabbb623bddb01f2431098a63880eb4857b7abc53587e",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"010 \".\n"
+  },
+  {
+    "kind": 13,
+    "input": "",
+    "descriptor": "48.desc",
+    "descriptor_sha256": "d1e871263e14046f3ff4d38651a9f875ec7d615e73e75d95bd4caba88e2a0de5",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"\".\n"
+  },
+  {
+    "kind": 13,
+    "input": "00",
+    "descriptor": "49.desc",
+    "descriptor_sha256": "37e8da66387e7100e126d94e47097def9749b1a96e62b189093448f503dd2229",
+    "status": 0,
+    "body": "message Default {\n  optional uint32 value = 1 [default = 0, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 13,
+    "input": "0x",
+    "descriptor": "50.desc",
+    "descriptor_sha256": "21e85cbbf8d46a3288d295906f460205c8921b2d4d0245396a705a8a9b462742",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"0x\".\n"
+  },
+  {
+    "kind": 13,
+    "input": "2147483648",
+    "descriptor": "51.desc",
+    "descriptor_sha256": "e47b9b4171d65af12b8b3ed65219ae42db407586be57a886bdb7ee8b0425230f",
+    "status": 0,
+    "body": "message Default {\n  optional uint32 value = 1 [default = 2147483648, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 13,
+    "input": "4294967296",
+    "descriptor": "52.desc",
+    "descriptor_sha256": "d43360411ed9567ab50fb42349a5927b5f377c72eff0b53f0e1a8fb2bcbe2a9c",
+    "status": 0,
+    "body": "message Default {\n  optional uint32 value = 1 [default = 0, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 13,
+    "input": "18446744073709551616",
+    "descriptor": "53.desc",
+    "descriptor_sha256": "1fe56d3b3c6d98e7a5961d0c97fb7a4298b614d0844f8d67c5e4a2a1cab3b46f",
+    "status": 0,
+    "body": "message Default {\n  optional uint32 value = 1 [default = 4294967295, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 13,
+    "input": "-1",
+    "descriptor": "54.desc",
+    "descriptor_sha256": "d3511575d567b3a0cee3b287d841d46a66f9f0173a33c6c872947a9172063aa3",
+    "status": 0,
+    "body": "message Default {\n  optional uint32 value = 1 [default = 4294967295, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 13,
+    "input": "0b10",
+    "descriptor": "55.desc",
+    "descriptor_sha256": "e2b1e50d7cf00b18f06205f0115ee04d7696dc44b9cf8e2eeb08fe01aef58d1d",
+    "status": 0,
+    "body": "message Default {\n  optional uint32 value = 1 [default = 2, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 13,
+    "input": "42x",
+    "descriptor": "56.desc",
+    "descriptor_sha256": "3b925c745aabd9620c44b3ea9c021523a3dadeaa010e5500a2a98e203a774899",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"42x\".\n"
+  },
+  {
+    "kind": 4,
+    "input": "0",
+    "descriptor": "57.desc",
+    "descriptor_sha256": "26f8f1ea226309c080864556136986f4e74657c05a688c4ab6da38fe7f0be2ef",
+    "status": 0,
+    "body": "message Default {\n  optional uint64 value = 1 [default = 0, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 4,
+    "input": "010",
+    "descriptor": "58.desc",
+    "descriptor_sha256": "87b3fd40450ffa5b5907544753220f05fdd9a5063fbac43cd88ef3b0a6870565",
+    "status": 0,
+    "body": "message Default {\n  optional uint64 value = 1 [default = 8, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 4,
+    "input": "09",
+    "descriptor": "59.desc",
+    "descriptor_sha256": "b31cb73797661f8000b7c0605e55aa011d34bfac3a8b7f7fbbc07a56307fd22a",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"09\".\n"
+  },
+  {
+    "kind": 4,
+    "input": "0x2a",
+    "descriptor": "60.desc",
+    "descriptor_sha256": "bf35a5c8fdc4d1c5ec437152f6184c21b0dd589152ef64ca3d7002373d78c171",
+    "status": 0,
+    "body": "message Default {\n  optional uint64 value = 1 [default = 42, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 4,
+    "input": "0X2A",
+    "descriptor": "61.desc",
+    "descriptor_sha256": "796855a96e0a7867c9ea542a777bfcebf4c7fa92d5f3bdc721e9e215f9add9ce",
+    "status": 0,
+    "body": "message Default {\n  optional uint64 value = 1 [default = 42, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 4,
+    "input": "-010",
+    "descriptor": "62.desc",
+    "descriptor_sha256": "93ec5e5d7af9b9882c40a1d1cce31b2ae1f151f586ca0cfc212001f7ba477cfb",
+    "status": 0,
+    "body": "message Default {\n  optional uint64 value = 1 [default = 18446744073709551608, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 4,
+    "input": "-0x2a",
+    "descriptor": "63.desc",
+    "descriptor_sha256": "459e07ca68d1d43fd0f6965b7db17363344c527c305cf0b4951bbc20c057eb1e",
+    "status": 0,
+    "body": "message Default {\n  optional uint64 value = 1 [default = 18446744073709551574, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 4,
+    "input": "+010",
+    "descriptor": "64.desc",
+    "descriptor_sha256": "42451c74fde0cedcda5660f2d50ffbc907b5f25e8d39e1185bb2527b501ddeff",
+    "status": 0,
+    "body": "message Default {\n  optional uint64 value = 1 [default = 8, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 4,
+    "input": " +010",
+    "descriptor": "65.desc",
+    "descriptor_sha256": "5f805809dd4cf2ca808240665a296a20eac13482f6b0b9bddf60f11f47a76c1b",
+    "status": 0,
+    "body": "message Default {\n  optional uint64 value = 1 [default = 8, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 4,
+    "input": "010 ",
+    "descriptor": "66.desc",
+    "descriptor_sha256": "21dbd60f32d4009e5505325082682b1a3466255729ab85464b0b67ebf96fe30c",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"010 \".\n"
+  },
+  {
+    "kind": 4,
+    "input": "",
+    "descriptor": "67.desc",
+    "descriptor_sha256": "62ab09b803f299b30a3670c23e8c6cc552c80589c2c49f86f8c1b1ce05a7023f",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"\".\n"
+  },
+  {
+    "kind": 4,
+    "input": "00",
+    "descriptor": "68.desc",
+    "descriptor_sha256": "e99d4a78d6e8e185a48e4e44b763914f08174fa3bcb8e7f87b91024b37a676cf",
+    "status": 0,
+    "body": "message Default {\n  optional uint64 value = 1 [default = 0, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 4,
+    "input": "0x",
+    "descriptor": "69.desc",
+    "descriptor_sha256": "77f8e0022063dafa49d9eb5731f7aced7d4463421de649d832e73ea0dda59e11",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"0x\".\n"
+  },
+  {
+    "kind": 4,
+    "input": "2147483648",
+    "descriptor": "70.desc",
+    "descriptor_sha256": "3c7515a6f7c17975d3ac8abac67c913c73e1a9dc89880c17b078ce72a0a3bb0d",
+    "status": 0,
+    "body": "message Default {\n  optional uint64 value = 1 [default = 2147483648, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 4,
+    "input": "4294967296",
+    "descriptor": "71.desc",
+    "descriptor_sha256": "3f7a48275ba0dbf39e1bc8b243e3c97a75e7b8c54016e7901da6c53da52ee1f7",
+    "status": 0,
+    "body": "message Default {\n  optional uint64 value = 1 [default = 4294967296, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 4,
+    "input": "18446744073709551616",
+    "descriptor": "72.desc",
+    "descriptor_sha256": "9e275c28373f6386d1575a86c309f68f2dede9cf7effb6f6136b8b3221b559d6",
+    "status": 0,
+    "body": "message Default {\n  optional uint64 value = 1 [default = 18446744073709551615, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 4,
+    "input": "-1",
+    "descriptor": "73.desc",
+    "descriptor_sha256": "40dfe4aaa68c898942d65b3881ff01357555c65af582c93f8c8e850a1e1c211a",
+    "status": 0,
+    "body": "message Default {\n  optional uint64 value = 1 [default = 18446744073709551615, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 4,
+    "input": "0b10",
+    "descriptor": "74.desc",
+    "descriptor_sha256": "fed707f95fb4d62e55aa2e107d6858d5e20d33d526aec9c25b297fd8b25a6a57",
+    "status": 0,
+    "body": "message Default {\n  optional uint64 value = 1 [default = 2, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 4,
+    "input": "42x",
+    "descriptor": "75.desc",
+    "descriptor_sha256": "4cf78796daee675cd178474bdcb4e37701016d02cf6eeb56afd6fb9b58e80912",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"42x\".\n"
+  },
+  {
+    "kind": 17,
+    "input": "0",
+    "descriptor": "76.desc",
+    "descriptor_sha256": "fc19c204cbc28f0a7b1fb33a80381ec875b5ee1403a5559e9a1916f20fbc3a3f",
+    "status": 0,
+    "body": "message Default {\n  optional sint32 value = 1 [default = 0, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 17,
+    "input": "010",
+    "descriptor": "77.desc",
+    "descriptor_sha256": "876b692ca1e35ad39c0fc5078774228f012c1977936f5e4fcad83bd8fbd15814",
+    "status": 0,
+    "body": "message Default {\n  optional sint32 value = 1 [default = 8, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 17,
+    "input": "09",
+    "descriptor": "78.desc",
+    "descriptor_sha256": "90a17b58f8066c0723305cc6744b41c0bb05e18ab2822d0fbf415451d8bf8196",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"09\".\n"
+  },
+  {
+    "kind": 17,
+    "input": "0x2a",
+    "descriptor": "79.desc",
+    "descriptor_sha256": "9762a45fc9a6482563538037bda873a3dfce503cc202ddf7405f085393438250",
+    "status": 0,
+    "body": "message Default {\n  optional sint32 value = 1 [default = 42, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 17,
+    "input": "0X2A",
+    "descriptor": "80.desc",
+    "descriptor_sha256": "cfc2608fcc7356f8b260ad1222c31242d25d8c22b6f0cb1a975431cf3f0d4aa7",
+    "status": 0,
+    "body": "message Default {\n  optional sint32 value = 1 [default = 42, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 17,
+    "input": "-010",
+    "descriptor": "81.desc",
+    "descriptor_sha256": "e5ab546b1ca6962b7302f5bcee587cbc9f915c3610c942c8c89eea466213049a",
+    "status": 0,
+    "body": "message Default {\n  optional sint32 value = 1 [default = -8, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 17,
+    "input": "-0x2a",
+    "descriptor": "82.desc",
+    "descriptor_sha256": "ba06633dbecd04ba416816d9c9f05468dbbc8041ba9dfb1bd853b1f53c88f619",
+    "status": 0,
+    "body": "message Default {\n  optional sint32 value = 1 [default = -42, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 17,
+    "input": "+010",
+    "descriptor": "83.desc",
+    "descriptor_sha256": "926469422bc481b9a27013ba624653755efe8d2e9b21ec400e14c44ac6af911f",
+    "status": 0,
+    "body": "message Default {\n  optional sint32 value = 1 [default = 8, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 17,
+    "input": " +010",
+    "descriptor": "84.desc",
+    "descriptor_sha256": "846a25d811dae5519685916e9f3d3d7f67baa1bbb7836212ad975d2d76ebeadc",
+    "status": 0,
+    "body": "message Default {\n  optional sint32 value = 1 [default = 8, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 17,
+    "input": "010 ",
+    "descriptor": "85.desc",
+    "descriptor_sha256": "c25b020c2683802e01ba254ea53a38761041ec2fd54f65096c3bfda92162530c",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"010 \".\n"
+  },
+  {
+    "kind": 17,
+    "input": "",
+    "descriptor": "86.desc",
+    "descriptor_sha256": "06603a78a748616f3062ef72bdb9829fe2ee8afd0465a100d697975dabecd0ab",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"\".\n"
+  },
+  {
+    "kind": 17,
+    "input": "00",
+    "descriptor": "87.desc",
+    "descriptor_sha256": "31440682753a4eb42fe275f53a2207bdcfc32f32c6bc297baaf3a96093b1f844",
+    "status": 0,
+    "body": "message Default {\n  optional sint32 value = 1 [default = 0, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 17,
+    "input": "0x",
+    "descriptor": "88.desc",
+    "descriptor_sha256": "e4a90c66c7e1c56db747a96fa9e872df1ab09b3f71267d1131429e674b68cd32",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"0x\".\n"
+  },
+  {
+    "kind": 17,
+    "input": "2147483648",
+    "descriptor": "89.desc",
+    "descriptor_sha256": "880ad7ffb3e30c6c0b92747cf1f663504bb5a06c28e4683b51988af7cc3cc8ad",
+    "status": 0,
+    "body": "message Default {\n  optional sint32 value = 1 [default = -2147483648, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 17,
+    "input": "4294967296",
+    "descriptor": "90.desc",
+    "descriptor_sha256": "a0f328b023c4278b0d166937b17587691dfc96bf39846e678d6f9ee0b2311eff",
+    "status": 0,
+    "body": "message Default {\n  optional sint32 value = 1 [default = 0, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 17,
+    "input": "18446744073709551616",
+    "descriptor": "91.desc",
+    "descriptor_sha256": "626e4b6215365bf1798596dce5309c4f8aa57288df74b42d235765f029b371bc",
+    "status": 0,
+    "body": "message Default {\n  optional sint32 value = 1 [default = -1, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 17,
+    "input": "-1",
+    "descriptor": "92.desc",
+    "descriptor_sha256": "254868dfbe120b7e2ea1646bc2042c24df74de78d4afc6c93d22545dc79d6bc0",
+    "status": 0,
+    "body": "message Default {\n  optional sint32 value = 1 [default = -1, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 17,
+    "input": "0b10",
+    "descriptor": "93.desc",
+    "descriptor_sha256": "d1297c0221f26ff1c3d4aaee00aa5e304b474cfe6215c7e47ae324918b2a06d0",
+    "status": 0,
+    "body": "message Default {\n  optional sint32 value = 1 [default = 2, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 17,
+    "input": "42x",
+    "descriptor": "94.desc",
+    "descriptor_sha256": "bd59cff094c44e86b74301bb028d9df03ec5dc12a0d8fc4b01032cd344343ea6",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"42x\".\n"
+  },
+  {
+    "kind": 18,
+    "input": "0",
+    "descriptor": "95.desc",
+    "descriptor_sha256": "fcc5894bba3ee6227b07d5a0d27fc6d3f2096e9eb360a8ced7751346583f37ec",
+    "status": 0,
+    "body": "message Default {\n  optional sint64 value = 1 [default = 0, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 18,
+    "input": "010",
+    "descriptor": "96.desc",
+    "descriptor_sha256": "a2fc4784d8e1b12557f297165566eec229813420f3eb501f5149b7be9ab6c44d",
+    "status": 0,
+    "body": "message Default {\n  optional sint64 value = 1 [default = 8, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 18,
+    "input": "09",
+    "descriptor": "97.desc",
+    "descriptor_sha256": "9108aec4648d5e4a2603283a8cda11d84921bc36f57fba84e2e08c64582ae7cb",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"09\".\n"
+  },
+  {
+    "kind": 18,
+    "input": "0x2a",
+    "descriptor": "98.desc",
+    "descriptor_sha256": "a4f6aecf331c02ff84436b198ab364669c79bbb8b0e7701d3cbffd974f02ae4a",
+    "status": 0,
+    "body": "message Default {\n  optional sint64 value = 1 [default = 42, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 18,
+    "input": "0X2A",
+    "descriptor": "99.desc",
+    "descriptor_sha256": "0285392da3e1a8cc007ba12ec2bed3944260a1ff4a6e50e484d0a7e78cca9a52",
+    "status": 0,
+    "body": "message Default {\n  optional sint64 value = 1 [default = 42, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 18,
+    "input": "-010",
+    "descriptor": "100.desc",
+    "descriptor_sha256": "ab6745c670793ef580a3cb1f6e1305547d6ba65e79f8f31f6557709371214eb7",
+    "status": 0,
+    "body": "message Default {\n  optional sint64 value = 1 [default = -8, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 18,
+    "input": "-0x2a",
+    "descriptor": "101.desc",
+    "descriptor_sha256": "1a2f56c52b492ac58ad59d97fdad4b58cdf5eb2fd9f62d215956c62987b0f236",
+    "status": 0,
+    "body": "message Default {\n  optional sint64 value = 1 [default = -42, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 18,
+    "input": "+010",
+    "descriptor": "102.desc",
+    "descriptor_sha256": "1f2506053d4b672a120dd66b308a25b0ec6b562a0c0be8db7437de43d5fd9728",
+    "status": 0,
+    "body": "message Default {\n  optional sint64 value = 1 [default = 8, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 18,
+    "input": " +010",
+    "descriptor": "103.desc",
+    "descriptor_sha256": "7fda03e9c7c5e1531cf85a3b3cd9fe20b513ca8c181a1e3f3d01ec5e50f430e9",
+    "status": 0,
+    "body": "message Default {\n  optional sint64 value = 1 [default = 8, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 18,
+    "input": "010 ",
+    "descriptor": "104.desc",
+    "descriptor_sha256": "829de3816f6111d5817f574f700939f5fc55019f51c1b8d4ebe00db9aa329310",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"010 \".\n"
+  },
+  {
+    "kind": 18,
+    "input": "",
+    "descriptor": "105.desc",
+    "descriptor_sha256": "7ceed87e5d61f6226869d92b80f7c9a50ff1720565e0e6863bf0473b1e86ab69",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"\".\n"
+  },
+  {
+    "kind": 18,
+    "input": "00",
+    "descriptor": "106.desc",
+    "descriptor_sha256": "60f2c0c78ab5bcccd348436d23c5910296a83c9f2516a0d893f14ca8c23a76f6",
+    "status": 0,
+    "body": "message Default {\n  optional sint64 value = 1 [default = 0, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 18,
+    "input": "0x",
+    "descriptor": "107.desc",
+    "descriptor_sha256": "43f7c50ffa5f12be0c0c3fe9745445f447a866d89584c24f6415a9216066fd03",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"0x\".\n"
+  },
+  {
+    "kind": 18,
+    "input": "2147483648",
+    "descriptor": "108.desc",
+    "descriptor_sha256": "b3a978caf370bdbae42fe9e880a044cac53c042def7a5f60af870feef0c0ab79",
+    "status": 0,
+    "body": "message Default {\n  optional sint64 value = 1 [default = 2147483648, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 18,
+    "input": "4294967296",
+    "descriptor": "109.desc",
+    "descriptor_sha256": "16b8ac2e3d0e80ce6202136921489a39603771ccd6ebc87d308a6c0c712e3500",
+    "status": 0,
+    "body": "message Default {\n  optional sint64 value = 1 [default = 4294967296, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 18,
+    "input": "18446744073709551616",
+    "descriptor": "110.desc",
+    "descriptor_sha256": "b5e65090c4c3a4c2501067c6e673f230ae3237219fc6bfe8b39cbe2a3dca5b59",
+    "status": 0,
+    "body": "message Default {\n  optional sint64 value = 1 [default = 9223372036854775807, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 18,
+    "input": "-1",
+    "descriptor": "111.desc",
+    "descriptor_sha256": "ed487c4b97e4b7f08a8807e3d8e0d309b739613161bde91a4a4c84c4437b7cef",
+    "status": 0,
+    "body": "message Default {\n  optional sint64 value = 1 [default = -1, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 18,
+    "input": "0b10",
+    "descriptor": "112.desc",
+    "descriptor_sha256": "5b1ffa591aafedc882cc682ccf8f2f4df61612399bce09758b8c072c4ef7760d",
+    "status": 0,
+    "body": "message Default {\n  optional sint64 value = 1 [default = 2, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 18,
+    "input": "42x",
+    "descriptor": "113.desc",
+    "descriptor_sha256": "b648a54ab365eda860dba9b93f8570bf86087835d2c4d3508ce974e9b0e855e2",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"42x\".\n"
+  },
+  {
+    "kind": 15,
+    "input": "0",
+    "descriptor": "114.desc",
+    "descriptor_sha256": "85f165745ff5f32349f0a6863c098189ddd5dd0a960792e2cf0b774e777ede52",
+    "status": 0,
+    "body": "message Default {\n  optional sfixed32 value = 1 [default = 0, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 15,
+    "input": "010",
+    "descriptor": "115.desc",
+    "descriptor_sha256": "264aed69a61f884e06eb73eaa78466a630bae3084169f7092cc71ad773e382ce",
+    "status": 0,
+    "body": "message Default {\n  optional sfixed32 value = 1 [default = 8, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 15,
+    "input": "09",
+    "descriptor": "116.desc",
+    "descriptor_sha256": "f1fb8033b3baf8693c508937893ec4e46e3373b980d9e5ff2473781a2fbb3e66",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"09\".\n"
+  },
+  {
+    "kind": 15,
+    "input": "0x2a",
+    "descriptor": "117.desc",
+    "descriptor_sha256": "632406d9a9a0a8b1413d6bb311239d42612be9a3fa12ed575e6525bfcd3697e7",
+    "status": 0,
+    "body": "message Default {\n  optional sfixed32 value = 1 [default = 42, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 15,
+    "input": "0X2A",
+    "descriptor": "118.desc",
+    "descriptor_sha256": "e97f98257fe89d1c85a09a683ed14689ce345e5613f83ff844aab7012f7e3470",
+    "status": 0,
+    "body": "message Default {\n  optional sfixed32 value = 1 [default = 42, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 15,
+    "input": "-010",
+    "descriptor": "119.desc",
+    "descriptor_sha256": "6a21b604156ddddbc47a5694b2a64dcd24762aa63ff6c847fc8dadcbfb205d43",
+    "status": 0,
+    "body": "message Default {\n  optional sfixed32 value = 1 [default = -8, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 15,
+    "input": "-0x2a",
+    "descriptor": "120.desc",
+    "descriptor_sha256": "6d4e59cd17efdf708a7b845b2ade4459c87cb497ac6595e175a645572a2f0ce2",
+    "status": 0,
+    "body": "message Default {\n  optional sfixed32 value = 1 [default = -42, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 15,
+    "input": "+010",
+    "descriptor": "121.desc",
+    "descriptor_sha256": "cb65d632386ba69f9ffbe38978740ca26abceb5c87cecc41ebf848c317fc70e3",
+    "status": 0,
+    "body": "message Default {\n  optional sfixed32 value = 1 [default = 8, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 15,
+    "input": " +010",
+    "descriptor": "122.desc",
+    "descriptor_sha256": "f8d1a5882340080ba68b60af3eb31842073d32b006dc31e421380d1512ba9cf3",
+    "status": 0,
+    "body": "message Default {\n  optional sfixed32 value = 1 [default = 8, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 15,
+    "input": "010 ",
+    "descriptor": "123.desc",
+    "descriptor_sha256": "0d9c38559d91ef9ee65270e7aa5a1101da0aa0186f365baa2a29a505c77db8e0",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"010 \".\n"
+  },
+  {
+    "kind": 15,
+    "input": "",
+    "descriptor": "124.desc",
+    "descriptor_sha256": "06bd97601ff6368ffb003fc6cb381fc0cf81bad35ff02a587db458b07a26d84b",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"\".\n"
+  },
+  {
+    "kind": 15,
+    "input": "00",
+    "descriptor": "125.desc",
+    "descriptor_sha256": "73381fba62475f5d43b524f489839a7bba55fd5e770dc98bada8c6f6e129f403",
+    "status": 0,
+    "body": "message Default {\n  optional sfixed32 value = 1 [default = 0, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 15,
+    "input": "0x",
+    "descriptor": "126.desc",
+    "descriptor_sha256": "4e035fc2df54bbe1ac67710b5b9e2327beaa0f419e893a92ddb40aa6a5024469",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"0x\".\n"
+  },
+  {
+    "kind": 15,
+    "input": "2147483648",
+    "descriptor": "127.desc",
+    "descriptor_sha256": "f33e9ff588291edad8a6c491c0fd15cbe389e45a175b599f5cda4e8b082e0953",
+    "status": 0,
+    "body": "message Default {\n  optional sfixed32 value = 1 [default = -2147483648, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 15,
+    "input": "4294967296",
+    "descriptor": "128.desc",
+    "descriptor_sha256": "236aee91a383989b229f88807972ecc3b64ee8ecb376a3eab124c2177498769d",
+    "status": 0,
+    "body": "message Default {\n  optional sfixed32 value = 1 [default = 0, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 15,
+    "input": "18446744073709551616",
+    "descriptor": "129.desc",
+    "descriptor_sha256": "dadd884dca318f763707edc9bae8a3f3ec1b0cfa78f1ac656b7c03cd6fec25d7",
+    "status": 0,
+    "body": "message Default {\n  optional sfixed32 value = 1 [default = -1, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 15,
+    "input": "-1",
+    "descriptor": "130.desc",
+    "descriptor_sha256": "562cbbdd09d9cf18f9205f7249d376e1b5a72212ff54cc8036fd6c6790fe6818",
+    "status": 0,
+    "body": "message Default {\n  optional sfixed32 value = 1 [default = -1, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 15,
+    "input": "0b10",
+    "descriptor": "131.desc",
+    "descriptor_sha256": "e6af5dc734f69ec37be0fe3771c2e9e4272eee9b4a241c6a313063aa4c541b7e",
+    "status": 0,
+    "body": "message Default {\n  optional sfixed32 value = 1 [default = 2, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 15,
+    "input": "42x",
+    "descriptor": "132.desc",
+    "descriptor_sha256": "71960170d4ad3c0d7cd97f9eb76f001f9389c6deae170e67c8ab59dce7b317c9",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"42x\".\n"
+  },
+  {
+    "kind": 16,
+    "input": "0",
+    "descriptor": "133.desc",
+    "descriptor_sha256": "240bbbb68daf9fce8e011697e9d9130d346b0ce6046afd89154caae4c235ac11",
+    "status": 0,
+    "body": "message Default {\n  optional sfixed64 value = 1 [default = 0, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 16,
+    "input": "010",
+    "descriptor": "134.desc",
+    "descriptor_sha256": "f943746c1073848cf7cbe641db6cc2c47f91596d997a34a6e1ab112b33e7dcb7",
+    "status": 0,
+    "body": "message Default {\n  optional sfixed64 value = 1 [default = 8, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 16,
+    "input": "09",
+    "descriptor": "135.desc",
+    "descriptor_sha256": "3820be1acd7cb3de72189c2c10bf684b6835dd81f57cf929f8b31bfb54635cc9",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"09\".\n"
+  },
+  {
+    "kind": 16,
+    "input": "0x2a",
+    "descriptor": "136.desc",
+    "descriptor_sha256": "882aeb2b3a51a03067b73e29fa62988dccaea4345692d0dbc9d4083355f51030",
+    "status": 0,
+    "body": "message Default {\n  optional sfixed64 value = 1 [default = 42, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 16,
+    "input": "0X2A",
+    "descriptor": "137.desc",
+    "descriptor_sha256": "652d58abb9764902746a37293d01214fd8b3fa65ac12c15c073d8e2e36454094",
+    "status": 0,
+    "body": "message Default {\n  optional sfixed64 value = 1 [default = 42, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 16,
+    "input": "-010",
+    "descriptor": "138.desc",
+    "descriptor_sha256": "8819ab1623bb17d51c08b05608c739d9849d4391bdf652c409809cd4b05a4914",
+    "status": 0,
+    "body": "message Default {\n  optional sfixed64 value = 1 [default = -8, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 16,
+    "input": "-0x2a",
+    "descriptor": "139.desc",
+    "descriptor_sha256": "dc53da55fb833612618089c4f4c8aaefa4ed92d88a544ed8288aaf52e8e143e3",
+    "status": 0,
+    "body": "message Default {\n  optional sfixed64 value = 1 [default = -42, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 16,
+    "input": "+010",
+    "descriptor": "140.desc",
+    "descriptor_sha256": "6c2278e48aa139f3102fbc23db00bf4a44ab12062742ea652da39df3860b3c33",
+    "status": 0,
+    "body": "message Default {\n  optional sfixed64 value = 1 [default = 8, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 16,
+    "input": " +010",
+    "descriptor": "141.desc",
+    "descriptor_sha256": "429d67d9a652f8d755a032b9377c4c65da841d0c776a907a508d04411d4bc4a6",
+    "status": 0,
+    "body": "message Default {\n  optional sfixed64 value = 1 [default = 8, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 16,
+    "input": "010 ",
+    "descriptor": "142.desc",
+    "descriptor_sha256": "91f0ea6c590105904e579741dd3ca92d952c94c3f41c7ba39ae1fbbe6894f3e6",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"010 \".\n"
+  },
+  {
+    "kind": 16,
+    "input": "",
+    "descriptor": "143.desc",
+    "descriptor_sha256": "963d171f9a4359cb84be8579d4bcdd9f379f8b07191ca4ac7d026d25a221c5a4",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"\".\n"
+  },
+  {
+    "kind": 16,
+    "input": "00",
+    "descriptor": "144.desc",
+    "descriptor_sha256": "140e0a5f32cb4d507c991c6098623b5c2d3ea559be184043aae79c5d3d0f3e2b",
+    "status": 0,
+    "body": "message Default {\n  optional sfixed64 value = 1 [default = 0, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 16,
+    "input": "0x",
+    "descriptor": "145.desc",
+    "descriptor_sha256": "00faa5cca15aba3d6fd8862bf4f800a7d4a3855038e6bcaad70f9e15f60eba5f",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"0x\".\n"
+  },
+  {
+    "kind": 16,
+    "input": "2147483648",
+    "descriptor": "146.desc",
+    "descriptor_sha256": "79c38fe30c4f3b7cce6fcf70cd53449d184ce9c31f6d0ed1cca867a0036c4091",
+    "status": 0,
+    "body": "message Default {\n  optional sfixed64 value = 1 [default = 2147483648, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 16,
+    "input": "4294967296",
+    "descriptor": "147.desc",
+    "descriptor_sha256": "d0e05e8c00652d2c7f668efef441c6cf9e24f5154239cee71da9b39da71d70d5",
+    "status": 0,
+    "body": "message Default {\n  optional sfixed64 value = 1 [default = 4294967296, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 16,
+    "input": "18446744073709551616",
+    "descriptor": "148.desc",
+    "descriptor_sha256": "bd15d9e3283cdd25d6e3465939744339fcb085eb537ceb30409c22cedd839a21",
+    "status": 0,
+    "body": "message Default {\n  optional sfixed64 value = 1 [default = 9223372036854775807, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 16,
+    "input": "-1",
+    "descriptor": "149.desc",
+    "descriptor_sha256": "b1aa254f10aee39e636081fa8e3cdad7b133fb98c27faf1b463fc4cb3ce2cc43",
+    "status": 0,
+    "body": "message Default {\n  optional sfixed64 value = 1 [default = -1, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 16,
+    "input": "0b10",
+    "descriptor": "150.desc",
+    "descriptor_sha256": "cf173ce2463403886c0f208cbce9eb6381a3ccc35c8b7fae35e15a76a7b86292",
+    "status": 0,
+    "body": "message Default {\n  optional sfixed64 value = 1 [default = 2, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 16,
+    "input": "42x",
+    "descriptor": "151.desc",
+    "descriptor_sha256": "450936fa7ce6e79afe4b018ea2f09258e0e9730af841c392e302eb84db551777",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"42x\".\n"
+  },
+  {
+    "kind": 7,
+    "input": "0",
+    "descriptor": "152.desc",
+    "descriptor_sha256": "958f67b19396daab6d43cae276d8c4e66b44f00d61571fa539bb3b4134acc9dd",
+    "status": 0,
+    "body": "message Default {\n  optional fixed32 value = 1 [default = 0, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 7,
+    "input": "010",
+    "descriptor": "153.desc",
+    "descriptor_sha256": "182315a0440b1a420139c79836bc120888fd3e9813ca867c6294bc7e4d6e8304",
+    "status": 0,
+    "body": "message Default {\n  optional fixed32 value = 1 [default = 8, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 7,
+    "input": "09",
+    "descriptor": "154.desc",
+    "descriptor_sha256": "f66efe6bc32e3b467f0093bad0e28a9a3deeec9e3bebcb83aa8b2212fb31de29",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"09\".\n"
+  },
+  {
+    "kind": 7,
+    "input": "0x2a",
+    "descriptor": "155.desc",
+    "descriptor_sha256": "ff891a2d38855bef9c2c19499d30a1e551f499f10d322733dd7870cd9c3339b6",
+    "status": 0,
+    "body": "message Default {\n  optional fixed32 value = 1 [default = 42, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 7,
+    "input": "0X2A",
+    "descriptor": "156.desc",
+    "descriptor_sha256": "3626c817a1f6941de13430dbe2f536c3af604efd7f9520b79ff7e740c91a033c",
+    "status": 0,
+    "body": "message Default {\n  optional fixed32 value = 1 [default = 42, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 7,
+    "input": "-010",
+    "descriptor": "157.desc",
+    "descriptor_sha256": "548a71a762bd9ec816690105a10143f68bac14bf77dc9da353ba3234c36ee8d9",
+    "status": 0,
+    "body": "message Default {\n  optional fixed32 value = 1 [default = 4294967288, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 7,
+    "input": "-0x2a",
+    "descriptor": "158.desc",
+    "descriptor_sha256": "174d06dfce47296472530da2192918feaad78bd5eaaf3a6205760f856816a3c9",
+    "status": 0,
+    "body": "message Default {\n  optional fixed32 value = 1 [default = 4294967254, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 7,
+    "input": "+010",
+    "descriptor": "159.desc",
+    "descriptor_sha256": "69536eb9c2d3f1d3483d8f563b943057e0831a43cf84520be46425cff91ab9b9",
+    "status": 0,
+    "body": "message Default {\n  optional fixed32 value = 1 [default = 8, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 7,
+    "input": " +010",
+    "descriptor": "160.desc",
+    "descriptor_sha256": "b19f9d24beecdab8367423a2f032aee21facd62e08a588ff7f7b1e553f250f1c",
+    "status": 0,
+    "body": "message Default {\n  optional fixed32 value = 1 [default = 8, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 7,
+    "input": "010 ",
+    "descriptor": "161.desc",
+    "descriptor_sha256": "0a378e7f0ee5db82eeb517205ace855c8d51fb24c6c4a54cb9c233652e70d344",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"010 \".\n"
+  },
+  {
+    "kind": 7,
+    "input": "",
+    "descriptor": "162.desc",
+    "descriptor_sha256": "86fc6ebda7ac04b48d5440188593a0da4889248ba4e4f170c148851747f71b0d",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"\".\n"
+  },
+  {
+    "kind": 7,
+    "input": "00",
+    "descriptor": "163.desc",
+    "descriptor_sha256": "ebba76e5bbb9cac034a24fb5a46472c6ff81ec0fd7813a177ac98c42e2ef50a7",
+    "status": 0,
+    "body": "message Default {\n  optional fixed32 value = 1 [default = 0, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 7,
+    "input": "0x",
+    "descriptor": "164.desc",
+    "descriptor_sha256": "f529c9ca016aba1c560f82bbd0aff6e3743d22b0871caaf459fc87763d0b4620",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"0x\".\n"
+  },
+  {
+    "kind": 7,
+    "input": "2147483648",
+    "descriptor": "165.desc",
+    "descriptor_sha256": "f97ec4536ea97460ad8a437d165c3b372cb2a8bdd9ae982e33fb740bf03886a6",
+    "status": 0,
+    "body": "message Default {\n  optional fixed32 value = 1 [default = 2147483648, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 7,
+    "input": "4294967296",
+    "descriptor": "166.desc",
+    "descriptor_sha256": "aa5750243cb0fd28bb1887147b24b3f45af49141d2f48eb3ab4c04d27b94b818",
+    "status": 0,
+    "body": "message Default {\n  optional fixed32 value = 1 [default = 0, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 7,
+    "input": "18446744073709551616",
+    "descriptor": "167.desc",
+    "descriptor_sha256": "afd5e5023a68c4b5335748edf03f268e95210adb3f7d4099f284cf98d1154d7e",
+    "status": 0,
+    "body": "message Default {\n  optional fixed32 value = 1 [default = 4294967295, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 7,
+    "input": "-1",
+    "descriptor": "168.desc",
+    "descriptor_sha256": "a327a7ba343ac14adbeace69eb100b441737be051cc2373a33c863f404c7a429",
+    "status": 0,
+    "body": "message Default {\n  optional fixed32 value = 1 [default = 4294967295, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 7,
+    "input": "0b10",
+    "descriptor": "169.desc",
+    "descriptor_sha256": "33cd1bfe76f859cca09a15c35b61b8dfc45684f7471deb59ac263c1c5b9f0f96",
+    "status": 0,
+    "body": "message Default {\n  optional fixed32 value = 1 [default = 2, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 7,
+    "input": "42x",
+    "descriptor": "170.desc",
+    "descriptor_sha256": "79e0289c0799068ab713758c458c692161e795af80180b30314bcc7b19a69d07",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"42x\".\n"
+  },
+  {
+    "kind": 6,
+    "input": "0",
+    "descriptor": "171.desc",
+    "descriptor_sha256": "ce3a235bf49d351d299801b10784fe5f566b50a88e94a16f4e05f2234973e4be",
+    "status": 0,
+    "body": "message Default {\n  optional fixed64 value = 1 [default = 0, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 6,
+    "input": "010",
+    "descriptor": "172.desc",
+    "descriptor_sha256": "c7aa69b92cd76f85b62be6e2205458cd8135b041c5b4766551ca142411e37f6d",
+    "status": 0,
+    "body": "message Default {\n  optional fixed64 value = 1 [default = 8, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 6,
+    "input": "09",
+    "descriptor": "173.desc",
+    "descriptor_sha256": "fbad008d2ff06e7dee92d4b6712bef9c17487e3530c8298d0cda6d0255f25160",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"09\".\n"
+  },
+  {
+    "kind": 6,
+    "input": "0x2a",
+    "descriptor": "174.desc",
+    "descriptor_sha256": "d64ce8b2787cf2585eb4e3ac995e359437f2096313db2ac535b7339d81bf1c6f",
+    "status": 0,
+    "body": "message Default {\n  optional fixed64 value = 1 [default = 42, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 6,
+    "input": "0X2A",
+    "descriptor": "175.desc",
+    "descriptor_sha256": "20796f7df0c45ee6abc276997bdfb22464786c1969d756a80a54142f3e773e29",
+    "status": 0,
+    "body": "message Default {\n  optional fixed64 value = 1 [default = 42, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 6,
+    "input": "-010",
+    "descriptor": "176.desc",
+    "descriptor_sha256": "eed6039bd5ae2933a4eef18dbd5abae77bebad72f1e1909e968e5f5af1f98ca8",
+    "status": 0,
+    "body": "message Default {\n  optional fixed64 value = 1 [default = 18446744073709551608, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 6,
+    "input": "-0x2a",
+    "descriptor": "177.desc",
+    "descriptor_sha256": "19656e54970f3aa3485e856b5595296f2144f0633e0e1f2579023c53fa5eb5cf",
+    "status": 0,
+    "body": "message Default {\n  optional fixed64 value = 1 [default = 18446744073709551574, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 6,
+    "input": "+010",
+    "descriptor": "178.desc",
+    "descriptor_sha256": "775d859c037529093110a34f029d048f683c44fe23fd2ef1fff88a7125ab068c",
+    "status": 0,
+    "body": "message Default {\n  optional fixed64 value = 1 [default = 8, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 6,
+    "input": " +010",
+    "descriptor": "179.desc",
+    "descriptor_sha256": "7b996bc5306d87f43d360a9b9632907bc6ec2f31fa4dc31c544d35747794b26b",
+    "status": 0,
+    "body": "message Default {\n  optional fixed64 value = 1 [default = 8, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 6,
+    "input": "010 ",
+    "descriptor": "180.desc",
+    "descriptor_sha256": "7b8d05cbaf3802feede96da9d15e3d6eea8ef2e78e1b0100c698755a1488d3f7",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"010 \".\n"
+  },
+  {
+    "kind": 6,
+    "input": "",
+    "descriptor": "181.desc",
+    "descriptor_sha256": "602dfeae28e8b69c456214a08c13d6a868cafa187c96929ea69bdb9c04807403",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"\".\n"
+  },
+  {
+    "kind": 6,
+    "input": "00",
+    "descriptor": "182.desc",
+    "descriptor_sha256": "6e62e8d41703ddf818cce045ed5e7e136a793ed30c5540826d8556a0c5d9d7ae",
+    "status": 0,
+    "body": "message Default {\n  optional fixed64 value = 1 [default = 0, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 6,
+    "input": "0x",
+    "descriptor": "183.desc",
+    "descriptor_sha256": "0ff4cb5694c0d67dce9cc9566548e33e5adf4ff2b21df75bb69c657a8e2d7fec",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"0x\".\n"
+  },
+  {
+    "kind": 6,
+    "input": "2147483648",
+    "descriptor": "184.desc",
+    "descriptor_sha256": "4055732961c06f92b6c768051503217ce2cb6e3a10d4309003c2b742a36e3036",
+    "status": 0,
+    "body": "message Default {\n  optional fixed64 value = 1 [default = 2147483648, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 6,
+    "input": "4294967296",
+    "descriptor": "185.desc",
+    "descriptor_sha256": "5ae54a8809edc1b649da615b719711c0421193521248c536bb085f578f4af6e5",
+    "status": 0,
+    "body": "message Default {\n  optional fixed64 value = 1 [default = 4294967296, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 6,
+    "input": "18446744073709551616",
+    "descriptor": "186.desc",
+    "descriptor_sha256": "1ebb58902e90a69f12ea78de4e42ad9cb8104545498ca86dbb789a7a982c38c3",
+    "status": 0,
+    "body": "message Default {\n  optional fixed64 value = 1 [default = 18446744073709551615, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 6,
+    "input": "-1",
+    "descriptor": "187.desc",
+    "descriptor_sha256": "15d255a3d21536e70bb41f91b9c52bf378ec73e32832d6bfc1a7e44b0d61ef0e",
+    "status": 0,
+    "body": "message Default {\n  optional fixed64 value = 1 [default = 18446744073709551615, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 6,
+    "input": "0b10",
+    "descriptor": "188.desc",
+    "descriptor_sha256": "0f0a1328a11522211f4f4d39e1e370a95a50400bbe0a243f330cad7d2e185216",
+    "status": 0,
+    "body": "message Default {\n  optional fixed64 value = 1 [default = 2, json_name = \"value\"];\n}\n",
+    "stderr": ""
+  },
+  {
+    "kind": 6,
+    "input": "42x",
+    "descriptor": "189.desc",
+    "descriptor_sha256": "8651bbd48d28c933af9caa12ef928c87bb192b37d6fb7fa1cd07b1954b2271b8",
+    "status": 5,
+    "body": "",
+    "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"defaults.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   Default.value: Couldn't parse default value \"42x\".\n"
+  }
+]

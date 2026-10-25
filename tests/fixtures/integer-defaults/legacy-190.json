@@ -1,0 +1,1332 @@
+[
+  {
+    "accepted": true,
+    "error": "",
+    "input": "0",
+    "kind": 5,
+    "value": "0"
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "010",
+    "kind": 5,
+    "value": "10"
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "09",
+    "kind": 5,
+    "value": "9"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0x2a' for type 'int32'",
+    "input": "0x2a",
+    "kind": 5,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0X2A' for type 'int32'",
+    "input": "0X2A",
+    "kind": 5,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "-010",
+    "kind": 5,
+    "value": "-10"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '-0x2a' for type 'int32'",
+    "input": "-0x2a",
+    "kind": 5,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "+010",
+    "kind": 5,
+    "value": "10"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value ' +010' for type 'int32'",
+    "input": " +010",
+    "kind": 5,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '010 ' for type 'int32'",
+    "input": "010 ",
+    "kind": 5,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '' for type 'int32'",
+    "input": "",
+    "kind": 5,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "00",
+    "kind": 5,
+    "value": "0"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0x' for type 'int32'",
+    "input": "0x",
+    "kind": 5,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '2147483648' for type 'int32'",
+    "input": "2147483648",
+    "kind": 5,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '4294967296' for type 'int32'",
+    "input": "4294967296",
+    "kind": 5,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '18446744073709551616' for type 'int32'",
+    "input": "18446744073709551616",
+    "kind": 5,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "-1",
+    "kind": 5,
+    "value": "-1"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0b10' for type 'int32'",
+    "input": "0b10",
+    "kind": 5,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '42x' for type 'int32'",
+    "input": "42x",
+    "kind": 5,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "0",
+    "kind": 3,
+    "value": "0"
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "010",
+    "kind": 3,
+    "value": "10"
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "09",
+    "kind": 3,
+    "value": "9"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0x2a' for type 'int64'",
+    "input": "0x2a",
+    "kind": 3,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0X2A' for type 'int64'",
+    "input": "0X2A",
+    "kind": 3,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "-010",
+    "kind": 3,
+    "value": "-10"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '-0x2a' for type 'int64'",
+    "input": "-0x2a",
+    "kind": 3,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "+010",
+    "kind": 3,
+    "value": "10"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value ' +010' for type 'int64'",
+    "input": " +010",
+    "kind": 3,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '010 ' for type 'int64'",
+    "input": "010 ",
+    "kind": 3,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '' for type 'int64'",
+    "input": "",
+    "kind": 3,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "00",
+    "kind": 3,
+    "value": "0"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0x' for type 'int64'",
+    "input": "0x",
+    "kind": 3,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "2147483648",
+    "kind": 3,
+    "value": "2147483648"
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "4294967296",
+    "kind": 3,
+    "value": "4294967296"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '18446744073709551616' for type 'int64'",
+    "input": "18446744073709551616",
+    "kind": 3,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "-1",
+    "kind": 3,
+    "value": "-1"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0b10' for type 'int64'",
+    "input": "0b10",
+    "kind": 3,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '42x' for type 'int64'",
+    "input": "42x",
+    "kind": 3,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "0",
+    "kind": 13,
+    "value": "0"
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "010",
+    "kind": 13,
+    "value": "10"
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "09",
+    "kind": 13,
+    "value": "9"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0x2a' for type 'uint32'",
+    "input": "0x2a",
+    "kind": 13,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0X2A' for type 'uint32'",
+    "input": "0X2A",
+    "kind": 13,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '-010' for type 'uint32'",
+    "input": "-010",
+    "kind": 13,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '-0x2a' for type 'uint32'",
+    "input": "-0x2a",
+    "kind": 13,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "+010",
+    "kind": 13,
+    "value": "10"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value ' +010' for type 'uint32'",
+    "input": " +010",
+    "kind": 13,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '010 ' for type 'uint32'",
+    "input": "010 ",
+    "kind": 13,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '' for type 'uint32'",
+    "input": "",
+    "kind": 13,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "00",
+    "kind": 13,
+    "value": "0"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0x' for type 'uint32'",
+    "input": "0x",
+    "kind": 13,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "2147483648",
+    "kind": 13,
+    "value": "2147483648"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '4294967296' for type 'uint32'",
+    "input": "4294967296",
+    "kind": 13,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '18446744073709551616' for type 'uint32'",
+    "input": "18446744073709551616",
+    "kind": 13,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '-1' for type 'uint32'",
+    "input": "-1",
+    "kind": 13,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0b10' for type 'uint32'",
+    "input": "0b10",
+    "kind": 13,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '42x' for type 'uint32'",
+    "input": "42x",
+    "kind": 13,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "0",
+    "kind": 4,
+    "value": "0"
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "010",
+    "kind": 4,
+    "value": "10"
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "09",
+    "kind": 4,
+    "value": "9"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0x2a' for type 'uint64'",
+    "input": "0x2a",
+    "kind": 4,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0X2A' for type 'uint64'",
+    "input": "0X2A",
+    "kind": 4,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '-010' for type 'uint64'",
+    "input": "-010",
+    "kind": 4,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '-0x2a' for type 'uint64'",
+    "input": "-0x2a",
+    "kind": 4,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "+010",
+    "kind": 4,
+    "value": "10"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value ' +010' for type 'uint64'",
+    "input": " +010",
+    "kind": 4,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '010 ' for type 'uint64'",
+    "input": "010 ",
+    "kind": 4,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '' for type 'uint64'",
+    "input": "",
+    "kind": 4,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "00",
+    "kind": 4,
+    "value": "0"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0x' for type 'uint64'",
+    "input": "0x",
+    "kind": 4,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "2147483648",
+    "kind": 4,
+    "value": "2147483648"
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "4294967296",
+    "kind": 4,
+    "value": "4294967296"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '18446744073709551616' for type 'uint64'",
+    "input": "18446744073709551616",
+    "kind": 4,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '-1' for type 'uint64'",
+    "input": "-1",
+    "kind": 4,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0b10' for type 'uint64'",
+    "input": "0b10",
+    "kind": 4,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '42x' for type 'uint64'",
+    "input": "42x",
+    "kind": 4,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "0",
+    "kind": 17,
+    "value": "0"
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "010",
+    "kind": 17,
+    "value": "10"
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "09",
+    "kind": 17,
+    "value": "9"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0x2a' for type 'sint32'",
+    "input": "0x2a",
+    "kind": 17,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0X2A' for type 'sint32'",
+    "input": "0X2A",
+    "kind": 17,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "-010",
+    "kind": 17,
+    "value": "-10"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '-0x2a' for type 'sint32'",
+    "input": "-0x2a",
+    "kind": 17,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "+010",
+    "kind": 17,
+    "value": "10"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value ' +010' for type 'sint32'",
+    "input": " +010",
+    "kind": 17,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '010 ' for type 'sint32'",
+    "input": "010 ",
+    "kind": 17,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '' for type 'sint32'",
+    "input": "",
+    "kind": 17,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "00",
+    "kind": 17,
+    "value": "0"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0x' for type 'sint32'",
+    "input": "0x",
+    "kind": 17,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '2147483648' for type 'sint32'",
+    "input": "2147483648",
+    "kind": 17,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '4294967296' for type 'sint32'",
+    "input": "4294967296",
+    "kind": 17,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '18446744073709551616' for type 'sint32'",
+    "input": "18446744073709551616",
+    "kind": 17,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "-1",
+    "kind": 17,
+    "value": "-1"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0b10' for type 'sint32'",
+    "input": "0b10",
+    "kind": 17,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '42x' for type 'sint32'",
+    "input": "42x",
+    "kind": 17,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "0",
+    "kind": 18,
+    "value": "0"
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "010",
+    "kind": 18,
+    "value": "10"
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "09",
+    "kind": 18,
+    "value": "9"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0x2a' for type 'sint64'",
+    "input": "0x2a",
+    "kind": 18,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0X2A' for type 'sint64'",
+    "input": "0X2A",
+    "kind": 18,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "-010",
+    "kind": 18,
+    "value": "-10"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '-0x2a' for type 'sint64'",
+    "input": "-0x2a",
+    "kind": 18,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "+010",
+    "kind": 18,
+    "value": "10"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value ' +010' for type 'sint64'",
+    "input": " +010",
+    "kind": 18,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '010 ' for type 'sint64'",
+    "input": "010 ",
+    "kind": 18,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '' for type 'sint64'",
+    "input": "",
+    "kind": 18,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "00",
+    "kind": 18,
+    "value": "0"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0x' for type 'sint64'",
+    "input": "0x",
+    "kind": 18,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "2147483648",
+    "kind": 18,
+    "value": "2147483648"
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "4294967296",
+    "kind": 18,
+    "value": "4294967296"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '18446744073709551616' for type 'sint64'",
+    "input": "18446744073709551616",
+    "kind": 18,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "-1",
+    "kind": 18,
+    "value": "-1"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0b10' for type 'sint64'",
+    "input": "0b10",
+    "kind": 18,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '42x' for type 'sint64'",
+    "input": "42x",
+    "kind": 18,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "0",
+    "kind": 15,
+    "value": "0"
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "010",
+    "kind": 15,
+    "value": "10"
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "09",
+    "kind": 15,
+    "value": "9"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0x2a' for type 'sfixed32'",
+    "input": "0x2a",
+    "kind": 15,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0X2A' for type 'sfixed32'",
+    "input": "0X2A",
+    "kind": 15,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "-010",
+    "kind": 15,
+    "value": "-10"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '-0x2a' for type 'sfixed32'",
+    "input": "-0x2a",
+    "kind": 15,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "+010",
+    "kind": 15,
+    "value": "10"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value ' +010' for type 'sfixed32'",
+    "input": " +010",
+    "kind": 15,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '010 ' for type 'sfixed32'",
+    "input": "010 ",
+    "kind": 15,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '' for type 'sfixed32'",
+    "input": "",
+    "kind": 15,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "00",
+    "kind": 15,
+    "value": "0"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0x' for type 'sfixed32'",
+    "input": "0x",
+    "kind": 15,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '2147483648' for type 'sfixed32'",
+    "input": "2147483648",
+    "kind": 15,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '4294967296' for type 'sfixed32'",
+    "input": "4294967296",
+    "kind": 15,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '18446744073709551616' for type 'sfixed32'",
+    "input": "18446744073709551616",
+    "kind": 15,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "-1",
+    "kind": 15,
+    "value": "-1"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0b10' for type 'sfixed32'",
+    "input": "0b10",
+    "kind": 15,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '42x' for type 'sfixed32'",
+    "input": "42x",
+    "kind": 15,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "0",
+    "kind": 16,
+    "value": "0"
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "010",
+    "kind": 16,
+    "value": "10"
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "09",
+    "kind": 16,
+    "value": "9"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0x2a' for type 'sfixed64'",
+    "input": "0x2a",
+    "kind": 16,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0X2A' for type 'sfixed64'",
+    "input": "0X2A",
+    "kind": 16,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "-010",
+    "kind": 16,
+    "value": "-10"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '-0x2a' for type 'sfixed64'",
+    "input": "-0x2a",
+    "kind": 16,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "+010",
+    "kind": 16,
+    "value": "10"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value ' +010' for type 'sfixed64'",
+    "input": " +010",
+    "kind": 16,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '010 ' for type 'sfixed64'",
+    "input": "010 ",
+    "kind": 16,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '' for type 'sfixed64'",
+    "input": "",
+    "kind": 16,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "00",
+    "kind": 16,
+    "value": "0"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0x' for type 'sfixed64'",
+    "input": "0x",
+    "kind": 16,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "2147483648",
+    "kind": 16,
+    "value": "2147483648"
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "4294967296",
+    "kind": 16,
+    "value": "4294967296"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '18446744073709551616' for type 'sfixed64'",
+    "input": "18446744073709551616",
+    "kind": 16,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "-1",
+    "kind": 16,
+    "value": "-1"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0b10' for type 'sfixed64'",
+    "input": "0b10",
+    "kind": 16,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '42x' for type 'sfixed64'",
+    "input": "42x",
+    "kind": 16,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "0",
+    "kind": 7,
+    "value": "0"
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "010",
+    "kind": 7,
+    "value": "10"
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "09",
+    "kind": 7,
+    "value": "9"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0x2a' for type 'fixed32'",
+    "input": "0x2a",
+    "kind": 7,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0X2A' for type 'fixed32'",
+    "input": "0X2A",
+    "kind": 7,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '-010' for type 'fixed32'",
+    "input": "-010",
+    "kind": 7,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '-0x2a' for type 'fixed32'",
+    "input": "-0x2a",
+    "kind": 7,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "+010",
+    "kind": 7,
+    "value": "10"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value ' +010' for type 'fixed32'",
+    "input": " +010",
+    "kind": 7,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '010 ' for type 'fixed32'",
+    "input": "010 ",
+    "kind": 7,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '' for type 'fixed32'",
+    "input": "",
+    "kind": 7,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "00",
+    "kind": 7,
+    "value": "0"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0x' for type 'fixed32'",
+    "input": "0x",
+    "kind": 7,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "2147483648",
+    "kind": 7,
+    "value": "2147483648"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '4294967296' for type 'fixed32'",
+    "input": "4294967296",
+    "kind": 7,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '18446744073709551616' for type 'fixed32'",
+    "input": "18446744073709551616",
+    "kind": 7,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '-1' for type 'fixed32'",
+    "input": "-1",
+    "kind": 7,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0b10' for type 'fixed32'",
+    "input": "0b10",
+    "kind": 7,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '42x' for type 'fixed32'",
+    "input": "42x",
+    "kind": 7,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "0",
+    "kind": 6,
+    "value": "0"
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "010",
+    "kind": 6,
+    "value": "10"
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "09",
+    "kind": 6,
+    "value": "9"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0x2a' for type 'fixed64'",
+    "input": "0x2a",
+    "kind": 6,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0X2A' for type 'fixed64'",
+    "input": "0X2A",
+    "kind": 6,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '-010' for type 'fixed64'",
+    "input": "-010",
+    "kind": 6,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '-0x2a' for type 'fixed64'",
+    "input": "-0x2a",
+    "kind": 6,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "+010",
+    "kind": 6,
+    "value": "10"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value ' +010' for type 'fixed64'",
+    "input": " +010",
+    "kind": 6,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '010 ' for type 'fixed64'",
+    "input": "010 ",
+    "kind": 6,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '' for type 'fixed64'",
+    "input": "",
+    "kind": 6,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "00",
+    "kind": 6,
+    "value": "0"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0x' for type 'fixed64'",
+    "input": "0x",
+    "kind": 6,
+    "value": ""
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "2147483648",
+    "kind": 6,
+    "value": "2147483648"
+  },
+  {
+    "accepted": true,
+    "error": "",
+    "input": "4294967296",
+    "kind": 6,
+    "value": "4294967296"
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '18446744073709551616' for type 'fixed64'",
+    "input": "18446744073709551616",
+    "kind": 6,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '-1' for type 'fixed64'",
+    "input": "-1",
+    "kind": 6,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '0b10' for type 'fixed64'",
+    "input": "0b10",
+    "kind": 6,
+    "value": ""
+  },
+  {
+    "accepted": false,
+    "error": "invalid default value '42x' for type 'fixed64'",
+    "input": "42x",
+    "kind": 6,
+    "value": ""
+  }
+]

@@ -7,3 +7,7 @@ Canonical schemas and imported test material from Gazebo Messages, and imported
 Gazebo Utils test macros, retain their original copyright notices and licenses.
 Vendored dependencies retain their own original copyright and license notices;
 see vendor/manifest.json and the corresponding license files.
+
+The opt-in integer-default loader additions to vendored prost-reflect are
+Copyright (C) 2026 Open Source Robotics Foundation, SPDX-License-Identifier:
+Apache-2.0. Original vendored dual-license terms and attribution remain intact.

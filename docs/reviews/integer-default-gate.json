@@ -1,0 +1,18 @@
+{
+  "reviewer": "transport_fallback",
+  "reviewed_at_utc": "2026-10-25T11:30:06Z",
+  "scope": "Independent coverage accounting and source provenance approval only; parser/API semantics, full strict gate, commit and hosted CI remain unapproved.",
+  "msgs_base": "2cea810e929adb4f925750b325265a99f9ae78b4",
+  "frozen_tree": "4ce09e4d41788101bccc3031a8fec8d57fea6d9e",
+  "frozen_diff_sha256": "d41e2450d643555fe100657421c388cc5d7c7a8fecd74d57ec9c2c2aaca5d028",
+  "proposal_checker_sha256": "0c75ac69c0e188652e4baa6369b664a460c0998a7aaf8c6a73afaa06d614906a",
+  "checks": {
+    "freeze_source_and_proposal_hashes": "11 source and 6 proposal hashes match freeze-v2.json",
+    "proposal_gate_tests": "python3 artifacts/gate-proposal-v2/run-tests.py: pass, including exactly-95 and missing-instrumentation failures",
+    "independent_negative_source_hash": "96/96 baseline; modified source rejected with owned source hash mismatch",
+    "independent_negative_omission": "omitted mapped line 96 rejected with changed/owned patch accounting mismatch",
+    "patch_replay": "Patch applies cleanly to three HEAD vendored source files in /tmp; results match all three manifest source SHA256 values",
+    "lcov_and_llvm": "All 93/94 reflect DA lines and 201/202 intersecting non-gap LLVM regions counted; sole uncovered region is resolve.rs:889 impossible-kind Err; derive remains 6/6 lines and 8/8 regions"
+  },
+  "decision": "Coverage/provenance gate proposal v2 may be adopted for a fresh strict full gate. Semantic and final source review remain required."
+}

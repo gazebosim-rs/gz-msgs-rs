@@ -7,8 +7,10 @@ root=pathlib.Path(__file__).resolve().parents[1]
 with tempfile.TemporaryDirectory(prefix='gz-msgs-consumer-') as directory:
     consumer=pathlib.Path(directory)
     (consumer/'src').mkdir()
-    (consumer/'Cargo.toml').write_text('[package]\nname="gazebo-message-consumer"\nversion="0.0.0"\nedition="2021"\n[dependencies]\ngz-msgs={path='+json.dumps(str(root))+'}\nprost="=0.14.4"\nprost-types="=0.14.4"\n')
-    (consumer/'src/main.rs').write_text('''use prost::Message;
+    (consumer/'Cargo.toml').write_text('[package]\nname="gazebo-message-consumer"\nversion="0.0.0"\nlicense="Apache-2.0"\nedition="2021"\n[dependencies]\ngz-msgs={path='+json.dumps(str(root))+'}\nprost="=0.14.4"\nprost-types="=0.14.4"\n')
+    (consumer/'src/main.rs').write_text('''// Copyright (C) 2026 Open Source Robotics Foundation
+// SPDX-License-Identifier: Apache-2.0
+use prost::Message;
 fn main() {
     let value=gz_msgs::vector3([-0.0,0.0,0.0]);
     let bytes=value.encode_to_vec();
@@ -31,8 +33,14 @@ fn main() {
     let compatible=gz_msgs::WireMessage::<gz_msgs::parameter::Parameter>::decode_compatible(&mismatched).unwrap();
     assert_eq!(compatible.bytes(),mismatched);
     assert_eq!(compatible.value().value,Some(prost_types::Any {type_url:String::new(),value:vec![255]}));
+    let descriptor_bytes=[10,62,10,14,100,101,102,97,117,108,116,115,46,112,114,111,116,111,34,36,10,7,68,101,102,97,117,108,116,18,25,10,5,118,97,108,117,101,24,1,32,1,40,5,58,3,48,49,48,82,5,118,97,108,117,101,98,6,112,114,111,116,111,50];
+    let mut registry=gz_msgs::registry::DescriptorRegistry::default();
+    assert!(registry.load_bytes(&descriptor_bytes).unwrap().is_empty());
+    let field=registry.pool().get_message_by_name("Default").unwrap().get_field_by_name("value").unwrap();
+    assert_eq!(field.default_value(),gz_msgs::prost_reflect::Value::I32(8));
+    assert_eq!(field.field_descriptor_proto().default_value.as_deref(),Some("010"));
 }
 ''')
     env=os.environ.copy();env['CARGO_TARGET_DIR']=str(root/'target/downstream')
     subprocess.run([env.get('CARGO','cargo'),'run','--offline','--manifest-path',str(consumer/'Cargo.toml')],env=env,check=True)
-print('Clean downstream consumer: signed zero, standard Any traits, nested unknown forwarding and compatible decoding pass without Cargo patches')
+print('Clean downstream consumer: signed zero, standard Any traits, nested unknown forwarding and compatible decoding and source-preserving integer defaults pass without Cargo patches')

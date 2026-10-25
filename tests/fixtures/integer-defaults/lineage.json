@@ -1,0 +1,21 @@
+{
+  "protobuf_commit": "f0dc78d7e6e331b8c6bb2d5283e06aa26883ca7c",
+  "descriptor_source": {
+    "url": "https://raw.githubusercontent.com/protocolbuffers/protobuf/f0dc78d7e6e331b8c6bb2d5283e06aa26883ca7c/src/google/protobuf/descriptor.cc",
+    "sha256": "05ee5c034613801857288a77f6eb758037421d8f59b01e4e50ba573d74013d7f"
+  },
+  "libc_version": "ldd (Ubuntu GLIBC 2.39-0ubuntu8.9) 2.39",
+  "native_C23_imports": [
+    "__isoc23_strtoll@GLIBC_2.38 (10)",
+    "__isoc23_strtoul@GLIBC_2.38 (10)",
+    "__isoc23_strtoull@GLIBC_2.38 (10)",
+    "__isoc23_strtol@GLIBC_2.38 (10)"
+  ],
+  "libraries_sha256": {
+    "libprotobuf.so.32": "53a2a625a30418d6ea84438b04c9196214dec51a30476596ee9be45ccadb0404",
+    "libstdc++.so.6": "1fd75fe70354a416d75aef22bcae68c47bd25d20e2d0568c30b1a9838cf62f11",
+    "libc.so.6": "3a15d66867d83762c7f2f1e37359cb8f6c5743edb369c65285cb0b1c4f7498bf"
+  },
+  "reference_script_sha256": "21ac385bb4875cf66b8e575bd653d71f27073f877b65a1758ad600f05d68435d",
+  "qualification": "Installed native binary/library provenance, not a fresh protobuf rebuild. Pinned primary source bytes verified by the author; independent semantic review remains required. All 990 scalar and 8 shape inputs replay against freshly compiled peer."
+}

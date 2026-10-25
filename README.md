@@ -27,7 +27,7 @@ Complete Gazebo Messages parity is not claimed. The canonical architecture and a
 Requires Rust 1.94.1 and protoc (qualified baseline 3.21.12). `cargo test --locked`
 also needs a C++17 compiler, libprotobuf and gtest development files. Run the quality
 gate with `python3 scripts/verify.py`; install staged-tree enforcement using
-`git config core.hooksPath .githooks`. The two vendored dependency fixes apply
+`git config core.hooksPath .githooks`. The vendored dependency fixes apply
 transitively without downstream Cargo patch configuration.
 
 New repository-owned contributions are Copyright (C) 2026 Open Source Robotics
@@ -37,3 +37,8 @@ schemas/tests and vendored dependencies retain their original notices and licens
 [Source packaging](docs/PACKAGING.md) preserves the reviewed vendored fixes and
 licenses. Crates.io publishing remains disabled; a normal `.crate` archive loses
 the path dependencies and is not a supported distribution.
+
+External registry integer defaults follow a bounded, native-backed
+[Linux LP64 policy](docs/INTEGER_DEFAULTS.md), preserving raw descriptor spelling.
+Standard reflection entry points and explicit-default formatting retain their
+separate limitations.

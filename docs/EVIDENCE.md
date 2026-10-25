@@ -1286,3 +1286,87 @@ metadata behavior, retry and constructor allowance while keeping wider default
 and MSG-02 limitations open. Only this additive evidence and the unchanged
 receipt follow the reviewed source; final binding and normal staged/hosted
 qualification remain required.
+
+## Source-preserving registry integer defaults
+
+An opt-in prost-reflect file loader now interprets eligible ordinary proto2
+integer defaults with the measured native Linux LP64/C23 rules while retaining
+raw default strings in descriptor metadata and exports. The registry calls that
+loader after the published byte-default preflight. Standard reflection entry
+points, extensions, proto3 defaults and noninteger scalar paths remain unchanged.
+Nonrepeated fields are eligible; oneof labels must be optional. Declaration
+formatting still returns Unsupported for explicit defaults. The
+[integer contract](INTEGER_DEFAULTS.md) records exact radix/sign/whitespace/NUL,
+range saturation and 32-bit assignment narrowing behavior, including native
+acceptance of binary prefixes through C23 libc imports. No general native
+validator, proto2 wire/formatter, group/extension or performance claim is added.
+
+The 990-row scalar corpus retains all 190 original input bytes, native statuses
+and accepted values, plus the original 190 standard-pool values/errors as actual
+assertions. Fresh native C++ compares build outcomes, effective defaults and
+explicit-presence wire bytes. There are 640 accepted and 350 rejected scalar
+rows. Eight native label controls show optional-oneof and ordinary-required
+int32 defaults accepted as 8/42, while repeated and required-oneof defaults fail.
+The latter stay on the legacy reflection path, preserving the documented
+native/reflection structural-validation gap. New tests also check empty optional
+message decoding, raw field/file bytes, snapshots, ordered errors, duplicate
+keep-first, import retry, factory/text and actual CLI unsupported/missing paths.
+The clean downstream consumer verifies native octal 8 with raw 010 through direct
+vendored dependencies, preserving all prior signed-zero/Any/envelope assertions.
+
+Pinned primary descriptor.cc bytes, SHA and commit were verified from preserved
+source lineage. Fresh peer/source/binary, installed libprotobuf/libc/libstdc++
+hashes and C23 imports are recorded without claiming a fresh protobuf rebuild.
+The reference script regenerates 990 scalar and 8 shape inputs and binds its own
+source, raw corpus and original-study hashes. Invalid native stderr is retained;
+Rust/native diagnostic text parity is not claimed. A first prototype omitted
+C23 binary-prefix support and used a missing test-only extension dependency;
+its failing log is preserved. Native observations corrected the parser and an
+independent local extendee corrected the test fixture. No original assertion
+was weakened or removed.
+
+Coverage accounting was independently reviewed before adopting the new checker.
+The initial proposal lacked source-hash verification inside the direct checker
+and used only region starting lines; the reviewer reproduced a stale-source
+counterexample and identified five covered boundary-spanning regions. V2 binds
+source hashes, exact unified-patch additions and complete noncomment ownership,
+rejects mapped-code syntax annotations and omitted executable lines, and counts
+all intersecting owned LLVM code regions with end-column handling. Missing-DA
+syntax receives no covered executable line credit. The defensive impossible-kind
+error remains executable and uncovered. The unchanged authored
+[gate-only receipt](reviews/integer-default-gate.json) approves this accounting
+extension only, preserving all semantic/final-gate/publication limits. The
+original thresholds, coverage inputs and unchanged third-party exclusions remain.
+
+Five integer tests pass in debug and release on the final narrowed scope,
+including all 990 scalar and 8 shape native observations. The full strict working
+gate passes 109 harness tests plus the actual standalone FactoryLazy executable,
+110 checks total, six snapshot regressions, source archive QA, negative coverage
+fixtures, native originals and clean downstream verification. Root production
+measures 1839/1842 lines and 2925/2943 regions. Owned patches measure 6/6 lines and 8/8 regions
+for prost-derive and 96/97 lines and 205/206 regions for prost-reflect, totaling 1941/1945
+owned lines and 3138/3157 regions. Scratch-consumer Apache license/header
+metadata followed that first full run; the downstream check and then the complete
+normal gate were rerun successfully on all 25 exact frozen source inputs. The
+exact final normal gate exits zero with log SHA256
+20dbeb2712eb9d84b66e2e2f995b29055a529f292e2d98d1aadd128557ee584d.
+Final exact binding, the normal mandatory staged hook and hosted qualification
+remain required. The canonical schemas,
+codecs, dependency versions and all 83 reviewed original mappings are unchanged;
+MSG-02 remains open.
+
+
+Independent /root/transport_fallback approved the 25-file semantic packet at
+frozen tree a0e166e0/diff d4307a33 with no remaining findings. Its raw-Git export
+and separate reviewer target passed all 110 Rust checks, five integer tests in
+each debug/release mode, fmt/Clippy, negative gates, snapshot/archive/downstream
+checks and byte-identical native corpus/shape/lineage regeneration. It independently
+verified source hashes, narrowed label/extension/proto3 limits, all 190 legacy
+standard-pool observations, native casts/NUL/overflow values, raw file spelling,
+rollback/snapshots/retry, and exact final DA/LLVM accounting. The defensive
+impossible-kind error remains uncovered and included. The unchanged authored
+[semantic receipt](reviews/registry-integer-defaults.json) distinguishes the earlier
+gate-only approval and requires final metadata binding, normal strict staged
+verification and hosted qualification. Only this additive evidence, its exact-gate
+update and the unchanged receipt follow the reviewed inputs; production, tests,
+fixtures, scripts, API/contract and provenance inputs remain unchanged.

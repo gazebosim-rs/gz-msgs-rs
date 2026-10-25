@@ -30,10 +30,12 @@ impl DescriptorPoolInner {
         &mut self,
         offsets: DescriptorPoolOffsets,
         files: &[FileDescriptorProto],
+        integer_defaults: bool,
     ) -> Result<(), DescriptorError> {
         let mut visitor = ResolveVisitor {
             pool: self,
             errors: vec![],
+            integer_defaults,
         };
         visit(offsets, files, &mut visitor);
         if visitor.errors.is_empty() {
@@ -47,6 +49,7 @@ impl DescriptorPoolInner {
 struct ResolveVisitor<'a> {
     pool: &'a mut DescriptorPoolInner,
     errors: Vec<DescriptorErrorKind>,
+    integer_defaults: bool,
 }
 
 impl Visitor for ResolveVisitor<'_> {
@@ -133,7 +136,16 @@ impl Visitor for ResolveVisitor<'_> {
                 && (kind.is_some_and(|k| k.is_message()) || syntax == Syntax::Proto2));
 
         let default = kind.and_then(|kind| {
-            self.parse_field_default_value(kind, field.default_value.as_deref(), file, path)
+            self.parse_field_default_value(
+                kind,
+                field.default_value.as_deref(),
+                file,
+                path,
+                self.integer_defaults
+                    && syntax == Syntax::Proto2
+                    && cardinality != Cardinality::Repeated
+                    && (field.oneof_index.is_none() || cardinality == Cardinality::Optional),
+            )
         });
 
         let message = &mut self.pool.messages[message as usize];
@@ -401,7 +413,13 @@ impl Visitor for ResolveVisitor<'_> {
                 }));
 
         let default = kind.and_then(|kind| {
-            self.parse_field_default_value(kind, extension.default_value.as_deref(), file, path)
+            self.parse_field_default_value(
+                kind,
+                extension.default_value.as_deref(),
+                file,
+                path,
+                false,
+            )
         });
 
         self.pool.extensions.push(ExtensionDescriptorInner {
@@ -634,6 +652,7 @@ impl ResolveVisitor<'_> {
         default_value: Option<&str>,
         file: FileIndex,
         path: &[i32],
+        integer_defaults: bool,
     ) -> Option<Value> {
         let default_value = default_value?;
 
@@ -652,7 +671,7 @@ impl ResolveVisitor<'_> {
             | KindIndex::Sfixed64
             | KindIndex::Bool
             | KindIndex::String
-            | KindIndex::Bytes => match parse_simple_value(kind, default_value) {
+            | KindIndex::Bytes => match parse_simple_value(kind, default_value, integer_defaults) {
                 Ok(value) => Some(value),
                 Err(_) => {
                     self.errors.push(DescriptorErrorKind::InvalidFieldDefault {
@@ -773,7 +792,25 @@ impl ResolveVisitor<'_> {
 fn parse_simple_value(
     kind: KindIndex,
     value: &str,
+    integer_defaults: bool,
 ) -> Result<Value, Box<dyn std::error::Error + Send + Sync>> {
+    if integer_defaults
+        && matches!(
+            kind,
+            KindIndex::Int32
+                | KindIndex::Sint32
+                | KindIndex::Sfixed32
+                | KindIndex::Int64
+                | KindIndex::Sint64
+                | KindIndex::Sfixed64
+                | KindIndex::Uint32
+                | KindIndex::Fixed32
+                | KindIndex::Uint64
+                | KindIndex::Fixed64
+        )
+    {
+        return parse_native_integer_default(kind, value);
+    }
     let value = match kind {
         KindIndex::Double => value.parse().map(Value::F64)?,
         KindIndex::Float => value.parse().map(Value::F32)?,
@@ -792,6 +829,68 @@ fn parse_simple_value(
     };
 
     Ok(value)
+}
+
+// Gazebo-owned addition: Copyright (C) 2026 Open Source Robotics Foundation
+// SPDX-License-Identifier: Apache-2.0
+// Match protobuf v21.12 descriptor.cc with C23 strto*l on qualified Linux LP64:
+// C-locale leading space, C-string termination, saturation ignoring errno, then
+// defined Rust truncation reproducing the observed native 32-bit assignment.
+fn parse_native_integer_default(
+    kind: KindIndex,
+    value: &str,
+) -> Result<Value, Box<dyn std::error::Error + Send + Sync>> {
+    if value.is_empty() {
+        return Err("empty integer default".into());
+    }
+    let text = value.split_once('\0').map_or(value, |(prefix, _)| prefix);
+    // Native checks the original string's emptiness and *endptr, not whether
+    // any digit was consumed. An initial NUL therefore accepts zero.
+    let text = if text.is_empty() { "0" } else { text };
+    let text = text.trim_start_matches([' ', '\t', '\n', '\r', '\x0b', '\x0c']);
+    let (negative, text) = if let Some(text) = text.strip_prefix('-') {
+        (true, text)
+    } else {
+        (false, text.strip_prefix('+').unwrap_or(text))
+    };
+    let (radix, digits) = if text.starts_with("0x") || text.starts_with("0X") {
+        (16, &text[2..])
+    } else if text.starts_with("0b") || text.starts_with("0B") {
+        (2, &text[2..])
+    } else if text.starts_with('0') {
+        (8, text)
+    } else {
+        (10, text)
+    };
+    // Validate the entire consumed C string before handling overflow. A radix
+    // parser may report overflow before a later invalid digit or trailing junk.
+    if digits.is_empty() || !digits.chars().all(|digit| digit.to_digit(radix).is_some()) {
+        return Err("invalid integer default".into());
+    }
+    let (magnitude, overflow) = u64::from_str_radix(digits, radix)
+        .map(|value| (value, false))
+        .unwrap_or((u64::MAX, true));
+    let signed = if negative {
+        if magnitude > i64::MAX as u64 {
+            i64::MIN
+        } else {
+            -(magnitude as i64)
+        }
+    } else {
+        magnitude.min(i64::MAX as u64) as i64
+    };
+    let unsigned = if negative && !overflow {
+        magnitude.wrapping_neg()
+    } else {
+        magnitude
+    };
+    Ok(match kind {
+        KindIndex::Int32 | KindIndex::Sint32 | KindIndex::Sfixed32 => Value::I32(signed as i32),
+        KindIndex::Int64 | KindIndex::Sint64 | KindIndex::Sfixed64 => Value::I64(signed),
+        KindIndex::Uint32 | KindIndex::Fixed32 => Value::U32(unsigned as u32),
+        KindIndex::Uint64 | KindIndex::Fixed64 => Value::U64(unsigned),
+        _ => return Err("not an integer default".into()),
+    })
 }
 
 /// From https://github.com/tokio-rs/prost/blob/c3b7037a7f2c56cef327b41ca32a8c4e9ce5a41c/prost-build/src/code_generator.rs#L887

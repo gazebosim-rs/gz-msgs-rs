@@ -37,6 +37,16 @@ defaults = json.loads(pathlib.Path('tests/fixtures/byte-defaults/native.json').r
 assert defaults['default_probe_source_sha256'] == hashlib.sha256(pathlib.Path('tests/byte_defaults_peer.cc').read_bytes()).hexdigest()
 for row in defaults['cases']:
     assert hashlib.sha256(bytes.fromhex(row['descriptor_hex'])).hexdigest() == row['descriptor_sha256']
+integers = json.loads(pathlib.Path('tests/fixtures/integer-defaults/native.json').read_text())
+assert integers['peer_source_sha256'] == hashlib.sha256(pathlib.Path('tests/integer_defaults_peer.cc').read_bytes()).hexdigest()
+for key, name in [('study_sha256', 'study-190.json'), ('legacy_study_sha256', 'legacy-190.json'), ('shape_corpus_sha256', 'shapes.json'), ('lineage_sha256', 'lineage.json')]:
+    assert integers[key] == hashlib.sha256(pathlib.Path('tests/fixtures/integer-defaults', name).read_bytes()).hexdigest()
+lineage = json.loads(pathlib.Path('tests/fixtures/integer-defaults/lineage.json').read_text())
+assert lineage['reference_script_sha256'] == hashlib.sha256(pathlib.Path('scripts/integer-defaults-reference.py').read_bytes()).hexdigest()
+for row in integers['cases']:
+    assert hashlib.sha256(bytes.fromhex(row['descriptor_hex'])).hexdigest() == row['descriptor_sha256']
+for row in json.loads(pathlib.Path('tests/fixtures/integer-defaults/shapes.json').read_text()):
+    assert hashlib.sha256(bytes.fromhex(row['descriptor_hex'])).hexdigest() == row['sha256']
 for path, expected in definitions['inputs'].items():
     assert hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest() == expected, path
 info = json.loads(pathlib.Path('schemas/cli-info.manifest.json').read_text())

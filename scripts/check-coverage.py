@@ -2,7 +2,7 @@
 # Copyright (C) 2026 Open Source Robotics Foundation
 # SPDX-License-Identifier: Apache-2.0
 """Enforce nonempty >95% line and region coverage for every production source."""
-import json, pathlib, sys
+import hashlib, json, pathlib, re, sys
 
 def check(report, root):
     wanted = {str(p.resolve()) for p in (root / 'src').rglob('*.rs')} | {str((root / 'build.rs').resolve())}
@@ -16,6 +16,22 @@ def check(report, root):
                 raise ValueError(f'{name}: {metric} must exceed 95%: {counts}')
     return files
 
+
+
+def added_patch_lines(path, filename):
+    current, number, added = None, 0, []
+    for line in path.read_text().splitlines():
+        if line.startswith('+++ '):
+            current = line[4:]
+        elif line.startswith('@@ '):
+            number = int(re.search(r'\+(\d+)', line)[1])
+        elif line.startswith('+'):
+            if filename == current or filename.endswith('/' + str(current)):
+                added.append(number)
+            number += 1
+        elif line.startswith(' '):
+            number += 1
+    return added
 
 
 def check_patches(report, root, lcov):
@@ -38,19 +54,46 @@ def check_patches(report, root, lcov):
             filename = str((root / item['path']).resolve())
             if filename not in counts:
                 raise ValueError('missing owned dependency instrumentation: ' + filename)
+            data = (root / item['path']).read_bytes()
+            if hashlib.sha256(data).hexdigest() != item.get('sha256'):
+                raise ValueError('owned source hash mismatch: ' + filename)
+            source = data.decode().splitlines()
             changed = set(item['owned_lines'])
-            # LLVM does not map closing delimiters or quoted proc-macro token text
-            # as executable lines; no executable changed line may disappear.
-            source = (root / item['path']).read_text().splitlines()
+            if 'unmapped_syntax' in item or 'changed_lines' in item:
+                added = added_patch_lines(root / item['patch'], item['path'])
+                expected = {number for number in added
+                            if source[number - 1].strip()
+                            and not source[number - 1].lstrip().startswith('//')}
+                if (added != item['changed_lines'] or changed != expected
+                        or len(changed) != len(item['owned_lines'])):
+                    raise ValueError('changed/owned patch accounting mismatch: ' + filename)
+            # LLVM may omit syntax lines, but every owned code region that
+            # intersects them remains measured, including boundary-spanning ones.
+            syntax = {int(number): text for number, text in item.get('unmapped_syntax', {}).items()}
+            # Exact, hash-bound annotations account for compiler-omitted syntax,
+            # never executable lines. Regions on these lines remain measured.
+            for number, text in syntax.items():
+                simple = text in ['{', ')', '} else {', '};', '})', 'false,']
+                field = text == 'integer_defaults: bool,'
+                pattern = text.removeprefix('| ') in [
+                    'KindIndex::Int32', 'KindIndex::Sint32', 'KindIndex::Sfixed32',
+                    'KindIndex::Int64', 'KindIndex::Sint64', 'KindIndex::Sfixed64',
+                    'KindIndex::Uint32', 'KindIndex::Fixed32',
+                    'KindIndex::Uint64', 'KindIndex::Fixed64']
+                if (number not in changed or number in counts[filename]
+                        or source[number - 1].strip() != text or not (simple or field or pattern)):
+                    raise ValueError(f'invalid nonexecutable syntax annotation: {filename}:{number}')
             for number in changed:
                 if number not in counts[filename]:
-                    if source[number - 1].strip() not in ['}', '};', '', 'if #non_default {']:
+                    if number not in syntax and source[number - 1].strip() not in ['}', '};', '', 'if #non_default {']:
                         raise ValueError(f'uninstrumented changed line: {filename}:{number}')
                     continue
                 owned_lines += 1
                 covered_lines += counts[filename][number] > 0
             regions = [region for data in report['data'] for function in data['functions'] for region in function['regions']
-                       if function['filenames'][region[5]] == filename and region[0] in changed and region[7] == 0]
+                       if function['filenames'][region[5]] == filename and region[7] == 0
+                       and any(region[0] <= number <= region[2] - int(region[3] == 1 and region[2] > region[0])
+                               for number in changed)]
             owned_regions += len(regions)
             covered_regions += sum(region[4] > 0 for region in regions)
         for name, covered, total in [('lines', covered_lines, owned_lines), ('regions', covered_regions, owned_regions)]:

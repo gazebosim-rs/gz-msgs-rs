@@ -128,7 +128,7 @@ Five scratch-Git regressions run in the gate, alongside the existing full-build
 partial-staging failure demonstration in CI.
 
 Every handwritten Rust file recursively under src and build.rs is measured. The denominator includes
-only executable changed lines/regions in the two vendored files; unchanged
+only executable changed lines/regions in the reviewed vendored patches; unchanged
 third-party lines are excluded by exact provenance, not a general vendor glob.
 LLVM omits syntax-only delimiters and quoted proc-macro token text from line
 instrumentation; missing executable changes fail. The changed build predicates
@@ -384,12 +384,22 @@ The formatter includes reserved names/ranges and C-style escaping for UTF-8 JSON
 names. It preserves defined raw-range display quirks and rejects the two message
 boundaries whose native signed arithmetic overflows. Basic proto2 labels/oneofs
 are supported; explicit defaults, groups, extensions and advanced options remain
-unsupported. Raw proto2 integer-default interpretation also differs in the pinned
-reflection loader; no native default-value or wire contract is added by declaration
-formatting. This is not a complete descriptor validator.
+unsupported. Standard reflection entry points retain their separate raw integer
+default interpretation; the registry's bounded opt-in integer policy is described
+below. Declaration formatting adds no default-value or general wire contract.
+This is not a complete descriptor validator.
 
 Raw byte defaults that can panic in the pinned reflection loader now return
 `DecodeError` from `DescriptorRegistry::load_bytes` and `InvalidData` through file
 and factory path errors. See [the bounded rejection contract](DESCRIPTOR_DEFAULT_ROBUSTNESS.md)
 for native/release differences, partial loading and exact regression inputs.
 This adds no general native proto2 default-value or declaration-formatting support.
+
+The registry now uses an opt-in parser for eligible ordinary proto2 integer
+defaults, preserving their original descriptor spelling while correcting effective
+values against the qualified native Linux LP64/C23 corpus. Standard pools,
+extension/proto3 defaults and other scalar paths are unchanged. See
+[integer defaults](INTEGER_DEFAULTS.md) for sign/radix/NUL/saturation/narrowing
+rules, malformed-label dispositions, provenance and explicit limits. The existing
+byte-default safety rejection remains mandatory. Explicit-default formatting and
+complete proto2/native wire behavior remain unqualified.

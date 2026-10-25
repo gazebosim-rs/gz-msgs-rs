@@ -139,7 +139,10 @@ impl DescriptorRegistry {
                     check_message_defaults(message)?;
                 }
             }
-            match self.pool.decode_file_descriptor_proto(bytes.as_slice()) {
+            match self
+                .pool
+                .decode_file_descriptor_proto_with_integer_defaults(bytes.as_slice())
+            {
                 Err(error) => errors.push(error),
                 Ok(()) if !existed => {
                     let mut omissions = BTreeSet::new();
