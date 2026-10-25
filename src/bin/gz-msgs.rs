@@ -3,9 +3,16 @@
 //! Standalone protobuf inspection tool. Binary bytes only cross stdin/stdout.
 use gz_msgs::{prost::Message, prost_reflect::DynamicMessage};
 use std::io::{Read, Write};
+mod legacy_cli;
 const HELP: &str = "gz-msgs --list|-l | --info|-i TYPE... | --version|-v | --help|-h\nCommands: list, info TYPE..., encode-json, decode-json, encode-text, decode-text\nFormat commands take one fully qualified type and use stdin/stdout.";
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let args: Vec<_> = std::env::args().skip(1).collect();
+    let args = match legacy_cli::normalize(std::env::args().skip(1).collect()) {
+        Ok(args) => args,
+        Err((code, message)) => {
+            eprintln!("{message}");
+            std::process::exit(i32::from(code));
+        }
+    };
     if args.is_empty() || args == ["--help"] || args == ["-h"] {
         println!("{HELP}");
         return Ok(());

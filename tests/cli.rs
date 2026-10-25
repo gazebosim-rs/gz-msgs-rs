@@ -317,3 +317,95 @@ fn json_requires_exactly_one_complete_document() {
         }
     }
 }
+
+#[test]
+fn native_legacy_option_combinations() {
+    let fixture: gz_msgs::serde_json::Value =
+        gz_msgs::serde_json::from_str(include_str!("fixtures/cli-options.json")).unwrap();
+    assert_eq!(fixture["matching"].as_array().unwrap().len(), 75);
+    for row in fixture["matching"].as_array().unwrap() {
+        let args: Vec<_> = row["args"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .map(|a| a.as_str().unwrap())
+            .collect();
+        let mut variants = vec![args.clone()];
+        if args
+            .first()
+            .is_some_and(|a| matches!(*a, "--info" | "--list"))
+        {
+            let mut alias = args.clone();
+            alias[0] = alias[0].trim_start_matches("--");
+            variants.push(alias);
+        }
+        for args in variants {
+            let actual = run(&args, &[]);
+            assert_eq!(
+                actual.status.code().unwrap() as i64,
+                row["status"].as_i64().unwrap(),
+                "{args:?}"
+            );
+            match row["mode"].as_str().unwrap() {
+                "version" => {
+                    assert_eq!(
+                        actual.stdout,
+                        format!("{}\n", env!("CARGO_PKG_VERSION")).as_bytes()
+                    );
+                    assert!(actual.stderr.is_empty());
+                }
+                "help" => {
+                    assert!(String::from_utf8(actual.stdout)
+                        .unwrap()
+                        .contains("--info|-i"));
+                    assert!(actual.stderr.is_empty());
+                }
+                "list" => {
+                    let mut actual: Vec<_> = String::from_utf8(actual.stdout)
+                        .unwrap()
+                        .lines()
+                        .map(str::to_owned)
+                        .collect();
+                    let mut expected: Vec<_> = row["stdout"]
+                        .as_str()
+                        .unwrap()
+                        .lines()
+                        .map(str::to_owned)
+                        .collect();
+                    actual.sort();
+                    expected.sort();
+                    assert_eq!(actual, expected);
+                }
+                "exact" => {
+                    assert_eq!(
+                        actual.stdout,
+                        row["stdout"].as_str().unwrap().as_bytes(),
+                        "{args:?}"
+                    );
+                    assert_eq!(
+                        actual.stderr,
+                        row["stderr"].as_str().unwrap().as_bytes(),
+                        "{args:?}"
+                    );
+                }
+                _ => panic!("fixture mode"),
+            }
+        }
+    }
+    for row in fixture["explicit_unsupported_flag_assignments"]
+        .as_array()
+        .unwrap()
+    {
+        let args: Vec<_> = row["args"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .map(|a| a.as_str().unwrap())
+            .collect();
+        let actual = run(&args, &[]);
+        assert!(!actual.status.success(), "{args:?}");
+        assert!(String::from_utf8(actual.stderr)
+            .unwrap()
+            .contains("flag value assignments are not supported"));
+    }
+}

@@ -1,0 +1,14 @@
+{
+  "decision": "approved_followup_qualification",
+  "author": "/root/msgs",
+  "reviewer": "/root/transport_recovery",
+  "date": "2026-10-25T01:50:48.388598+00:00",
+  "original_staged_diff": "c0bec749f864f84d03867d32bebc47384c10ce4a143cf38d100ef3badf1ed003",
+  "published_revision": "e2001a3bc5b54cb15ea1cc16deaefdf14719b2df",
+  "correction": "The original wire snapshot replay mistakenly shared the producer normal Cargo target. That could overwrite its un-hashed CLI binary and later cause stale Fresh results in separate producer JSON checks. This was a reviewer isolation error; no producer source or threshold was changed. The original receipt is retained unchanged rather than silently rewritten.",
+  "fresh_independent_evidence": "Replayed both wire integration tests from the exact verified staged snapshot in a fresh reviewer-owned Cargo target; both pass, with fresh generated C++ outputs/statuses for all70 fixture rows. All623 exported source blob hashes were verified again after the build. The actual test executable path is inside the private reviewer target, not producer target. Prior installed native proof independently matches all70 rows and216 schema blobs. Downstream consumer used the snapshot-owned target/downstream directory and passed without Cargo patches.",
+  "test_executable_sha256": "cd93fd2a8f05dacb448f2d4ce9727c65830d8e48b291ada58bc8ec5049af65bb",
+  "producer_recovery": "Producer separately preserved the stale binary/provenance, cleaned only its own package and rebuilt all nine CLI tests successfully; its published e2001a3 staged/hosted checks remain green. No protocol defect or source-review revocation is implied.",
+  "future_rule": "Every exported snapshot must use a distinct reviewer-owned target. Do not share any producer normal target across source roots.",
+  "limits": "Same finite native corpus, strict/reflection limitations, caller quotas, recursion and lossy typed reencoding qualification as original review. No independent full Rust/coverage gate claim."
+}

@@ -105,8 +105,12 @@ message_info returns complete CLI text. The original licensed completion script
 is preserved. Five unchanged original
 C++ CLI tests run against the Rust binary in the gate, with only package-version
 and artifact-path bindings. This package does not own the gz dispatcher.
-External descriptor environment/lazy loading, full factory cache/retry/concurrency, full Any formatting
-and point cloud utilities remain pending.
+Attached/repeated info options, short flag groups, exclusions and observed native
+error codes are qualified by the [bounded option corpus](CLI_OPTIONS.md). Long
+flag-value assignments and full legacy grammar remain explicitly unsupported.
+Install-prefix/canonical-path-cache behavior, dynamic-descriptor CLI info and
+broader Any/formatting qualification remain pending. Factory environment/lazy,
+retry/concurrency and packed-cloud APIs are described below with their own limits.
 
 Production builds require system protoc (qualified baseline 3.21.12); C++ peer
 tests additionally require C++17 and libprotobuf; the unchanged CLI suite uses system gtest. `python3 scripts/verify.py`

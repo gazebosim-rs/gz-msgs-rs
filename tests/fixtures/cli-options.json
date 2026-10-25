@@ -1,0 +1,916 @@
+{
+  "upstream_commit": "89c0c3d1474f545cb889335daf930bfdab6ab852",
+  "native_binary_sha256": "6160c5d48314c32f36fceecd6a0637fc84b7fb09f1dada790ab6fcefd729bcc8",
+  "native_source_sha256": "61eda9083e2802e406695d7b84e35284911bc936c834dc20505b2fb248eba609",
+  "schema_manifest_sha256": "4762e2101674aa2cdd3a6518f8a71a50acde2ce417452e46b44f42e9d02c1d39",
+  "native_version_stdout": "13.0.0~pre2\n",
+  "matching": [
+    {
+      "args": [],
+      "mode": "help",
+      "status": 0,
+      "stdout": "Print information about Gazebo messages\nUsage: gz-msgs [OPTIONS]\n\nOptions:\n  -h [--help]                 Print this help message and exit\n                              \n  -v [--version]              \n                              \n  -l [--list]                 List all message types.\n                              Excludes: --info\n                              \n  -i [--info] TEXT ...        Get info about the specified message type.\n                              Excludes: --list\n                              \n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--info=gz.msgs.Time"
+      ],
+      "mode": "exact",
+      "status": 0,
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "-igz.msgs.Time"
+      ],
+      "mode": "exact",
+      "status": 0,
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "-i",
+        "gz.msgs.Time"
+      ],
+      "mode": "exact",
+      "status": 0,
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--info",
+        "gz.msgs.Time",
+        "--info",
+        "gz.msgs.Clock"
+      ],
+      "mode": "exact",
+      "status": 0,
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\nName: gz.msgs.Clock\nFile: gz/msgs/clock.proto\n\nmessage Clock {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Time system = 2;\n  .gz.msgs.Time real = 3;\n  .gz.msgs.Time sim = 4;\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "-i",
+        "gz.msgs.Time",
+        "-i",
+        "gz.msgs.Clock"
+      ],
+      "mode": "exact",
+      "status": 0,
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\nName: gz.msgs.Clock\nFile: gz/msgs/clock.proto\n\nmessage Clock {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Time system = 2;\n  .gz.msgs.Time real = 3;\n  .gz.msgs.Time sim = 4;\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "-l",
+        "-l"
+      ],
+      "mode": "list",
+      "status": 0,
+      "stdout": "gz.msgs.Wrench\ngz.msgs.WorldStatistics\ngz.msgs.WorldReset\ngz.msgs.WorldModify\ngz.msgs.WorldControlState\ngz.msgs.WheelSlipParametersCmd\ngz.msgs.WebRequest\ngz.msgs.JointTrajectoryPoint\ngz.msgs.Link\ngz.msgs.Sky\ngz.msgs.JointTrajectory\ngz.msgs.SerializedComponent\ngz.msgs.SphereGeom\ngz.msgs.Joint.Gearbox\ngz.msgs.Int32\ngz.msgs.Metric\ngz.msgs.Joint\ngz.msgs.Image\ngz.msgs.Hydra.Paddle\ngz.msgs.IMUSensor.LinearAcceleration\ngz.msgs.UInt32_V\ngz.msgs.IMUSensor.AngularVelocity\ngz.msgs.Visual\ngz.msgs.GPSSensor.Sensing\ngz.msgs.FuelMetadata.World\ngz.msgs.PointCloud\ngz.msgs.FuelMetadata.Model\ngz.msgs.FuelMetadata.Legal\ngz.msgs.ParameterValue\ngz.msgs.Quaternion\ngz.msgs.FuelMetadata\ngz.msgs.Oriented3DBox\ngz.msgs.Friction.Torsional.ODE\ngz.msgs.SphericalCoordinates\ngz.msgs.Param.ParamsEntry\ngz.msgs.PointCloudPacked\ngz.msgs.Diagnostics.DiagTime\ngz.msgs.TwistWithCovariance\ngz.msgs.FluidPressure\ngz.msgs.Fluid\ngz.msgs.UInt64_V\ngz.msgs.Float_V\ngz.msgs.Float\ngz.msgs.Altimeter\ngz.msgs.EntityWrenchMap.WrenchesEntry\ngz.msgs.Color\ngz.msgs.Publishers\ngz.msgs.SdfGeneratorConfig\ngz.msgs.EntityFactoryWithNs\ngz.msgs.Fog\ngz.msgs.EntityFactory\ngz.msgs.Material.PBR\ngz.msgs.EntityFactory_V\ngz.msgs.Collision\ngz.msgs.Entity\ngz.msgs.Sensor\ngz.msgs.VersionedName\ngz.msgs.AxisAlignedBox\ngz.msgs.EllipsoidGeom\ngz.msgs.LogPlaybackStatistics\ngz.msgs.FuelMetadata.AnnotationsEntry\ngz.msgs.Publish\ngz.msgs.EntityWrenchMap\ngz.msgs.CapsuleGeom\ngz.msgs.Double_V\ngz.msgs.Plugin_V\ngz.msgs.Distortion\ngz.msgs.Discovery.Publisher.ServicePublisher\ngz.msgs.EntityFactoryWithNs_V\ngz.msgs.NavSatWithCovariance\ngz.msgs.CameraInfo.Distortion\ngz.msgs.ContactSensor\ngz.msgs.AttachDetachRequest\ngz.msgs.Atmosphere\ngz.msgs.HeightmapGeom\ngz.msgs.AxisAligned2DBox\ngz.msgs.DVLRangeEstimate\ngz.msgs.Wind\ngz.msgs.Hydra\ngz.msgs.BatteryState\ngoogle.protobuf.Any\ngz.msgs.Actor.Waypoint\ngz.msgs.BoxGeom\ngz.msgs.FuelMetadata.Compatibility\ngz.msgs.HeightmapGeom.Blend\ngz.msgs.AnnotatedAxisAligned2DBox_V\ngz.msgs.FuelMetadata.Contact\ngz.msgs.AltimeterSensor\ngz.msgs.Any\ngz.msgs.Header.Map\ngz.msgs.SerializedStateMap.EntitiesEntry\ngz.msgs.Marker\ngz.msgs.Bytes\ngz.msgs.SimEvent\ngz.msgs.Actuators\ngz.msgs.SerializedStep\ngz.msgs.AirPressureSensor\ngz.msgs.SensorNoise\ngz.msgs.PoseTrajectory\ngz.msgs.Inertial\ngz.msgs.LogPlaybackControl\ngz.msgs.Sonar\ngz.msgs.AnnotatedAxisAligned2DBox\ngz.msgs.WorldControl\ngz.msgs.LogStatus.LogFile\ngz.msgs.IMU\ngz.msgs.Friction\ngz.msgs.Dataframe\ngz.msgs.Axis\ngz.msgs.EntityPlugin_V\ngz.msgs.CameraSensor\ngz.msgs.Pose\ngz.msgs.Pose_V\ngz.msgs.Boolean\ngz.msgs.IMUSensor.OrientationReferenceFrame\ngz.msgs.CameraInfo.Projection\ngz.msgs.Joint.Screw\ngz.msgs.Discovery.Publisher\ngz.msgs.Battery\ngz.msgs.Geometry\ngz.msgs.ParticleEmitter\ngz.msgs.CameraLens\ngz.msgs.Plugin\ngz.msgs.DVLKinematicEstimate\ngz.msgs.JointCmd\ngz.msgs.SdfGeneratorConfig.EntityGeneratorConfig\ngz.msgs.GPS\ngz.msgs.CameraTrack\ngz.msgs.Header\ngz.msgs.ParameterError\ngz.msgs.GUI\ngz.msgs.SerializedEntityMap.ComponentsEntry\ngz.msgs.Cessna\ngz.msgs.Int64\ngz.msgs.Clock\ngz.msgs.LogStatus\ngz.msgs.VideoRecord\ngz.msgs.GPSSensor\ngz.msgs.Magnetometer\ngz.msgs.Contacts\ngz.msgs.JointAnimation.Joint\ngz.msgs.Discovery.Flags\ngz.msgs.Discovery.Subscriber\ngz.msgs.DVLBeamState\ngz.msgs.AnnotatedOriented3DBox_V\ngz.msgs.IMUSensor\ngz.msgs.Material\ngz.msgs.UInt64\ngz.msgs.Double\ngz.msgs.ConeGeom\ngz.msgs.Version\ngz.msgs.Subscribe\ngz.msgs.CylinderGeom\ngz.msgs.WirelessNode\ngz.msgs.ImageGeom\ngz.msgs.Test\ngz.msgs.Scene\ngz.msgs.DataLoadPathOptions\ngz.msgs.FuelMetadata.Dependency\ngz.msgs.AirSpeedSensor\ngz.msgs.DVLTrackingTarget\ngz.msgs.Diagnostics\ngz.msgs.NavSatSensor\ngz.msgs.SerializedEntityMap\ngz.msgs.Discovery\ngz.msgs.HeightmapGeom.Texture\ngz.msgs.AnnotatedOriented3DBox\ngz.msgs.PoseWithCovariance\ngz.msgs.Tactile\ngz.msgs.Discovery.Publisher.MessagePublisher\ngz.msgs.Visual_V\ngz.msgs.Joy\ngz.msgs.NavSatSensor.Sensing\ngz.msgs.Joystick\ngz.msgs.Request\ngz.msgs.UndoRedo\ngz.msgs.Actor\ngz.msgs.LaserScan\ngz.msgs.Actor.Animation\ngz.msgs.Lens\ngz.msgs.Polyline\ngz.msgs.Light\ngz.msgs.MeshGeom\ngz.msgs.Selection\ngz.msgs.LinkData\ngz.msgs.Empty\ngz.msgs.LogControl\ngz.msgs.LogicalCameraImage\ngz.msgs.JointAnimation\ngz.msgs.LidarSensor\ngz.msgs.LogicalCameraImage.Model\ngz.msgs.Contact\ngz.msgs.LogicalCameraSensor\ngz.msgs.PropagationParticle\ngz.msgs.PropagationGrid\ngz.msgs.MagnetometerSensor\ngz.msgs.UInt32\ngz.msgs.Marker_V\ngz.msgs.GUICamera\ngz.msgs.Material.Script\ngz.msgs.MaterialColor\ngz.msgs.Model\ngz.msgs.Int64_V\ngz.msgs.ModelConfiguration\ngz.msgs.Visual.Meta\ngz.msgs.Model_V\ngz.msgs.Statistic\ngz.msgs.NavSat\ngz.msgs.CmdVel2D\ngz.msgs.ParameterDeclarations\ngz.msgs.OccupancyGrid\ngz.msgs.CameraInfo\ngz.msgs.Packet\ngz.msgs.Time\ngz.msgs.OccupancyGrid.MapMetaInfo\ngz.msgs.Odometry\ngz.msgs.ParticleEmitter_V\ngz.msgs.OdometryWithCovariance\ngz.msgs.PID\ngz.msgs.Param\ngz.msgs.Param_V\ngz.msgs.Parameter\ngz.msgs.ParameterDeclaration\ngz.msgs.ParameterName\ngz.msgs.PerformanceSensorMetrics\ngz.msgs.Physics\ngz.msgs.PlaneGeom\ngz.msgs.Int32_V\ngz.msgs.PointCloudPacked.Field\ngz.msgs.PoseAnimation\ngz.msgs.FuelMetadata.Categories\ngz.msgs.Projector\ngz.msgs.RaySensor\ngz.msgs.Density\ngz.msgs.Response\ngz.msgs.RestLogin\ngz.msgs.RestLogout\ngz.msgs.RestPost\ngz.msgs.RestResponse\ngz.msgs.Duration\ngz.msgs.AirSpeed\ngz.msgs.Result\ngz.msgs.DVLVelocityTracking\ngz.msgs.VersionRange\ngz.msgs.EntityWrench\ngz.msgs.Road\ngz.msgs.Actor.Trajectory\ngz.msgs.SerializedState\ngz.msgs.SdfGeneratorConfig.OverrideEntityGenConfigsEntry\ngz.msgs.Sensor_V\ngz.msgs.SerializedEntity\ngz.msgs.SerializedStateMap\ngz.msgs.SerializedStepMap\ngz.msgs.ServerControl\ngz.msgs.StatisticsGroup\ngz.msgs.StringMsg\ngz.msgs.CameraCmd\ngz.msgs.JointWrench\ngz.msgs.Shadows\ngz.msgs.StringMsg_V\ngz.msgs.WirelessNodes\ngz.msgs.Surface\ngz.msgs.TopicInfo\ngz.msgs.Friction.Torsional\ngz.msgs.TrackVisual\ngz.msgs.CameraInfo.Intrinsics\ngz.msgs.Twist\ngz.msgs.UserCmd\ngz.msgs.UserCmdStats\ngz.msgs.Vector2d\ngz.msgs.Vector3d\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--list",
+        "extra"
+      ],
+      "mode": "exact",
+      "status": 109,
+      "stdout": "",
+      "stderr": "The following argument was not expected: extra\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info"
+      ],
+      "mode": "exact",
+      "status": 114,
+      "stdout": "",
+      "stderr": "--info: 1 required TEXT missing\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info",
+        ""
+      ],
+      "mode": "exact",
+      "status": 0,
+      "stdout": "",
+      "stderr": "Unable to create message of type[]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "gz.msgs.Time",
+        "--list"
+      ],
+      "mode": "exact",
+      "status": 108,
+      "stdout": "",
+      "stderr": "--list excludes --info\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--list",
+        "--info",
+        "gz.msgs.Time"
+      ],
+      "mode": "exact",
+      "status": 108,
+      "stdout": "",
+      "stderr": "--list excludes --info\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "-lv"
+      ],
+      "mode": "version",
+      "status": 0,
+      "stdout": "13.0.0~pre2\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "-vl"
+      ],
+      "mode": "version",
+      "status": 0,
+      "stdout": "13.0.0~pre2\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--list",
+        "--version"
+      ],
+      "mode": "version",
+      "status": 0,
+      "stdout": "13.0.0~pre2\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--version",
+        "--list"
+      ],
+      "mode": "version",
+      "status": 0,
+      "stdout": "13.0.0~pre2\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--help",
+        "--list"
+      ],
+      "mode": "help",
+      "status": 0,
+      "stdout": "Print information about Gazebo messages\nUsage: gz-msgs [OPTIONS]\n\nOptions:\n  -h [--help]                 Print this help message and exit\n                              \n  -v [--version]              \n                              \n  -l [--list]                 List all message types.\n                              Excludes: --info\n                              \n  -i [--info] TEXT ...        Get info about the specified message type.\n                              Excludes: --list\n                              \n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--list",
+        "--help"
+      ],
+      "mode": "help",
+      "status": 0,
+      "stdout": "Print information about Gazebo messages\nUsage: gz-msgs [OPTIONS]\n\nOptions:\n  -h [--help]                 Print this help message and exit\n                              \n  -v [--version]              \n                              \n  -l [--list]                 List all message types.\n                              Excludes: --info\n                              \n  -i [--info] TEXT ...        Get info about the specified message type.\n                              Excludes: --list\n                              \n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--info",
+        "gz.msgs.Time",
+        "--",
+        "Nope"
+      ],
+      "mode": "exact",
+      "status": 109,
+      "stdout": "",
+      "stderr": "The following argument was not expected: Nope\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info",
+        "gz.msgs.Time",
+        "--unknown"
+      ],
+      "mode": "exact",
+      "status": 109,
+      "stdout": "",
+      "stderr": "The following argument was not expected: --unknown\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--unknown"
+      ],
+      "mode": "exact",
+      "status": 109,
+      "stdout": "",
+      "stderr": "The following argument was not expected: --unknown\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--",
+        "--list"
+      ],
+      "mode": "exact",
+      "status": 109,
+      "stdout": "",
+      "stderr": "The following arguments were not expected: --list --\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info",
+        "-h"
+      ],
+      "mode": "exact",
+      "status": 0,
+      "stdout": "",
+      "stderr": "Unable to create message of type[-h]\n"
+    },
+    {
+      "args": [
+        "--info=gz.msgs.Time",
+        "--info=gz.msgs.Clock"
+      ],
+      "mode": "exact",
+      "status": 0,
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\nName: gz.msgs.Clock\nFile: gz/msgs/clock.proto\n\nmessage Clock {\n  .gz.msgs.Header header = 1;\n  .gz.msgs.Time system = 2;\n  .gz.msgs.Time real = 3;\n  .gz.msgs.Time sim = 4;\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--help",
+        "--unknown"
+      ],
+      "mode": "help",
+      "status": 0,
+      "stdout": "Print information about Gazebo messages\nUsage: gz-msgs [OPTIONS]\n\nOptions:\n  -h [--help]                 Print this help message and exit\n                              \n  -v [--version]              \n                              \n  -l [--list]                 List all message types.\n                              Excludes: --info\n                              \n  -i [--info] TEXT ...        Get info about the specified message type.\n                              Excludes: --list\n                              \n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--unknown",
+        "--help"
+      ],
+      "mode": "help",
+      "status": 0,
+      "stdout": "Print information about Gazebo messages\nUsage: gz-msgs [OPTIONS]\n\nOptions:\n  -h [--help]                 Print this help message and exit\n                              \n  -v [--version]              \n                              \n  -l [--list]                 List all message types.\n                              Excludes: --info\n                              \n  -i [--info] TEXT ...        Get info about the specified message type.\n                              Excludes: --list\n                              \n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--info",
+        "--help"
+      ],
+      "mode": "exact",
+      "status": 0,
+      "stdout": "",
+      "stderr": "Unable to create message of type[--help]\n"
+    },
+    {
+      "args": [
+        "--help",
+        "--info"
+      ],
+      "mode": "exact",
+      "status": 114,
+      "stdout": "",
+      "stderr": "--info: 1 required TEXT missing\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--version",
+        "--unknown"
+      ],
+      "mode": "version",
+      "status": 0,
+      "stdout": "13.0.0~pre2\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--unknown",
+        "--version"
+      ],
+      "mode": "version",
+      "status": 0,
+      "stdout": "13.0.0~pre2\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--info",
+        "--version"
+      ],
+      "mode": "exact",
+      "status": 0,
+      "stdout": "",
+      "stderr": "Unable to create message of type[--version]\n"
+    },
+    {
+      "args": [
+        "--version",
+        "--info"
+      ],
+      "mode": "exact",
+      "status": 114,
+      "stdout": "",
+      "stderr": "--info: 1 required TEXT missing\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "-hv"
+      ],
+      "mode": "version",
+      "status": 0,
+      "stdout": "13.0.0~pre2\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "-vh"
+      ],
+      "mode": "version",
+      "status": 0,
+      "stdout": "13.0.0~pre2\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--list",
+        "--info="
+      ],
+      "mode": "exact",
+      "status": 114,
+      "stdout": "",
+      "stderr": "--info: 1 required TEXT missing\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info",
+        "gz.msgs.Time",
+        "extra"
+      ],
+      "mode": "exact",
+      "status": 0,
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[extra]\n"
+    },
+    {
+      "args": [
+        "--help",
+        "--list",
+        "--info",
+        "gz.msgs.Time"
+      ],
+      "mode": "help",
+      "status": 0,
+      "stdout": "Print information about Gazebo messages\nUsage: gz-msgs [OPTIONS]\n\nOptions:\n  -h [--help]                 Print this help message and exit\n                              \n  -v [--version]              \n                              \n  -l [--list]                 List all message types.\n                              Excludes: --info\n                              \n  -i [--info] TEXT ...        Get info about the specified message type.\n                              Excludes: --list\n                              \n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--version",
+        "--list",
+        "--info",
+        "gz.msgs.Time"
+      ],
+      "mode": "version",
+      "status": 0,
+      "stdout": "13.0.0~pre2\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--list",
+        "--info",
+        "gz.msgs.Time",
+        "--unknown"
+      ],
+      "mode": "exact",
+      "status": 108,
+      "stdout": "",
+      "stderr": "--list excludes --info\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info",
+        "gz.msgs.Time",
+        "--unknown",
+        "--list"
+      ],
+      "mode": "exact",
+      "status": 108,
+      "stdout": "",
+      "stderr": "--list excludes --info\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info="
+      ],
+      "mode": "exact",
+      "status": 114,
+      "stdout": "",
+      "stderr": "--info: 1 required TEXT missing\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "-i=gz.msgs.Time"
+      ],
+      "mode": "exact",
+      "status": 0,
+      "stdout": "",
+      "stderr": "Unable to create message of type[=gz.msgs.Time]\n"
+    },
+    {
+      "args": [
+        "-i="
+      ],
+      "mode": "exact",
+      "status": 0,
+      "stdout": "",
+      "stderr": "Unable to create message of type[=]\n"
+    },
+    {
+      "args": [
+        "-ii"
+      ],
+      "mode": "exact",
+      "status": 0,
+      "stdout": "",
+      "stderr": "Unable to create message of type[i]\n"
+    },
+    {
+      "args": [
+        "-hi",
+        "gz.msgs.Time"
+      ],
+      "mode": "help",
+      "status": 0,
+      "stdout": "Print information about Gazebo messages\nUsage: gz-msgs [OPTIONS]\n\nOptions:\n  -h [--help]                 Print this help message and exit\n                              \n  -v [--version]              \n                              \n  -l [--list]                 List all message types.\n                              Excludes: --info\n                              \n  -i [--info] TEXT ...        Get info about the specified message type.\n                              Excludes: --list\n                              \n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--"
+      ],
+      "mode": "help",
+      "status": 0,
+      "stdout": "Print information about Gazebo messages\nUsage: gz-msgs [OPTIONS]\n\nOptions:\n  -h [--help]                 Print this help message and exit\n                              \n  -v [--version]              \n                              \n  -l [--list]                 List all message types.\n                              Excludes: --info\n                              \n  -i [--info] TEXT ...        Get info about the specified message type.\n                              Excludes: --list\n                              \n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--",
+        "x"
+      ],
+      "mode": "exact",
+      "status": 109,
+      "stdout": "",
+      "stderr": "The following arguments were not expected: x --\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--list",
+        "--"
+      ],
+      "mode": "list",
+      "status": 0,
+      "stdout": "gz.msgs.Wrench\ngz.msgs.WorldStatistics\ngz.msgs.WorldReset\ngz.msgs.WorldModify\ngz.msgs.WorldControlState\ngz.msgs.WheelSlipParametersCmd\ngz.msgs.WebRequest\ngz.msgs.JointTrajectoryPoint\ngz.msgs.Link\ngz.msgs.Sky\ngz.msgs.JointTrajectory\ngz.msgs.SerializedComponent\ngz.msgs.SphereGeom\ngz.msgs.Joint.Gearbox\ngz.msgs.Int32\ngz.msgs.Metric\ngz.msgs.Joint\ngz.msgs.Image\ngz.msgs.Hydra.Paddle\ngz.msgs.IMUSensor.LinearAcceleration\ngz.msgs.UInt32_V\ngz.msgs.IMUSensor.AngularVelocity\ngz.msgs.Visual\ngz.msgs.GPSSensor.Sensing\ngz.msgs.FuelMetadata.World\ngz.msgs.PointCloud\ngz.msgs.FuelMetadata.Model\ngz.msgs.FuelMetadata.Legal\ngz.msgs.ParameterValue\ngz.msgs.Quaternion\ngz.msgs.FuelMetadata\ngz.msgs.Oriented3DBox\ngz.msgs.Friction.Torsional.ODE\ngz.msgs.SphericalCoordinates\ngz.msgs.Param.ParamsEntry\ngz.msgs.PointCloudPacked\ngz.msgs.Diagnostics.DiagTime\ngz.msgs.TwistWithCovariance\ngz.msgs.FluidPressure\ngz.msgs.Fluid\ngz.msgs.UInt64_V\ngz.msgs.Float_V\ngz.msgs.Float\ngz.msgs.Altimeter\ngz.msgs.EntityWrenchMap.WrenchesEntry\ngz.msgs.Color\ngz.msgs.Publishers\ngz.msgs.SdfGeneratorConfig\ngz.msgs.EntityFactoryWithNs\ngz.msgs.Fog\ngz.msgs.EntityFactory\ngz.msgs.Material.PBR\ngz.msgs.EntityFactory_V\ngz.msgs.Collision\ngz.msgs.Entity\ngz.msgs.Sensor\ngz.msgs.VersionedName\ngz.msgs.AxisAlignedBox\ngz.msgs.EllipsoidGeom\ngz.msgs.LogPlaybackStatistics\ngz.msgs.FuelMetadata.AnnotationsEntry\ngz.msgs.Publish\ngz.msgs.EntityWrenchMap\ngz.msgs.CapsuleGeom\ngz.msgs.Double_V\ngz.msgs.Plugin_V\ngz.msgs.Distortion\ngz.msgs.Discovery.Publisher.ServicePublisher\ngz.msgs.EntityFactoryWithNs_V\ngz.msgs.NavSatWithCovariance\ngz.msgs.CameraInfo.Distortion\ngz.msgs.ContactSensor\ngz.msgs.AttachDetachRequest\ngz.msgs.Atmosphere\ngz.msgs.HeightmapGeom\ngz.msgs.AxisAligned2DBox\ngz.msgs.DVLRangeEstimate\ngz.msgs.Wind\ngz.msgs.Hydra\ngz.msgs.BatteryState\ngoogle.protobuf.Any\ngz.msgs.Actor.Waypoint\ngz.msgs.BoxGeom\ngz.msgs.FuelMetadata.Compatibility\ngz.msgs.HeightmapGeom.Blend\ngz.msgs.AnnotatedAxisAligned2DBox_V\ngz.msgs.FuelMetadata.Contact\ngz.msgs.AltimeterSensor\ngz.msgs.Any\ngz.msgs.Header.Map\ngz.msgs.SerializedStateMap.EntitiesEntry\ngz.msgs.Marker\ngz.msgs.Bytes\ngz.msgs.SimEvent\ngz.msgs.Actuators\ngz.msgs.SerializedStep\ngz.msgs.AirPressureSensor\ngz.msgs.SensorNoise\ngz.msgs.PoseTrajectory\ngz.msgs.Inertial\ngz.msgs.LogPlaybackControl\ngz.msgs.Sonar\ngz.msgs.AnnotatedAxisAligned2DBox\ngz.msgs.WorldControl\ngz.msgs.LogStatus.LogFile\ngz.msgs.IMU\ngz.msgs.Friction\ngz.msgs.Dataframe\ngz.msgs.Axis\ngz.msgs.EntityPlugin_V\ngz.msgs.CameraSensor\ngz.msgs.Pose\ngz.msgs.Pose_V\ngz.msgs.Boolean\ngz.msgs.IMUSensor.OrientationReferenceFrame\ngz.msgs.CameraInfo.Projection\ngz.msgs.Joint.Screw\ngz.msgs.Discovery.Publisher\ngz.msgs.Battery\ngz.msgs.Geometry\ngz.msgs.ParticleEmitter\ngz.msgs.CameraLens\ngz.msgs.Plugin\ngz.msgs.DVLKinematicEstimate\ngz.msgs.JointCmd\ngz.msgs.SdfGeneratorConfig.EntityGeneratorConfig\ngz.msgs.GPS\ngz.msgs.CameraTrack\ngz.msgs.Header\ngz.msgs.ParameterError\ngz.msgs.GUI\ngz.msgs.SerializedEntityMap.ComponentsEntry\ngz.msgs.Cessna\ngz.msgs.Int64\ngz.msgs.Clock\ngz.msgs.LogStatus\ngz.msgs.VideoRecord\ngz.msgs.GPSSensor\ngz.msgs.Magnetometer\ngz.msgs.Contacts\ngz.msgs.JointAnimation.Joint\ngz.msgs.Discovery.Flags\ngz.msgs.Discovery.Subscriber\ngz.msgs.DVLBeamState\ngz.msgs.AnnotatedOriented3DBox_V\ngz.msgs.IMUSensor\ngz.msgs.Material\ngz.msgs.UInt64\ngz.msgs.Double\ngz.msgs.ConeGeom\ngz.msgs.Version\ngz.msgs.Subscribe\ngz.msgs.CylinderGeom\ngz.msgs.WirelessNode\ngz.msgs.ImageGeom\ngz.msgs.Test\ngz.msgs.Scene\ngz.msgs.DataLoadPathOptions\ngz.msgs.FuelMetadata.Dependency\ngz.msgs.AirSpeedSensor\ngz.msgs.DVLTrackingTarget\ngz.msgs.Diagnostics\ngz.msgs.NavSatSensor\ngz.msgs.SerializedEntityMap\ngz.msgs.Discovery\ngz.msgs.HeightmapGeom.Texture\ngz.msgs.AnnotatedOriented3DBox\ngz.msgs.PoseWithCovariance\ngz.msgs.Tactile\ngz.msgs.Discovery.Publisher.MessagePublisher\ngz.msgs.Visual_V\ngz.msgs.Joy\ngz.msgs.NavSatSensor.Sensing\ngz.msgs.Joystick\ngz.msgs.Request\ngz.msgs.UndoRedo\ngz.msgs.Actor\ngz.msgs.LaserScan\ngz.msgs.Actor.Animation\ngz.msgs.Lens\ngz.msgs.Polyline\ngz.msgs.Light\ngz.msgs.MeshGeom\ngz.msgs.Selection\ngz.msgs.LinkData\ngz.msgs.Empty\ngz.msgs.LogControl\ngz.msgs.LogicalCameraImage\ngz.msgs.JointAnimation\ngz.msgs.LidarSensor\ngz.msgs.LogicalCameraImage.Model\ngz.msgs.Contact\ngz.msgs.LogicalCameraSensor\ngz.msgs.PropagationParticle\ngz.msgs.PropagationGrid\ngz.msgs.MagnetometerSensor\ngz.msgs.UInt32\ngz.msgs.Marker_V\ngz.msgs.GUICamera\ngz.msgs.Material.Script\ngz.msgs.MaterialColor\ngz.msgs.Model\ngz.msgs.Int64_V\ngz.msgs.ModelConfiguration\ngz.msgs.Visual.Meta\ngz.msgs.Model_V\ngz.msgs.Statistic\ngz.msgs.NavSat\ngz.msgs.CmdVel2D\ngz.msgs.ParameterDeclarations\ngz.msgs.OccupancyGrid\ngz.msgs.CameraInfo\ngz.msgs.Packet\ngz.msgs.Time\ngz.msgs.OccupancyGrid.MapMetaInfo\ngz.msgs.Odometry\ngz.msgs.ParticleEmitter_V\ngz.msgs.OdometryWithCovariance\ngz.msgs.PID\ngz.msgs.Param\ngz.msgs.Param_V\ngz.msgs.Parameter\ngz.msgs.ParameterDeclaration\ngz.msgs.ParameterName\ngz.msgs.PerformanceSensorMetrics\ngz.msgs.Physics\ngz.msgs.PlaneGeom\ngz.msgs.Int32_V\ngz.msgs.PointCloudPacked.Field\ngz.msgs.PoseAnimation\ngz.msgs.FuelMetadata.Categories\ngz.msgs.Projector\ngz.msgs.RaySensor\ngz.msgs.Density\ngz.msgs.Response\ngz.msgs.RestLogin\ngz.msgs.RestLogout\ngz.msgs.RestPost\ngz.msgs.RestResponse\ngz.msgs.Duration\ngz.msgs.AirSpeed\ngz.msgs.Result\ngz.msgs.DVLVelocityTracking\ngz.msgs.VersionRange\ngz.msgs.EntityWrench\ngz.msgs.Road\ngz.msgs.Actor.Trajectory\ngz.msgs.SerializedState\ngz.msgs.SdfGeneratorConfig.OverrideEntityGenConfigsEntry\ngz.msgs.Sensor_V\ngz.msgs.SerializedEntity\ngz.msgs.SerializedStateMap\ngz.msgs.SerializedStepMap\ngz.msgs.ServerControl\ngz.msgs.StatisticsGroup\ngz.msgs.StringMsg\ngz.msgs.CameraCmd\ngz.msgs.JointWrench\ngz.msgs.Shadows\ngz.msgs.StringMsg_V\ngz.msgs.WirelessNodes\ngz.msgs.Surface\ngz.msgs.TopicInfo\ngz.msgs.Friction.Torsional\ngz.msgs.TrackVisual\ngz.msgs.CameraInfo.Intrinsics\ngz.msgs.Twist\ngz.msgs.UserCmd\ngz.msgs.UserCmdStats\ngz.msgs.Vector2d\ngz.msgs.Vector3d\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--list",
+        "--",
+        "x"
+      ],
+      "mode": "exact",
+      "status": 109,
+      "stdout": "",
+      "stderr": "The following arguments were not expected: x --\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info",
+        "gz.msgs.Time",
+        "--"
+      ],
+      "mode": "exact",
+      "status": 0,
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--info",
+        "gz.msgs.Time",
+        "--",
+        "x"
+      ],
+      "mode": "exact",
+      "status": 109,
+      "stdout": "",
+      "stderr": "The following argument was not expected: x\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--help",
+        "--",
+        "x"
+      ],
+      "mode": "help",
+      "status": 0,
+      "stdout": "Print information about Gazebo messages\nUsage: gz-msgs [OPTIONS]\n\nOptions:\n  -h [--help]                 Print this help message and exit\n                              \n  -v [--version]              \n                              \n  -l [--list]                 List all message types.\n                              Excludes: --info\n                              \n  -i [--info] TEXT ...        Get info about the specified message type.\n                              Excludes: --list\n                              \n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--info",
+        "--",
+        "T"
+      ],
+      "mode": "exact",
+      "status": 0,
+      "stdout": "",
+      "stderr": "Unable to create message of type[--]\nUnable to create message of type[T]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "-",
+        "T"
+      ],
+      "mode": "exact",
+      "status": 0,
+      "stdout": "",
+      "stderr": "Unable to create message of type[-]\nUnable to create message of type[T]\n"
+    },
+    {
+      "args": [
+        "-xv"
+      ],
+      "mode": "exact",
+      "status": 109,
+      "stdout": "",
+      "stderr": "The following argument was not expected: -xv\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "-vx"
+      ],
+      "mode": "version",
+      "status": 0,
+      "stdout": "13.0.0~pre2\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--info",
+        "--list=true"
+      ],
+      "mode": "exact",
+      "status": 0,
+      "stdout": "",
+      "stderr": "Unable to create message of type[--list=true]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "-1"
+      ],
+      "mode": "exact",
+      "status": 0,
+      "stdout": "",
+      "stderr": "Unable to create message of type[-1]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "gz.msgs.Time",
+        "-1"
+      ],
+      "mode": "exact",
+      "status": 0,
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[-1]\n"
+    },
+    {
+      "args": [
+        "-l=false"
+      ],
+      "mode": "exact",
+      "status": 109,
+      "stdout": "",
+      "stderr": "The following argument was not expected: -=false\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info",
+        "gz.msgs.Time",
+        "-1.5"
+      ],
+      "mode": "exact",
+      "status": 0,
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[-1.5]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "gz.msgs.Time",
+        "-0"
+      ],
+      "mode": "exact",
+      "status": 0,
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[-0]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "gz.msgs.Time",
+        "-.5"
+      ],
+      "mode": "exact",
+      "status": 109,
+      "stdout": "",
+      "stderr": "The following argument was not expected: -.5\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info",
+        "gz.msgs.Time",
+        "-1e3"
+      ],
+      "mode": "exact",
+      "status": 0,
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[-1e3]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "gz.msgs.Time",
+        "-1x"
+      ],
+      "mode": "exact",
+      "status": 0,
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[-1x]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "gz.msgs.Time",
+        "-123_456"
+      ],
+      "mode": "exact",
+      "status": 0,
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[-123_456]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "gz.msgs.Time",
+        "-inf"
+      ],
+      "mode": "exact",
+      "status": 0,
+      "stdout": "Name: gz.msgs.Time\nFile: gz/msgs/time.proto\n\nmessage Time {\n  int64 sec = 1;\n  int32 nsec = 2;\n}\n\n",
+      "stderr": "Unable to create message of type[nf]\n"
+    },
+    {
+      "args": [
+        "--info",
+        "gz.msgs.Time",
+        "-NaN"
+      ],
+      "mode": "exact",
+      "status": 109,
+      "stdout": "",
+      "stderr": "The following argument was not expected: -NaN\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--list",
+        "a",
+        "b"
+      ],
+      "mode": "exact",
+      "status": 109,
+      "stdout": "",
+      "stderr": "The following arguments were not expected: b a\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--x",
+        "--y"
+      ],
+      "mode": "exact",
+      "status": 109,
+      "stdout": "",
+      "stderr": "The following arguments were not expected: --y --x\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "-lx"
+      ],
+      "mode": "exact",
+      "status": 109,
+      "stdout": "",
+      "stderr": "The following argument was not expected: -x\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "-xy"
+      ],
+      "mode": "exact",
+      "status": 109,
+      "stdout": "",
+      "stderr": "The following argument was not expected: -xy\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "-x"
+      ],
+      "mode": "exact",
+      "status": 109,
+      "stdout": "",
+      "stderr": "The following argument was not expected: -x\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "-i"
+      ],
+      "mode": "exact",
+      "status": 114,
+      "stdout": "",
+      "stderr": "--info: 1 required TEXT missing\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--info",
+        "gz.msgs.\u2603"
+      ],
+      "mode": "exact",
+      "status": 0,
+      "stdout": "",
+      "stderr": "Unable to create message of type[gz.msgs.\u2603]\n"
+    }
+  ],
+  "explicit_unsupported_flag_assignments": [
+    {
+      "args": [
+        "--list=true"
+      ],
+      "mode": "list",
+      "status": 0,
+      "stdout": "gz.msgs.Wrench\ngz.msgs.WorldStatistics\ngz.msgs.WorldReset\ngz.msgs.WorldModify\ngz.msgs.WorldControlState\ngz.msgs.WheelSlipParametersCmd\ngz.msgs.WebRequest\ngz.msgs.JointTrajectoryPoint\ngz.msgs.Link\ngz.msgs.Sky\ngz.msgs.JointTrajectory\ngz.msgs.SerializedComponent\ngz.msgs.SphereGeom\ngz.msgs.Joint.Gearbox\ngz.msgs.Int32\ngz.msgs.Metric\ngz.msgs.Joint\ngz.msgs.Image\ngz.msgs.Hydra.Paddle\ngz.msgs.IMUSensor.LinearAcceleration\ngz.msgs.UInt32_V\ngz.msgs.IMUSensor.AngularVelocity\ngz.msgs.Visual\ngz.msgs.GPSSensor.Sensing\ngz.msgs.FuelMetadata.World\ngz.msgs.PointCloud\ngz.msgs.FuelMetadata.Model\ngz.msgs.FuelMetadata.Legal\ngz.msgs.ParameterValue\ngz.msgs.Quaternion\ngz.msgs.FuelMetadata\ngz.msgs.Oriented3DBox\ngz.msgs.Friction.Torsional.ODE\ngz.msgs.SphericalCoordinates\ngz.msgs.Param.ParamsEntry\ngz.msgs.PointCloudPacked\ngz.msgs.Diagnostics.DiagTime\ngz.msgs.TwistWithCovariance\ngz.msgs.FluidPressure\ngz.msgs.Fluid\ngz.msgs.UInt64_V\ngz.msgs.Float_V\ngz.msgs.Float\ngz.msgs.Altimeter\ngz.msgs.EntityWrenchMap.WrenchesEntry\ngz.msgs.Color\ngz.msgs.Publishers\ngz.msgs.SdfGeneratorConfig\ngz.msgs.EntityFactoryWithNs\ngz.msgs.Fog\ngz.msgs.EntityFactory\ngz.msgs.Material.PBR\ngz.msgs.EntityFactory_V\ngz.msgs.Collision\ngz.msgs.Entity\ngz.msgs.Sensor\ngz.msgs.VersionedName\ngz.msgs.AxisAlignedBox\ngz.msgs.EllipsoidGeom\ngz.msgs.LogPlaybackStatistics\ngz.msgs.FuelMetadata.AnnotationsEntry\ngz.msgs.Publish\ngz.msgs.EntityWrenchMap\ngz.msgs.CapsuleGeom\ngz.msgs.Double_V\ngz.msgs.Plugin_V\ngz.msgs.Distortion\ngz.msgs.Discovery.Publisher.ServicePublisher\ngz.msgs.EntityFactoryWithNs_V\ngz.msgs.NavSatWithCovariance\ngz.msgs.CameraInfo.Distortion\ngz.msgs.ContactSensor\ngz.msgs.AttachDetachRequest\ngz.msgs.Atmosphere\ngz.msgs.HeightmapGeom\ngz.msgs.AxisAligned2DBox\ngz.msgs.DVLRangeEstimate\ngz.msgs.Wind\ngz.msgs.Hydra\ngz.msgs.BatteryState\ngoogle.protobuf.Any\ngz.msgs.Actor.Waypoint\ngz.msgs.BoxGeom\ngz.msgs.FuelMetadata.Compatibility\ngz.msgs.HeightmapGeom.Blend\ngz.msgs.AnnotatedAxisAligned2DBox_V\ngz.msgs.FuelMetadata.Contact\ngz.msgs.AltimeterSensor\ngz.msgs.Any\ngz.msgs.Header.Map\ngz.msgs.SerializedStateMap.EntitiesEntry\ngz.msgs.Marker\ngz.msgs.Bytes\ngz.msgs.SimEvent\ngz.msgs.Actuators\ngz.msgs.SerializedStep\ngz.msgs.AirPressureSensor\ngz.msgs.SensorNoise\ngz.msgs.PoseTrajectory\ngz.msgs.Inertial\ngz.msgs.LogPlaybackControl\ngz.msgs.Sonar\ngz.msgs.AnnotatedAxisAligned2DBox\ngz.msgs.WorldControl\ngz.msgs.LogStatus.LogFile\ngz.msgs.IMU\ngz.msgs.Friction\ngz.msgs.Dataframe\ngz.msgs.Axis\ngz.msgs.EntityPlugin_V\ngz.msgs.CameraSensor\ngz.msgs.Pose\ngz.msgs.Pose_V\ngz.msgs.Boolean\ngz.msgs.IMUSensor.OrientationReferenceFrame\ngz.msgs.CameraInfo.Projection\ngz.msgs.Joint.Screw\ngz.msgs.Discovery.Publisher\ngz.msgs.Battery\ngz.msgs.Geometry\ngz.msgs.ParticleEmitter\ngz.msgs.CameraLens\ngz.msgs.Plugin\ngz.msgs.DVLKinematicEstimate\ngz.msgs.JointCmd\ngz.msgs.SdfGeneratorConfig.EntityGeneratorConfig\ngz.msgs.GPS\ngz.msgs.CameraTrack\ngz.msgs.Header\ngz.msgs.ParameterError\ngz.msgs.GUI\ngz.msgs.SerializedEntityMap.ComponentsEntry\ngz.msgs.Cessna\ngz.msgs.Int64\ngz.msgs.Clock\ngz.msgs.LogStatus\ngz.msgs.VideoRecord\ngz.msgs.GPSSensor\ngz.msgs.Magnetometer\ngz.msgs.Contacts\ngz.msgs.JointAnimation.Joint\ngz.msgs.Discovery.Flags\ngz.msgs.Discovery.Subscriber\ngz.msgs.DVLBeamState\ngz.msgs.AnnotatedOriented3DBox_V\ngz.msgs.IMUSensor\ngz.msgs.Material\ngz.msgs.UInt64\ngz.msgs.Double\ngz.msgs.ConeGeom\ngz.msgs.Version\ngz.msgs.Subscribe\ngz.msgs.CylinderGeom\ngz.msgs.WirelessNode\ngz.msgs.ImageGeom\ngz.msgs.Test\ngz.msgs.Scene\ngz.msgs.DataLoadPathOptions\ngz.msgs.FuelMetadata.Dependency\ngz.msgs.AirSpeedSensor\ngz.msgs.DVLTrackingTarget\ngz.msgs.Diagnostics\ngz.msgs.NavSatSensor\ngz.msgs.SerializedEntityMap\ngz.msgs.Discovery\ngz.msgs.HeightmapGeom.Texture\ngz.msgs.AnnotatedOriented3DBox\ngz.msgs.PoseWithCovariance\ngz.msgs.Tactile\ngz.msgs.Discovery.Publisher.MessagePublisher\ngz.msgs.Visual_V\ngz.msgs.Joy\ngz.msgs.NavSatSensor.Sensing\ngz.msgs.Joystick\ngz.msgs.Request\ngz.msgs.UndoRedo\ngz.msgs.Actor\ngz.msgs.LaserScan\ngz.msgs.Actor.Animation\ngz.msgs.Lens\ngz.msgs.Polyline\ngz.msgs.Light\ngz.msgs.MeshGeom\ngz.msgs.Selection\ngz.msgs.LinkData\ngz.msgs.Empty\ngz.msgs.LogControl\ngz.msgs.LogicalCameraImage\ngz.msgs.JointAnimation\ngz.msgs.LidarSensor\ngz.msgs.LogicalCameraImage.Model\ngz.msgs.Contact\ngz.msgs.LogicalCameraSensor\ngz.msgs.PropagationParticle\ngz.msgs.PropagationGrid\ngz.msgs.MagnetometerSensor\ngz.msgs.UInt32\ngz.msgs.Marker_V\ngz.msgs.GUICamera\ngz.msgs.Material.Script\ngz.msgs.MaterialColor\ngz.msgs.Model\ngz.msgs.Int64_V\ngz.msgs.ModelConfiguration\ngz.msgs.Visual.Meta\ngz.msgs.Model_V\ngz.msgs.Statistic\ngz.msgs.NavSat\ngz.msgs.CmdVel2D\ngz.msgs.ParameterDeclarations\ngz.msgs.OccupancyGrid\ngz.msgs.CameraInfo\ngz.msgs.Packet\ngz.msgs.Time\ngz.msgs.OccupancyGrid.MapMetaInfo\ngz.msgs.Odometry\ngz.msgs.ParticleEmitter_V\ngz.msgs.OdometryWithCovariance\ngz.msgs.PID\ngz.msgs.Param\ngz.msgs.Param_V\ngz.msgs.Parameter\ngz.msgs.ParameterDeclaration\ngz.msgs.ParameterName\ngz.msgs.PerformanceSensorMetrics\ngz.msgs.Physics\ngz.msgs.PlaneGeom\ngz.msgs.Int32_V\ngz.msgs.PointCloudPacked.Field\ngz.msgs.PoseAnimation\ngz.msgs.FuelMetadata.Categories\ngz.msgs.Projector\ngz.msgs.RaySensor\ngz.msgs.Density\ngz.msgs.Response\ngz.msgs.RestLogin\ngz.msgs.RestLogout\ngz.msgs.RestPost\ngz.msgs.RestResponse\ngz.msgs.Duration\ngz.msgs.AirSpeed\ngz.msgs.Result\ngz.msgs.DVLVelocityTracking\ngz.msgs.VersionRange\ngz.msgs.EntityWrench\ngz.msgs.Road\ngz.msgs.Actor.Trajectory\ngz.msgs.SerializedState\ngz.msgs.SdfGeneratorConfig.OverrideEntityGenConfigsEntry\ngz.msgs.Sensor_V\ngz.msgs.SerializedEntity\ngz.msgs.SerializedStateMap\ngz.msgs.SerializedStepMap\ngz.msgs.ServerControl\ngz.msgs.StatisticsGroup\ngz.msgs.StringMsg\ngz.msgs.CameraCmd\ngz.msgs.JointWrench\ngz.msgs.Shadows\ngz.msgs.StringMsg_V\ngz.msgs.WirelessNodes\ngz.msgs.Surface\ngz.msgs.TopicInfo\ngz.msgs.Friction.Torsional\ngz.msgs.TrackVisual\ngz.msgs.CameraInfo.Intrinsics\ngz.msgs.Twist\ngz.msgs.UserCmd\ngz.msgs.UserCmdStats\ngz.msgs.Vector2d\ngz.msgs.Vector3d\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--list=false"
+      ],
+      "mode": "help",
+      "status": 0,
+      "stdout": "Print information about Gazebo messages\nUsage: gz-msgs [OPTIONS]\n\nOptions:\n  -h [--help]                 Print this help message and exit\n                              \n  -v [--version]              \n                              \n  -l [--list]                 List all message types.\n                              Excludes: --info\n                              \n  -i [--info] TEXT ...        Get info about the specified message type.\n                              Excludes: --list\n                              \n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--version=1"
+      ],
+      "mode": "version",
+      "status": 0,
+      "stdout": "13.0.0~pre2\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--list=false",
+        "--list"
+      ],
+      "mode": "list",
+      "status": 0,
+      "stdout": "gz.msgs.Wrench\ngz.msgs.WorldStatistics\ngz.msgs.WorldReset\ngz.msgs.WorldModify\ngz.msgs.WorldControlState\ngz.msgs.WheelSlipParametersCmd\ngz.msgs.WebRequest\ngz.msgs.JointTrajectoryPoint\ngz.msgs.Link\ngz.msgs.Sky\ngz.msgs.JointTrajectory\ngz.msgs.SerializedComponent\ngz.msgs.SphereGeom\ngz.msgs.Joint.Gearbox\ngz.msgs.Int32\ngz.msgs.Metric\ngz.msgs.Joint\ngz.msgs.Image\ngz.msgs.Hydra.Paddle\ngz.msgs.IMUSensor.LinearAcceleration\ngz.msgs.UInt32_V\ngz.msgs.IMUSensor.AngularVelocity\ngz.msgs.Visual\ngz.msgs.GPSSensor.Sensing\ngz.msgs.FuelMetadata.World\ngz.msgs.PointCloud\ngz.msgs.FuelMetadata.Model\ngz.msgs.FuelMetadata.Legal\ngz.msgs.ParameterValue\ngz.msgs.Quaternion\ngz.msgs.FuelMetadata\ngz.msgs.Oriented3DBox\ngz.msgs.Friction.Torsional.ODE\ngz.msgs.SphericalCoordinates\ngz.msgs.Param.ParamsEntry\ngz.msgs.PointCloudPacked\ngz.msgs.Diagnostics.DiagTime\ngz.msgs.TwistWithCovariance\ngz.msgs.FluidPressure\ngz.msgs.Fluid\ngz.msgs.UInt64_V\ngz.msgs.Float_V\ngz.msgs.Float\ngz.msgs.Altimeter\ngz.msgs.EntityWrenchMap.WrenchesEntry\ngz.msgs.Color\ngz.msgs.Publishers\ngz.msgs.SdfGeneratorConfig\ngz.msgs.EntityFactoryWithNs\ngz.msgs.Fog\ngz.msgs.EntityFactory\ngz.msgs.Material.PBR\ngz.msgs.EntityFactory_V\ngz.msgs.Collision\ngz.msgs.Entity\ngz.msgs.Sensor\ngz.msgs.VersionedName\ngz.msgs.AxisAlignedBox\ngz.msgs.EllipsoidGeom\ngz.msgs.LogPlaybackStatistics\ngz.msgs.FuelMetadata.AnnotationsEntry\ngz.msgs.Publish\ngz.msgs.EntityWrenchMap\ngz.msgs.CapsuleGeom\ngz.msgs.Double_V\ngz.msgs.Plugin_V\ngz.msgs.Distortion\ngz.msgs.Discovery.Publisher.ServicePublisher\ngz.msgs.EntityFactoryWithNs_V\ngz.msgs.NavSatWithCovariance\ngz.msgs.CameraInfo.Distortion\ngz.msgs.ContactSensor\ngz.msgs.AttachDetachRequest\ngz.msgs.Atmosphere\ngz.msgs.HeightmapGeom\ngz.msgs.AxisAligned2DBox\ngz.msgs.DVLRangeEstimate\ngz.msgs.Wind\ngz.msgs.Hydra\ngz.msgs.BatteryState\ngoogle.protobuf.Any\ngz.msgs.Actor.Waypoint\ngz.msgs.BoxGeom\ngz.msgs.FuelMetadata.Compatibility\ngz.msgs.HeightmapGeom.Blend\ngz.msgs.AnnotatedAxisAligned2DBox_V\ngz.msgs.FuelMetadata.Contact\ngz.msgs.AltimeterSensor\ngz.msgs.Any\ngz.msgs.Header.Map\ngz.msgs.SerializedStateMap.EntitiesEntry\ngz.msgs.Marker\ngz.msgs.Bytes\ngz.msgs.SimEvent\ngz.msgs.Actuators\ngz.msgs.SerializedStep\ngz.msgs.AirPressureSensor\ngz.msgs.SensorNoise\ngz.msgs.PoseTrajectory\ngz.msgs.Inertial\ngz.msgs.LogPlaybackControl\ngz.msgs.Sonar\ngz.msgs.AnnotatedAxisAligned2DBox\ngz.msgs.WorldControl\ngz.msgs.LogStatus.LogFile\ngz.msgs.IMU\ngz.msgs.Friction\ngz.msgs.Dataframe\ngz.msgs.Axis\ngz.msgs.EntityPlugin_V\ngz.msgs.CameraSensor\ngz.msgs.Pose\ngz.msgs.Pose_V\ngz.msgs.Boolean\ngz.msgs.IMUSensor.OrientationReferenceFrame\ngz.msgs.CameraInfo.Projection\ngz.msgs.Joint.Screw\ngz.msgs.Discovery.Publisher\ngz.msgs.Battery\ngz.msgs.Geometry\ngz.msgs.ParticleEmitter\ngz.msgs.CameraLens\ngz.msgs.Plugin\ngz.msgs.DVLKinematicEstimate\ngz.msgs.JointCmd\ngz.msgs.SdfGeneratorConfig.EntityGeneratorConfig\ngz.msgs.GPS\ngz.msgs.CameraTrack\ngz.msgs.Header\ngz.msgs.ParameterError\ngz.msgs.GUI\ngz.msgs.SerializedEntityMap.ComponentsEntry\ngz.msgs.Cessna\ngz.msgs.Int64\ngz.msgs.Clock\ngz.msgs.LogStatus\ngz.msgs.VideoRecord\ngz.msgs.GPSSensor\ngz.msgs.Magnetometer\ngz.msgs.Contacts\ngz.msgs.JointAnimation.Joint\ngz.msgs.Discovery.Flags\ngz.msgs.Discovery.Subscriber\ngz.msgs.DVLBeamState\ngz.msgs.AnnotatedOriented3DBox_V\ngz.msgs.IMUSensor\ngz.msgs.Material\ngz.msgs.UInt64\ngz.msgs.Double\ngz.msgs.ConeGeom\ngz.msgs.Version\ngz.msgs.Subscribe\ngz.msgs.CylinderGeom\ngz.msgs.WirelessNode\ngz.msgs.ImageGeom\ngz.msgs.Test\ngz.msgs.Scene\ngz.msgs.DataLoadPathOptions\ngz.msgs.FuelMetadata.Dependency\ngz.msgs.AirSpeedSensor\ngz.msgs.DVLTrackingTarget\ngz.msgs.Diagnostics\ngz.msgs.NavSatSensor\ngz.msgs.SerializedEntityMap\ngz.msgs.Discovery\ngz.msgs.HeightmapGeom.Texture\ngz.msgs.AnnotatedOriented3DBox\ngz.msgs.PoseWithCovariance\ngz.msgs.Tactile\ngz.msgs.Discovery.Publisher.MessagePublisher\ngz.msgs.Visual_V\ngz.msgs.Joy\ngz.msgs.NavSatSensor.Sensing\ngz.msgs.Joystick\ngz.msgs.Request\ngz.msgs.UndoRedo\ngz.msgs.Actor\ngz.msgs.LaserScan\ngz.msgs.Actor.Animation\ngz.msgs.Lens\ngz.msgs.Polyline\ngz.msgs.Light\ngz.msgs.MeshGeom\ngz.msgs.Selection\ngz.msgs.LinkData\ngz.msgs.Empty\ngz.msgs.LogControl\ngz.msgs.LogicalCameraImage\ngz.msgs.JointAnimation\ngz.msgs.LidarSensor\ngz.msgs.LogicalCameraImage.Model\ngz.msgs.Contact\ngz.msgs.LogicalCameraSensor\ngz.msgs.PropagationParticle\ngz.msgs.PropagationGrid\ngz.msgs.MagnetometerSensor\ngz.msgs.UInt32\ngz.msgs.Marker_V\ngz.msgs.GUICamera\ngz.msgs.Material.Script\ngz.msgs.MaterialColor\ngz.msgs.Model\ngz.msgs.Int64_V\ngz.msgs.ModelConfiguration\ngz.msgs.Visual.Meta\ngz.msgs.Model_V\ngz.msgs.Statistic\ngz.msgs.NavSat\ngz.msgs.CmdVel2D\ngz.msgs.ParameterDeclarations\ngz.msgs.OccupancyGrid\ngz.msgs.CameraInfo\ngz.msgs.Packet\ngz.msgs.Time\ngz.msgs.OccupancyGrid.MapMetaInfo\ngz.msgs.Odometry\ngz.msgs.ParticleEmitter_V\ngz.msgs.OdometryWithCovariance\ngz.msgs.PID\ngz.msgs.Param\ngz.msgs.Param_V\ngz.msgs.Parameter\ngz.msgs.ParameterDeclaration\ngz.msgs.ParameterName\ngz.msgs.PerformanceSensorMetrics\ngz.msgs.Physics\ngz.msgs.PlaneGeom\ngz.msgs.Int32_V\ngz.msgs.PointCloudPacked.Field\ngz.msgs.PoseAnimation\ngz.msgs.FuelMetadata.Categories\ngz.msgs.Projector\ngz.msgs.RaySensor\ngz.msgs.Density\ngz.msgs.Response\ngz.msgs.RestLogin\ngz.msgs.RestLogout\ngz.msgs.RestPost\ngz.msgs.RestResponse\ngz.msgs.Duration\ngz.msgs.AirSpeed\ngz.msgs.Result\ngz.msgs.DVLVelocityTracking\ngz.msgs.VersionRange\ngz.msgs.EntityWrench\ngz.msgs.Road\ngz.msgs.Actor.Trajectory\ngz.msgs.SerializedState\ngz.msgs.SdfGeneratorConfig.OverrideEntityGenConfigsEntry\ngz.msgs.Sensor_V\ngz.msgs.SerializedEntity\ngz.msgs.SerializedStateMap\ngz.msgs.SerializedStepMap\ngz.msgs.ServerControl\ngz.msgs.StatisticsGroup\ngz.msgs.StringMsg\ngz.msgs.CameraCmd\ngz.msgs.JointWrench\ngz.msgs.Shadows\ngz.msgs.StringMsg_V\ngz.msgs.WirelessNodes\ngz.msgs.Surface\ngz.msgs.TopicInfo\ngz.msgs.Friction.Torsional\ngz.msgs.TrackVisual\ngz.msgs.CameraInfo.Intrinsics\ngz.msgs.Twist\ngz.msgs.UserCmd\ngz.msgs.UserCmdStats\ngz.msgs.Vector2d\ngz.msgs.Vector3d\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--list",
+        "--list=false"
+      ],
+      "mode": "help",
+      "status": 0,
+      "stdout": "Print information about Gazebo messages\nUsage: gz-msgs [OPTIONS]\n\nOptions:\n  -h [--help]                 Print this help message and exit\n                              \n  -v [--version]              \n                              \n  -l [--list]                 List all message types.\n                              Excludes: --info\n                              \n  -i [--info] TEXT ...        Get info about the specified message type.\n                              Excludes: --list\n                              \n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--list=0",
+        "--list=1"
+      ],
+      "mode": "list",
+      "status": 0,
+      "stdout": "gz.msgs.Wrench\ngz.msgs.WorldStatistics\ngz.msgs.WorldReset\ngz.msgs.WorldModify\ngz.msgs.WorldControlState\ngz.msgs.WheelSlipParametersCmd\ngz.msgs.WebRequest\ngz.msgs.JointTrajectoryPoint\ngz.msgs.Link\ngz.msgs.Sky\ngz.msgs.JointTrajectory\ngz.msgs.SerializedComponent\ngz.msgs.SphereGeom\ngz.msgs.Joint.Gearbox\ngz.msgs.Int32\ngz.msgs.Metric\ngz.msgs.Joint\ngz.msgs.Image\ngz.msgs.Hydra.Paddle\ngz.msgs.IMUSensor.LinearAcceleration\ngz.msgs.UInt32_V\ngz.msgs.IMUSensor.AngularVelocity\ngz.msgs.Visual\ngz.msgs.GPSSensor.Sensing\ngz.msgs.FuelMetadata.World\ngz.msgs.PointCloud\ngz.msgs.FuelMetadata.Model\ngz.msgs.FuelMetadata.Legal\ngz.msgs.ParameterValue\ngz.msgs.Quaternion\ngz.msgs.FuelMetadata\ngz.msgs.Oriented3DBox\ngz.msgs.Friction.Torsional.ODE\ngz.msgs.SphericalCoordinates\ngz.msgs.Param.ParamsEntry\ngz.msgs.PointCloudPacked\ngz.msgs.Diagnostics.DiagTime\ngz.msgs.TwistWithCovariance\ngz.msgs.FluidPressure\ngz.msgs.Fluid\ngz.msgs.UInt64_V\ngz.msgs.Float_V\ngz.msgs.Float\ngz.msgs.Altimeter\ngz.msgs.EntityWrenchMap.WrenchesEntry\ngz.msgs.Color\ngz.msgs.Publishers\ngz.msgs.SdfGeneratorConfig\ngz.msgs.EntityFactoryWithNs\ngz.msgs.Fog\ngz.msgs.EntityFactory\ngz.msgs.Material.PBR\ngz.msgs.EntityFactory_V\ngz.msgs.Collision\ngz.msgs.Entity\ngz.msgs.Sensor\ngz.msgs.VersionedName\ngz.msgs.AxisAlignedBox\ngz.msgs.EllipsoidGeom\ngz.msgs.LogPlaybackStatistics\ngz.msgs.FuelMetadata.AnnotationsEntry\ngz.msgs.Publish\ngz.msgs.EntityWrenchMap\ngz.msgs.CapsuleGeom\ngz.msgs.Double_V\ngz.msgs.Plugin_V\ngz.msgs.Distortion\ngz.msgs.Discovery.Publisher.ServicePublisher\ngz.msgs.EntityFactoryWithNs_V\ngz.msgs.NavSatWithCovariance\ngz.msgs.CameraInfo.Distortion\ngz.msgs.ContactSensor\ngz.msgs.AttachDetachRequest\ngz.msgs.Atmosphere\ngz.msgs.HeightmapGeom\ngz.msgs.AxisAligned2DBox\ngz.msgs.DVLRangeEstimate\ngz.msgs.Wind\ngz.msgs.Hydra\ngz.msgs.BatteryState\ngoogle.protobuf.Any\ngz.msgs.Actor.Waypoint\ngz.msgs.BoxGeom\ngz.msgs.FuelMetadata.Compatibility\ngz.msgs.HeightmapGeom.Blend\ngz.msgs.AnnotatedAxisAligned2DBox_V\ngz.msgs.FuelMetadata.Contact\ngz.msgs.AltimeterSensor\ngz.msgs.Any\ngz.msgs.Header.Map\ngz.msgs.SerializedStateMap.EntitiesEntry\ngz.msgs.Marker\ngz.msgs.Bytes\ngz.msgs.SimEvent\ngz.msgs.Actuators\ngz.msgs.SerializedStep\ngz.msgs.AirPressureSensor\ngz.msgs.SensorNoise\ngz.msgs.PoseTrajectory\ngz.msgs.Inertial\ngz.msgs.LogPlaybackControl\ngz.msgs.Sonar\ngz.msgs.AnnotatedAxisAligned2DBox\ngz.msgs.WorldControl\ngz.msgs.LogStatus.LogFile\ngz.msgs.IMU\ngz.msgs.Friction\ngz.msgs.Dataframe\ngz.msgs.Axis\ngz.msgs.EntityPlugin_V\ngz.msgs.CameraSensor\ngz.msgs.Pose\ngz.msgs.Pose_V\ngz.msgs.Boolean\ngz.msgs.IMUSensor.OrientationReferenceFrame\ngz.msgs.CameraInfo.Projection\ngz.msgs.Joint.Screw\ngz.msgs.Discovery.Publisher\ngz.msgs.Battery\ngz.msgs.Geometry\ngz.msgs.ParticleEmitter\ngz.msgs.CameraLens\ngz.msgs.Plugin\ngz.msgs.DVLKinematicEstimate\ngz.msgs.JointCmd\ngz.msgs.SdfGeneratorConfig.EntityGeneratorConfig\ngz.msgs.GPS\ngz.msgs.CameraTrack\ngz.msgs.Header\ngz.msgs.ParameterError\ngz.msgs.GUI\ngz.msgs.SerializedEntityMap.ComponentsEntry\ngz.msgs.Cessna\ngz.msgs.Int64\ngz.msgs.Clock\ngz.msgs.LogStatus\ngz.msgs.VideoRecord\ngz.msgs.GPSSensor\ngz.msgs.Magnetometer\ngz.msgs.Contacts\ngz.msgs.JointAnimation.Joint\ngz.msgs.Discovery.Flags\ngz.msgs.Discovery.Subscriber\ngz.msgs.DVLBeamState\ngz.msgs.AnnotatedOriented3DBox_V\ngz.msgs.IMUSensor\ngz.msgs.Material\ngz.msgs.UInt64\ngz.msgs.Double\ngz.msgs.ConeGeom\ngz.msgs.Version\ngz.msgs.Subscribe\ngz.msgs.CylinderGeom\ngz.msgs.WirelessNode\ngz.msgs.ImageGeom\ngz.msgs.Test\ngz.msgs.Scene\ngz.msgs.DataLoadPathOptions\ngz.msgs.FuelMetadata.Dependency\ngz.msgs.AirSpeedSensor\ngz.msgs.DVLTrackingTarget\ngz.msgs.Diagnostics\ngz.msgs.NavSatSensor\ngz.msgs.SerializedEntityMap\ngz.msgs.Discovery\ngz.msgs.HeightmapGeom.Texture\ngz.msgs.AnnotatedOriented3DBox\ngz.msgs.PoseWithCovariance\ngz.msgs.Tactile\ngz.msgs.Discovery.Publisher.MessagePublisher\ngz.msgs.Visual_V\ngz.msgs.Joy\ngz.msgs.NavSatSensor.Sensing\ngz.msgs.Joystick\ngz.msgs.Request\ngz.msgs.UndoRedo\ngz.msgs.Actor\ngz.msgs.LaserScan\ngz.msgs.Actor.Animation\ngz.msgs.Lens\ngz.msgs.Polyline\ngz.msgs.Light\ngz.msgs.MeshGeom\ngz.msgs.Selection\ngz.msgs.LinkData\ngz.msgs.Empty\ngz.msgs.LogControl\ngz.msgs.LogicalCameraImage\ngz.msgs.JointAnimation\ngz.msgs.LidarSensor\ngz.msgs.LogicalCameraImage.Model\ngz.msgs.Contact\ngz.msgs.LogicalCameraSensor\ngz.msgs.PropagationParticle\ngz.msgs.PropagationGrid\ngz.msgs.MagnetometerSensor\ngz.msgs.UInt32\ngz.msgs.Marker_V\ngz.msgs.GUICamera\ngz.msgs.Material.Script\ngz.msgs.MaterialColor\ngz.msgs.Model\ngz.msgs.Int64_V\ngz.msgs.ModelConfiguration\ngz.msgs.Visual.Meta\ngz.msgs.Model_V\ngz.msgs.Statistic\ngz.msgs.NavSat\ngz.msgs.CmdVel2D\ngz.msgs.ParameterDeclarations\ngz.msgs.OccupancyGrid\ngz.msgs.CameraInfo\ngz.msgs.Packet\ngz.msgs.Time\ngz.msgs.OccupancyGrid.MapMetaInfo\ngz.msgs.Odometry\ngz.msgs.ParticleEmitter_V\ngz.msgs.OdometryWithCovariance\ngz.msgs.PID\ngz.msgs.Param\ngz.msgs.Param_V\ngz.msgs.Parameter\ngz.msgs.ParameterDeclaration\ngz.msgs.ParameterName\ngz.msgs.PerformanceSensorMetrics\ngz.msgs.Physics\ngz.msgs.PlaneGeom\ngz.msgs.Int32_V\ngz.msgs.PointCloudPacked.Field\ngz.msgs.PoseAnimation\ngz.msgs.FuelMetadata.Categories\ngz.msgs.Projector\ngz.msgs.RaySensor\ngz.msgs.Density\ngz.msgs.Response\ngz.msgs.RestLogin\ngz.msgs.RestLogout\ngz.msgs.RestPost\ngz.msgs.RestResponse\ngz.msgs.Duration\ngz.msgs.AirSpeed\ngz.msgs.Result\ngz.msgs.DVLVelocityTracking\ngz.msgs.VersionRange\ngz.msgs.EntityWrench\ngz.msgs.Road\ngz.msgs.Actor.Trajectory\ngz.msgs.SerializedState\ngz.msgs.SdfGeneratorConfig.OverrideEntityGenConfigsEntry\ngz.msgs.Sensor_V\ngz.msgs.SerializedEntity\ngz.msgs.SerializedStateMap\ngz.msgs.SerializedStepMap\ngz.msgs.ServerControl\ngz.msgs.StatisticsGroup\ngz.msgs.StringMsg\ngz.msgs.CameraCmd\ngz.msgs.JointWrench\ngz.msgs.Shadows\ngz.msgs.StringMsg_V\ngz.msgs.WirelessNodes\ngz.msgs.Surface\ngz.msgs.TopicInfo\ngz.msgs.Friction.Torsional\ngz.msgs.TrackVisual\ngz.msgs.CameraInfo.Intrinsics\ngz.msgs.Twist\ngz.msgs.UserCmd\ngz.msgs.UserCmdStats\ngz.msgs.Vector2d\ngz.msgs.Vector3d\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--list=FALSE"
+      ],
+      "mode": "help",
+      "status": 0,
+      "stdout": "Print information about Gazebo messages\nUsage: gz-msgs [OPTIONS]\n\nOptions:\n  -h [--help]                 Print this help message and exit\n                              \n  -v [--version]              \n                              \n  -l [--list]                 List all message types.\n                              Excludes: --info\n                              \n  -i [--info] TEXT ...        Get info about the specified message type.\n                              Excludes: --list\n                              \n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--list=on"
+      ],
+      "mode": "list",
+      "status": 0,
+      "stdout": "gz.msgs.Wrench\ngz.msgs.WorldStatistics\ngz.msgs.WorldReset\ngz.msgs.WorldModify\ngz.msgs.WorldControlState\ngz.msgs.WheelSlipParametersCmd\ngz.msgs.WebRequest\ngz.msgs.JointTrajectoryPoint\ngz.msgs.Link\ngz.msgs.Sky\ngz.msgs.JointTrajectory\ngz.msgs.SerializedComponent\ngz.msgs.SphereGeom\ngz.msgs.Joint.Gearbox\ngz.msgs.Int32\ngz.msgs.Metric\ngz.msgs.Joint\ngz.msgs.Image\ngz.msgs.Hydra.Paddle\ngz.msgs.IMUSensor.LinearAcceleration\ngz.msgs.UInt32_V\ngz.msgs.IMUSensor.AngularVelocity\ngz.msgs.Visual\ngz.msgs.GPSSensor.Sensing\ngz.msgs.FuelMetadata.World\ngz.msgs.PointCloud\ngz.msgs.FuelMetadata.Model\ngz.msgs.FuelMetadata.Legal\ngz.msgs.ParameterValue\ngz.msgs.Quaternion\ngz.msgs.FuelMetadata\ngz.msgs.Oriented3DBox\ngz.msgs.Friction.Torsional.ODE\ngz.msgs.SphericalCoordinates\ngz.msgs.Param.ParamsEntry\ngz.msgs.PointCloudPacked\ngz.msgs.Diagnostics.DiagTime\ngz.msgs.TwistWithCovariance\ngz.msgs.FluidPressure\ngz.msgs.Fluid\ngz.msgs.UInt64_V\ngz.msgs.Float_V\ngz.msgs.Float\ngz.msgs.Altimeter\ngz.msgs.EntityWrenchMap.WrenchesEntry\ngz.msgs.Color\ngz.msgs.Publishers\ngz.msgs.SdfGeneratorConfig\ngz.msgs.EntityFactoryWithNs\ngz.msgs.Fog\ngz.msgs.EntityFactory\ngz.msgs.Material.PBR\ngz.msgs.EntityFactory_V\ngz.msgs.Collision\ngz.msgs.Entity\ngz.msgs.Sensor\ngz.msgs.VersionedName\ngz.msgs.AxisAlignedBox\ngz.msgs.EllipsoidGeom\ngz.msgs.LogPlaybackStatistics\ngz.msgs.FuelMetadata.AnnotationsEntry\ngz.msgs.Publish\ngz.msgs.EntityWrenchMap\ngz.msgs.CapsuleGeom\ngz.msgs.Double_V\ngz.msgs.Plugin_V\ngz.msgs.Distortion\ngz.msgs.Discovery.Publisher.ServicePublisher\ngz.msgs.EntityFactoryWithNs_V\ngz.msgs.NavSatWithCovariance\ngz.msgs.CameraInfo.Distortion\ngz.msgs.ContactSensor\ngz.msgs.AttachDetachRequest\ngz.msgs.Atmosphere\ngz.msgs.HeightmapGeom\ngz.msgs.AxisAligned2DBox\ngz.msgs.DVLRangeEstimate\ngz.msgs.Wind\ngz.msgs.Hydra\ngz.msgs.BatteryState\ngoogle.protobuf.Any\ngz.msgs.Actor.Waypoint\ngz.msgs.BoxGeom\ngz.msgs.FuelMetadata.Compatibility\ngz.msgs.HeightmapGeom.Blend\ngz.msgs.AnnotatedAxisAligned2DBox_V\ngz.msgs.FuelMetadata.Contact\ngz.msgs.AltimeterSensor\ngz.msgs.Any\ngz.msgs.Header.Map\ngz.msgs.SerializedStateMap.EntitiesEntry\ngz.msgs.Marker\ngz.msgs.Bytes\ngz.msgs.SimEvent\ngz.msgs.Actuators\ngz.msgs.SerializedStep\ngz.msgs.AirPressureSensor\ngz.msgs.SensorNoise\ngz.msgs.PoseTrajectory\ngz.msgs.Inertial\ngz.msgs.LogPlaybackControl\ngz.msgs.Sonar\ngz.msgs.AnnotatedAxisAligned2DBox\ngz.msgs.WorldControl\ngz.msgs.LogStatus.LogFile\ngz.msgs.IMU\ngz.msgs.Friction\ngz.msgs.Dataframe\ngz.msgs.Axis\ngz.msgs.EntityPlugin_V\ngz.msgs.CameraSensor\ngz.msgs.Pose\ngz.msgs.Pose_V\ngz.msgs.Boolean\ngz.msgs.IMUSensor.OrientationReferenceFrame\ngz.msgs.CameraInfo.Projection\ngz.msgs.Joint.Screw\ngz.msgs.Discovery.Publisher\ngz.msgs.Battery\ngz.msgs.Geometry\ngz.msgs.ParticleEmitter\ngz.msgs.CameraLens\ngz.msgs.Plugin\ngz.msgs.DVLKinematicEstimate\ngz.msgs.JointCmd\ngz.msgs.SdfGeneratorConfig.EntityGeneratorConfig\ngz.msgs.GPS\ngz.msgs.CameraTrack\ngz.msgs.Header\ngz.msgs.ParameterError\ngz.msgs.GUI\ngz.msgs.SerializedEntityMap.ComponentsEntry\ngz.msgs.Cessna\ngz.msgs.Int64\ngz.msgs.Clock\ngz.msgs.LogStatus\ngz.msgs.VideoRecord\ngz.msgs.GPSSensor\ngz.msgs.Magnetometer\ngz.msgs.Contacts\ngz.msgs.JointAnimation.Joint\ngz.msgs.Discovery.Flags\ngz.msgs.Discovery.Subscriber\ngz.msgs.DVLBeamState\ngz.msgs.AnnotatedOriented3DBox_V\ngz.msgs.IMUSensor\ngz.msgs.Material\ngz.msgs.UInt64\ngz.msgs.Double\ngz.msgs.ConeGeom\ngz.msgs.Version\ngz.msgs.Subscribe\ngz.msgs.CylinderGeom\ngz.msgs.WirelessNode\ngz.msgs.ImageGeom\ngz.msgs.Test\ngz.msgs.Scene\ngz.msgs.DataLoadPathOptions\ngz.msgs.FuelMetadata.Dependency\ngz.msgs.AirSpeedSensor\ngz.msgs.DVLTrackingTarget\ngz.msgs.Diagnostics\ngz.msgs.NavSatSensor\ngz.msgs.SerializedEntityMap\ngz.msgs.Discovery\ngz.msgs.HeightmapGeom.Texture\ngz.msgs.AnnotatedOriented3DBox\ngz.msgs.PoseWithCovariance\ngz.msgs.Tactile\ngz.msgs.Discovery.Publisher.MessagePublisher\ngz.msgs.Visual_V\ngz.msgs.Joy\ngz.msgs.NavSatSensor.Sensing\ngz.msgs.Joystick\ngz.msgs.Request\ngz.msgs.UndoRedo\ngz.msgs.Actor\ngz.msgs.LaserScan\ngz.msgs.Actor.Animation\ngz.msgs.Lens\ngz.msgs.Polyline\ngz.msgs.Light\ngz.msgs.MeshGeom\ngz.msgs.Selection\ngz.msgs.LinkData\ngz.msgs.Empty\ngz.msgs.LogControl\ngz.msgs.LogicalCameraImage\ngz.msgs.JointAnimation\ngz.msgs.LidarSensor\ngz.msgs.LogicalCameraImage.Model\ngz.msgs.Contact\ngz.msgs.LogicalCameraSensor\ngz.msgs.PropagationParticle\ngz.msgs.PropagationGrid\ngz.msgs.MagnetometerSensor\ngz.msgs.UInt32\ngz.msgs.Marker_V\ngz.msgs.GUICamera\ngz.msgs.Material.Script\ngz.msgs.MaterialColor\ngz.msgs.Model\ngz.msgs.Int64_V\ngz.msgs.ModelConfiguration\ngz.msgs.Visual.Meta\ngz.msgs.Model_V\ngz.msgs.Statistic\ngz.msgs.NavSat\ngz.msgs.CmdVel2D\ngz.msgs.ParameterDeclarations\ngz.msgs.OccupancyGrid\ngz.msgs.CameraInfo\ngz.msgs.Packet\ngz.msgs.Time\ngz.msgs.OccupancyGrid.MapMetaInfo\ngz.msgs.Odometry\ngz.msgs.ParticleEmitter_V\ngz.msgs.OdometryWithCovariance\ngz.msgs.PID\ngz.msgs.Param\ngz.msgs.Param_V\ngz.msgs.Parameter\ngz.msgs.ParameterDeclaration\ngz.msgs.ParameterName\ngz.msgs.PerformanceSensorMetrics\ngz.msgs.Physics\ngz.msgs.PlaneGeom\ngz.msgs.Int32_V\ngz.msgs.PointCloudPacked.Field\ngz.msgs.PoseAnimation\ngz.msgs.FuelMetadata.Categories\ngz.msgs.Projector\ngz.msgs.RaySensor\ngz.msgs.Density\ngz.msgs.Response\ngz.msgs.RestLogin\ngz.msgs.RestLogout\ngz.msgs.RestPost\ngz.msgs.RestResponse\ngz.msgs.Duration\ngz.msgs.AirSpeed\ngz.msgs.Result\ngz.msgs.DVLVelocityTracking\ngz.msgs.VersionRange\ngz.msgs.EntityWrench\ngz.msgs.Road\ngz.msgs.Actor.Trajectory\ngz.msgs.SerializedState\ngz.msgs.SdfGeneratorConfig.OverrideEntityGenConfigsEntry\ngz.msgs.Sensor_V\ngz.msgs.SerializedEntity\ngz.msgs.SerializedStateMap\ngz.msgs.SerializedStepMap\ngz.msgs.ServerControl\ngz.msgs.StatisticsGroup\ngz.msgs.StringMsg\ngz.msgs.CameraCmd\ngz.msgs.JointWrench\ngz.msgs.Shadows\ngz.msgs.StringMsg_V\ngz.msgs.WirelessNodes\ngz.msgs.Surface\ngz.msgs.TopicInfo\ngz.msgs.Friction.Torsional\ngz.msgs.TrackVisual\ngz.msgs.CameraInfo.Intrinsics\ngz.msgs.Twist\ngz.msgs.UserCmd\ngz.msgs.UserCmdStats\ngz.msgs.Vector2d\ngz.msgs.Vector3d\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--list=2"
+      ],
+      "mode": "list",
+      "status": 0,
+      "stdout": "gz.msgs.Wrench\ngz.msgs.WorldStatistics\ngz.msgs.WorldReset\ngz.msgs.WorldModify\ngz.msgs.WorldControlState\ngz.msgs.WheelSlipParametersCmd\ngz.msgs.WebRequest\ngz.msgs.JointTrajectoryPoint\ngz.msgs.Link\ngz.msgs.Sky\ngz.msgs.JointTrajectory\ngz.msgs.SerializedComponent\ngz.msgs.SphereGeom\ngz.msgs.Joint.Gearbox\ngz.msgs.Int32\ngz.msgs.Metric\ngz.msgs.Joint\ngz.msgs.Image\ngz.msgs.Hydra.Paddle\ngz.msgs.IMUSensor.LinearAcceleration\ngz.msgs.UInt32_V\ngz.msgs.IMUSensor.AngularVelocity\ngz.msgs.Visual\ngz.msgs.GPSSensor.Sensing\ngz.msgs.FuelMetadata.World\ngz.msgs.PointCloud\ngz.msgs.FuelMetadata.Model\ngz.msgs.FuelMetadata.Legal\ngz.msgs.ParameterValue\ngz.msgs.Quaternion\ngz.msgs.FuelMetadata\ngz.msgs.Oriented3DBox\ngz.msgs.Friction.Torsional.ODE\ngz.msgs.SphericalCoordinates\ngz.msgs.Param.ParamsEntry\ngz.msgs.PointCloudPacked\ngz.msgs.Diagnostics.DiagTime\ngz.msgs.TwistWithCovariance\ngz.msgs.FluidPressure\ngz.msgs.Fluid\ngz.msgs.UInt64_V\ngz.msgs.Float_V\ngz.msgs.Float\ngz.msgs.Altimeter\ngz.msgs.EntityWrenchMap.WrenchesEntry\ngz.msgs.Color\ngz.msgs.Publishers\ngz.msgs.SdfGeneratorConfig\ngz.msgs.EntityFactoryWithNs\ngz.msgs.Fog\ngz.msgs.EntityFactory\ngz.msgs.Material.PBR\ngz.msgs.EntityFactory_V\ngz.msgs.Collision\ngz.msgs.Entity\ngz.msgs.Sensor\ngz.msgs.VersionedName\ngz.msgs.AxisAlignedBox\ngz.msgs.EllipsoidGeom\ngz.msgs.LogPlaybackStatistics\ngz.msgs.FuelMetadata.AnnotationsEntry\ngz.msgs.Publish\ngz.msgs.EntityWrenchMap\ngz.msgs.CapsuleGeom\ngz.msgs.Double_V\ngz.msgs.Plugin_V\ngz.msgs.Distortion\ngz.msgs.Discovery.Publisher.ServicePublisher\ngz.msgs.EntityFactoryWithNs_V\ngz.msgs.NavSatWithCovariance\ngz.msgs.CameraInfo.Distortion\ngz.msgs.ContactSensor\ngz.msgs.AttachDetachRequest\ngz.msgs.Atmosphere\ngz.msgs.HeightmapGeom\ngz.msgs.AxisAligned2DBox\ngz.msgs.DVLRangeEstimate\ngz.msgs.Wind\ngz.msgs.Hydra\ngz.msgs.BatteryState\ngoogle.protobuf.Any\ngz.msgs.Actor.Waypoint\ngz.msgs.BoxGeom\ngz.msgs.FuelMetadata.Compatibility\ngz.msgs.HeightmapGeom.Blend\ngz.msgs.AnnotatedAxisAligned2DBox_V\ngz.msgs.FuelMetadata.Contact\ngz.msgs.AltimeterSensor\ngz.msgs.Any\ngz.msgs.Header.Map\ngz.msgs.SerializedStateMap.EntitiesEntry\ngz.msgs.Marker\ngz.msgs.Bytes\ngz.msgs.SimEvent\ngz.msgs.Actuators\ngz.msgs.SerializedStep\ngz.msgs.AirPressureSensor\ngz.msgs.SensorNoise\ngz.msgs.PoseTrajectory\ngz.msgs.Inertial\ngz.msgs.LogPlaybackControl\ngz.msgs.Sonar\ngz.msgs.AnnotatedAxisAligned2DBox\ngz.msgs.WorldControl\ngz.msgs.LogStatus.LogFile\ngz.msgs.IMU\ngz.msgs.Friction\ngz.msgs.Dataframe\ngz.msgs.Axis\ngz.msgs.EntityPlugin_V\ngz.msgs.CameraSensor\ngz.msgs.Pose\ngz.msgs.Pose_V\ngz.msgs.Boolean\ngz.msgs.IMUSensor.OrientationReferenceFrame\ngz.msgs.CameraInfo.Projection\ngz.msgs.Joint.Screw\ngz.msgs.Discovery.Publisher\ngz.msgs.Battery\ngz.msgs.Geometry\ngz.msgs.ParticleEmitter\ngz.msgs.CameraLens\ngz.msgs.Plugin\ngz.msgs.DVLKinematicEstimate\ngz.msgs.JointCmd\ngz.msgs.SdfGeneratorConfig.EntityGeneratorConfig\ngz.msgs.GPS\ngz.msgs.CameraTrack\ngz.msgs.Header\ngz.msgs.ParameterError\ngz.msgs.GUI\ngz.msgs.SerializedEntityMap.ComponentsEntry\ngz.msgs.Cessna\ngz.msgs.Int64\ngz.msgs.Clock\ngz.msgs.LogStatus\ngz.msgs.VideoRecord\ngz.msgs.GPSSensor\ngz.msgs.Magnetometer\ngz.msgs.Contacts\ngz.msgs.JointAnimation.Joint\ngz.msgs.Discovery.Flags\ngz.msgs.Discovery.Subscriber\ngz.msgs.DVLBeamState\ngz.msgs.AnnotatedOriented3DBox_V\ngz.msgs.IMUSensor\ngz.msgs.Material\ngz.msgs.UInt64\ngz.msgs.Double\ngz.msgs.ConeGeom\ngz.msgs.Version\ngz.msgs.Subscribe\ngz.msgs.CylinderGeom\ngz.msgs.WirelessNode\ngz.msgs.ImageGeom\ngz.msgs.Test\ngz.msgs.Scene\ngz.msgs.DataLoadPathOptions\ngz.msgs.FuelMetadata.Dependency\ngz.msgs.AirSpeedSensor\ngz.msgs.DVLTrackingTarget\ngz.msgs.Diagnostics\ngz.msgs.NavSatSensor\ngz.msgs.SerializedEntityMap\ngz.msgs.Discovery\ngz.msgs.HeightmapGeom.Texture\ngz.msgs.AnnotatedOriented3DBox\ngz.msgs.PoseWithCovariance\ngz.msgs.Tactile\ngz.msgs.Discovery.Publisher.MessagePublisher\ngz.msgs.Visual_V\ngz.msgs.Joy\ngz.msgs.NavSatSensor.Sensing\ngz.msgs.Joystick\ngz.msgs.Request\ngz.msgs.UndoRedo\ngz.msgs.Actor\ngz.msgs.LaserScan\ngz.msgs.Actor.Animation\ngz.msgs.Lens\ngz.msgs.Polyline\ngz.msgs.Light\ngz.msgs.MeshGeom\ngz.msgs.Selection\ngz.msgs.LinkData\ngz.msgs.Empty\ngz.msgs.LogControl\ngz.msgs.LogicalCameraImage\ngz.msgs.JointAnimation\ngz.msgs.LidarSensor\ngz.msgs.LogicalCameraImage.Model\ngz.msgs.Contact\ngz.msgs.LogicalCameraSensor\ngz.msgs.PropagationParticle\ngz.msgs.PropagationGrid\ngz.msgs.MagnetometerSensor\ngz.msgs.UInt32\ngz.msgs.Marker_V\ngz.msgs.GUICamera\ngz.msgs.Material.Script\ngz.msgs.MaterialColor\ngz.msgs.Model\ngz.msgs.Int64_V\ngz.msgs.ModelConfiguration\ngz.msgs.Visual.Meta\ngz.msgs.Model_V\ngz.msgs.Statistic\ngz.msgs.NavSat\ngz.msgs.CmdVel2D\ngz.msgs.ParameterDeclarations\ngz.msgs.OccupancyGrid\ngz.msgs.CameraInfo\ngz.msgs.Packet\ngz.msgs.Time\ngz.msgs.OccupancyGrid.MapMetaInfo\ngz.msgs.Odometry\ngz.msgs.ParticleEmitter_V\ngz.msgs.OdometryWithCovariance\ngz.msgs.PID\ngz.msgs.Param\ngz.msgs.Param_V\ngz.msgs.Parameter\ngz.msgs.ParameterDeclaration\ngz.msgs.ParameterName\ngz.msgs.PerformanceSensorMetrics\ngz.msgs.Physics\ngz.msgs.PlaneGeom\ngz.msgs.Int32_V\ngz.msgs.PointCloudPacked.Field\ngz.msgs.PoseAnimation\ngz.msgs.FuelMetadata.Categories\ngz.msgs.Projector\ngz.msgs.RaySensor\ngz.msgs.Density\ngz.msgs.Response\ngz.msgs.RestLogin\ngz.msgs.RestLogout\ngz.msgs.RestPost\ngz.msgs.RestResponse\ngz.msgs.Duration\ngz.msgs.AirSpeed\ngz.msgs.Result\ngz.msgs.DVLVelocityTracking\ngz.msgs.VersionRange\ngz.msgs.EntityWrench\ngz.msgs.Road\ngz.msgs.Actor.Trajectory\ngz.msgs.SerializedState\ngz.msgs.SdfGeneratorConfig.OverrideEntityGenConfigsEntry\ngz.msgs.Sensor_V\ngz.msgs.SerializedEntity\ngz.msgs.SerializedStateMap\ngz.msgs.SerializedStepMap\ngz.msgs.ServerControl\ngz.msgs.StatisticsGroup\ngz.msgs.StringMsg\ngz.msgs.CameraCmd\ngz.msgs.JointWrench\ngz.msgs.Shadows\ngz.msgs.StringMsg_V\ngz.msgs.WirelessNodes\ngz.msgs.Surface\ngz.msgs.TopicInfo\ngz.msgs.Friction.Torsional\ngz.msgs.TrackVisual\ngz.msgs.CameraInfo.Intrinsics\ngz.msgs.Twist\ngz.msgs.UserCmd\ngz.msgs.UserCmdStats\ngz.msgs.Vector2d\ngz.msgs.Vector3d\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--list=bad"
+      ],
+      "mode": "exact",
+      "status": 104,
+      "stdout": "",
+      "stderr": "Could not convert: --list = bad\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--version=false",
+        "--list"
+      ],
+      "mode": "list",
+      "status": 0,
+      "stdout": "gz.msgs.Wrench\ngz.msgs.WorldStatistics\ngz.msgs.WorldReset\ngz.msgs.WorldModify\ngz.msgs.WorldControlState\ngz.msgs.WheelSlipParametersCmd\ngz.msgs.WebRequest\ngz.msgs.JointTrajectoryPoint\ngz.msgs.Link\ngz.msgs.Sky\ngz.msgs.JointTrajectory\ngz.msgs.SerializedComponent\ngz.msgs.SphereGeom\ngz.msgs.Joint.Gearbox\ngz.msgs.Int32\ngz.msgs.Metric\ngz.msgs.Joint\ngz.msgs.Image\ngz.msgs.Hydra.Paddle\ngz.msgs.IMUSensor.LinearAcceleration\ngz.msgs.UInt32_V\ngz.msgs.IMUSensor.AngularVelocity\ngz.msgs.Visual\ngz.msgs.GPSSensor.Sensing\ngz.msgs.FuelMetadata.World\ngz.msgs.PointCloud\ngz.msgs.FuelMetadata.Model\ngz.msgs.FuelMetadata.Legal\ngz.msgs.ParameterValue\ngz.msgs.Quaternion\ngz.msgs.FuelMetadata\ngz.msgs.Oriented3DBox\ngz.msgs.Friction.Torsional.ODE\ngz.msgs.SphericalCoordinates\ngz.msgs.Param.ParamsEntry\ngz.msgs.PointCloudPacked\ngz.msgs.Diagnostics.DiagTime\ngz.msgs.TwistWithCovariance\ngz.msgs.FluidPressure\ngz.msgs.Fluid\ngz.msgs.UInt64_V\ngz.msgs.Float_V\ngz.msgs.Float\ngz.msgs.Altimeter\ngz.msgs.EntityWrenchMap.WrenchesEntry\ngz.msgs.Color\ngz.msgs.Publishers\ngz.msgs.SdfGeneratorConfig\ngz.msgs.EntityFactoryWithNs\ngz.msgs.Fog\ngz.msgs.EntityFactory\ngz.msgs.Material.PBR\ngz.msgs.EntityFactory_V\ngz.msgs.Collision\ngz.msgs.Entity\ngz.msgs.Sensor\ngz.msgs.VersionedName\ngz.msgs.AxisAlignedBox\ngz.msgs.EllipsoidGeom\ngz.msgs.LogPlaybackStatistics\ngz.msgs.FuelMetadata.AnnotationsEntry\ngz.msgs.Publish\ngz.msgs.EntityWrenchMap\ngz.msgs.CapsuleGeom\ngz.msgs.Double_V\ngz.msgs.Plugin_V\ngz.msgs.Distortion\ngz.msgs.Discovery.Publisher.ServicePublisher\ngz.msgs.EntityFactoryWithNs_V\ngz.msgs.NavSatWithCovariance\ngz.msgs.CameraInfo.Distortion\ngz.msgs.ContactSensor\ngz.msgs.AttachDetachRequest\ngz.msgs.Atmosphere\ngz.msgs.HeightmapGeom\ngz.msgs.AxisAligned2DBox\ngz.msgs.DVLRangeEstimate\ngz.msgs.Wind\ngz.msgs.Hydra\ngz.msgs.BatteryState\ngoogle.protobuf.Any\ngz.msgs.Actor.Waypoint\ngz.msgs.BoxGeom\ngz.msgs.FuelMetadata.Compatibility\ngz.msgs.HeightmapGeom.Blend\ngz.msgs.AnnotatedAxisAligned2DBox_V\ngz.msgs.FuelMetadata.Contact\ngz.msgs.AltimeterSensor\ngz.msgs.Any\ngz.msgs.Header.Map\ngz.msgs.SerializedStateMap.EntitiesEntry\ngz.msgs.Marker\ngz.msgs.Bytes\ngz.msgs.SimEvent\ngz.msgs.Actuators\ngz.msgs.SerializedStep\ngz.msgs.AirPressureSensor\ngz.msgs.SensorNoise\ngz.msgs.PoseTrajectory\ngz.msgs.Inertial\ngz.msgs.LogPlaybackControl\ngz.msgs.Sonar\ngz.msgs.AnnotatedAxisAligned2DBox\ngz.msgs.WorldControl\ngz.msgs.LogStatus.LogFile\ngz.msgs.IMU\ngz.msgs.Friction\ngz.msgs.Dataframe\ngz.msgs.Axis\ngz.msgs.EntityPlugin_V\ngz.msgs.CameraSensor\ngz.msgs.Pose\ngz.msgs.Pose_V\ngz.msgs.Boolean\ngz.msgs.IMUSensor.OrientationReferenceFrame\ngz.msgs.CameraInfo.Projection\ngz.msgs.Joint.Screw\ngz.msgs.Discovery.Publisher\ngz.msgs.Battery\ngz.msgs.Geometry\ngz.msgs.ParticleEmitter\ngz.msgs.CameraLens\ngz.msgs.Plugin\ngz.msgs.DVLKinematicEstimate\ngz.msgs.JointCmd\ngz.msgs.SdfGeneratorConfig.EntityGeneratorConfig\ngz.msgs.GPS\ngz.msgs.CameraTrack\ngz.msgs.Header\ngz.msgs.ParameterError\ngz.msgs.GUI\ngz.msgs.SerializedEntityMap.ComponentsEntry\ngz.msgs.Cessna\ngz.msgs.Int64\ngz.msgs.Clock\ngz.msgs.LogStatus\ngz.msgs.VideoRecord\ngz.msgs.GPSSensor\ngz.msgs.Magnetometer\ngz.msgs.Contacts\ngz.msgs.JointAnimation.Joint\ngz.msgs.Discovery.Flags\ngz.msgs.Discovery.Subscriber\ngz.msgs.DVLBeamState\ngz.msgs.AnnotatedOriented3DBox_V\ngz.msgs.IMUSensor\ngz.msgs.Material\ngz.msgs.UInt64\ngz.msgs.Double\ngz.msgs.ConeGeom\ngz.msgs.Version\ngz.msgs.Subscribe\ngz.msgs.CylinderGeom\ngz.msgs.WirelessNode\ngz.msgs.ImageGeom\ngz.msgs.Test\ngz.msgs.Scene\ngz.msgs.DataLoadPathOptions\ngz.msgs.FuelMetadata.Dependency\ngz.msgs.AirSpeedSensor\ngz.msgs.DVLTrackingTarget\ngz.msgs.Diagnostics\ngz.msgs.NavSatSensor\ngz.msgs.SerializedEntityMap\ngz.msgs.Discovery\ngz.msgs.HeightmapGeom.Texture\ngz.msgs.AnnotatedOriented3DBox\ngz.msgs.PoseWithCovariance\ngz.msgs.Tactile\ngz.msgs.Discovery.Publisher.MessagePublisher\ngz.msgs.Visual_V\ngz.msgs.Joy\ngz.msgs.NavSatSensor.Sensing\ngz.msgs.Joystick\ngz.msgs.Request\ngz.msgs.UndoRedo\ngz.msgs.Actor\ngz.msgs.LaserScan\ngz.msgs.Actor.Animation\ngz.msgs.Lens\ngz.msgs.Polyline\ngz.msgs.Light\ngz.msgs.MeshGeom\ngz.msgs.Selection\ngz.msgs.LinkData\ngz.msgs.Empty\ngz.msgs.LogControl\ngz.msgs.LogicalCameraImage\ngz.msgs.JointAnimation\ngz.msgs.LidarSensor\ngz.msgs.LogicalCameraImage.Model\ngz.msgs.Contact\ngz.msgs.LogicalCameraSensor\ngz.msgs.PropagationParticle\ngz.msgs.PropagationGrid\ngz.msgs.MagnetometerSensor\ngz.msgs.UInt32\ngz.msgs.Marker_V\ngz.msgs.GUICamera\ngz.msgs.Material.Script\ngz.msgs.MaterialColor\ngz.msgs.Model\ngz.msgs.Int64_V\ngz.msgs.ModelConfiguration\ngz.msgs.Visual.Meta\ngz.msgs.Model_V\ngz.msgs.Statistic\ngz.msgs.NavSat\ngz.msgs.CmdVel2D\ngz.msgs.ParameterDeclarations\ngz.msgs.OccupancyGrid\ngz.msgs.CameraInfo\ngz.msgs.Packet\ngz.msgs.Time\ngz.msgs.OccupancyGrid.MapMetaInfo\ngz.msgs.Odometry\ngz.msgs.ParticleEmitter_V\ngz.msgs.OdometryWithCovariance\ngz.msgs.PID\ngz.msgs.Param\ngz.msgs.Param_V\ngz.msgs.Parameter\ngz.msgs.ParameterDeclaration\ngz.msgs.ParameterName\ngz.msgs.PerformanceSensorMetrics\ngz.msgs.Physics\ngz.msgs.PlaneGeom\ngz.msgs.Int32_V\ngz.msgs.PointCloudPacked.Field\ngz.msgs.PoseAnimation\ngz.msgs.FuelMetadata.Categories\ngz.msgs.Projector\ngz.msgs.RaySensor\ngz.msgs.Density\ngz.msgs.Response\ngz.msgs.RestLogin\ngz.msgs.RestLogout\ngz.msgs.RestPost\ngz.msgs.RestResponse\ngz.msgs.Duration\ngz.msgs.AirSpeed\ngz.msgs.Result\ngz.msgs.DVLVelocityTracking\ngz.msgs.VersionRange\ngz.msgs.EntityWrench\ngz.msgs.Road\ngz.msgs.Actor.Trajectory\ngz.msgs.SerializedState\ngz.msgs.SdfGeneratorConfig.OverrideEntityGenConfigsEntry\ngz.msgs.Sensor_V\ngz.msgs.SerializedEntity\ngz.msgs.SerializedStateMap\ngz.msgs.SerializedStepMap\ngz.msgs.ServerControl\ngz.msgs.StatisticsGroup\ngz.msgs.StringMsg\ngz.msgs.CameraCmd\ngz.msgs.JointWrench\ngz.msgs.Shadows\ngz.msgs.StringMsg_V\ngz.msgs.WirelessNodes\ngz.msgs.Surface\ngz.msgs.TopicInfo\ngz.msgs.Friction.Torsional\ngz.msgs.TrackVisual\ngz.msgs.CameraInfo.Intrinsics\ngz.msgs.Twist\ngz.msgs.UserCmd\ngz.msgs.UserCmdStats\ngz.msgs.Vector2d\ngz.msgs.Vector3d\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--version=0"
+      ],
+      "mode": "help",
+      "status": 0,
+      "stdout": "Print information about Gazebo messages\nUsage: gz-msgs [OPTIONS]\n\nOptions:\n  -h [--help]                 Print this help message and exit\n                              \n  -v [--version]              \n                              \n  -l [--list]                 List all message types.\n                              Excludes: --info\n                              \n  -i [--info] TEXT ...        Get info about the specified message type.\n                              Excludes: --list\n                              \n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--version=0",
+        "--unknown"
+      ],
+      "mode": "exact",
+      "status": 109,
+      "stdout": "",
+      "stderr": "The following argument was not expected: --unknown\nRun with --help for more information.\n"
+    },
+    {
+      "args": [
+        "--list=bad",
+        "--version"
+      ],
+      "mode": "version",
+      "status": 0,
+      "stdout": "13.0.0~pre2\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "--version",
+        "--list=bad"
+      ],
+      "mode": "version",
+      "status": 0,
+      "stdout": "13.0.0~pre2\n",
+      "stderr": ""
+    }
+  ],
+  "native_argv0": "gz-msgs"
+}

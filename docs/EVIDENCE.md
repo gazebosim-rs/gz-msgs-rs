@@ -883,3 +883,47 @@ CLI tests, including the unchanged C++ originals, and reproduces every native
 fixture status/output. It records the initial cache failure and its proven
 resolution; the author's full coverage gate is not misreported as an independent
 rerun. Source and assertions remain unchanged after review.
+
+## Bounded native option combinations
+
+The CLI now uses pinned maintained clap_lex 1.1.1 for GNU tokenization and a small
+native message-option policy. Attached/repeated info, multiple names, short
+flag groups, callback priority, list/info exclusions and native missing/extra
+argument statuses are covered by 75 observed invocation rows. Tests preserve
+exact info/error bytes where meaningful; list comparison retains the complete
+sequence after sorting, while help/package-version bind this Rust tool as in the
+original C++ assertions. Fifteen separate long flag-assignment observations
+remain explicitly unsupported. No full CLI11 grammar, external-descriptor info,
+formatting, performance or MSG-02 acceptance is claimed.
+
+The native reference script freshly replays all 90 observations and verifies the
+pinned original source, binary and schema identities. Native argv[0] is fixed to
+gz-msgs so its help usage name is reproducible. The prior original CLI and message
+assertions remain unchanged. One maintained lexer dependency is added; no other
+locked version changes or coverage exclusions are introduced.
+
+The first full gate rejected an LLVM source filename alias containing bin/../.
+That helper was measured at 120/120 lines and 217/217 regions but correctly failed
+the exact source-accounting gate. Moving it to the standard nested Rust module
+layout removes the alias without changing the checker or assertions. Cargo
+metadata confirms exactly one executable. The revised full gate passes 84 Rust
+checks, five snapshot regressions, archive QA and clean downstream compilation:
+1380/1382 owned lines and 2155/2169 regions; the new helper remains 120/120 and
+217/217. Independent exact review and strict staged/hosted gates remain required.
+
+The [wire isolation follow-up](reviews/wire-isolation-followup.json) retains the
+original review receipt and explicitly corrects its shared producer-target
+mistake. The reviewer reran both wire tests and all 70 generated-native outputs
+in a fresh private target and reverified all 623 source blobs. The downstream
+consumer target was snapshot-owned. No original receipt was silently rewritten,
+no producer source was changed to hide the initial JSON cache failure, and the
+published wire staged/hosted checks remain green.
+
+Independent /root/transport_recovery approved exact staged 62eafc52 after raw
+export and verification of all 633 blobs. Its fresh private target passes all ten
+CLI tests and the five unchanged original C++ assertions. The native script
+freshly reproduces all 90 observations with an identical proof, including fixed
+argv[0] and source/binary/schema/corpus hashes. The [receipt](reviews/cli-options.json)
+reviews the lexer-only dependency, native option policy and explicit unsupported
+assignments; no producer target was shared. Full coverage remains author evidence.
+Matching final metadata, strict staged and hosted verification remain required.
