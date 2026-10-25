@@ -1711,3 +1711,33 @@ descriptor-disable mutant. The copied
 the ten retained fixture hashes and the independent proof. Final metadata
 binding, normal hook and hosted qualification remain pending. This candidate
 does not complete MSG-02.
+
+## Bounded repeated float `data` keys
+
+The previously retained two native-positive duplicate-key rows now compare
+the complete Rust and native wire output. The adapter remains limited to
+`Double_V.data` and `Float_V.data`; it uses the maintained reflected decoder
+for every occurrence and for the full document's other fields, then appends
+the repeated values in source order. Native scalar and `null` occurrences,
+quoted hex bits, signed zero, and canonical nonfinite strings are covered.
+The native/Rust cross-product initially found an overacceptance of
+lowercase `nan`; a post-freeze malformed-input audit found an empty value
+accepted as an empty array. The corrected candidate rejects both cases.
+
+The new 66-row native fixture contains 38 accepted and 28 rejected cases. Its
+manifest binds the unchanged pinned C++ probe and all 11 earlier JSON fixture
+hashes; the native replay now covers 875 rows, retaining all 809 prior ones.
+An additional 722-case value cross-product found zero acceptance or wire
+mismatches. The strict working gate passes formatting, Clippy, native C++
+controls, downstream/source-package/negative checks and 111 Rust integration
+tests. Measured handwritten production coverage is 2217/2232 lines and
+3562/3608 regions; the CLI has 452/466 lines and 782/816 regions. The exact
+six-file staged gate passed on tree `000a6531db853b6f092c3eb10d43a0a5533472e1`.
+The [independent review](reviews/json-repeated-data.json) approved this
+bounded source after a private 875-row native replay, all 111 Rust tests,
+1,170 additional variants with no mismatch and an append-removal mutant that
+fails the original two-decimal wire assertion. The superseded first candidate
+is excluded from the approval. Final metadata binding, normal hook and hosted
+qualification remain pending.
+Other descriptor types and broader duplicate-field/JSON behavior remain
+MSG-02 work.

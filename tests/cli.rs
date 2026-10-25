@@ -964,10 +964,41 @@ fn quoted_hex_float_strings_match_native() {
         let type_name = row["type"].as_str().unwrap();
         let input = unhex(row["input_hex"].as_str().unwrap());
         assert_eq!(row["cpp_status"], 0);
-        assert!(!unhex(row["cpp_stdout_hex"].as_str().unwrap()).is_empty());
+        let expected = unhex(row["cpp_stdout_hex"].as_str().unwrap());
+        assert!(!expected.is_empty());
         let result = run(&["encode-json", type_name], &input);
-        assert!(!result.status.success(), "{type_name}");
-        assert!(result.stdout.is_empty(), "{type_name}");
+        assert!(result.status.success(), "{type_name}");
+        assert_eq!(result.stdout, expected, "{type_name}");
+    }
+}
+
+#[test]
+fn repeated_float_data_keys_append_in_native_order() {
+    let fixture: gz_msgs::serde_json::Value =
+        gz_msgs::serde_json::from_str(include_str!("fixtures/json-repeated-data.json")).unwrap();
+    assert_eq!(fixture["native_protobuf"], "3.21.12");
+    let rows = fixture["rows"].as_array().unwrap();
+    assert_eq!(rows.len(), 66);
+    assert_eq!(rows.iter().filter(|row| row["cpp_status"] == 0).count(), 38);
+    let unhex = |s: &str| {
+        s.as_bytes()
+            .chunks_exact(2)
+            .map(|pair| u8::from_str_radix(std::str::from_utf8(pair).unwrap(), 16).unwrap())
+            .collect::<Vec<_>>()
+    };
+    for row in rows {
+        let type_name = row["type"].as_str().unwrap();
+        let label = row["label"].as_str().unwrap();
+        let input = unhex(row["input_hex"].as_str().unwrap());
+        let expected = unhex(row["cpp_stdout_hex"].as_str().unwrap());
+        let result = run(&["encode-json", type_name], &input);
+        assert_eq!(
+            result.status.success(),
+            row["cpp_status"] == 0,
+            "{type_name} {label}: {}",
+            String::from_utf8_lossy(&result.stderr)
+        );
+        assert_eq!(result.stdout, expected, "{type_name} {label}");
     }
 }
 

@@ -291,3 +291,34 @@ source and assertions after a private native 809-row replay, 110 Rust tests,
 2,656 extra lexical variants without status or wire mismatch, and a
 descriptor-handling negative control. The normal hook and hosted CI remain
 pending.
+
+## Repeated float `data` keys
+
+The quoted-hex slice is public at `1c3c0b802cd17fd8c1f49fac4370db3103ba9028`
+and its exact hosted run `40216034480` passed. Its two retained native-positive
+duplicate-key rows exposed a separate reflected-decoder behavior: native
+protobuf appends every occurrence of a repeated `data` field in document order,
+while the maintained decoder retains only the last key. This candidate applies
+only to `gz.msgs.Double_V` and `gz.msgs.Float_V`. It decodes each top-level
+`data` occurrence independently and combines the reflected lists after the
+same decoder validates the other fields. A scalar occurrence contributes one
+element and `null` contributes none, as observed in the pinned native probe.
+Quoted hexadecimal elements retain the previous descriptor-aware bit patch;
+canonical `NaN`, `Infinity` and `-Infinity` are accepted, while extra
+nonfinite string spellings admitted by the maintained decoder are rejected.
+
+The new 66-row source-bound corpus compares native status and complete wire
+bytes for duplicate arrays, scalar/null occurrences, three keys, escaped/bare/
+single-quoted names, signed zero, malformed and missing values, trailing
+commas and nonfinite spelling. It has 38 native-positive and 28 native-negative
+cases.
+All 809 earlier native rows and 11 fixture files retain their exact hashes;
+`scripts/json-reference.py` replays 875 outcomes. A separate deterministic
+722-case two-value cross-product found no status or wire mismatch after the
+nonfinite guard. General duplicate-field behavior, other descriptors, full
+protobuf JSON grammar, diagnostics and MSG-02 acceptance remain open.
+The [independent review](reviews/json-repeated-data.json) approved this
+bounded source and assertions after a private 875-row native replay, 111 Rust
+tests, 1,170 further variants with no mismatch and an append-removal control.
+The exact six-file staged gate passed; final metadata binding, the normal hook
+and hosted CI remain pending.

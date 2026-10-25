@@ -1,0 +1,39 @@
+{
+  "decision": "approved",
+  "author": "/root/msgs_review_fallback",
+  "reviewer": "/root/transport_fallback",
+  "scope": "Bounded CLI encode-json parity for repeated top-level Double_V.data and Float_V.data keys only.",
+  "base_commit": "1c3c0b802cd17fd8c1f49fac4370db3103ba9028",
+  "proposal": "artifacts/json-repeated-data-scope/proposal.json",
+  "proposal_sha256": "921ee5cb53475560e1d1851c6bf2b50001bfcc5edda9dabd4dde908523903d98",
+  "staged_tree": "000a6531db853b6f092c3eb10d43a0a5533472e1",
+  "staged_diff_sha256": "405806f7d1f276aa557e1fda707674286233447b37a16314fb6c635441b84a7f",
+  "files": {
+    "docs/EVIDENCE.md": "686eb965fa93aa5fad4314c732e5bf78bf8c307523ce0d9043acfeaf6d3e7fe1",
+    "docs/JSON_FRAMING.md": "26e2ba80cb9d45bcc62dd1f93723e04b66dac67939e7ef2fc3f5d16eaf1b6889",
+    "scripts/json-reference.py": "e336fd7769bc71e19da29ffe1192893874efa8058792eb2dfe6fd40db2b5aa19",
+    "src/bin/gz-msgs.rs": "08240aa6b8aa2eec02b822230ee9dee3c71413507042806b155680f2428cf689",
+    "tests/cli.rs": "7073666fba9860e950612eb0bf52a9c32cb39fd4cc44c48df8de35ee8eea0c84",
+    "tests/fixtures/json-repeated-data.json": "e1b90c69a24d2ed097f28b184e917545540afd2a2e1ee98f93e265a629919def"
+  },
+  "author_evidence": {
+    "exact_staged_gate_sha256": "b25f42e9710d67e080503e2268fe9512230fead02f4a184bd96a0dd062cb1bb2",
+    "native_875_proof_sha256": "4b16a8e2c9ea03f61992d6f83ede39c0229ad91e69c9b6c319b8f73b6549db5f"
+  },
+  "reviewer_evidence": {
+    "private_native_replay_log_sha256": "425305ed100568184dac56d1981acd814986c988f27c7b6862847e7eb1feae46",
+    "private_native_875_proof_sha256": "4b16a8e2c9ea03f61992d6f83ede39c0229ad91e69c9b6c319b8f73b6549db5f",
+    "private_selected_rust_log_sha256": "68c66a6a3a49c56f1b43c27438b68cc91d0d72cc80ff1c751433bcd08c9913bd",
+    "private_full_111_rust_log_sha256": "9559f775c1ae9ccc859f452dcbcf18395b8069c49ecf6792a4f39e4a42b4438f",
+    "private_1170_case_differential_sha256": "7d2f54c1844bac5bbd864dddfb361257cd563cbcdd849d64d841868bdcf02d6a",
+    "private_append_mutant_log_sha256": "b2029e7b74a35496c3e62942a868bc7ebd8df12f7792abcc06e130c46958e5cb"
+  },
+  "checks": [
+    "The exact six-file staged tree and binary diff match the frozen v2 proposal, with no unstaged source drift. All eleven previously published JSON fixture hashes remain unchanged; the original two pending duplicate-key rows are now exact positive wire assertions.",
+    "The descriptor guard limits repeated-key rewriting to Double_V and Float_V data. Every occurrence is decoded through the maintained reflected decoder; the complete sanitized document is also decoded, then ordered values and quoted-hex bits are installed. Empty/missing values and noncanonical nonfinite spellings are rejected.",
+    "A private raw base export with exactly the six frozen files and an exclusive Cargo target independently rebuilt the pinned protobuf peer and reproduced all 875 native statuses and wire bytes with a byte-identical proof. The selected test and all 111 Rust tests passed.",
+    "An independent 1170-input two-key lexical matrix across both descriptors found 468 native-positive cases and zero Rust/native acceptance or wire mismatches. Removing append behavior in a separate private source fails the exact native-positive two_decimal wire assertion.",
+    "The author's normal exact staged strict gate passed with root 2217/2232 lines and 3562/3608 regions, CLI 452/466 lines and 782/816 regions; no gate, schema, library API or dependency change is included."
+  ],
+  "limits": "Approval covers only repeated top-level float data keys and the measured grammar. General duplicate-field behavior, other descriptors, full protobuf JSON grammar, diagnostic parity and MSG-02 acceptance remain open. The superseded v1 candidate and its successful gate are excluded from this verdict; final metadata binding, normal hook, publication and hosted CI are pending."
+}
