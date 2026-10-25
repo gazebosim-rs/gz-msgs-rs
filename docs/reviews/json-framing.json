@@ -1,0 +1,17 @@
+{
+  "decision": "approved",
+  "author": "/root/msgs",
+  "reviewer": "/root/sdformat",
+  "date": "2026-10-25T01:48:05.118939+00:00",
+  "staged_diff_sha256": "e55d911c0276977bed49e6d17377cf105cf68f3740bd5814511829439a6a4816",
+  "base": "e2001a3bc5b54cb15ea1cc16deaefdf14719b2df",
+  "original_six_file_packet_sha256": "006a045c2478dbc4249b38f33533114ddbd5525fde498746290288318cb1ca91",
+  "scope": "Independent bounded encode-json framing correction and final eight-file metadata/guidance review. Maintained serde_json Deserializer.end validates the complete input before message encoding/stdout; suffix garbage, second JSON value, NUL and invalid UTF-8 are rejected while trailing JSON whitespace remains valid. No protobuf runtime/wire/dependency/unsafe/exclusion or original assertion changes. Five original executable/test/script/fixture file hashes remain identical to initial packet; JSON docs and final evidence/target-isolation guidance were separately inspected. The prior staged wire slice is an independently reviewed published base, not reapproved or retired by this receipt.",
+  "independent_checks": {
+    "native": "Fresh scripts/json-reference.py replayed all14 complete native protobuf3.21.12 status/output rows; proof hashes match author fixture/schema/helper/binary. Twelve matching framing outcomes and two explicitly unsupported native grammar rows preserved.",
+    "rust": "New framing test passed in a fresh reviewer-owned target. Then all9 CLI tests independently passed in that isolated target, including the5 unchanged original C++ assertions. Test threads serialized for the full9 replay; no default-parallel/full83 coverage claim.",
+    "provenance": "Initial normal producer target replay failed because its executable came from a pre-JSON reviewer wire snapshot. Debug comp_dir and shared-target overwrite identified the source; independent clean target passes and author owned-package cleanup restores correct normal binary/all9 tests. Failing binary/logs retained; source/assertions were not changed. New guidance requires isolated reviewer targets and binary/source provenance, not mtime/Fresh alone."
+  },
+  "author_reported": "Full83 Rust/5snapshot/archive QA/downstream gate,1258/1258 owned lines1933/1945 regions; reported not independently recomputed.",
+  "limits": "Additional Rust format command; no original gz-msgs JSON option claimed. Unquoted keys/trailing comma, full JSON grammar, exact native diagnostics/exit codes and general formatting remain unqualified. Matching normal strict staged hook and hosted CI required; no MSG-02 packet acceptance."
+}

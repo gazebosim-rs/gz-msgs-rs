@@ -46,11 +46,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut input = Vec::new();
     std::io::stdin().read_to_end(&mut input)?;
     let output = match args[0].as_str() {
-        "encode-json" => DynamicMessage::deserialize(
-            descriptor,
-            &mut gz_msgs::serde_json::Deserializer::from_slice(&input),
-        )?
-        .encode_to_vec(),
+        "encode-json" => {
+            let mut json = gz_msgs::serde_json::Deserializer::from_slice(&input);
+            let message = DynamicMessage::deserialize(descriptor, &mut json)?;
+            json.end()?;
+            message.encode_to_vec()
+        }
         "decode-json" => {
             gz_msgs::serde_json::to_vec(&DynamicMessage::decode(descriptor, input.as_slice())?)?
         }

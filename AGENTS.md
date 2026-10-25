@@ -29,6 +29,10 @@ Generate types from canonical schemas. Preserve field numbers, packages, types, 
   checks semantics, assertions, exclusions, and performance evidence.
 - Record exact check commands/results and unrun work. Keep this repo's test ledger
   and integration contract current; do not silently break downstream consumers.
+- Reviewer builds of staged exports or other worktrees must use a separate,
+  reviewer-owned CARGO_TARGET_DIR. Never reuse the producer's Cargo target.
+  Verify binary provenance and fresh-source results; Cargo's Fresh message or a
+  newer binary mtime alone does not identify the source that was checked.
 
 Do not apply the monorepo's internal crate layout here. Do not edit the active Fuel
 rewrite or another repository without a coordinated assignment.

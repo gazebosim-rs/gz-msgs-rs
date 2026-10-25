@@ -1,0 +1,77 @@
+{
+  "native_protobuf": "3.21.12",
+  "matching": [
+    {
+      "input_hex": "7b7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "input_hex": "7b7d20",
+      "cpp_status": 0,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "input_hex": "7b7d2067617262616765",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "input_hex": "7b7d207b7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "input_hex": "7b7d00",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "input_hex": "7b22736563223a2237227dff",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "input_hex": "6e756c6c",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "input_hex": "7b22736563223a2231222c22736563223a2237227d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "0807"
+    },
+    {
+      "input_hex": "2f2f610a7b7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "input_hex": "2f2a612a2f7b7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "input_hex": "7b22736563223a202237227d200d0a09",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "0807"
+    },
+    {
+      "input_hex": "7b7d2074727565",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    }
+  ],
+  "native_permissive_grammar_pending": [
+    {
+      "input_hex": "7b7365633a377d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "0807"
+    },
+    {
+      "input_hex": "7b22736563223a372c7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "0807"
+    }
+  ]
+}

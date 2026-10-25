@@ -263,3 +263,57 @@ fn native_info_errors_continue_with_success_and_exact_diagnostics() {
     assert!(alias.status.success());
     assert_eq!(alias.stderr, b"Unable to create message of type[missing]\n");
 }
+
+#[test]
+fn json_requires_exactly_one_complete_document() {
+    let fixture: gz_msgs::serde_json::Value =
+        gz_msgs::serde_json::from_str(include_str!("fixtures/json-framing.json")).unwrap();
+    assert!(Command::new("python3")
+        .arg("scripts/native-peer.py")
+        .status()
+        .unwrap()
+        .success());
+    for (category, parity) in [
+        ("matching", true),
+        ("native_permissive_grammar_pending", false),
+    ] {
+        for row in fixture[category].as_array().unwrap() {
+            let unhex = |s: &str| {
+                s.as_bytes()
+                    .chunks_exact(2)
+                    .map(|p| u8::from_str_radix(std::str::from_utf8(p).unwrap(), 16).unwrap())
+                    .collect::<Vec<_>>()
+            };
+            let input = unhex(row["input_hex"].as_str().unwrap());
+            let mut child = Command::new("target/native/protobuf-peer")
+                .args(["target/native/messages.pb", "gz.msgs.Time", "encode-json"])
+                .stdin(Stdio::piped())
+                .stdout(Stdio::piped())
+                .stderr(Stdio::piped())
+                .spawn()
+                .unwrap();
+            child.stdin.take().unwrap().write_all(&input).unwrap();
+            let native = child.wait_with_output().unwrap();
+            assert_eq!(
+                native.status.code().unwrap() as i64,
+                row["cpp_status"].as_i64().unwrap()
+            );
+            assert_eq!(
+                native.stdout,
+                unhex(row["cpp_stdout_hex"].as_str().unwrap())
+            );
+            let actual = run(&["encode-json", "gz.msgs.Time"], &input);
+            if parity {
+                assert_eq!(
+                    actual.status.success(),
+                    native.status.success(),
+                    "{input:?}"
+                );
+                assert_eq!(actual.stdout, native.stdout, "{input:?}");
+            } else {
+                assert!(native.status.success());
+                assert!(!actual.status.success());
+            }
+        }
+    }
+}

@@ -849,3 +849,37 @@ Cargo patches. No independent full coverage rerun is claimed. The qualified
 [receipt](reviews/wire-compatibility.json) retains strict/reflection, allocation
 quota, recursion, map-normalization and lossy reencoding boundaries. Matching
 strict staged and hosted verification remain required before adoption.
+
+## JSON document framing
+
+`encode-json` now calls the maintained deserializer's end check before encoding
+the parsed message. The previous streaming parse accepted trailing garbage, a
+second value, NUL or invalid UTF-8 after a valid document. The native 14-row corpus
+and fresh helper replay compare 12 complete status/output observations; two
+native permissive-grammar examples remain explicitly unsupported. No runtime,
+dependency, original assertion mapping or coverage exclusion changes are made.
+The full local gate passes 83 Rust checks, five snapshot regressions, archive QA
+and clean downstream compilation: 1258/1258 owned lines and 1933/1945 regions.
+
+The independent review caught a stale normal-target executable that still
+accepted suffixes. Its debug compilation directory identified the earlier
+reviewer's wire snapshot; a shared producer target had overwritten the normal
+binary, and Cargo's timestamp-based freshness did not detect the source change.
+Fresh isolated reviewer and coverage targets passed. The stale binary, hashes,
+debug provenance and failed replay logs were retained locally. Cleaning only
+owned package outputs restored a working-source executable and all nine CLI tests
+passed, including the five unchanged C++ originals. No assertions or source were
+altered to hide the failure. Repository guidance now requires separate reviewer
+targets and source/binary provenance beyond a Fresh message or mtime.
+
+Independent /root/sdformat approved the bounded source correction and explicit
+grammar limits after its fresh-target test and native-proof replay. The matching
+qualified receipt, normal staged hook and hosted CI remain required; no full
+JSON/CLI grammar or MSG-02 acceptance is implied.
+
+The independent [receipt](reviews/json-framing.json) binds the corrected source,
+metadata and reviewer-target policy. Its fresh isolated target passes all nine
+CLI tests, including the unchanged C++ originals, and reproduces every native
+fixture status/output. It records the initial cache failure and its proven
+resolution; the author's full coverage gate is not misreported as an independent
+rerun. Source and assertions remain unchanged after review.
