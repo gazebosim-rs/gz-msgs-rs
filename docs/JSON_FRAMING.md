@@ -559,4 +559,38 @@ Rust checks and five original C++ CLI cases. An independent
 [review](reviews/json-float-unquoted-hex.json) reproduced the 2,166 native
 outcomes, found only the six declared leading-zero gaps in a separate 420-case
 differential, and approved the bounded source and assertions. Final metadata
-binding, normal hook and hosted qualification remain pending.
+binding and the normal protected hook passed on public
+`52895625cadb6a226b20579b3e83a8be0b6f9f12`; hosted run `40243304259`
+passed.
+
+## Leading-zero floating data values
+
+Pinned protobuf 3.21.12 `JsonStreamParser::ParseNumberHelper` scans a numeric
+token through digits, `.`, `e`, `E`, signs and lowercase `x`. A dot or `e`/`E`
+selects `safe_strtod` before the plain-integer leading-zero rejection. Thus
+`07.`, `007e2`, `-07.`, and `00.5` are accepted floating values, while bare
+`07`, malformed exponents and an unquoted leading `+` are rejected. This slice
+adapts only top-level `Double_V` and `Float_V` `data` values at scalar, array
+and repeated-key starts. Rust's decimal float parser preserves the native
+rounding on measured long-mantissa boundaries where the maintained JSON
+decoder differs by one ULP. The adapter uses the same reflected-value patch
+path as the preceding hexadecimal slice, retaining exact float bits and signed
+zero. Other descriptors and unrelated JSON positions are unchanged.
+
+The source-bound fixture has 252 status/full-wire rows, 180 native accepted and
+72 rejected. The six earlier native-only `07.` rows remain byte-identical
+historical observations and now require native parity. Six native-positive
+`Time.sec` forms remain explicit Rust-negative gaps. All 2,166 earlier native
+observations and 20 earlier fixture hashes remain exact; the combined native
+replay checks 2,424 outcomes. A 252-form quoted-input sweep found no behavior
+changes against the public parent; six quoted-array overflow gaps predate this
+unquoted slice. General JSON grammar, Time numeric parsing, diagnostics and MSG-02
+acceptance remain open. The first staged attempt exposed a stale Rust-negative
+expectation for the unchanged native-positive `Double_V 07.` row; the corrected
+test now requires exact wire parity. The source staged gate passed 120 Rust
+checks, five unchanged original C++ CLI cases and strict coverage. An
+independent [review](reviews/json-leading-zero.json) reproduced all 2,424
+native outcomes and verified the 252 quoted status/wire controls against
+separately built parent and candidate binaries. The corrected source and
+assertions are approved; the first candidate tree is superseded. The final
+staged gate, protected hook and hosted qualification remain pending.

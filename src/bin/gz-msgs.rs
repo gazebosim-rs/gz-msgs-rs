@@ -188,6 +188,65 @@ fn proto_unquoted_hex_float(value: &[u8], width: FloatWidth) -> Option<(usize, V
     proto_hex_float(token, width).map(|number| (end, number))
 }
 
+fn proto_leading_zero_float(value: &[u8], width: FloatWidth) -> Option<(usize, Value)> {
+    // Protobuf selects floating conversion when a numeric token has a dot or
+    // exponent. Only that path accepts leading zeroes; bare integers do not.
+    let start = usize::from(value.first() == Some(&b'-'));
+    if value.get(start) != Some(&b'0') || !value.get(start + 1).is_some_and(u8::is_ascii_digit) {
+        return None;
+    }
+    let mut end = start + 2;
+    while value.get(end).is_some_and(u8::is_ascii_digit) {
+        end += 1;
+    }
+    let mut dotted = false;
+    if value.get(end) == Some(&b'.') {
+        dotted = true;
+        end += 1;
+        while value.get(end).is_some_and(u8::is_ascii_digit) {
+            end += 1;
+        }
+    }
+    let mut has_exponent = false;
+    if matches!(value.get(end), Some(b'e' | b'E')) {
+        has_exponent = true;
+        end += 1;
+        if matches!(value.get(end), Some(b'+' | b'-')) {
+            end += 1;
+        }
+        let digits = end;
+        while value.get(end).is_some_and(u8::is_ascii_digit) {
+            end += 1;
+        }
+        if end == digits {
+            return None;
+        }
+    }
+    if !dotted && !has_exponent {
+        return None;
+    }
+    if value.get(end).is_some_and(|byte| {
+        !matches!(
+            *byte,
+            b',' | b'}' | b']' | b' ' | b'\t' | b'\r' | b'\n' | b'\x0b' | b'\x0c'
+        )
+    }) {
+        return None;
+    }
+    let token = std::str::from_utf8(&value[..end]).ok()?;
+    // The native double conversion and Rust's float parser agree at decimal
+    // rounding boundaries where serde_json can differ by one ULP.
+    let number: f64 = token.parse().ok()?;
+    if !number.is_finite() {
+        return None;
+    }
+    match width {
+        FloatWidth::Double => Some((end, Value::F64(number))),
+        FloatWidth::Single if (number as f32).is_finite() => Some((end, Value::F32(number as f32))),
+        FloatWidth::Single => None,
+    }
+}
+
 fn proto_uint64_array(
     value: &[u8],
 ) -> Result<Option<UInt64ArrayNumbers>, Box<dyn std::error::Error>> {
@@ -242,6 +301,7 @@ fn flatten_uint64_data(value: &[u8]) -> Result<Vec<Vec<u8>>, Box<dyn std::error:
 struct NormalizedProtoJson {
     bytes: Vec<u8>,
     patches: Vec<(usize, usize, Value)>,
+    scalar_patches: Vec<(usize, Value)>,
     array_ranges: Vec<(usize, usize)>,
     data_ranges: Vec<(usize, usize)>,
 }
@@ -266,6 +326,7 @@ fn normalize_proto_json(
     let mut float_array_depth = None;
     let mut float_item_index = 0;
     let mut float_patches = Vec::new();
+    let mut scalar_float_patches = Vec::new();
     let mut float_array_count = 0;
     let mut float_array_start = None;
     let mut float_array_ranges = Vec::new();
@@ -407,6 +468,20 @@ fn normalize_proto_json(
                 index += length;
                 continue;
             }
+            if let Some(width) = float_data {
+                if let Some((length, number)) = proto_leading_zero_float(&input[index..], width) {
+                    if float_array_depth == Some(frames.len()) {
+                        output.extend_from_slice(b"\"0\"");
+                        float_patches.push((float_array_count - 1, float_item_index, number));
+                    } else {
+                        output.extend_from_slice(b"\"0\"");
+                        scalar_float_patches.push((data_value_ranges.len(), number));
+                    }
+                    previous = Some(b'"');
+                    index += length;
+                    continue;
+                }
+            }
         }
         if uint64_data && data_value_start.is_some() && matches!(previous, Some(b':' | b'[' | b','))
         {
@@ -547,6 +622,7 @@ fn normalize_proto_json(
     NormalizedProtoJson {
         bytes: output,
         patches: float_patches,
+        scalar_patches: scalar_float_patches,
         array_ranges: float_array_ranges,
         data_ranges: data_value_ranges,
     }
@@ -631,6 +707,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             let NormalizedProtoJson {
                 bytes: normalized,
                 patches,
+                scalar_patches,
                 array_ranges,
                 data_ranges,
             } = normalize_proto_json(&input, float_data, repeated_data, uint64_data);
@@ -649,7 +726,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 // then let the decoder validate all other fields unchanged.
                 let mut combined = Vec::new();
                 let mut array_index = 0;
-                for (start, end) in data_ranges.iter().copied() {
+                for (ordinal, (start, end)) in data_ranges.iter().copied().enumerate() {
                     let value = normalized[start..end].trim_ascii();
                     if value.is_empty() {
                         return Err("empty repeated data value".into());
@@ -691,11 +768,17 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                         None
                     } else {
                         document.push(b'[');
-                        let number = float_data.and_then(|width| {
-                            gz_msgs::serde_json::from_slice::<String>(value)
-                                .ok()
-                                .and_then(|text| proto_hex_float(&text, width))
-                        });
+                        let number = scalar_patches
+                            .iter()
+                            .find(|(index, _)| *index == ordinal)
+                            .map(|(_, number)| number.clone())
+                            .or_else(|| {
+                                float_data.and_then(|width| {
+                                    gz_msgs::serde_json::from_slice::<String>(value)
+                                        .ok()
+                                        .and_then(|text| proto_hex_float(&text, width))
+                                })
+                            });
                         if number.is_some() {
                             document.extend_from_slice(b"\"0\"");
                         } else {

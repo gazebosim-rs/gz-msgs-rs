@@ -1972,5 +1972,32 @@ C++ CLI cases. An independent
 [review](reviews/json-float-unquoted-hex.json) reproduced all 2,166 native
 outcomes and approved the bounded source and assertions; its separate
 admission-disable mutant fails the exact native-positive row
-`float_unquoted_006`. Final metadata binding, the normal protected hook and
-hosted qualification remain pending. MSG-02 remains open.
+`float_unquoted_006`. Final metadata binding and the normal protected hook
+passed on public `52895625cadb6a226b20579b3e83a8be0b6f9f12`; hosted run
+`40243304259` passed. MSG-02 remains open.
+
+## Bounded leading-zero floating data controls
+
+Pinned protobuf 3.21.12 selects floating conversion on a dot or `e`/`E`
+before its plain-integer leading-zero check. The new `Double_V`/`Float_V`
+top-level `data` adapter admits only complete leading-zero floating tokens at
+scalar, array and duplicate starts. It parses decimal bits before reflected
+assignment: the maintained JSON decoder differed from native by one ULP on
+measured long mantissas. Bare `07`, malformed exponents, unquoted `+` and
+unrelated descriptors retain their rejection paths.
+
+The new fixture binds 252 status/full-wire rows, 180 native accepted and 72
+rejected. Six prior native-only `07.` observations are byte-identical and now
+require parity. Six native-positive `Time.sec` forms remain explicit gaps. All
+20 earlier fixture hashes and 2,166 native rows are retained; the pinned C++
+replay checks 2,424 total outcomes. A 252-form quoted-input preservation sweep
+found no behavior changes; six quoted-array overflow gaps predate this
+unquoted-token slice. The first staged attempt failed a stale Rust-negative
+historical `Double_V 07.` assertion; the corrected test now
+requires exact native status and wire. The source staged gate passed 120 Rust
+checks, five unchanged original C++ CLI cases and strict coverage. An
+independent [review](reviews/json-leading-zero.json) reproduced all 2,424
+native outcomes and confirmed the 252 quoted forms unchanged against the
+public parent. The corrected source and assertions are approved; the first
+candidate tree is superseded. Final staged gate, normal hook and hosted
+qualification remain pending. MSG-02 stays open.

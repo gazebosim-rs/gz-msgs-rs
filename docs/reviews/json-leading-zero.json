@@ -1,0 +1,27 @@
+{
+  "decision": "approved",
+  "reviewer": "/root/transport_fallback",
+  "author": "/root/msgs_review_fallback",
+  "proposal": "artifacts/json-leading-zero/proposal-v2.json",
+  "proposal_sha256": "f44c176b73a2aa244114d46c5eb67f4b9042eeb801577742150f8f08ec8b3745",
+  "base": "52895625cadb6a226b20579b3e83a8be0b6f9f12",
+  "staged_tree": "7327f44987b3748550e6ae44cb5381bc921bac3d",
+  "staged_diff_sha256": "b014929b965a70bd4c58bd36db2578df4027c73f250d4e2469908cd7811d5178",
+  "unstaged_diff_empty": true,
+  "files_sha256": {
+    "docs/EVIDENCE.md": "3596d4359b77ffb28f1ffef539ccb7aad3f588f271e1cd7d1750507cb1462284",
+    "docs/JSON_FRAMING.md": "dcffe7ac905ec20627356139bc05c1f59df89c77cf09a6399e445a96e27564c3",
+    "scripts/json-reference.py": "3234a348901c89abd2f650b5d6fbb387235a2b83a2df23d3f6e54b334f51ada9",
+    "src/bin/gz-msgs.rs": "5a165a84dd069c93c802911be276f6f4e7d38c32a520fef61c506d802849d90b",
+    "tests/cli.rs": "d39a669c628e291296aee8a2764e15358136d71b4f70edfc825bd354355fb661",
+    "tests/fixtures/json-leading-zero-float.json": "f87a8c01f50158907b47ccbf69ace1d5364ca4f9cf3da88840fab302f6993c2c"
+  },
+  "source_gate_sha256": "9adbf72ffbab5e7a043fb681fbaf424c02340041da7a453685e5a503fc345092",
+  "private_native_proof_sha256": "0e524a73d2706e7b0eeff2e258696bf6d49fe9753a5a7493edad5a7420c1a186",
+  "private_selected_log_sha256": "28777378e3e1e40d62056278dd78342081690c9a85c96cfaddc8c290a68763c4",
+  "private_candidate_binary_sha256": "7242fd9576e31b685abfc630ea931bfe5f0a6571370673825865d96f239dba05",
+  "private_parent_binary_sha256": "4e0266abf74768d5b21e10442630da3b731002d812519ec3590d0a7b90fee867",
+  "review": "Verified the exact staged tree, diff, six file hashes, no unstaged bytes and twenty preserved fixture hashes. A private raw staged export and exclusive target passed the new 252-row Rust test. Its independently rebuilt pinned C++ peer reproduced all 2424 status/full-wire rows with the author proof hash. Separately built public-parent and candidate binaries reproduced all 252 quoted preservation controls with unchanged status and wire. Source inspection confirms the new scalar patch is recorded only for unquoted leading-zero tokens by data-occurrence ordinal; quoted scalar paths remain on the existing decoder, and array patches use the existing reflected-number assignment. The source gate, native proof and one-line admission-removal mutant were inspected. The first c08 source tree and stale-assertion gate are superseded, not approval evidence.",
+  "scope": "Only Double_V and Float_V top-level unquoted leading-zero floating data values at scalar, array and duplicate starts are approved. Six Time native-positive/Rust-negative gaps, six preexisting quoted-array overflow gaps, other descriptors, general JSON grammar and full MSG-02 remain open.",
+  "remaining": "Metadata-only integration and final binding, exact final staged gate, normal protected hook, public commit and hosted qualification."
+}
