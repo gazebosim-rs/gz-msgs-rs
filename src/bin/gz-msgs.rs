@@ -10,13 +10,26 @@ mod legacy_cli;
 const HELP: &str = "gz-msgs --list|-l | --info|-i TYPE... | --version|-v | --help|-h\nCommands: list, info TYPE..., encode-json, decode-json, encode-text, decode-text\nFormat commands take one fully qualified type and use stdin/stdout.";
 
 // Protobuf's JSON parser accepts bare names, single quotes, trailing commas and
-// raw control bytes in strings.
+// raw control bytes and permissive escape pairs in strings.
 // Rewrite only those tokens; serde_json still validates the entire document.
 fn push_control_escape(output: &mut Vec<u8>, byte: u8) {
     const HEX: &[u8; 16] = b"0123456789abcdef";
     output.extend_from_slice(b"\\u00");
     output.push(HEX[usize::from(byte >> 4)]);
     output.push(HEX[usize::from(byte & 0x0f)]);
+}
+
+fn push_proto_escape(output: &mut Vec<u8>, escaped: u8) {
+    // Native protobuf consumes the slash on unknown pairs and recognizes \v.
+    match escaped {
+        b'\x00'..=b'\x1f' => push_control_escape(output, escaped),
+        b'v' => push_control_escape(output, b'\x0b'),
+        b'"' | b'\\' | b'/' | b'b' | b'f' | b'n' | b'r' | b't' | b'u' => {
+            output.extend_from_slice(&[b'\\', escaped]);
+        }
+        0x80..=0xff => output.extend_from_slice(&[b'\\', escaped]),
+        _ => output.push(escaped),
+    }
 }
 
 fn normalize_proto_json(input: &[u8]) -> Vec<u8> {
@@ -37,16 +50,18 @@ fn normalize_proto_json(input: &[u8]) -> Vec<u8> {
             index += 1;
             while index < input.len() {
                 let current = input[index];
+                if current == b'\\' && index + 1 < input.len() {
+                    push_proto_escape(&mut output, input[index + 1]);
+                    index += 2;
+                    continue;
+                }
                 if current < b' ' {
                     push_control_escape(&mut output, current);
                 } else {
                     output.push(current);
                 }
                 index += 1;
-                if current == b'\\' && index < input.len() {
-                    output.push(input[index]);
-                    index += 1;
-                } else if current == b'"' {
+                if current == b'"' {
                     break;
                 }
             }
@@ -66,7 +81,7 @@ fn normalize_proto_json(input: &[u8]) -> Vec<u8> {
                         if escaped == b'\'' {
                             output.push(b'\'');
                         } else {
-                            output.extend_from_slice(&[b'\\', escaped]);
+                            push_proto_escape(&mut output, escaped);
                         }
                     }
                     b'"' => output.extend_from_slice(br#"\""#),

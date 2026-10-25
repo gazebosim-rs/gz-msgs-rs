@@ -286,6 +286,8 @@ fn json_requires_exactly_one_complete_document() {
     );
     let raw_controls: gz_msgs::serde_json::Value =
         gz_msgs::serde_json::from_str(include_str!("fixtures/json-raw-controls.json")).unwrap();
+    let escaped_bytes: gz_msgs::serde_json::Value =
+        gz_msgs::serde_json::from_str(include_str!("fixtures/json-escaped-bytes.json")).unwrap();
     let raw_rows = raw_controls["matching"].as_array().unwrap();
     assert_eq!(raw_rows.len(), 64);
     assert_eq!(raw_controls["rejected"].as_array().unwrap().len(), 10);
@@ -307,6 +309,32 @@ fn json_requires_exactly_one_complete_document() {
         );
     }
     assert!(seen.into_iter().flatten().all(|value| value));
+    let escape_rows = escaped_bytes["matching"].as_array().unwrap();
+    assert_eq!(escape_rows.len(), 254);
+    let rejected_escapes = escaped_bytes["rejected"].as_array().unwrap();
+    assert_eq!(rejected_escapes.len(), 2);
+    let mut escaped_seen = [[false; 128]; 2];
+    for row in escape_rows.iter().chain(rejected_escapes) {
+        let quote = row["quote"].as_str().unwrap();
+        let (quote_index, delimiter) = match quote {
+            "double" => (0, b'"'),
+            "single" => (1, b'\''),
+            _ => panic!("unexpected quote {quote}"),
+        };
+        let byte = usize::try_from(row["escaped_byte"].as_u64().unwrap()).unwrap();
+        assert!(byte < 128 && !escaped_seen[quote_index][byte]);
+        escaped_seen[quote_index][byte] = true;
+        assert_eq!(row["type"], "gz.msgs.StringMsg");
+        assert_eq!(
+            row["input_hex"],
+            format!("7b2264617461223a{delimiter:02x}415c{byte:02x}42{delimiter:02x}7d")
+        );
+        assert_eq!(
+            row["cpp_status"].as_i64().unwrap() == 0,
+            byte != b'u' as usize
+        );
+    }
+    assert!(escaped_seen.into_iter().flatten().all(|value| value));
     assert!(Command::new("python3")
         .arg("scripts/native-peer.py")
         .status()
@@ -366,19 +394,19 @@ fn json_requires_exactly_one_complete_document() {
     for row in single_quotes["matching"].as_array().unwrap() {
         check(row, row["type"].as_str().unwrap(), true);
     }
-    for (index, row) in single_quotes["native_permissive_pending"]
+    for row in single_quotes["native_permissive_pending"]
         .as_array()
         .unwrap()
-        .iter()
-        .enumerate()
     {
-        // The second retained gap is the raw-newline case corrected here.
-        check(row, row["type"].as_str().unwrap(), index == 1);
+        check(row, row["type"].as_str().unwrap(), true);
     }
     for row in raw_rows
         .iter()
         .chain(raw_controls["rejected"].as_array().unwrap())
     {
+        check(row, "gz.msgs.StringMsg", true);
+    }
+    for row in escape_rows.iter().chain(rejected_escapes) {
         check(row, "gz.msgs.StringMsg", true);
     }
 }

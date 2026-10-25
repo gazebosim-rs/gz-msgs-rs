@@ -110,5 +110,28 @@ Unknown escapes and broader protobuf JSON grammar remain MSG-02 work.
 The [independent review](reviews/json-raw-controls.json) approved this bounded
 mapping after a private 140-row native/Rust replay, full Rust suite and an
 embedded-NUL branch-removal control. The exact six-file source gate passes all
-strict checks. Matching final metadata verification, the normal hook and hosted
-qualification remain required before publication.
+strict checks. Final metadata verification, the normal hook and exact hosted
+CI passed on public commit `dcdbb741630d38e21ba5271a50cae04be1aee6c4`.
+
+## Escaped ASCII bytes inside strings
+
+Pinned protobuf 3.21.12 accepts 254 of the 256 backslash-plus-ASCII-byte
+combinations inside double- and single-quoted `StringMsg.data`; an incomplete
+`\u` escape is rejected under each quote style. Native consumes the slash for
+unknown pairs, preserves standard JSON escapes, maps `\v` to vertical tab and
+preserves the byte after an escaped raw control. The adapter now performs only
+those lexical rewrites before the same dynamic decoder and complete-document
+check. Bytes outside strings, malformed Unicode escapes and invalid UTF-8 are
+not accepted by this change.
+
+The new source/binary-bound fixture asserts all 256 input combinations, native
+acceptance and complete binary output. The prior 140 native rows and five
+fixtures remain byte-for-byte unchanged. `scripts/json-reference.py` replays
+all 396 native rows. The two earlier explicit single-quote gaps now match:
+raw newline was corrected by the preceding slice and unknown `\x` by this one.
+Broader protobuf JSON grammar, diagnostics and MSG-02 acceptance remain open;
+the strict six-file source gate passed all checks. The
+[independent review](reviews/json-escaped-bytes.json) approved the bounded
+mapping after a private 396-row replay, full Rust suite and a separate
+unknown-escape branch-removal control. Final metadata binding, the normal
+hook and hosted CI remain required before publication.

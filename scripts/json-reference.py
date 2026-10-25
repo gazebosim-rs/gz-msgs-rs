@@ -12,14 +12,18 @@ grammar = json.loads((root / 'tests/fixtures/json-grammar.json').read_text())
 arrays = json.loads((root / 'tests/fixtures/json-array-grammar.json').read_text())
 single_quotes = json.loads((root / 'tests/fixtures/json-single-quote.json').read_text())
 raw_controls = json.loads((root / 'tests/fixtures/json-raw-controls.json').read_text())
+escaped_bytes = json.loads((root / 'tests/fixtures/json-escaped-bytes.json').read_text())
 version = subprocess.check_output(['pkg-config', '--modversion', 'protobuf'], text=True).strip()
 assert version == fixture['native_protobuf']
 assert version == grammar['native_protobuf']
 assert version == arrays['native_protobuf']
 assert version == single_quotes['native_protobuf']
 assert version == raw_controls['native_protobuf']
+assert version == escaped_bytes['native_protobuf']
 subprocess.run(['python3', str(root / 'scripts/native-peer.py')], check=True)
-rows = fixture['matching'] + fixture['native_permissive_grammar_pending'] + grammar['rows'] + arrays['rows'] + single_quotes['matching'] + single_quotes['native_permissive_pending'] + raw_controls['matching'] + raw_controls['rejected']
+assert hashlib.sha256((root / 'tests/protobuf_peer.cc').read_bytes()).hexdigest() == escaped_bytes['probe_source_sha256']
+assert hashlib.sha256((root / 'target/native/protobuf-peer').read_bytes()).hexdigest() == escaped_bytes['probe_binary_sha256']
+rows = fixture['matching'] + fixture['native_permissive_grammar_pending'] + grammar['rows'] + arrays['rows'] + single_quotes['matching'] + single_quotes['native_permissive_pending'] + raw_controls['matching'] + raw_controls['rejected'] + escaped_bytes['matching'] + escaped_bytes['rejected']
 for row in rows:
     result = subprocess.run([str(root / 'target/native/protobuf-peer'), str(root / 'target/native/messages.pb'), row.get('type', 'gz.msgs.Time'), 'encode-json'], input=bytes.fromhex(row['input_hex']), capture_output=True)
     assert result.returncode == row['cpp_status'] and result.stdout.hex() == row['cpp_stdout_hex'], row
@@ -28,7 +32,8 @@ proof = dict(protobuf_version=version, cases=len(rows), matching_cases=len(fixtu
              array_cases=len(arrays['rows']), fixture_sha256=sha(root / 'tests/fixtures/json-framing.json'), grammar_fixture_sha256=sha(root / 'tests/fixtures/json-grammar.json'), array_fixture_sha256=sha(root / 'tests/fixtures/json-array-grammar.json'), schema_manifest_sha256=sha(root / 'schemas/manifest.json'),
              single_quote_cases=len(single_quotes['matching']), single_quote_pending=len(single_quotes['native_permissive_pending']), single_quote_fixture_sha256=sha(root / 'tests/fixtures/json-single-quote.json'),
              raw_control_cases=len(raw_controls['matching']), raw_control_rejected=len(raw_controls['rejected']), raw_control_fixture_sha256=sha(root / 'tests/fixtures/json-raw-controls.json'),
+             escaped_byte_cases=len(escaped_bytes['matching']), escaped_byte_rejected=len(escaped_bytes['rejected']), escaped_byte_fixture_sha256=sha(root / 'tests/fixtures/json-escaped-bytes.json'),
              probe_source_sha256=sha(root / 'tests/protobuf_peer.cc'), probe_binary_sha256=sha(root / 'target/native/protobuf-peer'))
 args.output.parent.mkdir(parents=True, exist_ok=True)
 args.output.write_text(json.dumps(proof, indent=2) + '\n')
-print(f'{len(rows)} native JSON outcomes reproduced: 66 retained rows, {len(raw_controls["matching"])} raw-control matches and {len(raw_controls["rejected"])} rejected controls')
+print(f'{len(rows)} native JSON outcomes reproduced: 140 retained rows, {len(escaped_bytes["matching"])} escaped-byte matches and {len(escaped_bytes["rejected"])} rejected escapes')

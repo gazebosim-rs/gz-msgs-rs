@@ -1,0 +1,53 @@
+{
+  "decision": "approved",
+  "author": "/root/msgs_review_fallback",
+  "reviewer": "/root/transport_fallback",
+  "reviewed_at": "2026-10-25T14:40:13.680613+00:00",
+  "base": "dcdbb741630d38e21ba5271a50cae04be1aee6c4",
+  "tree": "900bd43bb67e5717f6ad576c10dc66a0e2ea7797",
+  "diff_sha256": "06d150b8094b47f908b82d50858b4deaf3e720f7860f48b106616cd5ea714911",
+  "files": {
+    "docs/EVIDENCE.md": "29725db3480250f72b633916eda6268a62a7f88d39628bb87be85d419f0cd71e",
+    "docs/JSON_FRAMING.md": "b14dce817f2854183f3d4cb79c7d7a57e87691a1b72256b8367aa86a768501d9",
+    "scripts/json-reference.py": "b315348431221e9473d918235201cc70c05ebdc1739fce5dbdb96fe90b9deaff",
+    "src/bin/gz-msgs.rs": "d24c77848ca970ee19a104b6cb2b174432eb77f2aba1bfa33799d1b325569d30",
+    "tests/cli.rs": "03c7e29e6b18db79f976b221b86d3c98994492f2d6d52c22bd146ff5c8524216",
+    "tests/fixtures/json-escaped-bytes.json": "88ab74e155140fddc76f2eace37e97e69ad0cf7e97b6419b96468c7dbc842c53"
+  },
+  "scope": "Bounded ASCII backslash-pair normalization inside single- and double-quoted protobuf JSON strings. Native 3.21.12 consumes the slash on unknown ASCII pairs, maps \\v to vertical tab, preserves standard JSON escapes, and rejects incomplete \\u. The existing full-document dynamic decoder still decides final acceptance.",
+  "native_reference": {
+    "proof_sha256": "93dc1dbbc37bd051845f197c868031dc5811958671034d67dd9e52d18194aa1a",
+    "rows": 396,
+    "retained_rows": 140,
+    "new_positive_rows": 254,
+    "new_rejected_rows": 2,
+    "retained_fixture_sha256": {
+      "tests/fixtures/json-framing.json": "2cccfedc630e3ca56dcff617d3bd8233287dfc17271fa1b477ef4fcbdaaa24f0",
+      "tests/fixtures/json-grammar.json": "4005df0bb062002197e712a70b2cf5fd56969819dd2ce85b06c5a6ab0e9fbf71",
+      "tests/fixtures/json-array-grammar.json": "c6b095ffbf102683dfe24b6b05c8fd5d3b2f5aab36578cc0d389ba19f38d97c3",
+      "tests/fixtures/json-single-quote.json": "9bca126b76edc3e1b8ead5ab968943b32268fedfff0acbfa95363a82cc80079f",
+      "tests/fixtures/json-raw-controls.json": "c65520e7656a2ef91d7104b2b9b8cd866f736078fd65825295d5f81bd68e5c9d"
+    },
+    "probe_source_sha256": "48835b169eb8e2e490729391718e223e8905632f2b04d2fa2facd50b2fbaf1f5",
+    "probe_binary_sha256": "16744aebb5531163dc87224e6d6cec56bba40d4d1a62035ae465342649ac540b",
+    "original_cli_tests": "Five unchanged original C++ CLI gtests pass in the exact author staged gate."
+  },
+  "independent_replay": {
+    "source": "Private raw Git export of base plus six frozen files; all six source hashes, five retained fixture hashes, tree and binary diff reproduced; exclusive Cargo target.",
+    "native": "Fresh pinned protobuf peer reproduced all 396 native statuses and complete output bytes, identical proof SHA.",
+    "selected": "json_requires_exactly_one_complete_document passed 1/0 on all 396 native/Rust comparisons and exhaustive two-by-128 input structure.",
+    "full_rust": "109 passed, zero failed or ignored; private formatting and Clippy passed.",
+    "negative": "Separate private source and target preserving only the unknown-escape slash fails selected test 0/1 at native-positive input_hex 7b2764617461273a27615c783632277d; reviewer log SHA256 9e3f7a64c5727266d78cee98ef2237f7c6af98cdd095b49204f7ba6e0e74d330.",
+    "out_of_scope_boundary": "Code keeps backslash-plus-0x80..0xff pairs byte-for-byte unchanged; no non-ASCII escape parity claim."
+  },
+  "gates": {
+    "author_exact_staged_log_sha256": "bbccc88a24d7dcaa923d0c7f7c796c5721e7665be9f843f878e75993ad08d139",
+    "status": "EXIT0 on exact frozen six-file tree; 109 Rust harness checks, five original C++ CLI tests, unchanged strict root/CLI/owned vendor thresholds and negative gate checks."
+  },
+  "findings": [],
+  "limits": [
+    "Only the 256 ASCII backslash-pair StringMsg.data rows and retained 140 rows are qualified. Bytes outside strings, non-ASCII pairs, malformed Unicode, invalid UTF-8, broader grammar and diagnostic text remain open.",
+    "Two earlier single-quote native-positive gaps now have matching Rust acceptance and full output bytes; the original fixture bytes remain unchanged.",
+    "Final metadata binding, normal strict commit hook, public publication and hosted CI remain required."
+  ]
+}

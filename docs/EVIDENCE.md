@@ -1515,5 +1515,32 @@ byte-for-byte, passed all 109 Rust checks and failed its own NUL branch-removal
 control. Six direct escaped-raw probes remain native-positive/Rust-negative,
 outside this unescaped-byte scope. The unchanged [semantic receipt](reviews/json-raw-controls.json)
 binds the six source/test/docs inputs and four retained fixture hashes. Final
-metadata binding, normal hook and hosted qualification remain required. General
-protobuf JSON grammar and MSG-02 completion remain open.
+metadata binding, normal hook and exact hosted CI passed on public commit
+`dcdbb741630d38e21ba5271a50cae04be1aee6c4`. General protobuf JSON grammar
+and MSG-02 completion remain open.
+
+## Bounded protobuf JSON escaped-byte candidate
+
+A pinned protobuf 3.21.12 source/binary-bound probe enumerates every ASCII
+byte following a backslash inside each quote style of `StringMsg.data`. Native
+accepts 254/256 combinations; only incomplete `\u` under each quote style is
+rejected. The bounded lexical adapter consumes unknown escape slashes, maps
+`\v` to vertical tab, rewrites escaped raw controls to equivalent JSON Unicode
+escapes, and preserves standard JSON escapes. The existing deserializer and
+complete-document check still decide field/value validity. The 140 prior native
+rows and all five old fixtures remain byte-for-byte unchanged.
+
+The new 256-row fixture asserts every input shape, native acceptance and full
+binary stdout. `scripts/json-reference.py` replays all 396 native rows and
+binds the protobuf version, schema, fixture and native peer hashes. The focused
+Rust/native comparison passes all 256 new rows and all 140 retained rows.
+Incomplete Unicode, invalid UTF-8, non-ASCII escape bytes and broader grammar
+remain outside this slice. The exact six-file staged gate exits zero with 109
+Rust harness checks, five original C++ CLI tests, formatting, Clippy, strict
+coverage and negative gates; its log SHA256 is
+`bbccc88a24d7dcaa923d0c7f7c796c5721e7665be9f843f878e75993ad08d139`.
+Independent /root/transport_fallback approved the frozen source/API/assertions
+after a private 396-row replay and a separate unknown-escape mutant failure.
+The unchanged [semantic receipt](reviews/json-escaped-bytes.json) binds the six
+reviewed inputs and five retained fixture hashes. Final metadata binding,
+normal hook and hosted qualification remain pending.
