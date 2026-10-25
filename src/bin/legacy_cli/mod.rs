@@ -4,6 +4,7 @@
 //! Native message-command policy over the maintained GNU argument lexer.
 use clap_lex::{ArgCursor, RawArgs};
 use std::ffi::OsStr;
+use std::num::IntErrorKind;
 
 type Error = (u8, String);
 fn error(code: u8, message: impl std::fmt::Display) -> Error {
@@ -11,6 +12,65 @@ fn error(code: u8, message: impl std::fmt::Display) -> Error {
         code,
         format!("{message}\nRun with --help for more information."),
     )
+}
+fn flag(value: &str, name: &str) -> Result<bool, Error> {
+    let invalid = || error(104, format!("Could not convert: --{name} = {value}"));
+    let lower = value.to_ascii_lowercase();
+    match lower.as_str() {
+        "" | "{}" | "true" | "on" | "yes" | "enable" | "t" | "y" | "+" => return Ok(true),
+        "false" | "off" | "no" | "disable" | "f" | "n" | "-" => return Ok(false),
+        _ => {}
+    }
+    let numeric = lower.trim_start_matches([' ', '\t', '\r', '\n', '\x0b', '\x0c']);
+    let (negative, digits) = match numeric.as_bytes().first() {
+        Some(b'-') => (true, &numeric[1..]),
+        Some(b'+') => (false, &numeric[1..]),
+        _ => (false, numeric),
+    };
+    let (radix, digits) = if digits.starts_with("0x")
+        && digits.as_bytes().get(2).is_some_and(u8::is_ascii_hexdigit)
+    {
+        (16, &digits[2..])
+    } else if digits.starts_with("0b")
+        && digits
+            .as_bytes()
+            .get(2)
+            .is_some_and(|b| (b'0'..=b'1').contains(b))
+    {
+        (2, &digits[2..])
+    } else if digits.starts_with('0') {
+        (8, digits)
+    } else {
+        (10, digits)
+    };
+    let end = digits
+        .bytes()
+        .take_while(|b| match radix {
+            16 => b.is_ascii_hexdigit(),
+            8 => (b'0'..=b'7').contains(b),
+            2 => (b'0'..=b'1').contains(b),
+            _ => b.is_ascii_digit(),
+        })
+        .count();
+    let signed = format!(
+        "{}{prefix}",
+        if negative { "-" } else { "" },
+        prefix = &digits[..end]
+    );
+    match i64::from_str_radix(&signed, radix) {
+        Ok(number) if end == digits.len() => Ok(number > 0),
+        // Native CLI11's bool conversion uses the original first character on
+        // strtoll overflow, even with leading whitespace or a trailing suffix.
+        Err(error)
+            if matches!(
+                error.kind(),
+                IntErrorKind::PosOverflow | IntErrorKind::NegOverflow
+            ) =>
+        {
+            Ok(!value.starts_with('-'))
+        }
+        _ => Err(invalid()),
+    }
 }
 fn info(
     value: Option<&OsStr>,
@@ -47,7 +107,8 @@ pub fn normalize(mut args: Vec<String>) -> Result<Vec<String>, Error> {
     }
     let raw = RawArgs::new(args);
     let mut cursor = raw.cursor();
-    let (mut help, mut version, mut list, mut collecting) = (false, false, false, false);
+    let (mut help, mut collecting) = (false, false);
+    let (mut version, mut list) = (None, None);
     let mut names = Vec::new();
     let mut extras = Vec::new();
     while let Some(arg) = raw.next(&mut cursor) {
@@ -79,12 +140,25 @@ pub fn normalize(mut args: Vec<String>) -> Result<Vec<String>, Error> {
                     info(value, &raw, &mut cursor, &mut names)?;
                     collecting = true;
                 }
-                "help" | "version" | "list" if value.is_some() => {
-                    return Err(error(1, "Legacy flag value assignments are not supported"))
-                }
                 "help" => help = true,
-                "version" => version = true,
-                "list" => list = true,
+                "version" => {
+                    version = Some(
+                        value
+                            .unwrap_or(OsStr::new("true"))
+                            .to_str()
+                            .expect("String arguments")
+                            .to_owned(),
+                    )
+                }
+                "list" => {
+                    list = Some(
+                        value
+                            .unwrap_or(OsStr::new("true"))
+                            .to_str()
+                            .expect("String arguments")
+                            .to_owned(),
+                    )
+                }
                 _ => extras.push(arg.to_value().expect("String arguments").to_owned()),
             }
         } else if let Some(mut shorts) = arg.to_short() {
@@ -96,8 +170,8 @@ pub fn normalize(mut args: Vec<String>) -> Result<Vec<String>, Error> {
                         collecting = true;
                     }
                     'h' => help = true,
-                    'v' => version = true,
-                    'l' => list = true,
+                    'v' => version = Some("true".to_owned()),
+                    'l' => list = Some("true".to_owned()),
                     other => {
                         let mut tail = format!("-{other}");
                         if let Some(value) = shorts.next_value_os() {
@@ -114,14 +188,21 @@ pub fn normalize(mut args: Vec<String>) -> Result<Vec<String>, Error> {
             extras.push(arg.to_value().expect("String arguments").to_owned());
         }
     }
-    // Native callbacks prioritize version, then help, before exclusions/extras.
-    if version {
-        return Ok(vec!["--version".into()]);
+    // Native callbacks convert version first, then list, before help/validation.
+    if let Some(value) = version {
+        if flag(&value, "version")? {
+            return Ok(vec!["--version".into()]);
+        }
     }
+    let listing = list
+        .as_ref()
+        .map(|v| flag(v, "list"))
+        .transpose()?
+        .unwrap_or(false);
     if help {
         return Ok(vec!["--help".into()]);
     }
-    if list && !names.is_empty() {
+    if list.is_some() && !names.is_empty() {
         return Err(error(108, "--list excludes --info"));
     }
     if !extras.is_empty() {
@@ -145,5 +226,5 @@ pub fn normalize(mut args: Vec<String>) -> Result<Vec<String>, Error> {
         names.insert(0, "--info".into());
         return Ok(names);
     }
-    Ok(vec![if list { "--list" } else { "--help" }.into()])
+    Ok(vec![if listing { "--list" } else { "--help" }.into()])
 }

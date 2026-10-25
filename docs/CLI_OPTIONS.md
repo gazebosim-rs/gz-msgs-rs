@@ -20,9 +20,10 @@ the unchanged original C++ tests. The native reference fixes argv[0] to gz-msgs 
 help's executable-name field is reproducible. Rust word aliases list/info share
 the same option policy and are checked against corresponding native flag forms.
 
-Fifteen separate observations retain explicit unsupported long flag assignments
-such as --list=false and --version=1. They return an unsupported error rather
-than qualifying native boolean/numeric flag conversion. Full CLI11 grammar,
+The fifteen formerly unsupported long flag assignments are retained verbatim
+and now compare against native outcomes. A further 171-case corpus qualifies
+boolean words, numeric radices/range behavior and callback precedence; see
+[flag values](CLI_FLAG_VALUES.md). Full CLI11 grammar,
 non-UTF-8 argv, every diagnostic/help formatting case and dynamic-descriptor CLI
 info remain unqualified. External descriptor installation/global-cache decisions,
 full message formatting and performance/release matrix work remain MSG-02 scope.
@@ -30,7 +31,7 @@ No original assertion mapping or broad packet is retired by this increment.
 
 `cargo test --locked --test cli native_legacy_option_combinations` exercises the
 new corpus plus Rust aliases. `python3 scripts/cli-options-reference.py` replays
-all 90 native observations and verifies the immutable source/binary/schema
+all 90 original native observations and verifies the immutable source/binary/schema
 identities, without rewriting golden data. The native environment is the existing
 pinned Linux build, not a newly reproduced reference image. All previous CLI,
 wire, conversion, coverage and staged gates remain mandatory.

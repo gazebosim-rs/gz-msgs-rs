@@ -927,3 +927,42 @@ argv[0] and source/binary/schema/corpus hashes. The [receipt](reviews/cli-option
 reviews the lexer-only dependency, native option policy and explicit unsupported
 assignments; no producer target was shared. Full coverage remains author evidence.
 Matching final metadata, strict staged and hosted verification remain required.
+
+## Native long flag assignments
+
+Long list/version values now follow the observed native boolean callback rules,
+including words, signed base-zero integers and range behavior. Help remains
+presence-based. Version conversion runs before list conversion, then help and
+validation; the final assignment wins and even a false list value retains its
+exclusion with info. Native overflow's original-first-character sign test and
+range-before-trailing-suffix behavior are explicitly preserved. Standard checked
+Rust integer conversion supplies the numeric result; no new dependency, native
+ABI or unsafe code is introduced.
+
+The original fifteen unsupported inputs remain verbatim, promoted to exact
+native outcomes instead of asserting an unsupported error. All 75 previous
+matching inputs remain. An additional 171 native observations cover the three
+flags, word/numeric forms, radix prefixes, signed boundaries, whitespace/suffix
+failures and callback precedence. Fresh native replay verifies both corpora and
+source/binary/schema identities. The pinned GNU binary accepts binary integer
+prefixes; that measured profile is retained rather than assuming an older C
+strtoll grammar. Existing Rust help/version and complete-list bindings remain.
+
+The full local gate passes 85 Rust checks, five snapshot regressions, archive QA
+and clean downstream compilation: 1448/1450 owned lines and 2275/2289 regions.
+The helper is 188/188 lines and 337/337 regions. No original C++ assertions or
+retained mapping are removed, and no coverage threshold/exclusion changes occur.
+Independent review and exact staged/hosted gates remain required. Full CLI11
+container/grammar, non-UTF-8 argv, external-descriptor info, formatting and wider
+MSG-02 qualification remain open.
+
+Independent /root/transport_recovery approved staged 2de39b13 after raw export
+and verification of all 636 blobs. Its fresh private target passes all eleven
+CLI tests plus five unchanged C++ cases. Both native corpora reproduce all 90
+and 171 observations with complete proof equality. It verified all original
+75 matching and fifteen formerly unsupported rows remain unchanged, the stronger
+list-stderr assertion, and checked radix/range conversion against installed CLI11
+source. The [receipt](reviews/cli-flag-values.json) distinguishes targeted review
+from the author's full coverage gate. No producer target was shared. Matching
+strict staged and hosted verification remain required; broader grammar remains
+open.

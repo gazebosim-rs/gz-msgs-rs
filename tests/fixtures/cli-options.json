@@ -768,7 +768,8 @@
       "stderr": "Unable to create message of type[gz.msgs.\u2603]\n"
     }
   ],
-  "explicit_unsupported_flag_assignments": [
+  "native_argv0": "gz-msgs",
+  "formerly_unsupported_flag_assignments": [
     {
       "args": [
         "--list=true"
@@ -911,6 +912,5 @@
       "stdout": "13.0.0~pre2\n",
       "stderr": ""
     }
-  ],
-  "native_argv0": "gz-msgs"
+  ]
 }
