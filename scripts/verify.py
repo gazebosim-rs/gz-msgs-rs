@@ -12,6 +12,9 @@ manifest = json.loads(pathlib.Path('schemas/manifest.json').read_text())
 assert {p['path'] for p in manifest['schemas']} == {str(p) for p in pathlib.Path('schemas').rglob('*.proto')}
 for item in manifest['schemas']:
     assert hashlib.sha256(pathlib.Path(item['path']).read_bytes()).hexdigest() == item['sha256'], item['path']
+wire = json.loads(pathlib.Path('tests/fixtures/wire-compatibility.json').read_text())
+assert wire['schema_manifest_sha256'] == hashlib.sha256(pathlib.Path('schemas/manifest.json').read_bytes()).hexdigest()
+assert wire['probe_source_sha256'] == hashlib.sha256(pathlib.Path('tests/wire_peer.cc').read_bytes()).hexdigest()
 info = json.loads(pathlib.Path('schemas/cli-info.manifest.json').read_text())
 assert hashlib.sha256(pathlib.Path('schemas/cli-info.json').read_bytes()).hexdigest() == info['corpus_sha256']
 assert hashlib.sha256(pathlib.Path('schemas/manifest.json').read_bytes()).hexdigest() == info['schema_manifest_sha256']

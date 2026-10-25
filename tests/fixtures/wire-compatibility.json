@@ -1,0 +1,1201 @@
+{
+  "schema_manifest_sha256": "4762e2101674aa2cdd3a6518f8a71a50acde2ce417452e46b44f42e9d02c1d39",
+  "native_protobuf": "3.21.12",
+  "rows": [
+    {
+      "id": "sec_wrong1_alone",
+      "type": "gz.msgs.Time",
+      "wire_hex": "090000000000000000",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "090000000000000000",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "sec_wrong1_after_known",
+      "type": "gz.msgs.Time",
+      "wire_hex": "0807090000000000000000",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "0807090000000000000000",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "0807",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "sec_wrong1_before_known",
+      "type": "gz.msgs.Time",
+      "wire_hex": "0900000000000000000807",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "0807090000000000000000",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "0807",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "sec_wrong2_alone",
+      "type": "gz.msgs.Time",
+      "wire_hex": "0a00",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "0a00",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "sec_wrong2_after_known",
+      "type": "gz.msgs.Time",
+      "wire_hex": "08070a00",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "08070a00",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "0807",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "sec_wrong2_before_known",
+      "type": "gz.msgs.Time",
+      "wire_hex": "0a000807",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "08070a00",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "0807",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "sec_wrong3_alone",
+      "type": "gz.msgs.Time",
+      "wire_hex": "0b0c",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "0b0c",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "sec_wrong3_after_known",
+      "type": "gz.msgs.Time",
+      "wire_hex": "08070b0c",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "08070b0c",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "0807",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "sec_wrong3_before_known",
+      "type": "gz.msgs.Time",
+      "wire_hex": "0b0c0807",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "08070b0c",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "0807",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "sec_wrong5_alone",
+      "type": "gz.msgs.Time",
+      "wire_hex": "0d00000000",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "0d00000000",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "sec_wrong5_after_known",
+      "type": "gz.msgs.Time",
+      "wire_hex": "08070d00000000",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "08070d00000000",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "0807",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "sec_wrong5_before_known",
+      "type": "gz.msgs.Time",
+      "wire_hex": "0d000000000807",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "08070d00000000",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "0807",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "sec_varint",
+      "type": "gz.msgs.Time",
+      "wire_hex": "0807",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "0807",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "0807",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "optional_header_wrong",
+      "type": "gz.msgs.Pose",
+      "wire_hex": "0801",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "0801",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "nested_stamp_wrong_sec",
+      "type": "gz.msgs.Pose",
+      "wire_hex": "0a0b0a09090000000000000000",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "0a0b0a09090000000000000000",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "0a020a00",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "nested_stamp_wrong_and_known",
+      "type": "gz.msgs.Pose",
+      "wire_hex": "0a0d0a0b0807090000000000000000",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "0a0d0a0b0807090000000000000000",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "0a040a020807",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "optional_present_empty_after_filter",
+      "type": "gz.msgs.Pose",
+      "wire_hex": "0a020801",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "0a020801",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "0a00",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "oneof_other_arm_wrong",
+      "type": "gz.msgs.Any",
+      "wire_hex": "20072d00000000",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "20072d00000000",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "2007",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "oneof_same_arm_wrong",
+      "type": "gz.msgs.Any",
+      "wire_hex": "20072500000000",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "20072500000000",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "2007",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "oneof_message_inner_wrong",
+      "type": "gz.msgs.Any",
+      "wire_hex": "5a09090000000000000000",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "5a09090000000000000000",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "5a00",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "oneof_present_zero",
+      "type": "gz.msgs.Any",
+      "wire_hex": "2000",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "2000",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "2000",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "google_any_inner_wrong",
+      "type": "gz.msgs.Parameter",
+      "wire_hex": "12020801",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "12020801",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "1200",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "google_any_bytes_opaque",
+      "type": "gz.msgs.Parameter",
+      "wire_hex": "12031201ff",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "12031201ff",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "12031201ff",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "map_wrong_key",
+      "type": "gz.msgs.Param",
+      "wire_hex": "12020807",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "12040a001200",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "12040a001200",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "map_wrong_value",
+      "type": "gz.msgs.Param",
+      "wire_hex": "12021007",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "12040a001200",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "12040a001200",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "map_wrong_value_after_known",
+      "type": "gz.msgs.Param",
+      "wire_hex": "12090a016b120220071007",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "12070a016b12022007",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "12070a016b12022007",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "map_inner_message_wrong",
+      "type": "gz.msgs.Param",
+      "wire_hex": "120a0a016b12052500000000",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "120a0a016b12052500000000",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "12050a016b1200",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "map_outer_wrong",
+      "type": "gz.msgs.Param",
+      "wire_hex": "1007",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "1007",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "double_unpacked",
+      "type": "gz.msgs.Double_V",
+      "wire_hex": "090000000000000000",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "0a080000000000000000",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "0a080000000000000000",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "double_packed",
+      "type": "gz.msgs.Double_V",
+      "wire_hex": "0a080000000000000000",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "0a080000000000000000",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "0a080000000000000000",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "double_wrong_varint",
+      "type": "gz.msgs.Double_V",
+      "wire_hex": "0807",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "0807",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "double_wrong_fixed32",
+      "type": "gz.msgs.Double_V",
+      "wire_hex": "0d00000000",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "0d00000000",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "double_packed_truncated",
+      "type": "gz.msgs.Double_V",
+      "wire_hex": "0a0100",
+      "cpp_generated": {
+        "accepted": false,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 6
+      },
+      "cpp_known": {
+        "accepted": false,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 6
+      }
+    },
+    {
+      "id": "unknown_group",
+      "type": "gz.msgs.Time",
+      "wire_hex": "1b08071c",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "1b08071c",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "wrong_group_nested",
+      "type": "gz.msgs.Time",
+      "wire_hex": "0b08070c",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "0b08070c",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "tag0",
+      "type": "gz.msgs.Time",
+      "wire_hex": "00",
+      "cpp_generated": {
+        "accepted": false,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 6
+      },
+      "cpp_known": {
+        "accepted": false,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 6
+      }
+    },
+    {
+      "id": "badwire6",
+      "type": "gz.msgs.Time",
+      "wire_hex": "0e",
+      "cpp_generated": {
+        "accepted": false,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 6
+      },
+      "cpp_known": {
+        "accepted": false,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 6
+      }
+    },
+    {
+      "id": "badwire7",
+      "type": "gz.msgs.Time",
+      "wire_hex": "0f",
+      "cpp_generated": {
+        "accepted": false,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 6
+      },
+      "cpp_known": {
+        "accepted": false,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 6
+      }
+    },
+    {
+      "id": "stray_endgroup",
+      "type": "gz.msgs.Time",
+      "wire_hex": "0c",
+      "cpp_generated": {
+        "accepted": false,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 6
+      },
+      "cpp_known": {
+        "accepted": false,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 6
+      }
+    },
+    {
+      "id": "unclosed_group",
+      "type": "gz.msgs.Time",
+      "wire_hex": "0b",
+      "cpp_generated": {
+        "accepted": false,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 6
+      },
+      "cpp_known": {
+        "accepted": false,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 6
+      }
+    },
+    {
+      "id": "mismatched_endgroup",
+      "type": "gz.msgs.Time",
+      "wire_hex": "0b14",
+      "cpp_generated": {
+        "accepted": false,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 6
+      },
+      "cpp_known": {
+        "accepted": false,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 6
+      }
+    },
+    {
+      "id": "truncated_varint",
+      "type": "gz.msgs.Time",
+      "wire_hex": "0880",
+      "cpp_generated": {
+        "accepted": false,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 6
+      },
+      "cpp_known": {
+        "accepted": false,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 6
+      }
+    },
+    {
+      "id": "overflow_varint",
+      "type": "gz.msgs.Time",
+      "wire_hex": "08ffffffffffffffffffff01",
+      "cpp_generated": {
+        "accepted": false,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 6
+      },
+      "cpp_known": {
+        "accepted": false,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 6
+      }
+    },
+    {
+      "id": "truncated_fixed64",
+      "type": "gz.msgs.Time",
+      "wire_hex": "0900",
+      "cpp_generated": {
+        "accepted": false,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 6
+      },
+      "cpp_known": {
+        "accepted": false,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 6
+      }
+    },
+    {
+      "id": "truncated_length",
+      "type": "gz.msgs.Time",
+      "wire_hex": "0a0200",
+      "cpp_generated": {
+        "accepted": false,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 6
+      },
+      "cpp_known": {
+        "accepted": false,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 6
+      }
+    },
+    {
+      "id": "invalid_utf8",
+      "type": "gz.msgs.Pose",
+      "wire_hex": "1201ff",
+      "cpp_generated": {
+        "accepted": false,
+        "output_hex": "",
+        "stderr": "[libprotobuf ERROR google/protobuf/wire_format_lite.cc:618] String field 'gz.msgs.Pose.name' contains invalid UTF-8 data when parsing a protocol buffer. Use the 'bytes' type if you intend to send raw bytes. \n",
+        "exit": 6
+      },
+      "cpp_known": {
+        "accepted": false,
+        "output_hex": "",
+        "stderr": "[libprotobuf ERROR google/protobuf/wire_format_lite.cc:618] String field 'gz.msgs.Pose.name' contains invalid UTF-8 data when parsing a protocol buffer. Use the 'bytes' type if you intend to send raw bytes. \n",
+        "exit": 6
+      }
+    },
+    {
+      "id": "oneof_wrong_then_valid_other",
+      "type": "gz.msgs.Any",
+      "wire_hex": "25000000002a026f6b",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "2a026f6b2500000000",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "2a026f6b",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "oneof_valid_message_merge",
+      "type": "gz.msgs.Any",
+      "wire_hex": "5a0208075a021003",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "5a0408071003",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "5a0408071003",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "oneof_wrong_after_message",
+      "type": "gz.msgs.Any",
+      "wire_hex": "5a0208075801",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "5a0208075801",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "5a020807",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "map_duplicate_value_messages",
+      "type": "gz.msgs.Param",
+      "wire_hex": "120c0a016b1202200712032a0178",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "12080a016b12032a0178",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "12080a016b12032a0178",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "map_duplicate_entries",
+      "type": "gz.msgs.Param",
+      "wire_hex": "12070a016b1202200712080a016b12032a0178",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "12080a016b12032a0178",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "12080a016b12032a0178",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "nested_header_duplicate_merge",
+      "type": "gz.msgs.Pose",
+      "wire_hex": "0a040a0208070a0d0a0b1003090000000000000000",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "0a0f0a0d08071003090000000000000000",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "0a060a0408071003",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "recursive_message_98",
+      "type": "gz.msgs.Param",
+      "wire_hex": "1ae6011ae3011ae0011add011ada011ad7011ad4011ad1011ace011acb011ac8011ac5011ac2011abf011abc011ab9011ab6011ab3011ab0011aad011aaa011aa7011aa4011aa1011a9e011a9b011a98011a95011a92011a8f011a8c011a89011a86011a83011a80011a7e1a7c1a7a1a781a761a741a721a701a6e1a6c1a6a1a681a661a641a621a601a5e1a5c1a5a1a581a561a541a521a501a4e1a4c1a4a1a481a461a441a421a401a3e1a3c1a3a1a381a361a341a321a301a2e1a2c1a2a1a281a261a241a221a201a1e1a1c1a1a1a181a161a141a121a101a0e1a0c1a0a1a081a061a041a020801",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "1ae6011ae3011ae0011add011ada011ad7011ad4011ad1011ace011acb011ac8011ac5011ac2011abf011abc011ab9011ab6011ab3011ab0011aad011aaa011aa7011aa4011aa1011a9e011a9b011a98011a95011a92011a8f011a8c011a89011a86011a83011a80011a7e1a7c1a7a1a781a761a741a721a701a6e1a6c1a6a1a681a661a641a621a601a5e1a5c1a5a1a581a561a541a521a501a4e1a4c1a4a1a481a461a441a421a401a3e1a3c1a3a1a381a361a341a321a301a2e1a2c1a2a1a281a261a241a221a201a1e1a1c1a1a1a181a161a141a121a101a0e1a0c1a0a1a081a061a041a020801",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "1ae3011ae0011add011ada011ad7011ad4011ad1011ace011acb011ac8011ac5011ac2011abf011abc011ab9011ab6011ab3011ab0011aad011aaa011aa7011aa4011aa1011a9e011a9b011a98011a95011a92011a8f011a8c011a89011a86011a83011a80011a7e1a7c1a7a1a781a761a741a721a701a6e1a6c1a6a1a681a661a641a621a601a5e1a5c1a5a1a581a561a541a521a501a4e1a4c1a4a1a481a461a441a421a401a3e1a3c1a3a1a381a361a341a321a301a2e1a2c1a2a1a281a261a241a221a201a1e1a1c1a1a1a181a161a141a121a101a0e1a0c1a0a1a081a061a041a021a00",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "recursive_group_98",
+      "type": "gz.msgs.Time",
+      "wire_hex": "1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "recursive_message_99",
+      "type": "gz.msgs.Param",
+      "wire_hex": "1ae9011ae6011ae3011ae0011add011ada011ad7011ad4011ad1011ace011acb011ac8011ac5011ac2011abf011abc011ab9011ab6011ab3011ab0011aad011aaa011aa7011aa4011aa1011a9e011a9b011a98011a95011a92011a8f011a8c011a89011a86011a83011a80011a7e1a7c1a7a1a781a761a741a721a701a6e1a6c1a6a1a681a661a641a621a601a5e1a5c1a5a1a581a561a541a521a501a4e1a4c1a4a1a481a461a441a421a401a3e1a3c1a3a1a381a361a341a321a301a2e1a2c1a2a1a281a261a241a221a201a1e1a1c1a1a1a181a161a141a121a101a0e1a0c1a0a1a081a061a041a020801",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "1ae9011ae6011ae3011ae0011add011ada011ad7011ad4011ad1011ace011acb011ac8011ac5011ac2011abf011abc011ab9011ab6011ab3011ab0011aad011aaa011aa7011aa4011aa1011a9e011a9b011a98011a95011a92011a8f011a8c011a89011a86011a83011a80011a7e1a7c1a7a1a781a761a741a721a701a6e1a6c1a6a1a681a661a641a621a601a5e1a5c1a5a1a581a561a541a521a501a4e1a4c1a4a1a481a461a441a421a401a3e1a3c1a3a1a381a361a341a321a301a2e1a2c1a2a1a281a261a241a221a201a1e1a1c1a1a1a181a161a141a121a101a0e1a0c1a0a1a081a061a041a020801",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "1ae6011ae3011ae0011add011ada011ad7011ad4011ad1011ace011acb011ac8011ac5011ac2011abf011abc011ab9011ab6011ab3011ab0011aad011aaa011aa7011aa4011aa1011a9e011a9b011a98011a95011a92011a8f011a8c011a89011a86011a83011a80011a7e1a7c1a7a1a781a761a741a721a701a6e1a6c1a6a1a681a661a641a621a601a5e1a5c1a5a1a581a561a541a521a501a4e1a4c1a4a1a481a461a441a421a401a3e1a3c1a3a1a381a361a341a321a301a2e1a2c1a2a1a281a261a241a221a201a1e1a1c1a1a1a181a161a141a121a101a0e1a0c1a0a1a081a061a041a021a00",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "recursive_group_99",
+      "type": "gz.msgs.Time",
+      "wire_hex": "1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "recursive_message_100",
+      "type": "gz.msgs.Param",
+      "wire_hex": "1aec011ae9011ae6011ae3011ae0011add011ada011ad7011ad4011ad1011ace011acb011ac8011ac5011ac2011abf011abc011ab9011ab6011ab3011ab0011aad011aaa011aa7011aa4011aa1011a9e011a9b011a98011a95011a92011a8f011a8c011a89011a86011a83011a80011a7e1a7c1a7a1a781a761a741a721a701a6e1a6c1a6a1a681a661a641a621a601a5e1a5c1a5a1a581a561a541a521a501a4e1a4c1a4a1a481a461a441a421a401a3e1a3c1a3a1a381a361a341a321a301a2e1a2c1a2a1a281a261a241a221a201a1e1a1c1a1a1a181a161a141a121a101a0e1a0c1a0a1a081a061a041a020801",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "1aec011ae9011ae6011ae3011ae0011add011ada011ad7011ad4011ad1011ace011acb011ac8011ac5011ac2011abf011abc011ab9011ab6011ab3011ab0011aad011aaa011aa7011aa4011aa1011a9e011a9b011a98011a95011a92011a8f011a8c011a89011a86011a83011a80011a7e1a7c1a7a1a781a761a741a721a701a6e1a6c1a6a1a681a661a641a621a601a5e1a5c1a5a1a581a561a541a521a501a4e1a4c1a4a1a481a461a441a421a401a3e1a3c1a3a1a381a361a341a321a301a2e1a2c1a2a1a281a261a241a221a201a1e1a1c1a1a1a181a161a141a121a101a0e1a0c1a0a1a081a061a041a020801",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "1ae9011ae6011ae3011ae0011add011ada011ad7011ad4011ad1011ace011acb011ac8011ac5011ac2011abf011abc011ab9011ab6011ab3011ab0011aad011aaa011aa7011aa4011aa1011a9e011a9b011a98011a95011a92011a8f011a8c011a89011a86011a83011a80011a7e1a7c1a7a1a781a761a741a721a701a6e1a6c1a6a1a681a661a641a621a601a5e1a5c1a5a1a581a561a541a521a501a4e1a4c1a4a1a481a461a441a421a401a3e1a3c1a3a1a381a361a341a321a301a2e1a2c1a2a1a281a261a241a221a201a1e1a1c1a1a1a181a161a141a121a101a0e1a0c1a0a1a081a061a041a021a00",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "recursive_group_100",
+      "type": "gz.msgs.Time",
+      "wire_hex": "1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "recursive_message_101",
+      "type": "gz.msgs.Param",
+      "wire_hex": "1aef011aec011ae9011ae6011ae3011ae0011add011ada011ad7011ad4011ad1011ace011acb011ac8011ac5011ac2011abf011abc011ab9011ab6011ab3011ab0011aad011aaa011aa7011aa4011aa1011a9e011a9b011a98011a95011a92011a8f011a8c011a89011a86011a83011a80011a7e1a7c1a7a1a781a761a741a721a701a6e1a6c1a6a1a681a661a641a621a601a5e1a5c1a5a1a581a561a541a521a501a4e1a4c1a4a1a481a461a441a421a401a3e1a3c1a3a1a381a361a341a321a301a2e1a2c1a2a1a281a261a241a221a201a1e1a1c1a1a1a181a161a141a121a101a0e1a0c1a0a1a081a061a041a020801",
+      "cpp_generated": {
+        "accepted": false,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 6
+      },
+      "cpp_known": {
+        "accepted": false,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 6
+      }
+    },
+    {
+      "id": "recursive_group_101",
+      "type": "gz.msgs.Time",
+      "wire_hex": "1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c",
+      "cpp_generated": {
+        "accepted": false,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 6
+      },
+      "cpp_known": {
+        "accepted": false,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 6
+      }
+    },
+    {
+      "id": "combined_recursion_110",
+      "type": "gz.msgs.Param",
+      "wire_hex": "1aed011aea011ae7011ae4011ae1011ade011adb011ad8011ad5011ad2011acf011acc011ac9011ac6011ac3011ac0011abd011aba011ab7011ab401232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323242424242424242424242424242424242424242424242424242424242424242424242424242424242424242424242424242424242424242424242424242424242424242424242424242424242424242424242424242424242424",
+      "cpp_generated": {
+        "accepted": false,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 6
+      },
+      "cpp_known": {
+        "accepted": false,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 6
+      }
+    },
+    {
+      "id": "packed_and_unpacked_after_wrong",
+      "type": "gz.msgs.Double_V",
+      "wire_hex": "08070a080000000000000000090000000000000000",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "0a10000000000000000000000000000000000807",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "0a1000000000000000000000000000000000",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "opaque_any_bytes_after_wrong",
+      "type": "gz.msgs.Parameter",
+      "wire_hex": "120508011201ff",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "12051201ff0801",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "12031201ff",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "unknown_scalar_after_wrong",
+      "type": "gz.msgs.Time",
+      "wire_hex": "0900000000000000001807",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "0900000000000000001807",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "unknown_length_after_wrong",
+      "type": "gz.msgs.Time",
+      "wire_hex": "0900000000000000001a01ff",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "0900000000000000001a01ff",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "unknown_fixed32_after_wrong",
+      "type": "gz.msgs.Time",
+      "wire_hex": "0900000000000000001d00000000",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "0900000000000000001d00000000",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "unknown_fixed64_after_wrong",
+      "type": "gz.msgs.Time",
+      "wire_hex": "090000000000000000190000000000000000",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "090000000000000000190000000000000000",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "unknown_group_100_after_wrong",
+      "type": "gz.msgs.Time",
+      "wire_hex": "0900000000000000001b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c",
+      "cpp_generated": {
+        "accepted": true,
+        "output_hex": "0900000000000000001b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c",
+        "stderr": "",
+        "exit": 0
+      },
+      "cpp_known": {
+        "accepted": true,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 0
+      }
+    },
+    {
+      "id": "truncated_known_message",
+      "type": "gz.msgs.Pose",
+      "wire_hex": "0a0200",
+      "cpp_generated": {
+        "accepted": false,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 6
+      },
+      "cpp_known": {
+        "accepted": false,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 6
+      }
+    },
+    {
+      "id": "truncated_known_message_length",
+      "type": "gz.msgs.Pose",
+      "wire_hex": "0a80",
+      "cpp_generated": {
+        "accepted": false,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 6
+      },
+      "cpp_known": {
+        "accepted": false,
+        "output_hex": "",
+        "stderr": "",
+        "exit": 6
+      }
+    }
+  ],
+  "upstream_commit": "89c0c3d1474f545cb889335daf930bfdab6ab852",
+  "probe_source_sha256": "af60c4881ec931ffaf0cc7ffdbbd680c94212d40772afad5d5e8f09a13691ae0",
+  "probe_binary_sha256": "4abc417aa641548ead158229b7bb6ce07aa525e9b8187d72969d6e7d882abd74",
+  "native_library_sha256": "0504be34705191623dce9654e7b659663d87cdb92a3b99c83db13a7f60f13659",
+  "native_scope": "Installed pinned gz-msgs generated messages and libprotobuf3.21.12; canonical generated C++ rebuilt in tests independently checks every complete output/status. Rejected diagnostic text not compared."
+}

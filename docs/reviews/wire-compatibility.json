@@ -1,0 +1,24 @@
+{
+  "decision": "approved",
+  "author": "/root/msgs",
+  "reviewer": "/root/transport_recovery",
+  "date": "2026-10-25T01:31:22.081718+00:00",
+  "staged_diff_sha256": "c0bec749f864f84d03867d32bebc47384c10ce4a143cf38d100ef3badf1ed003",
+  "verified_staged_blobs": 623,
+  "scope": "Independent bounded native-compatible envelope source/API/fixture review. Exact staged blobs exported and hash-verified, excluding separate unstaged JSON work. Generated sealed CanonicalMessage bindings tie each canonical type to bundled descriptors. Ordinary typed decode remains fast path; fallback filters only a temporary descriptor-bound known-field view, recursing through known messages/maps and treating wrong-wire occurrences as unknown without changing presence/oneof merge semantics. Maintained prost framing primitives plus a shared depth100 budget cover nested known messages and unknown groups. Raw input bytes remain exact. No vendor/runtime/dependency/exclusion or threshold changes.",
+  "independent_checks": "Both new Rust wire integration tests pass from exact staged snapshot. Freshly generated C++ complete outputs/statuses match every one of70 fixtures for generated and known-only views; 53 accepted/17 rejected flags match actual exit statuses. Independently rebuilt installed native oracle matches all70 generated/known outputs/statuses, verifies all216 pinned schema blobs and proof equals author proof including fixture/native-library/probe/schema identities. Strict direct-prost/envelope/reflection rejection and nested descriptor bindings are independently checked. Clean downstream consumer from staged snapshot passes signed zero, standard Any, nested unknown forwarding and compatible decoding without Cargo patches.",
+  "assertion_scope": "Known-wire fields, optional empty presence, wrong-wire fields before/after valid values, nested messages, standard Any opaque value bytes, repeated packed/unpacked scalars, oneofs/merge order, maps/defaults/duplicates, invalid UTF8/framing and shared recursion100/101 boundaries reviewed against native observations. Native default-map encoding differences are compared as typed values, while original raw forwarding stays byte-exact. No new original assertion retirement.",
+  "author_gate": {
+    "rust_tests": 82,
+    "lines": [
+      1258,
+      1258
+    ],
+    "regions": [
+      1925,
+      1937
+    ],
+    "qualification": "Author full Rust/snapshot/archive QA gate and coverage inspected/reported, not independently recomputed; owned build.rs and wire.rs remain included."
+  },
+  "limits": "Finite Linux/libprotobuf3.21.12 corpus is not proof of every malformed-parser behavior or completed MSG02. Direct prost, strict WireMessage and reflection remain explicitly stricter at this boundary; reflective storage cannot preserve known and wrong-wire unknown values sharing a tag. External descriptors/extensions/proto2 groups are outside sealed corpus. Caller size/allocation limits still apply, fallback allocates and no performance gain is claimed. Consumers must explicitly opt in after reviewed publication; clone/reencode of the typed view is lossy and not a relay guarantee. Final metadata binding, matching strict staged gate and hosted CI remain required."
+}

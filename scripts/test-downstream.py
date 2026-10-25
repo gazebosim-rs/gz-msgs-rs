@@ -26,8 +26,13 @@ fn main() {
     let unknown=[34,5,8,7,160,6,123];
     let wire=gz_msgs::WireMessage::<gz_msgs::Clock>::decode(&unknown).unwrap();
     assert_eq!(wire.bytes(),unknown);
+    let mismatched=[18,5,8,1,18,1,255];
+    assert!(gz_msgs::parameter::Parameter::decode(mismatched.as_slice()).is_err());
+    let compatible=gz_msgs::WireMessage::<gz_msgs::parameter::Parameter>::decode_compatible(&mismatched).unwrap();
+    assert_eq!(compatible.bytes(),mismatched);
+    assert_eq!(compatible.value().value,Some(prost_types::Any {type_url:String::new(),value:vec![255]}));
 }
 ''')
     env=os.environ.copy();env['CARGO_TARGET_DIR']=str(root/'target/downstream')
     subprocess.run([env.get('CARGO','cargo'),'run','--offline','--manifest-path',str(consumer/'Cargo.toml')],env=env,check=True)
-print('Clean downstream consumer: signed zero, standard Any traits and nested unknown forwarding pass without Cargo patches')
+print('Clean downstream consumer: signed zero, standard Any traits, nested unknown forwarding and compatible decoding pass without Cargo patches')

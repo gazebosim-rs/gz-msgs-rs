@@ -804,3 +804,48 @@ foreign repository. Authentic archive bytes remain exactly2a722e... . The prior
 full source/install review remains applicable; no repeated fetch/full coverage
 claim is made by this delta review. The [receipt](reviews/source-package-context.json)
 and full local80-check gate pass precede the new mandatory staged hook.
+
+## Known-tag/wrong-wire qualification
+
+Native probing after source-package publication exposed a boundary absent from
+the original MSG-01 interoperability corpus and all83 original assertion cases:
+libprotobuf3.21.12 accepts known tags with unexpected wire types as unknowns;
+generated prost and DynamicMessage reject them. Earlier acceptance is bounded
+evidence, not complete wire equivalence. No original mapping is reclassified or
+weakened, and MSG-02 remains open.
+
+The new compatible WireMessage path retains the normal typed success path and
+builds a temporary descriptor-bound known-field view only after an error. A
+sealed generated trait binds canonical types and schemas. Original bytes remain
+verbatim on both paths; nested Any fields/maps/oneofs are visited with a shared
+100-level native recursion budget and byte payloads remain opaque. No vendor,
+dependency or coverage exclusion changes are involved. Direct prost, strict
+WireMessage::decode and general reflection remain explicitly stricter.
+
+All70 native observations agree between actual installed generated C++ and
+descriptor-based C++ acceptance. The freshly compiled canonical generated C++
+test replays each complete status/output, including native known-only outputs.
+The compatible Rust values match those decoded native known-only values across
+presence, duplicate merge/order, maps/defaults, scalar packing, nested Any,
+malformed framing/UTF-8 and recursion-limit cases. Rejected diagnostic formatting
+is unqualified. The native regeneration script verifies all216 schema blobs
+against pinned Git, records probe/library/schema/corpus hashes, and writes proof
+without rewriting the checked-in fixture. All70 installed-parser outputs/statuses
+were freshly reproduced. The clean downstream standard-Any consumer now also
+checks compatible decoding without any Cargo patches.
+
+Working coverage passes:1258/1258 owned Rust lines and1925/1937 regions; wire.rs
+88/88 lines157/158 regions; measured build.rs106/106 lines148/148 regions. The
+normal full and staged gates, independent review and hosted CI remain required.
+Consumers must opt into this API after publication before claiming the newly
+qualified boundary. No complete parser/runtime/platform or MSG-02 claim is made.
+
+/root/transport_recovery approved exact staged implementation c0bec749 after
+independently exporting and validating all 623 raw Git blobs. Both new Rust tests
+and all 70 fresh generated C++ outputs/statuses pass from that snapshot, excluding
+the unstaged JSON follow-up. Its installed-native proof equals the author's proof,
+including all 216 schema checks; the clean downstream consumer also passes without
+Cargo patches. No independent full coverage rerun is claimed. The qualified
+[receipt](reviews/wire-compatibility.json) retains strict/reflection, allocation
+quota, recursion, map-normalization and lossy reencoding boundaries. Matching
+strict staged and hosted verification remain required before adoption.

@@ -2,6 +2,27 @@
 // SPDX-License-Identifier: Apache-2.0
 use heck::{ToSnakeCase, ToUpperCamelCase};
 use prost::Message;
+fn bindings(
+    messages: &[prost_types::DescriptorProto],
+    rust: &str,
+    proto: &str,
+    output: &mut String,
+) {
+    for message in messages {
+        if message.options.as_ref().is_some_and(|o| o.map_entry()) {
+            continue;
+        }
+        let ty = format!("{rust}::{}", message.name().to_upper_camel_case());
+        let name = format!("{proto}.{}", message.name());
+        *output += &format!("impl crate::wire::sealed::Sealed for {ty} {{}} impl crate::CanonicalMessage for {ty} {{ const PROTOBUF_NAME: &'static str = {name:?}; }}");
+        bindings(
+            &message.nested_type,
+            &format!("{rust}::{}", message.name().to_snake_case()),
+            &name,
+            output,
+        );
+    }
+}
 fn main() {
     let mut schemas: Vec<_> = std::fs::read_dir("schemas/gz/msgs")
         .unwrap()
@@ -23,11 +44,18 @@ fn main() {
     )
     .unwrap();
     let mut aliases = String::new();
+    let mut canonical = String::new();
     for file in descriptors
         .file
         .iter()
         .filter(|f| f.name().starts_with("gz/msgs/"))
     {
+        bindings(
+            &file.message_type,
+            "crate::msgs",
+            file.package(),
+            &mut canonical,
+        );
         let stem = std::path::Path::new(file.name())
             .file_stem()
             .unwrap()
@@ -62,6 +90,7 @@ fn main() {
         aliases += "}";
     }
     std::fs::write(out.join("aliases.rs"), aliases).unwrap();
+    std::fs::write(out.join("canonical.rs"), canonical).unwrap();
     // Native descriptor text is generated from the pinned canonical corpus.
     // Keeping it as data avoids an incomplete handwritten .proto formatter.
     println!("cargo:rerun-if-changed=schemas/cli-info.json");

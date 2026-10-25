@@ -18,7 +18,7 @@ values implement prost::Name with canonical names and type.googleapis.com URLs.
 Standard prost/prost_types traits and Any values interoperate downstream.
 
 **Generated values discard unknown fields during decode.** Use
-`WireMessage::<T>::decode(bytes)` for a typed read-only view and lossless
+`WireMessage::<T>::decode_compatible(bytes)` for a typed read-only view and lossless
 forwarding: value() borrows T and bytes() returns the original bytes exactly,
 including nested unknowns, signed zeros, duplicates and field order. There is no
 mutable view or implicit reencoding API. Constructing a new typed message and
@@ -27,6 +27,24 @@ unknown fields. Descriptor-based DynamicMessage supports explicit reflective
 editing and preserves unknown fields; replacing/clearing a nested value removes
 that value's contents as expected. Binary/text/JSON roundtrips have separate
 contracts: protobuf JSON does not represent unknown binary fields.
+
+The compatible envelope is available for sealed `CanonicalMessage` types,
+generated alongside the types from the same descriptors. It first uses ordinary
+typed decoding. On failure, it derives a temporary known-field view with native
+C++ handling of wrong-wire occurrences: these occurrences do not establish
+presence, replace a oneof, or overwrite a valid value. Nested messages and map
+entries share the native default 100-level recursion budget; standard Any fields
+are decoded, while Any.value remains opaque bytes. Original bytes remain intact
+on both paths. Invalid framing and invalid known-field data still return
+`CompatibleDecodeError`; there is no error-triggered empty-message fallback.
+
+`WireMessage::decode`, `prost::Message::decode` and `DynamicMessage::decode`
+remain stricter for this boundary. Reflective editing supports ordinary unknown
+field numbers; its storage does not represent a known value and a wrong-wire
+unknown occurrence with the same field number simultaneously. The earlier
+MSG-01 interoperability corpus did not cover that condition. Its bounded
+acceptance remains distinct from complete wire/runtime qualification. See
+[wire qualification](WIRE_COMPATIBILITY.md) for the new native corpus and limits.
 
 `descriptor(name)` accepts canonical full names and legacy gz_msgs.Type spellings
 with an optional leading dot; nested types are supported, unqualified names fail.

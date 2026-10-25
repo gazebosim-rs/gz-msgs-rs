@@ -10,9 +10,12 @@ let bytes = clock.encode_to_vec();
 ```
 
 Generated values discard unknown fields on decode. For lossless forwarding use
-`WireMessage::<Clock>::decode(&bytes)`, inspect `value()` and forward `bytes()`
+`WireMessage::<Clock>::decode_compatible(&bytes)`, inspect `value()` and forward `bytes()`
 verbatim. See [the API contract](docs/API.md), [test ledger](docs/test-ledger.json)
 and [runtime qualification](docs/RUNTIME_PROBE.md).
+Direct prost decoding and reflective decoding reject known tags with unexpected
+wire types that native C++ treats as unknowns; the compatible envelope handles
+this boundary. See [wire qualification](docs/WIRE_COMPATIBILITY.md).
 
 The MSG-01 message foundation is [formally accepted](https://github.com/gazebosim-rs/gz-sim-rs/blob/30ade168180f97aa0bcaf447b278aaf1c4c0a5ba/docs/acceptance/MSG-01.md).
 All83 original message cases have independently reviewed Rust assertion mappings.

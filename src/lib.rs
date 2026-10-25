@@ -13,6 +13,9 @@ pub mod msgs {
 }
 include!(concat!(env!("OUT_DIR"), "/aliases.rs"));
 include!(concat!(env!("OUT_DIR"), "/definitions.rs"));
+mod wire;
+pub use wire::{CanonicalMessage, CompatibleDecodeError};
+include!(concat!(env!("OUT_DIR"), "/canonical.rs"));
 pub use msgs::{Clock, Imu as IMU, Pose, Time};
 use std::sync::OnceLock;
 
