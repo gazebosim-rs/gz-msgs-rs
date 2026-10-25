@@ -1410,3 +1410,40 @@ control failed on the exact `{sec:7}` original gap. The unchanged
 inputs and distinguishes earlier failed attempts from qualified evidence.
 Final metadata binding, normal staged hook and hosted CI remain required.
 General protobuf JSON grammar, diagnostics and MSG-02 completion remain open.
+
+## Bounded protobuf JSON trailing-array-comma candidate
+
+The previously reviewed 29 Time framing/object-grammar rows and both fixture
+files remain byte-for-byte unchanged. Native protobuf 3.21.12 accepts a trailing
+comma in repeated-field arrays; the published CLI rejected it. The lexer now
+removes only a comma before `]` after a value, outside quoted strings, and
+leaves the existing descriptor deserializer and final-document check intact.
+A 14-row source-bound corpus compares complete native/Rust acceptance and
+binary output across Double_V, StringMsg_V and Pose_V. It includes combined
+bare-key syntax, strings containing `,]`, nested objects, repeated commas,
+empty arrays and document suffixes. The native script replays all 43 previous
+and new rows and binds the unchanged prior fixture hashes, new fixture,
+schema manifest, protobuf version and peer source/binary hashes.
+
+The full working strict gate exits zero with 109 harness checks plus the
+FactoryLazy executable, source/archive/downstream and negative gate checks.
+Root production coverage is 1917/1920 lines and 3053/3071 regions; the CLI
+source is 152/154 lines and 273/279 regions. Owned vendor patches remain
+6/6 lines and 8/8 regions for prost-derive, 96/97 lines and 205/206 regions
+for prost-reflect. Working gate log SHA256 is
+`2130fba4a24a922801333bcdeed2a6159f6079ef55b7715ff06dcaa106e91cdf`.
+The exact seven-file staged export gate also exits zero at tree
+`0c25a021e6986ee00751ceb5e10c5b6622044d92`; its log SHA256 is
+`57db9b9b574e556348850900c7011f3340f8d8a048ba8c6e76f419c9badf2834`.
+The prior 29-row fixture hashes remain unchanged. A separate author control
+removing only the array trailing-comma rule fails at the exact native-positive
+`{"data":[1,2,]}` row.
+
+Independent /root/transport_fallback approved the frozen bounded source, API
+and assertions. Its private Git archive and separate target regenerated the
+43-row native proof byte-for-byte, passed all 109 Rust harness checks and failed
+an independent array-rule removal control on the same native-positive row. The
+unchanged [semantic receipt](reviews/json-array-grammar.json) binds the seven
+reviewed inputs and qualifies only repeated-field array commas. Final metadata
+binding, normal staged hook and hosted qualification remain required. General
+protobuf JSON grammar, diagnostics and MSG-02 completion remain open.

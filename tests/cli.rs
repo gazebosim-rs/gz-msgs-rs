@@ -271,49 +271,58 @@ fn json_requires_exactly_one_complete_document() {
     let grammar: gz_msgs::serde_json::Value =
         gz_msgs::serde_json::from_str(include_str!("fixtures/json-grammar.json")).unwrap();
     assert_eq!(grammar["rows"].as_array().unwrap().len(), 15);
+    let arrays: gz_msgs::serde_json::Value =
+        gz_msgs::serde_json::from_str(include_str!("fixtures/json-array-grammar.json")).unwrap();
+    assert_eq!(arrays["rows"].as_array().unwrap().len(), 14);
     assert!(Command::new("python3")
         .arg("scripts/native-peer.py")
         .status()
         .unwrap()
         .success());
+    let check = |row: &gz_msgs::serde_json::Value, type_name: &str| {
+        let unhex = |s: &str| {
+            s.as_bytes()
+                .chunks_exact(2)
+                .map(|p| u8::from_str_radix(std::str::from_utf8(p).unwrap(), 16).unwrap())
+                .collect::<Vec<_>>()
+        };
+        let input = unhex(row["input_hex"].as_str().unwrap());
+        let mut child = Command::new("target/native/protobuf-peer")
+            .args(["target/native/messages.pb", type_name, "encode-json"])
+            .stdin(Stdio::piped())
+            .stdout(Stdio::piped())
+            .stderr(Stdio::piped())
+            .spawn()
+            .unwrap();
+        child.stdin.take().unwrap().write_all(&input).unwrap();
+        let native = child.wait_with_output().unwrap();
+        assert_eq!(
+            native.status.code().unwrap() as i64,
+            row["cpp_status"].as_i64().unwrap()
+        );
+        assert_eq!(
+            native.stdout,
+            unhex(row["cpp_stdout_hex"].as_str().unwrap())
+        );
+        let actual = run(&["encode-json", type_name], &input);
+        assert_eq!(
+            actual.status.success(),
+            native.status.success(),
+            "{input:?}"
+        );
+        assert_eq!(actual.stdout, native.stdout, "{input:?}");
+    };
     for rows in [
         &fixture["matching"],
         &fixture["native_permissive_grammar_pending"],
         &grammar["rows"],
     ] {
         for row in rows.as_array().unwrap() {
-            let unhex = |s: &str| {
-                s.as_bytes()
-                    .chunks_exact(2)
-                    .map(|p| u8::from_str_radix(std::str::from_utf8(p).unwrap(), 16).unwrap())
-                    .collect::<Vec<_>>()
-            };
-            let input = unhex(row["input_hex"].as_str().unwrap());
-            let mut child = Command::new("target/native/protobuf-peer")
-                .args(["target/native/messages.pb", "gz.msgs.Time", "encode-json"])
-                .stdin(Stdio::piped())
-                .stdout(Stdio::piped())
-                .stderr(Stdio::piped())
-                .spawn()
-                .unwrap();
-            child.stdin.take().unwrap().write_all(&input).unwrap();
-            let native = child.wait_with_output().unwrap();
-            assert_eq!(
-                native.status.code().unwrap() as i64,
-                row["cpp_status"].as_i64().unwrap()
-            );
-            assert_eq!(
-                native.stdout,
-                unhex(row["cpp_stdout_hex"].as_str().unwrap())
-            );
-            let actual = run(&["encode-json", "gz.msgs.Time"], &input);
-            assert_eq!(
-                actual.status.success(),
-                native.status.success(),
-                "{input:?}"
-            );
-            assert_eq!(actual.stdout, native.stdout, "{input:?}");
+            check(row, "gz.msgs.Time");
         }
+    }
+    for row in arrays["rows"].as_array().unwrap() {
+        check(row, row["type"].as_str().unwrap());
     }
 }
 

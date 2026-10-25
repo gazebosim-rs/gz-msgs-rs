@@ -1,0 +1,36 @@
+{
+  "decision": "approved",
+  "author": "/root/msgs_review_fallback",
+  "reviewer": "/root/transport_fallback",
+  "reviewed_at": "2026-10-25T13:09:09.088640+00:00",
+  "base": "c1234c0a2e7d3a17c6135d8f3949e465da4dba08",
+  "tree": "0c25a021e6986ee00751ceb5e10c5b6622044d92",
+  "diff_sha256": "3fc266eedafa2202f436b8fcbc0c34f9ebc44bb2b75de2ebabae114685caa9c2",
+  "files": {
+    "docs/API.md": "0b27b6b051c0b95584ff097eb1ff7f5ebb729bff859d6237aedb70a9b6272a96",
+    "docs/EVIDENCE.md": "a69088e77a829996f24d4d464635d9915c311f54cf65e94c29b8298462490b8c",
+    "docs/JSON_FRAMING.md": "bcb33681ca32502cb8f45631217b509a0fb682d1f9401ffdbc74023eab90fbb2",
+    "scripts/json-reference.py": "23596117816cd32edaa2220d763436fb1ea92be83f837762ee5806c3183efeb9",
+    "src/bin/gz-msgs.rs": "cf7da7c5dc6b639dc44e785bf253f0996f45b720e2e8817c228b8b9057651935",
+    "tests/cli.rs": "035e6dbc6783098f9e9a41bf792b9380043feca9c7ba7bacfd0ea21230e4eec6",
+    "tests/fixtures/json-array-grammar.json": "c6b095ffbf102683dfe24b6b05c8fd5d3b2f5aab36578cc0d389ba19f38d97c3"
+  },
+  "scope": "Only trailing comma before array close in canonical repeated-field JSON, after a value and outside strings; existing 29 Time rows and both fixtures remain unchanged. No general protobuf JSON grammar, diagnostics or all-message claim.",
+  "independent_checks": [
+    "Seven staged file SHA-256 values, tree and binary diff match frozen proposal; no unstaged diff. No runtime, dependency, schema, gate or coverage-accounting change.",
+    "Private Git archive of exact staged tree with separate Cargo target reproduced byte-identical protobuf 3.21.12 native proof SHA e8750bfa6ac748b7225594a52bc84c74d175a047c9fd950e8fb7f4d510e0b599: all 43 status and complete binary outputs match, including unchanged 29 prior rows and 14 new Double_V/StringMsg_V/Pose_V array rows.",
+    "Private selected json_requires_exactly_one_complete_document test passed 1/0; entire private cargo test --locked --tests -- --test-threads=1 passed 109 harness tests/0 failures, including all prior CLI and upstream mappings.",
+    "Separate private archive and Cargo target removed only Frame::Array from trailing-comma eligibility; selected test failed at native-positive {\"data\":[1,2,]} with Rust false and native true.",
+    "Exact author staged export gate SHA 57db9b9b574e556348850900c7011f3340f8d8a048ba8c6e76f419c9badf2834 exited zero: root 1917/1920 lines,3053/3071 regions; CLI 152/154 lines,273/279 regions; existing vendor coverage unchanged. No threshold or exclusions changed."
+  ],
+  "reviewer_log_sha256": {
+    "selected": "885c175880f12bb2610e6c970c538ab649373684b62499abbbb9c979df9933e5",
+    "full_tests": "44daf9c610494a39ce31eebe144b6c7dcee61c0093c363d7b2f7b9cc2d0f9426",
+    "array_branch_mutant": "50a43a37dbea0e54dbaefe5fe4c1519629e38799cf946159acfc4bc5d3ac31c4"
+  },
+  "findings": [],
+  "limits": [
+    "Independent semantic review approves this bounded syntax behavior only; final metadata binding, normal commit hook and hosted checks remain.",
+    "General protobuf JSON grammar, diagnostic text and all-message equivalence remain open."
+  ]
+}

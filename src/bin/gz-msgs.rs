@@ -9,7 +9,7 @@ use std::io::{Read, Write};
 mod legacy_cli;
 const HELP: &str = "gz-msgs --list|-l | --info|-i TYPE... | --version|-v | --help|-h\nCommands: list, info TYPE..., encode-json, decode-json, encode-text, decode-text\nFormat commands take one fully qualified type and use stdin/stdout.";
 
-// Protobuf's JSON parser accepts bare field names and trailing object commas.
+// Protobuf's JSON parser accepts bare field names and trailing container commas.
 // Rewrite only those tokens; serde_json still validates the entire document.
 fn normalize_proto_json(input: &[u8]) -> Vec<u8> {
     #[derive(Clone, Copy, PartialEq, Eq)]
@@ -64,12 +64,19 @@ fn normalize_proto_json(input: &[u8]) -> Vec<u8> {
             previous = Some(input[index - 1]);
             continue;
         }
-        if byte == b',' && frames.last() == Some(&Frame::ObjectValue) {
+        if byte == b',' && matches!(frames.last(), Some(Frame::ObjectValue | Frame::Array)) {
             let mut after = index + 1;
             while after < input.len() && input[after].is_ascii_whitespace() {
                 after += 1;
             }
-            if input.get(after) == Some(&b'}') && !matches!(previous, Some(b'{' | b',' | b':')) {
+            let closing = if frames.last() == Some(&Frame::Array) {
+                b']'
+            } else {
+                b'}'
+            };
+            if input.get(after) == Some(&closing)
+                && !matches!(previous, Some(b'{' | b'[' | b',' | b':'))
+            {
                 index += 1;
                 continue;
             }

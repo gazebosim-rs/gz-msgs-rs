@@ -43,7 +43,7 @@ targets; mtimes alone do not establish checked-source identity.
 
 The next bounded correction quotes bare ASCII field-name tokens and removes a
 trailing comma before an object close. It operates outside quoted strings and
-leaves comments, repeated commas, array delimiters and trailing document bytes
+leaves comments, repeated commas and trailing document bytes
 for the existing deserializer to reject. Dynamic message decoding, duplicate
 field behavior and the complete-document check remain in their existing order.
 
@@ -54,3 +54,18 @@ native rows. General protobuf JSON grammar and diagnostics remain unqualified;
 the [independent review](reviews/json-grammar.json) approved this bounded
 mapping after a private full test replay and additional lexical controls. The
 normal staged hook and hosted qualification remain required.
+
+## Trailing array commas
+
+The next bounded increment applies the same trailing-comma rule to arrays of
+canonical repeated fields. It removes a comma only before `]` and only after a
+value, while keeping array delimiters, quoted content and the final document
+check intact. The 29 previously qualified Time rows and their fixture bytes are
+unchanged. A separate 14-row protobuf 3.21.12 corpus covers Double_V,
+StringMsg_V and Pose_V repeated fields, including bare keys, escaped strings,
+nested objects, empty arrays, repeated commas and suffix rejection. It compares
+actual native/Rust acceptance and full binary output. The
+[independent review](reviews/json-array-grammar.json) approved this bounded
+mapping after a private 43-row replay, full Rust test run and an array-rule
+negative control. General JSON grammar, diagnostic text and all-message
+qualification remain open; the normal staged hook and hosted CI are required.

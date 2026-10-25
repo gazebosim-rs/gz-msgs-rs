@@ -1,0 +1,89 @@
+{
+  "native_protobuf": "3.21.12",
+  "rows": [
+    {
+      "type": "gz.msgs.Double_V",
+      "input_hex": "7b2264617461223a5b312c325d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "0a10000000000000f03f0000000000000040"
+    },
+    {
+      "type": "gz.msgs.Double_V",
+      "input_hex": "7b2264617461223a5b312c322c5d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "0a10000000000000f03f0000000000000040"
+    },
+    {
+      "type": "gz.msgs.Double_V",
+      "input_hex": "7b646174613a5b312c322c5d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "0a10000000000000f03f0000000000000040"
+    },
+    {
+      "type": "gz.msgs.Double_V",
+      "input_hex": "7b2264617461223a5b2c5d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "type": "gz.msgs.Double_V",
+      "input_hex": "7b2264617461223a5b312c2c5d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "type": "gz.msgs.Double_V",
+      "input_hex": "7b2264617461223a5b312c322c5d7d207b7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "type": "gz.msgs.Double_V",
+      "input_hex": "7b2264617461223a5b302c5d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "0a080000000000000000"
+    },
+    {
+      "type": "gz.msgs.Double_V",
+      "input_hex": "7b2264617461223a5b312c2032202c205d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "0a10000000000000f03f0000000000000040"
+    },
+    {
+      "type": "gz.msgs.StringMsg_V",
+      "input_hex": "7b2264617461223a5b2261222c2262222c5d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "120161120162"
+    },
+    {
+      "type": "gz.msgs.StringMsg_V",
+      "input_hex": "7b2264617461223a5b22612c5d222c5d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203612c5d"
+    },
+    {
+      "type": "gz.msgs.StringMsg_V",
+      "input_hex": "7b646174613a5b22785c2279222c5d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1203782279"
+    },
+    {
+      "type": "gz.msgs.Pose_V",
+      "input_hex": "7b22706f7365223a5b7b7d2c5d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1200"
+    },
+    {
+      "type": "gz.msgs.Pose_V",
+      "input_hex": "7b706f73653a5b7b7d2c5d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "1200"
+    },
+    {
+      "type": "gz.msgs.Pose_V",
+      "input_hex": "7b22706f7365223a5b7b2c7d5d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    }
+  ]
+}
