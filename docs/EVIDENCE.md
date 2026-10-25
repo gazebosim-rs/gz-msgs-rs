@@ -1235,3 +1235,54 @@ change is explicitly approved while its input remains rejected. The authored
 group/extension, complete-validation and codec limits. Source, tests, fixtures and
 native inputs remain unchanged by this review metadata. Matching final binding,
 normal strict staged hook and hosted qualification remain required.
+
+
+## Descriptor byte-default robustness
+
+The independent raw-default study reproduced public registry panics at pinned
+baseline d5f4416: octal `\400`/`\777` overflow only in debug (release wraps), while
+`\x€`/`\x1é` split UTF-8 slices in both modes. Native libprotobuf 3.21.12 accepts
+all four, with effective bytes 00, ff, e282ac and 01c3a9. The exact original
+serialized inputs, native outputs/statuses and provenance are retained in the
+new five-row fixture; `\\777` is an accepted literal-slash control. This is an
+explicit safe rejection, not a claim of native default parity.
+
+An owned preflight returns the existing DecodeError before those operations for
+new-file byte defaults, including file/message extensions and nested fields.
+It preserves raw reflective bytes/custom options, keep-first duplicate names,
+prior successful files, pool/provenance snapshots and retry. Ordinary malformed
+escapes still reach the dependency and return DescriptorError; unsafe suffixes
+after an earlier ordinary error are unreachable. No vendor, schema, codec,
+dependency or coverage exclusion changes. A local documented deprecation
+allowance preserves the current public DecodeError API using prost's only
+arbitrary-description constructor. The contract records the added linear scan,
+structural-validation ordering caveat and lack of performance/default-parity
+claims. Existing explicit-default formatter rejection remains in force.
+
+`cargo test --locked --test byte_defaults` and its `--release` counterpart pass
+all four new tests, including freshly compiled C++ default values on exact raw
+inputs, valid/raw/invalid escape controls, traversal, duplicate/partial/retry and
+actual factory/file/CLI paths. The initial debug run passed with the two prost
+constructor deprecation warnings; the documented narrowly scoped allowance was
+added before the passing strict gate. The normal full working gate passes 104
+harness tests plus the actual standalone FactoryLazy test (105 checks), all native
+and existing custom-option tests, six snapshot regressions, archive and downstream
+checks. Root production measures 1837/1840 lines and 2925/2943 regions; unchanged
+owned patches add 15/15 lines and 36/36 regions, totaling 1852/1855 lines and
+2961/2979 regions. Registry coverage is 172/172 lines and 289/291 regions.
+The fixture hash guard was added after the first full working gate loaded its
+script; the mandatory exact staged hook will qualify that final input as well.
+Independent review, final exact binding, normal strict staged hook and hosted
+qualification remain required. The earlier isolated 143-case study and all 83
+original assertion mappings remain preserved; broad MSG-02 is still open.
+
+Independent /root/transport_owner approved frozen tree b4f9e43e/diff 2a494abe
+with no findings. A raw 675-blob export and nine exact file hashes were verified;
+a fresh reviewer target passed four debug and four release tests, plus 22
+registry/factory/definition checks. Both default suites compiled their own native
+byte-value peer. The [receipt](reviews/descriptor-default-robustness.json)
+approves the explicit native rejection, error disposition, scanner/duplicate/raw
+metadata behavior, retry and constructor allowance while keeping wider default
+and MSG-02 limitations open. Only this additive evidence and the unchanged
+receipt follow the reviewed source; final binding and normal staged/hosted
+qualification remain required.

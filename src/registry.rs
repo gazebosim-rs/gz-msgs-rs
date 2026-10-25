@@ -4,7 +4,10 @@
 use crate::{
     prost::{DecodeError, Message},
     prost_reflect::{DescriptorError, DescriptorPool, DynamicMessage, ReflectMessage},
-    prost_types::{DescriptorProto, FileDescriptorProto, FileDescriptorSet},
+    prost_types::{
+        field_descriptor_proto::Type, DescriptorProto, FieldDescriptorProto, FileDescriptorProto,
+        FileDescriptorSet,
+    },
 };
 use std::{
     collections::BTreeSet,
@@ -114,6 +117,7 @@ impl DescriptorRegistry {
     /// Missing imports can be supplied and failed files retried on a later call.
     /// Duplicate file names are ignored, matching the native pool; this does not
     /// replace existing schemas. No filesystem path cache or environment is used.
+    /// Byte defaults that can panic in the pinned loader return DecodeError.
     pub fn load_bytes(&mut self, bytes: &[u8]) -> Result<Vec<DescriptorError>, DecodeError> {
         // Reflect the descriptor set instead of prost-types decoding it: custom
         // options must survive as nested unknown bytes until their schema loads.
@@ -129,6 +133,12 @@ impl DescriptorRegistry {
                 .encode_to_vec();
             let raw = FileDescriptorProto::decode(bytes.as_slice())?;
             let existed = self.pool.get_file_by_name(raw.name()).is_some();
+            if !existed {
+                check_default_fields(&raw.extension)?;
+                for message in &raw.message_type {
+                    check_message_defaults(message)?;
+                }
+            }
             match self.pool.decode_file_descriptor_proto(bytes.as_slice()) {
                 Err(error) => errors.push(error),
                 Ok(()) if !existed => {
@@ -143,6 +153,81 @@ impl DescriptorRegistry {
         }
         Ok(errors)
     }
+}
+
+fn check_message_defaults(message: &DescriptorProto) -> Result<(), DecodeError> {
+    check_default_fields(&message.field)?;
+    check_default_fields(&message.extension)?;
+    for child in &message.nested_type {
+        check_message_defaults(child)?;
+    }
+    Ok(())
+}
+
+fn check_default_fields(fields: &[FieldDescriptorProto]) -> Result<(), DecodeError> {
+    for field in fields {
+        if field.r#type == Some(Type::Bytes as i32) {
+            if let Some(value) = &field.default_value {
+                check_byte_default(value)?;
+            }
+        }
+    }
+    Ok(())
+}
+
+// Guard only the pinned loader's panicking operations, without normalizing source
+// metadata. Stop where that loader returns an ordinary descriptor error, so an
+// unreachable later escape does not change the error's public disposition.
+// The pinned prost exposes only this deprecated constructor for our existing
+// DecodeError return type; keep the allowance local until that API can migrate.
+#[allow(deprecated)]
+fn check_byte_default(value: &str) -> Result<(), DecodeError> {
+    let bytes = value.as_bytes();
+    let mut position = 0;
+    while position < bytes.len() {
+        if bytes[position] != b'\\' {
+            position += 1;
+            continue;
+        }
+        position += 1;
+        let Some(&escape) = bytes.get(position) else {
+            break;
+        };
+        match escape {
+            b'0'..=b'7' => {
+                let mut octal = 0u16;
+                for _ in 0..3 {
+                    match bytes.get(position) {
+                        Some(digit @ b'0'..=b'7') => {
+                            octal = octal * 8 + u16::from(digit - b'0');
+                            position += 1;
+                        }
+                        _ => break,
+                    }
+                }
+                if octal > u16::from(u8::MAX) {
+                    return Err(DecodeError::new("byte default octal escape exceeds 255"));
+                }
+            }
+            b'x' | b'X' => {
+                if position + 3 > bytes.len() {
+                    break;
+                }
+                let pair = value.get(position + 1..position + 3).ok_or_else(|| {
+                    DecodeError::new("byte default hex escape splits a UTF-8 character")
+                })?;
+                if u8::from_str_radix(pair, 16).is_err() {
+                    break;
+                }
+                position += 3;
+            }
+            b'a' | b'b' | b'f' | b'n' | b'r' | b't' | b'v' | b'\\' | b'?' | b'\'' | b'"' => {
+                position += 1;
+            }
+            _ => break,
+        }
+    }
+    Ok(())
 }
 
 fn missing_json_names(prefix: &str, message: &DescriptorProto, missing: &mut BTreeSet<String>) {

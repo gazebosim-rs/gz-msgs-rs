@@ -102,3 +102,8 @@ regenerates fixtures and binds the upstream commit, source/binary/libraries,
 schema manifest, peer and fixture hashes. Unsupported rows capture native output
 but deliberately assert the Rust error instead of claiming output parity.
 No original assertion mapping or broad MSG-02 acceptance changes in this slice.
+
+The registry rejects the two known panicking byte-default escape boundaries
+before invoking reflection. [The robustness contract](DESCRIPTOR_DEFAULT_ROBUSTNESS.md)
+records exact native acceptance differences; explicit defaults remain Unsupported
+by this formatter.

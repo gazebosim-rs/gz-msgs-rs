@@ -33,6 +33,10 @@ definitions = json.loads(pathlib.Path('tests/fixtures/definitions/cli.json').rea
 for key in ['upstream_commit', 'native_binary_sha256', 'native_source_sha256', 'schema_manifest_sha256', 'native_argv0']:
     assert definitions[key] == options[key], key
 assert definitions['peer_source_sha256'] == hashlib.sha256(pathlib.Path('tests/definition_peer.cc').read_bytes()).hexdigest()
+defaults = json.loads(pathlib.Path('tests/fixtures/byte-defaults/native.json').read_text())
+assert defaults['default_probe_source_sha256'] == hashlib.sha256(pathlib.Path('tests/byte_defaults_peer.cc').read_bytes()).hexdigest()
+for row in defaults['cases']:
+    assert hashlib.sha256(bytes.fromhex(row['descriptor_hex'])).hexdigest() == row['descriptor_sha256']
 for path, expected in definitions['inputs'].items():
     assert hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest() == expected, path
 info = json.loads(pathlib.Path('schemas/cli-info.manifest.json').read_text())

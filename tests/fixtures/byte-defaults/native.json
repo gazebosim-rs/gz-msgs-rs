@@ -1,0 +1,86 @@
+{
+  "cases": [
+    {
+      "id": 0,
+      "default": "\\x\u20ac",
+      "descriptor_sha256": "d2da8b0f66c36257cc8e764ad31ccc8a9b3b44054686f0a7e6fc9ef732ae4d07",
+      "status": 0,
+      "stdout_hex": "0a0556616c7565121b0a0576616c756518012001280c3a0c5c3334325c3230325c323534",
+      "stderr": "",
+      "native_default": {
+        "status": 0,
+        "bytes_hex": "e282ac",
+        "stderr": ""
+      },
+      "descriptor_hex": "0a3a0a116261642d64656661756c742e70726f746f221d0a0556616c756512140a0576616c756518012001280c3a055c78e282ac620670726f746f32",
+      "rust_disposition": "DecodeError"
+    },
+    {
+      "id": 1,
+      "default": "\\x1\u00e9",
+      "descriptor_sha256": "462378209bd311b884e342d36eb2dac507b5f027e2e6da91db69eff4b2fdb3c6",
+      "status": 0,
+      "stdout_hex": "0a0556616c7565121b0a0576616c756518012001280c3a0c5c3030315c3330335c323531",
+      "stderr": "",
+      "native_default": {
+        "status": 0,
+        "bytes_hex": "01c3a9",
+        "stderr": ""
+      },
+      "descriptor_hex": "0a3a0a116261642d64656661756c742e70726f746f221d0a0556616c756512140a0576616c756518012001280c3a055c7831c3a9620670726f746f32",
+      "rust_disposition": "DecodeError"
+    },
+    {
+      "id": 2,
+      "default": "\\400",
+      "descriptor_sha256": "c89eb197525bfaf3c4169cd6877ee207479cea5e758c84de22f528980a8b1277",
+      "status": 0,
+      "stdout_hex": "0a0556616c756512130a0576616c756518012001280c3a045c303030",
+      "stderr": "",
+      "native_default": {
+        "status": 0,
+        "bytes_hex": "00",
+        "stderr": ""
+      },
+      "descriptor_hex": "0a390a116261642d64656661756c742e70726f746f221c0a0556616c756512130a0576616c756518012001280c3a045c343030620670726f746f32",
+      "rust_disposition": "DecodeError"
+    },
+    {
+      "id": 3,
+      "default": "\\777",
+      "descriptor_sha256": "1d7af4afda9c7d8be3ede730a6c14c7e2e3f43ec5f4b42f3344f1d484171324b",
+      "status": 0,
+      "stdout_hex": "0a0556616c756512130a0576616c756518012001280c3a045c333737",
+      "stderr": "",
+      "native_default": {
+        "status": 0,
+        "bytes_hex": "ff",
+        "stderr": ""
+      },
+      "descriptor_hex": "0a390a116261642d64656661756c742e70726f746f221c0a0556616c756512130a0576616c756518012001280c3a045c373737620670726f746f32",
+      "rust_disposition": "DecodeError"
+    },
+    {
+      "id": 4,
+      "default": "\\\\777",
+      "descriptor_sha256": "2e852a592294993cd0e7948d267c02a3f529de0390771f309269eac2eb17248f",
+      "status": 0,
+      "stdout_hex": "0a0556616c756512140a0576616c756518012001280c3a055c5c373737",
+      "stderr": "",
+      "native_default": {
+        "status": 0,
+        "bytes_hex": "5c373737",
+        "stderr": ""
+      },
+      "descriptor_hex": "0a3a0a116261642d64656661756c742e70726f746f221d0a0556616c756512140a0576616c756518012001280c3a055c5c373737620670726f746f32",
+      "rust_disposition": "accepted"
+    }
+  ],
+  "source_sha256": "48835b169eb8e2e490729391718e223e8905632f2b04d2fa2facd50b2fbaf1f5",
+  "binary_sha256": "16b0d5f1158816ea0e609bf3556ad58ffba97d8f9958f7719be068f3031f38e8",
+  "default_probe_source_sha256": "696ed0f319897d18fb6ed3bb866d18bf83449a4c1b247f637092b205f46ea577",
+  "default_probe_binary_sha256": "7160b0648476272f3f73d68d43332843a67019e2cc805cee223292f09a4bd8ab",
+  "scope": "Exact native byte-default observations; first four deliberately rejected by Rust for loader robustness. No general native default parity.",
+  "baseline": "d5f4416090bfb0e2a42cb07eb4e746cf3b2ef3f9",
+  "source_sha256_note": "Historical baseline definition peer; retained stdout_hex is DescriptorProto metadata. default_probe_source_sha256 binds the separately compiled byte-value peer."
+}

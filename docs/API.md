@@ -387,3 +387,9 @@ are supported; explicit defaults, groups, extensions and advanced options remain
 unsupported. Raw proto2 integer-default interpretation also differs in the pinned
 reflection loader; no native default-value or wire contract is added by declaration
 formatting. This is not a complete descriptor validator.
+
+Raw byte defaults that can panic in the pinned reflection loader now return
+`DecodeError` from `DescriptorRegistry::load_bytes` and `InvalidData` through file
+and factory path errors. See [the bounded rejection contract](DESCRIPTOR_DEFAULT_ROBUSTNESS.md)
+for native/release differences, partial loading and exact regression inputs.
+This adds no general native proto2 default-value or declaration-formatting support.

@@ -1,0 +1,69 @@
+{
+  "decision": "approved",
+  "author": "/root/msgs_recovery",
+  "reviewer": "/root/transport_owner",
+  "reviewed_at": "2026-10-25T10:29:42.215143+00:00",
+  "base": "d5f4416090bfb0e2a42cb07eb4e746cf3b2ef3f9",
+  "tree": "b4f9e43e3ae056edaddefd39a3eeeecfba115ac6",
+  "staged_diff_sha256": "2a494abebe69cc261b6ac359b06973561894675fb43343e6e0cc1613dbfbe9df",
+  "files": {
+    "docs/API.md": "18d0666fc3fcfad66a69c08c7d6f6ff7a9a76c5cdba3da1b7c178a22af5e3ae7",
+    "docs/CLI_EXTERNAL_INFO.md": "95002b83b529f2e97f725edf050fc568778163d969c12a8ffb20f76f74179f19",
+    "docs/DESCRIPTOR_DEFAULT_ROBUSTNESS.md": "aafd2d3b7fd54c7dc21648d486f55b19c031da7cb1c57a45b08fe5ff06f0b0f3",
+    "docs/EVIDENCE.md": "985076e13943d0d79df66908fb3e1a1f80da78a86cc792249257a183f488a740",
+    "scripts/verify.py": "ecf89cc47588547e2085b4757ba8eaf4fd27c8eac2e046b219e7f83df324e803",
+    "src/registry.rs": "4110384783f2a62c0d1f55aaf1bac6c6b72ee76ac6ab057f9839e27370343d31",
+    "tests/byte_defaults.rs": "bd8c4b86eacdcf10e9c70f3acf1dde378d03c7df4a3503c3aa9871608cceba4f",
+    "tests/byte_defaults_peer.cc": "696ed0f319897d18fb6ed3bb866d18bf83449a4c1b247f637092b205f46ea577",
+    "tests/fixtures/byte-defaults/native.json": "d0e213e256d914cf5d6c1e15fc926e4889a6632c21541f55355778c18dccf2ba"
+  },
+  "scope": "Bounded owned descriptor byte-default robustness rejection; native default parity explicitly unclaimed.",
+  "independent_checks": [
+    {
+      "check": "Raw Git blob hashes, object types, executable modes, full tracked path set and nine frozen SHA256 bindings",
+      "result": "pass; 675 raw source files verified; only five test-created target/registry-tests fixture files outside tracked set."
+    },
+    {
+      "check": "Fresh private source and separate reviewer-owned CARGO_TARGET_DIR cargo test --locked --test byte_defaults",
+      "result": "4 tests pass, including fresh actual native byte-value peer, exact escaped inputs, raw byte preservation, typed DecodeError, file/factory/CLI continuation."
+    },
+    {
+      "check": "Same private-source cargo test --locked --release --test byte_defaults",
+      "result": "4 tests pass; consistent rejection in optimized and debug builds."
+    },
+    {
+      "check": "Same private-source cargo test --locked --test registry --test factory --test definitions",
+      "result": "22 tests pass: 3 registry, 5 factory, 14 definitions; includes original assertions, custom options, snapshots, definition native oracle and CLI continuation."
+    },
+    {
+      "check": "Scanner versus pinned prost-reflect unescape_c_escape_string source review",
+      "result": "Octal u16 accumulation safely guards u8 overflow; checked string slice guards UTF-8 boundary; ordinary malformed escapes stop scan at pinned loader error; slash escaping, case variants and short-input handling match. Only new file ordinary/nested/extension byte defaults scanned; duplicate keep-first unchanged."
+    }
+  ],
+  "findings": [],
+  "scope_judgments": [
+    "Native 3.21.12 accepts four unsafe reflection defaults: \\400 => 00, \\777 => ff, \\x€ => e282ac, \\x1é => 01c3a9. Rust deliberate DecodeError is approved as bounded robustness disposition; no native equivalence claim.",
+    "Exact literal escaped slash remains accepted as bytes5c373737. Original raw metadata/default spellings are retained.",
+    "Prior debug-only overflow and all-mode UTF-8 slice panics become normal public DecodeError, translated by load_file/factory to InvalidData, without catch_unwind or poisoned locks.",
+    "File-level preflight may precede structural native/reflection validation; later files stop, earlier accepted state and snapshots survive. Documentation states these boundaries.",
+    "Local deprecated-constructor allowance is justified by prost0.14.4 public error API; no error type, dependency, unsafe or wire codec changes.",
+    "Apache-2.0/OSRF notices present in new Rust/C++ sources; no legacy source/assertion/coverage exclusion removed."
+  ],
+  "author_evidence_separate": {
+    "rust_checks": 105,
+    "lines": [
+      1852,
+      1855
+    ],
+    "regions": [
+      2961,
+      2979
+    ],
+    "qualification": "Author evidence inspected, independent full gate/coverage rerun not claimed."
+  },
+  "limits": [
+    "Exact final metadata binding and mandatory normal staged hook remain required.",
+    "General scalar/default interpretation, malformed descriptor validation, wire/native default compatibility and whole MSG-02 completion remain open.",
+    "No performance improvement claimed; new preflight is linear in new-file default text."
+  ]
+}
