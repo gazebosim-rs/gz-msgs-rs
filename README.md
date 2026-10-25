@@ -15,8 +15,9 @@ verbatim. See [the API contract](docs/API.md), [test ledger](docs/test-ledger.js
 and [runtime qualification](docs/RUNTIME_PROBE.md).
 
 The MSG-01 message foundation is [formally accepted](https://github.com/gazebosim-rs/gz-sim-rs/blob/30ade168180f97aa0bcaf447b278aaf1c4c0a5ba/docs/acceptance/MSG-01.md).
-MSG-02 remains in progress: complete domain conversions, retained Factory/cloud
-behavior, tooling, packaging and performance qualification are still required.
+All83 original message cases have independently reviewed Rust assertion mappings.
+MSG-02 remains in progress: broader XML/formatting and dynamic tooling contracts,
+packaging/release qualification and performance evidence are still required.
 Complete Gazebo Messages parity is not claimed. The canonical architecture and acceptance policy live in
 [gz-sim-rs](https://github.com/gazebosim-rs/gz-sim-rs/blob/main/docs/PLAN.md).
 
@@ -29,3 +30,7 @@ transitively without downstream Cargo patch configuration.
 New repository-owned contributions are Copyright (C) 2026 Open Source Robotics
 Foundation, SPDX-License-Identifier: Apache-2.0. See [NOTICE](NOTICE). Imported
 schemas/tests and vendored dependencies retain their original notices and licenses.
+
+[Source packaging](docs/PACKAGING.md) preserves the reviewed vendored fixes and
+licenses. Crates.io publishing remains disabled; a normal `.crate` archive loses
+the path dependencies and is not a supported distribution.

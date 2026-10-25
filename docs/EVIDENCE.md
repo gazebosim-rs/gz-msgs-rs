@@ -739,3 +739,68 @@ binary hashes, and ran all eight Rust CLI tests including271 unchanged successfu
 goldens and the unchanged five C++ originals (five run/zero failures). No blocking
 finding within the documented bundled-type/grammar scope; original assertions
 remain unchanged. Matching strict staged gate remains required.
+
+## Immutable source packaging (pending independent review)
+
+A normal Cargo `.crate` probe confirmed the known unsupported release path:
+normalized dependencies lose both reviewed vendor paths. Extracted registry-form
+source fails both signed_zero tests (zero passed/two failed), so publish=false
+remains enforced. That deliberate negative probe is not a qualified distribution.
+
+The supported candidate uses raw immutable Git blobs, preserving all vendored
+source/licenses and unmodified Cargo paths. Its manifest binds modes, object and
+SHA256 hashes to the original Git commit/tree; independent reconstruction delegates
+tree ordering to Git. Standard tar/gzip metadata is deterministic and extraction
+checks closed paths/types/modes/content and expected revision. Regression evidence
+includes CRLF/export-ignore/executable/symlink preservation, untracked/unstaged
+exclusion, deterministic bytes and wrong-revision/blob/mode/path/tree/link rejection.
+
+For public4357fc1c1f8a245a822e97f61a012125e69f86a4 the611-file archive is432KiB,
+SHA2562a722e029dba1ab785622aa471eab862882e0fb503d47a31c7178e864dc983f4.
+Two output locations produce identical bytes under Python3.12.3/zlib1.3. A fresh
+extracted source plus empty private Cargo home fetches locked dependencies, then
+installs offline into a local prefix. All nine installed CLI observations and a
+clean downstream signed-zero/standard-Any/nested-unknown consumer pass without
+Cargo patches. The actual executable links only libc/libgcc/loader/vdso, with no
+Gazebo or protobuf C++ runtime. Rust1.94.1/protoc3.21.12 versions are recorded in
+ignored artifacts/source-package-check/proof.json. No shared configuration or
+installation is changed. This is a Linux source-install proof, not a full binary
+or clean-OS release matrix. CI artifact publication and independent exact-source
+review remain pending for the packaging implementation itself.
+
+Independent packaging review found that Git silently ignored a forged ./ path,
+allowing an uncommitted member despite an authentic tree. Before publication,
+validation now rejects raw noncanonical components and compares every manifest
+entry against the complete reconstructed index (mode/OID/stage/path). Six forged
+path/overwrite/ignored-.git variants and the reviewer's independent injected
+archive all reject. The implementation remains under re-review; no vulnerable
+packaging implementation was published.
+
+/root/transport_recovery approved corrected full packaging diff
+`7feace21776e3b9ac00846b52f4fd487ef578d9f984ceef985e8c23495882a27`.
+It independently reran the archive suite/six injection variants and rejected the
+preserved exploit with its authentic expected revision, reproduced the exact
+611-file4357 source archive/tree/SHA, then performed an isolated offline install,
+nine CLI observations and clean downstream consumer with no native Gazebo/protobuf
+runtime links. Fresh-cache evidence was inspected without claiming a second fetch;
+full80-check coverage was not independently repeated. The qualified receipt is
+[recorded](reviews/source-package.json). Matching strict staged and hosted gates
+remain required; source-install qualification does not enable crates.io publishing
+or accept the full release matrix/MSG-02 packet.
+
+The first mandatory staged commit gate rejected a hook-context-only archive test
+failure: inherited GIT_INDEX_FILE targeted a nonexistent .git/index inside the
+private bare tree verifier. Git child calls now clear Git's own --local-env-vars
+list before selecting their explicit repository. Regressions run under relative
+hook index and foreign directory/worktree/index environments and prove the
+foreign sentinel index/config remain untouched. No hook was bypassed; the
+corrected source must pass a new strict staged gate and independent delta review.
+
+/root/transport_recovery independently approved the hook-context correction
+`5109ba7e6fd1886199fb2186938dd0c72e8ec5d9aacb6383cf1b0ce365909d3e`.
+Standalone, Git-less relative-index and independent foreign directory/common-dir/
+worktree/index checks pass without touching the caller sentinel or creating a
+foreign repository. Authentic archive bytes remain exactly2a722e... . The prior
+full source/install review remains applicable; no repeated fetch/full coverage
+claim is made by this delta review. The [receipt](reviews/source-package-context.json)
+and full local80-check gate pass precede the new mandatory staged hook.

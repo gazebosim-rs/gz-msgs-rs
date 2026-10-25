@@ -9,3 +9,13 @@ jobs:
       - run: rustup toolchain install 1.94.1 --profile minimal --component rustfmt,clippy,llvm-tools
       - run: python3 scripts/verify.py
       - run: python3 scripts/test-staged.py
+      - run: python3 scripts/source-package.py --output artifacts/distribution
+      - run: python3 scripts/test-source-package.py --archive artifacts/distribution/gz-msgs-${{ github.sha }}.tar.gz --revision ${{ github.sha }} --fresh-cache
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: messages-source-${{ github.sha }}-${{ github.run_attempt }}
+          path: |
+            artifacts/distribution/*.tar.gz
+            artifacts/distribution/*.sha256
+            artifacts/source-package-check/proof.json
+          if-no-files-found: error

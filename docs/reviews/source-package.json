@@ -1,0 +1,16 @@
+{
+  "decision": "approved",
+  "author": "/root/msgs",
+  "reviewer": "/root/transport_recovery",
+  "date": "2026-10-25T00:38:09.112350+00:00",
+  "staged_diff_sha256": "7feace21776e3b9ac00846b52f4fd487ef578d9f984ceef985e8c23495882a27",
+  "scope": "Reviewed complete frozen eight-file packaging slice: immutable Git blob archive construction, revision/commit/tree/index/member binding, canonical path rejection, deterministic archive and modes, extraction, offline install/CLI/downstream proof, CI artifacts and documented unsupported registry packaging. No Rust production, dependency version, threshold or exclusion changes. publish=false retained. Source-install scope and pending platform/binary/release matrix explicit.",
+  "independent_checks": [
+    "Archive regression suite independently passes, including six forged path/overwrite/ignored-.git variants.",
+    "Preserved independent ./injected.rs archive with its authentic expected revision eae410eea294ffb05641e51d8a8663317a9028e9 now rejected as Noncanonical source path.",
+    "Independently generated and verified public4357fc1c1f8a245a822e97f61a012125e69f86a4 archive:611files,tree1800b594435781c96276666d25b9c79e20eca74d,SHA2562a722e029dba1ab785622aa471eab862882e0fb503d47a31c7178e864dc983f4.",
+    "Independently extracted source, installed offline into isolated local prefix, replayed9 installed CLI observations and clean signed-zero/standard-Any/nested-unknown consumer; passed. Runtime closure libc/libgcc/loader/vdso only.",
+    "Inspected author private fresh-CargoHome locked-fetch/offline install evidence and proof; did not independently refetch dependencies. Full80Rust/coverage gate not independently rerun; matching strict staged gate and hosted CI still required."
+  ],
+  "limitations": "No crates.io publication or clean-OS/platform/binary-package release acceptance. Review does not claim arbitrary archive resource limits or extraction rollback atomicity; artifacts should be extracted into a fresh temporary directory as qualified."
+}

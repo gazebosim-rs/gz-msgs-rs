@@ -1,0 +1,10 @@
+{
+  "decision": "approved",
+  "author": "/root/msgs",
+  "reviewer": "/root/transport_recovery",
+  "date": "2026-10-25T00:51:45.468500+00:00",
+  "staged_diff_sha256": "5109ba7e6fd1886199fb2186938dd0c72e8ec5d9aacb6383cf1b0ce365909d3e",
+  "scope": "Narrow delta review after prior full packaging approval: local Git environment isolation in git() and inherited-context regressions, plus honest documentation of first staged-hook failure. Git child calls clear the official Git repository-local environment variable list before selecting explicit cwd, isolating temporary bare reconstruction and immutable source selection from caller directory/worktree/index settings. No archive format, blob binding, Rust, dependencies, CI policy or coverage thresholds changed.",
+  "independent_checks": "Archive regression suite independently passes standalone and from Git-less /tmp under relative GIT_INDEX_FILE=.git/index. Independent module import/create/extract under foreign nonexistent GIT_DIR/GIT_COMMON_DIR/GIT_WORK_TREE and absolute sentinel GIT_INDEX_FILE succeeds, preserves caller sentinel bytes, creates no foreign Git directory, and reproduces exact authentic 611-file source archive SHA256 2a722e029dba1ab785622aa471eab862882e0fb503d47a31c7178e864dc983f4. Existing suite independently checks valid foreign repository config/index unchanged. Prior complete source/install/CLI/consumer review remains applicable.",
+  "limits": "Author full gate running; mandatory strict staged hook and hosted CI remain required. No repeated Cargo fetch/install or full Rust/coverage gate claimed for this tool-context delta."
+}
