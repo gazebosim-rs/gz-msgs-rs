@@ -2392,6 +2392,41 @@ Independent [review](reviews/json-pose-header-value-append.json) rebuilt candida
 parent and native peer separately, reproduced all 31 corrected parent wrong wires,
 confirmed all eight inner and ten outer pending rejection witnesses, verified all
 33 fixture pins and independently recomputed the retained 25/25 added-line proof.
-Final metadata binding, mandatory normal hook and exact hosted candidate result
-remain required. Native rejection diagnostics, richer nested grammar and full
-MSG-02 remain unqualified.
+Final metadata binding and the mandatory normal hook passed on public
+`5e147a1da763cf894cab193b6eecde2b210c7d78`, reviewer-bound tree `f655c397`;
+exact hosted run `40314819306` succeeded. Native rejection diagnostics, richer
+nested grammar and full MSG-02 remain unqualified.
+
+
+## Singleton Header.data message objects under Pose parents
+
+The adapter normalizes a singleton Header.data message object
+to a one-element array under Pose position and orientation. This is a structural
+conversion only: it visits every header occurrence in each component fragment,
+including earlier parent fragments retained for validation. Existing final-fragment
+merge and append then run once. Reusing append during the structural conversion
+would duplicate values; the separate conversion preserves that boundary. Unknown
+fields, invalid earlier keys/values and malformed documents still reach validation.
+
+The new 81-input native corpus has 71 matching candidate observations: 51 accepted
+exact wires and 20 joint rejections. The public parent rejected 49 of these native
+positive inputs. Ten combined inner/nested/null-entry shape forms remain pending;
+the prior inner grammar cases and four prior outer shape witnesses also remain
+unqualified. Six previous singleton/mixed-array rejection assertions now require
+exact native wire equality. All 34 earlier JSON fixture hashes remain unchanged.
+
+Six selected Pose CLI tests pass, and a freshly rebuilt native peer reproduces
+6,799 status/full-wire outcomes. The exact staged source gate passed 134 Rust tests
+including 37 CLI, 3,063/3,083 owned production lines, 5,052/5,126 regions and
+automatic 31/31 added executable lines. Strict vendor, policy, snapshot and
+source-package checks passed; all five staged evidence files are complete.
+
+Independent [review](reviews/json-pose-header-data-singleton.json) rebuilt the
+candidate, parent and native peer separately, reproduced all 49 corrected parent
+rejections and verified all 34 fixture pins and the retained 31/31 added-line
+proof. Ten new, eight earlier inner and four earlier outer pending observations
+remain Rust rejections. Four supplemental singleton/null-header combinations
+also match native and are rejected by the parent; these are recorded separately
+from the 6,799 fixture outcomes. Final binding, the normal protected hook and
+exact hosted qualification remain required. Native rejection diagnostics and
+full MSG-02 stay open.

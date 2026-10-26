@@ -1,0 +1,131 @@
+{
+  "decision": "approved_for_bounded_Pose_Header_data_singleton_objects",
+  "reviewer": "/root/transport_owner_v2",
+  "reviewed_at": "2026-10-26T12:30:08.474638+00:00",
+  "source_manifest_sha256": "5ff1f3d1a5fe590a6a7637e3acf08794b7dc2bc69aea56e43ad4715eec10b503",
+  "parent": "5e147a1da763cf894cab193b6eecde2b210c7d78",
+  "source_tree": "dc5c104fc17a82825f5d307b15c77aefa607ff29",
+  "source_diff_sha256": "65e8b0e86cc31a29bc8b02a3911816dfcfc93ee41640f0f87313098634a0a629",
+  "files_sha256": {
+    "docs/EVIDENCE.md": "74463b89bfb825f8a77273a5c13fea3ac0dd012db83233ae146f5700521a0a9e",
+    "docs/JSON_FRAMING.md": "60ae605af8a002fbc7cd41de168fb218894c796540ae871f80a6485f9c78c644",
+    "scripts/json-reference.py": "5e1c67ef2c1dfcc6bf92c1d2c732134afdbe5aa45bbb313278231ab7d0182f82",
+    "src/bin/gz-msgs.rs": "0d57801f1256dbcc6a1af241e12191902869e6408131863611d96d1e5aec229d",
+    "tests/cli.rs": "67c595fc8e531a926e2837842b012f27ae50c681d97add034ea9cc712e7494e1",
+    "tests/fixtures/json-pose-header-data-singleton.json": "8102a4e274a61329683a3e62931bf4249d29dc4482f594ffe620141fbefd297e"
+  },
+  "modes": {
+    "docs/EVIDENCE.md": "100644",
+    "docs/JSON_FRAMING.md": "100644",
+    "scripts/json-reference.py": "100644",
+    "src/bin/gz-msgs.rs": "100644",
+    "tests/cli.rs": "100644",
+    "tests/fixtures/json-pose-header-data-singleton.json": "100644"
+  },
+  "no_unstaged_tracked_diff": true,
+  "semantic_review": "Structural-only singleton Header.data object wrapping uses maintained serde JsonMembers/RawValue and visits every earlier parent/header fragment before the existing final merge/append exactly once. Earlier retained fragments remain parseable and still validate; no duplicate append is introduced. Six old pending singleton assertions strengthen to native full-wire equality;all34 fixture bytes retained. No schema/dependency/edition/policy/threshold/exclusion changes;OSRF2026/Apache2 notices retained.",
+  "independent_replay": {
+    "export": "Fresh760 candidate/759 public-parent raw blobs independently exported and verified; all760 source bytes,producer index/tree/diff/no-unstaged rechecked after replay. Separate fresh reviewer-owned Cargo2 targets,no producer cache reuse.",
+    "rust": "Six exact Pose CLI tests6/0,zero ignored,31 other tests filtered.",
+    "native": "Fresh pinned protobuf3.21.12 peer reproduced all6799 exact native status/full-wire outcomes;proof0cab3df5 matches producer.",
+    "sensitivity_control": "Fresh independently compiled public parent rejects49 matching native-positive forms;candidate accepts exact native wires. All71 qualified observations match:51accepted/20jointreject. Ten new richer pending shapes plus prior8inner/4outer remain explicit Rust rejections. Separate four mixed singleton/null-header rows also match native and parent rejects all4; excluded from6799 count.",
+    "summary": {
+      "matching": 71,
+      "native_positive_matching": 51,
+      "joint_rejected": 20,
+      "parent_native_positive_rejections_corrected": 49,
+      "pending_new": 10,
+      "pending_statuses": {
+        "1": 10
+      },
+      "prior_inner_pending": 8,
+      "prior_outer_pending": 4,
+      "supplemental_null_header": 4,
+      "candidate_binary_sha256": "1f802c49220f213ef7fc5dfca8824383d1417e1a40beca55d6128aa3907f6002",
+      "parent_binary_sha256": "b681b57ae6ac336cda1894fdd6f61a29bef17f31506c374d021f5ac8dec127f0",
+      "peer_sha256": "16744aebb5531163dc87224e6d6cec56bba40d4d1a62035ae465342649ac540b",
+      "descriptor_sha256": "7ee20050da11c5d683776f4d04c16b1574bcb9cbdc851fea98b44516312375a8"
+    },
+    "logs_sha256": {
+      "candidate-selected.log": "2cc4ecf4f2134fc6aade2205579b2cc0a445e370dbf0ec4471bcb459aacbde55",
+      "parent-build.log": "08b17966323eaaf7a858091370030788fbca6b2fd5a8e2d73e880824baf79e9b",
+      "native-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "native-replay.log": "44fccaa85694e2428f483efdeabfdd0f2053386c34230e0a1365fef95070453c",
+      "native-proof.json": "0cab3df50d01850263edc2098941f1cbb9c553e8419194d4ea83da44dc253c4d",
+      "independent-comparison.json": "7d7c49f27d55aa1c1deccb3b2ff96a961ce223729315b2cc89e34b1cea949bb5"
+    },
+    "prior_fixtures": "All34 pins independently checked.",
+    "excluded_setup": "Initial static hash helper passed Path instead of bytes after export;TypeError stopped before builds/mutation. Both complete exports were reverified and byte hashing corrected without re-export/overwrite;not semantic passing evidence.",
+    "overlap": "Ordinary correctness Cargo2/native review during other-owner ordinary work;no timing/performance claim."
+  },
+  "author_full_source_gate": {
+    "result": "EXIT0 exact six-file source tree",
+    "log_sha256": "e8b51379bce493a9e37bda7ac3a0ee0ed9942fd2f9940039cdd77cf1f8666e33",
+    "rust_tests": 134,
+    "cli_tests": 37,
+    "native_outcomes": 6799,
+    "owned_production": {
+      "lines": [
+        3063,
+        3083
+      ],
+      "regions": [
+        5052,
+        5126
+      ]
+    },
+    "changed_production": {
+      "src/bin/gz-msgs.rs": [
+        31,
+        31
+      ]
+    },
+    "owned_vendors": {
+      "prost-derive": {
+        "lines": [
+          6,
+          6
+        ],
+        "regions": [
+          8,
+          8
+        ]
+      },
+      "prost-reflect": {
+        "lines": [
+          96,
+          97
+        ],
+        "regions": [
+          205,
+          206
+        ]
+      }
+    },
+    "retained_stage_result": "artifacts/staged/dc5c104fc17a82825f5d307b15c77aefa607ff29-lqe79nj6/stage-result.json",
+    "retained_stage_result_sha256": "39a44c4fac7df77f940fa500490c39b5eddd086eaaa326f8a9808eb509dd7e1d",
+    "retained_files_sha256": {
+      "coverage/coverage.json": "bc2afd3b146fe07924e05a1ceb54fbda881688e5c5f36634fb65520d3d197a45",
+      "coverage/coverage.lcov": "d32017604c056fcd7a29261f7979682529cc189e023b3b3408a8d8dc5ac2e04b",
+      "coverage/changed-production.json": "c0e278c6433a49060d2550896474a15b155fb2163b35bdfb45221337a9b85417",
+      "coverage/owned-patches.json": "db05d13e911f269ab1cb6dd92260645760103ce88b5f0987e3e2354264f5835d",
+      "coverage-input.json": "3e22f9a898de06227055fe00f58c217d72f2d932be952f7d87ad06d50fcb4a2e"
+    },
+    "evidence_state": "complete",
+    "controls": "Strict policy/snapshot/vendor/intended-index/source-package checks passed",
+    "overlap": "Cargo2 ordinary correctness after coordinated SDF gate CLEAR; no performance claim"
+  },
+  "retained_gate_binding": "All five retained hashes,passed/complete/no-missing stage state and authoritative source hashes verified. Added CLI executable intersection independently31/31 covered in retained LCOV. No independent full coverage rerun claimed.",
+  "parent_hosted": {
+    "run": 40314819306,
+    "head_sha": "5e147a1da763cf894cab193b6eecde2b210c7d78",
+    "status": "completed",
+    "conclusion": "success",
+    "independently_verified": true
+  },
+  "limitations": [
+    "Only singleton Header.data objects under the two Pose component parents;ten new richer shapes,eight prior inner/four outer native-positive grammar gaps remain unqualified.",
+    "Native rejection diagnostic exit codes,other descriptors/full nested grammar and MSG02 remain open.",
+    "Mandatory final metadata binding,normal protected hook,public push and exact hosted candidate qualification still required."
+  ]
+}

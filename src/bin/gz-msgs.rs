@@ -623,6 +623,34 @@ fn merge_pose_header_objects(input: &[u8], path: &[&str]) -> Option<Vec<u8>> {
     Some(json_members_bytes(&members))
 }
 
+// Coerce only singleton Header.data objects, without appending any fields.
+// Earlier parent/header fragments still need to be parseable for validation;
+// the final merged fragment performs the existing array/value append once.
+fn normalize_pose_header_data_singletons(input: &[u8]) -> Option<Vec<u8>> {
+    let mut parent: JsonMembers = gz_msgs::serde_json::from_slice(input).ok()?;
+    let mut changed = false;
+    for (name, value) in &mut parent.0 {
+        if name != "header" || value.get() == "null" {
+            continue;
+        }
+        let mut header: JsonMembers = gz_msgs::serde_json::from_str(value.get()).ok()?;
+        for (name, data) in &mut header.0 {
+            if name == "data" && gz_msgs::serde_json::from_str::<JsonMembers>(data.get()).is_ok() {
+                *data = gz_msgs::serde_json::value::RawValue::from_string(
+                    gz_msgs::serde_json::to_string(&[&**data]).ok()?,
+                )
+                .ok()?;
+                changed = true;
+            }
+        }
+        *value = gz_msgs::serde_json::value::RawValue::from_string(
+            String::from_utf8(json_members_bytes(&header)).ok()?,
+        )
+        .ok()?;
+    }
+    changed.then(|| json_members_bytes(&parent))
+}
+
 // Reflection keeps the last duplicate JSON message key; protobuf merges the
 // child fields. Leave earlier objects in place so they still get validated.
 fn merge_pose_parent_objects(
@@ -639,8 +667,9 @@ fn merge_pose_parent_objects(
             continue;
         }
         let mut members = Vec::new();
+        let mut earlier = Vec::new();
         let mut valid = true;
-        for (_, start, end) in &occurrences {
+        for (index, (_, start, end)) in occurrences.iter().enumerate() {
             let value = normalized[*start..*end].trim_ascii();
             if value == b"null" {
                 continue;
@@ -649,12 +678,20 @@ fn merge_pose_parent_objects(
                 valid = false;
                 break;
             }
+            let coerced = normalize_pose_header_data_singletons(value);
+            let value = coerced.as_deref().unwrap_or(value);
             let inner = value[1..value.len() - 1].trim_ascii();
             if !inner.is_empty() {
                 if !members.is_empty() {
                     members.push(b',');
                 }
                 members.extend_from_slice(inner);
+            }
+            if index + 1 == occurrences.len() {
+                continue;
+            }
+            if let Some(coerced) = coerced {
+                earlier.push((*start, *end, coerced));
             }
         }
         if !valid || members.is_empty() {
@@ -670,6 +707,7 @@ fn merge_pose_parent_objects(
         }
         let merged = nested.unwrap_or(merged);
         let (_, start, end) = occurrences.last().unwrap();
+        replacements.extend(earlier);
         replacements.push((*start, *end, merged));
     }
     replacements.sort_by_key(|(start, _, _)| *start);

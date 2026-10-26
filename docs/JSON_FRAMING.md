@@ -1012,6 +1012,45 @@ confirmed the 31 parent wrong wires, all 18 explicit inner/outer pending rejecti
 witnesses, fixture preservation and the retained changed-line proof. An earlier
 unsupported-edition formatting failure is preserved and excluded; the corrected
 source passed without an edition or policy change. Final metadata binding, normal
-protected hook and exact hosted candidate result remain required. This slice does
-not qualify native reject diagnostics, other descriptors, richer nested grammar
-or MSG-02 as a whole.
+protected hook and exact hosted run `40314819306` passed on public
+`5e147a1da763cf894cab193b6eecde2b210c7d78`, tree `f655c397`. This slice does not
+qualify native reject diagnostics, other descriptors, richer nested grammar or
+MSG-02 as a whole.
+
+
+## Singleton Header data objects under Pose component parents
+
+Native protobuf also accepts a single Header.data message object where the
+standard array form would contain one entry. The adapter converts only those
+objects under Pose position and orientation. It uses the maintained ordered
+member parser and RawValue serialization. Arrays, null fields and other shapes
+are left to the existing adapters and reflection validation.
+
+Every header occurrence in a component fragment is visited. Earlier component
+fragments retained for validation receive the same structural conversion before
+the final merged component is emitted. The conversion never appends entries or
+inner values itself; the existing final-fragment append runs once. This prevents
+valid earlier singleton objects from being rejected and avoids double appending
+inner duplicate values. Malformed objects, unknown fields and wrong key/value
+types remain validated.
+
+The 81 native observations include 71 matching rows: 51 accepted exact wires and
+20 rejections. The public parent rejected 49 matching positive rows. Cases cover
+empty objects, absent/empty/null fields, Unicode and escaped keys, repeated data
+keys, headers and parents, mixed singleton/array occurrences, stamp coexistence
+and malformed earlier or later inputs. Ten richer-shape inputs remain explicit
+native-positive pending observations. The prior inner-string grammar cases and
+four prior outer nested-array/null-entry witnesses remain pending as well.
+
+All 34 previous JSON fixtures retain their bytes. Six old singleton rejection
+assertions now require native equality; other retained expectations are preserved.
+Six selected Pose tests and a fresh 6,799-outcome native replay pass. The exact
+source gate passes 134 Rust tests including 37 CLI, strict 3,063/3,083 lines and
+5,052/5,126 regions, and automatic 31/31 added executable lines. Independent
+[review](reviews/json-pose-header-data-singleton.json) rebuilds candidate, parent
+and native peer, confirms all 49 corrected parent rejections, checks the explicit
+pending cases and recomputes the added-line proof. Four supplemental null-header
+combinations also match native; they are outside the fixture outcome count.
+Final binding, normal protected hook and exact hosted candidate qualification
+remain required. Other descriptors, native reject diagnostics and MSG-02 as a
+whole are unqualified.
