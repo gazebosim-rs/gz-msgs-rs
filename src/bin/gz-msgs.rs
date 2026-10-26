@@ -623,7 +623,7 @@ fn merge_pose_header_objects(input: &[u8], path: &[&str]) -> Option<Vec<u8>> {
     Some(json_members_bytes(&members))
 }
 
-fn normalize_pose_header_value_strings(
+fn normalize_pose_header_value_shapes(
     input: &str,
 ) -> Option<Box<gz_msgs::serde_json::value::RawValue>> {
     let mut entries: Vec<Box<gz_msgs::serde_json::value::RawValue>> =
@@ -635,12 +635,30 @@ fn normalize_pose_header_value_strings(
         };
         let mut entry_changed = false;
         for (name, value) in &mut members.0 {
-            if name == "value" && gz_msgs::serde_json::from_str::<String>(value.get()).is_ok() {
+            if name != "value" {
+                continue;
+            }
+            if gz_msgs::serde_json::from_str::<String>(value.get()).is_ok() {
                 *value = gz_msgs::serde_json::value::RawValue::from_string(
                     gz_msgs::serde_json::to_string(&[&**value]).ok()?,
                 )
                 .ok()?;
                 entry_changed = true;
+            } else if let Ok(mut values) = gz_msgs::serde_json::from_str::<
+                Vec<Box<gz_msgs::serde_json::value::RawValue>>,
+            >(value.get())
+            {
+                let original_len = values.len();
+                // Native skips direct null elements. Keep every other token,
+                // including invalid types and nested arrays, for validation.
+                values.retain(|value| value.get() != "null");
+                if values.len() != original_len {
+                    *value = gz_msgs::serde_json::value::RawValue::from_string(
+                        gz_msgs::serde_json::to_string(&values).ok()?,
+                    )
+                    .ok()?;
+                    entry_changed = true;
+                }
             }
         }
         if entry_changed {
@@ -660,7 +678,8 @@ fn normalize_pose_header_value_strings(
     .ok()
 }
 
-// Wrap singleton data objects and value strings without appending any fields.
+// Normalize singleton data objects, value strings and direct value-array nulls
+// without appending any fields.
 // Earlier parent/header fragments still need to be parseable for validation;
 // the final merged fragment performs the existing array/value append once.
 fn normalize_pose_header_data_shapes(input: &[u8]) -> Option<Vec<u8>> {
@@ -682,7 +701,7 @@ fn normalize_pose_header_data_shapes(input: &[u8]) -> Option<Vec<u8>> {
                 .ok()?;
                 changed = true;
             }
-            if let Some(coerced) = normalize_pose_header_value_strings(data.get()) {
+            if let Some(coerced) = normalize_pose_header_value_shapes(data.get()) {
                 *data = coerced;
                 changed = true;
             }

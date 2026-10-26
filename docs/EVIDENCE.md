@@ -2465,6 +2465,53 @@ eight supplemental controls and 35 retained fixture pins, and recomputed the
 40/40 changed-line proof. An initial cross-algorithm list comparison stopped
 because Git and the approved manifest algorithm align repeated lines differently;
 both independently computed executable intersections are 40/40 covered. No
-source, threshold or exclusion changed. Final binding, the normal protected hook
-and exact hosted qualification remain required. Other descriptors, richer
+source, threshold or exclusion changed. Final binding and the normal protected
+hook passed on public `65d8b53c8a2ea94d36360d7a43c974e6c2d7232f`, tree
+`2fdf91c0`; exact hosted run `40330145997` succeeded. Other descriptors, richer
 grammar, rejection diagnostics and MSG-02 remain unqualified.
+
+## Direct null Header.Map.value array elements under Pose parents
+
+Before editing, a pinned native/current-parent replay captured 100 unique forms.
+The bounded portion contains 64 native positives rejected by the parent and
+28 joint rejections; eight richer nested-array positives remain pending. The new
+fixture includes repeated-parent/header controls as well as ordinary/singleton
+data entries, duplicate value fields, literal "null", whitespace and escaped keys.
+No prior fixture is regenerated: all 36 hashes are pinned. Eight older rejection
+assertions become exact native-wire expectations for the newly supported shape.
+
+The implementation removes only direct null array elements through maintained
+RawValue parsing. It leaves invalid tokens and nested arrays for validation,
+normalizes every retained fragment and leaves final append to the existing path.
+Eight selected Pose tests and fresh native replay of 6,979 outcomes pass. The
+100-input candidate/native/parent replay confirms all 64 corrected rejections
+and eight pending nested-array rejections. The canonical full source gate passes
+136 Rust tests including 39 CLI, 3,115/3,135 owned production lines, 5,133/5,214
+regions and automatic 17/17 added executable lines. Strict vendor, policy,
+snapshot and source-package checks pass; all five staged evidence files are
+complete.
+
+The first author gate supplied the additional `CARGO_INCREMENTAL=0` setting and
+failed strict owned prost-reflect region coverage at 205/222, after all 136 Rust
+and 6,979 native outcomes passed. The failed stage remains partial: added-line,
+owned-patch and input proof files were not produced. Controlled runs on identical
+source, pins, driver and toolchain hashes then compared the canonical setting
+(no incremental override) with the disabled-incremental setting. The canonical
+run passes 205/206; the disabled-incremental run reproduces 205/222. Its full
+LLVM report contains 16 additional zero-count generic descriptor-loader
+placeholder regions, while the real byte-slice instantiation executes 1,339
+times and its error closure once in both reports. Both failed runs, all full
+JSON/LCOV datasets and exact configuration records are retained. No source,
+threshold, exclusion, region filter or coverage policy changed. This is an
+observed configuration difference, not a general compiler-cause claim or an
+all-configuration pass.
+
+Independent [review](reviews/json-pose-header-value-null.json) rebuilt fresh
+candidate, parent and native binaries, reproduced eight selected tests and all
+6,979 native outcomes, and verified all 64 corrected parent rejections and
+36 prior fixture pins. The reviewer independently reran the unchanged coverage
+checks on the retained reports: canonical production/vendor/17-of-17 added-line
+checks pass, and both disabled-incremental datasets remain failed with partial
+evidence. Final binding, the canonical normal protected hook and exact hosted
+success remain required. Richer inner arrays, outer data null elements, other
+descriptors, diagnostics and MSG-02 remain open.

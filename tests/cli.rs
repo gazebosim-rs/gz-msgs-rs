@@ -1815,6 +1815,7 @@ fn pose_header_value_arrays_append_like_native() {
                 .as_str()
                 .unwrap()
                 .ends_with("/mixed_string_array")
+            || row["label"].as_str().unwrap().ends_with("/null_entries")
         {
             assert!(result.status.success(), "{}", row["label"]);
             assert_eq!(
@@ -1845,7 +1846,7 @@ fn pose_header_value_arrays_append_like_native() {
             row["label"]
         );
     }
-    assert_eq!(newly_matching, 4);
+    assert_eq!(newly_matching, 6);
 }
 
 #[test]
@@ -1893,6 +1894,10 @@ fn pose_header_data_singletons_match_native() {
             .as_str()
             .unwrap()
             .ends_with("/pending_inner_single_string")
+            || row["label"]
+                .as_str()
+                .unwrap()
+                .ends_with("/pending_inner_null_entry")
         {
             assert!(result.status.success(), "{}", row["label"]);
             assert_eq!(
@@ -1923,7 +1928,7 @@ fn pose_header_data_singletons_match_native() {
             row["label"]
         );
     }
-    assert_eq!(newly_matching, 2);
+    assert_eq!(newly_matching, 4);
 }
 
 #[test]
@@ -1957,6 +1962,83 @@ fn pose_header_value_scalars_match_native() {
         );
     }
     assert_eq!(native_positive, 40);
+    let pending = fixture["pending_grammar"].as_array().unwrap();
+    assert_eq!(pending.len(), 8);
+    let mut newly_matching = 0;
+    for row in pending {
+        let result = run(
+            &["encode-json", row["type"].as_str().unwrap()],
+            &unhex(row["input_hex"].as_str().unwrap()),
+        );
+        assert_eq!(row["cpp_status"], 0);
+        if row["label"]
+            .as_str()
+            .unwrap()
+            .ends_with("/null_entry_pending")
+        {
+            assert!(result.status.success(), "{}", row["label"]);
+            assert_eq!(
+                result.stdout,
+                unhex(row["cpp_stdout_hex"].as_str().unwrap()),
+                "{}",
+                row["label"]
+            );
+            newly_matching += 1;
+            continue;
+        }
+        assert_eq!(
+            result.status.code().unwrap() as i64,
+            row["rust_status"].as_i64().unwrap(),
+            "{}",
+            row["label"]
+        );
+        assert_eq!(
+            result.stdout,
+            unhex(row["rust_stdout_hex"].as_str().unwrap()),
+            "{}",
+            row["label"]
+        );
+        assert_ne!(
+            result.stdout,
+            unhex(row["cpp_stdout_hex"].as_str().unwrap()),
+            "{}",
+            row["label"]
+        );
+    }
+    assert_eq!(newly_matching, 4);
+}
+
+#[test]
+fn pose_header_value_nulls_match_native() {
+    let fixture: gz_msgs::serde_json::Value =
+        gz_msgs::serde_json::from_str(include_str!("fixtures/json-pose-header-value-null.json"))
+            .unwrap();
+    assert_eq!(fixture["native_protobuf"], "3.21.12");
+    let rows = fixture["rows"].as_array().unwrap();
+    assert_eq!(rows.len(), 92);
+    let unhex = |hex: &str| {
+        hex.as_bytes()
+            .chunks_exact(2)
+            .map(|pair| u8::from_str_radix(std::str::from_utf8(pair).unwrap(), 16).unwrap())
+            .collect::<Vec<_>>()
+    };
+    let mut native_positive = 0;
+    for row in rows {
+        let result = run(
+            &["encode-json", row["type"].as_str().unwrap()],
+            &unhex(row["input_hex"].as_str().unwrap()),
+        );
+        let accepted = row["cpp_status"] == 0;
+        native_positive += usize::from(accepted);
+        assert_eq!(result.status.success(), accepted, "{}", row["label"]);
+        assert_eq!(
+            result.stdout,
+            unhex(row["cpp_stdout_hex"].as_str().unwrap()),
+            "{}",
+            row["label"]
+        );
+    }
+    assert_eq!(native_positive, 64);
     let pending = fixture["pending_grammar"].as_array().unwrap();
     assert_eq!(pending.len(), 8);
     for row in pending {

@@ -1074,6 +1074,43 @@ source gate passes 135 Rust tests including 38 CLI, strict 3,100/3,120 lines and
 5,111/5,190 regions, and automatic 40/40 added executable lines. Independent
 [review](reviews/json-pose-header-value-scalar.json) rebuilds candidate, parent
 and native peer, confirms all corrected parent cases and recomputes the retained
-coverage proof. Final binding, the normal protected hook and exact hosted
-qualification remain required. Nested arrays, null entries, other descriptors,
+coverage proof. Final binding and the normal protected hook passed on public
+`65d8b53c8a2ea94d36360d7a43c974e6c2d7232f`, tree `2fdf91c0`; exact hosted
+run `40330145997` succeeded. Nested arrays, null entries, other descriptors,
 native rejection diagnostics and full MSG-02 are unqualified.
+
+## Direct null elements in Header entry values
+
+Native protobuf skips direct null elements in Header.Map.value arrays. The
+bounded Pose adapter removes those elements using maintained RawValue array
+parsing and serialization, before the existing ordered append. Literal strings
+such as "null" remain strings. Every non-null token, including invalid types and
+nested arrays, remains available for validation. The same structural step visits
+earlier parent/header fragments, preventing a later valid occurrence from hiding
+an invalid earlier value and avoiding duplicate append.
+
+The pre-edit corpus has 100 distinct inputs: 64 direct-null native positives,
+28 joint rejections and eight native-positive nested-array cases kept pending.
+The public parent rejects all 64 bounded positives. Both Pose components,
+ordinary and singleton Header.data, duplicate value/header/parent occurrences,
+empty/Unicode strings, escaped keys and whitespace are covered. Repeated-fragment
+controls are included in these counts. All 36 older JSON fixtures retain their
+bytes; eight old direct-null expectations are strengthened to native wire equality.
+Eight selected Pose tests and fresh native replay of 6,979 status/full-wire
+outcomes pass. Candidate/native/parent comparison confirms all 64 corrected
+parent rejections; all eight nested forms remain Rust rejections. The canonical
+source gate passes 136 Rust tests including 39 CLI, strict 3,115/3,135 lines and
+5,133/5,214 regions, and automatic 17/17 added executable lines. Independent
+[review](reviews/json-pose-header-value-null.json) rebuilds candidate, parent and
+native peer, verifies all 36 fixture pins and recomputes the coverage checks.
+
+A controlled run with an additional `CARGO_INCREMENTAL=0` setting fails owned
+vendor region coverage at 205/222; the canonical configuration passes 205/206.
+The unchanged source and toolchain produce 16 additional zero-count generic
+placeholder regions in the disabled-incremental report. Both failed runs and
+full coverage datasets remain retained. No source, threshold, exclusion or
+coverage policy changed, and no general compiler cause or all-configuration
+qualification is claimed. Final binding, the canonical normal protected hook
+and exact hosted qualification remain required.
+Nested arrays, outer Header.data null elements, other descriptors, native rejection
+diagnostics and full MSG-02 remain unqualified.

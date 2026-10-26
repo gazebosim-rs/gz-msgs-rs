@@ -1,0 +1,48 @@
+{
+  "decision": "approved_source_and_canonical_configuration_assessment",
+  "reviewer": "/root/transport_owner_v3",
+  "reviewed_at": "2026-10-26T14:49:24.109722+00:00",
+  "parent": "65d8b53c8a2ea94d36360d7a43c974e6c2d7232f",
+  "source_tree": "b64211b4353129f5fe582a828ca9f5d214330978",
+  "source_manifest_sha256": "0d0f241bcefdee59e24f9511f4b3cf6406c0c6be103c6430541bb3161b12f5e4",
+  "source_files_sha256": {
+    "docs/EVIDENCE.md": "1c822af17f3bc7bbd585286d1dd5ca5643c0094b27935971f12b3e1ec939d944",
+    "docs/JSON_FRAMING.md": "6b3f15fd67281926fa1dc09763d1f0e137cc69c95e5d3763c86bf70e4b32806d",
+    "scripts/json-reference.py": "ed43be1125cc2a69ad786a9c553a3e897314f63a9e5509117190fd142b2641a8",
+    "src/bin/gz-msgs.rs": "bbfd1045e81c36ce44abba2445d81978bf8349c09c49aac96b2195a620ed2176",
+    "tests/cli.rs": "eb1ef79710238d4ee549f8550cef59f7de5612456cac2eed912d34718532153b",
+    "tests/fixtures/json-pose-header-value-null.json": "05d2fe4e4c9f213e39a90b7d504f1121d5ccae3e3f07bd5fa8dd550bd55b39a1"
+  },
+  "scope": "Direct null elements of value arrays only within Header data under the two Pose component parents; singleton data and prior string coercion retained. All nonnull tokens, invalid earlier fragments and nested arrays remain validated. No recursive flattening, diagnostic equivalence or other descriptor claim. Eight earlier rejection expectations are strengthened to full native wire equality; every other old predicate and all36oldfixtures retained.",
+  "independent_checks": "Reverified raw764candidate/763parent blobs,modes and SHA256;1527rawfiles and36oldfixture pairs verified. Prior reviewer39296 fresh separate-target build outputs recovered without duplicate job; exact candidate-selected8/0/0, native6979 outcomes, independent100input candidate/native/parent comparison64positive/28reject/8pending and64parentpositive rejections. Fresh binaries/source/peer/descriptor hashes verified against private comparison. No independent full coverage gate rerun claimed.",
+  "configuration_comparison_sha256": "7ba6791efaef448cab58bc9226cf8d17ca88fd9370ceab3685de12fa2ee79a52",
+  "configuration": "Contemporaneous canonical/incremental-zero records match exact source,driver,pins,commands and toolchain hashes. Only declared build environment delta CARGO_INCREMENTAL absent to0. Source,policy,thresholds and exclusions unchanged. Recomputed original strict coverage checks against retained unfiltered full JSON/LCOV after rebinding only verified snapshot root: canonical passes3115/3135lines5133/5214regions,derive6/6lines8/8regions,reflect96/97lines205/206regions. Recomputed hash-bound changed-production manifest and17/17 proof. Canonical eligibility is configuration-specific and requires normal/exacthosted qualification.",
+  "failed_configuration": "Original40744 and controlled58651 remain FAIL/partial evidence at reflect205/222regions; missing downstream changed/source proof files remain absent, never passing. Original failure stage and full JSON/LCOV hashes reverified. Both fail states retained without waiver,filter,region exclusion or source/policy change. No all-configuration pass or general compiler root-cause claim.",
+  "descriptor_observation": {
+    "canonical": {
+      "functions": 2,
+      "counts": [
+        1,
+        1339
+      ],
+      "zero_regions": 0
+    },
+    "incremental-zero": {
+      "functions": 4,
+      "counts": [
+        0,
+        0,
+        1,
+        1339
+      ],
+      "zero_regions": 16
+    }
+  },
+  "descriptor_interpretation": "Full raw functions/region arrays match retained comparison exactly: canonical real byte-slice function1339/errorclosure1; incremental0 retains identical real counters and additionally reports16 zero-count generic placeholder regions. This is a bounded observation from these builds, not a proof that all future configurations produce either mapping.",
+  "remaining": [
+    "Final scoped metadata and exact final-tree binding",
+    "Mandatory canonical normal protected hook",
+    "Public push and exact hosted CI success",
+    "Nested array8new and prior pending cases,broaderMSG02 and performance remain unqualified"
+  ]
+}
