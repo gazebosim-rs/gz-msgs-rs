@@ -2427,6 +2427,44 @@ rejections and verified all 34 fixture pins and the retained 31/31 added-line
 proof. Ten new, eight earlier inner and four earlier outer pending observations
 remain Rust rejections. Four supplemental singleton/null-header combinations
 also match native and are rejected by the parent; these are recorded separately
-from the 6,799 fixture outcomes. Final binding, the normal protected hook and
-exact hosted qualification remain required. Native rejection diagnostics and
-full MSG-02 stay open.
+from the 6,799 fixture outcomes. Final binding and the normal protected hook
+passed on public `94fd57149ef46f2f3342500fd7ba43d27da58ef6`, reviewer-bound tree
+`8fae1e5f`; exact hosted run `40324275712` succeeded. Native rejection diagnostics
+and full MSG-02 stay open.
+
+## Scalar Header.Map.value strings under Pose parents
+
+The adapter wraps scalar string values as one-element arrays inside
+Header.data entries, for both ordinary data arrays and singleton objects. It uses
+the maintained ordered member parser and RawValue serialization. This structural
+step visits earlier retained fragments as well as the final parent; existing
+inner-value and outer-data append run once afterward. Numbers, booleans, objects,
+unknown fields and invalid earlier values remain available for validation.
+
+The pre-edit native characterization records 80 distinct forms: 72 intended
+matching observations comprise 40 accepted wires and 32 rejections. All 40
+matching positives are rejected by the public parent. Eight richer nested-array
+and null-entry forms remain explicit pending cases. Four earlier scalar/mixed
+inner-value witnesses and two singleton-data inner-string witnesses now require
+native equality in the draft; all 35 earlier JSON fixtures remain byte-identical.
+
+Seven selected Pose CLI tests pass. Fresh native replay reproduces 6,879
+status/full-wire outcomes. The 40 matching positives now have exact native wires;
+all eight richer-shape cases remain Rust rejections. Four additional positive
+and four rejecting repeated-header/parent controls also match native, preserving
+invalid earlier fragments and avoiding double append; these supplemental controls
+are excluded from the fixture outcome count. The exact staged source gate passed
+135 Rust tests including 38 CLI, 3,100/3,120 owned production lines, 5,111/5,190
+regions and automatic 40/40 added executable lines. Strict vendor, policy,
+snapshot and source-package checks passed; all five staged evidence files are
+complete.
+
+Independent [review](reviews/json-pose-header-value-scalar.json) rebuilt candidate,
+parent and native peer separately, confirmed the 40 corrected parent rejections,
+eight supplemental controls and 35 retained fixture pins, and recomputed the
+40/40 changed-line proof. An initial cross-algorithm list comparison stopped
+because Git and the approved manifest algorithm align repeated lines differently;
+both independently computed executable intersections are 40/40 covered. No
+source, threshold or exclusion changed. Final binding, the normal protected hook
+and exact hosted qualification remain required. Other descriptors, richer
+grammar, rejection diagnostics and MSG-02 remain unqualified.

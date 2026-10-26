@@ -623,10 +623,47 @@ fn merge_pose_header_objects(input: &[u8], path: &[&str]) -> Option<Vec<u8>> {
     Some(json_members_bytes(&members))
 }
 
-// Coerce only singleton Header.data objects, without appending any fields.
+fn normalize_pose_header_value_strings(
+    input: &str,
+) -> Option<Box<gz_msgs::serde_json::value::RawValue>> {
+    let mut entries: Vec<Box<gz_msgs::serde_json::value::RawValue>> =
+        gz_msgs::serde_json::from_str(input).ok()?;
+    let mut changed = false;
+    for entry in &mut entries {
+        let Ok(mut members) = gz_msgs::serde_json::from_str::<JsonMembers>(entry.get()) else {
+            continue;
+        };
+        let mut entry_changed = false;
+        for (name, value) in &mut members.0 {
+            if name == "value" && gz_msgs::serde_json::from_str::<String>(value.get()).is_ok() {
+                *value = gz_msgs::serde_json::value::RawValue::from_string(
+                    gz_msgs::serde_json::to_string(&[&**value]).ok()?,
+                )
+                .ok()?;
+                entry_changed = true;
+            }
+        }
+        if entry_changed {
+            *entry = gz_msgs::serde_json::value::RawValue::from_string(
+                String::from_utf8(json_members_bytes(&members)).ok()?,
+            )
+            .ok()?;
+            changed = true;
+        }
+    }
+    if !changed {
+        return None;
+    }
+    gz_msgs::serde_json::value::RawValue::from_string(
+        gz_msgs::serde_json::to_string(&entries).ok()?,
+    )
+    .ok()
+}
+
+// Wrap singleton data objects and value strings without appending any fields.
 // Earlier parent/header fragments still need to be parseable for validation;
 // the final merged fragment performs the existing array/value append once.
-fn normalize_pose_header_data_singletons(input: &[u8]) -> Option<Vec<u8>> {
+fn normalize_pose_header_data_shapes(input: &[u8]) -> Option<Vec<u8>> {
     let mut parent: JsonMembers = gz_msgs::serde_json::from_slice(input).ok()?;
     let mut changed = false;
     for (name, value) in &mut parent.0 {
@@ -635,11 +672,18 @@ fn normalize_pose_header_data_singletons(input: &[u8]) -> Option<Vec<u8>> {
         }
         let mut header: JsonMembers = gz_msgs::serde_json::from_str(value.get()).ok()?;
         for (name, data) in &mut header.0 {
-            if name == "data" && gz_msgs::serde_json::from_str::<JsonMembers>(data.get()).is_ok() {
+            if name != "data" {
+                continue;
+            }
+            if gz_msgs::serde_json::from_str::<JsonMembers>(data.get()).is_ok() {
                 *data = gz_msgs::serde_json::value::RawValue::from_string(
                     gz_msgs::serde_json::to_string(&[&**data]).ok()?,
                 )
                 .ok()?;
+                changed = true;
+            }
+            if let Some(coerced) = normalize_pose_header_value_strings(data.get()) {
+                *data = coerced;
                 changed = true;
             }
         }
@@ -678,7 +722,7 @@ fn merge_pose_parent_objects(
                 valid = false;
                 break;
             }
-            let coerced = normalize_pose_header_data_singletons(value);
+            let coerced = normalize_pose_header_data_shapes(value);
             let value = coerced.as_deref().unwrap_or(value);
             let inner = value[1..value.len() - 1].trim_ascii();
             if !inner.is_empty() {

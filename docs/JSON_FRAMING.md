@@ -1051,6 +1051,29 @@ source gate passes 134 Rust tests including 37 CLI, strict 3,063/3,083 lines and
 and native peer, confirms all 49 corrected parent rejections, checks the explicit
 pending cases and recomputes the added-line proof. Four supplemental null-header
 combinations also match native; they are outside the fixture outcome count.
-Final binding, normal protected hook and exact hosted candidate qualification
-remain required. Other descriptors, native reject diagnostics and MSG-02 as a
-whole are unqualified.
+Final binding, the normal protected hook and exact hosted run `40324275712`
+passed on public `94fd57149ef46f2f3342500fd7ba43d27da58ef6`, tree `8fae1e5f`.
+Other descriptors, native reject diagnostics and MSG-02 as a whole are unqualified.
+
+## Scalar strings in Header entry values
+
+Native protobuf accepts a scalar string for the repeated Header.Map.value field.
+The adapter wraps only string scalars under Pose position/orientation;
+ordinary arrays and existing singleton Header.data objects use the same ordered
+structural normalization. It does not append during that step. Earlier fragments
+remain validated, and existing final-fragment append applies once. Invalid types
+and unknown fields are preserved rather than discarded.
+
+The 80-input pre-edit characterization contains 40 matching native positives,
+32 joint rejections and eight explicit richer-shape pending forms. All 35 older
+JSON fixtures retain their hashes; six older rejection expectations are
+strengthened to exact native equality. Seven selected Pose tests and fresh native
+replay of 6,879 outcomes pass. Eight supplemental repeated-header/parent controls
+match native (four accepted, four rejected), outside the fixture count. The exact
+source gate passes 135 Rust tests including 38 CLI, strict 3,100/3,120 lines and
+5,111/5,190 regions, and automatic 40/40 added executable lines. Independent
+[review](reviews/json-pose-header-value-scalar.json) rebuilds candidate, parent
+and native peer, confirms all corrected parent cases and recomputes the retained
+coverage proof. Final binding, the normal protected hook and exact hosted
+qualification remain required. Nested arrays, null entries, other descriptors,
+native rejection diagnostics and full MSG-02 are unqualified.

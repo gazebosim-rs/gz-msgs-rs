@@ -1,0 +1,131 @@
+{
+  "decision": "approved_for_bounded_Pose_Header_Map_value_scalar_strings",
+  "reviewer": "/root/transport_owner_v2",
+  "reviewed_at": "2026-10-26T13:15:51.624227+00:00",
+  "source_manifest_sha256": "d62c9976095fd5bc6dbe559a5fc65eb464b99fbdb1e973d30a01cb1dd87fcb96",
+  "parent": "94fd57149ef46f2f3342500fd7ba43d27da58ef6",
+  "source_tree": "faaf130abb55fc60965057171334feb83c1c3606",
+  "source_diff_sha256": "afd073890b745e770fc8c064e5d991a12f0951b76ca7520ba7da887ba1c83c49",
+  "files_sha256": {
+    "docs/EVIDENCE.md": "55c1b5a25acff2f77ec9862f02500901d68fb2e00997ff0cd84e4e7b70dd4a29",
+    "docs/JSON_FRAMING.md": "c10a04e9610211483cbb82f52a3c83110aad9bc15d06aa50ebb0ca4087f0a341",
+    "scripts/json-reference.py": "537fa45157ed7346e5c3906a4434de5b542ddceea9539dfe77632a087c0525e9",
+    "src/bin/gz-msgs.rs": "8c77bc1b5b7d18413221e7973a8ff9b5d4484bcf8a25f5200cbf3a7a6a1b141e",
+    "tests/cli.rs": "0d8ad22877efbeb606baf8dade10ed4cf0a3814fb828c184d23ac61d598a6505",
+    "tests/fixtures/json-pose-header-value-scalar.json": "36a6c25134ee6360e5ba87e6105b8bd3db8e5406109e219b7d52f1725f872cd4"
+  },
+  "modes": {
+    "docs/EVIDENCE.md": "100644",
+    "docs/JSON_FRAMING.md": "100644",
+    "scripts/json-reference.py": "100644",
+    "src/bin/gz-msgs.rs": "100644",
+    "tests/cli.rs": "100644",
+    "tests/fixtures/json-pose-header-value-scalar.json": "100644"
+  },
+  "no_unstaged_tracked_diff": true,
+  "semantic_review": "Scalar strings only are wrapped as raw one-element value arrays inside ordinary Header.data arrays or prior singleton objects. Maintained JsonMembers/RawValue preserves ordered duplicate fields and earlier fragments for validation. Structural normalization runs before existing final-fragment append exactly once; invalid values,unknown fields and unsupported shapes are retained for rejection. Six old pending assertions strengthen to native full-wire equality;all35 old fixture bytes remain. No schema/dependency/toolchain/edition/policy/coverage exclusion or threshold changes;OSRF2026/Apache2 notices retained.",
+  "independent_replay": {
+    "export": "Fresh762 candidate and761 public-parent raw blobs exported/verified;all original bytes reverified after replay. Separate fresh reviewer-owned Cargo2 targets;no producer target reuse.",
+    "rust": "Seven exact Pose CLI tests passed7/0,zero ignored,31filtered.",
+    "native": "Fresh pinned protobuf3.21.12 peer reproduced all6879 native status/full-wire outcomes;full proof SHA matches author.",
+    "sensitivity_control": "Fresh independently built public parent rejects all40 qualified native-positive scalar forms;candidate accepts exact native wire. Corpus72 qualified observations match40accepted/32rejected;8 richer shapes remain native-positive Rust rejections. Separate8 repeated-parent/header controls match4accepted/4rejected and remain excluded from6879 count.",
+    "summary": {
+      "fixture_rows": 80,
+      "matching_positive": 40,
+      "matching_reject": 32,
+      "pending": 8,
+      "parent_matching_positive_rejections": 40,
+      "supplemental_positive": 4,
+      "supplemental_reject": 4
+    },
+    "logs_sha256": {
+      "candidate-selected.log": "04bc0a688fb2a68536630d1b48235278c714f6f44e0429aced95471e65a49a18",
+      "native-replay.log": "b7f3967dcab5899e2d4940b68226670d60192d575d3a7f93f36ead857ef30a88",
+      "native-proof.json": "83bc7fd77a92b96f696f27cd99e1bb673cc485cd7e00e8fa429b7cd76ba0ea7b",
+      "parent-build.log": "7b165f0df8cdb6520ed6db0aa8adc1e99cfa4ea10dbfac5fd23290df90aa5fbb",
+      "comparison.log": "ee44aad58c6c66593f3cc204d468b511f5b9c5cf18371e9a7a780b46a487bbbf",
+      "independent-comparison.json": "9e1270e7ed2dc2368976985f10cd98241d3ec100ecdc210ee94d9677011bed62"
+    },
+    "binary_sha256": {
+      "probe": "616f68dbc30cb1380187668c21fe02ebce4bdfd8eac1425c02f4c62b7a90ecc5",
+      "candidate": "56d73c848a13e5e099561bffdd8c03524a9097867baf94f2d3b300449d01f8bd",
+      "candidate_source": "8c77bc1b5b7d18413221e7973a8ff9b5d4484bcf8a25f5200cbf3a7a6a1b141e",
+      "parent": "3265da64fc4d51ad0070b583a5387a489bb2e719b78cfa90cfb638383eb26beb",
+      "peer": "16744aebb5531163dc87224e6d6cec56bba40d4d1a62035ae465342649ac540b",
+      "descriptor": "7ee20050da11c5d683776f4d04c16b1574bcb9cbdc851fea98b44516312375a8"
+    },
+    "prior_fixtures": "All35 independently checked against fresh candidate and parent.",
+    "diff_alignment_audit": "Git indent matching and the reviewed difflib SequenceMatcher assign identical repeated changed=true/closing-brace lines differently;both independent executable intersections are40/40 covered. Initial strict equality comparison between algorithms stopped before receipt;recomputed using approved manifest algorithm and separately checked Git intersection.",
+    "overlap": "Ordinary correctness Cargo2 while other owners performed ordinary work;no timing/performance claim."
+  },
+  "author_full_source_gate": {
+    "result": "EXIT0 exact six-file source tree",
+    "log_sha256": "fb7cdde431793453018f29cbf38db332129cc6a5e44f5b5412fec544ca9b7abd",
+    "rust_tests": 135,
+    "cli_tests": 38,
+    "native_outcomes": 6879,
+    "owned_production": {
+      "lines": [
+        3100,
+        3120
+      ],
+      "regions": [
+        5111,
+        5190
+      ]
+    },
+    "changed_production": {
+      "src/bin/gz-msgs.rs": [
+        40,
+        40
+      ]
+    },
+    "owned_vendors": {
+      "prost-derive": {
+        "lines": [
+          6,
+          6
+        ],
+        "regions": [
+          8,
+          8
+        ]
+      },
+      "prost-reflect": {
+        "lines": [
+          96,
+          97
+        ],
+        "regions": [
+          205,
+          206
+        ]
+      }
+    },
+    "retained_stage_result": "artifacts/staged/faaf130abb55fc60965057171334feb83c1c3606-j2yhu4n_/stage-result.json",
+    "retained_stage_result_sha256": "68ef6cc904061135872f0b21bfb194df99d7218af59c2dfff762b437923e9def",
+    "retained_files_sha256": {
+      "coverage/coverage.json": "15f66f686a9943471f00a3653fbf2d30675af1e4d77ee6f65cdeda5f51afd6c4",
+      "coverage/coverage.lcov": "90ee084ce87b925071cd9ede8855ea9831942cf4038b51769c557246654b3fb2",
+      "coverage/changed-production.json": "b7a1ae92126c05264da7b1e58ad6ad7906b31114559fd984b93069e14f83a487",
+      "coverage/owned-patches.json": "db05d13e911f269ab1cb6dd92260645760103ce88b5f0987e3e2354264f5835d",
+      "coverage-input.json": "a8482edd4a21fef5ee797406a22d6a2242fcca2b82a26565b267525c9e45c0d0"
+    },
+    "evidence_state": "complete",
+    "controls": "Strict policy/snapshot/vendor/intended-index/source-package checks passed",
+    "overlap": "Cargo2 ordinary correctness after Transport normal and SDF Geometry author gates cleared; no performance claim"
+  },
+  "retained_gate_binding": {
+    "state": "All5 retained hashes and passed/complete/no-missing stage result verified. All18 authoritative production source hashes verified. Approved SequenceMatcher added lines independently recomputed;retained LCOV executable intersection40/40. Separate Git-diff intersection also40/40. No independent full coverage rerun claimed.",
+    "audit_sha256": "748dc52a4384236b50e79dbc691cd537cd0613431c260a2db8a7cfafce792323"
+  },
+  "parent_hosted": {
+    "run": 40324275712,
+    "head_sha": "94fd57149ef46f2f3342500fd7ba43d27da58ef6",
+    "status": "completed",
+    "conclusion": "success",
+    "independently_verified": true
+  },
+  "scope_limits": "Only direct string coercion in Pose position/orientation Header.Map.value is qualified. Richer nested/null grammar,other message descriptors,native rejection diagnostic exit codes/full MSG-02 remain unqualified. No upstream-original count or performance credit.",
+  "remaining": "Final metadata must bind actual source gate/review and unchanged semantic bytes,then mandatory normal protected hook/public push/exact hosted candidate qualification. Source docs pending-gate text may be updated only as scoped metadata."
+}
