@@ -1561,6 +1561,63 @@ fn quaternion_quoted_numeric_matches_native() {
 }
 
 #[test]
+fn pose_nested_quoted_numeric_matches_native_with_merge_gaps_explicit() {
+    let fixture: gz_msgs::serde_json::Value =
+        gz_msgs::serde_json::from_str(include_str!("fixtures/json-pose-quoted-numeric.json"))
+            .unwrap();
+    assert_eq!(fixture["native_protobuf"], "3.21.12");
+    let rows = fixture["rows"].as_array().unwrap();
+    let pending = fixture["repeated_parent_pending"].as_array().unwrap();
+    assert_eq!(rows.len(), 694);
+    assert_eq!(pending.len(), 4);
+    let unhex = |hex: &str| {
+        hex.as_bytes()
+            .chunks_exact(2)
+            .map(|pair| u8::from_str_radix(std::str::from_utf8(pair).unwrap(), 16).unwrap())
+            .collect::<Vec<_>>()
+    };
+    let mut native_positive = 0;
+    for row in rows {
+        let result = run(
+            &["encode-json", row["type"].as_str().unwrap()],
+            &unhex(row["input_hex"].as_str().unwrap()),
+        );
+        let accepted = row["cpp_status"] == 0;
+        native_positive += usize::from(accepted);
+        assert_eq!(result.status.success(), accepted, "{}", row["label"]);
+        assert_eq!(
+            result.stdout,
+            unhex(row["cpp_stdout_hex"].as_str().unwrap()),
+            "{}",
+            row["label"]
+        );
+    }
+    assert_eq!(native_positive, 257);
+    for row in pending {
+        let result = run(
+            &["encode-json", row["type"].as_str().unwrap()],
+            &unhex(row["input_hex"].as_str().unwrap()),
+        );
+        assert_eq!(
+            result.status.code(),
+            row["rust_status"].as_i64().map(|n| n as i32)
+        );
+        assert_eq!(
+            result.stdout,
+            unhex(row["rust_stdout_hex"].as_str().unwrap()),
+            "{}",
+            row["label"]
+        );
+        assert!(
+            !result.status.success()
+                || result.stdout != unhex(row["cpp_stdout_hex"].as_str().unwrap()),
+            "{} unexpectedly matched the native merge case",
+            row["label"]
+        );
+    }
+}
+
+#[test]
 fn time_leading_zero_numeric_matches_native() {
     let fixture: gz_msgs::serde_json::Value =
         gz_msgs::serde_json::from_str(include_str!("fixtures/json-time-leading-zero.json"))

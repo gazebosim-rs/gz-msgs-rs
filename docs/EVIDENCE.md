@@ -2237,3 +2237,24 @@ format-only gate failure stopped before tests and was corrected before the
 passed exact gate. The gate ran at two Cargo jobs during Root's SDK build;
 it makes no timing claim. Protected hook, public commit and hosted CI remain
 separate. No broader MSG-02 acceptance is claimed.
+
+### Bounded quoted Pose child components
+
+After top-level Vector3d and Quaternion parity, pinned native differential
+probes still found quoted numeric gaps under `gz.msgs.Pose.position` and
+`Pose.orientation`. The scoped adapter patches only one top-level Pose
+position/orientation child object at double precision. The 694-observation
+native fixture covers all seven child components with 257 exact accepted
+wires, 437 rejections and 29 unchanged older JSON fixtures. Four repeated
+parent-object forms remain an explicit native-positive merge gap; plain
+numeric duplicates already showed a one-child last-value wire in the
+maintained decoder. The adapter rejects two repeated-parent forms whose
+quoted patches would be ambiguous; the two plain or mixed forms retain a
+wrong wire. The fixture records each current Rust disposition. The exact
+staged gate passed 129 Rust tests, including 32 CLI tests, mandatory native
+replay and strict coverage above 95% for each owned source. An independent
+[review](reviews/json-pose-quoted.json) reproduced all 6,469 native status
+and full-wire outcomes, passed the 694-row Rust parity test and confirmed
+the four pending merge dispositions. The normal protected hook and hosted
+qualification remain separate. No deeper Pose container or broader MSG-02
+acceptance is claimed.

@@ -94,6 +94,12 @@ enum ComponentKind {
     Quaternion,
 }
 
+#[derive(Clone, Copy, PartialEq, Eq)]
+enum ComponentPath {
+    Root(&'static str),
+    Pose(&'static str, &'static str),
+}
+
 fn component_field(key: &str, kind: ComponentKind) -> Option<&'static str> {
     match key {
         "x" => Some("x"),
@@ -107,11 +113,11 @@ fn component_field(key: &str, kind: ComponentKind) -> Option<&'static str> {
 fn patch_component_quoted(
     output: &mut Vec<u8>,
     start: usize,
-    field: &'static str,
+    path: ComponentPath,
     invalid: &mut bool,
-    patches: &mut Vec<(&'static str, Value)>,
+    patches: &mut Vec<(ComponentPath, Value)>,
 ) {
-    patches.retain(|(previous, _)| *previous != field);
+    patches.retain(|(previous, _)| *previous != path);
     if let Ok(value) = gz_msgs::serde_json::from_slice::<String>(&output[start..]) {
         *invalid |= invalid_proto_quoted_float(&value, FloatWidth::Double);
         if let Some(number) = proto_hex_float(&value, FloatWidth::Double)
@@ -119,7 +125,7 @@ fn patch_component_quoted(
         {
             output.truncate(start);
             output.extend_from_slice(b"\"0\"");
-            patches.push((field, number));
+            patches.push((path, number));
         }
     }
 }
@@ -471,7 +477,7 @@ struct NormalizedProtoJson {
     scalar_patches: Vec<(usize, Value)>,
     array_ranges: Vec<(usize, usize)>,
     data_ranges: Vec<(usize, usize)>,
-    component_patches: Vec<(&'static str, Value)>,
+    component_patches: Vec<(ComponentPath, Value)>,
 }
 
 fn normalize_proto_json(
@@ -481,6 +487,7 @@ fn normalize_proto_json(
     uint64_data: bool,
     time_data: bool,
     component_kind: Option<ComponentKind>,
+    pose_data: bool,
 ) -> NormalizedProtoJson {
     #[derive(Clone, Copy, PartialEq, Eq)]
     enum Frame {
@@ -494,8 +501,12 @@ fn normalize_proto_json(
     let mut previous = None;
     let mut data_field = false;
     let mut time_field = None;
-    let mut component_field_name = None;
+    let mut component_path = None;
     let mut component_patches = Vec::new();
+    let mut pose_parent_pending = None;
+    let mut pose_parent_active = None;
+    let mut pose_seen = [false; 2];
+    let mut repeated_pose_parent = [false; 2];
     let mut float_array_depth = None;
     let mut float_item_index = 0;
     let mut float_patches = Vec::new();
@@ -532,9 +543,19 @@ fn normalize_proto_json(
             if frames.len() == 1 && frames.last() == Some(&Frame::ObjectKey) {
                 let key = gz_msgs::serde_json::from_slice::<String>(&output[output_start..]).ok();
                 data_field = key.as_deref() == Some("data");
-                component_field_name = key
+                component_path = key
                     .as_deref()
-                    .and_then(|key| component_kind.and_then(|kind| component_field(key, kind)));
+                    .and_then(|key| component_kind.and_then(|kind| component_field(key, kind)))
+                    .map(ComponentPath::Root);
+                pose_parent_pending = if pose_data {
+                    match key.as_deref() {
+                        Some("position") => Some(("position", ComponentKind::Vector3d, 0)),
+                        Some("orientation") => Some(("orientation", ComponentKind::Quaternion, 1)),
+                        _ => None,
+                    }
+                } else {
+                    None
+                };
                 time_field = if time_data {
                     match key.as_deref() {
                         Some("sec") => Some(TimeField::Seconds),
@@ -544,14 +565,25 @@ fn normalize_proto_json(
                 } else {
                     None
                 };
-            } else if component_field_name.is_some()
-                && frames.len() == 1
-                && frames.last() == Some(&Frame::ObjectValue)
+            } else if frames.len() == 2
+                && frames.last() == Some(&Frame::ObjectKey)
+                && pose_parent_active.is_some()
+            {
+                let key = gz_msgs::serde_json::from_slice::<String>(&output[output_start..]).ok();
+                component_path = key.as_deref().and_then(|key| {
+                    pose_parent_active.and_then(|(parent, kind)| {
+                        component_field(key, kind).map(|field| ComponentPath::Pose(parent, field))
+                    })
+                });
+            } else if matches!(
+                (component_path, frames.len()),
+                (Some(ComponentPath::Root(_)), 1) | (Some(ComponentPath::Pose(_, _)), 2)
+            ) && frames.last() == Some(&Frame::ObjectValue)
             {
                 patch_component_quoted(
                     &mut output,
                     output_start,
-                    component_field_name.unwrap(),
+                    component_path.unwrap(),
                     &mut invalid_quoted_float,
                     &mut component_patches,
                 );
@@ -615,9 +647,19 @@ fn normalize_proto_json(
             if frames.len() == 1 && frames.last() == Some(&Frame::ObjectKey) {
                 let key = gz_msgs::serde_json::from_slice::<String>(&output[output_start..]).ok();
                 data_field = key.as_deref() == Some("data");
-                component_field_name = key
+                component_path = key
                     .as_deref()
-                    .and_then(|key| component_kind.and_then(|kind| component_field(key, kind)));
+                    .and_then(|key| component_kind.and_then(|kind| component_field(key, kind)))
+                    .map(ComponentPath::Root);
+                pose_parent_pending = if pose_data {
+                    match key.as_deref() {
+                        Some("position") => Some(("position", ComponentKind::Vector3d, 0)),
+                        Some("orientation") => Some(("orientation", ComponentKind::Quaternion, 1)),
+                        _ => None,
+                    }
+                } else {
+                    None
+                };
                 time_field = if time_data {
                     match key.as_deref() {
                         Some("sec") => Some(TimeField::Seconds),
@@ -627,14 +669,25 @@ fn normalize_proto_json(
                 } else {
                     None
                 };
-            } else if component_field_name.is_some()
-                && frames.len() == 1
-                && frames.last() == Some(&Frame::ObjectValue)
+            } else if frames.len() == 2
+                && frames.last() == Some(&Frame::ObjectKey)
+                && pose_parent_active.is_some()
+            {
+                let key = gz_msgs::serde_json::from_slice::<String>(&output[output_start..]).ok();
+                component_path = key.as_deref().and_then(|key| {
+                    pose_parent_active.and_then(|(parent, kind)| {
+                        component_field(key, kind).map(|field| ComponentPath::Pose(parent, field))
+                    })
+                });
+            } else if matches!(
+                (component_path, frames.len()),
+                (Some(ComponentPath::Root(_)), 1) | (Some(ComponentPath::Pose(_, _)), 2)
+            ) && frames.last() == Some(&Frame::ObjectValue)
             {
                 patch_component_quoted(
                     &mut output,
                     output_start,
-                    component_field_name.unwrap(),
+                    component_path.unwrap(),
                     &mut invalid_quoted_float,
                     &mut component_patches,
                 );
@@ -694,9 +747,19 @@ fn normalize_proto_json(
                 output.push(b'"');
                 if frames.len() == 1 {
                     data_field = &input[start..index] == b"data";
-                    component_field_name = std::str::from_utf8(&input[start..index])
+                    component_path = std::str::from_utf8(&input[start..index])
                         .ok()
-                        .and_then(|key| component_kind.and_then(|kind| component_field(key, kind)));
+                        .and_then(|key| component_kind.and_then(|kind| component_field(key, kind)))
+                        .map(ComponentPath::Root);
+                    pose_parent_pending = if pose_data {
+                        match &input[start..index] {
+                            b"position" => Some(("position", ComponentKind::Vector3d, 0)),
+                            b"orientation" => Some(("orientation", ComponentKind::Quaternion, 1)),
+                            _ => None,
+                        }
+                    } else {
+                        None
+                    };
                     time_field = if time_data {
                         match &input[start..index] {
                             b"sec" => Some(TimeField::Seconds),
@@ -706,6 +769,16 @@ fn normalize_proto_json(
                     } else {
                         None
                     };
+                } else if frames.len() == 2 {
+                    component_path =
+                        std::str::from_utf8(&input[start..index])
+                            .ok()
+                            .and_then(|key| {
+                                pose_parent_active.and_then(|(parent, kind)| {
+                                    component_field(key, kind)
+                                        .map(|field| ComponentPath::Pose(parent, field))
+                                })
+                            });
                 }
             } else {
                 output.extend_from_slice(&input[start..index]);
@@ -753,24 +826,29 @@ fn normalize_proto_json(
                 }
             }
         }
-        if frames.len() == 1 && previous == Some(b':') {
+        if matches!(frames.len(), 1 | 2) && previous == Some(b':') {
             // A scalar null leaves an earlier native component unchanged.
-            if let Some(field) = component_field_name {
-                if frames.last() == Some(&Frame::ObjectValue)
+            if let Some(path) = component_path {
+                if matches!(
+                    (path, frames.len()),
+                    (ComponentPath::Root(_), 1) | (ComponentPath::Pose(_, _), 2)
+                ) && frames.last() == Some(&Frame::ObjectValue)
                     && !is_proto_whitespace(byte)
                     && !input[index..].starts_with(b"null")
                 {
-                    component_patches.retain(|(previous, _)| *previous != field);
+                    component_patches.retain(|(previous, _)| *previous != path);
                 }
             }
-            if let Some((length, number)) =
-                time_field.and_then(|field| proto_time_float_integer(&input[index..], field))
-            {
-                let decimal = number.to_string();
-                output.extend_from_slice(decimal.as_bytes());
-                previous = decimal.as_bytes().last().copied();
-                index += length;
-                continue;
+            if frames.len() == 1 {
+                if let Some((length, number)) =
+                    time_field.and_then(|field| proto_time_float_integer(&input[index..], field))
+                {
+                    let decimal = number.to_string();
+                    output.extend_from_slice(decimal.as_bytes());
+                    previous = decimal.as_bytes().last().copied();
+                    index += length;
+                    continue;
+                }
             }
         }
         if uint64_data && data_value_start.is_some() && matches!(previous, Some(b':' | b'[' | b','))
@@ -855,7 +933,16 @@ fn normalize_proto_json(
             }
         }
         match byte {
-            b'{' => frames.push(Frame::ObjectKey),
+            b'{' => {
+                if frames.len() == 1 && frames.last() == Some(&Frame::ObjectValue) {
+                    pose_parent_active = pose_parent_pending.map(|(parent, kind, slot)| {
+                        repeated_pose_parent[slot] |= pose_seen[slot];
+                        pose_seen[slot] = true;
+                        (parent, kind)
+                    });
+                }
+                frames.push(Frame::ObjectKey);
+            }
             b'[' => {
                 if frames.len() == 1 && data_field && float_data.is_some() {
                     float_array_depth = Some(2);
@@ -866,6 +953,10 @@ fn normalize_proto_json(
                 frames.push(Frame::Array);
             }
             b'}' | b']' => {
+                if byte == b'}' && frames.len() == 2 && pose_parent_active.is_some() {
+                    pose_parent_active = None;
+                    component_path = None;
+                }
                 if byte == b'}' && frames.len() == 1 {
                     if let Some(start) = data_value_start.take() {
                         data_value_ranges.push((start, output.len()));
@@ -897,7 +988,10 @@ fn normalize_proto_json(
                 if frames.len() == 1 {
                     data_field = false;
                     time_field = None;
-                    component_field_name = None;
+                    component_path = None;
+                    pose_parent_pending = None;
+                } else if frames.len() == 2 {
+                    component_path = None;
                 }
             }
             b',' if float_array_depth == Some(frames.len()) => {
@@ -913,7 +1007,12 @@ fn normalize_proto_json(
     }
     NormalizedProtoJson {
         bytes: output,
-        invalid_quoted_float,
+        invalid_quoted_float: invalid_quoted_float
+            || component_patches.iter().any(|(path, _)| match path {
+                ComponentPath::Pose("position", _) => repeated_pose_parent[0],
+                ComponentPath::Pose("orientation", _) => repeated_pose_parent[1],
+                _ => false,
+            }),
         patches: float_patches,
         scalar_patches: scalar_float_patches,
         array_ranges: float_array_ranges,
@@ -1018,6 +1117,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 uint64_data,
                 descriptor.full_name() == "gz.msgs.Time",
                 component_kind,
+                descriptor.full_name() == "gz.msgs.Pose",
             );
             if invalid_quoted_float {
                 return Err("invalid quoted float data".into());
@@ -1176,10 +1276,23 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                             .ok_or("quoted hex data index was absent")? = number;
                     }
                 }
-                for (field, number) in component_patches {
-                    *message
-                        .get_field_by_name_mut(field)
-                        .ok_or("quoted component field was absent")? = number;
+                for (path, number) in component_patches {
+                    match path {
+                        ComponentPath::Root(field) => {
+                            *message
+                                .get_field_by_name_mut(field)
+                                .ok_or("quoted component field was absent")? = number;
+                        }
+                        ComponentPath::Pose(parent, field) => {
+                            let child = match message.get_field_by_name_mut(parent) {
+                                Some(Value::Message(child)) => child,
+                                _ => return Err("quoted Pose parent was absent".into()),
+                            };
+                            *child
+                                .get_field_by_name_mut(field)
+                                .ok_or("quoted Pose component was absent")? = number;
+                        }
+                    }
                 }
                 message.encode_to_vec()
             }

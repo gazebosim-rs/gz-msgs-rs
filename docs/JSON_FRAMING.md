@@ -842,3 +842,30 @@ separate raw export. The first gate stopped at formatting before tests and
 was corrected before this passing gate. Protected hook and hosted
 qualification remain separate. Nested numeric fields and general JSON
 grammar remain open.
+
+## Quoted numeric components in one Pose child object
+
+The pinned protobuf 3.21.12 parser accepts quoted finite hexadecimal and
+decimal values under one top-level `gz.msgs.Pose.position` Vector3d object
+and one `Pose.orientation` Quaternion object. The CLI extends the reviewed
+component conversion to those two nested paths, then patches the decoded
+double-precision child fields. It leaves unrelated nesting and other
+descriptors on their existing paths. A later non-null occurrence of one
+child field replaces its earlier value; `null` retains it.
+
+The 694 matching native observations cover `position.x/y/z` and
+`orientation.x/y/z/w`, double and single quotes, finite hex and decimal,
+edge/interior whitespace, literal spaces, overflow, signed zero, one-bit
+decimal rounding, multiple children, bare/escaped keys, duplicate child
+fields and null. They include 257 native-positive exact wires and 437
+rejections; all 29 earlier JSON fixture hashes remain unchanged. Four
+native-positive repeated-parent message-merge forms are explicitly pending:
+two quoted forms are rejected by the bounded adapter, while two plain or
+mixed forms retain the maintained decoder's wrong wire. The fixture pins
+those four native outcomes and the current Rust dispositions separately.
+This slice does not establish repeated-parent merge, deeper Pose containers
+or general JSON grammar parity. The exact source staged gate and independent
+[review](reviews/json-pose-quoted.json) passed: 129 Rust tests including 32
+CLI, strict owned coverage above 95%, and all 6,469 pinned native status
+and full-wire outcomes reproduced. The protected hook and hosted
+qualification remain separate.

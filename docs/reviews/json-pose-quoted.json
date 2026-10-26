@@ -1,0 +1,33 @@
+{
+  "decision": "approved",
+  "author": "/root/msgs_review_fallback",
+  "reviewer": "/root/transport_fallback",
+  "source_manifest": "artifacts/json-pose-quoted-worktree/artifacts/json-pose-quoted/source-freeze.json",
+  "source_manifest_sha256": "bcfa721ecc146907892044b4e27e2296a750cb6e63b56555f19c20cecdad980f",
+  "parent": "7c6d98016f3e7fdcdfee649ee3299c87da9a8821",
+  "source_tree": "145a91408bb69d25d0bff7b8000e21cbb6c26190",
+  "source_diff_sha256": "3da987a73e221924b8e31bdaf08698e946ab4db92f9a48fc5ba0f642cb84aea3",
+  "files_sha256": {
+    "docs/EVIDENCE.md": "3de88ece85ed8b3196b2fc8fdad880ab9d3c8723c23d658cc29096c0a012e8b1",
+    "docs/JSON_FRAMING.md": "48b2fd8bbf4a7aae4057b1792d887422535aec998cc04794638f5b298dfc17e3",
+    "scripts/json-reference.py": "e24ccd237fa786022c799d3759c07bb0de582403ee9f3bf6c09b18bbe097687f",
+    "src/bin/gz-msgs.rs": "5d1eb57b6d9bbf17831f48fef3493bdecf4e084ff1345ad73112a838630094c4",
+    "tests/cli.rs": "e07bccfecc47dc57a3afa76852cec1f47c8f0a9ba6429ad203208698a3a238de",
+    "tests/fixtures/json-pose-quoted-numeric.json": "2f7bc00b7a6201ed305353f77db161bda14a100a0b7fae1a4ff6e37f0081a916"
+  },
+  "mode": "All six staged modes are 100644; no unstaged tracked difference.",
+  "private_review": {
+    "raw_export": "Exact source and public-parent Git trees exported without Git metadata into separate reviewer-owned directories and exclusive two-job Cargo targets; all six source hashes, tree and diff match the freeze.",
+    "native": "Fresh protobuf 3.21.12 peer rebuilt from the exact raw export and replayed all 6,469 pinned status/full-wire observations; native proof bytes matched the author proof.",
+    "native_proof_sha256": "aab2c54587d10d047371a0e34e8e498870852f4d7ed1111d8a35f8c6f7543c21",
+    "native_log_sha256": "eacd65467eadfd4e852a0a38231a312b75f08c6277aef2583c95b38d4f86a092",
+    "rust": "The private selected CLI test passed 1/0 over 694 pairwise distinct Pose type/input parity rows and four explicit repeated-parent pending rows.",
+    "rust_log_sha256": "1f2946b544161ba03b3f15f57c77ebf4a3f628e2e27ac26b859e68d53312cb90",
+    "parent_negative": "The raw public parent rejects nested position.x quoted 0x7. (status 1); the candidate accepts it and emits exact native wire 2209110000000000001c40.",
+    "parent_negative_sha256": "6125e47ddc9f6d0c679bc7589fa15cca98255b388d56bb810b3c02eabe05db26",
+    "prior_fixtures": "All 29 prior JSON fixture hashes match the frozen fixture manifest.",
+    "overlap": "Private native/Cargo work was ordinary correctness replay after the Transport timing gate and SDF hook cleared; no timing claim."
+  },
+  "assertion_review": "The adapter confines quoted double component patches to one top-level Pose.position Vector3d or Pose.orientation Quaternion child object. It tracks the parent and child path, retains earlier values across null, replaces duplicate non-null child values, and leaves unrelated descriptors and deeper objects on their existing paths. The 694 rows contain 257 native-positive exact wires and 437 joint rejections. Four native-positive repeated-parent message-merge forms are explicitly recorded as pending: two bounded rejections and two accepted wrong-wire results. Prior Vector3d/Quaternion paths and 29 fixture bytes remain protected.",
+  "scope": "Scoped Pose child quoted finite numeric parity for one occurrence of each parent object; no repeated-parent merge, deeper Pose container or general JSON grammar claim. The exact staged gate passed 129 Rust tests including 32 CLI, mandatory native replay and strict coverage; normal protected hook and hosted qualification remain separate."
+}
