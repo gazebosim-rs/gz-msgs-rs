@@ -789,3 +789,29 @@ proof from a separate raw export and passed the selected Rust test. The
 normal protected hook and hosted qualification follow separately. Other
 descriptors, nonfinite spellings, unquoted hex and broader JSON grammar remain
 outside this slice.
+
+## Quoted Vector3d numeric components
+
+Pinned protobuf 3.21.12 accepts finite quoted hexadecimal values and decimal
+values with non-space ASCII C whitespace at the edges of top-level
+`gz.msgs.Vector3d` `x`, `y` and `z`. The CLI now applies the existing
+double-precision conversion only to those three fields, then patches their
+decoded numeric values. It leaves `StringMsg` text and `Time` integers on
+their existing paths. A later non-null occurrence of the same component
+takes the last value; `null` leaves the earlier value in place, as in the
+pinned native parser.
+
+The 319-observation fixture records exact status and wire bytes for 126
+native-positive observations and 193 rejected controls. It includes double
+and single quotes, bare and escaped keys, edge whitespace, literal edge-space
+rejection, signed zero, a decimal one-bit boundary, component presence,
+three-component messages,
+duplicate keys including a later `null`, overflow and malformed values. All
+27 earlier JSON fixture hashes are pinned unchanged. The exact staged gate
+passed 5,363 native status/full-wire outcomes, 127 Rust tests including 30
+CLI tests, and strict greater-than-95% coverage for every production source.
+An independent [review](reviews/json-vector3d-quoted.json) reproduced all
+5,363 native outcomes from a separate raw export and passed the selected
+319-row Rust test. The protected hook and hosted qualification remain
+separate. Nested numeric fields, other message types and broader JSON grammar
+remain open.

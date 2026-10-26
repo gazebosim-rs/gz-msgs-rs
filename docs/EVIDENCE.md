@@ -2192,3 +2192,28 @@ greater-than-95% owned coverage. The independent
 outcomes from a separate raw source export and passed the selected 768-row
 Rust test. The normal protected hook and hosted qualification remain separate.
 Other descriptors and general MSG-02 grammar remain open.
+
+### Bounded quoted Vector3d numeric components
+
+A pinned protobuf 3.21.12 differential found 78 native-positive values that
+the published CLI rejected among 290 top-level `Vector3d` probes. The scoped
+adapter recognizes quoted finite hex values and non-space ASCII C edge
+whitespace for `x`, `y` and `z`, converts at double precision, and patches
+only those decoded components. A duplicate-key probe exposed an initial
+last-value override error; the source now discards an earlier component
+patch when a later non-null occurrence starts; `null` preserves the earlier
+value. The tracked 319-observation fixture
+adds signed-zero and absent-field wires, multi-component, duplicate,
+overflow, malformed, StringMsg and Time controls. It pins 126 accepted wires,
+193 rejected outcomes and all 27 earlier JSON fixture hashes.
+
+The exact staged gate passed 127 Rust tests including 30 CLI tests, 5,363
+pinned native status/full-wire outcomes and strict greater-than-95% coverage
+for every production source. The independent
+[review](reviews/json-vector3d-quoted.json) rehashed the six staged source
+files and 27 older fixtures, then reproduced all 5,363 native outcomes and
+passed the selected 319-row Rust test in a separate raw export. The gate was
+correctness-only at two Cargo jobs during Root's native SDK build; it makes
+no timing claim. Protected hook, public commit and hosted CI remain separate.
+This does not establish parity for nested numeric fields, other descriptors
+or general MSG-02 JSON grammar.

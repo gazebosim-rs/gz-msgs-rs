@@ -88,6 +88,35 @@ fn proto_quoted_float_whitespace(value: &str, width: FloatWidth) -> Option<Value
     })
 }
 
+fn vector3d_field(key: &str) -> Option<&'static str> {
+    match key {
+        "x" => Some("x"),
+        "y" => Some("y"),
+        "z" => Some("z"),
+        _ => None,
+    }
+}
+
+fn patch_vector3d_quoted(
+    output: &mut Vec<u8>,
+    start: usize,
+    field: &'static str,
+    invalid: &mut bool,
+    patches: &mut Vec<(&'static str, Value)>,
+) {
+    patches.retain(|(previous, _)| *previous != field);
+    if let Ok(value) = gz_msgs::serde_json::from_slice::<String>(&output[start..]) {
+        *invalid |= invalid_proto_quoted_float(&value, FloatWidth::Double);
+        if let Some(number) = proto_hex_float(&value, FloatWidth::Double)
+            .or_else(|| proto_quoted_float_whitespace(&value, FloatWidth::Double))
+        {
+            output.truncate(start);
+            output.extend_from_slice(b"\"0\"");
+            patches.push((field, number));
+        }
+    }
+}
+
 fn proto_hex_float(value: &str, width: FloatWidth) -> Option<Value> {
     let mut bytes = value.as_bytes();
     if matches!(bytes.first(), Some(b'+' | b'-')) {
@@ -435,6 +464,7 @@ struct NormalizedProtoJson {
     scalar_patches: Vec<(usize, Value)>,
     array_ranges: Vec<(usize, usize)>,
     data_ranges: Vec<(usize, usize)>,
+    vector_patches: Vec<(&'static str, Value)>,
 }
 
 fn normalize_proto_json(
@@ -443,6 +473,7 @@ fn normalize_proto_json(
     repeated_data: bool,
     uint64_data: bool,
     time_data: bool,
+    vector3d_data: bool,
 ) -> NormalizedProtoJson {
     #[derive(Clone, Copy, PartialEq, Eq)]
     enum Frame {
@@ -456,6 +487,8 @@ fn normalize_proto_json(
     let mut previous = None;
     let mut data_field = false;
     let mut time_field = None;
+    let mut vector_field = None;
+    let mut vector_patches = Vec::new();
     let mut float_array_depth = None;
     let mut float_item_index = 0;
     let mut float_patches = Vec::new();
@@ -492,6 +525,10 @@ fn normalize_proto_json(
             if frames.len() == 1 && frames.last() == Some(&Frame::ObjectKey) {
                 let key = gz_msgs::serde_json::from_slice::<String>(&output[output_start..]).ok();
                 data_field = key.as_deref() == Some("data");
+                vector_field = key
+                    .as_deref()
+                    .filter(|_| vector3d_data)
+                    .and_then(vector3d_field);
                 time_field = if time_data {
                     match key.as_deref() {
                         Some("sec") => Some(TimeField::Seconds),
@@ -501,6 +538,17 @@ fn normalize_proto_json(
                 } else {
                     None
                 };
+            } else if vector_field.is_some()
+                && frames.len() == 1
+                && frames.last() == Some(&Frame::ObjectValue)
+            {
+                patch_vector3d_quoted(
+                    &mut output,
+                    output_start,
+                    vector_field.unwrap(),
+                    &mut invalid_quoted_float,
+                    &mut vector_patches,
+                );
             } else if float_data.is_some()
                 && (float_array_depth == Some(frames.len())
                     || (frames.len() == 1
@@ -561,6 +609,10 @@ fn normalize_proto_json(
             if frames.len() == 1 && frames.last() == Some(&Frame::ObjectKey) {
                 let key = gz_msgs::serde_json::from_slice::<String>(&output[output_start..]).ok();
                 data_field = key.as_deref() == Some("data");
+                vector_field = key
+                    .as_deref()
+                    .filter(|_| vector3d_data)
+                    .and_then(vector3d_field);
                 time_field = if time_data {
                     match key.as_deref() {
                         Some("sec") => Some(TimeField::Seconds),
@@ -570,6 +622,17 @@ fn normalize_proto_json(
                 } else {
                     None
                 };
+            } else if vector_field.is_some()
+                && frames.len() == 1
+                && frames.last() == Some(&Frame::ObjectValue)
+            {
+                patch_vector3d_quoted(
+                    &mut output,
+                    output_start,
+                    vector_field.unwrap(),
+                    &mut invalid_quoted_float,
+                    &mut vector_patches,
+                );
             } else if float_data.is_some()
                 && (float_array_depth == Some(frames.len())
                     || (frames.len() == 1
@@ -626,6 +689,13 @@ fn normalize_proto_json(
                 output.push(b'"');
                 if frames.len() == 1 {
                     data_field = &input[start..index] == b"data";
+                    vector_field = if vector3d_data {
+                        std::str::from_utf8(&input[start..index])
+                            .ok()
+                            .and_then(vector3d_field)
+                    } else {
+                        None
+                    };
                     time_field = if time_data {
                         match &input[start..index] {
                             b"sec" => Some(TimeField::Seconds),
@@ -683,6 +753,15 @@ fn normalize_proto_json(
             }
         }
         if frames.len() == 1 && previous == Some(b':') {
+            // A scalar null leaves an earlier native component unchanged.
+            if let Some(field) = vector_field {
+                if frames.last() == Some(&Frame::ObjectValue)
+                    && !is_proto_whitespace(byte)
+                    && !input[index..].starts_with(b"null")
+                {
+                    vector_patches.retain(|(previous, _)| *previous != field);
+                }
+            }
             if let Some((length, number)) =
                 time_field.and_then(|field| proto_time_float_integer(&input[index..], field))
             {
@@ -817,6 +896,7 @@ fn normalize_proto_json(
                 if frames.len() == 1 {
                     data_field = false;
                     time_field = None;
+                    vector_field = None;
                 }
             }
             b',' if float_array_depth == Some(frames.len()) => {
@@ -837,6 +917,7 @@ fn normalize_proto_json(
         scalar_patches: scalar_float_patches,
         array_ranges: float_array_ranges,
         data_ranges: data_value_ranges,
+        vector_patches,
     }
 }
 fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -923,12 +1004,14 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 scalar_patches,
                 array_ranges,
                 data_ranges,
+                vector_patches,
             } = normalize_proto_json(
                 &input,
                 float_data,
                 repeated_data,
                 uint64_data,
                 descriptor.full_name() == "gz.msgs.Time",
+                descriptor.full_name() == "gz.msgs.Vector3d",
             );
             if invalid_quoted_float {
                 return Err("invalid quoted float data".into());
@@ -1086,6 +1169,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                             .get_mut(index)
                             .ok_or("quoted hex data index was absent")? = number;
                     }
+                }
+                for (field, number) in vector_patches {
+                    *message
+                        .get_field_by_name_mut(field)
+                        .ok_or("quoted Vector3d field was absent")? = number;
                 }
                 message.encode_to_vec()
             }

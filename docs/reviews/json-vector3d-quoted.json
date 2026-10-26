@@ -1,0 +1,30 @@
+{
+  "decision": "approved",
+  "author": "/root/msgs_review_fallback",
+  "reviewer": "/root/transport_fallback",
+  "source_manifest": "artifacts/json-vector3d-quoted-worktree/artifacts/json-vector3d-quoted/proposal.json",
+  "source_manifest_sha256": "84507d821ba7a47c411c286746a4d6c482c57f5dfba129e37d17cc65dbb9a54c",
+  "parent": "d26b0d8a8930258a353532f926571b371b6b2df1",
+  "source_tree": "4beb9b8a4dc4c6e40f3651dcd56e2e4bd1cfb18b",
+  "source_diff_sha256": "8cf59a80d4f58e8487132ed57611e71eb5d28f2aa5509e8644274a00b06034b6",
+  "files_sha256": {
+    "docs/EVIDENCE.md": "89feab48d1c9d9f0657f75cfefb97545cb8f84648406840d620994c704398fb4",
+    "docs/JSON_FRAMING.md": "db7631b50429491b9bdf81ca86cd34a61bc813254379053606b3e8e513d26894",
+    "scripts/json-reference.py": "f6212706a99be76d7ea821022f6d676472d75f369778868a833d5370eb3d68e6",
+    "src/bin/gz-msgs.rs": "b06a939bce0bc730298f2742e4128f9b2b94f46e3e90b894c9c8aea4ea8f307c",
+    "tests/cli.rs": "65ad20af3ebdc65c56187cc7794e59a69b1aabfefba3c5dadd8c31320aa945db",
+    "tests/fixtures/json-vector3d-quoted-numeric.json": "37fdc3d2444b7e676896ce3699a9c0c47ed9b3312aac97f0361b4c22445723e9"
+  },
+  "no_source_or_index_edit_by_reviewer": true,
+  "independent": {
+    "raw_export": "Exact staged Git tree exported without Git metadata; all six file hashes match the frozen proposal.",
+    "native_reference": "Private pinned protobuf 3.21.12 replay passed all 5,363 exact status/full-wire outcomes, including 319 Vector3d rows with 126 accepted/193 rejected.",
+    "native_proof_sha256": "bdad6b69f07c2c64c2f4d5e26de2bf33278978ca1ffaf189fc75eb02f9eb4610",
+    "native_log_sha256": "dff2a8173a2d60418cf4150a103cf4cfa8499491baab5f35714384dae448aa76",
+    "rust_selected": "Private exclusive two-job Cargo target passed vector3d_quoted_numeric_matches_native 1/0 over all 319 fixture observations.",
+    "rust_log_sha256": "17bee91690b3d99437799c78e5c25af0808a2338a2398c2b966b3585492e551e"
+  },
+  "assertion_review": "The source limits Vector3d patches to top-level x/y/z and uses double precision for quoted hex and allowed non-space C edge whitespace. Later non-null duplicate values supersede an earlier patch; null retains it. The fixture and private replay assert exact signed-zero/presence and one-bit double wires, duplicate and malformed outcomes, 27 unchanged older fixture hashes, plus StringMsg/Time descriptor isolation.",
+  "disposition": "approved bounded top-level gz.msgs.Vector3d quoted numeric component slice",
+  "limits": "Nested numeric fields, other descriptors, unquoted Vector3d grammar and general MSG-02 JSON parity remain open. The source-gate docs still say independent review is pending and should be corrected in final metadata; normal protected hook, publication and hosted qualification are separate."
+}
