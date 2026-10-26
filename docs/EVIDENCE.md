@@ -2245,12 +2245,11 @@ probes still found quoted numeric gaps under `gz.msgs.Pose.position` and
 `Pose.orientation`. The scoped adapter patches only one top-level Pose
 position/orientation child object at double precision. The 694-observation
 native fixture covers all seven child components with 257 exact accepted
-wires, 437 rejections and 29 unchanged older JSON fixtures. Four repeated
-parent-object forms remain an explicit native-positive merge gap; plain
-numeric duplicates already showed a one-child last-value wire in the
-maintained decoder. The adapter rejects two repeated-parent forms whose
-quoted patches would be ambiguous; the two plain or mixed forms retain a
-wrong wire. The fixture records each current Rust disposition. The exact
+wires, 437 rejections and 29 unchanged older JSON fixtures. At the
+`896073f` source boundary, four repeated-parent forms remained an explicit
+native-positive merge gap: two quoted forms were rejected and two plain or
+mixed forms retained a wrong wire. The fixture records those dispositions
+at that source boundary. The exact
 staged gate passed 129 Rust tests, including 32 CLI tests, mandatory native
 replay and strict coverage above 95% for each owned source. An independent
 [review](reviews/json-pose-quoted.json) reproduced all 6,469 native status
@@ -2258,3 +2257,30 @@ and full-wire outcomes, passed the 694-row Rust parity test and confirmed
 the four pending merge dispositions. The normal protected hook and hosted
 qualification remain separate. No deeper Pose container or broader MSG-02
 acceptance is claimed.
+
+### Bounded repeated Pose scalar-child fields
+
+This slice preserves direct scalar `x/y/z/w` fields across repeated top-level
+`Pose.position` and `Pose.orientation` object occurrences before reflection
+decoding. A 54-observation fixture pins 47 accepted exact wires and seven
+jointly rejected controls; all 30 older JSON fixture hashes remain unchanged.
+The four native-positive scalar merge cases held open by the preceding slice
+now match their pinned wires. The previous CLI had 26 native-positive
+accepted-wire mismatches in the first 43 controls. The native peer's error
+exit code is 6 for the seven rejected controls while the Rust CLI returns 1;
+diagnostics remain outside this bounded parity claim.
+
+The exact staged source gate passed 130 Rust tests including 33 CLI tests,
+strict greater-than-95% production coverage and 6,523 pinned native outcomes.
+The independent [review](reviews/json-pose-parent-merge.json) reproduced the
+native proof and selected Rust tests from separate raw source and public-parent
+exports, retaining the fixture assertions and source hashes. The reviewer
+also confirmed a pre-existing deeper merge gap: input
+`{"position":{"header":{"stamp":{"sec":1}}},"position":{"header":{"stamp":{"nsec":2}}}}`
+is accepted by both implementations, but native emits
+`22080a060a0408011002` while Rust emits `22060a040a021002`, losing `sec`.
+The analogous orientation case and a case with both parents also differ.
+Nested Header/stamp merging remains pending; this evidence establishes only
+direct scalar-child parity, not general Pose child-message merging. Protected
+hook and exact hosted CI remain separate. Deeper Pose containers, other
+duplicate-message descriptors and full MSG-02 acceptance remain open.

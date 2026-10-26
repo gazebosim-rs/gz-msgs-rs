@@ -1,0 +1,74 @@
+{
+  "decision": "approved_for_bounded_scalar_parent_merge",
+  "author": "/root/msgs_review_fallback",
+  "reviewer": "/root/transport_owner_v2",
+  "source_manifest_sha256": "597e0bf104328375095f3b4a4d839e93a0d370a02ebb88194f0d0077f4750593",
+  "parent": "896073fe7e60a11a0f37584d1ed3134722d002a6",
+  "source_tree": "9d97164ef10aeee271667e6035845de58001ed3b",
+  "source_diff_sha256": "e28eb2ef7e27e5075d67f71fcd8eab726fbb749bb71d3a4c7ef8810ec46345e6",
+  "files_sha256": {
+    "docs/EVIDENCE.md": "9a98b744652616d082e9528a93c63815a9b9618a5510f850bcc106abb522cf80",
+    "docs/JSON_FRAMING.md": "e5b19be54d5918d7298f5e59839b6b891b2d31ad681aa33ea281c3b1ff1a252e",
+    "scripts/json-reference.py": "c1e088748114b63d4b336cddfa1e1e0119671451b7f6719705f1dfab0125cb27",
+    "src/bin/gz-msgs.rs": "f19b52dab64e8387eec5a9e9def71b6055f1e2ad578962de20d503c5eb12b777",
+    "tests/cli.rs": "219221de8e73820e30110303ba62e6ea51eb4e755d8af4d843cf4caebf09a4f1",
+    "tests/fixtures/json-pose-parent-merge.json": "ed761f60bd17eae427a3041c6baf2d54e034cb41c36389b36079676c000c16e0"
+  },
+  "all_modes": "100644",
+  "no_unstaged_tracked_diff": true,
+  "review_scope": "Only direct scalar x/y/z/w fields across repeated top-level Pose.position Vector3d and Pose.orientation Quaternion objects, including quoted numeric patches, null/empty parent controls and the54 frozen native cases. No general child-message merge claim.",
+  "independent_replay": {
+    "export": "Exact staged source and public-parent trees exported without Git metadata; six hashes,modes,tree,diff,no-unstaged and all30 prior fixture hashes independently matched. Separate exclusive reviewer source/parent Cargo targets with Rust1.94.1 and Cargo2.",
+    "native": "Fresh protobuf3.21.12 peer rebuilt from exact raw export; all6,523 pinned native status and full-wire outcomes reproduced. Native proof bytes match author proof.",
+    "native_proof_sha256": "adbac54a7f67ee02a08c3af135c8dca962ceaeaaedd374ceea26422190da646d",
+    "native_log_sha256": "e41ba105241f5228bac98be3aa883d4094cfb01e446f1c3de9874b98c1694e10",
+    "rust": "Private selected Pose CLI tests2/0,0 ignored: prior694 rows plus4 formerly-pending rows now native parity, and new54-row fixture with47 native accepted exact wires/7 joint rejections.",
+    "rust_log_sha256": "a7153326635434ba3b35a4ec77f41b5537f0a8f059e7a9a1dfdda18217891785",
+    "parent_control": "Raw public parent independently rebuilt in a separate target. Both position and orientation quoted distinct-child witnesses reject natively accepted inputs (parent1/native0); both plain distinct-child witnesses accept a one-child wrong wire. Candidate accepts allfour with exact native wire.",
+    "parent_control_sha256": "5d3fcb77e37810101a7e82cebf8dacbac9b6a0a8c692f03c42412c5acca3220d",
+    "overlap": "Ordinary correctness replay at Cargo2 with other owners ordinary work; no timing or speedup inference."
+  },
+  "source_API_review": "Normalized ranges are captured only for recognized top-level Pose parents. Each group retains all earlier objects so invalid earlier values still validate; final object concatenates members in encounter order. Null parent occurrences contribute no members; empty/null-only groups preserve existing decoder presence behavior. Direct scalar duplicate/null semantics and quoted numeric patches retain path-specific behavior. Position/orientation replacements are sorted and affect disjoint normalized ranges; Pose does not consume the repeated-data byte offsets. Prior fixture bytes/assertions remain retained; four old pending outcomes now assert exact native wire.",
+  "known_pending_nested_message_scope": {
+    "result": "Three accepted wrong-wire nested Header stamp fragment cases independently confirmed. They are also identical wrong-wire gaps in the public parent; this source does not fix them.",
+    "proof_sha256": "ed905b63843c32641b6630ed0a563508963a65ceb3db1a65b437c405520dd160",
+    "witnesses": [
+      {
+        "label": "position-header",
+        "input_hex": "7b22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a317d7d7d2c22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a327d7d7d7d",
+        "native_status": 0,
+        "native_wire_hex": "22080a060a0408011002",
+        "candidate_status": 0,
+        "candidate_wire_hex": "22060a040a021002",
+        "parent_status": 0,
+        "parent_wire_hex": "22060a040a021002"
+      },
+      {
+        "label": "orientation-header",
+        "input_hex": "7b226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a317d7d7d2c226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a327d7d7d7d",
+        "native_status": 0,
+        "native_wire_hex": "2a080a060a0408011002",
+        "candidate_status": 0,
+        "candidate_wire_hex": "2a060a040a021002",
+        "parent_status": 0,
+        "parent_wire_hex": "2a060a040a021002"
+      },
+      {
+        "label": "both-headers",
+        "input_hex": "7b22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a317d7d7d2c226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a337d7d7d2c22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a327d7d7d2c226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a347d7d7d7d",
+        "native_status": 0,
+        "native_wire_hex": "22080a060a04080110022a080a060a0408031004",
+        "candidate_status": 0,
+        "candidate_wire_hex": "22060a040a0210022a060a040a021004",
+        "parent_status": 0,
+        "parent_wire_hex": "22060a040a0210022a060a040a021004"
+      }
+    ],
+    "final_metadata_requirement": "Narrow public merge parity to direct scalar x/y/z/w child fields and explicitly record nested Header merging as pending with a concrete accepted wrong-wire witness. Preserve exact source/fixture/test/script bytes through final binding."
+  },
+  "limitations": [
+    "Native rejection diagnostic status6 versus Rust1 remains outside claimed parity; no rejection is called accepted.",
+    "Nested Header/message fields, deeper Pose containers, other descriptors, full protobuf JSON grammar and broad MSG02 completion remain unqualified.",
+    "Independent reviewer did not repeat full Rust/coverage: exact author source gate130Rust/33CLI and strict>95% owned production/vendor coverage reviewed from manifest. Final metadata binding, mandatory normal protected hook and exact hosted qualification remain separate."
+  ]
+}

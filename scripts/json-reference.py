@@ -37,6 +37,7 @@ quoted_hex_space = json.loads((root / 'tests/fixtures/json-quoted-hex-whitespace
 vector3d_quoted = json.loads((root / 'tests/fixtures/json-vector3d-quoted-numeric.json').read_text())
 quaternion_quoted = json.loads((root / 'tests/fixtures/json-quaternion-quoted-numeric.json').read_text())
 pose_quoted = json.loads((root / 'tests/fixtures/json-pose-quoted-numeric.json').read_text())
+pose_merge = json.loads((root / 'tests/fixtures/json-pose-parent-merge.json').read_text())
 version = subprocess.check_output(['pkg-config', '--modversion', 'protobuf'], text=True).strip()
 assert version == fixture['native_protobuf']
 assert version == time_float['native_protobuf']
@@ -68,6 +69,7 @@ assert version == quoted_hex_space['native_protobuf']
 assert version == vector3d_quoted['native_protobuf']
 assert version == quaternion_quoted['native_protobuf']
 assert version == pose_quoted['native_protobuf']
+assert version == pose_merge['native_protobuf']
 subprocess.run(['python3', str(root / 'scripts/native-peer.py')], check=True)
 # Fixture hashes describe the original reference build; ELF bytes vary across
 # compilers and hosts. Pin their shared provenance, then check fresh behavior.
@@ -129,6 +131,15 @@ assert len(pose_quoted['rows']) == 694
 assert sum(row['cpp_status'] == 0 for row in pose_quoted['rows']) == 257
 assert len(pose_quoted['repeated_parent_pending']) == 4
 assert all(row['cpp_status'] == 0 for row in pose_quoted['repeated_parent_pending'])
+assert hashlib.sha256((root / 'tests/protobuf_peer.cc').read_bytes()).hexdigest() == pose_merge['probe_source_sha256']
+assert hashlib.sha256((root / 'target/native/messages.pb').read_bytes()).hexdigest() == pose_merge['descriptor_sha256']
+assert pose_merge['native_peer_sha256'] == historical_peer_sha256
+assert len(pose_merge['prior_fixture_sha256']) == 30
+for name, expected in pose_merge['prior_fixture_sha256'].items():
+    assert hashlib.sha256((root / name).read_bytes()).hexdigest() == expected, name
+assert len(pose_merge['rows']) == 54
+assert len({row['input_hex'] for row in pose_merge['rows']}) == 54
+assert sum(row['cpp_status'] == 0 for row in pose_merge['rows']) == 47
 assert len(quoted_hex_space['prior_fixture_sha256']) == 26
 for name, expected in quoted_hex_space['prior_fixture_sha256'].items():
     assert hashlib.sha256((root / name).read_bytes()).hexdigest() == expected, name
@@ -215,6 +226,7 @@ rows = fixture['matching'] + fixture['native_permissive_grammar_pending'] + gram
 rows += vector3d_quoted['rows']
 rows += quaternion_quoted['rows']
 rows += pose_quoted['rows'] + pose_quoted['repeated_parent_pending']
+rows += pose_merge['rows']
 for row in rows:
     result = subprocess.run([str(root / 'target/native/protobuf-peer'), str(root / 'target/native/messages.pb'), row.get('type', 'gz.msgs.Time'), 'encode-json'], input=bytes.fromhex(row['input_hex']), capture_output=True)
     assert result.returncode == row['cpp_status'] and result.stdout.hex() == row['cpp_stdout_hex'], row
@@ -247,7 +259,8 @@ proof = dict(protobuf_version=version, cases=len(rows), matching_cases=len(fixtu
              quoted_hex_whitespace_cases=len(quoted_hex_space['rows']), quoted_hex_whitespace_native_positive=sum(row['cpp_status'] == 0 for row in quoted_hex_space['rows']), quoted_hex_whitespace_fixture_sha256=sha(root / 'tests/fixtures/json-quoted-hex-whitespace.json'),
              vector3d_quoted_cases=len(vector3d_quoted['rows']), vector3d_quoted_native_positive=sum(row['cpp_status'] == 0 for row in vector3d_quoted['rows']), vector3d_quoted_fixture_sha256=sha(root / 'tests/fixtures/json-vector3d-quoted-numeric.json'),
              quaternion_quoted_cases=len(quaternion_quoted['rows']), quaternion_quoted_native_positive=quaternion_quoted['native_positive'], quaternion_quoted_fixture_sha256=sha(root / 'tests/fixtures/json-quaternion-quoted-numeric.json'),
-             pose_quoted_cases=len(pose_quoted['rows']), pose_quoted_native_positive=sum(row['cpp_status'] == 0 for row in pose_quoted['rows']), pose_repeated_parent_pending=len(pose_quoted['repeated_parent_pending']), pose_quoted_fixture_sha256=sha(root / 'tests/fixtures/json-pose-quoted-numeric.json'),
+             pose_quoted_cases=len(pose_quoted['rows']), pose_quoted_native_positive=sum(row['cpp_status'] == 0 for row in pose_quoted['rows']), pose_repeated_parent_prior_pending=len(pose_quoted['repeated_parent_pending']), pose_quoted_fixture_sha256=sha(root / 'tests/fixtures/json-pose-quoted-numeric.json'),
+             pose_merge_cases=len(pose_merge['rows']), pose_merge_native_positive=sum(row['cpp_status'] == 0 for row in pose_merge['rows']), pose_merge_fixture_sha256=sha(root / 'tests/fixtures/json-pose-parent-merge.json'),
              probe_source_sha256=sha(root / 'tests/protobuf_peer.cc'), probe_binary_sha256=current_peer_sha256, historical_peer_binary_sha256=historical_peer_sha256)
 args.output.parent.mkdir(parents=True, exist_ok=True)
 args.output.write_text(json.dumps(proof, indent=2) + '\n')

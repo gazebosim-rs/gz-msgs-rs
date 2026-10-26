@@ -858,14 +858,50 @@ The 694 matching native observations cover `position.x/y/z` and
 edge/interior whitespace, literal spaces, overflow, signed zero, one-bit
 decimal rounding, multiple children, bare/escaped keys, duplicate child
 fields and null. They include 257 native-positive exact wires and 437
-rejections; all 29 earlier JSON fixture hashes remain unchanged. Four
-native-positive repeated-parent message-merge forms are explicitly pending:
-two quoted forms are rejected by the bounded adapter, while two plain or
-mixed forms retain the maintained decoder's wrong wire. The fixture pins
-those four native outcomes and the current Rust dispositions separately.
-This slice does not establish repeated-parent merge, deeper Pose containers
+rejections; all 29 earlier JSON fixture hashes remain unchanged. At the
+`896073f` source boundary, four native-positive repeated-parent message-merge
+forms were explicitly pending: two quoted forms were rejected, while two
+plain or mixed forms retained the decoder's wrong wire. The fixture pins
+those four native outcomes and the Rust dispositions at that boundary.
+That slice did not establish repeated-parent merge, deeper Pose containers
 or general JSON grammar parity. The exact source staged gate and independent
 [review](reviews/json-pose-quoted.json) passed: 129 Rust tests including 32
 CLI, strict owned coverage above 95%, and all 6,469 pinned native status
 and full-wire outcomes reproduced. The protected hook and hosted
 qualification remain separate.
+
+## Direct scalar fields across repeated top-level Pose child objects
+
+The maintained reflection decoder keeps the final duplicate JSON message
+key. Native protobuf preserves direct scalar fields across repeated
+`Pose.position` or `Pose.orientation` objects; a later non-null scalar field
+replaces the earlier value, while `null` leaves it intact. The scoped adapter
+records the normalized byte range of each top-level parent value and, only
+when that parent repeats, combines object members in occurrence order into
+the final parent object before decoding. Invalid earlier objects remain in
+the input and are still rejected. Quoted direct scalar values retain the
+existing double-precision patch path.
+
+The 54 distinct Pose type/input observations include 47 native-positive
+exact wires and seven rejected controls. They cover direct `x/y/z/w` fields,
+numeric and quoted values, null and empty objects, three occurrences, both
+parent types, escaped/bare/single-quoted keys, cross-parent interleaving,
+and invalid earlier values. The four native-positive scalar merge cases
+recorded as pending in the prior Pose fixture now match exactly. All 30 prior
+JSON fixture hashes remain unchanged. The native peer exits with code 6 for
+seven rejected controls while the Rust CLI exits with code 1; acceptance and
+wire parity are qualified here, while diagnostic-code parity remains open.
+The exact staged source gate passed 130 Rust tests including 33 CLI, strict
+owned coverage above 95% and 6,523 pinned native outcomes. The independent
+[review](reviews/json-pose-parent-merge.json) reproduced the native proof and
+selected Rust tests from separate raw exports with exclusive Cargo targets.
+
+This correction does not merge nested Header fragments. For example,
+`{"position":{"header":{"stamp":{"sec":1}}},"position":{"header":{"stamp":{"nsec":2}}}}`
+is accepted by both parsers, but native emits `22080a060a0408011002` and Rust
+emits `22060a040a021002`. Rust loses the earlier `sec` field, just as the
+public parent did. Independent orientation and combined-parent witnesses
+confirm the same gap. Nested Header/stamp merging remains pending; the
+qualified scope is direct scalar-child fields. Protected hook and exact
+hosted CI remain separate. Deeper Pose containers, other message descriptors
+and general JSON grammar remain open.

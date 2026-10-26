@@ -478,6 +478,66 @@ struct NormalizedProtoJson {
     array_ranges: Vec<(usize, usize)>,
     data_ranges: Vec<(usize, usize)>,
     component_patches: Vec<(ComponentPath, Value)>,
+    pose_parent_ranges: Vec<(&'static str, usize, usize)>,
+}
+
+// Reflection keeps the last duplicate JSON message key; protobuf merges the
+// child fields. Leave earlier objects in place so they still get validated.
+fn merge_pose_parent_objects(
+    normalized: &[u8],
+    ranges: &[(&'static str, usize, usize)],
+) -> Option<Vec<u8>> {
+    let mut replacements = Vec::new();
+    for parent in ["position", "orientation"] {
+        let occurrences: Vec<_> = ranges
+            .iter()
+            .filter(|(name, _, _)| *name == parent)
+            .collect();
+        if occurrences.len() < 2 {
+            continue;
+        }
+        let mut members = Vec::new();
+        let mut valid = true;
+        for (_, start, end) in &occurrences {
+            let value = normalized[*start..*end].trim_ascii();
+            if value == b"null" {
+                continue;
+            }
+            if !value.starts_with(b"{") || !value.ends_with(b"}") {
+                valid = false;
+                break;
+            }
+            let inner = value[1..value.len() - 1].trim_ascii();
+            if !inner.is_empty() {
+                if !members.is_empty() {
+                    members.push(b',');
+                }
+                members.extend_from_slice(inner);
+            }
+        }
+        if !valid || members.is_empty() {
+            continue;
+        }
+        let mut merged = Vec::with_capacity(members.len() + 2);
+        merged.push(b'{');
+        merged.extend_from_slice(&members);
+        merged.push(b'}');
+        let (_, start, end) = occurrences.last().unwrap();
+        replacements.push((*start, *end, merged));
+    }
+    replacements.sort_by_key(|(start, _, _)| *start);
+    if replacements.is_empty() {
+        return None;
+    }
+    let mut output = Vec::with_capacity(normalized.len());
+    let mut last = 0;
+    for (start, end, merged) in replacements {
+        output.extend_from_slice(&normalized[last..start]);
+        output.extend_from_slice(&merged);
+        last = end;
+    }
+    output.extend_from_slice(&normalized[last..]);
+    Some(output)
 }
 
 fn normalize_proto_json(
@@ -505,8 +565,8 @@ fn normalize_proto_json(
     let mut component_patches = Vec::new();
     let mut pose_parent_pending = None;
     let mut pose_parent_active = None;
-    let mut pose_seen = [false; 2];
-    let mut repeated_pose_parent = [false; 2];
+    let mut pose_value_start = None;
+    let mut pose_parent_ranges = Vec::new();
     let mut float_array_depth = None;
     let mut float_item_index = 0;
     let mut float_patches = Vec::new();
@@ -549,8 +609,8 @@ fn normalize_proto_json(
                     .map(ComponentPath::Root);
                 pose_parent_pending = if pose_data {
                     match key.as_deref() {
-                        Some("position") => Some(("position", ComponentKind::Vector3d, 0)),
-                        Some("orientation") => Some(("orientation", ComponentKind::Quaternion, 1)),
+                        Some("position") => Some(("position", ComponentKind::Vector3d)),
+                        Some("orientation") => Some(("orientation", ComponentKind::Quaternion)),
                         _ => None,
                     }
                 } else {
@@ -653,8 +713,8 @@ fn normalize_proto_json(
                     .map(ComponentPath::Root);
                 pose_parent_pending = if pose_data {
                     match key.as_deref() {
-                        Some("position") => Some(("position", ComponentKind::Vector3d, 0)),
-                        Some("orientation") => Some(("orientation", ComponentKind::Quaternion, 1)),
+                        Some("position") => Some(("position", ComponentKind::Vector3d)),
+                        Some("orientation") => Some(("orientation", ComponentKind::Quaternion)),
                         _ => None,
                     }
                 } else {
@@ -753,8 +813,8 @@ fn normalize_proto_json(
                         .map(ComponentPath::Root);
                     pose_parent_pending = if pose_data {
                         match &input[start..index] {
-                            b"position" => Some(("position", ComponentKind::Vector3d, 0)),
-                            b"orientation" => Some(("orientation", ComponentKind::Quaternion, 1)),
+                            b"position" => Some(("position", ComponentKind::Vector3d)),
+                            b"orientation" => Some(("orientation", ComponentKind::Quaternion)),
                             _ => None,
                         }
                     } else {
@@ -935,11 +995,7 @@ fn normalize_proto_json(
         match byte {
             b'{' => {
                 if frames.len() == 1 && frames.last() == Some(&Frame::ObjectValue) {
-                    pose_parent_active = pose_parent_pending.map(|(parent, kind, slot)| {
-                        repeated_pose_parent[slot] |= pose_seen[slot];
-                        pose_seen[slot] = true;
-                        (parent, kind)
-                    });
+                    pose_parent_active = pose_parent_pending;
                 }
                 frames.push(Frame::ObjectKey);
             }
@@ -961,6 +1017,9 @@ fn normalize_proto_json(
                     if let Some(start) = data_value_start.take() {
                         data_value_ranges.push((start, output.len()));
                     }
+                    if let Some((parent, start)) = pose_value_start.take() {
+                        pose_parent_ranges.push((parent, start, output.len()));
+                    }
                 }
                 if float_array_depth == Some(frames.len()) {
                     float_array_depth = None;
@@ -976,12 +1035,19 @@ fn normalize_proto_json(
                 if frames.len() == 1 && data_field && repeated_data {
                     data_value_start = Some(output.len() + 1);
                 }
+                if frames.len() == 1 {
+                    pose_value_start =
+                        pose_parent_pending.map(|(parent, _)| (parent, output.len() + 1));
+                }
                 *frames.last_mut().unwrap() = Frame::ObjectValue
             }
             b',' if frames.last() == Some(&Frame::ObjectValue) => {
                 if frames.len() == 1 {
                     if let Some(start) = data_value_start.take() {
                         data_value_ranges.push((start, output.len()));
+                    }
+                    if let Some((parent, start)) = pose_value_start.take() {
+                        pose_parent_ranges.push((parent, start, output.len()));
                     }
                 }
                 *frames.last_mut().unwrap() = Frame::ObjectKey;
@@ -1007,17 +1073,13 @@ fn normalize_proto_json(
     }
     NormalizedProtoJson {
         bytes: output,
-        invalid_quoted_float: invalid_quoted_float
-            || component_patches.iter().any(|(path, _)| match path {
-                ComponentPath::Pose("position", _) => repeated_pose_parent[0],
-                ComponentPath::Pose("orientation", _) => repeated_pose_parent[1],
-                _ => false,
-            }),
+        invalid_quoted_float,
         patches: float_patches,
         scalar_patches: scalar_float_patches,
         array_ranges: float_array_ranges,
         data_ranges: data_value_ranges,
         component_patches,
+        pose_parent_ranges,
     }
 }
 fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -1110,6 +1172,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 array_ranges,
                 data_ranges,
                 component_patches,
+                pose_parent_ranges,
             } = normalize_proto_json(
                 &input,
                 float_data,
@@ -1122,6 +1185,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             if invalid_quoted_float {
                 return Err("invalid quoted float data".into());
             }
+            let normalized = if descriptor.full_name() == "gz.msgs.Pose" {
+                merge_pose_parent_objects(&normalized, &pose_parent_ranges).unwrap_or(normalized)
+            } else {
+                normalized
+            };
             let single_scalar = data_ranges.len() == 1 && {
                 let (start, end) = data_ranges[0];
                 let value = normalized[start..end].trim_ascii();

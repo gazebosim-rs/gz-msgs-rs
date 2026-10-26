@@ -1,0 +1,421 @@
+{
+  "native_protobuf": "3.21.12",
+  "parent_commit": "896073fe7e60a11a0f37584d1ed3134722d002a6",
+  "native_peer_sha256": "16744aebb5531163dc87224e6d6cec56bba40d4d1a62035ae465342649ac540b",
+  "descriptor_sha256": "7ee20050da11c5d683776f4d04c16b1574bcb9cbdc851fea98b44516312375a8",
+  "probe_source_sha256": "48835b169eb8e2e490729391718e223e8905632f2b04d2fa2facd50b2fbaf1f5",
+  "corpus_generator_sha256": "29dd9969cf4fe161366d30902971b216946d51bdddd27f80ffbc26a55791726d",
+  "prior_fixture_sha256": {
+    "tests/fixtures/json-array-grammar.json": "c6b095ffbf102683dfe24b6b05c8fd5d3b2f5aab36578cc0d389ba19f38d97c3",
+    "tests/fixtures/json-double-decimal-rounding.json": "6b7afe6ee8f771c58cb3c15204eb4209b230b20f16b43b3a20f7ca209ba76055",
+    "tests/fixtures/json-escaped-bytes.json": "88ab74e155140fddc76f2eace37e97e69ad0cf7e97b6419b96468c7dbc842c53",
+    "tests/fixtures/json-escaped-utf8.json": "6f9e071d3044997d8aead2f5f60df7006d7d40cacd1b93bd802fa7cc13d7c881",
+    "tests/fixtures/json-float-max-range.json": "e4eedceeeef03d73d8880b938394b5a03709f017e564691d7c9710a8c5da4a28",
+    "tests/fixtures/json-float-unquoted-hex.json": "9aba03d1c8d29b13f09995d75027957cea975c34022c650064faf280d35dac71",
+    "tests/fixtures/json-framing.json": "2cccfedc630e3ca56dcff617d3bd8233287dfc17271fa1b477ef4fcbdaaa24f0",
+    "tests/fixtures/json-grammar.json": "4005df0bb062002197e712a70b2cf5fd56969819dd2ce85b06c5a6ab0e9fbf71",
+    "tests/fixtures/json-leading-zero-float.json": "f87a8c01f50158907b47ccbf69ace1d5364ca4f9cf3da88840fab302f6993c2c",
+    "tests/fixtures/json-negative-zero.json": "36ec2c5c39763d817f3268e9f01a1a9d31ab8b07c721edb3ed1250fb64eb9a64",
+    "tests/fixtures/json-pose-quoted-numeric.json": "2f7bc00b7a6201ed305353f77db161bda14a100a0b7fae1a4ff6e37f0081a916",
+    "tests/fixtures/json-quaternion-quoted-numeric.json": "bc066cd7e450e5d9f76a5ed72e38883b888abd4b87e3e509ff963a1ab41cf993",
+    "tests/fixtures/json-quoted-float-admission.json": "0516804e0a57d7d7ea8dfc10dff2789e78f1173fbb2863e937100b2cb5107b7e",
+    "tests/fixtures/json-quoted-float-whitespace.json": "9de9b8e323c12592aa008d92f557efce19ce7cae95afcc7b0d657befe3591925",
+    "tests/fixtures/json-quoted-hex-whitespace.json": "d64955a40a03bb9318793c7c610123b3d62797c50575f3a2c2c581a3097e12c0",
+    "tests/fixtures/json-quoted-hex.json": "a0f49fc679fd02022deae5af3476c0f86908e9c064a21b9cca1bb2bbe0ec39c4",
+    "tests/fixtures/json-raw-controls.json": "c65520e7656a2ef91d7104b2b9b8cd866f736078fd65825295d5f81bd68e5c9d",
+    "tests/fixtures/json-repeated-data.json": "e1b90c69a24d2ed097f28b184e917545540afd2a2e1ee98f93e265a629919def",
+    "tests/fixtures/json-repeated-integer-data.json": "faaf668a6583ec4e0e5437d4aeac53b7fc2f90fff8acbc04ecf47bb642135f88",
+    "tests/fixtures/json-repeated-string-data.json": "2376737953843b1d536715963365862cdf9c9d8f37e5a12e3fd4d3d3ce13e7c9",
+    "tests/fixtures/json-single-quote.json": "9bca126b76edc3e1b8ead5ab968943b32268fedfff0acbfa95363a82cc80079f",
+    "tests/fixtures/json-single-scalar-data.json": "73ffb8903ac250171a5e1a66145f9e17f5b3373351abd9bdbd93213b4f574219",
+    "tests/fixtures/json-time-leading-zero.json": "ccb695b2ae8c43a300de646fde0ff57b17fb64c497ea56b8479e39f7ab7c92cc",
+    "tests/fixtures/json-trailing-dot.json": "bca96c00805ae274268c3a7a4057e6ba40ca6cc3b1337541a6861bb4df2026e0",
+    "tests/fixtures/json-uint64-occurrences.json": "d93992e89f72fef746c476683929d3aa7d765c8011683432822c0f7a8ab5feb6",
+    "tests/fixtures/json-uint64-range.json": "0bfeb9b15946061c97fcb2a243cec1c348b248538ffc92aa77a565e0930e48e0",
+    "tests/fixtures/json-uint64-undotted-hex.json": "da6e587c9dbfd39f3321803a17c762149211c1bc6230deda16ab55bf296a8d6a",
+    "tests/fixtures/json-uint64-unquoted-hex.json": "7559db0b4138008375f38e22c637a95fd3a6d437d89eba1fd28454f50b41eaa8",
+    "tests/fixtures/json-vector3d-quoted-numeric.json": "37fdc3d2444b7e676896ce3699a9c0c47ed9b3312aac97f0361b4c22445723e9",
+    "tests/fixtures/json-vtff-whitespace.json": "b01e7543d61f9d00cdb189f86dcbd340b39e9160e0eac0c0776b7c505a5ef2a9"
+  },
+  "scope": "Repeated top-level Pose.position/orientation child-message objects; 44 native-positive exact wires and seven jointly rejected controls. Native exit-code diagnostics for rejects remain outside CLI parity.",
+  "rows": [
+    {
+      "label": "position/distinct",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b2278223a223078372e227d2c22706f736974696f6e223a7b2279223a22312e3235227d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2212110000000000001c4019000000000000f43f"
+    },
+    {
+      "label": "position/distinct_reverse",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b2279223a22312e3235227d2c22706f736974696f6e223a7b2278223a223078372e227d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2212110000000000001c4019000000000000f43f"
+    },
+    {
+      "label": "position/same_numeric_last",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b2278223a223078372e227d2c22706f736974696f6e223a7b2278223a327d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2209110000000000000040"
+    },
+    {
+      "label": "position/same_quoted_last",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b2278223a327d2c22706f736974696f6e223a7b2278223a223078372e227d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2209110000000000001c40"
+    },
+    {
+      "label": "position/same_null_last",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b2278223a223078372e227d2c22706f736974696f6e223a7b2278223a6e756c6c7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2209110000000000001c40"
+    },
+    {
+      "label": "position/parent_null_last",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b2278223a223078372e227d2c22706f736974696f6e223a6e756c6c7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2209110000000000001c40"
+    },
+    {
+      "label": "position/parent_null_first",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a6e756c6c2c22706f736974696f6e223a7b2278223a223078372e227d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2209110000000000001c40"
+    },
+    {
+      "label": "position/empty_last",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b2278223a223078372e227d2c22706f736974696f6e223a7b7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2209110000000000001c40"
+    },
+    {
+      "label": "position/empty_first",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b7d2c22706f736974696f6e223a7b2278223a223078372e227d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2209110000000000001c40"
+    },
+    {
+      "label": "position/two_empty",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b7d2c22706f736974696f6e223a7b7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2200"
+    },
+    {
+      "label": "position/empty_then_null",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b7d2c22706f736974696f6e223a6e756c6c7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2200"
+    },
+    {
+      "label": "position/null_then_empty",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a6e756c6c2c22706f736974696f6e223a7b7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2200"
+    },
+    {
+      "label": "position/three_empty",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b7d2c22706f736974696f6e223a7b7d2c22706f736974696f6e223a7b7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2200"
+    },
+    {
+      "label": "position/three_distinct",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b2278223a223078372e227d2c22706f736974696f6e223a7b2279223a22312e3235227d2c22706f736974696f6e223a7b2278223a327d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "221211000000000000004019000000000000f43f"
+    },
+    {
+      "label": "position/three_null_middle",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b2278223a223078372e227d2c22706f736974696f6e223a6e756c6c2c22706f736974696f6e223a7b2279223a22312e3235227d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2212110000000000001c4019000000000000f43f"
+    },
+    {
+      "label": "position/plain_distinct",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b2278223a377d2c22706f736974696f6e223a7b2279223a312e32357d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2212110000000000001c4019000000000000f43f"
+    },
+    {
+      "label": "position/plain_same_zero_last",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b2278223a377d2c22706f736974696f6e223a7b2278223a307d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2200"
+    },
+    {
+      "label": "position/signed_zero_last",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b2278223a377d2c22706f736974696f6e223a7b2278223a2d307d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2200"
+    },
+    {
+      "label": "position/unknown_first",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b22626f677573223a337d2c22706f736974696f6e223a7b2279223a22312e3235227d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "label": "position/wrong_array_first",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a5b7b2278223a377d5d2c22706f736974696f6e223a7b2279223a22312e3235227d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "label": "position/wrong_scalar_first",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a372c22706f736974696f6e223a7b2279223a22312e3235227d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "label": "position/escaped_parent",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b225c75303037306f736974696f6e223a7b2278223a223078372e227d2c22706f736974696f6e223a7b2279223a22312e3235227d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2212110000000000001c4019000000000000f43f"
+    },
+    {
+      "label": "position/bare_parent",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b706f736974696f6e3a7b2278223a223078372e227d2c22706f736974696f6e223a7b2279223a22312e3235227d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2212110000000000001c4019000000000000f43f"
+    },
+    {
+      "label": "position/single_parent",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b27706f736974696f6e273a7b2278223a223078372e227d2c22706f736974696f6e223a7b2279223a22312e3235227d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2212110000000000001c4019000000000000f43f"
+    },
+    {
+      "label": "orientation/distinct",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b2277223a223078372e227d2c226f7269656e746174696f6e223a7b2278223a22312e3235227d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a1211000000000000f43f290000000000001c40"
+    },
+    {
+      "label": "orientation/distinct_reverse",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b2278223a22312e3235227d2c226f7269656e746174696f6e223a7b2277223a223078372e227d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a1211000000000000f43f290000000000001c40"
+    },
+    {
+      "label": "orientation/same_numeric_last",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b2277223a223078372e227d2c226f7269656e746174696f6e223a7b2277223a327d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a09290000000000000040"
+    },
+    {
+      "label": "orientation/same_quoted_last",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b2277223a327d2c226f7269656e746174696f6e223a7b2277223a223078372e227d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a09290000000000001c40"
+    },
+    {
+      "label": "orientation/same_null_last",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b2277223a223078372e227d2c226f7269656e746174696f6e223a7b2277223a6e756c6c7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a09290000000000001c40"
+    },
+    {
+      "label": "orientation/parent_null_last",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b2277223a223078372e227d2c226f7269656e746174696f6e223a6e756c6c7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a09290000000000001c40"
+    },
+    {
+      "label": "orientation/parent_null_first",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a6e756c6c2c226f7269656e746174696f6e223a7b2277223a223078372e227d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a09290000000000001c40"
+    },
+    {
+      "label": "orientation/empty_last",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b2277223a223078372e227d2c226f7269656e746174696f6e223a7b7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a09290000000000001c40"
+    },
+    {
+      "label": "orientation/empty_first",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b7d2c226f7269656e746174696f6e223a7b2277223a223078372e227d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a09290000000000001c40"
+    },
+    {
+      "label": "orientation/two_empty",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b7d2c226f7269656e746174696f6e223a7b7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a00"
+    },
+    {
+      "label": "orientation/empty_then_null",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b7d2c226f7269656e746174696f6e223a6e756c6c7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a00"
+    },
+    {
+      "label": "orientation/null_then_empty",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a6e756c6c2c226f7269656e746174696f6e223a7b7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a00"
+    },
+    {
+      "label": "orientation/three_empty",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b7d2c226f7269656e746174696f6e223a7b7d2c226f7269656e746174696f6e223a7b7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a00"
+    },
+    {
+      "label": "orientation/three_distinct",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b2277223a223078372e227d2c226f7269656e746174696f6e223a7b2278223a22312e3235227d2c226f7269656e746174696f6e223a7b2277223a327d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a1211000000000000f43f290000000000000040"
+    },
+    {
+      "label": "orientation/three_null_middle",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b2277223a223078372e227d2c226f7269656e746174696f6e223a6e756c6c2c226f7269656e746174696f6e223a7b2278223a22312e3235227d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a1211000000000000f43f290000000000001c40"
+    },
+    {
+      "label": "orientation/plain_distinct",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b2277223a377d2c226f7269656e746174696f6e223a7b2278223a312e32357d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a1211000000000000f43f290000000000001c40"
+    },
+    {
+      "label": "orientation/plain_same_zero_last",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b2277223a377d2c226f7269656e746174696f6e223a7b2277223a307d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a00"
+    },
+    {
+      "label": "orientation/signed_zero_last",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b2277223a377d2c226f7269656e746174696f6e223a7b2277223a2d307d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a00"
+    },
+    {
+      "label": "orientation/unknown_first",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b22626f677573223a337d2c226f7269656e746174696f6e223a7b2278223a22312e3235227d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "label": "orientation/wrong_array_first",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a5b7b2277223a377d5d2c226f7269656e746174696f6e223a7b2278223a22312e3235227d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "label": "orientation/wrong_scalar_first",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a372c226f7269656e746174696f6e223a7b2278223a22312e3235227d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "label": "orientation/escaped_parent",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b225c75303036667269656e746174696f6e223a7b2277223a223078372e227d2c226f7269656e746174696f6e223a7b2278223a22312e3235227d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a1211000000000000f43f290000000000001c40"
+    },
+    {
+      "label": "orientation/bare_parent",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b6f7269656e746174696f6e3a7b2277223a223078372e227d2c226f7269656e746174696f6e223a7b2278223a22312e3235227d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a1211000000000000f43f290000000000001c40"
+    },
+    {
+      "label": "orientation/single_parent",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b276f7269656e746174696f6e273a7b2277223a223078372e227d2c226f7269656e746174696f6e223a7b2278223a22312e3235227d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a1211000000000000f43f290000000000001c40"
+    },
+    {
+      "label": "cross/position_then_orientation",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b2278223a223078372e227d2c226f7269656e746174696f6e223a7b2277223a22312e3235227d2c22706f736974696f6e223a7b2279223a327d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2212110000000000001c401900000000000000402a0929000000000000f43f"
+    },
+    {
+      "label": "cross/orientation_then_position",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b2277223a223078372e227d2c22706f736974696f6e223a7b2278223a22312e3235227d2c226f7269656e746174696f6e223a7b2278223a327d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "220911000000000000f43f2a12110000000000000040290000000000001c40"
+    },
+    {
+      "label": "cross/both_repeated",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b2278223a223078372e227d2c226f7269656e746174696f6e223a7b2277223a223078372e227d2c22706f736974696f6e223a7b2279223a22312e3235227d2c226f7269656e746174696f6e223a7b2278223a327d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2212110000000000001c4019000000000000f43f2a12110000000000000040290000000000001c40"
+    },
+    {
+      "label": "cross/both_repeated_nulls",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b2278223a377d2c226f7269656e746174696f6e223a7b2277223a377d2c22706f736974696f6e223a6e756c6c2c226f7269656e746174696f6e223a7b2278223a327d2c22706f736974696f6e223a7b2279223a312e32357d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2212110000000000001c4019000000000000f43f2a12110000000000000040290000000000001c40"
+    },
+    {
+      "label": "cross/child_null_after_repetition",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b2278223a377d2c226f7269656e746174696f6e223a7b2277223a377d2c22706f736974696f6e223a7b2278223a6e756c6c2c2279223a312e32357d2c226f7269656e746174696f6e223a7b2277223a6e756c6c2c2278223a327d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2212110000000000001c4019000000000000f43f2a12110000000000000040290000000000001c40"
+    },
+    {
+      "label": "cross/unknown_top",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b2278223a223078372e227d2c22626f677573223a332c22706f736974696f6e223a7b2279223a327d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    }
+  ]
+}
