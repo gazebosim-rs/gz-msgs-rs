@@ -2597,3 +2597,44 @@ unchanged full JSON/LCOV, owned-vendor and added-line policies, reconstructing t
 is applied. Final metadata binding, normal protected hook and exact new hosted
 success remain required. No outer-array flattening, other-descriptor grammar or
 MSG-02 completion is claimed.
+
+
+## Nested outer Header.data arrays
+
+The preceding direct-null slice completed final binding, the canonical protected
+hook and exact hosted run `40374228398` attempt 1 on public
+`9b554fc65def5e127217bbb04f7842f9f1bb8910`.
+Before this edit, 96 inputs were replayed against that accepted parent and pinned
+native C++. Native accepts 66 forms: 60 are parent rejections and six controls
+already match. Both reject 30 forms. Cases cover ordered nested arrays, empty
+arrays and nulls, default entries, inner string shapes, escaped keys, Unicode,
+duplicate data/header/parent fragments and invalid earlier/later leaves. Ten
+older nested-outer expectations were separately replayed against both binaries;
+all have exact native wire success and parent rejection. All 39 older fixtures
+retain their bytes.
+
+The draft reuses the existing iterative raw-value traversal for outer array
+structure, preserving leaf order, invalid nonnull leaves and every duplicate
+fragment for validation. The existing inner normalization and final append paths
+remain. Ten former rejection expectations strengthen to native wire equality;
+already matching assertions remain checked. Formatting, all 42 CLI tests and
+fresh native replay of 7,303 outcomes pass. The 96-input comparison matches all
+66 native positives and 30 rejections, correcting 60 parent rejections while six
+controls remain unchanged. All ten older input/native-wire mappings and 39
+fixture hashes are verified. The exact canonical full source gate passes 139 Rust
+tests including 42 CLI, strict 3,116/3,136 owned production lines and 5,126/5,211
+regions, automatic 6/6 added executable lines and unchanged owned vendor checks.
+All five staged evidence files are complete.
+
+Independent [review](reviews/json-pose-header-data-nested.json) rebuilds fresh
+candidate, parent and native peer, reproduces all 96 comparisons, verifies the
+ten strengthened input/native-wire mappings and all 39 fixture pins, then
+recomputes unchanged full JSON/LCOV, vendor and added-line policies. No source
+filtering, threshold or configuration waiver is applied. A post-check author
+metadata loader initially mistook captured console stdout for JSON; it stopped
+before writes, retained the error and original files, and bound the untouched
+actual native JSON proof. The reviewer likewise retained a metadata-key mismatch
+before its corrected full-evidence binding; neither caused a runtime replay or
+candidate change. Final metadata binding, normal protected hook and exact new
+hosted success remain required. No other descriptor, arbitrary-depth, diagnostic
+or MSG-02 completion is claimed.

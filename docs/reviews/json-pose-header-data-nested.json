@@ -1,0 +1,150 @@
+{
+  "decision": "approved_source_with_exact_full_evidence",
+  "author": "/root/msgs_owner_astra",
+  "reviewer": "/root/transport_owner_v3",
+  "reviewed_at": "2026-10-26T18:50:48.835391+00:00",
+  "parent": "9b554fc65def5e127217bbb04f7842f9f1bb8910",
+  "source_manifest_sha256": "86f158636146813962b6e6459918328b6efa5f86cfcbeaed26da8642eed697cf",
+  "source_tree": "7576d295f3e725735017b1453b0ec90ee6e3bdbb",
+  "source_diff_sha256": "914a23c6767d17c6424ee10381e2156dcc9b3c081a21fbc59e31e4d88f7ac2f6",
+  "files_sha256": {
+    "docs/EVIDENCE.md": "00256a3f91e7733c526f6505e307bbc3f2c71350f76896701378c682f10a2794",
+    "docs/JSON_FRAMING.md": "55a51b6f91a3439aed5d82eb6bc9e4f06a2e761e7a9c576237b1ceb4f316a498",
+    "scripts/json-reference.py": "2f0b178824765752571514a58a57014c28e8e5dc46e62e55885b4db09104299b",
+    "src/bin/gz-msgs.rs": "79be8f607b106f79c4a42d47374c95fd9e5fe42611e1d122417caaa3efe73ae2",
+    "tests/cli.rs": "9589f747191ba9ac3653d39c91ecde4e5dd7a00097559ac2a2a6868c723786e3",
+    "tests/fixtures/json-pose-header-data-nested.json": "55efc92c30a3eb862e5c8cf029f693042e49ce151778451b918197f2c79cfc70"
+  },
+  "modes": {
+    "docs/EVIDENCE.md": "100644",
+    "docs/JSON_FRAMING.md": "100644",
+    "scripts/json-reference.py": "100644",
+    "src/bin/gz-msgs.rs": "100644",
+    "tests/cli.rs": "100644",
+    "tests/fixtures/json-pose-header-data-nested.json": "100644"
+  },
+  "scope": "Nested outer Header.data arrays under the two Pose components. Reuses unchanged iterative RawValue traversal when null/nested shapes occur, preserving ordered nonnull invalid leaves and primitive lexemes for validation. Every earlier duplicate fragment remains validated and existing final ordered append is unchanged. No other descriptor, recursive-depth generalization or complete MSG-02 claim.",
+  "independent_replay": {
+    "raw_export": "Fresh770 candidate/769 exact public-parent blobs and modes verified by Git object/SHA256;764 parent paths unchanged. All raw candidate/parent hashes rechecked after execution. Four semantic hashes unchanged from selected07c59018; only two prose documents differ in7576d295.",
+    "targets": "Fresh empty separate reviewer-owned candidate and parent targets, never producer targets. CanonicalCargo2/incremental override absent; Root-authorized ordinary correctness, no timing/performance inference.",
+    "candidate_cli": "42 passed,0failed,0ignored, including all prior UInt64 and Pose/Header controls.",
+    "native": "Fresh pinned peer/schema built;7303 native status/full-wire outcomes replayed. Peer/source/descriptor provenance verified.",
+    "comparison": "All96 native/candidate/fresh-parent observations exactly reproduce pre-edit native and parent results:66native positives and30joint rejections;60 parent-positive rejections corrected and6already matching controls retained. No accepted wrong wire.",
+    "old_assertions": "39older fixture hashes unchanged in candidate and parent. Ten strengthened old expectations independently located by exact fixture label/input bytes and separately replayed against fresh native/candidate/parent: exact native wires, old parent rejection, candidate equality. All earlier matching assertions remain required, with fixed row counts retained when pending loops simplify.",
+    "source_audit": "Shared flattening helper unchanged; outer traversal preserves invalid leaves and earlier duplicate validation. No policy/vendor/schema/peer/pin changes; four bounded tests strengthen old rejections rather than deleting fixtures.",
+    "parent_hosted": "Exact9b554fc65def5e127217bbb04f7842f9f1bb8910 hosted40374228398attempt1SUCCESS independently verified via API."
+  },
+  "private_proof_sha256": "5456a29eca8c6ca122ba2bac85fb69882f40cae11c94370d43a33a3fbc58c050",
+  "source_native_binding": {
+    "candidate": "073a89c469897cb455e168376979e28faf0c05bbe36eef18c2b2975a1b7e47bf",
+    "parent": "2890d7fa70f862e1396fb8b0a5c56454ad02aee7ad5a9e1edd81685d10186a91",
+    "peer": "16744aebb5531163dc87224e6d6cec56bba40d4d1a62035ae465342649ac540b",
+    "descriptor": "7ee20050da11c5d683776f4d04c16b1574bcb9cbdc851fea98b44516312375a8",
+    "driver": "6307b4aae3d286ce461e319ee5905e12639f3ffedc32448b2e776b5fff624666",
+    "candidate_source": "79be8f607b106f79c4a42d47374c95fd9e5fe42611e1d122417caaa3efe73ae2",
+    "strengthened_input_audit": "5a125dda67e6352d2720c8817d81c6049896524616a88a00922884300ad3fdd7"
+  },
+  "evidence_sha256": {
+    "prepare-review.py": "f4e7c1452562d1a5872c0d3a38381cc1741bb4b935d626b42ff0e148787e2e89",
+    "run-review.py": "6307b4aae3d286ce461e319ee5905e12639f3ffedc32448b2e776b5fff624666",
+    "private-export.json": "d02bc1f2ff858df8c74f2c2a909bbe40a3e8d01b572b0a6eb5b894f02f10ea9a",
+    "private-proof.json": "5456a29eca8c6ca122ba2bac85fb69882f40cae11c94370d43a33a3fbc58c050",
+    "candidate-cli.log": "4681a34922a4f2125e77080046917e4c7c1a6649c8160b23a9922235afab3eae",
+    "parent-build.log": "73eff8bc6ec53f002999df326b2a13501e60b57caa13489612ef856711f44247",
+    "native-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "native-replay.log": "b67d6dc51b8e4ca36605d0bc086884af1970c28aae1ba04fe9d26761083f54bf",
+    "native-proof.json": "423ea1acc459f52cbf74bdb696977d2a9d1a18a663490d293fa0e64ec098890d",
+    "observations.json": "c3a2d62c9795c6d7888a9c615f84d363c9332b5d2ce42cc749c75d3b3a84fc16",
+    "strengthened-input-audit.json": "5a125dda67e6352d2720c8817d81c6049896524616a88a00922884300ad3fdd7",
+    "parent-hosted.json": "0c756f7ab409924afcdc316dd342c4c14caf2f5fa5b5b345a7b937a26f423d8b",
+    "bind-full-evidence.py": "8eda529ade038489efc9ce240768767863fe67a568a0d18e409019e0aab7c225",
+    "full-evidence-proof.json": "a17f4a82e4553e14ad9afa9efa19d06915812c4a45a5b69cc7a598615b10d60d",
+    "source-gate-input.json": "72d26b7857df3229bfe4138301b066267276b295fefe45e1105a40a00d9f24fe",
+    "source-gate-result.json": "44df6d12354400a5f17f391f74eca364cb8c7e964747e749f9ede0b23311908e",
+    "source-gate.log": "2486fccbf27791b72924955d9affb81b5b85b12dbaac2db7649e26f40d0c71f0",
+    "binding-assembly-error-v1.json": "12f90213d03875538dfbd4646a00bc9d9984385f6f33a8b88abb288493e3bda2",
+    "bind-full-evidence-v1-schema-error.py": "597d31a31d028682a753b62b9253be0e9b9d0029f8b26ddf7acde659d10e9fcc"
+  },
+  "failure_state": "No independent reviewer execution failure. Author post-check metadata assembly JSONDecodeError is retained in its assembly note: misnamed native-proof.json contains successful stdout, while actual JSON native-evidence423ea1ac is separately retained. Error occurred before source/metadata writes; no test rerun or failure waiver claimed. Reviewer static full-binding V1 copied an earlier packet-key schema and stopped on KeyError before recomputation/source or receipt writes. V1 driver and assembly note retained. Exact new packet keys corrected; unchanged policy recomputation then passed. No runtime replay or candidate failure.",
+  "qualification": "Exact unchanged bounded source semantics and canonical full-source evidence approved. No filtering or threshold/configuration waiver. Earlier failed incremental configurations remain retained; no all-configuration, arbitrary-depth or complete MSG-02 claim.",
+  "protected_invariants": "Apache-2.0/OSRF, schemas/pins,39older fixtures and prior matching assertions, original strict per-source/workspace/vendor line+region and authoritative changed-line policies remain unchanged.",
+  "pre_gate_source_manifest_sha256": "83fca359f1124b821313c99e45b2346ae9f7fec77d9afd1516935aeb0e7fed95",
+  "semantic_receipt_sha256": "c8e3973d8076577ef3ab0ad91ba75cd8cef932741c6452c417946f659d9b1496",
+  "full_source_gate_binding": {
+    "session": 63111,
+    "exit": 0,
+    "source_tree": "7576d295f3e725735017b1453b0ec90ee6e3bdbb",
+    "retention": "All5 complete retained stage/evidence files rehashed; passed/complete/no missing inputs. All six reviewed source hashes and index unchanged.",
+    "rust": {
+      "passed": 139,
+      "failed": 0,
+      "ignored": 0,
+      "including_cli": 42
+    },
+    "native_outcomes": 7303,
+    "owned_source_files": 18,
+    "owned_production": {
+      "lines": [
+        3116,
+        3136
+      ],
+      "regions": [
+        5126,
+        5211
+      ]
+    },
+    "owned_vendors": {
+      "prost-derive": {
+        "lines": [
+          6,
+          6
+        ],
+        "regions": [
+          8,
+          8
+        ]
+      },
+      "prost-reflect": {
+        "lines": [
+          96,
+          97
+        ],
+        "regions": [
+          205,
+          206
+        ]
+      }
+    },
+    "changed_cli": [
+      6,
+      6
+    ],
+    "policy_recalculation": "Unchanged check/check_patches/check_changed on full JSON/LCOV; source-root rebind only. No file/function/region/count removed. Changed manifest reconstructed independently from fresh raw source and exact public parent.",
+    "configuration": "CanonicalCargo2 with incremental/target/Rustflags overrides absent; contemporaneous input/result/driver/log hashes verified. Ordinary correctness only, no performance claim.",
+    "retained_stage_result_sha256": "3dde1fce5bf13d3b8f1469db63811da3c8be0dc675b56804bbef99743d434d9d",
+    "retained_files_sha256": {
+      "coverage/coverage.json": "f52093e85cb475c59eed0e292140b6fe31708427c2f98420d7de97502e803155",
+      "coverage/coverage.lcov": "4ea791b00dfef4d732ed5ccdbe8224cae791dafe4e0bc7e71fdcad30ee20dbe7",
+      "coverage/changed-production.json": "082ff30c81903d7223abfb64fad3a1c4e04ee79669c3e113e3bedee23f7f5fb7",
+      "coverage/owned-patches.json": "db05d13e911f269ab1cb6dd92260645760103ce88b5f0987e3e2354264f5835d",
+      "coverage-input.json": "8b1d3297df595af2a3550ed720e427ae8c863488d2add0fb24e9b1e20e43b1ac"
+    },
+    "author_evidence_sha256": {
+      "selected-input.json": "e0e47c5a908bee94c1b19b1ddc478c3fdf1346f7c77f44fe6f5aa79e10a5e585",
+      "selected-result.json": "707a77adbac8ad019b085417fb348bbe95af183f275655fbd09fbc66a9db1a59",
+      "selected-cli.log": "cab69b6d5b5a7aac69d4db6928b405c7a3faca0fda91746a9f93678e3d1ba352",
+      "native-proof.json": "b67d6dc51b8e4ca36605d0bc086884af1970c28aae1ba04fe9d26761083f54bf",
+      "native-evidence.json": "423ea1acc459f52cbf74bdb696977d2a9d1a18a663490d293fa0e64ec098890d",
+      "native-replay.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate-characterization.json": "d6ca1b3a98e601675aa19ffc1e8d52e0dd50048367a94c12746282ea53c1a98f",
+      "run-selected.py": "fa92eb9d9f21cbf0dca3957e762c687a6780a7a9508d416d376c81f6b371df64",
+      "evidence-assembly-note.json": "038286834149a67dd3b4a5a8ac0e2e1ef27e33b73f96607fa38d61206deacfc2"
+    }
+  },
+  "remaining": [
+    "Scoped final metadata and independent exact final-tree binding",
+    "Mandatory canonical normal protected hook",
+    "Public push and new exact hosted success",
+    "Other descriptor grammar, native diagnostics, broader MSG-02 and performance remain open"
+  ]
+}

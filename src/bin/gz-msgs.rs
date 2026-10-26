@@ -627,11 +627,14 @@ fn merge_pose_header_objects(input: &[u8], path: &[&str]) -> Option<Vec<u8>> {
 fn normalize_pose_header_entries(input: &str) -> Option<Box<gz_msgs::serde_json::value::RawValue>> {
     let mut entries: Vec<Box<gz_msgs::serde_json::value::RawValue>> =
         gz_msgs::serde_json::from_str(input).ok()?;
-    let original_len = entries.len();
-    // Native skips null repeated-message entries; retain every other entry
-    // so malformed contents and earlier duplicate fragments stay validated.
-    entries.retain(|entry| entry.get() != "null");
-    let mut changed = entries.len() != original_len;
+    let mut changed = entries
+        .iter()
+        .any(|entry| entry.get() == "null" || entry.get().starts_with('['));
+    if changed {
+        // Preserve leaf order and invalid entries for reflection validation.
+        // Earlier duplicate fragments still pass through this same path.
+        entries = flatten_repeated_json_values(entries).ok()?;
+    }
     for entry in &mut entries {
         let Ok(mut members) = gz_msgs::serde_json::from_str::<JsonMembers>(entry.get()) else {
             continue;
