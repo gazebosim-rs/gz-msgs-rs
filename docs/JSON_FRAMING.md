@@ -935,12 +935,48 @@ coverage measured 2,976/2,996 owned production lines, 4,884/4,948 regions and
 absence is not hidden by whole-file coverage. The combined exact source gate passed 131 Rust tests including 34 CLI, all
 6,598 native outcomes, strict owned/vendor coverage and the new automatic
 63/63 added-line gate; its retained evidence is complete. Final metadata binding,
-protected hook and exact hosted qualification remain pending.
+normal protected hook and exact hosted run `40302314150` passed on public
+`4cc842e3a267e9b1e305c92eb924c9d48b8cabd8`, tree `3e7a5837`.
 
-Repeated `Header.data` lists are outside this correction. For example,
+At the `4cc842e3` Header/stamp source boundary, repeated `Header.data` lists
+were outside that correction. For example,
 `{"position":{"header":{"data":[{"key":"a","value":["one"]}]}},"position":{"header":{"data":[{"key":"b","value":["two"]}]}}}`
 is accepted by both parsers, but native preserves both entries and Rust keeps
-only `b`. The fixture records this accepted wrong-wire gap for both parents;
-these two rows are not counted among the 73 matching observations. Full nested
+only `b` at that boundary. The fixture retains these two historical wrong-wire
+observations; they were not counted among the 73 matching stamp observations. Full nested
 message/list behavior, other descriptors, richer nested numeric grammar and
 native rejection diagnostic codes remain unqualified. MSG-02 stays open.
+
+
+## Ordinary Header data arrays under Pose component parents
+
+The next bounded adapter appends ordinary repeated `Header.data` arrays under
+`Pose.position` and `Pose.orientation`. It collects raw array entries in encounter
+order and replaces only the final data occurrence. Earlier arrays remain in the
+input so invalid earlier message entries still fail reflection validation. Null
+data contributes no entries; an empty array does not erase earlier entries.
+This is scoped to ordinary arrays of Header data messages. It does not normalize
+singleton objects, nested arrays, null entries or duplicate inner `value` keys.
+
+The new fixture has 55 distinct inputs: 43 matching observations comprise 35
+accepted exact wires and eight joint rejections. Twelve native-positive forms
+remain explicitly pending: ten singleton/nested-array/null-entry forms and two
+inner Header data `value` append forms. The public Header/stamp parent has 21
+accepted wrong wires among the matching observations. Cases include ordering,
+repeated equal keys, empty arrays/messages/values, null fields, multiple entries,
+stamp coexistence, both parents and invalid earlier entries.
+
+All 32 prior JSON fixture hashes are retained. The two ordinary-array witnesses
+previously pending in the stamp fixture now assert native full-wire equality;
+their historical fixture bytes remain unchanged. The selected four Pose CLI
+tests pass and fresh native replay reproduces 6,653 outcomes. An initial selected
+run still asserted the old wrong Rust wire for those two witnesses and failed;
+that historical-gap assertion was replaced by exact native equality before the
+passing run. The exact source gate passed 132 Rust tests including 35 CLI, all
+6,653 native outcomes, strict 3,010/3,030 owned lines and 4,935/5,001 regions,
+and automatic 33/33 added executable lines with complete retained evidence.
+Independent [review](reviews/json-pose-header-data-append.json) rebuilt candidate
+and parent separately, confirmed the 21 corrected wrong wires and all 12 pending
+boundaries, and bound the retained changed-line proof. Final metadata binding,
+normal protected hook and exact hosted qualification remain required. Native rejection diagnostics,
+wider nested grammar, other descriptors and full MSG-02 remain unqualified.

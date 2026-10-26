@@ -525,7 +525,42 @@ fn json_members_bytes(members: &JsonMembers) -> Vec<u8> {
     output
 }
 
-// Only Header.stamp under the two Pose component parents is qualified here.
+// Repeated Header.data arrays append in native protobuf JSON. Keep earlier
+// arrays for validation, including invalid message entries; only replace the last.
+fn append_header_data_arrays(members: &mut JsonMembers) -> Option<()> {
+    let indices: Vec<_> = members
+        .0
+        .iter()
+        .enumerate()
+        .filter_map(|(index, (key, _))| (key == "data").then_some(index))
+        .collect();
+    if indices.len() < 2 {
+        return None;
+    }
+    let last = *indices.last().unwrap();
+    let mut combined = Vec::<Box<gz_msgs::serde_json::value::RawValue>>::new();
+    let mut array_seen = false;
+    for index in indices {
+        let raw = members.0[index].1.get();
+        if raw == "null" {
+            continue;
+        }
+        let array: Vec<Box<gz_msgs::serde_json::value::RawValue>> =
+            gz_msgs::serde_json::from_str(raw).ok()?;
+        combined.extend(array);
+        array_seen = true;
+    }
+    if !array_seen {
+        return None;
+    }
+    members.0[last].1 = gz_msgs::serde_json::value::RawValue::from_string(
+        gz_msgs::serde_json::to_string(&combined).ok()?,
+    )
+    .ok()?;
+    Some(())
+}
+
+// Only Header/stamp under the two Pose component parents is qualified here.
 // Retain earlier occurrences so invalid earlier fields still reach reflection.
 fn merge_pose_header_objects(input: &[u8], path: &[&str]) -> Option<Vec<u8>> {
     let (field, rest) = path.split_first()?;
@@ -550,6 +585,9 @@ fn merge_pose_header_objects(input: &[u8], path: &[&str]) -> Option<Vec<u8>> {
     }
     if !object_seen {
         return None;
+    }
+    if *field == "header" {
+        append_header_data_arrays(&mut combined);
     }
     let raw = json_members_bytes(&combined);
     let raw = merge_pose_header_objects(&raw, rest).unwrap_or(raw);

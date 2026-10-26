@@ -2325,5 +2325,38 @@ The combined 19-file source gate passed 131 Rust tests including 34 CLI and
 strict owned-vendor checks. The stage result records passed checks and complete
 retained JSON/LCOV, changed-line proof and source-input evidence. Seven policy
 controls, ten snapshot controls and all prior strict/source-package checks pass.
-Final metadata binding, normal protected hook and exact hosted candidate
-qualification remain pending.
+Final metadata binding and the normal protected hook passed on public
+`4cc842e3a267e9b1e305c92eb924c9d48b8cabd8`, tree `3e7a5837`; exact hosted
+run `40302314150` succeeded.
+
+
+## Ordinary Pose Header.data array append candidate
+
+The Header/stamp and automatic changed-line policy commit is public at
+`4cc842e3a267e9b1e305c92eb924c9d48b8cabd8`, exact reviewer-bound tree `3e7a5837`.
+Its normal protected hook and exact hosted run `40302314150` passed.
+
+The next candidate appends ordinary `Header.data` arrays in encounter order
+under `Pose.position/orientation`, preserving earlier arrays for validation.
+Its 55-input fixture contains 43 matching observations (35 accepted full wires,
+eight joint rejects) and 12 explicit native-positive pending grammar forms.
+The parent has 21 accepted wrong wires among the matching rows; singleton,
+nested-array/null-entry and inner `value` duplication semantics remain open.
+The two prior ordinary-array gap witnesses now assert exact native wires without
+changing their historical fixture bytes. All 32 prior fixture hashes remain.
+
+Four selected Pose CLI tests and 6,653 freshly rebuilt native replay outcomes
+pass. The initial selected run failed the old historical wrong-wire assertion
+for a newly corrected witness; it is retained as a failed run, not a pass.
+Current tests strengthen those two assertions to native equality. No numerical
+threshold, existing valid native expectation, source pin or coverage exclusion
+changes. The exact staged source gate passed 132 Rust tests including 35 CLI,
+6,653 native outcomes, 3,010/3,030 owned production lines, 4,935/5,001 regions
+and automatic 33/33 added executable lines. All strict owned-vendor, policy,
+snapshot and source-package gates passed; retained staged evidence is complete.
+Independent [review](reviews/json-pose-header-data-append.json) replayed four
+selected Rust tests, fresh native outcomes and the 21 parent wrong-wire controls,
+reproduced all 12 pending boundaries and independently bound the retained 33/33
+changed-line proof. Final metadata binding, protected normal hook and exact
+hosted candidate qualification remain required. The bounded array append work
+does not complete MSG-02.
