@@ -1,0 +1,25 @@
+{
+  "decision": "approved",
+  "author": "/root/msgs_review_fallback",
+  "reviewer": "/root/transport_fallback",
+  "proposal_sha256": "a81181e458b7eb082b1f8928f0840f4a93d533094616baac8c1034ace4673f53",
+  "parent": "5fe0f2d10d261312d2913e2bcfc75de4d91bbac9",
+  "source_tree": "b0ac56dd3644d8a53d117966e25be92145f4bfea",
+  "source_diff_sha256": "4bd9cae434361d208d80e65525587b9c4e1023f0aa48d8b635817ac82b507898",
+  "files_sha256": {
+    "docs/EVIDENCE.md": "55a1193cd9c2d13b268b1e2288f4b94ec4c259011dd1db3e80e707d33797df69",
+    "docs/JSON_FRAMING.md": "b0ec64b637a3fe0b55121a71c566e97e4ed29ca29062b715fc235b8f02011a88",
+    "scripts/json-reference.py": "7267a531cd836d00c38d4cd52afda4df9ff2eb2faf8629ca556a600a59f35f9b",
+    "src/bin/gz-msgs.rs": "70ffe26e36ee8066705cd1f78c85eeb9527a2c36b7cb689a5e3df31c42d135c3",
+    "tests/cli.rs": "ab08b0382d8d066ad61932939fa9ac1710a5c33e9d64079037419821fe5a7ad8",
+    "tests/fixtures/json-quoted-hex-whitespace.json": "d64955a40a03bb9318793c7c610123b3d62797c50575f3a2c2c581a3097e12c0"
+  },
+  "private_review": {
+    "export": "Exact frozen tree exported without Git metadata; all six candidate hashes and all 26 prior fixture hashes rechecked; no unstaged producer diff.",
+    "native": "Fresh pinned protobuf 3.21.12 replay passed 5,044/5,044 status and full-wire observations; independent proof SHA256 9bb61283818f7be40f415e065fe956b9f1a3b3b43bc6d3158fa46ad2093150bb exactly matches the frozen reference proof.",
+    "rust": "Exclusive-target selected quoted_hex_float_edge_whitespace_matches_native passed 1/0 across 768 distinct descriptor/input rows; log SHA256 875a768e75f287018e75d4b10be173f508b41615c8777ffd0caf00cf269fbe5d.",
+    "assertions": "The tracked corpus has 360 native-positive exact wires and 408 rejected controls, split equally across Double_V and Float_V and across scalar, array and duplicate placements. It pins single/double quote forms, edge-space rejection, interior whitespace rejection, malformed/overflow controls and the Float double-to-f32 midpoint wire."
+  },
+  "scope": "The new descriptor-scoped quoted edge-whitespace fallback trims only after rejecting a literal first/last space, uses existing bounded fhex conversion to f64, then narrows to f32. The parser's scalar/array calls patch only top-level Double_V.data and Float_V.data; unchanged 26 fixture hashes and the complete native replay bound surrounding behavior.",
+  "limits": "Approval covers this quoted finite hex edge-whitespace slice only. Other descriptors, unquoted hex, nonfinite spellings, broad JSON grammar, diagnostics and MSG-02 completion remain open. Final metadata binding, normal protected hook and hosted CI are separate gates."
+}

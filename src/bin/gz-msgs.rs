@@ -68,7 +68,15 @@ fn proto_quoted_float_whitespace(value: &str, width: FloatWidth) -> Option<Value
     if trimmed == value {
         return None;
     }
-    let number = trimmed.parse::<f64>().ok()?;
+    // StringToNumber sends quoted hex through the same double conversion as
+    // decimal text. Narrow only after that conversion, including midpoint ties.
+    let number = trimmed.parse::<f64>().ok().or_else(|| {
+        if let Some(Value::F64(number)) = proto_hex_float(trimmed, FloatWidth::Double) {
+            Some(number)
+        } else {
+            None
+        }
+    })?;
     if !number.is_finite()
         || (matches!(width, FloatWidth::Single) && number.abs() > f64::from(f32::MAX))
     {

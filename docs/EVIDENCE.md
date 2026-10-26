@@ -2174,3 +2174,21 @@ checked the exact Float_V midpoint wire. The fixture contains 1,032 distinct
 type-and-input pairs. Final metadata verification, protected hook, public
 commit and hosted qualification remain separate. Other descriptors, quoted
 hex values and general quoted-number grammar remain open.
+
+### Bounded quoted hexadecimal float edge whitespace
+
+The pinned `DataPiece::StringToNumber` gate rejects a literal first or last
+space, while `safe_strtod` accepts other ASCII C whitespace at the edges of a
+quoted hex float. The CLI correction is limited to top-level `Double_V.data`
+and `Float_V.data`; it calls the existing maintained hex parser after trimming
+the edge whitespace, converts to f64 and then narrows f32. The new 768-row
+fixture records 360 native-positive and 408 rejected observations across
+scalar, array, duplicate-key and single-quote placements, the exact
+Float midpoint wire, and malformed, overflow and whitespace rejection
+controls. It pins all 26 previous JSON fixture hashes. The exact staged gate
+passed 5,044 native status/full-wire observations, 29 CLI tests and strict
+greater-than-95% owned coverage. The independent
+[review](reviews/json-quoted-hex-whitespace.json) replayed all 5,044 native
+outcomes from a separate raw source export and passed the selected 768-row
+Rust test. The normal protected hook and hosted qualification remain separate.
+Other descriptors and general MSG-02 grammar remain open.

@@ -764,3 +764,28 @@ rehashed 25 older fixtures. The fixture has 1,032 distinct type-and-input
 pairs. The previous source tree passed 4,060 native rows but failed the
 one-bit midpoint witness, so it is excluded from acceptance. The final
 metadata gate, protected hook and hosted qualification remain separate.
+
+## Quoted hexadecimal float edge whitespace
+
+Pinned protobuf 3.21.12 rejects a literal space as the first or last byte of
+a quoted numeric string, then accepts the other ASCII C whitespace bytes at
+the edges of a finite hexadecimal float. The descriptor-scoped CLI path now
+trims those edges only for top-level `Double_V.data` and `Float_V.data`, uses
+the existing maintained `fhex` conversion to f64, and narrows to f32 after
+the double conversion. This ordering preserves the pinned Float midpoint
+wire bits.
+
+The 768-observation native fixture covers both descriptors and double- and
+single-quoted strings in scalar, array and repeated-key placements. Its 360
+native-positive and 408 rejected observations include lowercase
+and uppercase prefixes, a signed value, a subnormal, the f32 midpoint, edge
+spaces after another accepted whitespace byte, and rejected literal edge
+spaces, malformed tokens, overflow and interior whitespace. All 26 older
+JSON fixture hashes remain unchanged. The exact staged gate passed 5,044
+native status/full-wire observations, 29 CLI tests and strict
+greater-than-95% owned coverage. The independent
+[review](reviews/json-quoted-hex-whitespace.json) replayed the full native
+proof from a separate raw export and passed the selected Rust test. The
+normal protected hook and hosted qualification follow separately. Other
+descriptors, nonfinite spellings, unquoted hex and broader JSON grammar remain
+outside this slice.
