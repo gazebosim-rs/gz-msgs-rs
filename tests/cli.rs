@@ -1229,6 +1229,62 @@ fn leading_zero_float_data_matches_native() {
 }
 
 #[test]
+fn quoted_float_admission_matches_native() {
+    let fixture: gz_msgs::serde_json::Value =
+        gz_msgs::serde_json::from_str(include_str!("fixtures/json-quoted-float-admission.json"))
+            .unwrap();
+    assert_eq!(fixture["native_protobuf"], "3.21.12");
+    let rows = fixture["rows"].as_array().unwrap();
+    assert_eq!(rows.len(), 144);
+    let unhex = |s: &str| {
+        s.as_bytes()
+            .chunks_exact(2)
+            .map(|pair| u8::from_str_radix(std::str::from_utf8(pair).unwrap(), 16).unwrap())
+            .collect::<Vec<_>>()
+    };
+    for row in rows {
+        let result = run(
+            &["encode-json", row["type"].as_str().unwrap()],
+            &unhex(row["input_hex"].as_str().unwrap()),
+        );
+        assert_eq!(
+            result.status.success(),
+            row["cpp_status"] == 0,
+            "{}",
+            row["label"]
+        );
+        assert_eq!(
+            result.stdout,
+            unhex(row["cpp_stdout_hex"].as_str().unwrap()),
+            "{}",
+            row["label"]
+        );
+    }
+    let pending = fixture["native_only_pending"].as_array().unwrap();
+    assert_eq!(pending.len(), 60);
+    for row in pending {
+        assert_eq!(row["cpp_status"], 0, "{}", row["label"]);
+        let result = run(
+            &["encode-json", row["type"].as_str().unwrap()],
+            &unhex(row["input_hex"].as_str().unwrap()),
+        );
+        assert!(!result.status.success(), "{}", row["label"]);
+        assert!(result.stdout.is_empty(), "{}", row["label"]);
+    }
+    let rejected = fixture["whitespace_rejected"].as_array().unwrap();
+    assert_eq!(rejected.len(), 48);
+    for row in rejected {
+        assert_eq!(row["cpp_status"], 6, "{}", row["label"]);
+        let result = run(
+            &["encode-json", row["type"].as_str().unwrap()],
+            &unhex(row["input_hex"].as_str().unwrap()),
+        );
+        assert!(!result.status.success(), "{}", row["label"]);
+        assert!(result.stdout.is_empty(), "{}", row["label"]);
+    }
+}
+
+#[test]
 fn time_leading_zero_numeric_matches_native() {
     let fixture: gz_msgs::serde_json::Value =
         gz_msgs::serde_json::from_str(include_str!("fixtures/json-time-leading-zero.json"))

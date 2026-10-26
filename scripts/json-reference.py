@@ -29,6 +29,7 @@ uint64_undotted = json.loads((root / 'tests/fixtures/json-uint64-undotted-hex.js
 float_unquoted = json.loads((root / 'tests/fixtures/json-float-unquoted-hex.json').read_text())
 leading_zero = json.loads((root / 'tests/fixtures/json-leading-zero-float.json').read_text())
 time_float = json.loads((root / 'tests/fixtures/json-time-leading-zero.json').read_text())
+quoted_float = json.loads((root / 'tests/fixtures/json-quoted-float-admission.json').read_text())
 version = subprocess.check_output(['pkg-config', '--modversion', 'protobuf'], text=True).strip()
 assert version == fixture['native_protobuf']
 assert version == time_float['native_protobuf']
@@ -52,6 +53,7 @@ assert version == uint64_hex['native_protobuf']
 assert version == uint64_undotted['native_protobuf']
 assert version == float_unquoted['native_protobuf']
 assert version == leading_zero['native_protobuf']
+assert version == quoted_float['native_protobuf']
 subprocess.run(['python3', str(root / 'scripts/native-peer.py')], check=True)
 assert hashlib.sha256((root / 'tests/protobuf_peer.cc').read_bytes()).hexdigest() == escaped_bytes['probe_source_sha256']
 assert hashlib.sha256((root / 'target/native/protobuf-peer').read_bytes()).hexdigest() == escaped_bytes['probe_binary_sha256']
@@ -85,6 +87,8 @@ assert hashlib.sha256((root / 'tests/protobuf_peer.cc').read_bytes()).hexdigest(
 assert hashlib.sha256((root / 'target/native/protobuf-peer').read_bytes()).hexdigest() == float_unquoted['probe_binary_sha256']
 assert hashlib.sha256((root / 'tests/protobuf_peer.cc').read_bytes()).hexdigest() == leading_zero['probe_source_sha256']
 assert hashlib.sha256((root / 'target/native/protobuf-peer').read_bytes()).hexdigest() == leading_zero['probe_binary_sha256']
+assert hashlib.sha256((root / 'target/native/protobuf-peer').read_bytes()).hexdigest() == quoted_float['native_peer_sha256']
+assert hashlib.sha256((root / 'target/native/messages.pb').read_bytes()).hexdigest() == quoted_float['descriptor_sha256']
 for name, expected in uint64_hex['prior_fixture_sha256'].items():
     assert hashlib.sha256((root / name).read_bytes()).hexdigest() == expected, name
 assert len(uint64_hex['rows']) == 220
@@ -106,6 +110,14 @@ assert len(time_float['rows']) == 139
 assert sum(row['cpp_status'] == 0 for row in time_float['rows']) == 71
 assert len(time_float['prior_fixture_sha256']) == 21
 for name, expected in time_float['prior_fixture_sha256'].items():
+    assert hashlib.sha256((root / name).read_bytes()).hexdigest() == expected, name
+assert len(quoted_float['rows']) == 144
+assert sum(row['cpp_status'] == 0 for row in quoted_float['rows']) == 65
+assert len(quoted_float['native_only_pending']) == 60
+assert all(row['cpp_status'] == 0 and row['parent_rust_status'] != 0 for row in quoted_float['native_only_pending'])
+assert len(quoted_float['whitespace_rejected']) == 48
+assert all(row['cpp_status'] == 6 and row['parent_rust_status'] != 0 for row in quoted_float['whitespace_rejected'])
+for name, expected in quoted_float['prior_fixture_sha256'].items():
     assert hashlib.sha256((root / name).read_bytes()).hexdigest() == expected, name
 for name, expected in uint64_undotted['prior_fixture_sha256'].items():
     assert hashlib.sha256((root / name).read_bytes()).hexdigest() == expected, name
@@ -141,7 +153,7 @@ assert len(uint64_occurrences['unqualified']) == 8
 assert all(row['cpp_status'] == 0 and row['rust_status'] != 0 for row in uint64_occurrences['unqualified'])
 for name, expected in uint64_occurrences['prior_fixture_sha256'].items():
     assert hashlib.sha256((root / name).read_bytes()).hexdigest() == expected, name
-rows = fixture['matching'] + fixture['native_permissive_grammar_pending'] + grammar['rows'] + arrays['rows'] + single_quotes['matching'] + single_quotes['native_permissive_pending'] + raw_controls['matching'] + raw_controls['rejected'] + escaped_bytes['matching'] + escaped_bytes['rejected'] + escaped_utf8['matching'] + escaped_utf8['rejected'] + trailing_dot['scalar_rows'] + trailing_dot['composite_rows'] + trailing_dot['fraction_or_exponent_rejected'] + trailing_dot['native_permissive_pending'] + negative_zero['scalar_rows'] + negative_zero['composite_rows'] + negative_zero['native_permissive_pending'] + vtff['rows'] + quoted_hex['rows'] + quoted_hex['repeated_data_pending'] + repeated_data['rows'] + repeated_integer['rows'] + repeated_string['rows'] + single_scalar['rows'] + single_scalar['unquoted_hex_pending'] + uint64_range['matching'] + uint64_range['unqualified'] + uint64_occurrences['matching'] + uint64_occurrences['unqualified'] + uint64_hex['rows'] + uint64_hex['native_only_pending'] + uint64_undotted['rows'] + float_unquoted['rows'] + float_unquoted['leading_zero_pending'] + leading_zero['rows'] + leading_zero['time_pending'] + time_float['rows']
+rows = fixture['matching'] + fixture['native_permissive_grammar_pending'] + grammar['rows'] + arrays['rows'] + single_quotes['matching'] + single_quotes['native_permissive_pending'] + raw_controls['matching'] + raw_controls['rejected'] + escaped_bytes['matching'] + escaped_bytes['rejected'] + escaped_utf8['matching'] + escaped_utf8['rejected'] + trailing_dot['scalar_rows'] + trailing_dot['composite_rows'] + trailing_dot['fraction_or_exponent_rejected'] + trailing_dot['native_permissive_pending'] + negative_zero['scalar_rows'] + negative_zero['composite_rows'] + negative_zero['native_permissive_pending'] + vtff['rows'] + quoted_hex['rows'] + quoted_hex['repeated_data_pending'] + repeated_data['rows'] + repeated_integer['rows'] + repeated_string['rows'] + single_scalar['rows'] + single_scalar['unquoted_hex_pending'] + uint64_range['matching'] + uint64_range['unqualified'] + uint64_occurrences['matching'] + uint64_occurrences['unqualified'] + uint64_hex['rows'] + uint64_hex['native_only_pending'] + uint64_undotted['rows'] + float_unquoted['rows'] + float_unquoted['leading_zero_pending'] + leading_zero['rows'] + leading_zero['time_pending'] + time_float['rows'] + quoted_float['rows'] + quoted_float['native_only_pending'] + quoted_float['whitespace_rejected']
 for row in rows:
     result = subprocess.run([str(root / 'target/native/protobuf-peer'), str(root / 'target/native/messages.pb'), row.get('type', 'gz.msgs.Time'), 'encode-json'], input=bytes.fromhex(row['input_hex']), capture_output=True)
     assert result.returncode == row['cpp_status'] and result.stdout.hex() == row['cpp_stdout_hex'], row
@@ -167,7 +179,8 @@ proof = dict(protobuf_version=version, cases=len(rows), matching_cases=len(fixtu
              float_unquoted_hex_cases=len(float_unquoted['rows']), float_unquoted_leading_zero_pending=len(float_unquoted['leading_zero_pending']), float_unquoted_hex_fixture_sha256=sha(root / 'tests/fixtures/json-float-unquoted-hex.json'),
              leading_zero_float_cases=len(leading_zero['rows']), leading_zero_historical_time_cases=len(leading_zero['time_pending']), leading_zero_float_fixture_sha256=sha(root / 'tests/fixtures/json-leading-zero-float.json'),
              time_float_cases=len(time_float['rows']), time_float_native_positive=sum(row['cpp_status'] == 0 for row in time_float['rows']), time_float_fixture_sha256=sha(root / 'tests/fixtures/json-time-leading-zero.json'),
+             quoted_float_cases=len(quoted_float['rows']), quoted_float_native_positive=sum(row['cpp_status'] == 0 for row in quoted_float['rows']), quoted_float_native_only_pending=len(quoted_float['native_only_pending']), quoted_float_whitespace_rejected=len(quoted_float['whitespace_rejected']), quoted_float_fixture_sha256=sha(root / 'tests/fixtures/json-quoted-float-admission.json'),
              probe_source_sha256=sha(root / 'tests/protobuf_peer.cc'), probe_binary_sha256=sha(root / 'target/native/protobuf-peer'))
 args.output.parent.mkdir(parents=True, exist_ok=True)
 args.output.write_text(json.dumps(proof, indent=2) + '\n')
-print(f'{len(rows)} native JSON outcomes reproduced: 2424 retained rows plus {len(time_float["rows"])} bounded Time numeric rows')
+print(f'{len(rows)} native JSON outcomes reproduced: 2563 retained observations plus {len(quoted_float["rows"])} bounded quoted float rows, {len(quoted_float["native_only_pending"])} native-only whitespace gaps and {len(quoted_float["whitespace_rejected"])} rejected whitespace controls')

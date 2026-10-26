@@ -627,5 +627,40 @@ grammar, diagnostics and full MSG-02 acceptance remain open. An independent
 [review](reviews/json-time-float.json) rebuilt the pinned peer, reproduced
 all 2,563 outcomes, passed 24 private CLI tests and found no mismatch in
 120 additional bounded forms. The source gate passed 121 Rust tests and
-strict coverage. Final staged gate, protected hook and hosted qualification
-remain pending.
+strict coverage. The final staged gate and protected hook passed on public
+`a6123a61606bedfa8a37427c32a0db4bbc155768`; hosted run `40249108460`
+passed.
+
+## Quoted floating data range and special-string admission
+
+Pinned protobuf 3.21.12 accepts the exact strings `Infinity`, `-Infinity`
+and `NaN`. For other quoted floating data it converts through `safe_strtod`;
+`Float_V` also rejects a double value outside the finite float range before
+narrowing. This adapter checks decoded top-level `Double_V` and `Float_V`
+`data` strings in scalar, array and repeated-key positions for overflow,
+noncanonical nonfinite spelling and the quoted `Float_V` pre-narrowing bound.
+Hex strings keep the existing `fhex` conversion path. The maintained decoder
+still validates the document and unrelated fields.
+
+The fixture records 144 status/full-wire observations: 65 native accepted
+and 79 rejected. Thirty-one rows exposed Rust-positive/native-negative
+admission gaps on the public parent, including decimal overflow,
+noncanonical nonfinite spellings and a `Float_V` boundary that would round
+to finite max after narrowing. Canonical special strings, finite boundaries,
+underflow, escaped strings, duplicate data and unrelated descriptors are
+controls. A 108-form sweep inserts one decoded C-whitespace character using
+JSON escapes at prefix, suffix and middle positions for both descriptors and
+three data placements. Native accepts tab, LF, CR, VT and FF at the edges,
+leaving 60 native-positive/Rust-negative controls; spaces at the edges and
+all middle insertions form 48 exact rejected controls. Whitespace admission
+remains outside this range/spelling slice. Twenty-two prior fixture hashes
+and all 2,563 preceding native observations remain protected; the combined
+replay checks 2,815 observations. Broader quoted numeric grammar, diagnostic
+parity and MSG-02 acceptance remain open.
+The exact six-file staged source gate passed 122 Rust checks and strict
+production coverage. An independent [review](reviews/json-quoted-float.json)
+rebuilt the pinned peer, reproduced all 2,815 observations, checked the
+108-form whitespace disposition and showed that disabling the admission guard
+fails an exact native-negative overflow row. The first two candidate packets
+and a scheduling-interrupted gate are retained but superseded. Final metadata,
+protected hook, public commit and hosted qualification remain separate.

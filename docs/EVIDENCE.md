@@ -2032,5 +2032,38 @@ General JSON grammar, other integer descriptors, diagnostic parity and
 MSG-02 acceptance remain open. An independent [review](reviews/json-time-float.json)
 rebuilt the pinned peer, reproduced all 2,563 outcomes, passed 24 private
 CLI tests and found no mismatch in 120 additional bounded forms. The source
-gate passed 121 Rust tests and strict coverage. Final staged gate, protected
-hook and hosted qualification are pending.
+gate passed 121 Rust tests and strict coverage. The final staged gate and
+protected hook passed on public `a6123a61606bedfa8a37427c32a0db4bbc155768`;
+hosted run `40249108460` passed.
+
+## Bounded quoted floating range and special-string admission
+
+Pinned protobuf 3.21.12 accepts only the exact special strings `Infinity`,
+`-Infinity` and `NaN`. Other quoted floating values use `safe_strtod`;
+`Float_V` checks finite double magnitude against `float` max before narrowing.
+The adapter limits these overflow, spelling and pre-narrowing checks to decoded
+top-level `Double_V` and `Float_V` `data` strings, including scalar, array and
+repeated-key values.
+It leaves hex bit patches and maintained descriptor validation in place.
+
+The fixture adds 144 native status/full-wire rows, 65 accepted and 79 rejected.
+Thirty-one were Rust-positive/native-negative on the public parent. Canonical
+special strings, overflow, the near-max `Float_V` narrowing boundary,
+underflow, escaped strings, repeated data and unrelated descriptors are
+controls. A 108-form sweep inserts one decoded C-whitespace character using
+JSON escapes at prefix, suffix and middle positions across both descriptors
+and three placements. Native
+accepts tab, LF, CR, VT and FF at either edge, leaving 60 exact
+native-positive/Rust-negative rows. Spaces at the edges and all middle
+insertions give 48 exact rejected controls. Whitespace admission is a
+separate grammar gap. All 22 prior fixture hashes and 2,563 prior
+observations remain exact; the combined pinned replay checks 2,815
+observations. General quoted numeric grammar, diagnostic parity and complete
+MSG-02 acceptance remain open.
+The exact six-file staged source gate passed 122 Rust checks and strict
+coverage. An independent [review](reviews/json-quoted-float.json) rebuilt the
+pinned peer, reproduced all 2,815 observations, verified the complete
+108-form whitespace disposition and showed that disabling the guard fails an
+exact native-negative overflow row. V1/V2 and the scheduling-interrupted gate
+are superseded; final metadata, protected hook, public commit and hosted
+qualification remain separate.

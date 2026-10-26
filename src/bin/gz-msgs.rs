@@ -42,6 +42,20 @@ enum FloatWidth {
     Single,
 }
 
+fn invalid_proto_quoted_float(value: &str, width: FloatWidth) -> bool {
+    if matches!(value, "Infinity" | "-Infinity" | "NaN") {
+        return false;
+    }
+    match value.parse::<f64>() {
+        Ok(number) => {
+            !number.is_finite()
+                || (matches!(width, FloatWidth::Single) && number.abs() > f64::from(f32::MAX))
+        }
+        // Leave malformed strings to the maintained decoder.
+        Err(_) => false,
+    }
+}
+
 fn proto_hex_float(value: &str, width: FloatWidth) -> Option<Value> {
     let mut bytes = value.as_bytes();
     if matches!(bytes.first(), Some(b'+' | b'-')) {
@@ -329,6 +343,7 @@ fn flatten_uint64_data(value: &[u8]) -> Result<Vec<Vec<u8>>, Box<dyn std::error:
 
 struct NormalizedProtoJson {
     bytes: Vec<u8>,
+    invalid_quoted_float: bool,
     patches: Vec<(usize, usize, Value)>,
     scalar_patches: Vec<(usize, Value)>,
     array_ranges: Vec<(usize, usize)>,
@@ -357,6 +372,7 @@ fn normalize_proto_json(
     let mut float_array_depth = None;
     let mut float_item_index = 0;
     let mut float_patches = Vec::new();
+    let mut invalid_quoted_float = false;
     let mut scalar_float_patches = Vec::new();
     let mut float_array_count = 0;
     let mut float_array_start = None;
@@ -398,15 +414,23 @@ fn normalize_proto_json(
                 } else {
                     None
                 };
-            } else if float_array_depth == Some(frames.len()) {
+            } else if float_data.is_some()
+                && (float_array_depth == Some(frames.len())
+                    || (frames.len() == 1
+                        && frames.last() == Some(&Frame::ObjectValue)
+                        && data_field))
+            {
                 if let (Some(width), Ok(value)) = (
                     float_data,
                     gz_msgs::serde_json::from_slice::<String>(&output[output_start..]),
                 ) {
-                    if let Some(number) = proto_hex_float(&value, width) {
-                        output.truncate(output_start);
-                        output.extend_from_slice(b"\"0\"");
-                        float_patches.push((float_array_count - 1, float_item_index, number));
+                    invalid_quoted_float |= invalid_proto_quoted_float(&value, width);
+                    if float_array_depth == Some(frames.len()) {
+                        if let Some(number) = proto_hex_float(&value, width) {
+                            output.truncate(output_start);
+                            output.extend_from_slice(b"\"0\"");
+                            float_patches.push((float_array_count - 1, float_item_index, number));
+                        }
                     }
                 }
             }
@@ -451,15 +475,23 @@ fn normalize_proto_json(
                 } else {
                     None
                 };
-            } else if float_array_depth == Some(frames.len()) {
+            } else if float_data.is_some()
+                && (float_array_depth == Some(frames.len())
+                    || (frames.len() == 1
+                        && frames.last() == Some(&Frame::ObjectValue)
+                        && data_field))
+            {
                 if let (Some(width), Ok(value)) = (
                     float_data,
                     gz_msgs::serde_json::from_slice::<String>(&output[output_start..]),
                 ) {
-                    if let Some(number) = proto_hex_float(&value, width) {
-                        output.truncate(output_start);
-                        output.extend_from_slice(b"\"0\"");
-                        float_patches.push((float_array_count - 1, float_item_index, number));
+                    invalid_quoted_float |= invalid_proto_quoted_float(&value, width);
+                    if float_array_depth == Some(frames.len()) {
+                        if let Some(number) = proto_hex_float(&value, width) {
+                            output.truncate(output_start);
+                            output.extend_from_slice(b"\"0\"");
+                            float_patches.push((float_array_count - 1, float_item_index, number));
+                        }
                     }
                 }
             }
@@ -691,6 +723,7 @@ fn normalize_proto_json(
     }
     NormalizedProtoJson {
         bytes: output,
+        invalid_quoted_float,
         patches: float_patches,
         scalar_patches: scalar_float_patches,
         array_ranges: float_array_ranges,
@@ -776,6 +809,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             let uint64_data = descriptor.full_name() == "gz.msgs.UInt64_V";
             let NormalizedProtoJson {
                 bytes: normalized,
+                invalid_quoted_float,
                 patches,
                 scalar_patches,
                 array_ranges,
@@ -787,6 +821,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 uint64_data,
                 descriptor.full_name() == "gz.msgs.Time",
             );
+            if invalid_quoted_float {
+                return Err("invalid quoted float data".into());
+            }
             let single_scalar = data_ranges.len() == 1 && {
                 let (start, end) = data_ranges[0];
                 let value = normalized[start..end].trim_ascii();

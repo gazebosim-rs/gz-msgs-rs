@@ -1,0 +1,34 @@
+{
+  "assertion_review": "Parser change is confined to decoded top-level Double_V and Float_V data strings in scalar, array and repeated-key positions. Exact canonical special strings remain accepted; noncanonical nonfinite, finite-to-infinite overflow and Float pre-narrowing range overaccepts are rejected before maintained decoding. Existing hex patch and unrelated descriptors are unchanged. The 144 parity observations have 142 distinct type+input pairs and retain the V1 semantic rows; 22 prior fixture hashes are exact. A complete measured 108-form single decoded C-whitespace insertion grid covers six characters, three positions, two descriptors and three placements: 60 native-positive/Rust-negative edge cases and 48 both-rejected controls.",
+  "author": "/root/msgs_review_fallback",
+  "base": "a6123a61606bedfa8a37427c32a0db4bbc155768",
+  "decision": "approved",
+  "exact_staged_gate_sha256": "fc74d3d34e0a69e10da851a58364935445c65d27434f5430b07267c17e2ac2e6",
+  "files_sha256": {
+    "docs/EVIDENCE.md": "25831c5d029c95093a50812eb7ca0c2938c4d552886a7d7ae9bcf549a6362100",
+    "docs/JSON_FRAMING.md": "7ed70c33365ea541327279265edb36908632dd98e627825dca48a3584d67b10d",
+    "scripts/json-reference.py": "2b47ab2724573dd567f90271c66bc5adf47dffb14a60b2e9a12101301932caa2",
+    "src/bin/gz-msgs.rs": "eb735e04713278828302a12b65640287232c850a678a02abfe2936433278ece8",
+    "tests/cli.rs": "05154c562f8b12f547e9733d4ce3c6fde85819ed7b9d7fbf872d27748942a0b5",
+    "tests/fixtures/json-quoted-float-admission.json": "0516804e0a57d7d7ea8dfc10dff2789e78f1173fbb2863e937100b2cb5107b7e"
+  },
+  "limits": "Whitespace numeric admission remains an explicit native-only gap, including tab/LF/CR/VT/FF edges. General quoted numeric grammar, other descriptors, exact diagnostic parity, and MSG-02 completion are unclaimed. Superseded V1 and V2 proposals and interrupted gate are excluded from approval.",
+  "private_raw_export": {
+    "descriptor_sha256": "7ee20050da11c5d683776f4d04c16b1574bcb9cbdc851fea98b44516312375a8",
+    "guard_removal_mutant": "Private one-line disable of invalid_quoted_float guard fails selected test at quoted_overflow_012, Rust status true versus native false.",
+    "guard_removal_mutant_log_sha256": "d048d3652da200d76dd870987656dcf1a2362fce8944902dae1ad01d462db218",
+    "method": "Git archive of exact public base with only six staged files overlaid; separate Cargo target and rebuilt pinned protobuf peer.",
+    "native_proof_sha256": "80d50d1cbb898772ac8ee422206864475a5423c6693ea4a9ec9a55a396487116",
+    "native_result": "2,815/2,815 exact pinned statuses and full wires: 2,563 retained observations, 144 bounded parity observations, 60 native-only whitespace and 48 jointly rejected whitespace controls.",
+    "parent_negative": "Exact row quoted_overflow_012 is native status6/empty, public parent status0/+infinity wire, candidate rejects; prior private raw-parent proof SHA256 28bf20fc634babc1104b2b06c791e04d0f385dc3fc05d0050b1682db898ab7a5.",
+    "peer_sha256": "16744aebb5531163dc87224e6d6cec56bba40d4d1a62035ae465342649ac540b",
+    "rust_selected": "quoted_float_admission_matches_native 1/0, including all 144 parity statuses/wires and exact negative dispositions for 108 whitespace controls.",
+    "rust_selected_log_sha256": "fc14fb125f07fc809515ebd296307b9eb1abe382402a1d3ffbc6c321db931f50"
+  },
+  "proposal": "artifacts/json-quoted-overflow/proposal-v3.json",
+  "proposal_sha256": "2b1c8f5b9be6425aad5a2a776e667a522c35b10970122781e9f3562012bb6104",
+  "review_scope": "Source/API/assertions, pinned native status/full-wire fixture, old fixture retention, and exact staged gate; publication and hosted qualification remain separate.",
+  "reviewer": "/root/transport_fallback",
+  "staged_diff_sha256": "ccc797e7d9564ffbc1b80625a4064ae8a1366283efc5eeafff4d3c61264e69ee",
+  "staged_tree": "75fc0d65eccc8ae66231f5dd1f316b3cabe2c773"
+}
