@@ -5,9 +5,13 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
       - run: sudo apt-get update && sudo apt-get install -y protobuf-compiler libprotobuf-dev libgtest-dev
       - run: rustup toolchain install 1.94.1 --profile minimal --component rustfmt,clippy,llvm-tools
-      - run: python3 scripts/verify.py
+      - run: python3 scripts/verify.py --base "$COVERAGE_BASE"
+        env:
+          COVERAGE_BASE: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
       - run: python3 scripts/test-staged.py
       - run: python3 scripts/source-package.py --output artifacts/distribution
       - run: python3 scripts/test-source-package.py --archive artifacts/distribution/gz-msgs-${{ github.sha }}.tar.gz --revision ${{ github.sha }} --fresh-cache
@@ -18,4 +22,8 @@ jobs:
             artifacts/distribution/*.tar.gz
             artifacts/distribution/*.sha256
             artifacts/source-package-check/proof.json
+            target/coverage/coverage.json
+            target/coverage/coverage.lcov
+            target/coverage/changed-production.json
+            target/coverage-input.json
           if-no-files-found: error

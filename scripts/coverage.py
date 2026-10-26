@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
 # Copyright (C) 2026 Open Source Robotics Foundation
 # SPDX-License-Identifier: Apache-2.0
-import hashlib, json, os, pathlib, shutil, subprocess
+import argparse, hashlib, json, os, pathlib, shutil, subprocess
+from changed import check_changed
 root = pathlib.Path(__file__).resolve().parents[1]
 os.chdir(root)
+parser = argparse.ArgumentParser()
+parser.add_argument('--changed-lines', required=True, type=pathlib.Path)
+args_cli = parser.parse_args()
+changed = json.loads(args_cli.changed_lines.read_text())
 env = os.environ.copy()
 cargo = env.get('CARGO', 'cargo')
 sysroot = pathlib.Path(subprocess.check_output([env.get('RUSTC', 'rustc'), '--print', 'sysroot'], text=True).strip())
@@ -47,3 +52,8 @@ with (out / 'coverage.json').open('w') as stream:
 with (out / 'coverage.lcov').open('w') as stream:
     subprocess.run([*args, '-format=lcov'], stdout=stream, check=True)
 subprocess.run(['python3', 'scripts/check-coverage.py', str(out / 'coverage.json')], check=True)
+
+proof = check_changed(root, changed, (out / 'coverage.lcov').read_text())
+(out / 'changed-production.json').write_text(json.dumps(proof, indent=2) + '\n')
+(root / 'target/coverage-input.json').write_text(json.dumps(changed, indent=2) + '\n')
+print('Changed production coverage: ' + json.dumps(proof['files']))

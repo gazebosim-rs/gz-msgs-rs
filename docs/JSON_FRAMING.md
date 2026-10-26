@@ -896,12 +896,51 @@ owned coverage above 95% and 6,523 pinned native outcomes. The independent
 [review](reviews/json-pose-parent-merge.json) reproduced the native proof and
 selected Rust tests from separate raw exports with exclusive Cargo targets.
 
-This correction does not merge nested Header fragments. For example,
+At public `65958f65`, this correction did not merge nested Header fragments. For example,
 `{"position":{"header":{"stamp":{"sec":1}}},"position":{"header":{"stamp":{"nsec":2}}}}`
 is accepted by both parsers, but native emits `22080a060a0408011002` and Rust
 emits `22060a040a021002`. Rust loses the earlier `sec` field, just as the
 public parent did. Independent orientation and combined-parent witnesses
 confirm the same gap. Nested Header/stamp merging remains pending; the
-qualified scope is direct scalar-child fields. Protected hook and exact
-hosted CI remain separate. Deeper Pose containers, other message descriptors
-and general JSON grammar remain open.
+qualified scope is direct scalar-child fields. The normal protected hook and
+exact hosted run `40291464209` passed on public
+`65958f65a6592a10b40c368ced5e480bce8e4724`. Deeper Pose containers, other message
+descriptors and general JSON grammar remain open.
+
+
+## Header stamp fragments under Pose component parents
+
+The next bounded adapter combines `header` objects and their `stamp` objects
+under top-level `Pose.position` and `Pose.orientation`. It retains ordered raw
+members through the maintained serde map visitor rather than a JSON value map,
+which would discard duplicate keys. Every earlier fragment remains available
+for reflection validation. A null fragment contributes no members; an empty
+object retains message presence. The adapter only descends along these two
+Header/stamp paths. The direct serde dependency uses the already locked
+`1.0.229` version; no package version changes.
+
+The 73 distinct native observations contain 57 accepted full-wire matches and
+16 rejected controls. They cover both parents, repeated parent/header/stamp
+objects, scalar replacement and null, empty-message presence, signed and quoted
+integer boundaries, direct component coexistence, escaped/bare/single-quoted
+keys and invalid earlier fragments. The public scalar-merge parent produced
+37 accepted wrong wires in this corpus. All 31 earlier JSON fixture hashes are
+retained. Three selected Pose CLI tests pass, and cumulative native replay
+covers 6,598 outcomes, including the two pending forms below. The exact Header source gate passed 131 Rust tests including 34 CLI; independent
+[review](reviews/json-pose-header-stamp-merge.json) reproduced the three selected
+Rust tests, all native outcomes and the 37 parent wrong-wire controls. Retained
+coverage measured 2,976/2,996 owned production lines, 4,884/4,948 regions and
+63/63 newly added executable CLI lines. Publication also requires the reviewed
+[automatic changed-line policy correction](CHANGED_COVERAGE.md), whose earlier
+absence is not hidden by whole-file coverage. The combined exact source gate passed 131 Rust tests including 34 CLI, all
+6,598 native outcomes, strict owned/vendor coverage and the new automatic
+63/63 added-line gate; its retained evidence is complete. Final metadata binding,
+protected hook and exact hosted qualification remain pending.
+
+Repeated `Header.data` lists are outside this correction. For example,
+`{"position":{"header":{"data":[{"key":"a","value":["one"]}]}},"position":{"header":{"data":[{"key":"b","value":["two"]}]}}}`
+is accepted by both parsers, but native preserves both entries and Rust keeps
+only `b`. The fixture records this accepted wrong-wire gap for both parents;
+these two rows are not counted among the 73 matching observations. Full nested
+message/list behavior, other descriptors, richer nested numeric grammar and
+native rejection diagnostic codes remain unqualified. MSG-02 stays open.

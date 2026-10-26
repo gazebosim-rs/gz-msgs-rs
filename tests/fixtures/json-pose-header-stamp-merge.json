@@ -1,0 +1,575 @@
+{
+  "native_protobuf": "3.21.12",
+  "parent_commit": "65958f65a6592a10b40c368ced5e480bce8e4724",
+  "native_peer_sha256": "16744aebb5531163dc87224e6d6cec56bba40d4d1a62035ae465342649ac540b",
+  "descriptor_sha256": "7ee20050da11c5d683776f4d04c16b1574bcb9cbdc851fea98b44516312375a8",
+  "probe_source_sha256": "48835b169eb8e2e490729391718e223e8905632f2b04d2fa2facd50b2fbaf1f5",
+  "corpus_generator_sha256": "59f62195f7f34c03314490cdfe211767e249a600d5989ab67cc66f32202b0f66",
+  "prior_fixture_sha256": {
+    "tests/fixtures/json-array-grammar.json": "c6b095ffbf102683dfe24b6b05c8fd5d3b2f5aab36578cc0d389ba19f38d97c3",
+    "tests/fixtures/json-double-decimal-rounding.json": "6b7afe6ee8f771c58cb3c15204eb4209b230b20f16b43b3a20f7ca209ba76055",
+    "tests/fixtures/json-escaped-bytes.json": "88ab74e155140fddc76f2eace37e97e69ad0cf7e97b6419b96468c7dbc842c53",
+    "tests/fixtures/json-escaped-utf8.json": "6f9e071d3044997d8aead2f5f60df7006d7d40cacd1b93bd802fa7cc13d7c881",
+    "tests/fixtures/json-float-max-range.json": "e4eedceeeef03d73d8880b938394b5a03709f017e564691d7c9710a8c5da4a28",
+    "tests/fixtures/json-float-unquoted-hex.json": "9aba03d1c8d29b13f09995d75027957cea975c34022c650064faf280d35dac71",
+    "tests/fixtures/json-framing.json": "2cccfedc630e3ca56dcff617d3bd8233287dfc17271fa1b477ef4fcbdaaa24f0",
+    "tests/fixtures/json-grammar.json": "4005df0bb062002197e712a70b2cf5fd56969819dd2ce85b06c5a6ab0e9fbf71",
+    "tests/fixtures/json-leading-zero-float.json": "f87a8c01f50158907b47ccbf69ace1d5364ca4f9cf3da88840fab302f6993c2c",
+    "tests/fixtures/json-negative-zero.json": "36ec2c5c39763d817f3268e9f01a1a9d31ab8b07c721edb3ed1250fb64eb9a64",
+    "tests/fixtures/json-pose-parent-merge.json": "ed761f60bd17eae427a3041c6baf2d54e034cb41c36389b36079676c000c16e0",
+    "tests/fixtures/json-pose-quoted-numeric.json": "2f7bc00b7a6201ed305353f77db161bda14a100a0b7fae1a4ff6e37f0081a916",
+    "tests/fixtures/json-quaternion-quoted-numeric.json": "bc066cd7e450e5d9f76a5ed72e38883b888abd4b87e3e509ff963a1ab41cf993",
+    "tests/fixtures/json-quoted-float-admission.json": "0516804e0a57d7d7ea8dfc10dff2789e78f1173fbb2863e937100b2cb5107b7e",
+    "tests/fixtures/json-quoted-float-whitespace.json": "9de9b8e323c12592aa008d92f557efce19ce7cae95afcc7b0d657befe3591925",
+    "tests/fixtures/json-quoted-hex-whitespace.json": "d64955a40a03bb9318793c7c610123b3d62797c50575f3a2c2c581a3097e12c0",
+    "tests/fixtures/json-quoted-hex.json": "a0f49fc679fd02022deae5af3476c0f86908e9c064a21b9cca1bb2bbe0ec39c4",
+    "tests/fixtures/json-raw-controls.json": "c65520e7656a2ef91d7104b2b9b8cd866f736078fd65825295d5f81bd68e5c9d",
+    "tests/fixtures/json-repeated-data.json": "e1b90c69a24d2ed097f28b184e917545540afd2a2e1ee98f93e265a629919def",
+    "tests/fixtures/json-repeated-integer-data.json": "faaf668a6583ec4e0e5437d4aeac53b7fc2f90fff8acbc04ecf47bb642135f88",
+    "tests/fixtures/json-repeated-string-data.json": "2376737953843b1d536715963365862cdf9c9d8f37e5a12e3fd4d3d3ce13e7c9",
+    "tests/fixtures/json-single-quote.json": "9bca126b76edc3e1b8ead5ab968943b32268fedfff0acbfa95363a82cc80079f",
+    "tests/fixtures/json-single-scalar-data.json": "73ffb8903ac250171a5e1a66145f9e17f5b3373351abd9bdbd93213b4f574219",
+    "tests/fixtures/json-time-leading-zero.json": "ccb695b2ae8c43a300de646fde0ff57b17fb64c497ea56b8479e39f7ab7c92cc",
+    "tests/fixtures/json-trailing-dot.json": "bca96c00805ae274268c3a7a4057e6ba40ca6cc3b1337541a6861bb4df2026e0",
+    "tests/fixtures/json-uint64-occurrences.json": "d93992e89f72fef746c476683929d3aa7d765c8011683432822c0f7a8ab5feb6",
+    "tests/fixtures/json-uint64-range.json": "0bfeb9b15946061c97fcb2a243cec1c348b248538ffc92aa77a565e0930e48e0",
+    "tests/fixtures/json-uint64-undotted-hex.json": "da6e587c9dbfd39f3321803a17c762149211c1bc6230deda16ab55bf296a8d6a",
+    "tests/fixtures/json-uint64-unquoted-hex.json": "7559db0b4138008375f38e22c637a95fd3a6d437d89eba1fd28454f50b41eaa8",
+    "tests/fixtures/json-vector3d-quoted-numeric.json": "37fdc3d2444b7e676896ce3699a9c0c47ed9b3312aac97f0361b4c22445723e9",
+    "tests/fixtures/json-vtff-whitespace.json": "b01e7543d61f9d00cdb189f86dcbd340b39e9160e0eac0c0776b7c505a5ef2a9"
+  },
+  "scope": "Bounded Header.stamp sec/nsec fragments under top-level Pose.position/orientation:73 distinct inputs,57 native-positive exact wires,16 joint rejects. Two accepted wrong-wire repeated Header.data forms remain explicitly pending; native rejection diagnostics unqualified.",
+  "rows": [
+    {
+      "label": "position/split",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a317d7d7d2c22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a327d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "22080a060a0408011002"
+    },
+    {
+      "label": "position/reverse",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a327d7d7d2c22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a317d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "22080a060a0408011002"
+    },
+    {
+      "label": "position/three",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a317d7d7d2c22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a327d7d7d2c22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a337d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "22080a060a0408031002"
+    },
+    {
+      "label": "position/scalar_zero",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a317d7d7d2c22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a302c226e736563223a327d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "22060a040a021002"
+    },
+    {
+      "label": "position/scalar_null",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a317d7d7d2c22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a6e756c6c2c226e736563223a327d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "22080a060a0408011002"
+    },
+    {
+      "label": "position/scalar_negative",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a2d337d7d7d2c22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a2d327d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "221a0a180a1608fdffffffffffffffff0110feffffffffffffffff01"
+    },
+    {
+      "label": "position/quoted_integer",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a2239323233333732303336383534373735383037227d7d7d2c22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a2232313437343833363437227d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "22140a120a1008ffffffffffffffff7f10ffffffff07"
+    },
+    {
+      "label": "position/null_parent",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a317d7d7d2c22706f736974696f6e223a6e756c6c2c22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a327d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "22080a060a0408011002"
+    },
+    {
+      "label": "position/empty_parent",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a317d7d7d2c22706f736974696f6e223a7b7d2c22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a327d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "22080a060a0408011002"
+    },
+    {
+      "label": "position/null_header_last",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a317d7d7d2c22706f736974696f6e223a7b22686561646572223a6e756c6c7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "22060a040a020801"
+    },
+    {
+      "label": "position/empty_header_last",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a317d7d7d2c22706f736974696f6e223a7b22686561646572223a7b7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "22060a040a020801"
+    },
+    {
+      "label": "position/null_stamp_last",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a317d7d7d2c22706f736974696f6e223a7b22686561646572223a7b227374616d70223a6e756c6c7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "22060a040a020801"
+    },
+    {
+      "label": "position/empty_stamp_last",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a317d7d7d2c22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b7d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "22060a040a020801"
+    },
+    {
+      "label": "position/null_stamp_first",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b22686561646572223a7b227374616d70223a6e756c6c7d7d2c22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a317d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "22060a040a020801"
+    },
+    {
+      "label": "position/empty_stamp_first",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b7d7d7d2c22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a317d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "22060a040a020801"
+    },
+    {
+      "label": "position/empty_header_then_null",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b22686561646572223a7b7d7d2c22706f736974696f6e223a7b22686561646572223a6e756c6c7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "22020a00"
+    },
+    {
+      "label": "position/empty_stamp_then_null",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b7d7d7d2c22706f736974696f6e223a7b22686561646572223a7b227374616d70223a6e756c6c7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "22040a020a00"
+    },
+    {
+      "label": "position/both_null",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b22686561646572223a6e756c6c7d2c22706f736974696f6e223a7b22686561646572223a6e756c6c7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2200"
+    },
+    {
+      "label": "position/both_stamp_null",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b22686561646572223a7b227374616d70223a6e756c6c7d7d2c22706f736974696f6e223a7b22686561646572223a7b227374616d70223a6e756c6c7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "22020a00"
+    },
+    {
+      "label": "position/same_parent_headers",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a317d7d2c22686561646572223a7b227374616d70223a7b226e736563223a327d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "22080a060a0408011002"
+    },
+    {
+      "label": "position/same_header_stamps",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a317d2c227374616d70223a7b226e736563223a327d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "22080a060a0408011002"
+    },
+    {
+      "label": "position/same_stamp_scalars",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a312c22736563223a332c226e736563223a327d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "22080a060a0408031002"
+    },
+    {
+      "label": "position/direct_component",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b2278223a223078372e222c22686561646572223a7b227374616d70223a7b22736563223a317d7d7d2c22706f736974696f6e223a7b2279223a322c22686561646572223a7b227374616d70223a7b226e736563223a327d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "221a0a060a0408011002110000000000001c40190000000000000040"
+    },
+    {
+      "label": "position/unknown_header_first",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b22686561646572223a7b22756e6b6e6f776e223a337d7d2c22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a327d7d7d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "label": "position/unknown_stamp_first",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b22756e6b6e6f776e223a337d7d7d2c22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a327d7d7d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "label": "position/invalid_header_first",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b22686561646572223a337d2c22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a327d7d7d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "label": "position/invalid_stamp_first",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b22686561646572223a7b227374616d70223a337d7d2c22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a327d7d7d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "label": "position/invalid_scalar_first",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a22626164227d7d7d2c22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a327d7d7d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "label": "position/overflow_first",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a323134373438333634387d7d7d2c22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a317d7d7d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "label": "position/array_header_first",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b22686561646572223a5b5d7d2c22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a327d7d7d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "label": "position/array_stamp_first",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b22686561646572223a7b227374616d70223a5b5d7d7d2c22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a327d7d7d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "label": "position/empty_plain",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2200"
+    },
+    {
+      "label": "position/null_plain",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a6e756c6c7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "label": "position/bare_keys",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b6865616465723a7b7374616d703a7b7365633a317d7d7d2c22706f736974696f6e223a7b6865616465723a7b7374616d703a7b6e7365633a327d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "22080a060a0408011002"
+    },
+    {
+      "label": "position/single_keys",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b27686561646572273a7b277374616d70273a7b27736563273a317d7d7d2c22706f736974696f6e223a7b27686561646572273a7b277374616d70273a7b276e736563273a327d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "22080a060a0408011002"
+    },
+    {
+      "label": "position/escaped_keys",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b225c75303036386561646572223a7b225c753030373374616d70223a7b22736563223a317d7d7d2c22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a327d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "22080a060a0408011002"
+    },
+    {
+      "label": "orientation/split",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a317d7d7d2c226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a327d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a080a060a0408011002"
+    },
+    {
+      "label": "orientation/reverse",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a327d7d7d2c226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a317d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a080a060a0408011002"
+    },
+    {
+      "label": "orientation/three",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a317d7d7d2c226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a327d7d7d2c226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a337d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a080a060a0408031002"
+    },
+    {
+      "label": "orientation/scalar_zero",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a317d7d7d2c226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a302c226e736563223a327d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a060a040a021002"
+    },
+    {
+      "label": "orientation/scalar_null",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a317d7d7d2c226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a6e756c6c2c226e736563223a327d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a080a060a0408011002"
+    },
+    {
+      "label": "orientation/scalar_negative",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a2d337d7d7d2c226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a2d327d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a1a0a180a1608fdffffffffffffffff0110feffffffffffffffff01"
+    },
+    {
+      "label": "orientation/quoted_integer",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a2239323233333732303336383534373735383037227d7d7d2c226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a2232313437343833363437227d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a140a120a1008ffffffffffffffff7f10ffffffff07"
+    },
+    {
+      "label": "orientation/null_parent",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a317d7d7d2c226f7269656e746174696f6e223a6e756c6c2c226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a327d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a080a060a0408011002"
+    },
+    {
+      "label": "orientation/empty_parent",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a317d7d7d2c226f7269656e746174696f6e223a7b7d2c226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a327d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a080a060a0408011002"
+    },
+    {
+      "label": "orientation/null_header_last",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a317d7d7d2c226f7269656e746174696f6e223a7b22686561646572223a6e756c6c7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a060a040a020801"
+    },
+    {
+      "label": "orientation/empty_header_last",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a317d7d7d2c226f7269656e746174696f6e223a7b22686561646572223a7b7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a060a040a020801"
+    },
+    {
+      "label": "orientation/null_stamp_last",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a317d7d7d2c226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a6e756c6c7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a060a040a020801"
+    },
+    {
+      "label": "orientation/empty_stamp_last",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a317d7d7d2c226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b7d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a060a040a020801"
+    },
+    {
+      "label": "orientation/null_stamp_first",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a6e756c6c7d7d2c226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a317d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a060a040a020801"
+    },
+    {
+      "label": "orientation/empty_stamp_first",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b7d7d7d2c226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a317d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a060a040a020801"
+    },
+    {
+      "label": "orientation/empty_header_then_null",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b22686561646572223a7b7d7d2c226f7269656e746174696f6e223a7b22686561646572223a6e756c6c7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a020a00"
+    },
+    {
+      "label": "orientation/empty_stamp_then_null",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b7d7d7d2c226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a6e756c6c7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a040a020a00"
+    },
+    {
+      "label": "orientation/both_null",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b22686561646572223a6e756c6c7d2c226f7269656e746174696f6e223a7b22686561646572223a6e756c6c7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a00"
+    },
+    {
+      "label": "orientation/both_stamp_null",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a6e756c6c7d7d2c226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a6e756c6c7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a020a00"
+    },
+    {
+      "label": "orientation/same_parent_headers",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a317d7d2c22686561646572223a7b227374616d70223a7b226e736563223a327d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a080a060a0408011002"
+    },
+    {
+      "label": "orientation/same_header_stamps",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a317d2c227374616d70223a7b226e736563223a327d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a080a060a0408011002"
+    },
+    {
+      "label": "orientation/same_stamp_scalars",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a312c22736563223a332c226e736563223a327d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a080a060a0408031002"
+    },
+    {
+      "label": "orientation/direct_component",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b2278223a223078372e222c22686561646572223a7b227374616d70223a7b22736563223a317d7d7d2c226f7269656e746174696f6e223a7b2279223a322c22686561646572223a7b227374616d70223a7b226e736563223a327d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a1a0a060a0408011002110000000000001c40190000000000000040"
+    },
+    {
+      "label": "orientation/unknown_header_first",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b22686561646572223a7b22756e6b6e6f776e223a337d7d2c226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a327d7d7d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "label": "orientation/unknown_stamp_first",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b22756e6b6e6f776e223a337d7d7d2c226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a327d7d7d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "label": "orientation/invalid_header_first",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b22686561646572223a337d2c226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a327d7d7d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "label": "orientation/invalid_stamp_first",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a337d7d2c226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a327d7d7d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "label": "orientation/invalid_scalar_first",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a22626164227d7d7d2c226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a327d7d7d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "label": "orientation/overflow_first",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a323134373438333634387d7d7d2c226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a317d7d7d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "label": "orientation/array_header_first",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b22686561646572223a5b5d7d2c226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a327d7d7d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "label": "orientation/array_stamp_first",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a5b5d7d7d2c226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a327d7d7d7d",
+      "cpp_status": 6,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "label": "orientation/empty_plain",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a00"
+    },
+    {
+      "label": "orientation/null_plain",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a6e756c6c7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": ""
+    },
+    {
+      "label": "orientation/bare_keys",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b6865616465723a7b7374616d703a7b7365633a317d7d7d2c226f7269656e746174696f6e223a7b6865616465723a7b7374616d703a7b6e7365633a327d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a080a060a0408011002"
+    },
+    {
+      "label": "orientation/single_keys",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b27686561646572273a7b277374616d70273a7b27736563273a317d7d7d2c226f7269656e746174696f6e223a7b27686561646572273a7b277374616d70273a7b276e736563273a327d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a080a060a0408011002"
+    },
+    {
+      "label": "orientation/escaped_keys",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b225c75303036386561646572223a7b225c753030373374616d70223a7b22736563223a317d7d7d2c226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a327d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a080a060a0408011002"
+    },
+    {
+      "label": "both/interleaved",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a317d7d7d2c226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b22736563223a337d7d7d2c22706f736974696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a327d7d7d2c226f7269656e746174696f6e223a7b22686561646572223a7b227374616d70223a7b226e736563223a347d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "22080a060a04080110022a080a060a0408031004"
+    }
+  ],
+  "repeated_header_data_pending": [
+    {
+      "label": "position/repeated_header_data_pending",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b22706f736974696f6e223a7b22686561646572223a7b2264617461223a5b7b226b6579223a2261222c2276616c7565223a5b226f6e65225d7d5d7d7d2c22706f736974696f6e223a7b22686561646572223a7b2264617461223a5b7b226b6579223a2262222c2276616c7565223a5b2274776f225d7d5d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "22160a1412080a016112036f6e6512080a0162120374776f",
+      "rust_status": 0,
+      "rust_stdout_hex": "220c0a0a12080a0162120374776f"
+    },
+    {
+      "label": "orientation/repeated_header_data_pending",
+      "type": "gz.msgs.Pose",
+      "input_hex": "7b226f7269656e746174696f6e223a7b22686561646572223a7b2264617461223a5b7b226b6579223a2261222c2276616c7565223a5b226f6e65225d7d5d7d7d2c226f7269656e746174696f6e223a7b22686561646572223a7b2264617461223a5b7b226b6579223a2262222c2276616c7565223a5b2274776f225d7d5d7d7d7d",
+      "cpp_status": 0,
+      "cpp_stdout_hex": "2a160a1412080a016112036f6e6512080a0162120374776f",
+      "rust_status": 0,
+      "rust_stdout_hex": "2a0c0a0a12080a0162120374776f"
+    }
+  ]
+}

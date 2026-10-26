@@ -11,6 +11,7 @@ import sys
 import subprocess
 import tempfile
 import unittest
+from unittest import mock
 import snapshot
 
 
@@ -21,6 +22,8 @@ class Snapshot(unittest.TestCase):
         self.root = Path(self.temporary.name) / 'repo'
         (self.root / 'scripts').mkdir(parents=True)
         (self.root / 'src').mkdir()
+        (self.root / 'build.rs').write_text('fn main() {}\n')
+        (self.root / '.gitignore').write_text('/artifacts/\n/target/\n')
         self.source = self.root / 'src/lib.rs'
         self.source.write_bytes(b'staged\n')
         self.git('init', '--quiet')
@@ -29,7 +32,16 @@ class Snapshot(unittest.TestCase):
         return subprocess.check_output(['git', *args], cwd=self.root, stderr=subprocess.PIPE)
 
     def verifier(self, code):
-        (self.root / 'scripts/verify.py').write_text(code)
+        # Small verifier doubles exercise export/context behavior, not Rust builds.
+        prepare = """from pathlib import Path
+import sys
+if '--staged' not in sys.argv:
+    for name in ['coverage/coverage.json', 'coverage/coverage.lcov', 'coverage/changed-production.json', 'coverage/owned-patches.json', 'coverage-input.json']:
+        path = Path('target') / name
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text('{}')
+"""
+        (self.root / 'scripts/verify.py').write_text(prepare + code)
 
     def test_exact_staged_bytes_include_export_ignore(self):
         (self.root / '.gitattributes').write_text('src/lib.rs export-ignore\n')
@@ -73,6 +85,7 @@ else:
 {''.join('    '+line+'\n' for line in child.splitlines())}
 """)
         shutil.copyfile(snapshot.__file__, self.root / 'scripts/snapshot.py')
+        shutil.copyfile(Path(snapshot.__file__).with_name('changed.py'), self.root / 'scripts/changed.py')
         self.git('add', '.')
         self.git('-c','user.name=Gate test','-c','user.email=gate@example.invalid',
                  'commit','--quiet','-m','fixture')
@@ -117,6 +130,10 @@ else:
         with self.assertRaisesRegex(ValueError, 'blob differs'):
             snapshot.verify_staged(self.root)
         self.assertFalse((self.root / 'unchecked').exists())
+        report = next((self.root / 'artifacts/staged').glob('*/stage-result.json'))
+        result = json.loads(report.read_text())
+        self.assertEqual((result['checks_state'], result['evidence_state'], result['status']),
+                         ('failed', 'partial', 'failed'))
 
     def test_raw_blob_type_mode_and_path_identity(self):
         self.git('add', '.')
@@ -178,6 +195,55 @@ else:
                 self.git('add', '.')
                 with self.assertRaisesRegex(ValueError, 'Git index or HEAD changed'):
                     snapshot.verify_staged(self.root)
+
+    def test_changed_inventory_uses_intended_index_and_retains_evidence(self):
+        (self.root / 'changed-lines.json').write_text('tracked proof')
+        self.verifier("""import json
+assert Path('changed-lines.json').read_text() == 'tracked proof'
+manifest = json.loads(Path(sys.argv[sys.argv.index('--changed-lines') + 1]).read_text())
+assert manifest['files']['src/lib.rs']['added_lines'] == [1]
+assert manifest['files']['src/lib.rs']['sha256'] == __import__('hashlib').sha256(b'staged\\n').hexdigest()
+""")
+        self.git('add', '.')
+        self.source.write_text('unstaged alternate source')
+        snapshot.verify_staged(self.root)
+        reports = list((self.root / 'artifacts/staged').glob('*/stage-result.json'))
+        self.assertEqual(len(reports), 1)
+        result = json.loads(reports[0].read_text())
+        self.assertEqual(result['checks_state'], 'passed')
+        self.assertEqual(result['evidence_state'], 'complete')
+        self.assertEqual(len(result['files_sha256']), 5)
+
+    def test_manifest_failure_retains_failed_partial_result(self):
+        self.verifier(f"Path({str(self.root / 'unchecked')!r}).touch()\n")
+        self.git('add', '.')
+        with mock.patch.object(snapshot, 'make_manifest', side_effect=ValueError('manifest failure')):
+            with self.assertRaisesRegex(ValueError, 'manifest failure'):
+                snapshot.verify_staged(self.root)
+        self.assertFalse((self.root / 'unchecked').exists())
+        report = next((self.root / 'artifacts/staged').glob('*/stage-result.json'))
+        result = json.loads(report.read_text())
+        self.assertEqual((result['checks_state'], result['evidence_state'], result['status']),
+                         ('failed', 'partial', 'failed'))
+        self.assertEqual(len(result['missing']), 5)
+
+    def test_missing_evidence_never_becomes_a_pass(self):
+        self.verifier("Path('target/coverage/coverage.lcov').unlink()\n")
+        self.git('add', '.')
+        with self.assertRaisesRegex(ValueError, 'missing required staged coverage evidence'):
+            snapshot.verify_staged(self.root)
+        report = next((self.root / 'artifacts/staged').glob('*/stage-result.json'))
+        self.assertEqual(json.loads(report.read_text())['evidence_state'], 'partial')
+
+    def test_original_failure_survives_partial_evidence(self):
+        self.verifier("Path('target/coverage/coverage.lcov').unlink()\nraise SystemExit(7)\n")
+        self.git('add', '.')
+        with self.assertRaises(subprocess.CalledProcessError) as error:
+            snapshot.verify_staged(self.root)
+        self.assertEqual(error.exception.returncode, 7)
+        report = next((self.root / 'artifacts/staged').glob('*/stage-result.json'))
+        result = json.loads(report.read_text())
+        self.assertEqual((result['checks_state'], result['evidence_state']), ('failed', 'partial'))
 
 
 if __name__ == '__main__':

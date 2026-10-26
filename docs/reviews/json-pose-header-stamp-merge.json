@@ -1,0 +1,66 @@
+{
+  "decision": "approved_bounded_header_stamp_source_semantics",
+  "author": "/root/msgs_owner_astra",
+  "reviewer": "/root",
+  "parent": "65958f65a6592a10b40c368ced5e480bce8e4724",
+  "source_tree": "ce04d589e633c7715ae7dfbc11d50fbb87a10a47",
+  "source_manifest_sha256": "5d0caca7fb9db712c37632d2b298485d47aae05e1b5ef4f93ef37524ad49855b",
+  "source_diff_sha256": "203e1d4a838ab0a761afe5205fea2f7dd81c0121c13071fc069a806a77c9f85e",
+  "files_sha256": {
+    "Cargo.lock": "1a9e626396dc14270e6ea6b37ebcf576a7147098f7310a049d8045bec3a014fa",
+    "Cargo.toml": "8b8aa85f1a9a3ea8cc32581c0398675e348d468a688fbe4f518a0a5be097d6f6",
+    "docs/EVIDENCE.md": "8643517aa282a2f0fa6c60012dffc9276a04513816bfb9337fd1489a2bc8f14a",
+    "docs/JSON_FRAMING.md": "85147f64f2e41e54666ff6b0b1700e9dcf7ba12a1bd6580ee89dd27eedeb93fb",
+    "scripts/json-reference.py": "2591266ddd9ff1b8afb91d63ff4ba0e7fd7ab8d0ae0a9cbfd9de75c89d9e98e3",
+    "src/bin/gz-msgs.rs": "501fe6d9971b7fab32b4826d5b9d02bfca63801306ab524f2430d598c74a520f",
+    "tests/cli.rs": "85300f9802586fd42c79716d699886ce6cb2fdc3fd1625d1a8dd8c0371809ec0",
+    "tests/fixtures/json-pose-header-stamp-merge.json": "fe44b05dfb476325b8c0fb1cb70c0e9cbc64f90a779e872c990483618cfa59c3"
+  },
+  "source_review": "Exact eight-file source freeze and all750 raw-export hashes verified; all749 independently exported parent files verified after builds. Direct serde1.0.229 is already locked; only root dependency membership changes. Maintained MapAccess and RawValue preserve ordered duplicate members/numeric tokens; adapter applies only canonical Pose position/orientation header/stamp paths. Earlier fragments remain semantically validated, null contributes no members, empty objects preserve presence. No unsafe/FFI change, vendor changes, exclusion or assertion retirement. String-to-Vec serialization unwrap is locally infallible for valid Rust String; fallbacks retain original input for reflection validation.",
+  "independent_execution": {
+    "candidate_selected_rust": [
+      3,
+      0
+    ],
+    "candidate_source_export_sha256": "cb9b06d60d5a9f330821447cb0a04d4d48fa0b781f8a852cac4f85ba1397912b",
+    "parent_source_export_sha256": "c40ea78c06fd587af9fcc29f48d4850fc4b9f7ae3463f4e7825b65e6644c629f",
+    "native_cases": 6598,
+    "native_proof_sha256": "66e789f02bbce10f270ae9d975e7d729896e4a61094005dd985b180f104f5b67",
+    "native_log_sha256": "79deb9b4ba1eb77d866737658c6df9e4d79e37e27c35f081c3c9d9b43062b814",
+    "parent_control_sha256": "4f98966059c6205bb18947867f91c7ce716a9ba8d329a0094ab7d38b917ac144",
+    "new_corpus": {
+      "rows": 73,
+      "accepted_exact_wire": 57,
+      "joint_rejected": 16,
+      "parent_accepted_wrong_wire": 37,
+      "prior_fixture_hashes_preserved": 31
+    },
+    "candidate_binary_sha256": "1198d0aaf78b3d35fffa6e1e89d3f7f676e02de08347015658f356ed4a8cd4aa",
+    "parent_binary_sha256": "194c1e2841553cb3a2c777c4edf915c27489c06c00c8c703ba7f16fedc43a4ef",
+    "provenance": "Fresh complete Git-blob exports, separate reviewer-owned Cargo targets and independently compiled canonical native peer; producer Cargo artifacts not reused. Initial export nested under coordinator Cargo workspace was rejected before tests, retained and relocated unchanged outside that workspace; no failure waived."
+  },
+  "coverage_audit": {
+    "source_tree": "ce04d589e633c7715ae7dfbc11d50fbb87a10a47",
+    "source_sha256": "501fe6d9971b7fab32b4826d5b9d02bfca63801306ab524f2430d598c74a520f",
+    "author_lcov_sha256": "85575f339898ae22640143b2a8f08434d7325ebdd89ca77b6bb9cc12b359113f",
+    "independently_derived_added_syntax_lines": 83,
+    "added_executable_lines": 63,
+    "covered_added_executable_lines": 63,
+    "scope": "Independent recomputation over retained author LLVM evidence, not a new reviewer coverage execution. Automated gate correction remains required before publication."
+  },
+  "parent_hosted": {
+    "conclusion": "success",
+    "headSha": "65958f65a6592a10b40c368ced5e480bce8e4724",
+    "status": "completed",
+    "url": "https://github.com/gazebosim-rs/gz-msgs-rs/actions/runs/40291464209"
+  },
+  "publication_conditions": [
+    "Automatic root-source changed-line coverage enforcement is a real preexisting Msgs tooling gap. Correct it in a separately reviewed bounded policy patch before Header publication. Supplemental changed proof does not replace automatic enforcement.",
+    "Combine only reviewed immutable Header bytes and reviewed policy fix, then pass a new exact combined strict source gate, independent final binding, mandatory normal protected hook and exact new hosted CI."
+  ],
+  "limits": [
+    "Two repeated Header.data accepted wrong-wire witnesses remain explicitly pending for both Pose parents; broader Header/list/descriptor JSON merging is not qualified.",
+    "Native rejected-input diagnostics/code6 vs Rust1 remain unqualified. No full MSG02, new original-test credit, packaging release or performance acceptance.",
+    "Coverage63/63 independently recomputed from retained author LLVM evidence with matching raw hashes; no new reviewer coverage run is claimed."
+  ]
+}

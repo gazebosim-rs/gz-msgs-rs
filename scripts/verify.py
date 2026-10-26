@@ -1,12 +1,30 @@
 #!/usr/bin/env python3
 # Copyright (C) 2026 Open Source Robotics Foundation
 # SPDX-License-Identifier: Apache-2.0
-import hashlib, json, os, pathlib, subprocess, sys
+import argparse, hashlib, json, os, pathlib, subprocess, sys
+from changed import make_manifest, run_checks, validate_manifest
 root = pathlib.Path(__file__).resolve().parents[1]
-if '--staged' in sys.argv:
+parser = argparse.ArgumentParser()
+parser.add_argument('--staged', action='store_true')
+parser.add_argument('--changed-lines', type=pathlib.Path)
+parser.add_argument('--base')
+args = parser.parse_args()
+if args.staged:
+    if args.changed_lines or args.base:
+        parser.error('--staged chooses its own exact index and parent')
     from snapshot import verify_staged
     verify_staged(root)
     raise SystemExit()
+if args.changed_lines:
+    changed = json.loads(args.changed_lines.read_text())
+else:
+    base = args.base
+    if base and set(base) == {'0'}:
+        base = None  # A new branch has no earlier commit: measure all production lines.
+    elif base is None:
+        base = 'HEAD^'
+    changed = make_manifest(root, root, base)
+validate_manifest(root, changed)
 os.chdir(root)
 manifest = json.loads(pathlib.Path('schemas/manifest.json').read_text())
 assert {p['path'] for p in manifest['schemas']} == {str(p) for p in pathlib.Path('schemas').rglob('*.proto')}
@@ -62,5 +80,5 @@ for package in vendor['packages']:
     for item in package['files']:
         assert hashlib.sha256(pathlib.Path(item['path']).read_bytes()).hexdigest() == item['sha256'], item['path']
         assert (item['upstream_sha256'] == item['sha256']) == ('owned_lines' not in item), item['path']
-for command in [[os.environ.get('CARGO', 'cargo'), 'fmt', '--all', '--', '--check'], [os.environ.get('CARGO', 'cargo'), 'clippy', '--locked', '--all-targets', '--', '-D', 'warnings'], ['python3', 'scripts/test-gates.py'], ['python3', 'scripts/test-snapshot.py'], ['python3', 'scripts/test-source-package.py'], ['python3', 'scripts/test-downstream.py'], ['python3', 'scripts/json-reference.py'], ['python3', 'scripts/coverage.py']]:
-    subprocess.run(command, check=True)
+commands = [[os.environ.get('CARGO', 'cargo'), 'fmt', '--all', '--', '--check'], [os.environ.get('CARGO', 'cargo'), 'clippy', '--locked', '--all-targets', '--', '-D', 'warnings'], ['python3', 'scripts/test-gates.py'], ['python3', 'scripts/test-changed.py'], ['python3', 'scripts/test-snapshot.py'], ['python3', 'scripts/test-source-package.py'], ['python3', 'scripts/test-downstream.py'], ['python3', 'scripts/json-reference.py']]
+run_checks(root, changed, commands)

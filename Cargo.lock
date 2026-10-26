@@ -119,6 +119,7 @@ dependencies = [
  "prost-reflect",
  "prost-types",
  "quick-xml",
+ "serde",
  "serde_json",
 ]
 

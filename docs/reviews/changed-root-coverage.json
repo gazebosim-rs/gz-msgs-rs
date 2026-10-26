@@ -1,0 +1,51 @@
+{
+  "decision": "approved_bounded_changed_root_policy_v2_source",
+  "author": "/root/msgs_owner_astra",
+  "reviewer": "/root",
+  "parent": "65958f65a6592a10b40c368ced5e480bce8e4724",
+  "source_tree": "31d84df52b6d5f927f25bf95588bfa0b96b97348",
+  "source_manifest_sha256": "36bdc65b7f0521c7f49be4dc9598256477a34e751a446a7f3cd56dc0d8feb812",
+  "source_diff_sha256": "38b90b56d1830bcb6c233c3ed82a7516d3e6b4e356ed463e808ed3ba9f80e715",
+  "files_sha256": {
+    ".github/workflows/ci.yml": "098b636e6f27590a423249c8788c9ed38e6af3eafa02abfaef95618a7d99d689",
+    "README.md": "f04eda11e67e0320e668dabc919f2288e4ff96c1cec032e2dfb8c4cdcd858bc8",
+    "docs/CHANGED_COVERAGE.md": "aa967a3fb417146f48073d304cf15eb17675fa0d5ba0f881d02fb4b62da12beb",
+    "scripts/changed.py": "3e5c323f09fa961886d162371a544799385975d7e32f77737c7552de70dbb391",
+    "scripts/coverage.py": "f5edcae042d888d020efa7f3df92329789f76cc523ec8275fc39c3f904abcb1e",
+    "scripts/snapshot.py": "3628cf3074252555bc1911a793b7dff1cf635be639eb87e1592bdac9a1114900",
+    "scripts/test-changed.py": "586afd021877bb0831b2c8bb42d086dd73b358938edac826e1e45ee147f23f36",
+    "scripts/test-snapshot.py": "4fe54aad20b7ee380cd7d3e3eb48eac8b0256eebc8b3bf04946a05284fa414b1",
+    "scripts/verify.py": "a1125895c866a4f47c4b454b2147109febc69132f12f5f8631276aa4d556c8f8"
+  },
+  "independent_checks": {
+    "raw_export_blobs": 752,
+    "post_check_source_hashes": "All exact exported blobs unchanged",
+    "changed_controls": [
+      7,
+      0
+    ],
+    "snapshot_controls": [
+      10,
+      0
+    ],
+    "legacy_controls": "Existing whole-root/vendor strict thresholds and instrumentation-selection controls passed",
+    "logs_sha256": {
+      "changed-tests.log": "f2ca8b607d5b9e3cf5d237575e8ce463ed2365b188a2d6c83d941f6d87abe8d4",
+      "snapshot-tests.log": "5bc86a795a0651c0832109be76c4761a48eabd15972de971717b83de8e0f5224",
+      "legacy-tests.log": "61a25e691fb60fa173786fd196f55a86023bfa811ffa82dbd1adc7f542fbad3c"
+    },
+    "kind": "Independent pure-tooling tests from reviewer-owned complete raw Git export. No Rust/native/full-policy gate execution is claimed."
+  },
+  "review": "Whole-file line/region and owned-vendor gates remain mandatory. Added root executable lines are independently gated strictly above95 per file against intended index/original HEAD or explicit CI base, including build.rs. Complete production inventory/source hashes are checked. Source manifest stays private outside build outputs and is revalidated after each subprocess; retained evidence copy must exactly match. Missing/empty/duplicate/invalid instrumentation and stale source or invalid line inventories fail. Metadata-only changes get explicit not-applicable zero counts, never100%. Entire export/validation/manifest/child workflow records failed/partial evidence and preserves original failures. CI supplies event base with full history and retains coverage proof artifacts. Existing alternate-index/foreign-Git/export assertions are preserved. No new production exclusion, threshold relaxation, vendor or schema changes.",
+  "reproduced_controls": [
+    "Exactly94and95reject;96passes;99wholefile cannot hide0/1 new executable miss.",
+    "Real Git-tracked target/coverage-input.json collision cannot replace authoritative denominator; deliberately masked old input passes counterfactual, genuine denominator rejects, covered positive restores exact evidence.",
+    "Authoritative input or source mutation is rejected after successful child.",
+    "Early raw-export validation and manifest failures retain failed/partial result and never execute unchecked child. Missing required evidence cannot turn successful child into passed stage."
+  ],
+  "limits": [
+    "Unapproved V1cfe retained; no false historical changed-line enforcement claims.",
+    "Approval covers frozen policyV2 only. Combine byte-identical approved Headerce04 production/test/fixture data and reviewed policy, pass a new exact combined source gate including actual coverage/native/package checks, then independent finalbinding, mandatory normal hook and exact hosted CI before publication.",
+    "This patch does not qualify new message behavior, phase completion, performance or broader feature/profile coverage."
+  ]
+}

@@ -2284,3 +2284,46 @@ Nested Header/stamp merging remains pending; this evidence establishes only
 direct scalar-child parity, not general Pose child-message merging. Protected
 hook and exact hosted CI remain separate. Deeper Pose containers, other
 duplicate-message descriptors and full MSG-02 acceptance remain open.
+
+
+## Bounded Pose Header/stamp fragment merging
+
+The scalar-child parent merge is public at
+`65958f65a6592a10b40c368ced5e480bce8e4724`, exact reviewer-bound tree `313fa6ff`.
+Its recovered normal protected hook passed 130 Rust tests including 33 CLI,
+6,523 native outcomes and strict owned/vendor coverage, staged-index and
+fresh-cache package gates. Exact hosted run `40291464209` succeeded. The prior
+interrupted hook had no exit and is not counted as a pass.
+
+The next candidate preserves raw ordered JSON members with serde's map visitor
+and combines only `Pose.position/orientation.header.stamp` fragments. Serde
+`1.0.229` becomes a direct dependency at its existing locked version; all package
+versions and upstream pins remain unchanged. Earlier fragments remain in the
+input for semantic validation; null contributes no members and empty message
+objects retain presence. No production exclusions or previous assertions change.
+
+`json-pose-header-stamp-merge.json` freezes 73 distinct inputs: 57 accepted exact
+wires and 16 joint rejections. The public parent has 37 accepted wrong-wire gaps
+among those inputs. Cases cover both parents, nested repeated keys at each level,
+empty/null/scalar replacement, signed/quoted integer boundaries, direct component
+coexistence, key spellings and invalid earlier fields. Three selected Pose CLI
+tests pass; all 31 previous JSON fixture hashes are preserved. Fresh native replay
+contains 6,598 outcomes. Two separately pinned repeated Header.data examples are
+still accepted wrong-wire and remain pending, so broader Header or list merging
+is not claimed. Native reject diagnostics and full MSG-02 remain unqualified.
+The exact Header source gate passed 131 Rust tests including 34 CLI and strict
+whole-file/vendor coverage. Separate retained coverage measured 2,976/2,996
+production lines, 4,884/4,948 regions and 63/63 added executable CLI lines.
+Independent [Header review](reviews/json-pose-header-stamp-merge.json) replayed
+fresh native and selected Rust outcomes and confirmed the 37 parent wrong wires.
+It conditions publication on the separately reviewed automatic changed-line
+enforcement correction described in [the policy](CHANGED_COVERAGE.md). Earlier
+green Messages gates did not establish that separate root changed denominator.
+The combined 19-file source gate passed 131 Rust tests including 34 CLI and
+6,598 native outcomes. It enforced 2,976/2,996 owned production lines,
+4,884/4,948 regions and 63/63 added executable CLI lines, alongside unchanged
+strict owned-vendor checks. The stage result records passed checks and complete
+retained JSON/LCOV, changed-line proof and source-input evidence. Seven policy
+controls, ten snapshot controls and all prior strict/source-package checks pass.
+Final metadata binding, normal protected hook and exact hosted candidate
+qualification remain pending.

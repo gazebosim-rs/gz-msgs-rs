@@ -481,6 +481,83 @@ struct NormalizedProtoJson {
     pose_parent_ranges: Vec<(&'static str, usize, usize)>,
 }
 
+// Keep duplicate keys and raw numeric tokens while the maintained JSON parser
+// validates object framing. A Value map would discard the earlier fragments.
+struct JsonMembers(Vec<(String, Box<gz_msgs::serde_json::value::RawValue>)>);
+
+impl<'de> serde::Deserialize<'de> for JsonMembers {
+    fn deserialize<D: serde::Deserializer<'de>>(deserializer: D) -> Result<Self, D::Error> {
+        struct MembersVisitor;
+        impl<'de> serde::de::Visitor<'de> for MembersVisitor {
+            type Value = JsonMembers;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                formatter.write_str("a message object")
+            }
+
+            fn visit_map<M: serde::de::MapAccess<'de>>(
+                self,
+                mut map: M,
+            ) -> Result<Self::Value, M::Error> {
+                let mut members = Vec::new();
+                while let Some(entry) = map.next_entry()? {
+                    members.push(entry);
+                }
+                Ok(JsonMembers(members))
+            }
+        }
+        deserializer.deserialize_map(MembersVisitor)
+    }
+}
+
+fn json_members_bytes(members: &JsonMembers) -> Vec<u8> {
+    let mut output = vec![b'{'];
+    for (index, (key, value)) in members.0.iter().enumerate() {
+        if index != 0 {
+            output.push(b',');
+        }
+        // String serialization into a Vec cannot fail.
+        gz_msgs::serde_json::to_writer(&mut output, key).unwrap();
+        output.push(b':');
+        output.extend_from_slice(value.get().as_bytes());
+    }
+    output.push(b'}');
+    output
+}
+
+// Only Header.stamp under the two Pose component parents is qualified here.
+// Retain earlier occurrences so invalid earlier fields still reach reflection.
+fn merge_pose_header_objects(input: &[u8], path: &[&str]) -> Option<Vec<u8>> {
+    let (field, rest) = path.split_first()?;
+    let mut members: JsonMembers = gz_msgs::serde_json::from_slice(input).ok()?;
+    let matching: Vec<_> = members
+        .0
+        .iter()
+        .enumerate()
+        .filter_map(|(index, (key, _))| (key == field).then_some(index))
+        .collect();
+    let last = *matching.last()?;
+    let mut combined = JsonMembers(Vec::new());
+    let mut object_seen = false;
+    for index in matching {
+        let value = members.0[index].1.get();
+        if value == "null" {
+            continue;
+        }
+        let object: JsonMembers = gz_msgs::serde_json::from_str(value).ok()?;
+        combined.0.extend(object.0);
+        object_seen = true;
+    }
+    if !object_seen {
+        return None;
+    }
+    let raw = json_members_bytes(&combined);
+    let raw = merge_pose_header_objects(&raw, rest).unwrap_or(raw);
+    members.0[last].1 =
+        gz_msgs::serde_json::value::RawValue::from_string(String::from_utf8(raw).ok()?).ok()?;
+    Some(json_members_bytes(&members))
+}
+
 // Reflection keeps the last duplicate JSON message key; protobuf merges the
 // child fields. Leave earlier objects in place so they still get validated.
 fn merge_pose_parent_objects(
@@ -493,7 +570,7 @@ fn merge_pose_parent_objects(
             .iter()
             .filter(|(name, _, _)| *name == parent)
             .collect();
-        if occurrences.len() < 2 {
+        if occurrences.is_empty() {
             continue;
         }
         let mut members = Vec::new();
@@ -522,6 +599,11 @@ fn merge_pose_parent_objects(
         merged.push(b'{');
         merged.extend_from_slice(&members);
         merged.push(b'}');
+        let nested = merge_pose_header_objects(&merged, &["header", "stamp"]);
+        if occurrences.len() == 1 && nested.is_none() {
+            continue;
+        }
+        let merged = nested.unwrap_or(merged);
         let (_, start, end) = occurrences.last().unwrap();
         replacements.push((*start, *end, merged));
     }
