@@ -580,6 +580,18 @@ fn merge_header_data_values(
     .ok()
 }
 
+fn append_header_fields(header: &mut JsonMembers) {
+    for (key, value) in &mut header.0 {
+        if key != "data" {
+            continue;
+        }
+        if let Some(merged) = merge_header_data_values(value) {
+            *value = merged;
+        }
+    }
+    append_header_array_members(header, "data");
+}
+
 // Header fields on Vector3d/Quaternion roots and Pose components are qualified.
 // Retain earlier occurrences so invalid earlier fields still reach reflection.
 fn merge_header_objects(input: &[u8], path: &[&str]) -> Option<Vec<u8>> {
@@ -607,15 +619,7 @@ fn merge_header_objects(input: &[u8], path: &[&str]) -> Option<Vec<u8>> {
         return None;
     }
     if *field == "header" {
-        for (key, value) in &mut combined.0 {
-            if key != "data" {
-                continue;
-            }
-            if let Some(merged) = merge_header_data_values(value) {
-                *value = merged;
-            }
-        }
-        append_header_array_members(&mut combined, "data");
+        append_header_fields(&mut combined);
     }
     let raw = json_members_bytes(&combined);
     let raw = merge_header_objects(&raw, rest).unwrap_or(raw);
@@ -691,6 +695,27 @@ fn normalize_header_entries(input: &str) -> Option<Box<gz_msgs::serde_json::valu
 // without appending any fields.
 // Earlier parent/header fragments still need to be parseable for validation;
 // the final merged fragment performs the existing array/value append once.
+fn normalize_header_data_members(header: &mut JsonMembers) -> Option<bool> {
+    let mut changed = false;
+    for (name, data) in &mut header.0 {
+        if name != "data" {
+            continue;
+        }
+        if gz_msgs::serde_json::from_str::<JsonMembers>(data.get()).is_ok() {
+            *data = gz_msgs::serde_json::value::RawValue::from_string(
+                gz_msgs::serde_json::to_string(&[&**data]).ok()?,
+            )
+            .ok()?;
+            changed = true;
+        }
+        if let Some(coerced) = normalize_header_entries(data.get()) {
+            *data = coerced;
+            changed = true;
+        }
+    }
+    Some(changed)
+}
+
 fn normalize_header_data_shapes(input: &[u8]) -> Option<Vec<u8>> {
     let mut parent: JsonMembers = gz_msgs::serde_json::from_slice(input).ok()?;
     let mut changed = false;
@@ -699,28 +724,21 @@ fn normalize_header_data_shapes(input: &[u8]) -> Option<Vec<u8>> {
             continue;
         }
         let mut header: JsonMembers = gz_msgs::serde_json::from_str(value.get()).ok()?;
-        for (name, data) in &mut header.0 {
-            if name != "data" {
-                continue;
-            }
-            if gz_msgs::serde_json::from_str::<JsonMembers>(data.get()).is_ok() {
-                *data = gz_msgs::serde_json::value::RawValue::from_string(
-                    gz_msgs::serde_json::to_string(&[&**data]).ok()?,
-                )
-                .ok()?;
-                changed = true;
-            }
-            if let Some(coerced) = normalize_header_entries(data.get()) {
-                *data = coerced;
-                changed = true;
-            }
-        }
+        changed |= normalize_header_data_members(&mut header)?;
         *value = gz_msgs::serde_json::value::RawValue::from_string(
             String::from_utf8(json_members_bytes(&header)).ok()?,
         )
         .ok()?;
     }
     changed.then(|| json_members_bytes(&parent))
+}
+
+fn normalize_header_root(input: &[u8]) -> Option<Vec<u8>> {
+    let mut header: JsonMembers = gz_msgs::serde_json::from_slice(input).ok()?;
+    normalize_header_data_members(&mut header)?;
+    append_header_fields(&mut header);
+    let bytes = json_members_bytes(&header);
+    Some(merge_header_objects(&bytes, &["stamp"]).unwrap_or(bytes))
 }
 
 // Reflection keeps the last duplicate JSON message key; protobuf merges the
@@ -1447,6 +1465,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             } else if component_kind.is_some() {
                 let shaped = normalize_header_data_shapes(&normalized).unwrap_or(normalized);
                 merge_header_objects(&shaped, &["header", "stamp"]).unwrap_or(shaped)
+            } else if descriptor.full_name() == "gz.msgs.Header" {
+                normalize_header_root(&normalized).unwrap_or(normalized)
             } else {
                 normalized
             };

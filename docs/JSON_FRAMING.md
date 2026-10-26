@@ -1247,3 +1247,41 @@ metadata writes and were retained. No source, assertion, threshold or configurat
 waiver is applied. Final metadata binding, normal protected hook and exact new
 hosted success remain required. Other descriptors, arbitrary depth, native
 rejection diagnostics and MSG-02 remain unqualified.
+
+
+## Standalone Header root
+
+The standalone Vector3d/Quaternion Header slice completed independent source/full
+and final reviews, the canonical protected normal hook and exact hosted run
+`40393266572` attempt 1 on public `69e7079002a4ec42d30e88c3e9baee0cca64516e`.
+A pre-edit 64-input capture against that parent and pinned native C++ found 41
+native positives: 16 parent rejections, nine accepted wrong wires and 16 matching
+controls. Both implementations reject 23 inputs. All 41 prior fixtures and every
+earlier test body remain unchanged.
+
+This draft factors the existing Header member shape/append operations for reuse
+at the standalone `gz.msgs.Header` root, followed by the existing stamp merge.
+It preserves earlier duplicate fragments for validation and appends final values
+once. The bounded corpus includes repeated stamp/data/value fields, singleton
+entries, scalar strings, direct null/nested arrays, Unicode/escaped keys and
+invalid earlier/later fragments. The fresh candidate passed all 44 CLI tests,
+7,479 fresh native outcomes and all 64 candidate/native comparisons. The 16 parent
+rejections and nine wrong wires are corrected; 16 matching controls and 23 joint
+rejections remain. The exact canonical source gate passes 141 Rust tests,
+including 44 CLI tests, with strict 3,136/3,156 owned production lines and
+5,172/5,259 regions. Automatic changed-line coverage is 39/39; owned vendor
+checks are unchanged and all five retained evidence files are complete.
+
+Independent [review](reviews/json-header-root.json) reproduced the fresh candidate,
+parent and native comparisons, verified all 41 fixture pins, and reconstructed the
+extracted helper bodies and old test bodies byte-for-byte. The reviewer then bound
+the complete full JSON/LCOV evidence and unchanged production, vendor and added-line
+policies without a duplicate runtime replay. The source gate's temporary target
+exceeded its initial space estimate while remaining above the reserved free-space
+floor; the observation was retained and reported before completion. A status-path
+metadata error stopped before writes and was corrected separately. Neither changed
+source, assertions, thresholds or the canonical configuration.
+
+Final metadata binding, the mandatory normal hook and exact new hosted success
+remain required. Other descriptors, arbitrary depth, direct runtime reflection,
+rejection diagnostics, performance and MSG-02 remain unqualified.

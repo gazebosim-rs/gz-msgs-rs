@@ -2099,6 +2099,38 @@ fn root_component_headers_match_native() {
 }
 
 #[test]
+fn standalone_header_root_matches_native() {
+    let fixture: gz_msgs::serde_json::Value =
+        gz_msgs::serde_json::from_str(include_str!("fixtures/json-header-root.json")).unwrap();
+    assert_eq!(fixture["native_protobuf"], "3.21.12");
+    let rows = fixture["rows"].as_array().unwrap();
+    assert_eq!(rows.len(), 64);
+    let unhex = |hex: &str| {
+        hex.as_bytes()
+            .chunks_exact(2)
+            .map(|pair| u8::from_str_radix(std::str::from_utf8(pair).unwrap(), 16).unwrap())
+            .collect::<Vec<_>>()
+    };
+    let mut native_positive = 0;
+    for row in rows {
+        let result = run(
+            &["encode-json", row["type"].as_str().unwrap()],
+            &unhex(row["input_hex"].as_str().unwrap()),
+        );
+        let accepted = row["cpp_status"] == 0;
+        native_positive += usize::from(accepted);
+        assert_eq!(result.status.success(), accepted, "{}", row["label"]);
+        assert_eq!(
+            result.stdout,
+            unhex(row["cpp_stdout_hex"].as_str().unwrap()),
+            "{}",
+            row["label"]
+        );
+    }
+    assert_eq!(native_positive, 41);
+}
+
+#[test]
 fn time_leading_zero_numeric_matches_native() {
     let fixture: gz_msgs::serde_json::Value =
         gz_msgs::serde_json::from_str(include_str!("fixtures/json-time-leading-zero.json"))

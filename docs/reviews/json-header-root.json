@@ -1,0 +1,301 @@
+{
+  "decision": "approved_source_semantics_and_exact_full_unfiltered_evidence",
+  "author": "/root/msgs_owner_astra",
+  "reviewer": "/root/transport_owner_v3",
+  "reviewed_at": "2026-10-26T23:40:00.231309+00:00",
+  "parent": "69e7079002a4ec42d30e88c3e9baee0cca64516e",
+  "source_manifest_sha256": "de190a94922f16ebe79476aec49ef3736c21320cef28199a8dc75357708709b3",
+  "source_tree": "19c3610137127f8f365371d1ef19ec972e404ad1",
+  "source_diff_sha256": "1fa337df87464e87a4d87167e6f8a01b6beea7e8b01c3512f024a3017482ca64",
+  "files_sha256": {
+    "docs/EVIDENCE.md": "b625449af0a4733e1011cdc1a522b2b22e484a8fe2b02a99e43b8028e27b2344",
+    "docs/JSON_FRAMING.md": "90548acf6b9dbfd66c4c0841bb4ad5126c046800216a320bafcbda15b0ba22f5",
+    "scripts/json-reference.py": "3f55668d763435c7fdcdf1461367281c9de6f28a1454f420ba5b167acd873da1",
+    "src/bin/gz-msgs.rs": "28ddc4b67bc1b9c068f54f06788e3104276ae84c6a647390f12e1d4390603d64",
+    "tests/cli.rs": "a81d2cd278716b8bb8b3b64a05ac36be75e29ef8f413b64ea8cdb8f6c367b57e",
+    "tests/fixtures/json-header-root.json": "e2fbe2fc2ba1ef25a8107928ae08b793b8dd85a2da846339a8b16cffa7ca6c14"
+  },
+  "modes": {
+    "docs/EVIDENCE.md": "100644",
+    "docs/JSON_FRAMING.md": "100644",
+    "scripts/json-reference.py": "100644",
+    "src/bin/gz-msgs.rs": "100644",
+    "tests/cli.rs": "100644",
+    "tests/fixtures/json-header-root.json": "100644"
+  },
+  "scope": "Standalone gz.msgs.Header root stamp/data/value structure only. Existing Header member shape/append bodies are extracted unchanged and reused; exact Header descriptor branch adds ordered data append and stamp merge. No new general traversal/parser/other descriptor/depth/diagnostic/reflection API or MSG-02 completion claim.",
+  "independent_replay": {
+    "raw_export": "Fresh774 candidate /773 public-parent blobs and modes;768 other parent blobs unchanged. All hashes rechecked after execution. Four semantic files identical to pre-checks; only two prose documents updated after authorselected results.",
+    "targets": "Fresh empty separate reviewer-owned candidate and parent targets, never author targets. CanonicalCargo2/no incremental/target/flags overrides. Freshfree8.0GiB met Root>=5GiB start allocation;continuing2GiB guard,privatebytes1.3GiB cap. Ordinary correctness,no timing claim.",
+    "candidate_cli": "44passed,0failed,0ignored,including every earlier fixture/control.",
+    "native": "Fresh peer/schema built and7479 full status/wire outcomes replayed;peer/schema/source hashes match frozen fixture/proof.",
+    "comparison": "All64 candidate/native/fresh-parent observations reproduce pre-edit native and parent:41positive23reject;16parentrejections+9acceptedwrongwires corrected,16already matching controls. Rejection admission equality only,no diagnostic/exit-code equivalence.",
+    "old_assertions": "All41older fixture hashes unchanged in candidate/parent. Removing only the new standalone_header_root_matches_native test restores old tests/cli.rs byte-for-byte.",
+    "helper_refactor": "Independent textual body reconstruction accounts for every production difference:append_header_fields matches old append body,normalize_header_data_members matches old loop with local changed return;caller bitwise changed|= preserves all fragment visits. Only exact Header root helper/branch added. Earlier invalid duplicate members remain validated.",
+    "parent_hosted": "Exact69e7079002a4ec42d30e88c3e9baee0cca64516e hosted40393266572 attempt1 SUCCESS independentlyAPIverified."
+  },
+  "private_proof_sha256": "ce81ec33e0b2675df846c0345b74ab5e5d07e6f09a1e06d782d7d52ec0ee9db8",
+  "source_native_binding": {
+    "candidate": "5a73a0b62e71f3225f154f456addced25e99c05be8248b39baad57574be0a050",
+    "parent": "a64379ec9c61bb9349bd3baaa30325c20f4793ba786eb7f39f6086aeb00a094a",
+    "peer": "16744aebb5531163dc87224e6d6cec56bba40d4d1a62035ae465342649ac540b",
+    "descriptor": "7ee20050da11c5d683776f4d04c16b1574bcb9cbdc851fea98b44516312375a8",
+    "driver": "68efa58a22585956058e87c5f06783b258b665a463a97e29d3e127cf779f852a",
+    "candidate_source": "28ddc4b67bc1b9c068f54f06788e3104276ae84c6a647390f12e1d4390603d64"
+  },
+  "source_audit_sha256": "02d28586dfc0bfb1b2b7f8ae9780e46ce8cb8837c75f53c737231d8ea4b4761c",
+  "evidence_sha256": {
+    "prepare-review.py": "c8f5978e5bbd338ced7b52cc69a8df7844fa2e20aa48859bb1e1431e10c75f79",
+    "run-review.py": "68efa58a22585956058e87c5f06783b258b665a463a97e29d3e127cf779f852a",
+    "audit-source.py": "ad9ac46f20e4a363378e9089a80ae24231326b317bedc98b24edd0c5e067fb63",
+    "source-audit.json": "02d28586dfc0bfb1b2b7f8ae9780e46ce8cb8837c75f53c737231d8ea4b4761c",
+    "private-export.json": "f639f91d39aa156c3991f87fb781ea7782d091b497189defdecc3caea04ebf14",
+    "private-proof.json": "ce81ec33e0b2675df846c0345b74ab5e5d07e6f09a1e06d782d7d52ec0ee9db8",
+    "candidate-cli.log": "18103cc125c1bc143b9618db4b9e6c637cbe23e642c0c84f7fdaa9e14a55d657",
+    "parent-build.log": "1a8b934ad430247079a9f57d33c0f8ca5628d262485d6316ec2f65923810c2d1",
+    "native-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "native-replay.log": "f087a2fa10e400ff1a506a052078695cfbb958341d75dc2690cee5e4cc3c6a82",
+    "native-proof.json": "ee00e3f579c55ec0e9d37463c4089c277f8e98cfae198213960a02d8a5e95305",
+    "observations.json": "a3cccf5451f3416e699a973081a6be6d30db9f8ad0db576309b3d01b5357a83f",
+    "parent-hosted.json": "651e9543ad297fe76aa3fb8b1fb152d5e28aaa588a067b771806d4d90ad7a3c7"
+  },
+  "failure_state": "No author selected/native/comparison or independent reviewer execution/metadata failure in this slice. All earlier retained failures/configuration limitations stay unqualified; no waiver.",
+  "qualification": "Source semantics855f plus actual canonical full gate99806 bound to unchanged19c source. No duplicate native/Rust replay. Config canonicalCargo2/incrementaloverrideabsent only; no allconfiguration/waiver/depth/diagnostic/fullMSG02 claim.",
+  "protected_invariants": "Apache-2.0/OSRF,all41oldfixtures/oldtest bodies,schemas/pins/vendor/strict coverage policies unchanged.",
+  "pre_gate_semantic_receipt_sha256": "855f02e01643d6da98a82f2d37494a942eb9bd25e72bfbab3517b3d400eff44b",
+  "pre_gate_manifest_sha256": "a9f29ed3715c929b79fd347b69951c4b884e7804ca4afd028b502ece98009af9",
+  "full_source_evidence": {
+    "proof_sha256": "695a66b16c2804f825c15502fa28b48e02f976933052fe5604864c9e5939a251",
+    "raw_source_files_rehashed": 774,
+    "retained_files_sha256": {
+      "coverage/coverage.json": "6361f9ec2c47c786017d69e9ad27989b20fc5b6ac85cad113fd7240b861137da",
+      "coverage/coverage.lcov": "2d4305dd36449341b924c4014a79a56af22f3d2f7756a390bc127db1258f63ef",
+      "coverage/changed-production.json": "eacda86e92a5498fd8dde8efa80eefa4fd72927ab2c10cc5c2078f0e29fcadcd",
+      "coverage/owned-patches.json": "db05d13e911f269ab1cb6dd92260645760103ce88b5f0987e3e2354264f5835d",
+      "coverage-input.json": "2515db4c8634021720ba7067c1f956ad9126997f1d1e36de1f5eefc29484c38b"
+    },
+    "stage_result_sha256": "8d15068fd4f1addfa47701c5a82752fb9dbaf2eca57899b7e8d57d5f415dd761",
+    "source_gate_log_sha256": "93a578098ea094836d1afa0d75a448357d372b34502ae4af423b7b5e027bef52",
+    "source_gate_input_sha256": "7c1133926aec49d95e50c7e30608687b789746c05cb6a1307af6ffd9a4c6cc94",
+    "source_gate_result_sha256": "3a048fd93f820771d60f970b730d8d16cb5ea983ababf5cd1b860ad3c2d4782c",
+    "driver_sha256": "ce40d5c931ccdda47c77b117cb37cd541a712742fab4efc171bbc845e8546ae6",
+    "rust": [
+      141,
+      0,
+      0
+    ],
+    "cli_tests": 44,
+    "native_outcomes": 7479,
+    "owned_production_files": 18,
+    "coverage": {
+      "lines": [
+        3136,
+        3156
+      ],
+      "regions": [
+        5172,
+        5259
+      ]
+    },
+    "vendors": {
+      "prost-derive": {
+        "lines": [
+          6,
+          6
+        ],
+        "regions": [
+          8,
+          8
+        ]
+      },
+      "prost-reflect": {
+        "lines": [
+          96,
+          97
+        ],
+        "regions": [
+          205,
+          206
+        ]
+      }
+    },
+    "changed": {
+      "base": "69e7079002a4ec42d30e88c3e9baee0cca64516e",
+      "tree": "19c3610137127f8f365371d1ef19ec972e404ad1",
+      "files": {
+        "build.rs": {
+          "state": "not_applicable_no_executable_additions",
+          "lines": [
+            0,
+            0
+          ],
+          "uncovered": [],
+          "unmapped_added_lines": []
+        },
+        "src/definition.rs": {
+          "state": "not_applicable_no_executable_additions",
+          "lines": [
+            0,
+            0
+          ],
+          "uncovered": [],
+          "unmapped_added_lines": []
+        },
+        "src/enum_names.rs": {
+          "state": "not_applicable_no_executable_additions",
+          "lines": [
+            0,
+            0
+          ],
+          "uncovered": [],
+          "unmapped_added_lines": []
+        },
+        "src/factory.rs": {
+          "state": "not_applicable_no_executable_additions",
+          "lines": [
+            0,
+            0
+          ],
+          "uncovered": [],
+          "unmapped_added_lines": []
+        },
+        "src/lib.rs": {
+          "state": "not_applicable_no_executable_additions",
+          "lines": [
+            0,
+            0
+          ],
+          "uncovered": [],
+          "unmapped_added_lines": []
+        },
+        "src/wire.rs": {
+          "state": "not_applicable_no_executable_additions",
+          "lines": [
+            0,
+            0
+          ],
+          "uncovered": [],
+          "unmapped_added_lines": []
+        },
+        "src/geometry_values.rs": {
+          "state": "not_applicable_no_executable_additions",
+          "lines": [
+            0,
+            0
+          ],
+          "uncovered": [],
+          "unmapped_added_lines": []
+        },
+        "src/cloud.rs": {
+          "state": "not_applicable_no_executable_additions",
+          "lines": [
+            0,
+            0
+          ],
+          "uncovered": [],
+          "unmapped_added_lines": []
+        },
+        "src/spherical_values.rs": {
+          "state": "not_applicable_no_executable_additions",
+          "lines": [
+            0,
+            0
+          ],
+          "uncovered": [],
+          "unmapped_added_lines": []
+        },
+        "src/coordinate_values.rs": {
+          "state": "not_applicable_no_executable_additions",
+          "lines": [
+            0,
+            0
+          ],
+          "uncovered": [],
+          "unmapped_added_lines": []
+        },
+        "src/inertial_values.rs": {
+          "state": "not_applicable_no_executable_additions",
+          "lines": [
+            0,
+            0
+          ],
+          "uncovered": [],
+          "unmapped_added_lines": []
+        },
+        "src/fuel.rs": {
+          "state": "not_applicable_no_executable_additions",
+          "lines": [
+            0,
+            0
+          ],
+          "uncovered": [],
+          "unmapped_added_lines": []
+        },
+        "src/registry.rs": {
+          "state": "not_applicable_no_executable_additions",
+          "lines": [
+            0,
+            0
+          ],
+          "uncovered": [],
+          "unmapped_added_lines": []
+        },
+        "src/conversions.rs": {
+          "state": "not_applicable_no_executable_additions",
+          "lines": [
+            0,
+            0
+          ],
+          "uncovered": [],
+          "unmapped_added_lines": []
+        },
+        "src/fuel/xml.rs": {
+          "state": "not_applicable_no_executable_additions",
+          "lines": [
+            0,
+            0
+          ],
+          "uncovered": [],
+          "unmapped_added_lines": []
+        },
+        "src/cloud/cursor.rs": {
+          "state": "not_applicable_no_executable_additions",
+          "lines": [
+            0,
+            0
+          ],
+          "uncovered": [],
+          "unmapped_added_lines": []
+        },
+        "src/bin/gz-msgs.rs": {
+          "state": "passed",
+          "lines": [
+            39,
+            39
+          ],
+          "uncovered": [],
+          "unmapped_added_lines": [
+            591,
+            594,
+            707,
+            715,
+            718,
+            735
+          ]
+        },
+        "src/bin/legacy_cli/mod.rs": {
+          "state": "not_applicable_no_executable_additions",
+          "lines": [
+            0,
+            0
+          ],
+          "uncovered": [],
+          "unmapped_added_lines": []
+        }
+      }
+    },
+    "policy": "Unchanged parent canonical check/check_patches/check_changed on complete JSON/LCOV; source-root rebinding only, nofile/function/region/count filtering. All774source hashes/modes reverified. Authoritative additions reconstructed from exact parent69e/tree19c Gitdelta;39/39 executablebin additions covered. All5retained andinput/result/driver/log hashes checked."
+  },
+  "remaining": "Independent exact final metadata binding, mandatory normal/public/exact new hosted success remain required. Source6index frozen until author prepares finalmetadata.",
+  "resource_and_setup_notes": "Author retained actual3.50GB temp usage exceedingdeclared3GiB estimate,withfree>2GiB floor/no configuration waiver. Status-cwdmetadata failure stoppedbeforewrites andisretained;not a runtime/testfailure."
+}
