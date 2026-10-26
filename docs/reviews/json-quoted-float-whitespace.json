@@ -1,0 +1,38 @@
+{
+  "author": "/root/msgs_review_fallback",
+  "candidate_paths": [
+    "docs/EVIDENCE.md",
+    "docs/JSON_FRAMING.md",
+    "scripts/json-reference.py",
+    "src/bin/gz-msgs.rs",
+    "tests/cli.rs",
+    "tests/fixtures/json-quoted-float-whitespace.json"
+  ],
+  "decision": "approved_source_api_assertions",
+  "files_sha256": {
+    "docs/EVIDENCE.md": "c04ec32b9b1a1d3ddd88ef6ef801dcee34d25054a58df06c2ac312861d5bfba9",
+    "docs/JSON_FRAMING.md": "2aa4967f3dac5a4f4afd8a5c1e5b3652dc6315cd92394c13422fe300ad19b93e",
+    "scripts/json-reference.py": "74e30d1fd796c1380944b1d905cfc103b676f28c00b2d890fcedfb9533fc9ea4",
+    "src/bin/gz-msgs.rs": "94ad6e0880a2c226169462cd5e508c60532681624600e859822892d595e64d05",
+    "tests/cli.rs": "84c022d297cb4d47f10493a1c7eb9d25c501b9c6e3e672fcf65c5ea286693a60",
+    "tests/fixtures/json-quoted-float-whitespace.json": "9de9b8e323c12592aa008d92f557efce19ce7cae95afcc7b0d657befe3591925"
+  },
+  "limits": "Only the bounded quoted finite-decimal edge-whitespace slice is approved. Quoted hex, other numeric spellings/descriptors, general JSON grammar and full MSG-02 remain open. Final metadata binding, normal protected hook, public commit and hosted CI are separate gates.",
+  "parent": "34de42e13d3e588848050eab85e6612b3ec5086c",
+  "private_review": {
+    "author_gate": "Exact staged gate EXIT0 SHA256 7232cb716ff15eb7656fff67b51711599593b2d2dd4b373aed7d49d111f3a624; 4,276 mandatory native rows, 28 CLI tests, strict >95% coverage",
+    "fixture": "1,104 observations, 1,032 distinct type+input pairs, 720 native-positive exact wires and 384 joint rejects; 25 prior fixture hashes byte-identical",
+    "integrity": "All six copied file hashes, staged tree/diff, no unstaged source, 25 prior fixture hashes and pinned descriptor/source hashes matched",
+    "method": "Git archive of exact public parent with only six frozen files overlaid; independent Cargo target and pinned protobuf 3.21.12 peer rebuilt from the raw export",
+    "native_proof_sha256": "194e42d7254f956548bccbf86b5be88aede60883474376b87f4a1437d145b4f9",
+    "native_reference": "4,276 status/full-wire observations reproduced with fresh pinned C++ peer",
+    "negative_control": "V1 source tree c8b666cd revoked after native midpoint wire 12040000803f versus V1 12040100803f; V2 parent-only-new-test fails first native-positive row per frozen author evidence",
+    "selected_rust": "quoted_float_edge_whitespace_matches_native passed 1/0 against all 1,104 rows, including exact Float_V midpoint wire 12040000803f",
+    "source_semantics": "Only top-level Double_V/Float_V quoted finite decimal data is patched; literal edge spaces rejected; five other C edge whitespace bytes admitted; f64 parse and f64-to-f32 narrowing preserve native midpoint wire; scalar/array/duplicate and single-quote paths covered"
+  },
+  "reviewer": "/root/transport_fallback",
+  "source_freeze": "artifacts/json-quoted-whitespace-worktree/artifacts/json-quoted-whitespace/source-freeze-v2.json",
+  "source_freeze_sha256": "93ec7f89c001985409015fdfa16c561d053c03b1b385e97dd642acf87963320e",
+  "staged_diff_sha256": "3ef9b020a04a747df5feca9d79e7e64ebf2426c8d6a5e670b9121e7b07529a5b",
+  "staged_tree": "ecfbe0a100ab9784520ee0193ca8e13079a6deba"
+}

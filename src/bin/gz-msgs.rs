@@ -56,6 +56,30 @@ fn invalid_proto_quoted_float(value: &str, width: FloatWidth) -> bool {
     }
 }
 
+fn proto_quoted_float_whitespace(value: &str, width: FloatWidth) -> Option<Value> {
+    // Pinned protobuf rejects literal edge spaces before calling safe_strtod,
+    // which accepts the other ASCII C whitespace at a numeric edge.
+    let bytes = value.as_bytes();
+    if bytes.first() == Some(&b' ') || bytes.last() == Some(&b' ') {
+        return None;
+    }
+    let trimmed =
+        value.trim_matches(|c| matches!(c, ' ' | '\t' | '\n' | '\r' | '\u{000b}' | '\u{000c}'));
+    if trimmed == value {
+        return None;
+    }
+    let number = trimmed.parse::<f64>().ok()?;
+    if !number.is_finite()
+        || (matches!(width, FloatWidth::Single) && number.abs() > f64::from(f32::MAX))
+    {
+        return None;
+    }
+    Some(match width {
+        FloatWidth::Double => Value::F64(number),
+        FloatWidth::Single => Value::F32(number as f32),
+    })
+}
+
 fn proto_hex_float(value: &str, width: FloatWidth) -> Option<Value> {
     let mut bytes = value.as_bytes();
     if matches!(bytes.first(), Some(b'+' | b'-')) {
@@ -485,7 +509,15 @@ fn normalize_proto_json(
                             output.truncate(output_start);
                             output.extend_from_slice(b"\"0\"");
                             float_patches.push((float_array_count - 1, float_item_index, number));
+                        } else if let Some(number) = proto_quoted_float_whitespace(&value, width) {
+                            output.truncate(output_start);
+                            output.extend_from_slice(b"\"0\"");
+                            float_patches.push((float_array_count - 1, float_item_index, number));
                         }
+                    } else if let Some(number) = proto_quoted_float_whitespace(&value, width) {
+                        output.truncate(output_start);
+                        output.extend_from_slice(b"\"0\"");
+                        scalar_float_patches.push((data_value_ranges.len(), number));
                     }
                 }
             }
@@ -546,7 +578,15 @@ fn normalize_proto_json(
                             output.truncate(output_start);
                             output.extend_from_slice(b"\"0\"");
                             float_patches.push((float_array_count - 1, float_item_index, number));
+                        } else if let Some(number) = proto_quoted_float_whitespace(&value, width) {
+                            output.truncate(output_start);
+                            output.extend_from_slice(b"\"0\"");
+                            float_patches.push((float_array_count - 1, float_item_index, number));
                         }
+                    } else if let Some(number) = proto_quoted_float_whitespace(&value, width) {
+                        output.truncate(output_start);
+                        output.extend_from_slice(b"\"0\"");
+                        scalar_float_patches.push((data_value_ranges.len(), number));
                     }
                 }
             }

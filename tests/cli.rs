@@ -1389,8 +1389,13 @@ fn quoted_float_admission_matches_native() {
             &["encode-json", row["type"].as_str().unwrap()],
             &unhex(row["input_hex"].as_str().unwrap()),
         );
-        assert!(!result.status.success(), "{}", row["label"]);
-        assert!(result.stdout.is_empty(), "{}", row["label"]);
+        assert!(result.status.success(), "{}", row["label"]);
+        assert_eq!(
+            result.stdout,
+            unhex(row["cpp_stdout_hex"].as_str().unwrap()),
+            "{}",
+            row["label"]
+        );
     }
     let rejected = fixture["whitespace_rejected"].as_array().unwrap();
     assert_eq!(rejected.len(), 48);
@@ -1403,6 +1408,48 @@ fn quoted_float_admission_matches_native() {
         assert!(!result.status.success(), "{}", row["label"]);
         assert!(result.stdout.is_empty(), "{}", row["label"]);
     }
+}
+
+#[test]
+fn quoted_float_edge_whitespace_matches_native() {
+    let fixture: gz_msgs::serde_json::Value =
+        gz_msgs::serde_json::from_str(include_str!("fixtures/json-quoted-float-whitespace.json"))
+            .unwrap();
+    assert_eq!(fixture["native_protobuf"], "3.21.12");
+    let rows = fixture["rows"].as_array().unwrap();
+    assert_eq!(rows.len(), 1104);
+    let unhex = |hex: &str| {
+        hex.as_bytes()
+            .chunks_exact(2)
+            .map(|pair| u8::from_str_radix(std::str::from_utf8(pair).unwrap(), 16).unwrap())
+            .collect::<Vec<_>>()
+    };
+    let midpoint = b"{\"data\":\"\\t1.0000000596046447753906250000001\"}";
+    let midpoint_row = rows
+        .iter()
+        .find(|row| {
+            row["type"] == "gz.msgs.Float_V"
+                && unhex(row["input_hex"].as_str().unwrap()) == midpoint
+        })
+        .unwrap();
+    assert_eq!(midpoint_row["cpp_stdout_hex"], "12040000803f");
+    let mut native_positive = 0;
+    for row in rows {
+        let result = run(
+            &["encode-json", row["type"].as_str().unwrap()],
+            &unhex(row["input_hex"].as_str().unwrap()),
+        );
+        let accepted = row["cpp_status"] == 0;
+        native_positive += usize::from(accepted);
+        assert_eq!(result.status.success(), accepted, "{}", row["label"]);
+        assert_eq!(
+            result.stdout,
+            unhex(row["cpp_stdout_hex"].as_str().unwrap()),
+            "{}",
+            row["label"]
+        );
+    }
+    assert_eq!(native_positive, 720);
 }
 
 #[test]

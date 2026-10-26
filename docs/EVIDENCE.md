@@ -2149,3 +2149,28 @@ Double_V callsite-removal mutant fail the first one-bit wire assertion.
 Other floating precision, quoted whitespace, broader JSON grammar and
 MSG-02 acceptance remain open. Final metadata gate, protected hook and
 hosted qualification remain separate.
+
+### Bounded quoted float edge whitespace
+
+Pinned protobuf 3.21.12 first rejects literal edge spaces in quoted numeric
+strings, then parses finite decimal numbers with the other five ASCII C
+whitespace bytes accepted at the string edges. A 1,104-observation native/Rust
+characterization
+covered `Double_V` and `Float_V`, three finite numeric spellings, six
+whitespace bytes, scalar/array/repeated-key placements and single-quote
+controls, including 216 f32 midpoint placements. Descriptor-scoped
+normalization parses to f64 and patches the decoded value at native f64-to-f32
+precision; the earlier direct-text normalization was one ULP wrong at the
+positive midpoint and is superseded. The revised source matches all 720
+native-positive full wires and rejects the other 384. The 25 earlier
+fixture hashes remain unchanged; the previous 60 native-only controls now
+assert parity without changing their fixture bytes. Mandatory native replay
+reproduced 4,276 exact status/full-wire outcomes, the focused Rust tests pass,
+and the exact staged gate passed 28 CLI tests with strict greater-than-95%
+owned coverage. The independent
+[review](reviews/json-quoted-float-whitespace.json) reproduced all 4,276
+native outcomes from a private raw export, rehashed 25 old fixtures and
+checked the exact Float_V midpoint wire. The fixture contains 1,032 distinct
+type-and-input pairs. Final metadata verification, protected hook, public
+commit and hosted qualification remain separate. Other descriptors, quoted
+hex values and general quoted-number grammar remain open.

@@ -736,3 +736,31 @@ outcomes, rehashed the 24 earlier fixtures, and made a Double_V callsite
 removal fail the first exact one-bit assertion. Broader JSON grammar, quoted
 whitespace and MSG-02 remain open. Final metadata gate, protected hook and
 hosted qualification remain separate.
+
+## Quoted Float_V and Double_V edge whitespace
+
+Pinned protobuf 3.21.12 rejects a literal ASCII space at either end of a
+quoted numeric string before conversion. Its numeric conversion accepts tab,
+line feed, carriage return, vertical tab and form feed at the edges of finite
+decimal numbers. The CLI now admits those five edge bytes, including adjacent
+spaces, only for top-level `Float_V.data` and `Double_V.data`. It parses the
+trimmed decimal as f64, then patches the decoded field at native precision.
+Literal edge spaces, interior whitespace, unrelated
+descriptors, quoted hex values and broader quoted-number grammar are outside
+this correction.
+
+The 1,104-observation native fixture covers both descriptors, `1`, signed zero, a
+small finite exponent and f32 midpoint boundaries, plus scalar, array and
+repeated-key placements, six whitespace bytes and single-quote controls. It
+has 720 native-positive full-wire rows and
+384 jointly rejected rows. The earlier 60 native-positive whitespace rows
+remain byte-identical historical evidence and now require exact parity; the
+earlier 48 rejected controls remain unchanged. The revised native reference
+replayed 4,276 exact status/full-wire outcomes and focused Rust tests pass.
+The exact staged gate passed 28 CLI tests and strict greater-than-95% owned
+coverage. An independent [review](reviews/json-quoted-float-whitespace.json)
+replayed all 4,276 native outcomes from a private raw source export and
+rehashed 25 older fixtures. The fixture has 1,032 distinct type-and-input
+pairs. The previous source tree passed 4,060 native rows but failed the
+one-bit midpoint witness, so it is excluded from acceptance. The final
+metadata gate, protected hook and hosted qualification remain separate.
