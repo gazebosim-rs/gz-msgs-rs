@@ -624,12 +624,14 @@ fn merge_pose_header_objects(input: &[u8], path: &[&str]) -> Option<Vec<u8>> {
     Some(json_members_bytes(&members))
 }
 
-fn normalize_pose_header_value_shapes(
-    input: &str,
-) -> Option<Box<gz_msgs::serde_json::value::RawValue>> {
+fn normalize_pose_header_entries(input: &str) -> Option<Box<gz_msgs::serde_json::value::RawValue>> {
     let mut entries: Vec<Box<gz_msgs::serde_json::value::RawValue>> =
         gz_msgs::serde_json::from_str(input).ok()?;
-    let mut changed = false;
+    let original_len = entries.len();
+    // Native skips null repeated-message entries; retain every other entry
+    // so malformed contents and earlier duplicate fragments stay validated.
+    entries.retain(|entry| entry.get() != "null");
+    let mut changed = entries.len() != original_len;
     for entry in &mut entries {
         let Ok(mut members) = gz_msgs::serde_json::from_str::<JsonMembers>(entry.get()) else {
             continue;
@@ -682,7 +684,7 @@ fn normalize_pose_header_value_shapes(
     .ok()
 }
 
-// Normalize singleton data objects, value strings and nested value arrays
+// Normalize singleton data objects, null data entries and nested value arrays
 // without appending any fields.
 // Earlier parent/header fragments still need to be parseable for validation;
 // the final merged fragment performs the existing array/value append once.
@@ -705,7 +707,7 @@ fn normalize_pose_header_data_shapes(input: &[u8]) -> Option<Vec<u8>> {
                 .ok()?;
                 changed = true;
             }
-            if let Some(coerced) = normalize_pose_header_value_shapes(data.get()) {
+            if let Some(coerced) = normalize_pose_header_entries(data.get()) {
                 *data = coerced;
                 changed = true;
             }

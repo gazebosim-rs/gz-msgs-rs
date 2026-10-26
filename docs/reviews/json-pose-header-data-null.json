@@ -1,0 +1,126 @@
+{
+  "decision": "approved_source_with_exact_full_evidence",
+  "author": "/root/msgs_owner_astra",
+  "reviewer": "/root/transport_owner_v3",
+  "reviewed_at": "2026-10-26T17:52:46.754294+00:00",
+  "parent": "028bfdc57c3916f88321a4aba254cf2cbd6f3f74",
+  "source_manifest_sha256": "64d28b45656582eefc67fe25183f8571ec6f97895eb624c71f95b6c3ff7c3593",
+  "source_tree": "49bfa7752d723a4240547585e0704f5695087df2",
+  "source_diff_sha256": "66b8b24864d531dbd60683849e6d90ed6d4220d29d57a2cff5ab1c0346908ede",
+  "files_sha256": {
+    "docs/EVIDENCE.md": "20535e8f1c355b1afb6e148f71985d4c1d21b6ccee550c9e725791ceabf53b16",
+    "docs/JSON_FRAMING.md": "84303ac66e728223d559917bf2147bb7f09c5fd5375dbf75db6ac4feef7423bf",
+    "scripts/json-reference.py": "e24d126c27a4d583f73d5ef084433c995b8e1f8f2024c7352b9ae4a157785e89",
+    "src/bin/gz-msgs.rs": "24e3cd270aa267cf7ff2ebd88546aa01c1ba066f89a60d6b007b2cfc931dcf41",
+    "tests/cli.rs": "bda1de59dca82989dd661b9b57ddc1be858e524560ddf4876ef40d6169291f3e",
+    "tests/fixtures/json-pose-header-data-null.json": "547518a9dcac8815ef894dba6c2aa94c5ce506841b15602bb842eadc075d7cbf"
+  },
+  "modes": {
+    "docs/EVIDENCE.md": "100644",
+    "docs/JSON_FRAMING.md": "100644",
+    "scripts/json-reference.py": "100644",
+    "src/bin/gz-msgs.rs": "100644",
+    "tests/cli.rs": "100644",
+    "tests/fixtures/json-pose-header-data-null.json": "100644"
+  },
+  "scope": "Direct null raw entries in Pose position/orientation Header.data arrays are removed. Every nonnull invalid or nested outer entry remains for normal validation, including earlier duplicate data/header/parent fragments. Existing inner value flattening and final append remain unchanged; UInt64, schemas, vendors, pins, coverage policy and native peer source are untouched. Broader outer nesting and MSG-02 remain unqualified.",
+  "independent_replay": {
+    "raw_export": "Fresh768 candidate/767 exact public-parent blobs, modes, SHA256 and Git blob identities verified;762 parent paths unchanged. All candidate/parent raw hashes rechecked after execution. Four semantic hashes unchanged from selected6b76 pre-checks; only two prose documents updated in49bfa775.",
+    "targets": "Fresh empty separate reviewer-owned candidate and parent targets; never producer targets. Cargo2, incremental override absent, Root-authorized ordinary correctness; no timing or performance inference.",
+    "candidate_cli": "41 passed,0failed,0ignored; all prior CLI tests retained, including earlier inner-array and UInt64 controls.",
+    "fresh_native": "Fresh native peer and exact descriptor provenance checked,7207 outcomes replayed; full existing native corpus retained.",
+    "comparison": "80 independent native/candidate/fresh-parent outcomes exactly reproduce all pre-edit native and parent observations.76 bounded matching outcomes:50 positive and26joint rejects;48 positive parent rejections corrected,2empty controls already matched. Four nested outer grammar cases stay native-positive/Rust-rejected and pending.",
+    "stronger_assertions": "Six earlier assertions strengthened, with unchanged exact input bytes mapped into fresh native/candidate outcomes and exact native wires. All38 prior fixture hashes unchanged.",
+    "source_audit": "Only null raw outer entries are removed; retained nonnull leaves preserve malformed/nested validation. Earlier duplicate fragments remain present until normal validation, and final append remains once in the existing path. No old rejection assertion or fixture removed.",
+    "parent_hosted": "Exact028bfdc57c3916f88321a4aba254cf2cbd6f3f74 hosted40364909195 attempt1 SUCCESS independently verified via API."
+  },
+  "evidence_sha256": {
+    "prepare-review.py": "397275d5f2eaab590c20288bd4bce81d071240f61eb1e76c36bfa9a4fe5628f7",
+    "run-review.py": "aaa1033cec1248f2e8cb2922725fdeb43dec1f7a734edf301e66c5e93285c54d",
+    "private-export.json": "1544a5baf4df32836516dbb0dffae2a1d602522bd685f312b99df48bb92d9b13",
+    "private-proof.json": "7f60c88a3c02e9fa61ae631be39b6ad26ba485f14200eb88cf46e42ec7a08af0",
+    "candidate-cli.log": "e35d40d176c4f580f92e5cd77e0892f10c5c665f1ae51eb074c5065ff6f0e2f4",
+    "parent-build.log": "c21c7d0866573cc964190b7d151de6f7e2b931cbb7947e4ff1da2ddf8856d819",
+    "native-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "native-replay.log": "c4e864d5f4e7aaabc720d901c8d7e1f73bd996f94fd6f5289d5869354c6f0f04",
+    "native-proof.json": "3c4697892023b2e936aac6b2096cfc426f9510c33ede005e92975d521b361fbd",
+    "observations.json": "69681f775178d93229fa88bfc1b7e927d348e59c58e9d8a2b5494f85946c12f3",
+    "strengthened-input-audit.json": "85c4f9c5a0f25d4be10edc02964ab64da17cfc5b2f61744d5f5f02f840c8e4fe",
+    "parent-hosted.json": "fad09dfb5c306bc365e51aad4cb538fde036731d8947dc1953bf2e388bdc574e",
+    "bind-full-evidence.py": "9c8a816512a424c97b428c25865b4b7f308780a7fa1166816b6c9db60be16886",
+    "full-evidence-proof.json": "6b3780b6ab37af3800d50b73681326b650388356dfa04172511d6f444d6c6135",
+    "source-gate-input.json": "f872a5f4bb4e0180d3b27073e735eca6880a16bf0952c28f4c4c864a6827090f",
+    "source-gate-result.json": "b6dc057b301054c4799cef12913e2f3f486ea0727c4935651339209e3ae8c6b4",
+    "source-gate.log": "3266a4148306bcf8d1658e9dc2de61f947d1c60b70f6de47a7201749c17f6d2b"
+  },
+  "protected_invariants": "Apache-2.0/OSRF, all schemas and source pins,38oldfixtures,all prior assertions, strict >95% per-source/workspace line+region gates and authoritative changed-line policy remain unchanged.",
+  "pre_gate_source_manifest_sha256": "96cfdac2afbfe345bcbfad1fa928949b054b3f187cfa95299d84049e4b490c60",
+  "semantic_receipt_sha256": "959ec9ef83b3179b46f9cec4c645b6455b442613c44a09025a30545d091fc55a",
+  "full_source_gate_binding": {
+    "session": 31880,
+    "exit": 0,
+    "source_tree": "49bfa7752d723a4240547585e0704f5695087df2",
+    "retention": "All5 complete retained evidence/stage-result hashes checked; passed/complete/no missing inputs. Source/index and all six source hashes unchanged.",
+    "rust": {
+      "passed": 138,
+      "failed": 0,
+      "ignored": 0,
+      "including_cli": 41
+    },
+    "native_outcomes": 7207,
+    "owned_source_files": 18,
+    "owned_production": {
+      "lines": [
+        3113,
+        3133
+      ],
+      "regions": [
+        5124,
+        5208
+      ]
+    },
+    "owned_vendors": {
+      "prost-derive": {
+        "lines": [
+          6,
+          6
+        ],
+        "regions": [
+          8,
+          8
+        ]
+      },
+      "prost-reflect": {
+        "lines": [
+          96,
+          97
+        ],
+        "regions": [
+          205,
+          206
+        ]
+      }
+    },
+    "changed_cli": [
+      5,
+      5
+    ],
+    "policy_recalculation": "Unchanged check/check_patches/check_changed on full JSON/LCOV; source-root rebind only. No file/function/region/count removed. Changed manifest reconstructed independently from fresh raw source and exact public parent.",
+    "configuration": "CanonicalCargo2 with incremental/target/Rustflags overrides absent; contemporaneous input/result/log/driver hashes verified. Ordinary correctness only, no performance claim.",
+    "retained_stage_result_sha256": "61943a5733061af08b3d0d46c2f2303490e9b582d93a645dd1850120b529f336",
+    "retained_files_sha256": {
+      "coverage/coverage.json": "2a70c3aac185096df8a874c133f004d884303dbd12c290693939a5d17dee5023",
+      "coverage/coverage.lcov": "946201a1f44cb044772ae3b118c5ec9063a97d74134f3a1b5102638a75f71f01",
+      "coverage/changed-production.json": "8dfcb681fecce574094afe54f58ce2403d1aea1bda351f0165fd89d76561c900",
+      "coverage/owned-patches.json": "db05d13e911f269ab1cb6dd92260645760103ce88b5f0987e3e2354264f5835d",
+      "coverage-input.json": "3c67765205d90f20d0f4db9c9c391fe30ca62c7c616afaa1eff4fc59eac7ae55"
+    }
+  },
+  "qualification": "Exact unchanged source semantics and canonical full-source evidence approved. Existing earlier incremental0 failures remain retained historical failures; no all-configuration claim. No duplicate runtime replay for this static full-evidence binding.",
+  "remaining": [
+    "Scoped final metadata and independent exact final-tree binding",
+    "Mandatory canonical normal protected hook",
+    "Public push and exact new hosted success",
+    "Nested outer grammar, broader MSG-02 and performance remain open"
+  ]
+}

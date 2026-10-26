@@ -2556,6 +2556,44 @@ bytes in candidate and parent. All 37 fixture pins and 16 strengthened-input
 mappings were verified. The reviewer independently reran unchanged full JSON,
 LCOV, vendor and added-line policies, reconstructing the authoritative 22/22
 input denominator. No source filtering, configuration waiver or threshold change
-was applied. Final metadata binding, the normal protected hook and exact new
-hosted success remain required. No recursive-depth generalization, outer-data
-grammar or MSG-02 completion is claimed.
+was applied. Final metadata binding and the normal protected hook passed on
+public `028bfdc57c3916f88321a4aba254cf2cbd6f3f74`, tree `1bd8dc3e`; exact
+hosted run `40364909195` attempt 1 succeeded, including staged and fresh-cache
+package checks. No recursive-depth generalization, outer-data grammar or MSG-02
+completion is claimed.
+
+
+## Direct null Header.data entries under Pose parents
+
+Before editing, 80 inputs were replayed against pinned native C++ and accepted
+parent `028bfdc`. The bounded portion contains 50 native positives and 26 joint
+rejections: 48 positives are parent rejections, while two empty arrays already
+match. Four nested outer-array forms remain pending. Cases cover both components,
+null placement, empty/default entries, inner string/null/nested values, Unicode,
+escaped keys, duplicate data/header/parent fields and invalid earlier/later entries.
+All 38 older JSON fixture hashes are preserved. Six older direct-null expectations
+strengthen to exact native wire equality, each reproduced in the pre-edit corpus.
+
+The adapter filters only direct null entries from the maintained raw Header.data
+array, before visiting each entry's value shapes. It retains every other entry,
+including invalid values and nested outer arrays, for validation; every earlier
+fragment is still visited and final append remains in the existing path. The
+helper name now reflects entry normalization. Formatting and diff checks pass.
+All 41 CLI tests and fresh native replay of 7,207 outcomes pass. The 80-input
+comparison confirms all 48 corrected parent rejections, two unchanged empty
+controls, 26 joint rejections and four still-pending nested outer forms, with all
+38 prior fixture hashes unchanged. The exact canonical source gate passes
+138 Rust tests including 41 CLI, 3,113/3,133 owned production lines, 5,124/5,208
+regions and automatic 5/5 added executable lines. Strict owned vendor checks
+remain unchanged; all five staged evidence files are complete.
+
+Independent [review](reviews/json-pose-header-data-null.json) rebuilds fresh
+candidate, public parent and native peer, reproduces 41 CLI tests and 7,207 native
+outcomes, and verifies all 48 corrected parent rejections, two unchanged empty
+controls and four pending nested forms. All 38 old fixtures and six strengthened
+input/native-wire mappings are checked. The reviewer independently reruns the
+unchanged full JSON/LCOV, owned-vendor and added-line policies, reconstructing the
+5/5 authoritative denominator. No filtering, threshold or configuration waiver
+is applied. Final metadata binding, normal protected hook and exact new hosted
+success remain required. No outer-array flattening, other-descriptor grammar or
+MSG-02 completion is claimed.

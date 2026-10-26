@@ -1139,6 +1139,32 @@ automatic 22/22 added executable lines. All five staged evidence files are compl
 Independent [review](reviews/json-pose-header-value-nested.json) reproduces fresh
 candidate/parent/native results, additionally compares 656 prior UInt64 inputs
 byte-for-byte with the parent, and recomputes the unchanged full coverage policies.
-Final metadata binding, the normal protected hook and exact new hosted success
-remain required. Outer-data grammar, other descriptors, native rejection diagnostics
-and broader MSG-02 parity remain unqualified.
+Final metadata binding and the normal protected hook passed on public
+`028bfdc57c3916f88321a4aba254cf2cbd6f3f74`, tree `1bd8dc3e`; exact hosted
+`40364909195` attempt 1 succeeded. Outer-data grammar, other descriptors, native
+rejection diagnostics and broader MSG-02 parity remain unqualified.
+
+
+## Direct null Header.data entries
+
+The bounded adapter removes direct null elements from raw Header.data arrays
+under Pose components. All non-null entries remain available for validation,
+including malformed scalar entries and nested outer arrays. Entry-value handling,
+earlier duplicate-fragment validation and final ordered append stay in place.
+
+The 80-input pre-edit corpus has 76 intended matching forms (50 native positives,
+26 joint rejects) and four nested outer-array gaps. Of those 50 positives, 48 are
+rejected by the accepted parent and two empty-array controls already match.
+All 38 existing JSON fixtures retain their bytes; six older expectations strengthen
+to native status/full-wire checks. Formatting, all 41 CLI tests and fresh native
+replay of 7,207 outcomes pass. The 80-input comparison confirms 48 corrected parent
+rejections and the two unchanged empty controls; all 26 joint rejects and four
+nested outer-array gaps remain. The exact canonical source gate passes 138 Rust
+tests including 41 CLI, strict 3,113/3,133 owned lines and 5,124/5,208 regions,
+automatic 5/5 added executable lines and unchanged owned vendor checks. All five
+staged evidence files are complete. Independent
+[review](reviews/json-pose-header-data-null.json) reproduces the fresh candidate,
+parent and native results, verifies all 38 fixture pins and six stronger mappings,
+and recomputes unchanged full coverage policies. Final metadata binding, normal
+protected hook and exact new hosted success remain required. Nested outer arrays,
+other descriptors, native rejection diagnostics and broader MSG-02 remain unqualified.
