@@ -1,0 +1,118 @@
+{
+  "decision": "approved_source_semantics_and_exact_full_evidence",
+  "author": "/root/msgs_owner_astra",
+  "reviewer": "/root/transport_owner_v3",
+  "reviewed_at": "2026-10-26T20:04:31.153879+00:00",
+  "parent": "328ba65d122e178493d27e13377ca08969800e5f",
+  "source_manifest_sha256": "ccff0b9bf1a16d94165cb7660f823f2b8e05c5ad7ac0187cbfee7954c42ecb8b",
+  "source_tree": "dab5e506b6644423ab9f72c62e55d227dac58162",
+  "source_diff_sha256": "f774999ed5a391c925e08a4672fc97b356bf99bdaaec54c4d4744490a48c8aef",
+  "files_sha256": {
+    "docs/EVIDENCE.md": "240068c5ca0ec439191f508820fe5e7a8c5845bdf49c6839bca9d9a85b075b99",
+    "docs/JSON_FRAMING.md": "8b3d374fe6eebde32542d7d25d8c406954d6ee64a62bb64e236c5df24a63d9d4",
+    "scripts/json-reference.py": "e183361e83bb5e550056cba4493e8588059a1ddbdd24213366b68c6775508ed0",
+    "src/bin/gz-msgs.rs": "e786d5a69da4d3f5959a0fffe1519cd46c81feead76f30c1231e1ad788aaff4c",
+    "tests/cli.rs": "8d25ca0288dc56ee43fdbd492b0a28171177f51fd8048393065b2fae70043d2c",
+    "tests/fixtures/json-root-header.json": "3035d5b403645f305194fc14e6579b42177ac963ee375704440f0dafcc09a5bb"
+  },
+  "modes": {
+    "docs/EVIDENCE.md": "100644",
+    "docs/JSON_FRAMING.md": "100644",
+    "scripts/json-reference.py": "100644",
+    "src/bin/gz-msgs.rs": "100644",
+    "tests/cli.rs": "100644",
+    "tests/fixtures/json-root-header.json": "100644"
+  },
+  "scope": "Standalone Vector3d/Quaternion Header structure only. Reuses the existing Header shape normalization and duplicate Header/stamp merge path. Three helper identifiers/comments generalized with byte-identical bodies; only the root component branch is added. Invalid leaves and earlier duplicate fragments remain validated. No other descriptor, arbitrary-depth, diagnostic or complete MSG-02 qualification.",
+  "independent_replay": {
+    "raw_export": "Fresh 772 candidate / 771 public-parent blobs and modes verified; 766 parent paths unchanged. All raw hashes rechecked after replay. Four semantic files unchanged from selected73d2a121; two prose-only updates bind dab5e506.",
+    "targets": "Separate fresh empty reviewer-owned candidate and parent targets, Cargo2, incremental override absent, ordinary correctness without timing claim.",
+    "candidate_cli": "43 passed, 0 failed, 0 ignored.",
+    "native": "Fresh pinned peer/schema and 7415 native status/full-wire outcomes passed. Peer/schema/source provenance matches frozen inputs.",
+    "comparison": "112 fresh candidate/native/parent rows reproduce pre-edit native and parent:72 positive and40 rejected;32 parent rejections and12 accepted wrong wires corrected,28 matching controls retained. Reject status is admission parity, without diagnostic/exit-code equality claim.",
+    "old_assertions": "All40 older fixture hashes unchanged. Removing exactly the one new standalone test restores parent tests/cli.rs byte-for-byte, preserving every earlier test body/assertion.",
+    "source_audit": "Existing helper bodies unchanged under three identifier renamings and one scope comment. Root handling applies only to existing Vector3d/Quaternion component_kind; Pose behavior, policies/vendors/schemas/pins unchanged.",
+    "parent_hosted": "Exact328ba65d122e178493d27e13377ca08969800e5f hosted40384524441 attempt1 SUCCESS independently API verified."
+  },
+  "private_proof_sha256": "7960ea03b33e29366ace6f8eae2a42a00927a7c870b83b8773d8cc7eda21f3d3",
+  "source_native_binding": {
+    "candidate": "3e4d8e10f03ecb3bada28ab2756387a34b28772720d79b68b3817089a7bbb3f0",
+    "parent": "6613aeeef00fbdc2fd99fb472b8f34634cbfff7e1a26816d3bd1220df090c39a",
+    "peer": "16744aebb5531163dc87224e6d6cec56bba40d4d1a62035ae465342649ac540b",
+    "descriptor": "7ee20050da11c5d683776f4d04c16b1574bcb9cbdc851fea98b44516312375a8",
+    "driver": "dcda8ced8e94956a9750e4df932baaf90c4277c426d1eb0b814e6277469a5628",
+    "candidate_source": "e786d5a69da4d3f5959a0fffe1519cd46c81feead76f30c1231e1ad788aaff4c"
+  },
+  "evidence_sha256": {
+    "prepare-review.py": "461d07caad32422fafdc67a9320f7d398a6f0d8ef67468f410a81e69c33fa1b4",
+    "run-review.py": "dcda8ced8e94956a9750e4df932baaf90c4277c426d1eb0b814e6277469a5628",
+    "private-export.json": "56af575dadcedc28fdbfbafcb3e205d25e868937c09d495b78694962edf0641a",
+    "private-proof.json": "7960ea03b33e29366ace6f8eae2a42a00927a7c870b83b8773d8cc7eda21f3d3",
+    "candidate-cli.log": "1b77efed3ac222ec59028759c52f4d3958c5e831529d4bda3fd3241764b997f9",
+    "parent-build.log": "6c951b37574369b29b959b63cf9e7791762ce165ef60e6a000ca50aae0306077",
+    "native-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "native-replay.log": "eda02402b5794abdcfdc67eaf4d1cc0a8ce5c54f69e5fd675ba4e31540bc979e",
+    "native-proof.json": "508bb9d4b5c13eb7018260ed18fd63d8f68f8b25a399920239c198451b097a9b",
+    "observations.json": "a0717e5415ea17fd9de55c6352fdf83e0a560022f0044ecdde925fccbc0e9d4b",
+    "parent-hosted.json": "9950d83a0cfa7ca9aa097d242f35a57d0ccf6d983c6bb502a1e1bf20df5bd280",
+    "final-static-audit.json": "210cc0573e3062781f8f1c7fca2823e39a01eed2f18a9197e599a9622a49a4ab",
+    "prepare-assembly-note.json": "a1bd86e477454530dae1bd4310bfc8aa56a5795a5b9e11e119f207591c5ed503",
+    "prepare-review-v1-schema-error.py": "dded6c5171a2287e6ae3613babe41b5a69c2353f68440966e7e3588bfba65614",
+    "bind-full-evidence.py": "a80d831085390f7d9d7610d528ac3451f23352de79e30fa56e4bc027f238ab8d",
+    "full-evidence-proof.json": "3b00dde5a460dbba7367bd5267e917539da483dc1b1f98653bff53df2ad3e222",
+    "source-freeze.json": "ccff0b9bf1a16d94165cb7660f823f2b8e05c5ad7ac0187cbfee7954c42ecb8b",
+    "source-gate-input.json": "82219fce28738c3a7450b0edbfe5c2a7e88a2ed94397016cb7b139a7395b58e0",
+    "source-gate-result.json": "df9a5fae0f1993a41e7ca407778b38808a6d4b31f3f96118f7c3cabecd148778",
+    "source-gate.log": "c916b6a22b2470ec611139b9e6ac6f71a804bead0b3fdc4c87a780053cb50daa"
+  },
+  "failure_state": "Author new-fixture expression format-only correction retained, no runtime failure. Reviewer prepare V1 schema-key error occurred after raw export and before test execution; driver/note preserved and same export reverified. A later read-only diff command used the Transport repository and returned bad object; corrected repository read succeeded, with no mutation or execution rerun. No candidate failure or waived test.",
+  "qualification": "Source semantics and exact full evidence approved. Final metadata binding, mandatory normal/public/exact new hosted success remain required. No all-configuration, diagnostic or performance claim.",
+  "protected_invariants": "Apache-2.0/OSRF, all40 prior fixtures and all old test bodies, schemas/pins, original strict per-source/workspace/vendor line+region and authoritative changed-line policies preserved.",
+  "semantic_receipt_sha256": "ecbe754ccd78f3ef70c7d420a6dc970e86011c5f32dc2d6c6f2a049fab3c9a1e",
+  "full_evidence_proof_sha256": "3b00dde5a460dbba7367bd5267e917539da483dc1b1f98653bff53df2ad3e222",
+  "exact_full_gate": {
+    "actual_raw_rust_sum": [
+      140,
+      0,
+      0
+    ],
+    "cli": 43,
+    "native": 7415,
+    "owned_sources": 18,
+    "owned_coverage": {
+      "lines": [
+        3119,
+        3139
+      ],
+      "regions": [
+        5138,
+        5223
+      ]
+    },
+    "vendors": {
+      "prost-derive": {
+        "lines": [
+          6,
+          6
+        ],
+        "regions": [
+          8,
+          8
+        ]
+      },
+      "prost-reflect": {
+        "lines": [
+          96,
+          97
+        ],
+        "regions": [
+          205,
+          206
+        ]
+      }
+    },
+    "changed": "10/10 authoritative added executable lines, independently reconstructed from exact parent and raw source",
+    "retained": "All five retained full JSON/LCOV/input/changed/vendor hashes and complete/pass stage checked, source-gate input/result/driver/log checked. Canonical Cargo2, incremental/target/flags overrides absent.",
+    "policy": "Unchanged check/check_patches/check_changed on full JSON/LCOV; source-root rebind only. No file/function/region/count removed. Changed manifest reconstructed independently from fresh raw source and exact public parent."
+  }
+}

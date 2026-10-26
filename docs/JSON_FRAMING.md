@@ -1209,3 +1209,41 @@ before its corrected full-evidence binding; neither caused a runtime replay or
 candidate change. Final metadata binding, normal protected hook and exact new
 hosted success remain required. No other descriptor, arbitrary-depth, diagnostic
 or MSG-02 completion is claimed.
+
+
+## Standalone component Header
+
+The preceding nested outer Pose slice completed independent final binding, the
+canonical normal hook and exact hosted run `40384524441` attempt 1 on public
+`328ba65d122e178493d27e13377ca08969800e5f`.
+Before this edit, 112 standalone Vector3d/Quaternion inputs were replayed against
+that accepted parent and pinned native C++. Native accepts 72 forms: 32 are parent
+rejections, 12 are accepted with different wire bytes, and 28 already match. Both
+reject 40 forms. All 40 earlier fixture bytes and all prior assertions remain.
+
+The draft reuses the existing Header shape/merge helpers for these two root
+descriptors, preserving earlier duplicate validation and final ordered append.
+The new corpus covers repeated Header/stamp/data/value fields, singleton entries,
+scalar strings, null and nested arrays, Unicode and escaped keys, invalid earlier
+and later fragments, and existing root numeric controls. Formatting passes after
+a retained fixture-expression layout correction. All 43 CLI tests and fresh native
+replay of 7,415 outcomes pass. The 112-input comparison matches all 72 native
+positives and 40 rejections, correcting the 32 parent rejections and 12 wrong wires
+while 28 positive controls remain unchanged. All 40 old fixtures and every earlier
+test body are preserved. The exact canonical full source gate passes 140 Rust
+tests including 43 CLI, strict 3,119/3,139 owned production lines and 5,138/5,223
+regions, automatic 10/10 added executable lines and unchanged owned vendor checks.
+All five staged evidence files are complete.
+
+Independent [review](reviews/json-root-header.json) rebuilds fresh candidate,
+parent and native peer, reproduces every comparison and checks all 40 fixture
+pins. Removing only the new test restores the parent test file byte-for-byte;
+the three shared helper bodies are unchanged under identifier renaming. The
+reviewer recomputes unchanged full JSON/LCOV, vendor and added-line policies.
+An initial reviewer metadata-key mismatch stopped before tests and was retained;
+corrected assembly used the same fresh export without a duplicate runtime replay.
+Author shell/status path mistakes likewise stopped before gate execution or
+metadata writes and were retained. No source, assertion, threshold or configuration
+waiver is applied. Final metadata binding, normal protected hook and exact new
+hosted success remain required. Other descriptors, arbitrary depth, native
+rejection diagnostics and MSG-02 remain unqualified.

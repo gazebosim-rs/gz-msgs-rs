@@ -47,6 +47,7 @@ pose_null_values = json.loads((root / 'tests/fixtures/json-pose-header-value-nul
 pose_nested_values = json.loads((root / 'tests/fixtures/json-pose-header-value-nested.json').read_text())
 pose_data_nulls = json.loads((root / 'tests/fixtures/json-pose-header-data-null.json').read_text())
 pose_data_nested = json.loads((root / 'tests/fixtures/json-pose-header-data-nested.json').read_text())
+root_header = json.loads((root / 'tests/fixtures/json-root-header.json').read_text())
 version = subprocess.check_output(['pkg-config', '--modversion', 'protobuf'], text=True).strip()
 assert version == fixture['native_protobuf']
 assert version == time_float['native_protobuf']
@@ -245,6 +246,14 @@ assert sum(row['cpp_status'] == 0 for row in pose_data_nulls['rows']) == 50
 assert len(pose_data_nulls['pending_grammar']) == 4
 assert all(row['cpp_status'] == 0 for row in pose_data_nulls['pending_grammar'])
 assert len({row['input_hex'] for row in pose_data_nulls['rows'] + pose_data_nulls['pending_grammar']}) == 80
+assert len(root_header['prior_fixture_sha256']) == 40
+for name, expected in root_header['prior_fixture_sha256'].items():
+    assert hashlib.sha256((root / name).read_bytes()).hexdigest() == expected, name
+assert len(root_header['rows']) == 112
+assert sum(row['cpp_status'] == 0 for row in root_header['rows']) == 72
+assert sum(row['cpp_status'] == 0 and row['parent_rust_status'] != 0 for row in root_header['rows']) == 32
+assert sum(row['cpp_status'] == row['parent_rust_status'] == 0 and row['cpp_stdout_hex'] != row['parent_rust_stdout_hex'] for row in root_header['rows']) == 12
+assert len({(row['type'], row['input_hex']) for row in root_header['rows']}) == 112
 assert len(pose_data_nested['prior_fixture_sha256']) == 39
 for name, expected in pose_data_nested['prior_fixture_sha256'].items():
     assert hashlib.sha256((root / name).read_bytes()).hexdigest() == expected, name
@@ -348,6 +357,7 @@ rows += pose_null_values['rows'] + pose_null_values['pending_grammar']
 rows += pose_nested_values['rows'] + pose_nested_values['pending_grammar']
 rows += pose_data_nulls['rows'] + pose_data_nulls['pending_grammar']
 rows += pose_data_nested['rows']
+rows += root_header['rows']
 for row in rows:
     result = subprocess.run([str(root / 'target/native/protobuf-peer'), str(root / 'target/native/messages.pb'), row.get('type', 'gz.msgs.Time'), 'encode-json'], input=bytes.fromhex(row['input_hex']), capture_output=True)
     assert result.returncode == row['cpp_status'] and result.stdout.hex() == row['cpp_stdout_hex'], row
@@ -389,6 +399,7 @@ proof = dict(protobuf_version=version, cases=len(rows), matching_cases=len(fixtu
              pose_scalar_values_cases=len(pose_scalar_values['rows']), pose_scalar_values_native_positive=sum(row['cpp_status'] == 0 for row in pose_scalar_values['rows']), pose_scalar_values_pending=len(pose_scalar_values['pending_grammar']), pose_scalar_values_fixture_sha256=sha(root / 'tests/fixtures/json-pose-header-value-scalar.json'),
              pose_null_values_cases=len(pose_null_values['rows']), pose_null_values_native_positive=sum(row['cpp_status'] == 0 for row in pose_null_values['rows']), pose_null_values_pending=len(pose_null_values['pending_grammar']), pose_null_values_fixture_sha256=sha(root / 'tests/fixtures/json-pose-header-value-null.json'),
              pose_nested_values_cases=len(pose_nested_values['rows']), pose_nested_values_native_positive=sum(row['cpp_status'] == 0 for row in pose_nested_values['rows']), pose_nested_values_pending=len(pose_nested_values['pending_grammar']), pose_nested_values_fixture_sha256=sha(root / 'tests/fixtures/json-pose-header-value-nested.json'),
+             root_header_cases=len(root_header['rows']), root_header_native_positive=sum(row['cpp_status'] == 0 for row in root_header['rows']), root_header_fixture_sha256=sha(root / 'tests/fixtures/json-root-header.json'),
              pose_data_nested_cases=len(pose_data_nested['rows']), pose_data_nested_native_positive=sum(row['cpp_status'] == 0 for row in pose_data_nested['rows']), pose_data_nested_fixture_sha256=sha(root / 'tests/fixtures/json-pose-header-data-nested.json'),
              pose_data_nulls_cases=len(pose_data_nulls['rows']), pose_data_nulls_native_positive=sum(row['cpp_status'] == 0 for row in pose_data_nulls['rows']), pose_data_nulls_pending=len(pose_data_nulls['pending_grammar']), pose_data_nulls_fixture_sha256=sha(root / 'tests/fixtures/json-pose-header-data-null.json'),
              probe_source_sha256=sha(root / 'tests/protobuf_peer.cc'), probe_binary_sha256=current_peer_sha256, historical_peer_binary_sha256=historical_peer_sha256)

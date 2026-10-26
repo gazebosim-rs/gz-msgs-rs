@@ -580,9 +580,9 @@ fn merge_header_data_values(
     .ok()
 }
 
-// Only Header fields under the two Pose component parents are qualified here.
+// Header fields on Vector3d/Quaternion roots and Pose components are qualified.
 // Retain earlier occurrences so invalid earlier fields still reach reflection.
-fn merge_pose_header_objects(input: &[u8], path: &[&str]) -> Option<Vec<u8>> {
+fn merge_header_objects(input: &[u8], path: &[&str]) -> Option<Vec<u8>> {
     let (field, rest) = path.split_first()?;
     let mut members: JsonMembers = gz_msgs::serde_json::from_slice(input).ok()?;
     let matching: Vec<_> = members
@@ -618,13 +618,13 @@ fn merge_pose_header_objects(input: &[u8], path: &[&str]) -> Option<Vec<u8>> {
         append_header_array_members(&mut combined, "data");
     }
     let raw = json_members_bytes(&combined);
-    let raw = merge_pose_header_objects(&raw, rest).unwrap_or(raw);
+    let raw = merge_header_objects(&raw, rest).unwrap_or(raw);
     members.0[last].1 =
         gz_msgs::serde_json::value::RawValue::from_string(String::from_utf8(raw).ok()?).ok()?;
     Some(json_members_bytes(&members))
 }
 
-fn normalize_pose_header_entries(input: &str) -> Option<Box<gz_msgs::serde_json::value::RawValue>> {
+fn normalize_header_entries(input: &str) -> Option<Box<gz_msgs::serde_json::value::RawValue>> {
     let mut entries: Vec<Box<gz_msgs::serde_json::value::RawValue>> =
         gz_msgs::serde_json::from_str(input).ok()?;
     let mut changed = entries
@@ -691,7 +691,7 @@ fn normalize_pose_header_entries(input: &str) -> Option<Box<gz_msgs::serde_json:
 // without appending any fields.
 // Earlier parent/header fragments still need to be parseable for validation;
 // the final merged fragment performs the existing array/value append once.
-fn normalize_pose_header_data_shapes(input: &[u8]) -> Option<Vec<u8>> {
+fn normalize_header_data_shapes(input: &[u8]) -> Option<Vec<u8>> {
     let mut parent: JsonMembers = gz_msgs::serde_json::from_slice(input).ok()?;
     let mut changed = false;
     for (name, value) in &mut parent.0 {
@@ -710,7 +710,7 @@ fn normalize_pose_header_data_shapes(input: &[u8]) -> Option<Vec<u8>> {
                 .ok()?;
                 changed = true;
             }
-            if let Some(coerced) = normalize_pose_header_entries(data.get()) {
+            if let Some(coerced) = normalize_header_entries(data.get()) {
                 *data = coerced;
                 changed = true;
             }
@@ -750,7 +750,7 @@ fn merge_pose_parent_objects(
                 valid = false;
                 break;
             }
-            let coerced = normalize_pose_header_data_shapes(value);
+            let coerced = normalize_header_data_shapes(value);
             let value = coerced.as_deref().unwrap_or(value);
             let inner = value[1..value.len() - 1].trim_ascii();
             if !inner.is_empty() {
@@ -773,7 +773,7 @@ fn merge_pose_parent_objects(
         merged.push(b'{');
         merged.extend_from_slice(&members);
         merged.push(b'}');
-        let nested = merge_pose_header_objects(&merged, &["header", "stamp"]);
+        let nested = merge_header_objects(&merged, &["header", "stamp"]);
         if occurrences.len() == 1 && nested.is_none() {
             continue;
         }
@@ -1444,6 +1444,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             }
             let normalized = if descriptor.full_name() == "gz.msgs.Pose" {
                 merge_pose_parent_objects(&normalized, &pose_parent_ranges).unwrap_or(normalized)
+            } else if component_kind.is_some() {
+                let shaped = normalize_header_data_shapes(&normalized).unwrap_or(normalized);
+                merge_header_objects(&shaped, &["header", "stamp"]).unwrap_or(shaped)
             } else {
                 normalized
             };
