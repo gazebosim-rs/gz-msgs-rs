@@ -17,6 +17,62 @@ fn run(args: &[&str], input: &[u8]) -> std::process::Output {
     child.stdin.take().unwrap().write_all(input).unwrap();
     child.wait_with_output().unwrap()
 }
+
+#[test]
+fn unquoted_float_max_rounding_matches_native() {
+    // json-reference.py replays the pinned C++ peer; this test consumes its
+    // immutable fixture without racing another test's native peer build.
+    let fixture: gz_msgs::serde_json::Value =
+        gz_msgs::serde_json::from_str(include_str!("fixtures/json-float-max-range.json")).unwrap();
+    assert_eq!(fixture["native_protobuf"], "3.21.12");
+    assert_eq!(fixture["matching"].as_array().unwrap().len(), 204);
+    assert_eq!(fixture["double_wire_pending"].as_array().unwrap().len(), 18);
+    let unhex = |hex: &str| {
+        hex.as_bytes()
+            .chunks_exact(2)
+            .map(|pair| u8::from_str_radix(std::str::from_utf8(pair).unwrap(), 16).unwrap())
+            .collect::<Vec<_>>()
+    };
+    let mut seen = std::collections::BTreeSet::new();
+    for (group, parity) in [("matching", true), ("double_wire_pending", false)] {
+        for row in fixture[group].as_array().unwrap() {
+            let label = row["label"].as_str().unwrap();
+            assert!(label.starts_with("float_max_"));
+            assert!(seen.insert(label));
+            let type_name = row["type"].as_str().unwrap();
+            if !parity {
+                assert_eq!(type_name, "gz.msgs.Double_V");
+            }
+            let input = unhex(row["input_hex"].as_str().unwrap());
+            let token = row["token"].as_str().unwrap();
+            let value = match row["placement"].as_str().unwrap() {
+                "scalar" => token.to_owned(),
+                "array" => format!("[{token}]"),
+                "duplicate" => format!("[{token}],\"data\":[{token}]"),
+                placement => panic!("unexpected placement {placement}"),
+            };
+            assert_eq!(input, format!("{{\"data\":{value}}}").into_bytes());
+            let expected = unhex(row["cpp_stdout_hex"].as_str().unwrap());
+            let native_success = row["cpp_status"].as_i64() == Some(0);
+            if !native_success {
+                assert!(expected.is_empty(), "{input:?}");
+            }
+            let actual = run(&["encode-json", type_name], &input);
+            assert_eq!(actual.status.success(), native_success, "{input:?}");
+            if parity {
+                assert_eq!(actual.stdout, expected, "{input:?}");
+            } else {
+                assert!(native_success, "{input:?}");
+                assert_eq!(
+                    actual.stdout,
+                    unhex(row["parent_rust_stdout_hex"].as_str().unwrap())
+                );
+                assert_ne!(actual.stdout, expected, "{input:?}");
+            }
+        }
+    }
+    assert_eq!(seen.len(), 222);
+}
 #[test]
 fn formats_and_commands() {
     let list = run(&["list"], &[]);

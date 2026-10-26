@@ -1,0 +1,32 @@
+{
+  "author": "/root/msgs_review_fallback",
+  "base": "47f44ddb30482ccd226d30f681ca5fc788da89e0",
+  "decision": "approved",
+  "files_sha256": {
+    "docs/EVIDENCE.md": "f2b9eced8bddca9eace93c2b9cc206aaf2770bd29998bf985b0f8653b77b8c8d",
+    "docs/JSON_FRAMING.md": "4dbb6a01c24e7ce9f2eefd8a3b6e4e7b566445b47021d92b5ae5f038d8ff8394",
+    "scripts/json-reference.py": "2dc1a3fc56cce0927bc07d329d8d2c78148c4597da9544ffbf3b2bfe08bf0a5a",
+    "scripts/verify.py": "9121bd7bdc763ea74717caaaccaf5c0382378b6731c28c1c22f70ae892370926",
+    "src/bin/gz-msgs.rs": "dd7f35b7946e3216a99bdbcc5ec897d9ccde0621e6d14a24182ec637af3662c3",
+    "tests/cli.rs": "8eb06bba81003baf176c06fe690ee73b49ed74b1e5fa3a09c6f4a64b7adcd938",
+    "tests/fixtures/json-float-max-range.json": "e4eedceeeef03d73d8880b938394b5a03709f017e564691d7c9710a8c5da4a28"
+  },
+  "private_branch_removal_log_sha256": "8cdc815c49226c90c811b2f6a3b890fab8982b0776fae657c82e2a8bc7751023",
+  "private_candidate_binary_sha256": "7b88a566ae2c0f7d2e5fa896e4a37a10a0557d6101b515febe8cd047273f9add",
+  "private_native_proof_sha256": "14e8067f6feeb92f7a7013a1605f07f5940588b98253988ded04af3e6ff49273",
+  "private_parent_binary_sha256": "809acdd70c977a6d3ac08a0d540e0ee0e84578d56589ecae3b88d0968ad6ea79",
+  "private_parent_negative_log_sha256": "0f34ea7034ed54c8931992a0b911a2434d7c04df0c3fc603013e4132158a792b",
+  "private_quoted_preservation_sha256": "bc02b2abd3179c7e39657576d655a022852fd2fab5c82b0ff306e63d1085b168",
+  "private_selected_log_sha256": "8d667756f12b2cc9463da285eaddb2969453ae63716c144ace3b6895e0e9d00d",
+  "private_supplemental_boundary_sha256": "03b90ad94e5b5e27f587129c648ffd841314f3aa0f59d94a4fe4ad0b9e6ce633",
+  "proposal": "artifacts/json-unquoted-float-range-proposal.json",
+  "proposal_sha256": "0b5de7ac8d738d5de6f3982d309fb402db45e1f69928cfc78beca96d1cdc39ac",
+  "remaining": "Metadata-only integration and final binding, exact final staged gate, normal protected hook, public commit and hosted qualification.",
+  "review": "Verified exact seven-file staged tree/diff/all 100644 hashes/no unstaged. Private raw public-parent archive plus only seven frozen overlay files and exclusive Cargo target passed selected CLI1/0. Independently rebuilt pinned protobuf3.21.12 peer and descriptor reproduce all3037 native status/full-wire observations, including 2815 retained, 204 Float max-range parity and 18 explicit Double one-bit pending rows. All23 older fixture hashes match. Additional 63 unquoted Float_V boundary forms had zero status/wire mismatch; 27 quoted forms were byte-identical to the public-parent CLI. Raw-parent overlay and separate branch-removal mutant each fail exact native-positive 3.4028234663852886e38 admission. The first new-test peer-build race gate is retained/excluded; the corrected exact staged gate passed123 Rust and mandatory strict coverage/native replay. Source review confirms unquoted Float_V-only guard, JSON Number validation, finite/half-range checks, and existing reflected scalar/array occurrence patching. The final one-sentence documentation correction distinguishes decimal spelling from mathematical exact f32 max; parser/test/fixture/native script/verifier bytes remained fixed.",
+  "reviewer": "/root/transport_fallback",
+  "scope": "Only top-level unquoted Float_V.data near finite f32 maximum at scalar, array and duplicate occurrences. Quoted Float_V and Double_V conversion unchanged. Eighteen Double_V native-positive/Rust-positive one-bit wire gaps remain pending, as do broader floating precision/grammar and MSG-02.",
+  "source_gate_sha256": "e1b934fef58bc2910d634956bf996449582a15a3ecf54e6f4b2bddeceb931105",
+  "staged_diff_sha256": "ad8ac5df7d6ecc37e7d1dc890becd4aaaac7e3dd47ad16f4a29cef1664c02847",
+  "staged_tree": "d737d7a9a680b11248915688f1cae0ce51e1b5c5",
+  "unstaged_diff_empty": true
+}

@@ -261,6 +261,36 @@ fn proto_leading_zero_float(value: &[u8], width: FloatWidth) -> Option<(usize, V
     }
 }
 
+fn proto_unquoted_float_max_round(value: &[u8]) -> Option<(usize, Value)> {
+    // DataPiece::DoubleToFloat accepts a finite JSON number just above f32::MAX
+    // when half of it rounds to half the maximum and doubling rounds back to
+    // f32::MAX. Quoted numbers take the separate StringToNumber path.
+    let end = value
+        .iter()
+        .position(|byte| {
+            matches!(
+                *byte,
+                b',' | b'}' | b']' | b' ' | b'\t' | b'\r' | b'\n' | b'\x0b' | b'\x0c'
+            )
+        })
+        .unwrap_or(value.len());
+    let token = std::str::from_utf8(&value[..end]).ok()?;
+    let _: gz_msgs::serde_json::Number = gz_msgs::serde_json::from_str(token).ok()?;
+    let number: f64 = token.parse().ok()?;
+    if !number.is_finite() || number.abs() < f64::from(f32::MAX) {
+        return None;
+    }
+    let half = number * 0.5;
+    if half.abs() >= f64::from(f32::MAX) {
+        return None;
+    }
+    let half_after = half as f32;
+    if half_after.abs() > f32::MAX * 0.5 {
+        return None;
+    }
+    Some((end, Value::F32(half_after + half_after)))
+}
+
 #[derive(Clone, Copy)]
 enum TimeField {
     Seconds,
@@ -559,7 +589,12 @@ fn normalize_proto_json(
                 continue;
             }
             if let Some(width) = float_data {
-                if let Some((length, number)) = proto_leading_zero_float(&input[index..], width) {
+                let rounded = matches!(width, FloatWidth::Single)
+                    .then(|| proto_unquoted_float_max_round(&input[index..]))
+                    .flatten();
+                if let Some((length, number)) =
+                    proto_leading_zero_float(&input[index..], width).or(rounded)
+                {
                     if float_array_depth == Some(frames.len()) {
                         output.extend_from_slice(b"\"0\"");
                         float_patches.push((float_array_count - 1, float_item_index, number));

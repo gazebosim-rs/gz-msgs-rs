@@ -662,5 +662,37 @@ production coverage. An independent [review](reviews/json-quoted-float.json)
 rebuilt the pinned peer, reproduced all 2,815 observations, checked the
 108-form whitespace disposition and showed that disabling the admission guard
 fails an exact native-negative overflow row. The first two candidate packets
-and a scheduling-interrupted gate are retained but superseded. Final metadata,
-protected hook, public commit and hosted qualification remain separate.
+and a scheduling-interrupted gate are retained but superseded. Final metadata
+and the normal protected hook passed on public
+`47f44ddb30482ccd226d30f681ca5fc788da89e0`; hosted run `40253495539`
+passed.
+
+## Unquoted Float_V maximum rounding
+
+The native unquoted number path parses finite double first, then
+`DataPiece::DoubleToFloat` can round a value just above `float` max back to
+finite max by halving and doubling. Native accepts unquoted `3.4028235e38`
+but rejects that quoted string; `3.4028234663852886e38`, which parses to the
+double value of f32 max, is accepted in both forms. The quoted path remains
+unchanged. For top-level unquoted `Float_V.data`, the
+adapter validates the JSON number token, applies the same bounded half-value
+check and patches only the matched scalar or array element. Duplicate data
+occurrences keep append order. The maintained decoder validates the rest of
+the document.
+
+Of 222 new native status/full-wire observations, 204 require exact parity.
+The other 18 explicitly retain native-positive/Rust-positive `Double_V`
+one-bit decimal wire differences, representing six tokens in scalar, array
+and repeated-key placements. The 23 older fixture hashes and 2,815 earlier
+native observations remain unchanged; combined replay covers 3,037 rows.
+Other floating precision boundaries, quoted whitespace, general grammar and
+MSG-02 acceptance remain open. The first staged run exposed a test setup race
+with another test's native peer build and is retained as a failed gate. The
+corrected verifier replays all 3,037 native rows before instrumented Rust
+tests; the exact staged source gate passed 123 Rust checks with strict
+production coverage. An independent [review](reviews/json-float-max-range.json)
+reproduced all 3,037 native observations, found no mismatch in 63 additional
+unquoted `Float_V` boundary forms, kept 27 quoted forms byte-identical to the
+public parent and made both parent and guard-removal variants fail an exact
+max-range row. The final staged gate checks the metadata-integrated tree;
+protected-hook and hosted results are reported in the public progress tracker.
