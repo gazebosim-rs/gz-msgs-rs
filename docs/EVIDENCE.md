@@ -2075,7 +2075,7 @@ Pinned protobuf 3.21.12 parses an unquoted decimal JSON number as double,
 then `DataPiece::DoubleToFloat` admits a value just above `float` max when
 halving, converting and doubling rounds back to finite max. For example,
 native accepts unquoted `3.4028235e38` but rejects that quoted `Float_V`
-string; exact `3.4028234663852886e38` is accepted in both forms. The adapter
+string; `3.4028234663852886e38` is accepted in both forms. The adapter
 applies the native half-value check only to top-level unquoted `Float_V.data`
 scalar, array and repeated-key values. It leaves other fields and quoted
 data on their existing paths.
@@ -2098,3 +2098,24 @@ unchanged against the public parent, and made both parent and guard-removal
 variants fail an exact native-positive max-range row. The final staged gate
 checks the metadata-integrated tree; protected-hook and hosted results are
 reported in the public progress tracker.
+
+
+### Portable native peer replay provenance
+
+Public revision `cdf25b076ef4a7d3ea1d3449d74c688792f6197c` passed its local
+reviewer-bound staged gate and normal hook, but hosted run `40257819363`
+failed before replaying native rows. The newly mandatory `json-reference.py`
+compared its freshly compiled C++ peer executable byte-for-byte with the
+historical local reference executable. ELF bytes depend on the build host.
+The repair retains the pinned historical peer SHA in all 18 fixture records,
+requires their agreement, checks the unchanged C++ source and protobuf
+3.21.12 version, and records the current executable SHA. It then requires
+all 3,037 status and full-wire outcomes to match the retained fixtures.
+Local builds with and without debug symbols had different executable hashes
+and both reproduced every row. No fixture, parser, test or production byte
+changes in this repair. An independent [review](reviews/json-reference-portable.json) rebuilt the
+peer from a raw export, reproduced all 3,037 rows with a different ELF hash,
+and made a changed historical fixture hash fail before row replay. The exact
+staged source gate passed 123 Rust checks with strict coverage. Hosted
+qualification of the repaired verifier is reported separately in the public
+progress tracker.

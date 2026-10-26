@@ -696,3 +696,18 @@ unquoted `Float_V` boundary forms, kept 27 quoted forms byte-identical to the
 public parent and made both parent and guard-removal variants fail an exact
 max-range row. The final staged gate checks the metadata-integrated tree;
 protected-hook and hosted results are reported in the public progress tracker.
+
+
+## Cross-host native replay
+
+The original fixture executable SHA identifies the machine that produced the
+retained reference. The native replay builds the same pinned C++ source on
+its current host, records that build's SHA, and checks all 3,037 status and
+full-wire results against the fixtures. It also requires all 18 historical
+fixture peer SHAs to agree. This keeps exact behavioral comparison while
+allowing executable bytes to vary by compiler and build options. Hosted run
+`40257819363` exposed the previous cross-host ELF equality assertion before
+native replay began. The [independent review](reviews/json-reference-portable.json)
+replayed the exact 3,037 rows with a differently hashed ELF and rejected a
+changed historical fixture hash. The repaired run remains a separate hosted
+qualification step.

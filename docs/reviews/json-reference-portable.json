@@ -1,0 +1,27 @@
+{
+  "author": "/root/msgs_review_fallback",
+  "decision": "approved",
+  "reviewer": "/root/transport_fallback",
+  "parent": "cdf25b076ef4a7d3ea1d3449d74c688792f6197c",
+  "source_freeze": "artifacts/json-reference-portable/source-freeze.json",
+  "source_freeze_sha256": "7b9f8304aed4a4f5e52c94acfaed69714565480de02c8d01dcdcf03f0ffbe3a2",
+  "staged_tree": "652e1fdddc85c783e1adaa15ff8800d72a40f672",
+  "staged_diff_sha256": "28e3cd45aabbff43d380f328314e4bfeda039202b115851d64c024644a5ddad4",
+  "files_sha256": {
+    "docs/EVIDENCE.md": "5864a7f50f213751d129f47934e1d4459d0ccb2837af07db8f898cbdd49a32d4",
+    "docs/JSON_FRAMING.md": "b7ca8148316dc9bf4d54b24fec20fcc72cbeb293b929c56797da10a3889ac322",
+    "scripts/json-reference.py": "034b754c8e6ac21e32d679a3731c8ee836a544941f0222485805d3f0dbb48be8"
+  },
+  "author_staged_gate_sha256": "1ab8301c73046efedc53f50312768762634e875d13cc0609bec9a3547ab8ae69",
+  "hosted_failed_run": "40257819363",
+  "hosted_failure_log_sha256": "61fac4467f616cf8a8d51ad969f60137eb624c0c04348a7aa30bac189d073736",
+  "assertion_mapping": "The 18 retained fixture peer hashes must still equal the historical reference SHA, each fixture's pinned C++ source SHA and protobuf 3.21.12 version remain checked, descriptor SHA remains checked, and the freshly compiled peer SHA is recorded. The verifier no longer equates executable bytes across hosts. All 3,037 native statuses and complete wire outputs remain mandatory exact comparisons; production parser, tests and fixtures are unchanged.",
+  "independent_review": {
+    "method": "Git-free raw export of the exact public parent with only the three frozen files overlaid and rehashed.",
+    "default_replay": "Rebuilt current peer and reproduced 3,037/3,037 exact outcomes; proof SHA256 7099975bdb8d666d49393aff33dc8452fcf024573dfab51a1cb7bcc1a2f4a4da, log SHA256 b31de0d8a962755d61f204a43fe486f66bbe4b5bee863e8dbd506853e2a97f24.",
+    "alternate_elf_replay": "Private debug-symbol peer SHA256 ac7a3dfe8f06432a91a09252547c36ff36ca0674331906be9b2d4b09335adc45 differs from historical SHA256 16744aebb5531163dc87224e6d6cec56bba40d4d1a62035ae465342649ac540b; all 3,037 outcomes reproduced and builder restored byte-for-byte. Proof SHA256 be9426cee0af98193d28762e65987821434aa45a1f89c49b9378e33664b6604f.",
+    "historical_pin_mutant": "Changing one private fixture's historical peer hash is rejected before row replay; fixture restored byte-for-byte. Log SHA256 02fb05ea2f3d180920fb29c0ac1805e51935d36f88452b90a9fdafd231d377c7.",
+    "source_gate": "Exact staged author gate passed 123 Rust, 3,037 mandatory live native outcomes, strict >95% coverage; all three hashes/tree/diff/modes match and no unstaged diff."
+  },
+  "limits": "The original hosted run failed before native-row replay because Ubuntu's freshly built ELF differed from the historical local ELF. The repaired code still requires hosted qualification. The first private replay invocation stopped before execution because its output-log directory path was wrong; corrected raw replay passed. No broader JSON grammar or Float/Double behavior claim."
+}
