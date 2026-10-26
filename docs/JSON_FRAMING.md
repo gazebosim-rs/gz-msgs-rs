@@ -815,3 +815,30 @@ An independent [review](reviews/json-vector3d-quoted.json) reproduced all
 319-row Rust test. The protected hook and hosted qualification remain
 separate. Nested numeric fields, other message types and broader JSON grammar
 remain open.
+
+## Quoted Quaternion numeric components
+
+Pinned protobuf 3.21.12 accepts the same finite quoted hexadecimal and
+decimal conversion for top-level `gz.msgs.Quaternion` `x`, `y`, `z` and `w`.
+The CLI extends the reviewed Vector3d component path to those four fields,
+converts at double precision, and patches only the decoded component values.
+Its descriptor gate leaves Vector3d's three-field behavior and StringMsg/Time
+handling intact. A later non-null occurrence replaces an earlier value;
+`null` retains the earlier component. Signed-zero presence is tested
+separately.
+
+The source-bound 408-observation fixture records 155 native-positive exact
+wires and 253 rejected controls. It covers all four components, double and
+single quotes, finite hex and decimal spellings, edge and interior whitespace,
+literal edge spaces, overflow, signed zero, a one-bit decimal boundary,
+multiple components, duplicate/null keys, bare and escaped keys, and
+Vector3d/StringMsg/Time controls. All 28 earlier JSON fixture hashes remain
+unchanged. The selected 408-row Rust test and fresh pinned native fixture
+generation passed. The exact staged gate passed 5,771 native status/full-wire
+outcomes, 128 Rust tests including 31 CLI tests, and strict greater-than-95%
+owned coverage. An independent [review](reviews/json-quaternion-quoted.json)
+replayed all native outcomes and the selected 408-row Rust test from a
+separate raw export. The first gate stopped at formatting before tests and
+was corrected before this passing gate. Protected hook and hosted
+qualification remain separate. Nested numeric fields and general JSON
+grammar remain open.

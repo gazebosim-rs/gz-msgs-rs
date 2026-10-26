@@ -2217,3 +2217,23 @@ correctness-only at two Cargo jobs during Root's native SDK build; it makes
 no timing claim. Protected hook, public commit and hosted CI remain separate.
 This does not establish parity for nested numeric fields, other descriptors
 or general MSG-02 JSON grammar.
+
+### Bounded quoted Quaternion numeric components
+
+The published CLI differed on 104 outcomes among 384 pinned
+top-level Quaternion boundary probes. The scoped adapter extends the existing
+Vector3d double-precision component path to `gz.msgs.Quaternion` `x`, `y`,
+`z` and `w`; it does not enable nested numeric fields. A new 408-observation
+native fixture pins 155 accepted exact wires, 253 rejected controls and all
+28 earlier JSON fixture hashes. Duplicate/null, signed zero, a one-bit
+decimal boundary, multiple fields, bare/escaped keys and descriptor isolation
+are explicit. The selected Rust test passes all 408 status/full-wire rows.
+The exact staged gate passed 5,771 pinned native status/full-wire outcomes,
+128 Rust tests including 31 CLI tests, and strict greater-than-95% owned
+coverage. The independent [review](reviews/json-quaternion-quoted.json)
+checked all six source hashes and 28 older fixtures, then replayed the full
+native proof and selected Rust test in a separate raw export. The initial
+format-only gate failure stopped before tests and was corrected before the
+passed exact gate. The gate ran at two Cargo jobs during Root's SDK build;
+it makes no timing claim. Protected hook, public commit and hosted CI remain
+separate. No broader MSG-02 acceptance is claimed.

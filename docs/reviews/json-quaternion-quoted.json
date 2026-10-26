@@ -1,0 +1,31 @@
+{
+  "decision": "approved",
+  "author": "/root/msgs_review_fallback",
+  "reviewer": "/root/transport_fallback",
+  "source_manifest": "artifacts/json-quaternion-quoted-worktree/artifacts/json-quaternion-quoted/source-freeze.json",
+  "source_manifest_sha256": "31d0268878868cb52a480ea2e4e62d51b71c743cbdca08ab37a87bc06964f035",
+  "parent": "e400a26743b77b81be2262cabacf8b3315ec9eef",
+  "source_tree": "ab6405330b9bf2e563284867e749cc1ce04df9f0",
+  "source_diff_sha256": "4e1c59bb40a59748d712d99222f2386049a3a62bacfa55c2188dc8b6ee20ad9c",
+  "files_sha256": {
+    "docs/EVIDENCE.md": "7c9c79ad7d122050fb432e69caffd95aa43b8257512acf8c6148142e86f52d3f",
+    "docs/JSON_FRAMING.md": "c55926f4e9980f90669512f2d74d37bcb6f728bd619c8820545a6d2be5070ef7",
+    "scripts/json-reference.py": "a02b06f66641c1440dceda6193955284e4a6fc57c378be242e7f989b7af900b4",
+    "src/bin/gz-msgs.rs": "9124509742762be4cd4b8ac6ae6c7f60e2856970acc4606a6ccde67514ff1a90",
+    "tests/cli.rs": "ce80c83f4912d63e36c53dfa211000661137733845972735e6226f61ccdae3d1",
+    "tests/fixtures/json-quaternion-quoted-numeric.json": "bc066cd7e450e5d9f76a5ed72e38883b888abd4b87e3e509ff963a1ab41cf993"
+  },
+  "modes": "all six 100644; no unstaged source difference",
+  "private_review": {
+    "raw_export": "Exact staged tree exported without Git metadata into a reviewer-owned directory; all six file hashes, modes and diff match the freeze. Cargo used exclusive two-job targets.",
+    "native_replay": "Fresh pinned protobuf 3.21.12 peer reproduced all 5,771 status and full-wire observations; the private proof is byte-identical to the author proof.",
+    "native_proof_sha256": "1864603272153a3dfb975640fffde2281517ea7dc8d7544406c9ec55bb7299f3",
+    "native_log_sha256": "eae5117d8eea98cffe3623ca4a03e479a5435df7a49121a8e88ab1cc7d1a2b93",
+    "rust_selected": "Private exact raw-export quaternion_quoted_numeric_matches_native passed 1/0 over all 408 fixture rows, 155 accepted exact wires and 253 rejected controls.",
+    "rust_log_sha256": "0bfa69b9296763128dbfca157d1bfc72d5c7a9125436152fcb8df080cda5f2d3",
+    "parent_negative": "A separate raw public-parent CLI rejected the exact {\"w\":\"0x7.\"} witness, while the native peer and candidate both accepted it with wire 290000000000001c40.",
+    "parent_negative_proof_sha256": "3179918c6150f685d22225d0f7347e6320b8255e5ef431640b469a4d6d2524ef"
+  },
+  "assertion_review": "Descriptor gating limits the component patch to top-level Quaternion x/y/z/w and retains prior Vector3d x/y/z behavior. The fixture has 408 distinct type+input pairs and binds 28 unchanged prior fixture hashes. Controls cover quoted hex/decimal admission and rejection, duplicate and null order, signed zero, decimal rounding, bare and escaped keys, nested and array rejection, and Vector3d/StringMsg/Time isolation.",
+  "scope": "Bounded top-level gz.msgs.Quaternion quoted finite numeric component parity only; nested Pose fields, other descriptors and general MSG-02 JSON grammar remain open. This source verdict does not imply protected-hook, public or hosted qualification."
+}
