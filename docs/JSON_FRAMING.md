@@ -960,8 +960,8 @@ singleton objects, nested arrays, null entries or duplicate inner `value` keys.
 
 The new fixture has 55 distinct inputs: 43 matching observations comprise 35
 accepted exact wires and eight joint rejections. Twelve native-positive forms
-remain explicitly pending: ten singleton/nested-array/null-entry forms and two
-inner Header data `value` append forms. The public Header/stamp parent has 21
+were explicitly pending at that source boundary: ten singleton/nested-array/null-entry
+forms and two inner Header data `value` append forms. The public Header/stamp parent has 21
 accepted wrong wires among the matching observations. Cases include ordering,
 repeated equal keys, empty arrays/messages/values, null fields, multiple entries,
 stamp coexistence, both parents and invalid earlier entries.
@@ -978,5 +978,40 @@ and automatic 33/33 added executable lines with complete retained evidence.
 Independent [review](reviews/json-pose-header-data-append.json) rebuilt candidate
 and parent separately, confirmed the 21 corrected wrong wires and all 12 pending
 boundaries, and bound the retained changed-line proof. Final metadata binding,
-normal protected hook and exact hosted qualification remain required. Native rejection diagnostics,
+normal protected hook and exact hosted run `40307095086` passed on public
+`12814b4af826c90a79a1b347c35c2e28318b460c`, tree `37ec62c5`. Native rejection diagnostics,
 wider nested grammar, other descriptors and full MSG-02 remain unqualified.
+
+
+## Ordinary value arrays inside Header data messages
+
+This candidate appends duplicate ordinary `value` arrays within Header data
+messages under `Pose.position` and `Pose.orientation`. It uses serde RawValue
+arrays and ordered message members, replaces only the final array occurrence,
+and retains earlier fields for semantic validation. Null fields contribute no
+entries and empty arrays do not erase earlier strings. Each ordinary Header.data
+array is visited before the existing outer array append, including when there
+is only one outer array. Other Header keys and item fields remain available to
+reflection unchanged.
+
+The 65-input fixture records 57 matching observations: 41 accepted exact wires
+and 16 joint rejections. Cases include order, equal values, multiple strings,
+null/empty fields, Unicode and escaped keys, invalid earlier or later entries,
+multiple data messages, repeated outer arrays/headers/parents and stamp coexistence.
+The accepted parent has 31 wrong-wire observations among these rows. Eight
+native-positive inner singleton/nested-array/null-entry forms remain pending;
+the ten earlier outer Header.data shape witnesses remain pending as well.
+
+All 33 prior JSON fixtures retain their bytes. The two old inner-value pending
+assertions are strengthened to native wire equality. Five selected Pose tests
+and fresh native replay of 6,718 outcomes pass. The exact source gate passed
+133 Rust tests including 36 CLI, strict 3,032/3,052 owned lines and 4,978/5,047
+regions, and automatic 25/25 added executable lines with complete retained
+evidence. Independent [review](reviews/json-pose-header-value-append.json)
+confirmed the 31 parent wrong wires, all 18 explicit inner/outer pending rejection
+witnesses, fixture preservation and the retained changed-line proof. An earlier
+unsupported-edition formatting failure is preserved and excluded; the corrected
+source passed without an edition or policy change. Final metadata binding, normal
+protected hook and exact hosted candidate result remain required. This slice does
+not qualify native reject diagnostics, other descriptors, richer nested grammar
+or MSG-02 as a whole.

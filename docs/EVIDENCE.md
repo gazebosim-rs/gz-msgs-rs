@@ -2308,9 +2308,9 @@ among those inputs. Cases cover both parents, nested repeated keys at each level
 empty/null/scalar replacement, signed/quoted integer boundaries, direct component
 coexistence, key spellings and invalid earlier fields. Three selected Pose CLI
 tests pass; all 31 previous JSON fixture hashes are preserved. Fresh native replay
-contains 6,598 outcomes. Two separately pinned repeated Header.data examples are
-still accepted wrong-wire and remain pending, so broader Header or list merging
-is not claimed. Native reject diagnostics and full MSG-02 remain unqualified.
+contains 6,598 outcomes. At that source boundary, two separately pinned repeated Header.data examples
+were accepted wrong-wire and pending, so broader Header or list merging
+was not claimed. Native reject diagnostics and full MSG-02 remain unqualified.
 The exact Header source gate passed 131 Rust tests including 34 CLI and strict
 whole-file/vendor coverage. Separate retained coverage measured 2,976/2,996
 production lines, 4,884/4,948 regions and 63/63 added executable CLI lines.
@@ -2357,6 +2357,41 @@ snapshot and source-package gates passed; retained staged evidence is complete.
 Independent [review](reviews/json-pose-header-data-append.json) replayed four
 selected Rust tests, fresh native outcomes and the 21 parent wrong-wire controls,
 reproduced all 12 pending boundaries and independently bound the retained 33/33
-changed-line proof. Final metadata binding, protected normal hook and exact
-hosted candidate qualification remain required. The bounded array append work
-does not complete MSG-02.
+changed-line proof. Final metadata binding and the protected normal hook passed
+on public `12814b4af826c90a79a1b347c35c2e28318b460c`, reviewer-bound tree
+`37ec62c5`; exact hosted run `40307095086` succeeded. The bounded array append
+work does not complete MSG-02.
+
+
+## Ordinary value arrays inside Pose Header.data entries
+
+The next isolated candidate reuses the maintained raw-array parser for ordinary
+inner `Header.Map.value` arrays. It preserves encounter order and earlier values
+for reflection validation, including invalid earlier entries. Every ordinary
+Header.data array occurrence is visited before the existing outer append. No
+schema, dependency, source pin, numerical threshold or coverage exclusion changes.
+
+The new fixture has 65 distinct inputs: 57 matching observations comprise 41
+accepted exact wires and 16 joint rejections. The accepted public parent has 31
+wrong wires among those matching rows. Eight native-positive inner singleton,
+nested-array and null-entry forms remain pending. The ten prior outer Header.data
+shape witnesses also remain pending. Two prior inner-value wrong-wire assertions
+now require exact native equality; all 33 previous JSON fixture hashes remain.
+
+Five selected Pose CLI tests pass. Fresh native peer replay reproduces 6,718
+status/full-wire outcomes, including all prior fixtures and the new explicit
+boundaries. The exact source gate passed 133 Rust tests including 36 CLI,
+3,032/3,052 owned production lines, 4,978/5,047 regions and automatic 25/25 added
+executable lines. Strict vendor, policy, snapshot and source-package gates passed;
+all five staged evidence files are retained and complete. An earlier style draft
+used let-chain syntax unsupported by this crate's Rust 2021 edition and failed
+at formatting before tests. Its failed/partial evidence is preserved and excluded;
+the supported equivalent source passed without changing the edition or thresholds.
+
+Independent [review](reviews/json-pose-header-value-append.json) rebuilt candidate,
+parent and native peer separately, reproduced all 31 corrected parent wrong wires,
+confirmed all eight inner and ten outer pending rejection witnesses, verified all
+33 fixture pins and independently recomputed the retained 25/25 added-line proof.
+Final metadata binding, mandatory normal hook and exact hosted candidate result
+remain required. Native rejection diagnostics, richer nested grammar and full
+MSG-02 remain unqualified.

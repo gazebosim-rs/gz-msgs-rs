@@ -40,6 +40,7 @@ pose_quoted = json.loads((root / 'tests/fixtures/json-pose-quoted-numeric.json')
 pose_merge = json.loads((root / 'tests/fixtures/json-pose-parent-merge.json').read_text())
 pose_header = json.loads((root / 'tests/fixtures/json-pose-header-stamp-merge.json').read_text())
 pose_data = json.loads((root / 'tests/fixtures/json-pose-header-data-append.json').read_text())
+pose_values = json.loads((root / 'tests/fixtures/json-pose-header-value-append.json').read_text())
 version = subprocess.check_output(['pkg-config', '--modversion', 'protobuf'], text=True).strip()
 assert version == fixture['native_protobuf']
 assert version == time_float['native_protobuf']
@@ -166,6 +167,18 @@ assert sum(row['cpp_status'] == 0 for row in pose_data['rows']) == 35
 assert len(pose_data['pending_grammar']) == 12
 assert all(row['cpp_status'] == 0 for row in pose_data['pending_grammar'])
 assert len({row['input_hex'] for row in pose_data['rows'] + pose_data['pending_grammar']}) == 55
+assert version == pose_values['native_protobuf']
+assert hashlib.sha256((root / 'tests/protobuf_peer.cc').read_bytes()).hexdigest() == pose_values['probe_source_sha256']
+assert hashlib.sha256((root / 'target/native/messages.pb').read_bytes()).hexdigest() == pose_values['descriptor_sha256']
+assert pose_values['native_peer_sha256'] == historical_peer_sha256
+assert len(pose_values['prior_fixture_sha256']) == 33
+for name, expected in pose_values['prior_fixture_sha256'].items():
+    assert hashlib.sha256((root / name).read_bytes()).hexdigest() == expected, name
+assert len(pose_values['rows']) == 57
+assert sum(row['cpp_status'] == 0 for row in pose_values['rows']) == 41
+assert len(pose_values['pending_grammar']) == 8
+assert all(row['cpp_status'] == 0 for row in pose_values['pending_grammar'])
+assert len({row['input_hex'] for row in pose_values['rows'] + pose_values['pending_grammar']}) == 65
 assert len(quoted_hex_space['prior_fixture_sha256']) == 26
 for name, expected in quoted_hex_space['prior_fixture_sha256'].items():
     assert hashlib.sha256((root / name).read_bytes()).hexdigest() == expected, name
@@ -255,6 +268,7 @@ rows += pose_quoted['rows'] + pose_quoted['repeated_parent_pending']
 rows += pose_merge['rows']
 rows += pose_header['rows'] + pose_header['repeated_header_data_pending']
 rows += pose_data['rows'] + pose_data['pending_grammar']
+rows += pose_values['rows'] + pose_values['pending_grammar']
 for row in rows:
     result = subprocess.run([str(root / 'target/native/protobuf-peer'), str(root / 'target/native/messages.pb'), row.get('type', 'gz.msgs.Time'), 'encode-json'], input=bytes.fromhex(row['input_hex']), capture_output=True)
     assert result.returncode == row['cpp_status'] and result.stdout.hex() == row['cpp_stdout_hex'], row
@@ -291,6 +305,7 @@ proof = dict(protobuf_version=version, cases=len(rows), matching_cases=len(fixtu
              pose_merge_cases=len(pose_merge['rows']), pose_merge_native_positive=sum(row['cpp_status'] == 0 for row in pose_merge['rows']), pose_merge_fixture_sha256=sha(root / 'tests/fixtures/json-pose-parent-merge.json'),
              pose_header_cases=len(pose_header['rows']), pose_header_native_positive=sum(row['cpp_status'] == 0 for row in pose_header['rows']), pose_header_data_pending=len(pose_header['repeated_header_data_pending']), pose_header_fixture_sha256=sha(root / 'tests/fixtures/json-pose-header-stamp-merge.json'),
              pose_data_cases=len(pose_data['rows']), pose_data_native_positive=sum(row['cpp_status'] == 0 for row in pose_data['rows']), pose_data_pending=len(pose_data['pending_grammar']), pose_data_fixture_sha256=sha(root / 'tests/fixtures/json-pose-header-data-append.json'),
+             pose_values_cases=len(pose_values['rows']), pose_values_native_positive=sum(row['cpp_status'] == 0 for row in pose_values['rows']), pose_values_pending=len(pose_values['pending_grammar']), pose_values_fixture_sha256=sha(root / 'tests/fixtures/json-pose-header-value-append.json'),
              probe_source_sha256=sha(root / 'tests/protobuf_peer.cc'), probe_binary_sha256=current_peer_sha256, historical_peer_binary_sha256=historical_peer_sha256)
 args.output.parent.mkdir(parents=True, exist_ok=True)
 args.output.write_text(json.dumps(proof, indent=2) + '\n')

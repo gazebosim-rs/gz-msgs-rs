@@ -1,0 +1,131 @@
+{
+  "decision": "approved_for_bounded_Pose_Header_Map_value_array_append",
+  "reviewer": "/root/transport_owner_v2",
+  "reviewed_at": "2026-10-26T11:15:32.450249+00:00",
+  "source_manifest_sha256": "674d47bc553e8fbfa8df93eed0a7a320eef4ddb9880d7065c1d27ecb1b4d4bc5",
+  "parent": "12814b4af826c90a79a1b347c35c2e28318b460c",
+  "source_tree": "f8b1087bbaf69c1dad2de73bc8333d500794015c",
+  "source_diff_sha256": "8cb28935ab5d2ef60bc8c29fcae005194413834774eaa330c0a57cfcdd460739",
+  "files_sha256": {
+    "docs/EVIDENCE.md": "31d5b1b80a0525c558dc2d3ecea0972dda788d1123ebaa2b474bd6d54f35514e",
+    "docs/JSON_FRAMING.md": "2a1dbda411ff03dac254248045706126d06614f5526bbb48358048cb0a574878",
+    "scripts/json-reference.py": "8c60cc6b6f93e1bc17fd02846d36d9ed116fa17f04f8406525d5b97cf6eb6ed5",
+    "src/bin/gz-msgs.rs": "4266970d508e68af4c6ed34a63973ce58a0c0680d4786e39277e607fea8163b3",
+    "tests/cli.rs": "398473bb97527a799ba85009a18aa5ce8b94df2fff86623f26d853ddd0098314",
+    "tests/fixtures/json-pose-header-value-append.json": "b8271ef7ec1ebe03c3533fa886a9f899b7387ace22be2b7946c0089d65db5f15"
+  },
+  "modes": {
+    "docs/EVIDENCE.md": "100644",
+    "docs/JSON_FRAMING.md": "100644",
+    "scripts/json-reference.py": "100644",
+    "src/bin/gz-msgs.rs": "100644",
+    "tests/cli.rs": "100644",
+    "tests/fixtures/json-pose-header-value-append.json": "100644"
+  },
+  "no_unstaged_tracked_diff": true,
+  "semantic_review": "Generalizes the approved RawValue array append helper by field name and applies it to value arrays in every ordinary Header.data message before the outer data append. Encounter order and earlier occurrences remain intact for reflection validation, and message entries stay separate; null/empty fields contribute no erasure. Maintained serde MapAccess/RawValue parsing is reused, not a new JSON grammar. The two former inner-value pending assertions now require exact native full-wire equality;33 historical fixture byte hashes stay unchanged. No schema/dependency/edition/policy/threshold/exclusion change; Apache2.0/OSRF2026 notices retained.",
+  "independent_replay": {
+    "export": "All758 candidate and757 public-parent raw Git blobs independently exported and hashed. Frozen source/index/tree/diff/modes/no-unstaged checked before and after; all758 candidate bytes unchanged. Fresh separate reviewer-owned Cargo2 targets for candidate and public parent; no producer cache reuse.",
+    "selected_rust": "Exact successful replacement source passed five Pose CLI tests,0 failed,0 ignored,31 other tests filtered. Preliminary V1 selected output is not used as independent evidence.",
+    "native": "Fresh reviewer-built pinned protobuf3.21.12 peer reproduced all6718 exact native status/full-wire outcomes; proof SHA39a8fb2d equals producer proof.",
+    "sensitivity_control": "Fresh independently built public parent has31 accepted wrong wires among57 matching rows; candidate matches41 accepted exact wires and16 joint rejections. All8 inner native-positive pending forms independently remain Rust rejections, and all10 prior outer Header.data shape gaps remain unchanged Rust rejections. This is a meaningful actual wrong-wire parent control, not a setup failure.",
+    "comparison_summary": {
+      "matching": 57,
+      "native_positive_matching": 41,
+      "joint_rejected": 16,
+      "inner_pending": 8,
+      "inner_pending_status_counts": {
+        "1": 8
+      },
+      "prior_outer_pending": 10,
+      "parent_accepted_wrong_wires": 31
+    },
+    "binary_sha256": {
+      "candidate_binary_sha256": "7f21e1d3798fb5ef08e83f14e5a658420e6c6a6b7fe360e4774a8d65f8e129f7",
+      "parent_binary_sha256": "b99d5af4aa9f129e0693adb2ff88b2645a107910e13fe33ac3ae2755990eef4c",
+      "peer_sha256": "16744aebb5531163dc87224e6d6cec56bba40d4d1a62035ae465342649ac540b",
+      "descriptor_sha256": "7ee20050da11c5d683776f4d04c16b1574bcb9cbdc851fea98b44516312375a8"
+    },
+    "logs_sha256": {
+      "candidate-selected.log": "669dfe11688351155cdd7491f6427115ed791e66d1a1ec74ab2d54c8f7b51f01",
+      "parent-build.log": "6444c2664fa7255bf7f4ad5a40a6f71fb86ddac2a93298cbea591fe92ae5da88",
+      "native-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "native-replay.log": "11d6f60ec8ce629deaeb0fa10f49e4932c2064f0618513fdfc47c49f9920dfbc",
+      "native-proof.json": "39a8fb2d6f2c9786a09247bbc42e37777fa28ce1eb22ea8ca7f2ff62da0cb4bf",
+      "independent-comparison.json": "01645b9fc351903e51cb800064aa49a08de3eae028fd71f6e2e7abd0488e4fdf"
+    },
+    "prior_fixtures": "All33 prior JSON fixture SHA256 pins independently checked.",
+    "overlap": "Ordinary correctness Cargo2/native review under explicit Root overlap allowance after its SDK Rust build cleared; no timing or performance inference."
+  },
+  "author_full_source_gate": {
+    "result": "EXIT0 exact six-file replacement source tree",
+    "log_sha256": "b6161ce63cef6d44f57afe2dfed0833b10d6308595ccb48be332b15da3f13f0e",
+    "rust_tests": 133,
+    "cli_tests": 36,
+    "native_outcomes": 6718,
+    "owned_production": {
+      "lines": [
+        3032,
+        3052
+      ],
+      "regions": [
+        4978,
+        5047
+      ]
+    },
+    "changed_production": {
+      "src/bin/gz-msgs.rs": [
+        25,
+        25
+      ]
+    },
+    "owned_vendors": {
+      "prost-derive": {
+        "lines": [
+          6,
+          6
+        ],
+        "regions": [
+          8,
+          8
+        ]
+      },
+      "prost-reflect": {
+        "lines": [
+          96,
+          97
+        ],
+        "regions": [
+          205,
+          206
+        ]
+      }
+    },
+    "retained_stage_result": "artifacts/staged/f8b1087bbaf69c1dad2de73bc8333d500794015c-qyzjrpip/stage-result.json",
+    "retained_stage_result_sha256": "ebf436d2aabce7594d5ac8d475e71d30e6f0f172ab9e353c80db08f3c4d5d82d",
+    "retained_files_sha256": {
+      "coverage/coverage.json": "db5f43301c920017ba926d5f95e4cddf9025a178b94ec23e0e4efb472981d802",
+      "coverage/coverage.lcov": "8c0b1525cbe37b605614c7c8e51c2a651f578b23fd7e4f723ad5ada61a5aadae",
+      "coverage/changed-production.json": "fd0cfa4664249b89dc36b0a3e033d7edbcd82f5883287310aff1189bd2153c5e",
+      "coverage/owned-patches.json": "db05d13e911f269ab1cb6dd92260645760103ce88b5f0987e3e2354264f5835d",
+      "coverage-input.json": "26892a2d3dc45b3738616d15d9a0730079f91217d4471e8f2d3e49115892f905"
+    },
+    "evidence_state": "complete",
+    "controls": "All strict policy/snapshot/vendor/intended-index/source-package checks passed",
+    "overlap": "Cargo2 ordinary correctness after Transport timing CLEAR; Root SDK ordinary overlap permitted, no performance claim"
+  },
+  "retained_gate_binding": "Exact tree,passed checks,complete evidence,no missing outputs and all five retained hashes independently verified. Every authoritative source hash matches raw candidate. Authoritative added CLI lines intersect retained LCOV at25/25 covered executable lines, matching automatic report. No fresh independent full coverage run is claimed.",
+  "excluded_previews": "No review or replay of V1/V2 previews. Failed V2 Rust2024 let-chain/Rust2021 formatter output and failed/partial stage result remain excluded; exact replacement explicit continue/if-let source passes the producer Rust2021 gate and this independent replay.",
+  "parent_hosted": {
+    "run": 40307095086,
+    "head_sha": "12814b4af826c90a79a1b347c35c2e28318b460c",
+    "status": "completed",
+    "conclusion": "success",
+    "independently_verified": true
+  },
+  "limitations": [
+    "Only ordinary inner Header.Map.value arrays under Pose.position/orientation are qualified. Eight inner and ten earlier outer native-positive shape gaps remain explicit, along with all broader existing parser gaps.",
+    "Native rejection diagnostic exit codes,other descriptors/full nested grammar and fullMSG02 remain unqualified.",
+    "Final metadata binding,mandatory normal protected hook,public push and exact hosted candidate qualification remain required."
+  ]
+}

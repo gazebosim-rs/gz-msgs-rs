@@ -525,14 +525,14 @@ fn json_members_bytes(members: &JsonMembers) -> Vec<u8> {
     output
 }
 
-// Repeated Header.data arrays append in native protobuf JSON. Keep earlier
-// arrays for validation, including invalid message entries; only replace the last.
-fn append_header_data_arrays(members: &mut JsonMembers) -> Option<()> {
+// Ordinary Header.data and inner value arrays append in native protobuf JSON.
+// Keep earlier arrays for validation; only replace the last occurrence.
+fn append_header_array_members(members: &mut JsonMembers, field: &str) -> Option<()> {
     let indices: Vec<_> = members
         .0
         .iter()
         .enumerate()
-        .filter_map(|(index, (key, _))| (key == "data").then_some(index))
+        .filter_map(|(index, (key, _))| (key == field).then_some(index))
         .collect();
     if indices.len() < 2 {
         return None;
@@ -560,7 +560,26 @@ fn append_header_data_arrays(members: &mut JsonMembers) -> Option<()> {
     Some(())
 }
 
-// Only Header/stamp under the two Pose component parents is qualified here.
+fn merge_header_data_values(
+    raw: &gz_msgs::serde_json::value::RawValue,
+) -> Option<Box<gz_msgs::serde_json::value::RawValue>> {
+    let mut entries: Vec<Box<gz_msgs::serde_json::value::RawValue>> =
+        gz_msgs::serde_json::from_str(raw.get()).ok()?;
+    for entry in &mut entries {
+        let mut members: JsonMembers = gz_msgs::serde_json::from_str(entry.get()).ok()?;
+        append_header_array_members(&mut members, "value");
+        *entry = gz_msgs::serde_json::value::RawValue::from_string(
+            String::from_utf8(json_members_bytes(&members)).ok()?,
+        )
+        .ok()?;
+    }
+    gz_msgs::serde_json::value::RawValue::from_string(
+        gz_msgs::serde_json::to_string(&entries).ok()?,
+    )
+    .ok()
+}
+
+// Only Header fields under the two Pose component parents are qualified here.
 // Retain earlier occurrences so invalid earlier fields still reach reflection.
 fn merge_pose_header_objects(input: &[u8], path: &[&str]) -> Option<Vec<u8>> {
     let (field, rest) = path.split_first()?;
@@ -587,7 +606,15 @@ fn merge_pose_header_objects(input: &[u8], path: &[&str]) -> Option<Vec<u8>> {
         return None;
     }
     if *field == "header" {
-        append_header_data_arrays(&mut combined);
+        for (key, value) in &mut combined.0 {
+            if key != "data" {
+                continue;
+            }
+            if let Some(merged) = merge_header_data_values(value) {
+                *value = merged;
+            }
+        }
+        append_header_array_members(&mut combined, "data");
     }
     let raw = json_members_bytes(&combined);
     let raw = merge_pose_header_objects(&raw, rest).unwrap_or(raw);
