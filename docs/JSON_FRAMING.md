@@ -179,7 +179,8 @@ quoted controls, malformed comments and whitespace before a dot. An
 independent pre-approval audit caught a second-dot error: native rejects
 `1.2.e3`, `7e2.` and related forms that the initial rule accepted. Fourteen
 negative rows now guard fractions and prior exponents; five native-positive
-`07.`, `0x7.` and `0x7.e3` cases remain explicit Rust-negative grammar gaps.
+`07.`, `0x7.` and `0x7.e3` cases were explicit Rust-negative grammar gaps at
+that slice.
 The fixture asserts native acceptance and complete binary output. The prior 440 rows and
 seven fixtures are unchanged; `scripts/json-reference.py` replays all 503
 native outcomes. The focused Rust comparison first failed on `{"sec":0.}`
@@ -580,7 +581,7 @@ zero. Other descriptors and unrelated JSON positions are unchanged.
 The source-bound fixture has 252 status/full-wire rows, 180 native accepted and
 72 rejected. The six earlier native-only `07.` rows remain byte-identical
 historical observations and now require native parity. Six native-positive
-`Time.sec` forms remain explicit Rust-negative gaps. All 2,166 earlier native
+`Time.sec` forms were explicit Rust-negative gaps at that slice. All 2,166 earlier native
 observations and 20 earlier fixture hashes remain exact; the combined native
 replay checks 2,424 outcomes. A 252-form quoted-input sweep found no behavior
 changes against the public parent; six quoted-array overflow gaps predate this
@@ -593,4 +594,38 @@ independent [review](reviews/json-leading-zero.json) reproduced all 2,424
 native outcomes and verified the 252 quoted status/wire controls against
 separately built parent and candidate binaries. The corrected source and
 assertions are approved; the first candidate tree is superseded. The final
-staged gate, protected hook and hosted qualification remain pending.
+staged gate and protected hook passed on public
+`17b0b9b20d3886fe19eb274c0525afbc844cc274`, with hosted run
+`40245881573` successful.
+
+## Time leading-zero numeric values
+
+Pinned protobuf 3.21.12 scans an unquoted numeric token through digits,
+`.`, `e`, `E`, signs and lowercase `x`. A dot or `e`/`E` selects double
+conversion before the bare leading-zero rejection. The pinned object
+writer passes that double through `DataPiece::ToInt64` for `Time.sec` and
+`ToInt32` for `Time.nsec`, accepting integral values in the field's range.
+This bounded adapter applies only to those two top-level fields and uses
+the existing decimal and hexadecimal float token recognizers. It writes
+the integral decimal value for the maintained descriptor decoder.
+
+The new fixture records 139 distinct status/full-wire controls: 71 native
+accepted and 68 rejected. Sixty-one accepted rows were Rust-negative on
+the public parent; ten already matched. Combined and duplicate fields,
+quoted values, unknown fields, fractions and measured overflow are controls.
+The six native-positive `Time`
+rows in the unchanged leading-zero fixture now require exact status and
+wire parity. The unchanged trailing-dot fixture has two overlapping `Time`
+rows; the first exact staged gate exposed their stale Rust-negative assertion,
+which now requires native parity. Twenty-one prior fixture hashes and all 2,424
+prior native outcomes remain protected; the combined pinned replay checks
+2,563 observations, with 2,562 distinct type/input pairs because one new
+`Time.sec` `7.0` observation overlaps an older fixture.
+Quoted values, other descriptors, malformed suffixes and nonintegral or
+measured out-of-range conversions stay on their existing paths. General JSON
+grammar, diagnostics and full MSG-02 acceptance remain open. An independent
+[review](reviews/json-time-float.json) rebuilt the pinned peer, reproduced
+all 2,563 outcomes, passed 24 private CLI tests and found no mismatch in
+120 additional bounded forms. The source gate passed 121 Rust tests and
+strict coverage. Final staged gate, protected hook and hosted qualification
+remain pending.

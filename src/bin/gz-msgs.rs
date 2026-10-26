@@ -247,6 +247,35 @@ fn proto_leading_zero_float(value: &[u8], width: FloatWidth) -> Option<(usize, V
     }
 }
 
+#[derive(Clone, Copy)]
+enum TimeField {
+    Seconds,
+    Nanoseconds,
+}
+
+fn proto_time_float_integer(value: &[u8], field: TimeField) -> Option<(usize, i64)> {
+    // The pinned JSON lexer renders dotted or exponent tokens as double;
+    // DataPiece then requires an exact signed integer conversion.
+    let (length, Value::F64(number)) = proto_leading_zero_float(value, FloatWidth::Double)
+        .or_else(|| proto_unquoted_hex_float(value, FloatWidth::Double))?
+    else {
+        return None;
+    };
+    if number.fract() != 0.0 {
+        return None;
+    }
+    let converted = match field {
+        TimeField::Seconds if (-9223372036854775808.0..9223372036854775808.0).contains(&number) => {
+            number as i64
+        }
+        TimeField::Nanoseconds if (i32::MIN as f64..=i32::MAX as f64).contains(&number) => {
+            (number as i32) as i64
+        }
+        _ => return None,
+    };
+    Some((length, converted))
+}
+
 fn proto_uint64_array(
     value: &[u8],
 ) -> Result<Option<UInt64ArrayNumbers>, Box<dyn std::error::Error>> {
@@ -311,6 +340,7 @@ fn normalize_proto_json(
     float_data: Option<FloatWidth>,
     repeated_data: bool,
     uint64_data: bool,
+    time_data: bool,
 ) -> NormalizedProtoJson {
     #[derive(Clone, Copy, PartialEq, Eq)]
     enum Frame {
@@ -323,6 +353,7 @@ fn normalize_proto_json(
     let mut index = 0;
     let mut previous = None;
     let mut data_field = false;
+    let mut time_field = None;
     let mut float_array_depth = None;
     let mut float_item_index = 0;
     let mut float_patches = Vec::new();
@@ -356,8 +387,17 @@ fn normalize_proto_json(
                 }
             }
             if frames.len() == 1 && frames.last() == Some(&Frame::ObjectKey) {
-                data_field = gz_msgs::serde_json::from_slice::<String>(&output[output_start..])
-                    .is_ok_and(|key| key == "data");
+                let key = gz_msgs::serde_json::from_slice::<String>(&output[output_start..]).ok();
+                data_field = key.as_deref() == Some("data");
+                time_field = if time_data {
+                    match key.as_deref() {
+                        Some("sec") => Some(TimeField::Seconds),
+                        Some("nsec") => Some(TimeField::Nanoseconds),
+                        _ => None,
+                    }
+                } else {
+                    None
+                };
             } else if float_array_depth == Some(frames.len()) {
                 if let (Some(width), Ok(value)) = (
                     float_data,
@@ -400,8 +440,17 @@ fn normalize_proto_json(
                 }
             }
             if frames.len() == 1 && frames.last() == Some(&Frame::ObjectKey) {
-                data_field = gz_msgs::serde_json::from_slice::<String>(&output[output_start..])
-                    .is_ok_and(|key| key == "data");
+                let key = gz_msgs::serde_json::from_slice::<String>(&output[output_start..]).ok();
+                data_field = key.as_deref() == Some("data");
+                time_field = if time_data {
+                    match key.as_deref() {
+                        Some("sec") => Some(TimeField::Seconds),
+                        Some("nsec") => Some(TimeField::Nanoseconds),
+                        _ => None,
+                    }
+                } else {
+                    None
+                };
             } else if float_array_depth == Some(frames.len()) {
                 if let (Some(width), Ok(value)) = (
                     float_data,
@@ -442,6 +491,15 @@ fn normalize_proto_json(
                 output.push(b'"');
                 if frames.len() == 1 {
                     data_field = &input[start..index] == b"data";
+                    time_field = if time_data {
+                        match &input[start..index] {
+                            b"sec" => Some(TimeField::Seconds),
+                            b"nsec" => Some(TimeField::Nanoseconds),
+                            _ => None,
+                        }
+                    } else {
+                        None
+                    };
                 }
             } else {
                 output.extend_from_slice(&input[start..index]);
@@ -481,6 +539,17 @@ fn normalize_proto_json(
                     index += length;
                     continue;
                 }
+            }
+        }
+        if frames.len() == 1 && previous == Some(b':') {
+            if let Some((length, number)) =
+                time_field.and_then(|field| proto_time_float_integer(&input[index..], field))
+            {
+                let decimal = number.to_string();
+                output.extend_from_slice(decimal.as_bytes());
+                previous = decimal.as_bytes().last().copied();
+                index += length;
+                continue;
             }
         }
         if uint64_data && data_value_start.is_some() && matches!(previous, Some(b':' | b'[' | b','))
@@ -606,6 +675,7 @@ fn normalize_proto_json(
                 *frames.last_mut().unwrap() = Frame::ObjectKey;
                 if frames.len() == 1 {
                     data_field = false;
+                    time_field = None;
                 }
             }
             b',' if float_array_depth == Some(frames.len()) => {
@@ -710,7 +780,13 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 scalar_patches,
                 array_ranges,
                 data_ranges,
-            } = normalize_proto_json(&input, float_data, repeated_data, uint64_data);
+            } = normalize_proto_json(
+                &input,
+                float_data,
+                repeated_data,
+                uint64_data,
+                descriptor.full_name() == "gz.msgs.Time",
+            );
             let single_scalar = data_ranges.len() == 1 && {
                 let (start, end) = data_ranges[0];
                 let value = normalized[start..end].trim_ascii();

@@ -1988,7 +1988,8 @@ unrelated descriptors retain their rejection paths.
 
 The new fixture binds 252 status/full-wire rows, 180 native accepted and 72
 rejected. Six prior native-only `07.` observations are byte-identical and now
-require parity. Six native-positive `Time.sec` forms remain explicit gaps. All
+require parity. Six native-positive `Time.sec` forms were explicit gaps at
+this slice. All
 20 earlier fixture hashes and 2,166 native rows are retained; the pinned C++
 replay checks 2,424 total outcomes. A 252-form quoted-input preservation sweep
 found no behavior changes; six quoted-array overflow gaps predate this
@@ -1999,5 +2000,37 @@ checks, five unchanged original C++ CLI cases and strict coverage. An
 independent [review](reviews/json-leading-zero.json) reproduced all 2,424
 native outcomes and confirmed the 252 quoted forms unchanged against the
 public parent. The corrected source and assertions are approved; the first
-candidate tree is superseded. Final staged gate, normal hook and hosted
-qualification remain pending. MSG-02 stays open.
+candidate tree is superseded. Final staged gate and the normal protected hook
+passed on public `17b0b9b20d3886fe19eb274c0525afbc844cc274`; hosted run
+`40245881573` passed. MSG-02 stays open.
+
+## Bounded Time numeric conversion controls
+
+Pinned protobuf 3.21.12 parses a dotted or `e`/`E` numeric token as double,
+then its object writer converts that double to `Time.sec` (`int64`) or
+`Time.nsec` (`int32`) only if the signed integer conversion is exact. The
+new adapter handles top-level unquoted leading-zero decimal forms and
+lowercase `0x` forms whose `e`/`E` digit or dot selects that native double
+path. It replaces a bounded integral token with its decimal value before
+the maintained descriptor decoder runs. The fixture checks fractional values,
+malformed suffixes and selected overflow boundaries as rejected controls.
+
+The new fixture adds 139 distinct native status/full-wire rows: 71 accepted
+and 68 rejected. It includes 61 native-positive forms the public parent
+rejected and 10 already matching forms. Combined and duplicate fields,
+quoted values, unknown fields, fractions and measured overflow are controls.
+The six native-positive `Time` rows
+in the unchanged prior fixture now require exact wire parity instead of the
+historical Rust-negative disposition. The two overlapping `Time` rows in the
+unchanged trailing-dot fixture likewise require native parity in its broad
+CLI assertion. The first exact staged gate caught that stale assertion and
+failed one CLI test; the corrected focused and exact source staged gates pass.
+All 21 prior fixture hashes and 2,424 native outcomes remain protected; the
+combined replay checks 2,563 observations, with 2,562 distinct type/input
+pairs because `Time.sec` `7.0` also appears in an older fixture.
+General JSON grammar, other integer descriptors, diagnostic parity and
+MSG-02 acceptance remain open. An independent [review](reviews/json-time-float.json)
+rebuilt the pinned peer, reproduced all 2,563 outcomes, passed 24 private
+CLI tests and found no mismatch in 120 additional bounded forms. The source
+gate passed 121 Rust tests and strict coverage. Final staged gate, protected
+hook and hosted qualification are pending.

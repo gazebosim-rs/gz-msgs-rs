@@ -916,8 +916,7 @@ fn json_requires_exactly_one_complete_document() {
         check(row, row["type"].as_str().unwrap(), true);
     }
     for row in numeric_pending {
-        let supported_double = row["type"] == "gz.msgs.Double_V";
-        check(row, row["type"].as_str().unwrap(), supported_double);
+        check(row, row["type"].as_str().unwrap(), true);
     }
     for row in negative_scalars.iter().chain(negative_composites) {
         check(row, row["type"].as_str().unwrap(), true);
@@ -1219,8 +1218,47 @@ fn leading_zero_float_data_matches_native() {
             &["encode-json", row["type"].as_str().unwrap()],
             &unhex(row["input_hex"].as_str().unwrap()),
         );
-        assert!(!result.status.success(), "{}", row["token"]);
-        assert!(result.stdout.is_empty(), "{}", row["token"]);
+        assert!(result.status.success(), "{}", row["token"]);
+        assert_eq!(
+            result.stdout,
+            unhex(row["cpp_stdout_hex"].as_str().unwrap()),
+            "{}",
+            row["token"]
+        );
+    }
+}
+
+#[test]
+fn time_leading_zero_numeric_matches_native() {
+    let fixture: gz_msgs::serde_json::Value =
+        gz_msgs::serde_json::from_str(include_str!("fixtures/json-time-leading-zero.json"))
+            .unwrap();
+    assert_eq!(fixture["native_protobuf"], "3.21.12");
+    let rows = fixture["rows"].as_array().unwrap();
+    assert_eq!(rows.len(), 139);
+    let unhex = |s: &str| {
+        s.as_bytes()
+            .chunks_exact(2)
+            .map(|pair| u8::from_str_radix(std::str::from_utf8(pair).unwrap(), 16).unwrap())
+            .collect::<Vec<_>>()
+    };
+    for row in rows {
+        let result = run(
+            &["encode-json", row["type"].as_str().unwrap()],
+            &unhex(row["input_hex"].as_str().unwrap()),
+        );
+        assert_eq!(
+            result.status.success(),
+            row["cpp_status"] == 0,
+            "{}",
+            row["label"]
+        );
+        assert_eq!(
+            result.stdout,
+            unhex(row["cpp_stdout_hex"].as_str().unwrap()),
+            "{}",
+            row["label"]
+        );
     }
 }
 

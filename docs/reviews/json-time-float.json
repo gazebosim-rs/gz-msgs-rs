@@ -1,0 +1,37 @@
+{
+  "decision": "approved",
+  "reviewer": "/root/transport_fallback",
+  "author": "/root/msgs_review_fallback",
+  "scope": "Bounded gz.msgs.Time top-level sec/nsec unquoted dotted/exponent leading-zero decimal and lowercase 0x double-path tokens, exact finite integral conversion to int64/int32. General JSON grammar, other descriptors, undefined overflow behavior and full MSG-02 remain open.",
+  "base": "17b0b9b20d3886fe19eb274c0525afbc844cc274",
+  "source_proposal": "artifacts/json-time-float/proposal.json",
+  "source_proposal_sha256": "621a6701a645ae14863e8da9e8d428d6dfc0df05ddde32a9bc73636a132b8dc7",
+  "staged_tree": "d7e150e2940f14bf48dfb6a01b2800f4b034d923",
+  "staged_diff_sha256": "0a3e66b3c58ae34d0fc22db45299aec65041483b208fc80433f1e01c80e90b8d",
+  "files_sha256": {
+    "docs/EVIDENCE.md": "f75e195aecd05a4e3e077b70a3a47a32f986480d3e1554f3fc34e88537efb7cb",
+    "docs/JSON_FRAMING.md": "d4abc2b64f2611fbe0418b2c5e90e8539b33408fcbcd430946124b04c798caaa",
+    "scripts/json-reference.py": "9f436e67225b3e72e7e9198cd1f7b358847fb3754eb02ba1bfb21f922993fb57",
+    "src/bin/gz-msgs.rs": "14b8719199f26a07d2a9de5cdbf29a0cdd3d5c93844d18c29e75e922ce9ceddb",
+    "tests/cli.rs": "259cf3eb319960806712a14cfa96f8b5ab539b6bb0b57ffa2e6a6bef513d5afa",
+    "tests/fixtures/json-time-leading-zero.json": "ccb695b2ae8c43a300de646fde0ff57b17fb64c497ea56b8479e39f7ab7c92cc"
+  },
+  "source_audit_sha256": "aab19f42bd02a903c10eafb90e2da0717eb3c206f4ebf88aaf37484c55a78e57",
+  "native_proof_sha256": "4e8be4f7a675bf4706507874974e94d7f4d66ac7d702a63cbeb1eb36704809a5",
+  "staged_gate_log_sha256": "c7e61dafbf8d0d88f56badfafc82c892b895b2bdfea401752b28d5768f5f8b97",
+  "independent": {
+    "raw_export": "Exact staged tree exported to a private source with an exclusive Cargo target; all six file hashes and no unstaged delta verified.",
+    "native_peer_sha256": "16744aebb5531163dc87224e6d6cec56bba40d4d1a62035ae465342649ac540b",
+    "descriptor_sha256": "7ee20050da11c5d683776f4d04c16b1574bcb9cbdc851fea98b44516312375a8",
+    "native_result": "Pinned C++ peer rebuilt byte-identically; scripts/json-reference.py replayed all 2563 status/full-wire observations, including 2424 retained and 139 new. The 139 new rows are distinct within the fixture; one repeats a prior type+input pair, leaving 2562 distinct pairs across the replay.",
+    "native_replay_log_sha256": "dfb2a2e95d2b04cb4f91c5020dc828e0ba62fd11aae05ac74f6f1427191258ec",
+    "rust_cli_result": "Private raw export passed all 24 CLI tests, including new Time rows, corrected prior leading-zero and trailing-dot Time assertions, and original C++ CLI controls.",
+    "rust_cli_log_sha256": "9a7ad42b56d6bfc6ab17ec9caa1dd8a16c403b2b3951cbf89fdc063e191708d8",
+    "parent_negative_sha256": "f1fc49568cac5ad128f45a57fc6ff03c04f1665a96b394947f986c4282fb4f64",
+    "parent_negative": "Separate public-parent binary rejects time_float_000 sec 07.0 while candidate and native accept exact wire 0807; invalid 07.5 remains rejected and unchanged 7.0 remains accepted. Rust and C++ rejection exit codes are intentionally compared by accepted/rejected status.",
+    "supplemental_sha256": "a950b68f9e36968d71d37e74ac8653f93d6f962ae27479c18274596a13483f6d",
+    "supplemental": "120 deterministic bounded sec/nsec scalar, combined and duplicate-key forms had zero accepted/rejected or accepted-wire mismatches."
+  },
+  "assertion_disposition": "Six unchanged leading-zero Time gaps now require native parity. Two native-positive Time rows in the unchanged trailing-dot fixture had a stale historical Rust-negative broad assertion; the first staged gate failed that assertion, which was corrected without changing fixture bytes or native expected wire. Initial gate log SHA8aecbab5 is excluded from positive evidence. All 21 prior fixture hashes are exact.",
+  "limits": "Quoted Time inputs and other descriptors retain existing paths; no broad grammar or diagnostic parity claim. The author exact revised staged gate passed 121 Rust tests and strict >95% owned coverage. Normal protected hook, public push and hosted qualification remain separate."
+}
