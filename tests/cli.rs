@@ -63,15 +63,80 @@ fn unquoted_float_max_rounding_matches_native() {
                 assert_eq!(actual.stdout, expected, "{input:?}");
             } else {
                 assert!(native_success, "{input:?}");
-                assert_eq!(
-                    actual.stdout,
-                    unhex(row["parent_rust_stdout_hex"].as_str().unwrap())
+                // The previous fixture keeps the exact parent one-bit gap as
+                // historical evidence; the bounded Double_V correction closes it.
+                assert_ne!(
+                    unhex(row["parent_rust_stdout_hex"].as_str().unwrap()),
+                    expected,
+                    "{input:?}"
                 );
-                assert_ne!(actual.stdout, expected, "{input:?}");
+                assert_eq!(actual.stdout, expected, "{input:?}");
             }
         }
     }
     assert_eq!(seen.len(), 222);
+}
+
+#[test]
+fn unquoted_double_decimal_rounding_matches_native() {
+    let fixture: gz_msgs::serde_json::Value =
+        gz_msgs::serde_json::from_str(include_str!("fixtures/json-double-decimal-rounding.json"))
+            .unwrap();
+    assert_eq!(fixture["native_protobuf"], "3.21.12");
+    let rows = fixture["rows"].as_array().unwrap();
+    assert_eq!(rows.len(), 135);
+    let unhex = |hex: &str| {
+        hex.as_bytes()
+            .chunks_exact(2)
+            .map(|pair| u8::from_str_radix(std::str::from_utf8(pair).unwrap(), 16).unwrap())
+            .collect::<Vec<_>>()
+    };
+    let mut counts = std::collections::BTreeMap::new();
+    for (index, row) in rows.iter().enumerate() {
+        assert_eq!(row["label"], format!("double_round_{index:03}"));
+        let category = row["category"].as_str().unwrap();
+        *counts.entry(category).or_insert(0) += 1;
+        let input = unhex(row["input_hex"].as_str().unwrap());
+        let type_name = row["type"].as_str().unwrap();
+        if category != "descriptor_control" {
+            assert_eq!(type_name, "gz.msgs.Double_V");
+            let token = row["token"].as_str().unwrap();
+            let value = match row["placement"].as_str().unwrap() {
+                "scalar" => token.to_owned(),
+                "array" => format!("[{token}]"),
+                "duplicate" => format!("[{token}],\"data\":[{token}]"),
+                placement => panic!("unexpected placement {placement}"),
+            };
+            assert_eq!(input, format!("{{\"data\":{value}}}").into_bytes());
+        }
+        let expected = unhex(row["cpp_stdout_hex"].as_str().unwrap());
+        let native_success = row["cpp_status"].as_i64() == Some(0);
+        let actual = run(&["encode-json", type_name], &input);
+        assert_eq!(actual.status.success(), native_success, "{input:?}");
+        assert_eq!(actual.stdout, expected, "{input:?}");
+        let parent = unhex(row["parent_rust_stdout_hex"].as_str().unwrap());
+        match category {
+            "corrected" => {
+                assert!(native_success);
+                assert_eq!(row["parent_rust_status"].as_i64(), Some(0));
+                assert_ne!(parent, expected);
+            }
+            "matched" | "descriptor_control" if native_success => {
+                assert_eq!(parent, expected);
+            }
+            "rejected" => {
+                assert!(!native_success);
+                assert!(expected.is_empty());
+                assert!(parent.is_empty());
+            }
+            "descriptor_control" => assert!(parent.is_empty()),
+            other => panic!("unexpected category {other}"),
+        }
+    }
+    assert_eq!(counts.get("corrected"), Some(&90));
+    assert_eq!(counts.get("matched"), Some(&18));
+    assert_eq!(counts.get("rejected"), Some(&18));
+    assert_eq!(counts.get("descriptor_control"), Some(&9));
 }
 #[test]
 fn formats_and_commands() {

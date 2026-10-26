@@ -291,6 +291,31 @@ fn proto_unquoted_float_max_round(value: &[u8]) -> Option<(usize, Value)> {
     Some((end, Value::F32(half_after + half_after)))
 }
 
+fn proto_unquoted_double_round(value: &[u8]) -> Option<(usize, Value)> {
+    // Protobuf's decimal double conversion and Rust's float parser agree on
+    // these measured boundaries. The maintained JSON parser can differ by one
+    // ULP, so replace only valid number tokens where their bits differ.
+    let end = value
+        .iter()
+        .position(|byte| {
+            matches!(
+                *byte,
+                b',' | b'}' | b']' | b' ' | b'\t' | b'\r' | b'\n' | b'\x0b' | b'\x0c'
+            )
+        })
+        .unwrap_or(value.len());
+    let token = std::str::from_utf8(&value[..end]).ok()?;
+    if !token.bytes().any(|byte| matches!(byte, b'.' | b'e' | b'E')) {
+        return None;
+    }
+    let maintained: gz_msgs::serde_json::Number = gz_msgs::serde_json::from_str(token).ok()?;
+    let native: f64 = token.parse().ok()?;
+    if !native.is_finite() || maintained.as_f64()?.to_bits() == native.to_bits() {
+        return None;
+    }
+    Some((end, Value::F64(native)))
+}
+
 #[derive(Clone, Copy)]
 enum TimeField {
     Seconds,
@@ -589,9 +614,10 @@ fn normalize_proto_json(
                 continue;
             }
             if let Some(width) = float_data {
-                let rounded = matches!(width, FloatWidth::Single)
-                    .then(|| proto_unquoted_float_max_round(&input[index..]))
-                    .flatten();
+                let rounded = match width {
+                    FloatWidth::Double => proto_unquoted_double_round(&input[index..]),
+                    FloatWidth::Single => proto_unquoted_float_max_round(&input[index..]),
+                };
                 if let Some((length, number)) =
                     proto_leading_zero_float(&input[index..], width).or(rounded)
                 {

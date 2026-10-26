@@ -1,0 +1,27 @@
+{
+  "author": "/root/msgs_review_fallback",
+  "decision": "approved",
+  "files_sha256": {
+    "docs/EVIDENCE.md": "e81c36313f37870bfff9d1ddd284f80cb401bd466f3e182c003f6f619686436b",
+    "docs/JSON_FRAMING.md": "12bc886cae453a2ce8a18cd1b3cfbd52e68a000789568e0092c5c03823d1d84f",
+    "scripts/json-reference.py": "2e1762dcc3acccccb1ec1a79cdb68cf0224d6c43497c77b956755e548a0bbc07",
+    "src/bin/gz-msgs.rs": "5d7c9216aa0254c07452c3a3d426355ec53721ef1aaa27e6a57f936bf0126869",
+    "tests/cli.rs": "e72fd80d4206f952cc909761cf23c1c897b3c3c9eeed795f57151825a3aed7bc",
+    "tests/fixtures/json-double-decimal-rounding.json": "6b7afe6ee8f771c58cb3c15204eb4209b230b20f16b43b3a20f7ca209ba76055"
+  },
+  "limits": "Quoted values, bare integers, other descriptors, broad JSON grammar and MSG-02 remain open. The author 460-token sweep and NoLocaleStrtod source probe support but do not prove universal decimal equivalence.",
+  "parent": "448267a5e3e64ed2260a01118f82307bc566cd8b",
+  "reviewer": "/root/transport_fallback",
+  "scope": "Top-level unquoted Double_V.data valid dotted/exponent JSON Number tokens with finite standard f64 parsing; patch only when maintained decoder bits differ. Scalar, array and repeated data order retained.",
+  "source_freeze_sha256": "646bf0b18c8ebb42e80ab2260f6e5bb2279403217469e5243afb8dd8853e1941",
+  "staged_diff_sha256": "0e82975abffbe9abf6ff7087306498f40f4bb4535636b331496cb46ce7f92254",
+  "staged_tree": "a4c15d50066fb8616d9eb4188bb21fc6e5c0ba0a",
+  "verification": {
+    "author_gate": "Exact staged EXIT0 log SHA256 26b80800dfcc3c4ab032b017fd5484ea588a33dfaf4baf66267774f15f60e408; 124 Rust, 3,172 mandatory native observations and strict >95% production coverage.",
+    "historical_disposition": "Prior 18 one-bit fixture rows remain byte-identical, while their tests now require current native wire parity.",
+    "native": "Independent Git-free raw-parent export with six frozen files rebuilt the pinned protobuf peer and reproduced all 3,172 exact native status/full-wire observations.",
+    "negative": "Private callsite-removal mutant (`FloatWidth::Double => None`) fails the exact new test at its first one-bit wire assertion, left 0x3ff0000000000001 versus native 0x3ff0000000000000; log SHA256 5204125a7583881f52e21951e7c275eae96234970df5b390d0f488f2ef929f66.",
+    "rust": "Private raw export and exclusive target selected unquoted_double_decimal_rounding_matches_native 1/0.",
+    "source_index": "Six exact staged path hashes and binary diff match frozen manifest; no unstaged change; 24 prior fixture hashes independently rehashed."
+  }
+}

@@ -2082,9 +2082,10 @@ data on their existing paths.
 
 The new fixture has 222 native status/full-wire observations: 204 require
 parity, including near-max admission and overflow rejection. Eighteen
-`Double_V` decimal observations remain exact native-positive/Rust-positive
-one-bit wire gaps in six distinct tokens across the three placements; their
-separate numeric conversion is not claimed. All 23 earlier fixture hashes
+`Double_V` decimal observations were exact native-positive/Rust-positive
+one-bit wire gaps in six distinct tokens across the three placements. The
+subsequent bounded Double decimal slice retains those historical parent bytes
+and requires native parity for all 18 rows. All 23 earlier fixture hashes
 and 2,815 prior observations are protected; the native replay now covers
 3,037 observations. Broader floating precision, grammar and MSG-02 remain
 open. The first staged run exposed a new-test setup race with another test's
@@ -2119,3 +2120,32 @@ and made a changed historical fixture hash fail before row replay. The exact
 staged source gate passed 123 Rust checks with strict coverage. Hosted
 qualification of the repaired verifier is reported separately in the public
 progress tracker.
+
+
+### Bounded unquoted Double_V decimal rounding
+
+Pinned protobuf 3.21.12 `NoLocaleStrtod` and Rust's standard `f64` parser
+produced the same bits as native `Double_V` JSON conversion for all six
+historical one-bit tokens. A deterministic 460-token decimal sweep had 427
+native-positive values; standard Rust parsing matched native bits on all 427,
+while the public maintained JSON decoder differed on 108. The candidate
+patches only top-level unquoted `Double_V.data` values with a dot or exponent
+when the maintained decoder's bits differ. It first requires a valid JSON
+number and finite Rust `f64`, leaving quoted forms, other descriptors, bare
+integers and unrelated fields on their existing paths. The same 460-token
+sweep then had zero status or wire mismatches.
+
+The new 135-row pinned native fixture contains 90 corrected scalar, array and
+repeated-key placements, 18 already matching controls, 18 rejected grammar or
+overflow controls, and nine other-descriptor controls. All 24 previous JSON
+fixture hashes remain unchanged. The earlier 18 Double one-bit rows are kept
+byte-for-byte as historical parent evidence but now require native wire
+parity. The mandatory native reference replay covers 3,172 exact status and
+full-wire observations. The exact source staged gate passed 124 Rust checks
+with strict production coverage. An independent
+[review](reviews/json-double-decimal.json) reproduced all 3,172 native
+status/full-wire rows, rehashed the 24 earlier fixtures, and made a
+Double_V callsite-removal mutant fail the first one-bit wire assertion.
+Other floating precision, quoted whitespace, broader JSON grammar and
+MSG-02 acceptance remain open. Final metadata gate, protected hook and
+hosted qualification remain separate.

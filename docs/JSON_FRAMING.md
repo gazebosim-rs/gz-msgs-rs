@@ -681,9 +681,10 @@ occurrences keep append order. The maintained decoder validates the rest of
 the document.
 
 Of 222 new native status/full-wire observations, 204 require exact parity.
-The other 18 explicitly retain native-positive/Rust-positive `Double_V`
-one-bit decimal wire differences, representing six tokens in scalar, array
-and repeated-key placements. The 23 older fixture hashes and 2,815 earlier
+The other 18 retained native-positive/Rust-positive `Double_V` one-bit
+decimal differences in six tokens and three placements as historical parent
+evidence; the subsequent bounded Double decimal slice requires their native
+wire parity. The 23 older fixture hashes and 2,815 earlier
 native observations remain unchanged; combined replay covers 3,037 rows.
 Other floating precision boundaries, quoted whitespace, general grammar and
 MSG-02 acceptance remain open. The first staged run exposed a test setup race
@@ -711,3 +712,27 @@ native replay began. The [independent review](reviews/json-reference-portable.js
 replayed the exact 3,037 rows with a differently hashed ELF and rejected a
 changed historical fixture hash. The repaired run remains a separate hosted
 qualification step.
+
+
+## Unquoted Double_V decimal rounding
+
+The pinned native JSON converter and protobuf's locale-independent double
+parser agree with Rust's standard `f64` parser on a measured 427 positive
+values from 460 deterministic dot/exponent tokens. The maintained JSON
+number decoder differed by one ULP on 108. For top-level unquoted
+`Double_V.data`, the adapter validates a complete JSON Number token and
+patches the decoded value only when its bits differ from the finite standard
+parser result. Scalar, array and repeated-key values retain order. Other
+descriptors, quoted values and bare integers are untouched by this adapter.
+
+The 135-row native fixture has 90 corrected, 18 already matching, 18
+rejected and nine descriptor-isolation observations. The prior 18 Double
+wire-gap rows stay unchanged as historical fixture bytes and now assert exact
+native parity. The mandatory native replay covers 3,172 complete status/wire
+outcomes. The 460-token candidate sweep found zero status or wire mismatch.
+The exact source staged gate passed 124 Rust checks. An independent
+[review](reviews/json-double-decimal.json) reproduced all 3,172 native
+outcomes, rehashed the 24 earlier fixtures, and made a Double_V callsite
+removal fail the first exact one-bit assertion. Broader JSON grammar, quoted
+whitespace and MSG-02 remain open. Final metadata gate, protected hook and
+hosted qualification remain separate.
