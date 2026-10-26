@@ -451,20 +451,21 @@ fn proto_uint64_array(
     Ok(Some(numbers))
 }
 
-fn flatten_uint64_data(value: &[u8]) -> Result<Vec<Vec<u8>>, Box<dyn std::error::Error>> {
-    let raw: Box<gz_msgs::serde_json::value::RawValue> = gz_msgs::serde_json::from_slice(value)?;
-    let mut pending = vec![raw.get().to_owned()];
+fn flatten_repeated_json_values(
+    mut pending: Vec<Box<gz_msgs::serde_json::value::RawValue>>,
+) -> Result<Vec<Box<gz_msgs::serde_json::value::RawValue>>, Box<dyn std::error::Error>> {
+    pending.reverse();
     let mut leaves = Vec::new();
     while let Some(token) = pending.pop() {
-        if token == "null" {
+        if token.get() == "null" {
             continue;
         }
-        if token.starts_with('[') {
+        if token.get().starts_with('[') {
             let items: Vec<Box<gz_msgs::serde_json::value::RawValue>> =
-                gz_msgs::serde_json::from_str(&token)?;
-            pending.extend(items.into_iter().rev().map(|item| item.get().to_owned()));
+                gz_msgs::serde_json::from_str(token.get())?;
+            pending.extend(items.into_iter().rev());
         } else {
-            leaves.push(token.into_bytes());
+            leaves.push(token);
         }
     }
     Ok(leaves)
@@ -644,21 +645,24 @@ fn normalize_pose_header_value_shapes(
                 )
                 .ok()?;
                 entry_changed = true;
-            } else if let Ok(mut values) = gz_msgs::serde_json::from_str::<
+            } else if let Ok(values) = gz_msgs::serde_json::from_str::<
                 Vec<Box<gz_msgs::serde_json::value::RawValue>>,
             >(value.get())
             {
-                let original_len = values.len();
-                // Native skips direct null elements. Keep every other token,
-                // including invalid types and nested arrays, for validation.
-                values.retain(|value| value.get() != "null");
-                if values.len() != original_len {
-                    *value = gz_msgs::serde_json::value::RawValue::from_string(
-                        gz_msgs::serde_json::to_string(&values).ok()?,
-                    )
-                    .ok()?;
-                    entry_changed = true;
+                if !values
+                    .iter()
+                    .any(|item| item.get() == "null" || item.get().starts_with('['))
+                {
+                    continue;
                 }
+                // Flatten list structure only. Invalid nonnull leaves still
+                // reach the maintained string decoder, including duplicates.
+                let leaves = flatten_repeated_json_values(values).ok()?;
+                *value = gz_msgs::serde_json::value::RawValue::from_string(
+                    gz_msgs::serde_json::to_string(&leaves).ok()?,
+                )
+                .ok()?;
+                entry_changed = true;
             }
         }
         if entry_changed {
@@ -678,7 +682,7 @@ fn normalize_pose_header_value_shapes(
     .ok()
 }
 
-// Normalize singleton data objects, value strings and direct value-array nulls
+// Normalize singleton data objects, value strings and nested value arrays
 // without appending any fields.
 // Earlier parent/header fragments still need to be parseable for validation;
 // the final merged fragment performs the existing array/value append once.
@@ -1459,15 +1463,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                         return Err("empty repeated data value".into());
                     }
                     if uint64_data {
-                        let leaves = flatten_uint64_data(value)?;
-                        let mut array = vec![b'['];
-                        for (index, token) in leaves.iter().enumerate() {
-                            if index != 0 {
-                                array.push(b',');
-                            }
-                            array.extend_from_slice(token);
-                        }
-                        array.push(b']');
+                        let raw = gz_msgs::serde_json::from_slice(value)?;
+                        let leaves = flatten_repeated_json_values(vec![raw])?;
+                        let array = gz_msgs::serde_json::to_vec(&leaves)?;
                         let numbers =
                             proto_uint64_array(&array)?.ok_or("invalid uint64 data array")?;
                         let mut document = b"{\"data\":".to_vec();

@@ -2512,6 +2512,50 @@ candidate, parent and native binaries, reproduced eight selected tests and all
 36 prior fixture pins. The reviewer independently reran the unchanged coverage
 checks on the retained reports: canonical production/vendor/17-of-17 added-line
 checks pass, and both disabled-incremental datasets remain failed with partial
-evidence. Final binding, the canonical normal protected hook and exact hosted
-success remain required. Richer inner arrays, outer data null elements, other
-descriptors, diagnostics and MSG-02 remain open.
+evidence. Final binding and the canonical normal protected hook passed on public
+`a5112cd90ccd433fedb6207eab7f2bd8dbdc4b8d`, tree `0a2e32f7`; exact hosted
+run `40345454360` attempt 2 succeeded. Attempt 1 was cancelled after stalled
+native dependency setup, before verification or tests; its logs remain retained.
+The authorized same-SHA rerun kept every required check. Richer inner arrays,
+outer data null elements, other descriptors, diagnostics and MSG-02 remain open.
+
+
+## Nested Header.Map.value arrays under Pose parents
+
+Before editing, 148 unique inputs were replayed against pinned native C++ and
+the accepted parent. The bounded inner-value portion has 84 native positives
+rejected by the parent and 60 joint rejections. Four outer Header.data nested/null
+forms remain pending. The corpus covers both Pose components, singleton/ordinary
+data entries, nested empty/string/null arrays through four levels, Unicode and
+escaped strings/keys, mixed ordering, duplicate fields and invalid earlier/later
+parent/header fragments. All 37 older JSON fixtures retain their bytes. Sixteen
+older inner-array expectations strengthen to exact native status/full-wire checks,
+with each input also reproduced in the pre-edit corpus.
+
+The draft reuses one maintained RawValue-based iterative traversal for nested
+Header values and the existing UInt64 repeated-data path. It preserves raw leaf
+lexemes and order, skips nulls and leaves invalid non-null leaves for maintained
+decoder validation. Already-parsed Header arrays avoid a second root parse;
+UInt64 scalar/array/null roots retain their existing traversal. Earlier fragments
+remain validated and final append still happens once. An initial formatting check
+rejected a Rust-2024 let-chain in this Rust-2021 crate; the failed check is retained
+and the guard was rewritten without changing edition or policy. Formatting now
+passes. All 40 CLI tests, including retained UInt64 cases, and fresh native replay
+of 7,127 outcomes pass. A separate 148-input comparison confirms all 84 corrected
+parent rejections, all 60 joint rejections and four still-pending outer-data forms;
+all 37 prior fixture hashes remain unchanged. The exact canonical source gate
+passes 137 Rust tests including 40 CLI, 3,112/3,132 owned production lines,
+5,116/5,200 regions and automatic 22/22 added executable lines. Strict owned
+vendor coverage remains unchanged; all five staged evidence files are complete.
+
+Independent [review](reviews/json-pose-header-value-nested.json) rebuilt fresh
+candidate, parent and native binaries, replayed 40 CLI tests and all 7,127 native
+outcomes, and confirmed all 84 corrected parent rejections and four outer-data
+gaps. An additional 656 distinct prior UInt64 inputs have identical status and
+bytes in candidate and parent. All 37 fixture pins and 16 strengthened-input
+mappings were verified. The reviewer independently reran unchanged full JSON,
+LCOV, vendor and added-line policies, reconstructing the authoritative 22/22
+input denominator. No source filtering, configuration waiver or threshold change
+was applied. Final metadata binding, the normal protected hook and exact new
+hosted success remain required. No recursive-depth generalization, outer-data
+grammar or MSG-02 completion is claimed.

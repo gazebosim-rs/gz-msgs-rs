@@ -1110,7 +1110,35 @@ The unchanged source and toolchain produce 16 additional zero-count generic
 placeholder regions in the disabled-incremental report. Both failed runs and
 full coverage datasets remain retained. No source, threshold, exclusion or
 coverage policy changed, and no general compiler cause or all-configuration
-qualification is claimed. Final binding, the canonical normal protected hook
-and exact hosted qualification remain required.
-Nested arrays, outer Header.data null elements, other descriptors, native rejection
-diagnostics and full MSG-02 remain unqualified.
+qualification is claimed. Final binding and the canonical normal protected hook
+passed on public `a5112cd90ccd433fedb6207eab7f2bd8dbdc4b8d`, tree `0a2e32f7`;
+exact hosted `40345454360` attempt 2 succeeded. The cancelled first attempt stalled
+in dependency setup before verification; all logs remain retained and the same-SHA
+rerun kept every required check. Nested arrays, outer Header.data null elements,
+other descriptors, native rejection diagnostics and full MSG-02 remain unqualified.
+
+
+## Bounded nested Header entry value arrays
+
+The next adapter draft flattens nested string/null array structure for Header.Map.value
+under Pose components, preserving leaf order and every invalid non-null leaf for
+validation. It shares the existing UInt64 raw-value traversal and maintained JSON
+serialization. Duplicate value/header/parent fragments are all visited before the
+existing final append. Outer Header.data nested/null structure remains separate.
+
+Pre-edit native/current-parent characterization records 144 intended matching
+forms (84 native positives rejected by the parent and 60 joint rejects) plus four
+outer-data pending forms. All 37 prior fixture bytes and earlier UInt64 assertions
+are retained; 16 older inner-array expectations strengthen to native wire equality.
+Formatting passes after a retained edition-syntax correction. All 40 CLI tests
+and fresh native replay of 7,127 outcomes pass. The 148-input comparison confirms
+all 84 corrected parent rejections, 60 joint rejections and four outer-data gaps.
+The exact canonical source gate passes 137 Rust tests including 40 CLI, strict
+3,112/3,132 owned lines and 5,116/5,200 regions, unchanged owned vendor checks and
+automatic 22/22 added executable lines. All five staged evidence files are complete.
+Independent [review](reviews/json-pose-header-value-nested.json) reproduces fresh
+candidate/parent/native results, additionally compares 656 prior UInt64 inputs
+byte-for-byte with the parent, and recomputes the unchanged full coverage policies.
+Final metadata binding, the normal protected hook and exact new hosted success
+remain required. Outer-data grammar, other descriptors, native rejection diagnostics
+and broader MSG-02 parity remain unqualified.

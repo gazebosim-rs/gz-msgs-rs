@@ -1,0 +1,124 @@
+{
+  "decision": "approved_source_with_exact_full_evidence",
+  "author": "/root/msgs_owner_astra",
+  "reviewer": "/root/transport_owner_v3",
+  "reviewed_at": "2026-10-26T16:53:21.934503+00:00",
+  "parent": "a5112cd90ccd433fedb6207eab7f2bd8dbdc4b8d",
+  "source_manifest_sha256": "f1d19d6b22b924b824fa3ad63bb21dd7dfd2f8cd0b0ffb3feb7f3009d3459ef4",
+  "source_tree": "001367155e2966ccdec6e3be1fe236eed0ef4a0d",
+  "source_diff_sha256": "4b8d740225b46b163fb1bec77a3017456273a9dd9e9911d66de3db9f843a1e10",
+  "files_sha256": {
+    "docs/EVIDENCE.md": "bbdbc26832c2a3fa1adff9118ad2387a630da86b2fcd7f094f972108e748f68e",
+    "docs/JSON_FRAMING.md": "8ac5af9e7ba7f35e84ce48fc9f7a02105488cb6218989396263cc58437d16102",
+    "scripts/json-reference.py": "eaff31e4647651fbecaef56642097fe58a941a0cbf33ceb81d69d38a73aac238",
+    "src/bin/gz-msgs.rs": "99da02d1017a7430c63af8929c820840eeb88053df97fc42e9d4dae679676c0d",
+    "tests/cli.rs": "b6e4c0b0852e4b312d4a2a62df82576fb3831e90defd51ce108a345d6f1fceb0",
+    "tests/fixtures/json-pose-header-value-nested.json": "0a1240e789c0580e843126911625a292b5981ffbf787b5fda6e47455a0366722"
+  },
+  "modes": {
+    "docs/EVIDENCE.md": "100644",
+    "docs/JSON_FRAMING.md": "100644",
+    "scripts/json-reference.py": "100644",
+    "src/bin/gz-msgs.rs": "100644",
+    "tests/cli.rs": "100644",
+    "tests/fixtures/json-pose-header-value-nested.json": "100644"
+  },
+  "scope": "Bounded nested Header.Map.value arrays under the two Pose components. Shared iterative RawValue traversal consumes parsed values, preserves ordered nonnull leaves and primitive lexemes, and retains invalid leaves for validation. UInt64 passes one parsed root; scalar/array/null behavior and all prior assertions remain unchanged. Earlier duplicate parent/header/value fragments remain validated; append still occurs once in the existing merge path. Outer Header.data grammar, other descriptors, diagnostics and broader MSG-02 remain unqualified.",
+  "independent_replay": {
+    "raw_export": "766 candidate and765 public-parent blobs, executable modes and SHA256/Git blob identities verified in fresh separate sources; all rehashed after execution. Four semantic hashes match the earlier717 pre-checks tree; only two prose documents differ in00136715.",
+    "targets": "Separate fresh empty reviewer-owned candidate/parent targets, never producer targets. Cargo2, incremental override absent; ordinary correctness only, no timing/performance inference.",
+    "candidate_cli": "40 passed,0 failed,0 ignored, including all prior UInt64 and Pose/Header CLI controls.",
+    "native": "Fresh peer/schema build and full7127 native status/wire outcomes reproduced. Peer/schema/source hashes match pinned fixtures.",
+    "comparison": "148 fresh native/candidate/parent comparisons:84 corrected inner positives,60 joint rejections and4 native-positive outer controls still rejected identically by Rust candidate and parent. All84 bounded positives are fresh-parent rejections; all148 old pre-edit native/parent observations match fresh replay exactly.",
+    "prior_uint64": "656 distinct prior UInt64 fixture inputs were independently compared against the fresh public parent; every output byte and status is identical. This supplements the preserved old assertions and native replay.",
+    "fixtures": "All37 old fixture bytes match source and fresh parent. All16 strengthened old expectations are independently mapped by exact inputhex/native status/wire to the pre-edit corpus and new bounded fixture; no fixture regeneration or weaker predicates.",
+    "failure_state": "No reviewer setup, compiler or test failure. Author initial Rust2021 let-chain formatting failure is retained and was corrected before the frozen six-file tree."
+  },
+  "source_native_binding": {
+    "candidate": "ae594c49a1756f75a7d41f29291698e38d8105bd52676b1bad5413679611daef",
+    "parent": "ba634fda2cf9bf5796a25674093308225f428f6a2a136fa7b05f7d30a9011fd6",
+    "peer": "16744aebb5531163dc87224e6d6cec56bba40d4d1a62035ae465342649ac540b",
+    "descriptor": "7ee20050da11c5d683776f4d04c16b1574bcb9cbdc851fea98b44516312375a8",
+    "driver": "0f6fd23abad70dc0fbafa16a3e7145ba877812441d69e109db00942b2641145f",
+    "candidate_source": "99da02d1017a7430c63af8929c820840eeb88053df97fc42e9d4dae679676c0d"
+  },
+  "private_proof_sha256": "c167798e4425fa8104e66f0ee9eb1e34a8b9398fa4bd89d9cee252c134eea9ec",
+  "strengthened_input_audit_sha256": "ed6d58ed8c783e90ef038af2b5e6c10b5b56e70b3c8da430a689746e07d14959",
+  "parent_hosted": {
+    "conclusion": "success",
+    "head_sha": "a5112cd90ccd433fedb6207eab7f2bd8dbdc4b8d",
+    "html_url": "https://github.com/gazebosim-rs/gz-msgs-rs/actions/runs/40345454360",
+    "id": 40345454360,
+    "run_attempt": 2,
+    "status": "completed"
+  },
+  "qualification": "Exact unchanged source semantics and canonical full-source evidence approved. Existing prior incremental0 failures remain historical failures; this receipt makes no all-configuration claim. No duplicate runtime replay for this static full-evidence binding.",
+  "remaining": [
+    "Scoped final metadata and independent exact final-tree binding",
+    "Mandatory canonical normal protected hook",
+    "Public push and exact new hosted success",
+    "Outer grammar and broader MSG-02/performance remain open"
+  ],
+  "pre_gate_source_manifest_sha256": "d46776e1075cb51ff7b1c07e03ece7db9edf62c22929c5147eaff5bfd606949f",
+  "semantic_receipt_sha256": "65c732a43849610afcb38e327bab01f3a613dabbc66b7acc0a2b58f7bb387a30",
+  "full_source_gate_binding": {
+    "session": 50506,
+    "exit": 0,
+    "source_tree": "001367155e2966ccdec6e3be1fe236eed0ef4a0d",
+    "retention": "All5 complete retained evidence files/stage-result hashes verified; passed/complete/no missing inputs. All source hashes and source/index remain unchanged.",
+    "rust": {
+      "passed": 137,
+      "failed": 0,
+      "ignored": 0,
+      "including_cli": 40
+    },
+    "native_outcomes": 7127,
+    "owned_source_files": 18,
+    "owned_production": {
+      "lines": [
+        3112,
+        3132
+      ],
+      "regions": [
+        5116,
+        5200
+      ]
+    },
+    "owned_vendors": {
+      "prost-derive": {
+        "lines": [
+          6,
+          6
+        ],
+        "regions": [
+          8,
+          8
+        ]
+      },
+      "prost-reflect": {
+        "lines": [
+          96,
+          97
+        ],
+        "regions": [
+          205,
+          206
+        ]
+      }
+    },
+    "changed_cli": [
+      22,
+      22
+    ],
+    "policy_recalculation": "Independently reran unchanged check/check_patches/check_changed on full retained JSON/LCOV after verified-root rebinding only. No file/function/region/count filtered; authoritative changed inputs independently reconstructed from fresh raw source and exact parent.",
+    "configuration": "Canonical Cargo2, incremental/target/Rustflags overrides absent; contemporaneous input/result/driver/log hashes verified. Ordinary overlap with Root source gate; no performance inference.",
+    "retained_stage_result_sha256": "0efb8978aa33a55358ee32d448ffffc246b55efea8da0cca67f3a91b8330a717",
+    "retained_files_sha256": {
+      "coverage/coverage.json": "6e46071a1ac6c217d2d3c6f90f057a86d548e270f9256a4a4f9a298ce3c558ea",
+      "coverage/coverage.lcov": "3bc749e3dfe1ea437a29d849763d0835f264e4d96e26c2402ffc3fd12f43e654",
+      "coverage/changed-production.json": "b1d132809baeecc31759f6e1a7bd6046faa31af0b71f8a7e7cd5a0abc9d1af02",
+      "coverage/owned-patches.json": "db05d13e911f269ab1cb6dd92260645760103ce88b5f0987e3e2354264f5835d",
+      "coverage-input.json": "d1d4236631a1aaa9a5d9c8f1ec9793b1d6f9dca6763593f814c1e9c465b21ee4"
+    }
+  }
+}
