@@ -2714,3 +2714,38 @@ source, assertions, thresholds or the canonical configuration.
 Final metadata binding, the mandatory normal hook and exact new hosted success
 remain required. Other descriptors, arbitrary depth, direct runtime reflection,
 rejection diagnostics, performance and MSG-02 remain unqualified.
+
+### Standalone Header.Map pre-edit evidence
+
+The accepted parent `bab6f45` passed exact hosted run `40422033673`, including
+staged verification and fresh-cache source-package checks. A subsequent 80-input
+native/parent capture used the pinned peer and descriptor before this candidate
+was edited: 57 native positives, 23 joint rejections, 22 parent rejections and 10
+accepted wrong wires, with 25 matching positive controls and no parent acceptance
+of a native rejection. All 42 preceding fixture hashes were preserved. The new
+fixture records exact inputs, wires, statuses and diagnostic bytes; its test adds
+admission and wire assertions without changing earlier tests. A fresh canonical
+Cargo target passed all 45 CLI tests, the newly built native peer reproduced
+7,559 outcomes, and all 80 candidate comparisons matched native admission and wire.
+Independent source review reproduced the fresh candidate and parent comparisons,
+all 7,559 native outcomes and three effective production-only controls, then
+restored all source bytes and passed 45 CLI tests. Its first attempt failed the
+final shared disk-space guard after completing those checks; that attempt remains
+failed with all evidence retained. A separately approved warm recovery rechecked
+source, tools, libraries and recorded native assertions, then passed the same 45
+tests with an identical CLI binary. It did not rerun native capture or relabel the
+earlier failure.
+
+The unchanged canonical source gate passes 142 Rust tests, including 45 CLI tests,
+and reproduces all 7,559 native outcomes. Complete unfiltered coverage measures
+3,148/3,168 owned production lines and 5,196/5,286 regions, with all 36 changed
+executable lines covered. Owned vendor checks remain unchanged. All five canonical
+evidence files are retained and independently bound in the
+[full review](reviews/json-header-map.json). The gate used the default canonical
+configuration with no incremental override; live resource monitoring remained
+within its declared growth and free-space limits.
+
+Final metadata binding, the mandatory normal hook, publication and exact new
+hosted success remain required. These 80 conformance inputs do not add upstream
+original ports or qualify diagnostic/numeric exit-code equivalence, arbitrary
+nesting, direct reflection, other descriptors, performance or MSG-02 completion.

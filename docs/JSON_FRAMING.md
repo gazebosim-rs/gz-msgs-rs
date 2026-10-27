@@ -1285,3 +1285,33 @@ source, assertions, thresholds or the canonical configuration.
 Final metadata binding, the mandatory normal hook and exact new hosted success
 remain required. Other descriptors, arbitrary depth, direct runtime reflection,
 rejection diagnostics, performance and MSG-02 remain unqualified.
+
+### Standalone Header.Map candidate
+
+A bounded candidate applies the existing Header value-member normalization and
+append rules to a standalone `gz.msgs.Header.Map`. Native characterization covers
+80 inputs: 57 accepted wires and 23 rejections. The accepted parent rejects 22 of
+those positive inputs and emits different wires for 10; 25 positive controls
+already match. Scalar strings, null/nested value arrays, duplicate value members,
+invalid earlier fragments and key controls are retained in the fixture.
+
+The existing value-member body is extracted into a shared helper; the root path
+normalizes every value fragment and appends once. Earlier invalid members remain
+available for reflection validation. All 42 earlier fixtures and old test bodies
+remain unchanged. A fresh target passed all 45 CLI tests, and a freshly built
+native peer reproduced all 7,559 retained outcomes. All 80 candidate inputs match
+native admission and wire bytes. Independent source review preserved all prior
+assertions and fixture pins, verified the helper extraction, and exercised three
+production-only negative controls followed by exact restoration. Its first review
+attempt failed the final shared disk guard after the functional phases; a separate
+approved warm recovery passed with the same CLI binary. Both outcomes remain
+recorded without relabeling the failed attempt.
+
+The canonical source gate passes 142 Rust tests with 45 CLI tests and 7,559 native
+outcomes. Independent [full evidence review](reviews/json-header-map.json) binds
+all five retained files: strict owned coverage is 3,148/3,168 lines and 5,196/5,286
+regions, with 36/36 changed executable lines covered and unchanged vendor checks.
+Final metadata review, the mandatory normal hook and exact new hosted success
+remain required. This does not qualify other nested descriptors, direct runtime
+reflection, diagnostics or numeric rejection codes, arbitrary nesting, performance
+or the broader MSG-02 scope.

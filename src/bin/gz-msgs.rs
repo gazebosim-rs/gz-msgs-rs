@@ -628,6 +628,41 @@ fn merge_header_objects(input: &[u8], path: &[&str]) -> Option<Vec<u8>> {
     Some(json_members_bytes(&members))
 }
 
+fn normalize_header_value_members(members: &mut JsonMembers) -> Option<bool> {
+    let mut changed = false;
+    for (name, value) in &mut members.0 {
+        if name != "value" {
+            continue;
+        }
+        if gz_msgs::serde_json::from_str::<String>(value.get()).is_ok() {
+            *value = gz_msgs::serde_json::value::RawValue::from_string(
+                gz_msgs::serde_json::to_string(&[&**value]).ok()?,
+            )
+            .ok()?;
+            changed = true;
+        } else if let Ok(values) = gz_msgs::serde_json::from_str::<
+            Vec<Box<gz_msgs::serde_json::value::RawValue>>,
+        >(value.get())
+        {
+            if !values
+                .iter()
+                .any(|item| item.get() == "null" || item.get().starts_with('['))
+            {
+                continue;
+            }
+            // Flatten list structure only. Invalid nonnull leaves still
+            // reach the maintained string decoder, including duplicates.
+            let leaves = flatten_repeated_json_values(values).ok()?;
+            *value = gz_msgs::serde_json::value::RawValue::from_string(
+                gz_msgs::serde_json::to_string(&leaves).ok()?,
+            )
+            .ok()?;
+            changed = true;
+        }
+    }
+    Some(changed)
+}
+
 fn normalize_header_entries(input: &str) -> Option<Box<gz_msgs::serde_json::value::RawValue>> {
     let mut entries: Vec<Box<gz_msgs::serde_json::value::RawValue>> =
         gz_msgs::serde_json::from_str(input).ok()?;
@@ -643,37 +678,7 @@ fn normalize_header_entries(input: &str) -> Option<Box<gz_msgs::serde_json::valu
         let Ok(mut members) = gz_msgs::serde_json::from_str::<JsonMembers>(entry.get()) else {
             continue;
         };
-        let mut entry_changed = false;
-        for (name, value) in &mut members.0 {
-            if name != "value" {
-                continue;
-            }
-            if gz_msgs::serde_json::from_str::<String>(value.get()).is_ok() {
-                *value = gz_msgs::serde_json::value::RawValue::from_string(
-                    gz_msgs::serde_json::to_string(&[&**value]).ok()?,
-                )
-                .ok()?;
-                entry_changed = true;
-            } else if let Ok(values) = gz_msgs::serde_json::from_str::<
-                Vec<Box<gz_msgs::serde_json::value::RawValue>>,
-            >(value.get())
-            {
-                if !values
-                    .iter()
-                    .any(|item| item.get() == "null" || item.get().starts_with('['))
-                {
-                    continue;
-                }
-                // Flatten list structure only. Invalid nonnull leaves still
-                // reach the maintained string decoder, including duplicates.
-                let leaves = flatten_repeated_json_values(values).ok()?;
-                *value = gz_msgs::serde_json::value::RawValue::from_string(
-                    gz_msgs::serde_json::to_string(&leaves).ok()?,
-                )
-                .ok()?;
-                entry_changed = true;
-            }
-        }
+        let entry_changed = normalize_header_value_members(&mut members)?;
         if entry_changed {
             *entry = gz_msgs::serde_json::value::RawValue::from_string(
                 String::from_utf8(json_members_bytes(&members)).ok()?,
@@ -739,6 +744,13 @@ fn normalize_header_root(input: &[u8]) -> Option<Vec<u8>> {
     append_header_fields(&mut header);
     let bytes = json_members_bytes(&header);
     Some(merge_header_objects(&bytes, &["stamp"]).unwrap_or(bytes))
+}
+
+fn normalize_header_map_root(input: &[u8]) -> Option<Vec<u8>> {
+    let mut members: JsonMembers = gz_msgs::serde_json::from_slice(input).ok()?;
+    normalize_header_value_members(&mut members)?;
+    append_header_array_members(&mut members, "value");
+    Some(json_members_bytes(&members))
 }
 
 // Reflection keeps the last duplicate JSON message key; protobuf merges the
@@ -1467,6 +1479,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 merge_header_objects(&shaped, &["header", "stamp"]).unwrap_or(shaped)
             } else if descriptor.full_name() == "gz.msgs.Header" {
                 normalize_header_root(&normalized).unwrap_or(normalized)
+            } else if descriptor.full_name() == "gz.msgs.Header.Map" {
+                normalize_header_map_root(&normalized).unwrap_or(normalized)
             } else {
                 normalized
             };

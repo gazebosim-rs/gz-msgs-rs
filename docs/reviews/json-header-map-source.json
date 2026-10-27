@@ -1,0 +1,267 @@
+{
+  "decision": "approved",
+  "author": "/root/msgs_owner_astra",
+  "reviewer": "/root/sdformat_owner_v3",
+  "recorded_at": "2026-10-27T03:12:51.937651+00:00",
+  "scope": "Standalone canonical gz.msgs.Header.Map CLI JSON shaping: admission and wire equality for retained cases.",
+  "source_tree": "205d42342c4946259ea1e8fc9d53ea441a9fb22a",
+  "parent": "bab6f45f7d7321b50e318340a5ba74fe9144a8b0",
+  "source_freeze_sha256": "9e5ed1e8ba8059d16c384f0aba6a40ba46b4e91be2be9b4be1bddf75c5443423",
+  "files_sha256": {
+    "docs/EVIDENCE.md": "70893959769cdf88f771760b1cc2665ce05b2d2c1daa06e85f8ab343385f21f4",
+    "docs/JSON_FRAMING.md": "0fb029a5d8b3a3be907f7aa24cdc785a8bf2116ff345c49944c6f573d705cdc2",
+    "scripts/json-reference.py": "49194c32f0e3010c431a147e62ad0a8cae4e9cbfe27b282754fc005e507bde16",
+    "src/bin/gz-msgs.rs": "9a429ff74a39a06bf0c736bad557c4dedf7f8cfd6a992105955b7d5939766031",
+    "tests/cli.rs": "df439aa7d93250852d28b515b0675cbddf3e3bae720fd0f36970607c5dccc669",
+    "tests/fixtures/json-header-map.json": "0f404a41ae42b1bbaf4148f241231bbc12b156ea9e30f0d535b60e63a821c132"
+  },
+  "modes": {
+    "docs/EVIDENCE.md": "100644",
+    "docs/JSON_FRAMING.md": "100644",
+    "scripts/json-reference.py": "100644",
+    "src/bin/gz-msgs.rs": "100644",
+    "tests/cli.rs": "100644",
+    "tests/fixtures/json-header-map.json": "100644"
+  },
+  "raw_exports": {
+    "candidate_files": 776,
+    "parent_files": 775,
+    "six_changed_paths": [
+      "docs/EVIDENCE.md",
+      "docs/JSON_FRAMING.md",
+      "scripts/json-reference.py",
+      "src/bin/gz-msgs.rs",
+      "tests/cli.rs",
+      "tests/fixtures/json-header-map.json"
+    ],
+    "all_other_parent_blobs_modes_preserved": true,
+    "raw_source_manifest_sha256": "863c54b72d2baa5b8947e70c05b65b07312c20f02238b5b6d00e51b0ac680c8c"
+  },
+  "assertion_review": {
+    "prior_fixture_count": 42,
+    "prior_fixtures_sha256": {
+      "tests/fixtures/json-array-grammar.json": "c6b095ffbf102683dfe24b6b05c8fd5d3b2f5aab36578cc0d389ba19f38d97c3",
+      "tests/fixtures/json-double-decimal-rounding.json": "6b7afe6ee8f771c58cb3c15204eb4209b230b20f16b43b3a20f7ca209ba76055",
+      "tests/fixtures/json-escaped-bytes.json": "88ab74e155140fddc76f2eace37e97e69ad0cf7e97b6419b96468c7dbc842c53",
+      "tests/fixtures/json-escaped-utf8.json": "6f9e071d3044997d8aead2f5f60df7006d7d40cacd1b93bd802fa7cc13d7c881",
+      "tests/fixtures/json-float-max-range.json": "e4eedceeeef03d73d8880b938394b5a03709f017e564691d7c9710a8c5da4a28",
+      "tests/fixtures/json-float-unquoted-hex.json": "9aba03d1c8d29b13f09995d75027957cea975c34022c650064faf280d35dac71",
+      "tests/fixtures/json-framing.json": "2cccfedc630e3ca56dcff617d3bd8233287dfc17271fa1b477ef4fcbdaaa24f0",
+      "tests/fixtures/json-grammar.json": "4005df0bb062002197e712a70b2cf5fd56969819dd2ce85b06c5a6ab0e9fbf71",
+      "tests/fixtures/json-header-root.json": "e2fbe2fc2ba1ef25a8107928ae08b793b8dd85a2da846339a8b16cffa7ca6c14",
+      "tests/fixtures/json-leading-zero-float.json": "f87a8c01f50158907b47ccbf69ace1d5364ca4f9cf3da88840fab302f6993c2c",
+      "tests/fixtures/json-negative-zero.json": "36ec2c5c39763d817f3268e9f01a1a9d31ab8b07c721edb3ed1250fb64eb9a64",
+      "tests/fixtures/json-pose-header-data-append.json": "a01694e8efafd8b56ca21bb788d53ef6d022eb18cc3f3301d22bf57d6f7de3e9",
+      "tests/fixtures/json-pose-header-data-nested.json": "55efc92c30a3eb862e5c8cf029f693042e49ce151778451b918197f2c79cfc70",
+      "tests/fixtures/json-pose-header-data-null.json": "547518a9dcac8815ef894dba6c2aa94c5ce506841b15602bb842eadc075d7cbf",
+      "tests/fixtures/json-pose-header-data-singleton.json": "8102a4e274a61329683a3e62931bf4249d29dc4482f594ffe620141fbefd297e",
+      "tests/fixtures/json-pose-header-stamp-merge.json": "fe44b05dfb476325b8c0fb1cb70c0e9cbc64f90a779e872c990483618cfa59c3",
+      "tests/fixtures/json-pose-header-value-append.json": "b8271ef7ec1ebe03c3533fa886a9f899b7387ace22be2b7946c0089d65db5f15",
+      "tests/fixtures/json-pose-header-value-nested.json": "0a1240e789c0580e843126911625a292b5981ffbf787b5fda6e47455a0366722",
+      "tests/fixtures/json-pose-header-value-null.json": "05d2fe4e4c9f213e39a90b7d504f1121d5ccae3e3f07bd5fa8dd550bd55b39a1",
+      "tests/fixtures/json-pose-header-value-scalar.json": "36a6c25134ee6360e5ba87e6105b8bd3db8e5406109e219b7d52f1725f872cd4",
+      "tests/fixtures/json-pose-parent-merge.json": "ed761f60bd17eae427a3041c6baf2d54e034cb41c36389b36079676c000c16e0",
+      "tests/fixtures/json-pose-quoted-numeric.json": "2f7bc00b7a6201ed305353f77db161bda14a100a0b7fae1a4ff6e37f0081a916",
+      "tests/fixtures/json-quaternion-quoted-numeric.json": "bc066cd7e450e5d9f76a5ed72e38883b888abd4b87e3e509ff963a1ab41cf993",
+      "tests/fixtures/json-quoted-float-admission.json": "0516804e0a57d7d7ea8dfc10dff2789e78f1173fbb2863e937100b2cb5107b7e",
+      "tests/fixtures/json-quoted-float-whitespace.json": "9de9b8e323c12592aa008d92f557efce19ce7cae95afcc7b0d657befe3591925",
+      "tests/fixtures/json-quoted-hex-whitespace.json": "d64955a40a03bb9318793c7c610123b3d62797c50575f3a2c2c581a3097e12c0",
+      "tests/fixtures/json-quoted-hex.json": "a0f49fc679fd02022deae5af3476c0f86908e9c064a21b9cca1bb2bbe0ec39c4",
+      "tests/fixtures/json-raw-controls.json": "c65520e7656a2ef91d7104b2b9b8cd866f736078fd65825295d5f81bd68e5c9d",
+      "tests/fixtures/json-repeated-data.json": "e1b90c69a24d2ed097f28b184e917545540afd2a2e1ee98f93e265a629919def",
+      "tests/fixtures/json-repeated-integer-data.json": "faaf668a6583ec4e0e5437d4aeac53b7fc2f90fff8acbc04ecf47bb642135f88",
+      "tests/fixtures/json-repeated-string-data.json": "2376737953843b1d536715963365862cdf9c9d8f37e5a12e3fd4d3d3ce13e7c9",
+      "tests/fixtures/json-root-header.json": "3035d5b403645f305194fc14e6579b42177ac963ee375704440f0dafcc09a5bb",
+      "tests/fixtures/json-single-quote.json": "9bca126b76edc3e1b8ead5ab968943b32268fedfff0acbfa95363a82cc80079f",
+      "tests/fixtures/json-single-scalar-data.json": "73ffb8903ac250171a5e1a66145f9e17f5b3373351abd9bdbd93213b4f574219",
+      "tests/fixtures/json-time-leading-zero.json": "ccb695b2ae8c43a300de646fde0ff57b17fb64c497ea56b8479e39f7ab7c92cc",
+      "tests/fixtures/json-trailing-dot.json": "bca96c00805ae274268c3a7a4057e6ba40ca6cc3b1337541a6861bb4df2026e0",
+      "tests/fixtures/json-uint64-occurrences.json": "d93992e89f72fef746c476683929d3aa7d765c8011683432822c0f7a8ab5feb6",
+      "tests/fixtures/json-uint64-range.json": "0bfeb9b15946061c97fcb2a243cec1c348b248538ffc92aa77a565e0930e48e0",
+      "tests/fixtures/json-uint64-undotted-hex.json": "da6e587c9dbfd39f3321803a17c762149211c1bc6230deda16ab55bf296a8d6a",
+      "tests/fixtures/json-uint64-unquoted-hex.json": "7559db0b4138008375f38e22c637a95fd3a6d437d89eba1fd28454f50b41eaa8",
+      "tests/fixtures/json-vector3d-quoted-numeric.json": "37fdc3d2444b7e676896ce3699a9c0c47ed9b3312aac97f0361b4c22445723e9",
+      "tests/fixtures/json-vtff-whitespace.json": "b01e7543d61f9d00cdb189f86dcbd340b39e9160e0eac0c0776b7c505a5ef2a9"
+    },
+    "all_old_cli_bodies_byte_identical_after_removing_single_added_test": true,
+    "old_value_member_loop_reconstructed_byte_exact_after_indentation_and_local_name_substitution": true,
+    "maintained_flattener_appender_root_and_merge_unchanged": true,
+    "canonical_schema_descriptor_fields_defaults_wire_and_hooks_policy_license_unchanged": true
+  },
+  "native": {
+    "actual_fresh_cases": 7559,
+    "actual_peer": {
+      "peer_sha256": "16744aebb5531163dc87224e6d6cec56bba40d4d1a62035ae465342649ac540b",
+      "descriptor_sha256": "7ee20050da11c5d683776f4d04c16b1574bcb9cbdc851fea98b44516312375a8",
+      "probe_source_sha256": "48835b169eb8e2e490729391718e223e8905632f2b04d2fa2facd50b2fbaf1f5"
+    },
+    "actual_libraries": {
+      "/lib/x86_64-linux-gnu/libprotobuf.so.32": "53a2a625a30418d6ea84438b04c9196214dec51a30476596ee9be45ccadb0404",
+      "/lib/x86_64-linux-gnu/libstdc++.so.6": "1fd75fe70354a416d75aef22bcae68c47bd25d20e2d0568c30b1a9838cf62f11",
+      "/lib/x86_64-linux-gnu/libgcc_s.so.1": "d93224d2b0dab4247598be683adca02f5cf00586f99c187579cd7e92058fb7cb",
+      "/lib/x86_64-linux-gnu/libc.so.6": "3a15d66867d83762c7f2f1e37359cb8f6c5743edb369c65285cb0b1c4f7498bf",
+      "/lib/x86_64-linux-gnu/libz.so.1": "f61677c7bdb7c2aa2a243ea781bfd16afcb361cede7b4ef76127a9d8eb9a5242",
+      "/lib64/ld-linux-x86-64.so.2": "c20a2dc8917c755f02b94049356320fe1f62ac7d9f8994731f807d9df39302da",
+      "/lib/x86_64-linux-gnu/libm.so.6": "fce00b6f25f459cf4ae0b7fae4257909a1a8a86f9149e7c029a5d617baf1ccd0"
+    },
+    "recorded_response_validation": "All 7559 exact command/input/exit/stdout records rechecked in checked-in fixture order against its assertions. This response validation executes no native process.",
+    "native_outcomes_sha256": "8520baa787a1679e3cb383cce60779f3590b827f18d03e9dddbb1a56aa07a566",
+    "native_evidence_sha256": "705318cb3c63ae382f21b945af08b7e5e59be2ce5794b3ca4f4b8ec0a85f5687"
+  },
+  "comparison": {
+    "rows": 80,
+    "native_positive": 57,
+    "native_reject": 23,
+    "parent_native_positive_reject": 22,
+    "parent_native_positive_wrong_wire": 10,
+    "matching_positive_controls": 25,
+    "qualified": "Admission equivalence and exact stdout wire; numerical native reject6 versus Rust1 and diagnostic equivalence are not qualified."
+  },
+  "controls": [
+    {
+      "name": "omit-branch",
+      "targeted_sha256": "fb04f1090bf320a4b32fc6818deec4d3b3a10ba235d132caaa6cffcec9b91497",
+      "effect": "Native positive scalar is rejected; new test fails."
+    },
+    {
+      "name": "omit-append",
+      "targeted_sha256": "8a9788dfcbccf09a3eb3288e299d13c69c0bebbfef40602094e5d85b97a79136",
+      "effect": "Duplicate value arrays lose concatenated wire; new test fails."
+    },
+    {
+      "name": "drop-earlier-invalid",
+      "targeted_sha256": "23200367a43969dc745bac5285eef5118f93d96b3ea52899a7093180561aef37",
+      "effect": "Invalid earlier fragment is wrongly admitted; new test fails."
+    }
+  ],
+  "source_restoration": "All private source/parent raw hashes and producer six files match; final CLI matches initial candidate SHA.",
+  "original_run": {
+    "session": 69782,
+    "state": "failed_final_shared_disk_floor",
+    "result_sha256": "08620ec01a064826bf5d839c6257f7414f8e496587176924a97035f7750c06e6",
+    "completed_observations": "Fresh parent80; fresh candidate45/0/0; actual native7559; candidate80; three expected source-control failures; exact restoration and restored45/0/0.",
+    "final_free_bytes": 2137432064,
+    "floor_bytes": 2147483648,
+    "preservation": "Original failed result, all raw logs, source, controls and immutable baseline/control/restored binary proof copies remain unchanged. Existing reviewer Cargo target caches were reused by the separately approved warm run; cache bookkeeping files and aggregate cache bytes are not claimed unchanged. The warm final CLI hash equals the initial candidate hash."
+  },
+  "warm_resource_recovery": {
+    "session": 7955,
+    "state": "passed",
+    "root_preuse": "aac200882116a5442e118bba1017f1f364f1510dcdad4d927d9615fc3e6a8de1",
+    "plan_sha256": "e7592d0812b8639b6ef2fc716da3eaf1d7713c924149f8ee8d8ff400e62a11d9",
+    "executor_sha256": "4063ed6699e5bd05ff31627b6a88caccfe2423e229a5fb9ea216a974766359f3",
+    "result_sha256": "8300b7d58531b898f0763709e6ce8cb6de740f3949f4c51d5da591c64e9f454c",
+    "command": [
+      "cargo",
+      "test",
+      "--locked",
+      "--test",
+      "cli",
+      "--message-format=json",
+      "--",
+      "--nocapture"
+    ],
+    "cli_tests": "45 passed,0failed,0ignored",
+    "binary_sha256": "90db9e66ec165a4e327bab3855a992bd3f32bd069b27b62b64a2f594a5a78d8b",
+    "resource": {
+      "target_bytes": 1218428262,
+      "other_bytes": 146059245,
+      "peak_target_bytes": 1218705670,
+      "peak_other_bytes": 146059245,
+      "free_bytes": 25544949760
+    },
+    "provenance": "Existing separate reviewer-owned source/target; no new native run or target. Original fresh-source evidence is bound above; this is a separate warm guard-qualified closure."
+  },
+  "tools": {
+    "rustc": {
+      "path": "tool-role:rustc",
+      "resolved": "resolved-tool-role:rustc",
+      "sha256": "5be191e8c70a5007074254cb74d78dbfdd25cd5a61c27de7b8e5410122ec24f4",
+      "actual_compiler": {
+        "path": "pinned-rustc-compiler-role",
+        "sha256": "ef6d716e5d1c6c93def277c0afa037c21e7a74f7de3aed4ee0700646c3301b1d"
+      }
+    },
+    "c++": {
+      "path": "tool-role:c++",
+      "resolved": "resolved-tool-role:c++",
+      "sha256": "02ba98cc5feefe173cfb8c28c98089817737800537dc7189138ed66b07cf56ec"
+    },
+    "protoc": {
+      "path": "tool-role:protoc",
+      "resolved": "resolved-tool-role:protoc",
+      "sha256": "95bb3996d5b48f94929ee510cfddb57fb543ae4d8d335909972cfb32347203fc"
+    }
+  },
+  "parent_exact_hosted": {
+    "run": 40422033673,
+    "state": "success",
+    "head": "bab6f45f7d7321b50e318340a5ba74fe9144a8b0",
+    "run_sha256": "4bfb629462739986675422ca31bd235b777613d7ef5af4829e299ce7002b3144",
+    "jobs_sha256": "dc47cfa66bad4d61136b01033dae553232a00d8c0c14715c99b42073b6ab9f42"
+  },
+  "proofs_sha256": {
+    "runtime/candidate.bin": "90db9e66ec165a4e327bab3855a992bd3f32bd069b27b62b64a2f594a5a78d8b",
+    "runtime/candidate45.stderr": "f438e1ee7449bdc76f2622e5d337f0e7018c0af93ae420c574b9eb14905dfc08",
+    "runtime/candidate45.stdout": "f9a0439074e048dcceaa493b72428f9f35bb0f7abcd602212717c2b7361394ca",
+    "runtime/candidate80-partial.json": "1650a4617aadffa7a87a17e1993883c6dc56a861b0c63371999daf7e88c7011e",
+    "runtime/cpp-version.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runtime/cpp-version.stdout": "ac1cc9a7f2a31b62201ffa17dfb9dcd89597dfcb275a3b9015edf4501cc3c820",
+    "runtime/drop-earlier-invalid-targeted.json": "23200367a43969dc745bac5285eef5118f93d96b3ea52899a7093180561aef37",
+    "runtime/drop-earlier-invalid.bin": "e5ce2bb09c1db135a7e929a05a025dc5e7b0b343b0c5552b2214949e29667e82",
+    "runtime/drop-earlier-invalid.patch-source": "4aa11cd1273ce45189e68dca9a354b0b41c140e68685016051f1706cf44d471f",
+    "runtime/drop-earlier-invalid.stderr": "959c77501433ac6364e8a83b2b151adef2214080ec13b46c235cce1328a0294c",
+    "runtime/drop-earlier-invalid.stdout": "5217fe6a09fc2874e33203e08fe8a945624203fb2891671dc181da3d8645aaae",
+    "runtime/native-evidence.json": "705318cb3c63ae382f21b945af08b7e5e59be2ce5794b3ca4f4b8ec0a85f5687",
+    "runtime/native-ldd.txt": "1246e4fda2c6a73d4c22493e0a829bde8a4c3fe4aa1a537371f538c8609a06e2",
+    "runtime/native-outcomes.jsonl": "8520baa787a1679e3cb383cce60779f3590b827f18d03e9dddbb1a56aa07a566",
+    "runtime/native-record-count.json": "ab55c126a233c87ff9cf542b75fe6aa93252fa7ac2251e650c7bf1545af183f6",
+    "runtime/native7559.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runtime/native7559.stdout": "f64f4d73563fd206a9dd8d0267184ee5c14db7d391ed5c3ac60a1b4e1ff03f68",
+    "runtime/omit-append-targeted.json": "8a9788dfcbccf09a3eb3288e299d13c69c0bebbfef40602094e5d85b97a79136",
+    "runtime/omit-append.bin": "0f4fdbd443d762dd9a87d2ab39f7faa2733243cf0b1ae8ea43d6322368a6d50c",
+    "runtime/omit-append.patch-source": "744bc7d91aec41f9540ce34db92533fa4c88f1b06e971b76c88140f6a00fc425",
+    "runtime/omit-append.stderr": "5b4c35b567ebc58a02f7406689295cf98335a6c3eed135ef0d4f6bafffecf5ff",
+    "runtime/omit-append.stdout": "d0560798bf52870b173d364e7292b6bddcb7b09758ac5a54cd294e7da01b084f",
+    "runtime/omit-branch-targeted.json": "fb04f1090bf320a4b32fc6818deec4d3b3a10ba235d132caaa6cffcec9b91497",
+    "runtime/omit-branch.bin": "c2769309002c9f0f71b5913aa700f178117027e1979669b8d2f1c47f81a68b08",
+    "runtime/omit-branch.patch-source": "52611f8b1e0087433150d62abd9390df77323eb3b501899602eb62d767544bd5",
+    "runtime/omit-branch.stderr": "000242829e66f2661e32ea39b5a4ad8549dc28f61817d7b7d8c80cca63a0bafa",
+    "runtime/omit-branch.stdout": "0e9b849cd09e711608106a27161bc59bb5052bae1dcb13ef53361899159aca65",
+    "runtime/parent-build.stderr": "604470c5324df4144868e715db49a50a0ee5a9148c4f2275b57845fbf3291fe4",
+    "runtime/parent-build.stdout": "c5d13cd13ae610a7c74fa7f42dccd839a8925eb928851999f6c5a09af4598e11",
+    "runtime/parent.bin": "fa73cf7ee4583efbfe08787cebc736d34212a74b86ab69845a5f3bc979c0e838",
+    "runtime/parent80-partial.json": "34e97b900c76badb49106808b6fd4b03354ab4e86a318241314ab42491fdd7d6",
+    "runtime/protoc-version.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runtime/protoc-version.stdout": "5d8e8ea015f9d39d174f30332765f0edeb50e00689dc792907c56d56ea637d22",
+    "runtime/raw-source.json": "863c54b72d2baa5b8947e70c05b65b07312c20f02238b5b6d00e51b0ac680c8c",
+    "runtime/restored.bin": "90db9e66ec165a4e327bab3855a992bd3f32bd069b27b62b64a2f594a5a78d8b",
+    "runtime/restored45.stderr": "5026fea42f0ae9a83d7f58a5233109c5871cffad755684b4f5faec90d19fecc4",
+    "runtime/restored45.stdout": "d62d37effe375aee5927bec21a7bd257703f1e8f592343a4baab33a6ae721f6e",
+    "runtime/rustc-version.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runtime/rustc-version.stdout": "7fc9b9708715204ec50ebe62619084b002bd1ba3ae68cd4d5d586a74797d4f7b",
+    "recovery-v2/native-record-revalidation.json": "705318cb3c63ae382f21b945af08b7e5e59be2ce5794b3ca4f4b8ec0a85f5687",
+    "recovery-v2/warm45.stderr": "2dd3e3ec00bfbea70f87cae3dd00ff04f2aba5fe993fe82b335319640f761ddb",
+    "recovery-v2/warm45.stdout": "75bd8ab873e3b7ee3b2ddd2bcc54ec33f813388bf4af97a33801e34ec47a12ac"
+  },
+  "limits": [
+    "No full source gate, final metadata, normal hook, public commit or exact new hosted CI acceptance; all remain mandatory.",
+    "No MSG02 completion, original retirement, direct reflection, general JSON parser, arbitrary depth, diagnostic or numeric rejection-code equivalence.",
+    "No performance or cold-rebuild claim. Historical resource failure remains failed; recorded-response checking is not new native execution."
+  ],
+  "public_projection": {
+    "private_approved_receipt_sha256": "0c227b6006291061ea0db8a2687ae1f4b77b18e9802b587d8913f3700a08725e",
+    "kind": "source/assertion/runtime",
+    "transformation": "Machine-specific tool location strings are role labels; explicit documentation erratum corrects the target-cache immutability overstatement. Source identities, test findings, byte hashes, counts, resource byte values and limitations remain unchanged. Original private receipt remains immutable.",
+    "issued_at": "2026-10-27T03:47:07.416037+00:00"
+  },
+  "documentation_erratum": {
+    "superseded_public_receipt_sha256": "7fb2924d2c2416cbbc5211807cebddbab4581ff8979ae20ab40423d1ea6bb739",
+    "private_original_immutable_sha256": "0c227b6006291061ea0db8a2687ae1f4b77b18e9802b587d8913f3700a08725e",
+    "old_target_immutability_wording": "Original failed result, all raw logs/controls/binaries/source and targets retained unchanged. No whole-run pass relabeling.",
+    "correction": "The approved warm rerun used existing reviewer Cargo target caches. It does not imply immutable cache bookkeeping. Original failure/source/raw evidence and copied proof binaries are immutable and verified; functional findings and every byte hash/test count remain unchanged.",
+    "target_logical_bytes_before": 1218705670,
+    "target_logical_bytes_after": 1218428262,
+    "same_cli_sha256": "90db9e66ec165a4e327bab3855a992bd3f32bd069b27b62b64a2f594a5a78d8b"
+  }
+}

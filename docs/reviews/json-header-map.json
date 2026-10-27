@@ -1,0 +1,364 @@
+{
+  "decision": "approved",
+  "author": "/root/msgs_owner_astra",
+  "reviewer": "/root/sdformat_owner_v3",
+  "recorded_at": "2026-10-27T03:34:50.586894+00:00",
+  "scope": "Independent full source evidence binding only; no runtime or build replay.",
+  "source_tree": "205d42342c4946259ea1e8fc9d53ea441a9fb22a",
+  "source_freeze_sha256": "9b2988e031c59d1c834ff8d063fdc118e9bc493a0790e7481641a4befa52d675",
+  "prior_source_review_sha256": "0c227b6006291061ea0db8a2687ae1f4b77b18e9802b587d8913f3700a08725e",
+  "six_files_unchanged": true,
+  "source_full_result_sha256": "c74cd8de23c46191861b51de3acaad0f217fc3a8c8260f49bf47fbb83e137ee0",
+  "source_full_driver_sha256": "9c30051261a7265529552824f8de1aa2263bc6949a53c79807afa45031c5fc32",
+  "canonical_stage_result_sha256": "87752c74470dd4a0a16f3b576dad21cedd6d893dace67bf5482546a5fbf27a31",
+  "retained_files_sha256": {
+    "coverage/coverage.json": "a3ac407663dcbe2e36bb1a412033346522715ea7aa651cda0370ef13b3e21947",
+    "coverage/coverage.lcov": "8b1de447bc961e01bcad349f952252899ac49a79e1fe6568bc192dbb944d1639",
+    "coverage/changed-production.json": "d2784c67c48cc20ca979d1e5e9d75c035d376c7cfac5b97afbb6e55807fdafee",
+    "coverage/owned-patches.json": "db05d13e911f269ab1cb6dd92260645760103ce88b5f0987e3e2354264f5835d",
+    "coverage-input.json": "01c1377b02347bbca7307afa694dca86d072a805464121c382ec9972c7012a8a"
+  },
+  "root_rebinding_only": {
+    "from": "canonical temporary source export",
+    "to": "independent reviewer-owned private source export",
+    "all_unfiltered_report_data_preserved": true
+  },
+  "owned_files": 18,
+  "per_production_file": {
+    "build.rs": {
+      "lines": {
+        "count": 106,
+        "covered": 106,
+        "percent": 100
+      },
+      "regions": {
+        "count": 148,
+        "covered": 148,
+        "notcovered": 0,
+        "percent": 100
+      }
+    },
+    "src/bin/gz-msgs.rs": {
+      "lines": {
+        "count": 1402,
+        "covered": 1383,
+        "percent": 98.64479315263908
+      },
+      "regions": {
+        "count": 2494,
+        "covered": 2416,
+        "notcovered": 78,
+        "percent": 96.87249398556536
+      }
+    },
+    "src/bin/legacy_cli/mod.rs": {
+      "lines": {
+        "count": 205,
+        "covered": 205,
+        "percent": 100
+      },
+      "regions": {
+        "count": 365,
+        "covered": 365,
+        "notcovered": 0,
+        "percent": 100
+      }
+    },
+    "src/cloud.rs": {
+      "lines": {
+        "count": 111,
+        "covered": 111,
+        "percent": 100
+      },
+      "regions": {
+        "count": 156,
+        "covered": 152,
+        "notcovered": 4,
+        "percent": 97.43589743589743
+      }
+    },
+    "src/cloud/cursor.rs": {
+      "lines": {
+        "count": 43,
+        "covered": 43,
+        "percent": 100
+      },
+      "regions": {
+        "count": 70,
+        "covered": 68,
+        "notcovered": 2,
+        "percent": 97.14285714285714
+      }
+    },
+    "src/conversions.rs": {
+      "lines": {
+        "count": 16,
+        "covered": 16,
+        "percent": 100
+      },
+      "regions": {
+        "count": 15,
+        "covered": 15,
+        "notcovered": 0,
+        "percent": 100
+      }
+    },
+    "src/coordinate_values.rs": {
+      "lines": {
+        "count": 18,
+        "covered": 18,
+        "percent": 100
+      },
+      "regions": {
+        "count": 18,
+        "covered": 18,
+        "notcovered": 0,
+        "percent": 100
+      }
+    },
+    "src/definition.rs": {
+      "lines": {
+        "count": 271,
+        "covered": 270,
+        "percent": 99.63099630996311
+      },
+      "regions": {
+        "count": 471,
+        "covered": 468,
+        "notcovered": 3,
+        "percent": 99.36305732484077
+      }
+    },
+    "src/enum_names.rs": {
+      "lines": {
+        "count": 94,
+        "covered": 94,
+        "percent": 100
+      },
+      "regions": {
+        "count": 95,
+        "covered": 95,
+        "notcovered": 0,
+        "percent": 100
+      }
+    },
+    "src/factory.rs": {
+      "lines": {
+        "count": 109,
+        "covered": 109,
+        "percent": 100
+      },
+      "regions": {
+        "count": 163,
+        "covered": 163,
+        "notcovered": 0,
+        "percent": 100
+      }
+    },
+    "src/fuel.rs": {
+      "lines": {
+        "count": 130,
+        "covered": 130,
+        "percent": 100
+      },
+      "regions": {
+        "count": 245,
+        "covered": 245,
+        "notcovered": 0,
+        "percent": 100
+      }
+    },
+    "src/fuel/xml.rs": {
+      "lines": {
+        "count": 167,
+        "covered": 167,
+        "percent": 100
+      },
+      "regions": {
+        "count": 282,
+        "covered": 282,
+        "notcovered": 0,
+        "percent": 100
+      }
+    },
+    "src/geometry_values.rs": {
+      "lines": {
+        "count": 41,
+        "covered": 41,
+        "percent": 100
+      },
+      "regions": {
+        "count": 76,
+        "covered": 76,
+        "notcovered": 0,
+        "percent": 100
+      }
+    },
+    "src/inertial_values.rs": {
+      "lines": {
+        "count": 71,
+        "covered": 71,
+        "percent": 100
+      },
+      "regions": {
+        "count": 86,
+        "covered": 86,
+        "notcovered": 0,
+        "percent": 100
+      }
+    },
+    "src/lib.rs": {
+      "lines": {
+        "count": 66,
+        "covered": 66,
+        "percent": 100
+      },
+      "regions": {
+        "count": 100,
+        "covered": 100,
+        "notcovered": 0,
+        "percent": 100
+      }
+    },
+    "src/registry.rs": {
+      "lines": {
+        "count": 174,
+        "covered": 174,
+        "percent": 100
+      },
+      "regions": {
+        "count": 291,
+        "covered": 289,
+        "notcovered": 2,
+        "percent": 99.3127147766323
+      }
+    },
+    "src/spherical_values.rs": {
+      "lines": {
+        "count": 56,
+        "covered": 56,
+        "percent": 100
+      },
+      "regions": {
+        "count": 53,
+        "covered": 53,
+        "notcovered": 0,
+        "percent": 100
+      }
+    },
+    "src/wire.rs": {
+      "lines": {
+        "count": 88,
+        "covered": 88,
+        "percent": 100
+      },
+      "regions": {
+        "count": 158,
+        "covered": 157,
+        "notcovered": 1,
+        "percent": 99.36708860759494
+      }
+    }
+  },
+  "coverage": {
+    "lines": [
+      3148,
+      3168
+    ],
+    "regions": [
+      5196,
+      5286
+    ]
+  },
+  "owned_vendor_patches": {
+    "prost-derive": {
+      "lines": [
+        6,
+        6
+      ],
+      "regions": [
+        8,
+        8
+      ]
+    },
+    "prost-reflect": {
+      "lines": [
+        96,
+        97
+      ],
+      "regions": [
+        205,
+        206
+      ]
+    }
+  },
+  "changed_executable": [
+    36,
+    36
+  ],
+  "changed_manifest": "All 18 production hashes and every added line independently reconstructed from exact parent/candidate raw sources using the unchanged policy; exact LCOV predicate results match retained changed-production.json. Nine unmapped compiler syntax lines remain visible, no annotation/exclusion change.",
+  "rust": [
+    142,
+    0,
+    0
+  ],
+  "cli": [
+    45,
+    0,
+    0
+  ],
+  "native_outcomes": 7559,
+  "tooling_unittest_batches": [
+    7,
+    10,
+    1
+  ],
+  "resource_budget": {
+    "minimum_initial_bytes": 6442450944,
+    "initial_free_bytes": 22598742016,
+    "floor_bytes": 2147483648,
+    "growth_limit_bytes": 3865470566,
+    "minimum_observed_free_bytes": 19005771776,
+    "peak_incremental_bytes": 3796394129,
+    "samples": 317,
+    "poll_interval_seconds": 0.5,
+    "measurement": "Logical regular-file bytes; hardlinked names counted conservatively. Sampling is observational, not an instantaneous kernel quota.",
+    "baseline_bytes": {
+      "scratch": 0,
+      "worktree_target": 622746630,
+      "canonical_staged": 0,
+      "observer_output": 1177
+    },
+    "measured_roots": {
+      "scratch": "role:scratch",
+      "worktree_target": "role:worktree_target",
+      "canonical_staged": "role:canonical_staged",
+      "observer_output": "role:observer_output"
+    },
+    "last_sample": {
+      "utc": "2026-10-27T03:29:39.728829+00:00",
+      "root_bytes": {
+        "scratch": 0,
+        "worktree_target": 622746630,
+        "canonical_staged": 6898587,
+        "observer_output": 28538
+      },
+      "incremental_bytes": 6925948,
+      "free_bytes": 22575861760
+    }
+  },
+  "preservation": "Original independent69782 remains FAILED finalsharedfloor with completed fresh functional evidence retained. Separate approved warm7955 passed, bound by prior source review0c227; no relabeling or new native credit.",
+  "limits": [
+    "This receipt binds complete source-gate evidence to exact previously approved source205d. Final metadata/protected binding, mandatory normal hook, public push and exact hosted success remain required.",
+    "No new original retirement, MSG02/general-parser/direct-reflection/arbitrary-depth/diagnostic or numeric rejection-code equivalence/performance claim."
+  ],
+  "public_projection": {
+    "private_approved_receipt_sha256": "7dc36904e39d5c43922afcb80c90f0d494b888c15e27f3b34446be2fc826a5b6",
+    "kind": "full source evidence",
+    "transformation": "Machine-specific source/export/target path strings are role labels; linked source publicV2 contains explicit cache-bookkeeping wording erratum. Every original full-source finding, source identity, byte hash, count, resource byte value and limitation remains unchanged. Original private receipt remains immutable.",
+    "issued_at": "2026-10-27T03:47:07.416583+00:00",
+    "superseded_public_receipt_sha256": "65464c7ec0f6bca9f0aabbe978808983535336396f1708be88809d3526375a0a"
+  },
+  "source_review_public_sha256": "273ff08a39ba48eb2f0c7faa3f9cc77f76b2bac18bf63459d759a3c3cda58ac6",
+  "source_review_public_documentation_erratum": "See linked source publicV2: existing reviewer Cargo caches were explicitly reused for warm7955; immutable original failed-result/raw/source/proof copies remain verified unchanged. No new run or functional finding."
+}
