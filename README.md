@@ -52,3 +52,5 @@ Ordinary [enum defaults](docs/ENUM_DEFINITIONS.md) retain the selected name,
 including aliases of the same numeric value.
 Ordinary [bytes defaults](docs/BYTES_DEFINITIONS.md) format admitted reflected
 bytes with the same quoting helper, preserving existing loader boundaries.
+Ordinary [floating defaults](docs/FLOATING_DEFINITIONS.md) use the pinned native
+precision/layout policy with Rust std rounding and unchanged decoder boundaries.

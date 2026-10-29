@@ -185,6 +185,8 @@ fn field(
             (Kind::Uint32 | Kind::Fixed32, Value::U32(value)) => value.to_string(),
             (Kind::Uint64 | Kind::Fixed64, Value::U64(value)) => value.to_string(),
             (Kind::Bool, Value::Bool(value)) => value.to_string(),
+            (Kind::Float, Value::F32(value)) => crate::float_default::float(value),
+            (Kind::Double, Value::F64(value)) => crate::float_default::double(value),
             (Kind::String, Value::String(value)) => quoted(&value),
             (Kind::Bytes, Value::Bytes(value)) => quoted_bytes(&value),
             // Reflection resolves membership but permits malformed declared names.

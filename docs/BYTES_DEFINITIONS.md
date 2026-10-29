@@ -49,6 +49,7 @@ identity and linked-library hashes for protobuf 3.21.12 on Linux LP64. Replay:
 cargo test --locked --test bytes_definitions --test byte_defaults
 ```
 
-Floating default declarations, other library versions, general malformed metadata,
-wider Messages acceptance and equal-work performance remain separate work.
+The later [floating declaration policy](FLOATING_DEFINITIONS.md) has a separate
+contract. Other library versions, general malformed metadata, wider Messages
+acceptance and equal-work performance remain separate work.
 Independent review, the normal staged hook and exact hosted CI are required.

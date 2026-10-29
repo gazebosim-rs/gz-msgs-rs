@@ -16,6 +16,7 @@ include!(concat!(env!("OUT_DIR"), "/definitions.rs"));
 mod wire;
 pub use wire::{CanonicalMessage, CompatibleDecodeError};
 mod definition;
+mod float_default;
 pub use definition::{descriptor_definition, DefinitionError};
 include!(concat!(env!("OUT_DIR"), "/canonical.rs"));
 pub use msgs::{Clock, Imu as IMU, Pose, Time};
