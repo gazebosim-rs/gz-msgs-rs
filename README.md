@@ -43,5 +43,6 @@ the path dependencies and is not a supported distribution.
 
 External registry integer defaults follow a bounded, native-backed
 [Linux LP64 policy](docs/INTEGER_DEFAULTS.md), preserving raw descriptor spelling.
-Standard reflection entry points and explicit-default formatting retain their
-separate limitations.
+Standard reflection entry points retain their separate limitations. The bounded
+[integer declaration formatter](docs/INTEGER_DEFINITIONS.md) supports four ordinary
+proto2 integer kinds without changing raw descriptor metadata.

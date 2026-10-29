@@ -76,9 +76,11 @@ rejection of hex. This preserves an explicit native/legacy validation gap rather
 than expanding malformed descriptor acceptance. Required-message initialization,
 complete oneof validation and arbitrary synthetic map shapes are not qualified.
 
-`descriptor_definition`, registry/factory definitions and CLI info still reject
-explicit defaults as Unsupported. Newly admitted numeric spellings such as
-hex now reach that existing formatting guard instead of the missing-type path.
+`descriptor_definition`, registry/factory definitions and CLI info support ordinary
+proto2 int32, int64, uint32 and uint64 defaults. They print the parsed effective
+value in decimal while preserving raw descriptor metadata; see
+[integer declarations](INTEGER_DEFINITIONS.md). Other explicit default kinds and
+oneof defaults remain Unsupported.
 A rejected numeric descriptor remains unavailable through the existing missing
 info/continuation behavior. Floats, strings/bytes, enums, groups,
 extensions and general native proto2 wire/formatting behavior are not newly

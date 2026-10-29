@@ -3,6 +3,7 @@
 //! Bounded native declaration formatting over validated reflection descriptors.
 use prost_reflect::{
     Cardinality, DynamicMessage, EnumDescriptor, FieldDescriptor, Kind, MessageDescriptor, Syntax,
+    Value,
 };
 use std::{collections::BTreeSet, fmt::Write};
 
@@ -165,13 +166,25 @@ fn field(
 ) -> Result<(), DefinitionError> {
     let raw = field.field_descriptor_proto();
     let proto2 = field.parent_file().syntax() == Syntax::Proto2;
-    if raw.default_value.is_some() {
-        return Err(DefinitionError::Unsupported(if proto2 {
-            "proto2 default"
-        } else {
-            "proto3 default or required field"
-        }));
-    }
+    let default = if raw.default_value.is_some() {
+        if !proto2 || field.is_list() || field.containing_oneof().is_some() {
+            return Err(DefinitionError::Unsupported(if proto2 {
+                "proto2 default"
+            } else {
+                "proto3 default or required field"
+            }));
+        }
+        // Native declarations print the parsed value without changing raw metadata.
+        Some(match (field.kind(), field.default_value()) {
+            (Kind::Int32, Value::I32(value)) => value.to_string(),
+            (Kind::Int64, Value::I64(value)) => value.to_string(),
+            (Kind::Uint32, Value::U32(value)) => value.to_string(),
+            (Kind::Uint64, Value::U64(value)) => value.to_string(),
+            _ => return Err(DefinitionError::Unsupported("proto2 default")),
+        })
+    } else {
+        None
+    };
     if field.cardinality() == Cardinality::Required && !proto2 {
         return Err(DefinitionError::Unsupported(
             "proto3 default or required field",
@@ -184,6 +197,9 @@ fn field(
         return Err(DefinitionError::Unsupported("malformed oneof field"));
     }
     let mut field_options = Vec::new();
+    if let Some(value) = default {
+        field_options.push(format!("default = {value}"));
+    }
     if let Some(name) = raw
         .json_name
         .as_ref()

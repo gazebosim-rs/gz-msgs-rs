@@ -386,8 +386,9 @@ checking the registry/factory/CLI output against the original descriptor bytes.
 The formatter includes reserved names/ranges and C-style escaping for UTF-8 JSON
 names. It preserves defined raw-range display quirks and rejects the two message
 boundaries whose native signed arithmetic overflows. Basic proto2 labels/oneofs
-are supported; explicit defaults, groups, extensions and advanced options remain
-unsupported. Standard reflection entry points retain their separate raw integer
+are supported. Ordinary optional/required int32, int64, uint32 and uint64 defaults
+are formatted in decimal from their effective values; other defaults, groups,
+extensions and advanced options remain unsupported. Standard reflection entry points retain their separate raw integer
 default interpretation; the registry's bounded opt-in integer policy is described
 below. Declaration formatting adds no default-value or general wire contract.
 This is not a complete descriptor validator.
@@ -404,5 +405,7 @@ values against the qualified native Linux LP64/C23 corpus. Standard pools,
 extension/proto3 defaults and other scalar paths are unchanged. See
 [integer defaults](INTEGER_DEFAULTS.md) for sign/radix/NUL/saturation/narrowing
 rules, malformed-label dispositions, provenance and explicit limits. The existing
-byte-default safety rejection remains mandatory. Explicit-default formatting and
-complete proto2/native wire behavior remain unqualified.
+byte-default safety rejection remains mandatory. The bounded
+[integer-default declaration formatter](INTEGER_DEFINITIONS.md) preserves raw
+metadata; other default formatting and complete proto2/native wire behavior remain
+unqualified.

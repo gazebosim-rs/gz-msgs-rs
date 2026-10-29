@@ -1,0 +1,30 @@
+{
+  "state": "native_reference_and_focused_rust_replayed_full_gate_pending",
+  "review_sha256": "88bcb274dac72d567c37d198c861a00060928bb1e048e8f94d3cb01dcb57534f",
+  "source_protobuf_commit": "f0dc78d7e6e331b8c6bb2d5283e06aa26883ca7c",
+  "descriptor_cc_sha256": "05ee5c034613801857288a77f6eb758037421d8f59b01e4e50ba573d74013d7f",
+  "qualified_probe_sha256": "4c43d86c06b90a99af5189d61772b4aed6ccff1ebbf37f21df4fb0b14dfde02a",
+  "checked_in_peer_sha256": "bcbb243e95dff3cbdac700ba0d45a51b2abbc3becc57c02b82f0a3f7260ed768",
+  "peer_difference": "Comment only: uncompiled label replaced with qualified observer; C++ executable body byte-identical.",
+  "native_76_workflow_sha256": "1f9e03065176a150278646c2d8ab502a453c96402a3ee2294d1409b0c52b5143",
+  "native_396_workflow_sha256": "e860b427e459ff0cbb503027a25dfc5196c9c5f452af686922c25c1c77d853a8",
+  "old_990_fixture_sha256": "0970b84d907e8a19333df47a1ac37ad1c12dba32526f86737c605cb459de1c4e",
+  "old_assertion_snapshot_sha256": "24fed21cbc437cca8ee81e8ffb031c05c0a6532b50dfec72b0d3c36c1a1074a0",
+  "fixtures": {
+    "native-76.json": "468d73eb296e4f3f27cd863395662fb2286718b4e33c659de2189dff0bb21727",
+    "existing-396.json": "f07a8752d758fe6056388fd88dd219bfefe0bb12f0885fdb962290ca4b75d8d1"
+  },
+  "scope": "All472 observations retained. Rust formatter scope ordinary optional/required proto2 int32/int64/uint32/uint64 explicit defaults. Oneof/repeated/proto3/otherkinds and unknownoptions remain unsupported. Source raw metadata retained, effective value decimal beforejson_name/options. No new parser/wire emission/diagnostic equivalence/generaldefault/SDK claim. 83original count unchanged.",
+  "replay_command": "cargo test --locked --test integer_definitions all_472_native_declarations_reproduce_exact_captured_outputs",
+  "peer_build_command": "c++ -std=c++17 -Wall -Wextra -Werror tests/integer_definition_peer.cc -lprotobuf -o /tmp/gz-msgs-integer-definition-peer",
+  "replayed_at": "2026-10-29",
+  "compiler": "c++ (Ubuntu 11.5.0-1ubuntu1~24.04.1) 11.5.0",
+  "replay_libraries_sha256": {
+    "libprotobuf.so.32": "53a2a625a30418d6ea84438b04c9196214dec51a30476596ee9be45ccadb0404",
+    "libstdc++.so.6": "1fd75fe70354a416d75aef22bcae68c47bd25d20e2d0568c30b1a9838cf62f11",
+    "libgcc_s.so.1": "d93224d2b0dab4247598be683adca02f5cf00586f99c187579cd7e92058fb7cb",
+    "libc.so.6": "3a15d66867d83762c7f2f1e37359cb8f6c5743edb369c65285cb0b1c4f7498bf",
+    "libz.so.1": "f61677c7bdb7c2aa2a243ea781bfd16afcb361cede7b4ef76127a9d8eb9a5242",
+    "libm.so.6": "fce00b6f25f459cf4ae0b7fae4257909a1a8a86f9149e7c029a5d617baf1ccd0"
+  }
+}

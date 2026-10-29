@@ -53,6 +53,35 @@ impl Drop for Directory {
 fn fixture() -> serde_json::Value {
     serde_json::from_str(include_str!("fixtures/integer-defaults/native.json")).unwrap()
 }
+fn native_integer_definition(row: &serde_json::Value) -> Option<String> {
+    if ![5, 3, 13, 4].contains(&row["kind"].as_i64().unwrap()) {
+        return None;
+    }
+    static OBSERVED: std::sync::OnceLock<serde_json::Value> = std::sync::OnceLock::new();
+    let observed = OBSERVED.get_or_init(|| {
+        serde_json::from_str(include_str!(
+            "fixtures/integer-definitions/existing-396.json"
+        ))
+        .unwrap()
+    });
+    let cases = observed["cases"].as_array().unwrap();
+    assert_eq!(cases.len(), 396);
+    let native = cases
+        .iter()
+        .find(|case| case["input"]["id"] == row["id"])
+        .unwrap();
+    assert_eq!(&native["input"], row);
+    assert_eq!(native["descriptor_hex"], row["descriptor_hex"]);
+    assert!(native["observation"]["admitted"].as_bool().unwrap());
+    Some(
+        String::from_utf8(unhex(
+            native["observation"]["fields"]["DEFINITION_HEX"]
+                .as_str()
+                .unwrap(),
+        ))
+        .unwrap(),
+    )
+}
 fn unhex(text: &str) -> Vec<u8> {
     text.as_bytes()
         .chunks_exact(2)
@@ -200,7 +229,11 @@ fn exact_native_integer_corpus_matches_effective_values_wire_and_raw_spelling() 
                 DynamicMessage::decode(descriptor, unhex(wire).as_slice()).unwrap(),
                 message
             );
-            assert!(registry.definition("Default").is_err());
+            if let Some(expected) = native_integer_definition(row) {
+                assert_eq!(registry.definition("Default").unwrap(), Some(expected));
+            } else {
+                assert!(registry.definition("Default").is_err());
+            }
         } else {
             assert_eq!(errors.len(), 1, "{row}");
             let _: &gz_msgs::prost_reflect::DescriptorError = &errors[0];
@@ -239,7 +272,14 @@ fn factory_empty_decode_paths_observe_native_integer_defaults_and_errors() {
             assert_eq!(factory.new_text("Default", "").unwrap().unwrap(), message);
             assert!(factory.types().contains(&"Default".to_owned()));
             assert!(factory.take_initial_errors().is_empty());
-            assert!(factory.registry_definition("Default").is_err());
+            if let Some(expected) = native_integer_definition(row) {
+                assert_eq!(
+                    factory.registry_definition("Default").unwrap(),
+                    Some(expected)
+                );
+            } else {
+                assert!(factory.registry_definition("Default").is_err());
+            }
         } else {
             assert!(factory.new_message("Default").is_none());
             let errors = factory.take_initial_errors();
@@ -249,7 +289,7 @@ fn factory_empty_decode_paths_observe_native_integer_defaults_and_errors() {
         assert!(factory.new_message("gz.msgs.Time").is_some());
     }
     for (default, success, expected_stderr) in [
-        ("0x2a", false, "proto2 default"),
+        ("0x2a", true, ""),
         ("09", true, "Unable to create message of type[Default]"),
     ] {
         let path = directory.0.join("cli.desc");
@@ -260,10 +300,26 @@ fn factory_empty_decode_paths_observe_native_integer_defaults_and_errors() {
             .output()
             .unwrap();
         assert_eq!(output.status.success(), success, "{output:?}");
-        assert!(String::from_utf8(output.stderr)
+        assert!(std::str::from_utf8(&output.stderr)
             .unwrap()
             .contains(expected_stderr));
-        assert!(output.stdout.is_empty());
+        if default == "0x2a" {
+            let row = fixture()["cases"]
+                .as_array()
+                .unwrap()
+                .iter()
+                .find(|row| row["kind"] == 5 && row["input"] == default)
+                .unwrap()
+                .clone();
+            let native = native_integer_definition(&row).unwrap();
+            assert!(output.stderr.is_empty());
+            assert_eq!(
+                output.stdout,
+                format!("Name: Default\nFile: defaults.proto\n\n{native}\n").as_bytes()
+            );
+        } else {
+            assert!(output.stdout.is_empty());
+        }
     }
 }
 

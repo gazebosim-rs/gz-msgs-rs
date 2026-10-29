@@ -291,7 +291,11 @@ fn external_cli_info_preserves_canonical_output_and_continuation() {
             .env("GZ_DESCRIPTOR_PATH", row["descriptor"].as_str().unwrap())
             .output()
             .unwrap();
-        if let Some(feature) = row.get("unsupported") {
+        // This exact formerly unsupported native row now uses its preserved full
+        // stdout/stderr oracle. Other unsupported fixture rows remain errors.
+        let supported_default = args == ["--info", "definition.proto2.Defaults"]
+            && row["descriptor"] == "tests/fixtures/definitions/proto2.desc";
+        if let Some(feature) = row.get("unsupported").filter(|_| !supported_default) {
             assert!(!result.status.success());
             assert!(result.stdout.is_empty());
             assert!(String::from_utf8(result.stderr)
@@ -762,7 +766,6 @@ fn basic_proto2_declarations_match_native_with_explicit_unsupported_features() {
     for (name, native) in expected {
         let descriptor = registry.pool().get_message_by_name(&name).unwrap();
         let error = match name.as_str() {
-            "definition.proto2.Defaults" => Some("proto2 default"),
             "definition.proto2.Groups" => Some("groups"),
             _ => None,
         };

@@ -15,7 +15,7 @@ allow_alias/deprecated, enum-value deprecated and field packed/deprecated boolea
 options, including explicit false. Synthetic map entries produce an empty body.
 A definition is assembled before return, so a failure exposes no partial string.
 
-`DefinitionError::Unsupported` identifies proto2 explicit defaults and groups,
+`DefinitionError::Unsupported` identifies unsupported proto2 explicit defaults and groups,
 extension declarations, unsupported standard/custom/unknown options, malformed
 synthetic map entries,
 empty oneofs, invalid/overflowing reserved boundaries, proto3 default/required fields or
@@ -38,7 +38,8 @@ rejected; these checks do not constitute a complete descriptor validator.
 Basic proto2 declarations preserve optional/required/repeated labels, oneofs,
 maps, nested messages/enums (including a nonzero first enum value), reserved
 declarations and the same supported boolean options. Oneof fields carry no
-optional label. Explicit defaults, groups and extensions still return Unsupported;
+optional label. Ordinary optional/required int32, int64, uint32 and uint64 defaults
+are supported; other explicit defaults, groups and extensions return Unsupported;
 legacy inputs remain tested, with their first unsupported-feature diagnostic now
 identifying extensions rather than blanket proto2 rejection. Malformed required
 or repeated oneof labels accepted by reflection but rejected by native return a
@@ -49,8 +50,10 @@ boundary: `010` is decimal ten and `0x2a` is rejected. The registry/factory now 
 an [opt-in integer policy](INTEGER_DEFAULTS.md) matching the qualified native
 Linux LP64/C23 effective values while preserving raw spelling. Protoc normalizes
 source literals, so directly constructed descriptor bytes qualify this boundary.
-Explicit defaults remain outside this formatter's supported subset; no descriptor
-normalization or arbitrary native proto2 default/formatting contract is introduced.
+The formatter prints effective values for ordinary int32, int64, uint32 and uint64
+defaults in decimal, before json_name and boolean options. Other default kinds and
+oneof defaults remain unsupported. See [integer declarations](INTEGER_DEFINITIONS.md).
+No raw descriptor normalization or general native proto2 formatting contract is introduced.
 Canonical proto3 schemas are unchanged.
 
 The descriptor-only API formats metadata exposed by reflection. Its loader
