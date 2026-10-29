@@ -47,8 +47,8 @@ A documented allowance is limited to the owned preflight function so this
 maintenance correction preserves the public return type without a dependency
 fork or a fabricated error. Revisit that boundary when migrating prost.
 
-Explicit defaults remain unsupported by declaration formatting. Integer radix,
-float/enum/string/byte interpretation differences beyond this rejection remain
-unqualified, and arbitrary native proto2 default/wire parity and MSG-02 completion
-are not claimed. There is no performance improvement claim; the additional scan
+The later [bytes declaration formatter](BYTES_DEFINITIONS.md) formats already-admitted
+reflected bytes without changing this boundary. It explicitly retains the existing
+long-hex and literal-NUL native/reflection differences. Other default interpretation differences,
+arbitrary native proto2 default/wire parity and MSG-02 completion remain unqualified. There is no performance improvement claim; the additional scan
 is linear in new-file default text and adds no per-message decode work.

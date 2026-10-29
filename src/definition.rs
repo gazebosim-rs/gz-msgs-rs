@@ -42,8 +42,12 @@ fn line(output: &mut String, depth: usize, value: impl std::fmt::Display) {
 }
 
 fn quoted(value: &str) -> String {
+    quoted_bytes(value.as_bytes())
+}
+
+fn quoted_bytes(value: &[u8]) -> String {
     let mut output = String::from("\"");
-    for byte in value.bytes() {
+    for &byte in value {
         let escaped = std::ascii::escape_default(byte);
         // Protobuf CEscape uses byte-octal escapes where Rust uses hex.
         if escaped.len() == 4 {
@@ -182,6 +186,7 @@ fn field(
             (Kind::Uint64 | Kind::Fixed64, Value::U64(value)) => value.to_string(),
             (Kind::Bool, Value::Bool(value)) => value.to_string(),
             (Kind::String, Value::String(value)) => quoted(&value),
+            (Kind::Bytes, Value::Bytes(value)) => quoted_bytes(&value),
             // Reflection resolves membership but permits malformed declared names.
             (Kind::Enum(_), Value::EnumNumber(_)) => {
                 let mut bytes = raw_default.bytes();

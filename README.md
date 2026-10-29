@@ -50,3 +50,5 @@ proto2 integer scalar kinds without changing raw descriptor metadata. Ordinary
 [string defaults](docs/STRING_DEFINITIONS.md) also use native declaration spelling.
 Ordinary [enum defaults](docs/ENUM_DEFINITIONS.md) retain the selected name,
 including aliases of the same numeric value.
+Ordinary [bytes defaults](docs/BYTES_DEFINITIONS.md) format admitted reflected
+bytes with the same quoting helper, preserving existing loader boundaries.
