@@ -70,3 +70,21 @@ copyright holders/years and all vendored third-party attribution unchanged.
 
 Assertion-preserving Rust ports retain the original source copyright notices/years
 alongside the new rewrite notice, even when the source language changes.
+
+## Owner guidance (2026-10-27)
+
+These answers from the owner apply to every agent, Claude or ChatGPT.
+
+- Keep the real gates: tests, required coverage, this repository's pre-commit
+  hook, hosted CI, real C++ interoperability and preserved upstream test intent.
+  Do not add process on top of them: no frozen proposal files, hash-bound review
+  receipts, CPU/disk slot reservations, versioned reruns of the same check, or
+  archiving every failed build. Keep `artifacts/` small.
+- Have someone other than the author review each change: give the reviewer the
+  code and the claims to verify, and have it re-check each fix.
+- Ask the owner only for real product or dependency decisions and record the
+  answer. List non-regenerable files for the owner before deleting them.
+- Write status and reports in plain sentences that another agent can act on.
+- The simulator coordinator's current state and cross-repository lessons are in
+  gz-sim-rs `docs/HANDOFF.md` and the end of gz-sim-rs `AGENTS.md`.
+
