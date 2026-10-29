@@ -390,8 +390,9 @@ are supported. Ordinary optional/required defaults for all ten integer scalar ki
 are formatted in decimal from their effective values. Ordinary
 [boolean defaults](BOOLEAN_DEFINITIONS.md) use `true`/`false`. Valid-UTF8
 [string defaults](STRING_DEFINITIONS.md) reuse the existing protobuf escape helper.
-Bytes, floating and enum defaults, groups, extensions and advanced options remain
-unsupported.
+[Bytes](BYTES_DEFINITIONS.md), [enum](ENUM_DEFINITIONS.md) and
+[floating defaults](FLOATING_DEFINITIONS.md) have separate bounded native-backed
+contracts. Groups, extensions and unhandled options remain unsupported.
 Standard reflection entry points retain their separate raw integer-default
 interpretation; the registry's bounded opt-in integer policy is described
 below. Formatting preserves parsed values and does not expand wire support.

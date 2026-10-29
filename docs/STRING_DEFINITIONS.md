@@ -13,8 +13,9 @@ The registry, factory and CLI preserve omitted JSON-name metadata. The direct
 formatter uses the supplied reflection metadata, including synthesized JSON
 names, as before. No explicit default is invented when the input omits it.
 Oneof, repeated and proto3 defaults, and unknown options, remain unsupported.
-Bytes defaults have their separate escape/parser safety contract and remain
-unsupported; floating and enum default declarations are also outside this slice.
+[Bytes](BYTES_DEFINITIONS.md), [enum](ENUM_DEFINITIONS.md) and
+[floating](FLOATING_DEFINITIONS.md) default declarations are later separate
+slices; their parser/safety boundaries do not change this string contract.
 
 The native corpus contains 54 controls, including 49 supported layouts. These
 cover optional/required fields, empty and whitespace strings, every ASCII byte,

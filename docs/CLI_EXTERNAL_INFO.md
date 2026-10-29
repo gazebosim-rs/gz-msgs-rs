@@ -15,7 +15,7 @@ allow_alias/deprecated, enum-value deprecated and field packed/deprecated boolea
 options, including explicit false. Synthetic map entries produce an empty body.
 A definition is assembled before return, so a failure exposes no partial string.
 
-`DefinitionError::Unsupported` identifies unsupported proto2 explicit defaults and groups,
+`DefinitionError::Unsupported` identifies invalid default shapes and groups,
 extension declarations, unsupported standard/custom/unknown options, malformed
 synthetic map entries,
 empty oneofs, invalid/overflowing reserved boundaries, proto3 default/required fields or
@@ -38,8 +38,8 @@ rejected; these checks do not constitute a complete descriptor validator.
 Basic proto2 declarations preserve optional/required/repeated labels, oneofs,
 maps, nested messages/enums (including a nonzero first enum value), reserved
 declarations and the same supported boolean options. Oneof fields carry no
-optional label. Ordinary optional/required integer, boolean and valid-UTF8 string
-defaults are supported; other explicit defaults, groups and extensions return Unsupported;
+optional label. Ordinary optional/required scalar defaults are supported within
+the family contracts below; invalid default shapes, groups and extensions return Unsupported;
 legacy inputs remain tested, with their first unsupported-feature diagnostic now
 identifying extensions rather than blanket proto2 rejection. Malformed required
 or repeated oneof labels accepted by reflection but rejected by native return a
@@ -51,8 +51,12 @@ an [opt-in integer policy](INTEGER_DEFAULTS.md) matching the qualified native
 Linux LP64/C23 effective values while preserving raw spelling. Protoc normalizes
 source literals, so directly constructed descriptor bytes qualify this boundary.
 The formatter prints effective values for all ordinary integer scalar defaults
-in decimal, before json_name and boolean options. Bytes, floating, enum and oneof
-defaults remain unsupported. [Boolean defaults](BOOLEAN_DEFINITIONS.md)
+in decimal, before json_name and boolean options. Oneof defaults remain unsupported.
+[Enum defaults](ENUM_DEFINITIONS.md) preserve selected names and aliases;
+[bytes defaults](BYTES_DEFINITIONS.md) format admitted reflected bytes with the
+shared escaping helper. [Floating defaults](FLOATING_DEFINITIONS.md) use the pinned
+protobuf precision/layout policy over reflected values, with Rust std rounding
+and explicit existing decoder differences. [Boolean defaults](BOOLEAN_DEFINITIONS.md)
 use the native `true`/`false` spelling with the same option order.
 [String defaults](STRING_DEFINITIONS.md) reuse the native-backed quote/escape
 helper; invalid UTF8 retains the existing Rust decoder rejection. See [integer declarations](INTEGER_DEFINITIONS.md).

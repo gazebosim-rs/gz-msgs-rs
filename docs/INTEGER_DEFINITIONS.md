@@ -19,8 +19,10 @@ raw metadata, explicit-presence wire and rejection assertions remain in force.
 
 Defaults on oneof, repeated and proto3 fields remain outside this formatter's
 supported subset. [Boolean](BOOLEAN_DEFINITIONS.md) and valid-UTF8
-[string defaults](STRING_DEFINITIONS.md) are separate qualified families. Bytes,
-floating and enum defaults remain unsupported.
+[string defaults](STRING_DEFINITIONS.md) are separate qualified families. Later
+[bytes](BYTES_DEFINITIONS.md), [enum](ENUM_DEFINITIONS.md) and
+[floating](FLOATING_DEFINITIONS.md) slices extend formatting without changing
+this integer contract.
 Unknown options remain errors.
 This adds no parser policy, schema change, wire behavior, upstream test retirement,
 performance result or complete MSG-02 acceptance.

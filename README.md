@@ -54,3 +54,7 @@ Ordinary [bytes defaults](docs/BYTES_DEFINITIONS.md) format admitted reflected
 bytes with the same quoting helper, preserving existing loader boundaries.
 Ordinary [floating defaults](docs/FLOATING_DEFINITIONS.md) use the pinned native
 precision/layout policy with Rust std rounding and unchanged decoder boundaries.
+
+The [representative codec baseline](docs/CODEC_BENCHMARK.md) retains native/Rust
+fresh/reused serialization measurements, including slower packed LaserScan
+results. It is bounded evidence, not MSG-02 or simulator performance acceptance.

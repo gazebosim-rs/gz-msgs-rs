@@ -81,4 +81,10 @@ for package in vendor['packages']:
         assert hashlib.sha256(pathlib.Path(item['path']).read_bytes()).hexdigest() == item['sha256'], item['path']
         assert (item['upstream_sha256'] == item['sha256']) == ('owned_lines' not in item), item['path']
 commands = [[os.environ.get('CARGO', 'cargo'), 'fmt', '--all', '--', '--check'], [os.environ.get('CARGO', 'cargo'), 'clippy', '--locked', '--all-targets', '--', '-D', 'warnings'], ['python3', 'scripts/test-gates.py'], ['python3', 'scripts/test-changed.py'], ['python3', 'scripts/test-snapshot.py'], ['python3', 'scripts/test-source-package.py'], ['python3', 'scripts/test-downstream.py'], ['python3', 'scripts/json-reference.py']]
+commands += [
+    ['python3', 'tools/test_codec_benchmark.py'],
+    ['cargo', 'fmt', '--manifest-path', 'tools/codec-benchmark/Cargo.toml', '--', '--check'],
+    ['cargo', 'clippy', '--locked', '--release', '--manifest-path', 'tools/codec-benchmark/Cargo.toml', '--', '-D', 'warnings'],
+    ['python3', 'tools/codec_benchmark.py', '--verify-only'],
+]
 run_checks(root, changed, commands)

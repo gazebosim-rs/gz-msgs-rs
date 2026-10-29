@@ -20,7 +20,9 @@ proto3 defaults remain unsupported by formatting, including existing differences
 between native and reflection admission. Unknown options still return an error.
 The earlier native boolean control retains its exact input and expected native
 declaration as a positive test. [Valid-UTF8 string defaults](STRING_DEFINITIONS.md)
-are qualified separately. Bytes, floating and enum defaults remain unsupported; all 83 upstream assertion mappings are unchanged.
+are qualified separately, as are later [bytes](BYTES_DEFINITIONS.md),
+[enum](ENUM_DEFINITIONS.md) and [floating](FLOATING_DEFINITIONS.md) families.
+All 83 upstream assertion mappings are unchanged.
 
 `tests/integer_definition_peer.cc` is reused as the native declaration observer.
 The [fixture](../tests/fixtures/boolean-definitions.json) records every raw input,
