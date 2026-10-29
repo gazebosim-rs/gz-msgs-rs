@@ -244,7 +244,6 @@ fn unsupported_shapes_and_kinds_stay_explicit_and_standard_pool_semantics_stay_d
     for id in [
         "optional-oneof",
         "float-default",
-        "enum-default",
         "unknown-field-option",
         "proto3-default",
     ] {
@@ -303,5 +302,33 @@ fn unsupported_shapes_and_kinds_stay_explicit_and_standard_pool_semantics_stay_d
             .default_value
             .as_deref(),
         Some("010")
+    );
+}
+
+#[test]
+fn original_enum_default_observation_preserves_selected_name() {
+    let fixture = observations();
+    let row = fixture["cases"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|row| row["input"]["id"] == "enum-default")
+        .unwrap();
+    let bytes = unhex(row["descriptor_hex"].as_str().unwrap());
+    let mut registry = DescriptorRegistry::default();
+    assert!(registry.load_bytes(&bytes).unwrap().is_empty());
+    let descriptor = registry.pool().get_message_by_name("Default").unwrap();
+    let raw = descriptor
+        .get_field_by_name("value")
+        .unwrap()
+        .field_descriptor_proto()
+        .clone();
+    assert_eq!(registry.definition("Default").unwrap(), Some(expected(row)));
+    assert_eq!(
+        descriptor
+            .get_field_by_name("value")
+            .unwrap()
+            .field_descriptor_proto(),
+        &raw
     );
 }

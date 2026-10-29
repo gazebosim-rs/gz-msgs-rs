@@ -166,7 +166,7 @@ fn field(
 ) -> Result<(), DefinitionError> {
     let raw = field.field_descriptor_proto();
     let proto2 = field.parent_file().syntax() == Syntax::Proto2;
-    let default = if raw.default_value.is_some() {
+    let default = if let Some(raw_default) = &raw.default_value {
         if !proto2 || field.is_list() || field.containing_oneof().is_some() {
             return Err(DefinitionError::Unsupported(if proto2 {
                 "proto2 default"
@@ -182,6 +182,18 @@ fn field(
             (Kind::Uint64 | Kind::Fixed64, Value::U64(value)) => value.to_string(),
             (Kind::Bool, Value::Bool(value)) => value.to_string(),
             (Kind::String, Value::String(value)) => quoted(&value),
+            // Reflection resolves membership but permits malformed declared names.
+            (Kind::Enum(_), Value::EnumNumber(_)) => {
+                let mut bytes = raw_default.bytes();
+                if !bytes
+                    .next()
+                    .is_some_and(|b| b.is_ascii_alphabetic() || b == b'_')
+                    || !bytes.all(|b| b.is_ascii_alphanumeric() || b == b'_')
+                {
+                    return Err(DefinitionError::Unsupported("enum default name"));
+                }
+                raw_default.clone()
+            }
             _ => return Err(DefinitionError::Unsupported("proto2 default")),
         })
     } else {
