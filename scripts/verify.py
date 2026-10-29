@@ -55,6 +55,10 @@ definitions = json.loads(pathlib.Path('tests/fixtures/definitions/cli.json').rea
 for key in ['upstream_commit', 'native_binary_sha256', 'native_source_sha256', 'schema_manifest_sha256', 'native_argv0']:
     assert definitions[key] == options[key], key
 assert definitions['peer_source_sha256'] == hashlib.sha256(pathlib.Path('tests/definition_peer.cc').read_bytes()).hexdigest()
+field_options = json.loads(pathlib.Path('tests/fixtures/field-options.json').read_text())
+for key in ['upstream_commit', 'native_binary_sha256', 'native_source_sha256', 'native_libraries_sha256', 'schema_manifest_sha256', 'peer_source_sha256']:
+    assert field_options[key] == definitions[key], key
+assert field_options['reference_script_sha256'] == hashlib.sha256(pathlib.Path('scripts/field-options-reference.py').read_bytes()).hexdigest()
 defaults = json.loads(pathlib.Path('tests/fixtures/byte-defaults/native.json').read_text())
 assert defaults['default_probe_source_sha256'] == hashlib.sha256(pathlib.Path('tests/byte_defaults_peer.cc').read_bytes()).hexdigest()
 for row in defaults['cases']:

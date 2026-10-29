@@ -11,8 +11,9 @@ enum aliases and signed values, maps, real oneofs, proto3 optional fields, quali
 message/enum references, reserved ranges/names and arbitrary UTF-8 JSON names
 (including the empty name). Native C-style byte escaping preserves quotes,
 backslashes, controls and non-ASCII UTF-8 bytes using octal escapes. It supports message deprecated, enum
-allow_alias/deprecated, enum-value deprecated and field packed/deprecated boolean
-options, including explicit false. Synthetic map entries produce an empty body.
+allow_alias/deprecated, enum-value deprecated and field packed/deprecated/lazy/weak/unverified_lazy boolean
+options, including explicit false. [Field-option qualification](FIELD_OPTIONS.md)
+records the message-only true lazy flags and metadata/runtime boundary. Synthetic map entries produce an empty body.
 A definition is assembled before return, so a failure exposes no partial string.
 
 `DefinitionError::Unsupported` identifies invalid default shapes and groups,
@@ -116,5 +117,5 @@ No original assertion mapping or broad MSG-02 acceptance changes in this slice.
 
 The registry rejects the two known panicking byte-default escape boundaries
 before invoking reflection. [The robustness contract](DESCRIPTOR_DEFAULT_ROBUSTNESS.md)
-records exact native acceptance differences; byte-default declarations remain
-Unsupported by this formatter.
+records exact native acceptance differences; admitted byte-default declarations
+follow the [bytes formatting contract](BYTES_DEFINITIONS.md).

@@ -228,7 +228,23 @@ fn field(
     {
         field_options.push(format!("json_name = {}", quoted(name)));
     }
-    field_options.extend(options(field.options(), &["packed", "deprecated"])?);
+    // Reflection retains standard flags absent from prost-types' typed options.
+    let metadata = field.options();
+    let requires_message = ["lazy", "unverified_lazy"].iter().any(|name| {
+        metadata
+            .get_field_by_name(name)
+            .is_some_and(|value| value.as_bool() == Some(true))
+    });
+    let declared_options = options(
+        metadata,
+        &["packed", "deprecated", "lazy", "weak", "unverified_lazy"],
+    )?;
+    if requires_message && !matches!(field.kind(), Kind::Message(_)) {
+        return Err(DefinitionError::Unsupported(
+            "lazy option on non-message field",
+        ));
+    }
+    field_options.extend(declared_options);
     let suffix = if field_options.is_empty() {
         String::new()
     } else {
