@@ -345,6 +345,48 @@ fn enumeration(
     Ok(())
 }
 
+fn validate_extension_ranges(value: &MessageDescriptor) -> Result<(), DefinitionError> {
+    let raw = &value.descriptor_proto().extension_range;
+    if raw.is_empty() {
+        return Ok(());
+    }
+    let invalid = DefinitionError::Unsupported("invalid extension range");
+    if value.parent_file().syntax() != Syntax::Proto2 {
+        return Err(invalid);
+    }
+    let mut sorted = Vec::with_capacity(raw.len());
+    for range in raw {
+        let (Some(start), Some(end)) = (range.start, range.end) else {
+            return Err(invalid);
+        };
+        if start < 1
+            || end <= start
+            || i64::from(end) > i64::from(crate::prost::encoding::MAX_TAG) + 1
+        {
+            return Err(invalid);
+        }
+        sorted.push((start, end));
+    }
+    for metadata in value.extension_range_options() {
+        options(metadata, &[])?;
+    }
+    sorted.sort_unstable();
+    if sorted.windows(2).any(|pair| pair[0].1 > pair[1].0) {
+        return Err(invalid);
+    }
+    // Field/range conflicts are rejected by reflection. Check reserved spans here.
+    for reserved in &value.descriptor_proto().reserved_range {
+        let index = sorted.partition_point(|range| range.1 <= reserved.start());
+        if sorted
+            .get(index)
+            .is_some_and(|range| range.0 < reserved.end())
+        {
+            return Err(invalid);
+        }
+    }
+    Ok(())
+}
+
 fn source_fields(fields: impl Iterator<Item = FieldDescriptor>) -> Vec<FieldDescriptor> {
     let mut fields: Vec<_> = fields.collect();
     // Reflection iterates by tag; native declarations retain source index order.
@@ -365,10 +407,11 @@ fn message(
         map_types(value)?;
         return Ok(());
     }
-    if value.extension_ranges().len() != 0 || value.child_extensions().len() != 0 {
+    if value.child_extensions().len() != 0 {
         return Err(DefinitionError::Unsupported("extension declarations"));
     }
 
+    validate_extension_ranges(value)?;
     for oneof in value.oneofs() {
         options(oneof.options(), &[])?;
         if oneof.fields().len() == 0 {
@@ -404,6 +447,17 @@ fn message(
         } else {
             field(output, depth + 1, &item, omissions)?;
         }
+    }
+    for range in &value.descriptor_proto().extension_range {
+        line(
+            output,
+            depth + 1,
+            format_args!(
+                "extensions {} to {};",
+                range.start(),
+                i64::from(range.end()) - 1
+            ),
+        );
     }
     reserved(
         output,

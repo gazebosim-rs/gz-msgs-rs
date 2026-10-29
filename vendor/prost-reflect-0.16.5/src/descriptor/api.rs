@@ -963,6 +963,21 @@ impl MessageDescriptor {
             .map(|n| (n.start() as u32)..(n.end() as u32))
     }
 
+    /// Gets options for each extension range in original descriptor order.
+    ///
+    /// An absent options message yields an empty dynamic message. Unknown fields
+    /// and custom extensions are retained, as with [`MessageDescriptor::options`].
+    /// The iterator has exactly one item per range; out-of-range `nth` returns `None`.
+    pub fn extension_range_options(&self) -> impl ExactSizeIterator<Item = DynamicMessage> + '_ {
+        self.raw().extension_range.iter().map(|range| {
+            decode_options(
+                self.parent_pool(),
+                "google.protobuf.ExtensionRangeOptions",
+                &range.options,
+            )
+        })
+    }
+
     /// Gets an extension to this message by its number, or `None` if no such extension exists.
     pub fn get_extension(&self, number: u32) -> Option<ExtensionDescriptor> {
         self.extensions().find(|ext| ext.number() == number)

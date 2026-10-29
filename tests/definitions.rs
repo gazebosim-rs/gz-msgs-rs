@@ -154,7 +154,6 @@ fn custom_definitions_are_native_exact_or_explicitly_unsupported() {
             let actual = descriptor_definition(&descriptor);
             let feature = match name.as_str() {
                 "definition.unsupported.DeclaresExtension" => Some("extension declarations"),
-                "definition.legacy.Legacy" => Some("extension declarations"),
                 name if name.starts_with("definition.unsupported.Custom") => Some("custom options"),
                 "definition.example.Surface" if file == "unknown-options" => {
                     Some("unknown options")
@@ -295,7 +294,9 @@ fn external_cli_info_preserves_canonical_output_and_continuation() {
             || (args == ["--info", "definition.unsupported.StandardFieldOption"]
                 && row["descriptor"] == "tests/fixtures/definitions/unsupported.desc")
             || (args == ["--info", "definition.unsupported.StandardMessageOption"]
-                && row["descriptor"] == "tests/fixtures/definitions/unsupported.desc");
+                && row["descriptor"] == "tests/fixtures/definitions/unsupported.desc")
+            || (args == ["--info", "definition.legacy.Legacy"]
+                && row["descriptor"] == "tests/fixtures/definitions/legacy.desc");
         if let Some(feature) = row.get("unsupported").filter(|_| !supported_transition) {
             assert!(!result.status.success());
             assert!(result.stdout.is_empty());

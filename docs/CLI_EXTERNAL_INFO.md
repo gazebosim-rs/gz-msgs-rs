@@ -17,11 +17,14 @@ records the message-only true lazy flags and metadata/runtime boundary.
 [Enum-valued field options](ENUM_FIELD_OPTIONS.md) retain declared CType/JSType
 labels with explicit shape and unknown-number guards. Synthetic map entries produce an empty body.
 A definition is assembled before return, so a failure exposes no partial string.
+[Ordinary proto2 extension ranges](EXTENSION_RANGES.md) retain raw source order
+and native endpoints with explicit option and invalid-range guards. Actual extension
+field declarations, groups and MessageSet remain unsupported.
 [Standard message options](MESSAGE_OPTIONS.md) retain code-generation metadata
 without changing Rust descriptor APIs or MessageSet wire support.
 
 `DefinitionError::Unsupported` identifies invalid default shapes and groups,
-extension declarations, unsupported standard/custom/unknown options, malformed
+extension-field declarations, unsupported standard/custom/unknown options, malformed
 synthetic map entries,
 empty oneofs, invalid/overflowing reserved boundaries, proto3 default/required fields or
 nesting beyond 100 message levels. Reflection accepts the raw default/required

@@ -162,7 +162,7 @@
         {
           "path": "vendor/prost-reflect-0.16.5/src/descriptor/api.rs",
           "upstream_sha256": "6ed8b44e533b6e720e8a3999b07f725d949fc48bb0410d8a85387c0806cf66d4",
-          "sha256": "365e31109d270ad535b3638e6e8a8e12b07ed74674c5c05eac0f944f9087cad4",
+          "sha256": "cccfc0fc2cc3fab5b249818317c46c54f27787bc6f0e2aec28cee494417ef357",
           "owned_lines": [
             300,
             301,
@@ -175,9 +175,18 @@
             308,
             309,
             310,
-            311
+            311,
+            964,
+            971,
+            972,
+            973,
+            974,
+            975,
+            976,
+            977,
+            978
           ],
-          "patch": "experiments/prost-probe/prost-reflect-integer-defaults.patch",
+          "patch": "experiments/prost-probe/prost-reflect-range-options.patch",
           "changed_lines": [
             294,
             295,
@@ -197,10 +206,26 @@
             309,
             310,
             311,
-            312
+            312,
+            964,
+            965,
+            966,
+            967,
+            968,
+            969,
+            970,
+            971,
+            972,
+            973,
+            974,
+            975,
+            976,
+            977,
+            978
           ],
           "unmapped_syntax": {
-            "306": "{"
+            "306": "{",
+            "977": ")"
           }
         },
         {
