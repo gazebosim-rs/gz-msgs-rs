@@ -1,0 +1,1977 @@
+{
+  "upstream_commit": "89c0c3d1474f545cb889335daf930bfdab6ab852",
+  "native_binary_sha256": "6160c5d48314c32f36fceecd6a0637fc84b7fb09f1dada790ab6fcefd729bcc8",
+  "native_source_sha256": "61eda9083e2802e406695d7b84e35284911bc936c834dc20505b2fb248eba609",
+  "native_libraries_sha256": {
+    "libgz-msgs.so.13": "0504be34705191623dce9654e7b659663d87cdb92a3b99c83db13a7f60f13659",
+    "libprotobuf.so.32": "53a2a625a30418d6ea84438b04c9196214dec51a30476596ee9be45ccadb0404",
+    "libgz-utils.so.5": "2e91419fd59b6995ee8fada80e106dac5644d3d44cd2e8bc6655547433e51ae6"
+  },
+  "schema_manifest_sha256": "4762e2101674aa2cdd3a6518f8a71a50acde2ce417452e46b44f42e9d02c1d39",
+  "native_protobuf": "3.21.12",
+  "peer_source_sha256": "0be30a4dd4da763defd6762883cfc05aaad70a4b500e6fa1af3916712926fce0",
+  "reference_script_sha256": "ac8f05da11678ccd831c734e61192b6dd710ab56acf9b320d283c1e24643a447",
+  "diagnostic_path_token": "@descriptor@",
+  "rows": [
+    {
+      "id": "proto2_empty_flagNone_deprecatedNone_messagesetNone",
+      "syntax": "proto2",
+      "layout": "empty",
+      "flag": null,
+      "deprecated": null,
+      "message_set": null,
+      "descriptor_hex": "0a2d0a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322060a04526f6f74620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_empty_flagNone_deprecatedFalse_messagesetNone",
+      "syntax": "proto2",
+      "layout": "empty",
+      "flag": null,
+      "deprecated": false,
+      "message_set": null,
+      "descriptor_hex": "0a310a156d6573736167655f6f7074696f6e732e70726f746f12046f707473220a0a04526f6f743a021800620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option deprecated = false;\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_empty_flagNone_deprecatedTrue_messagesetNone",
+      "syntax": "proto2",
+      "layout": "empty",
+      "flag": null,
+      "deprecated": true,
+      "message_set": null,
+      "descriptor_hex": "0a310a156d6573736167655f6f7074696f6e732e70726f746f12046f707473220a0a04526f6f743a021801620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e2064657072656361746564203d20747275653b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option deprecated = true;\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_empty_flagFalse_deprecatedNone_messagesetNone",
+      "syntax": "proto2",
+      "layout": "empty",
+      "flag": false,
+      "deprecated": null,
+      "message_set": null,
+      "descriptor_hex": "0a310a156d6573736167655f6f7074696f6e732e70726f746f12046f707473220a0a04526f6f743a021000620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = false;\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_empty_flagFalse_deprecatedFalse_messagesetNone",
+      "syntax": "proto2",
+      "layout": "empty",
+      "flag": false,
+      "deprecated": false,
+      "message_set": null,
+      "descriptor_hex": "0a330a156d6573736167655f6f7074696f6e732e70726f746f12046f707473220c0a04526f6f743a0410001800620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = false;\n  option deprecated = false;\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_empty_flagFalse_deprecatedTrue_messagesetNone",
+      "syntax": "proto2",
+      "layout": "empty",
+      "flag": false,
+      "deprecated": true,
+      "message_set": null,
+      "descriptor_hex": "0a330a156d6573736167655f6f7074696f6e732e70726f746f12046f707473220c0a04526f6f743a0410001801620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a20206f7074696f6e2064657072656361746564203d20747275653b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = false;\n  option deprecated = true;\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_empty_flagTrue_deprecatedNone_messagesetNone",
+      "syntax": "proto2",
+      "layout": "empty",
+      "flag": true,
+      "deprecated": null,
+      "message_set": null,
+      "descriptor_hex": "0a310a156d6573736167655f6f7074696f6e732e70726f746f12046f707473220a0a04526f6f743a021001620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = true;\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_empty_flagTrue_deprecatedFalse_messagesetNone",
+      "syntax": "proto2",
+      "layout": "empty",
+      "flag": true,
+      "deprecated": false,
+      "message_set": null,
+      "descriptor_hex": "0a330a156d6573736167655f6f7074696f6e732e70726f746f12046f707473220c0a04526f6f743a0410011800620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = true;\n  option deprecated = false;\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_empty_flagTrue_deprecatedTrue_messagesetNone",
+      "syntax": "proto2",
+      "layout": "empty",
+      "flag": true,
+      "deprecated": true,
+      "message_set": null,
+      "descriptor_hex": "0a330a156d6573736167655f6f7074696f6e732e70726f746f12046f707473220c0a04526f6f743a0410011801620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206f7074696f6e2064657072656361746564203d20747275653b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = true;\n  option deprecated = true;\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_field_flagNone_deprecatedNone_messagesetNone",
+      "syntax": "proto2",
+      "layout": "field",
+      "flag": null,
+      "deprecated": null,
+      "message_set": null,
+      "descriptor_hex": "0a430a156d6573736167655f6f7074696f6e732e70726f746f12046f707473221c0a04526f6f7412140a0576616c7565180120012805520576616c7565620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e616c20696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  optional int32 value = 1 [json_name = \"value\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_field_flagNone_deprecatedFalse_messagesetNone",
+      "syntax": "proto2",
+      "layout": "field",
+      "flag": null,
+      "deprecated": false,
+      "message_set": null,
+      "descriptor_hex": "0a470a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322200a04526f6f7412140a0576616c7565180120012805520576616c75653a021800620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a20206f7074696f6e616c20696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option deprecated = false;\n  optional int32 value = 1 [json_name = \"value\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_field_flagNone_deprecatedTrue_messagesetNone",
+      "syntax": "proto2",
+      "layout": "field",
+      "flag": null,
+      "deprecated": true,
+      "message_set": null,
+      "descriptor_hex": "0a470a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322200a04526f6f7412140a0576616c7565180120012805520576616c75653a021801620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e2064657072656361746564203d20747275653b0a20206f7074696f6e616c20696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option deprecated = true;\n  optional int32 value = 1 [json_name = \"value\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_field_flagFalse_deprecatedNone_messagesetNone",
+      "syntax": "proto2",
+      "layout": "field",
+      "flag": false,
+      "deprecated": null,
+      "message_set": null,
+      "descriptor_hex": "0a470a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322200a04526f6f7412140a0576616c7565180120012805520576616c75653a021000620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a20206f7074696f6e616c20696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = false;\n  optional int32 value = 1 [json_name = \"value\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_field_flagFalse_deprecatedFalse_messagesetNone",
+      "syntax": "proto2",
+      "layout": "field",
+      "flag": false,
+      "deprecated": false,
+      "message_set": null,
+      "descriptor_hex": "0a490a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322220a04526f6f7412140a0576616c7565180120012805520576616c75653a0410001800620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a20206f7074696f6e616c20696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = false;\n  option deprecated = false;\n  optional int32 value = 1 [json_name = \"value\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_field_flagFalse_deprecatedTrue_messagesetNone",
+      "syntax": "proto2",
+      "layout": "field",
+      "flag": false,
+      "deprecated": true,
+      "message_set": null,
+      "descriptor_hex": "0a490a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322220a04526f6f7412140a0576616c7565180120012805520576616c75653a0410001801620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a20206f7074696f6e2064657072656361746564203d20747275653b0a20206f7074696f6e616c20696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = false;\n  option deprecated = true;\n  optional int32 value = 1 [json_name = \"value\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_field_flagTrue_deprecatedNone_messagesetNone",
+      "syntax": "proto2",
+      "layout": "field",
+      "flag": true,
+      "deprecated": null,
+      "message_set": null,
+      "descriptor_hex": "0a470a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322200a04526f6f7412140a0576616c7565180120012805520576616c75653a021001620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206f7074696f6e616c20696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = true;\n  optional int32 value = 1 [json_name = \"value\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_field_flagTrue_deprecatedFalse_messagesetNone",
+      "syntax": "proto2",
+      "layout": "field",
+      "flag": true,
+      "deprecated": false,
+      "message_set": null,
+      "descriptor_hex": "0a490a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322220a04526f6f7412140a0576616c7565180120012805520576616c75653a0410011800620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a20206f7074696f6e616c20696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = true;\n  option deprecated = false;\n  optional int32 value = 1 [json_name = \"value\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_field_flagTrue_deprecatedTrue_messagesetNone",
+      "syntax": "proto2",
+      "layout": "field",
+      "flag": true,
+      "deprecated": true,
+      "message_set": null,
+      "descriptor_hex": "0a490a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322220a04526f6f7412140a0576616c7565180120012805520576616c75653a0410011801620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206f7074696f6e2064657072656361746564203d20747275653b0a20206f7074696f6e616c20696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = true;\n  option deprecated = true;\n  optional int32 value = 1 [json_name = \"value\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_oneof_flagNone_deprecatedNone_messagesetNone",
+      "syntax": "proto2",
+      "layout": "oneof",
+      "flag": null,
+      "deprecated": null,
+      "message_set": null,
+      "descriptor_hex": "0a4f0a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322280a04526f6f7412160a0576616c75651801200128054800520576616c756542080a0663686f696365620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f6e656f662063686f696365207b0a20202020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a20207d0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  oneof choice {\n    int32 value = 1 [json_name = \"value\"];\n  }\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_oneof_flagNone_deprecatedFalse_messagesetNone",
+      "syntax": "proto2",
+      "layout": "oneof",
+      "flag": null,
+      "deprecated": false,
+      "message_set": null,
+      "descriptor_hex": "0a530a156d6573736167655f6f7074696f6e732e70726f746f12046f707473222c0a04526f6f7412160a0576616c75651801200128054800520576616c75653a02180042080a0663686f696365620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a20206f6e656f662063686f696365207b0a20202020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a20207d0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option deprecated = false;\n  oneof choice {\n    int32 value = 1 [json_name = \"value\"];\n  }\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_oneof_flagNone_deprecatedTrue_messagesetNone",
+      "syntax": "proto2",
+      "layout": "oneof",
+      "flag": null,
+      "deprecated": true,
+      "message_set": null,
+      "descriptor_hex": "0a530a156d6573736167655f6f7074696f6e732e70726f746f12046f707473222c0a04526f6f7412160a0576616c75651801200128054800520576616c75653a02180142080a0663686f696365620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e2064657072656361746564203d20747275653b0a20206f6e656f662063686f696365207b0a20202020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a20207d0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option deprecated = true;\n  oneof choice {\n    int32 value = 1 [json_name = \"value\"];\n  }\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_oneof_flagFalse_deprecatedNone_messagesetNone",
+      "syntax": "proto2",
+      "layout": "oneof",
+      "flag": false,
+      "deprecated": null,
+      "message_set": null,
+      "descriptor_hex": "0a530a156d6573736167655f6f7074696f6e732e70726f746f12046f707473222c0a04526f6f7412160a0576616c75651801200128054800520576616c75653a02100042080a0663686f696365620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a20206f6e656f662063686f696365207b0a20202020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a20207d0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = false;\n  oneof choice {\n    int32 value = 1 [json_name = \"value\"];\n  }\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_oneof_flagFalse_deprecatedFalse_messagesetNone",
+      "syntax": "proto2",
+      "layout": "oneof",
+      "flag": false,
+      "deprecated": false,
+      "message_set": null,
+      "descriptor_hex": "0a550a156d6573736167655f6f7074696f6e732e70726f746f12046f707473222e0a04526f6f7412160a0576616c75651801200128054800520576616c75653a041000180042080a0663686f696365620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a20206f6e656f662063686f696365207b0a20202020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a20207d0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = false;\n  option deprecated = false;\n  oneof choice {\n    int32 value = 1 [json_name = \"value\"];\n  }\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_oneof_flagFalse_deprecatedTrue_messagesetNone",
+      "syntax": "proto2",
+      "layout": "oneof",
+      "flag": false,
+      "deprecated": true,
+      "message_set": null,
+      "descriptor_hex": "0a550a156d6573736167655f6f7074696f6e732e70726f746f12046f707473222e0a04526f6f7412160a0576616c75651801200128054800520576616c75653a041000180142080a0663686f696365620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a20206f7074696f6e2064657072656361746564203d20747275653b0a20206f6e656f662063686f696365207b0a20202020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a20207d0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = false;\n  option deprecated = true;\n  oneof choice {\n    int32 value = 1 [json_name = \"value\"];\n  }\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_oneof_flagTrue_deprecatedNone_messagesetNone",
+      "syntax": "proto2",
+      "layout": "oneof",
+      "flag": true,
+      "deprecated": null,
+      "message_set": null,
+      "descriptor_hex": "0a530a156d6573736167655f6f7074696f6e732e70726f746f12046f707473222c0a04526f6f7412160a0576616c75651801200128054800520576616c75653a02100142080a0663686f696365620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206f6e656f662063686f696365207b0a20202020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a20207d0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = true;\n  oneof choice {\n    int32 value = 1 [json_name = \"value\"];\n  }\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_oneof_flagTrue_deprecatedFalse_messagesetNone",
+      "syntax": "proto2",
+      "layout": "oneof",
+      "flag": true,
+      "deprecated": false,
+      "message_set": null,
+      "descriptor_hex": "0a550a156d6573736167655f6f7074696f6e732e70726f746f12046f707473222e0a04526f6f7412160a0576616c75651801200128054800520576616c75653a041001180042080a0663686f696365620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a20206f6e656f662063686f696365207b0a20202020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a20207d0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = true;\n  option deprecated = false;\n  oneof choice {\n    int32 value = 1 [json_name = \"value\"];\n  }\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_oneof_flagTrue_deprecatedTrue_messagesetNone",
+      "syntax": "proto2",
+      "layout": "oneof",
+      "flag": true,
+      "deprecated": true,
+      "message_set": null,
+      "descriptor_hex": "0a550a156d6573736167655f6f7074696f6e732e70726f746f12046f707473222e0a04526f6f7412160a0576616c75651801200128054800520576616c75653a041001180142080a0663686f696365620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206f7074696f6e2064657072656361746564203d20747275653b0a20206f6e656f662063686f696365207b0a20202020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a20207d0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = true;\n  option deprecated = true;\n  oneof choice {\n    int32 value = 1 [json_name = \"value\"];\n  }\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_nested_flagNone_deprecatedNone_messagesetNone",
+      "syntax": "proto2",
+      "layout": "nested",
+      "flag": null,
+      "deprecated": null,
+      "message_set": null,
+      "descriptor_hex": "0a740a156d6573736167655f6f7074696f6e732e70726f746f12046f707473224d0a04526f6f7412260a056368696c6418012001280b32102e6f7074732e526f6f742e4368696c6452056368696c641a1d0a054368696c6412140a0576616c7565180120012805520576616c7565620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206d657373616765204368696c64207b0a202020206f7074696f6e616c20696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a20207d0a20206f7074696f6e616c202e6f7074732e526f6f742e4368696c64206368696c64203d2031205b6a736f6e5f6e616d65203d20226368696c64225d3b0a7d0a\nopts.Root.Child 6d657373616765204368696c64207b0a20206f7074696f6e616c20696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  message Child {\n    optional int32 value = 1 [json_name = \"value\"];\n  }\n  optional .opts.Root.Child child = 1 [json_name = \"child\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_nested_flagNone_deprecatedFalse_messagesetNone",
+      "syntax": "proto2",
+      "layout": "nested",
+      "flag": null,
+      "deprecated": false,
+      "message_set": null,
+      "descriptor_hex": "0a7c0a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322550a04526f6f7412260a056368696c6418012001280b32102e6f7074732e526f6f742e4368696c6452056368696c641a210a054368696c6412140a0576616c7565180120012805520576616c75653a0218003a021800620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a20206d657373616765204368696c64207b0a202020206f7074696f6e2064657072656361746564203d2066616c73653b0a202020206f7074696f6e616c20696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a20207d0a20206f7074696f6e616c202e6f7074732e526f6f742e4368696c64206368696c64203d2031205b6a736f6e5f6e616d65203d20226368696c64225d3b0a7d0a\nopts.Root.Child 6d657373616765204368696c64207b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a20206f7074696f6e616c20696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option deprecated = false;\n  message Child {\n    option deprecated = false;\n    optional int32 value = 1 [json_name = \"value\"];\n  }\n  optional .opts.Root.Child child = 1 [json_name = \"child\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_nested_flagNone_deprecatedTrue_messagesetNone",
+      "syntax": "proto2",
+      "layout": "nested",
+      "flag": null,
+      "deprecated": true,
+      "message_set": null,
+      "descriptor_hex": "0a7c0a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322550a04526f6f7412260a056368696c6418012001280b32102e6f7074732e526f6f742e4368696c6452056368696c641a210a054368696c6412140a0576616c7565180120012805520576616c75653a0218013a021801620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e2064657072656361746564203d20747275653b0a20206d657373616765204368696c64207b0a202020206f7074696f6e2064657072656361746564203d20747275653b0a202020206f7074696f6e616c20696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a20207d0a20206f7074696f6e616c202e6f7074732e526f6f742e4368696c64206368696c64203d2031205b6a736f6e5f6e616d65203d20226368696c64225d3b0a7d0a\nopts.Root.Child 6d657373616765204368696c64207b0a20206f7074696f6e2064657072656361746564203d20747275653b0a20206f7074696f6e616c20696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option deprecated = true;\n  message Child {\n    option deprecated = true;\n    optional int32 value = 1 [json_name = \"value\"];\n  }\n  optional .opts.Root.Child child = 1 [json_name = \"child\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_nested_flagFalse_deprecatedNone_messagesetNone",
+      "syntax": "proto2",
+      "layout": "nested",
+      "flag": false,
+      "deprecated": null,
+      "message_set": null,
+      "descriptor_hex": "0a7c0a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322550a04526f6f7412260a056368696c6418012001280b32102e6f7074732e526f6f742e4368696c6452056368696c641a210a054368696c6412140a0576616c7565180120012805520576616c75653a0210003a021000620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a20206d657373616765204368696c64207b0a202020206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a202020206f7074696f6e616c20696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a20207d0a20206f7074696f6e616c202e6f7074732e526f6f742e4368696c64206368696c64203d2031205b6a736f6e5f6e616d65203d20226368696c64225d3b0a7d0a\nopts.Root.Child 6d657373616765204368696c64207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a20206f7074696f6e616c20696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = false;\n  message Child {\n    option no_standard_descriptor_accessor = false;\n    optional int32 value = 1 [json_name = \"value\"];\n  }\n  optional .opts.Root.Child child = 1 [json_name = \"child\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_nested_flagFalse_deprecatedFalse_messagesetNone",
+      "syntax": "proto2",
+      "layout": "nested",
+      "flag": false,
+      "deprecated": false,
+      "message_set": null,
+      "descriptor_hex": "0a80010a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322590a04526f6f7412260a056368696c6418012001280b32102e6f7074732e526f6f742e4368696c6452056368696c641a230a054368696c6412140a0576616c7565180120012805520576616c75653a04100018003a0410001800620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a20206d657373616765204368696c64207b0a202020206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a202020206f7074696f6e2064657072656361746564203d2066616c73653b0a202020206f7074696f6e616c20696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a20207d0a20206f7074696f6e616c202e6f7074732e526f6f742e4368696c64206368696c64203d2031205b6a736f6e5f6e616d65203d20226368696c64225d3b0a7d0a\nopts.Root.Child 6d657373616765204368696c64207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a20206f7074696f6e616c20696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = false;\n  option deprecated = false;\n  message Child {\n    option no_standard_descriptor_accessor = false;\n    option deprecated = false;\n    optional int32 value = 1 [json_name = \"value\"];\n  }\n  optional .opts.Root.Child child = 1 [json_name = \"child\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_nested_flagFalse_deprecatedTrue_messagesetNone",
+      "syntax": "proto2",
+      "layout": "nested",
+      "flag": false,
+      "deprecated": true,
+      "message_set": null,
+      "descriptor_hex": "0a80010a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322590a04526f6f7412260a056368696c6418012001280b32102e6f7074732e526f6f742e4368696c6452056368696c641a230a054368696c6412140a0576616c7565180120012805520576616c75653a04100018013a0410001801620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a20206f7074696f6e2064657072656361746564203d20747275653b0a20206d657373616765204368696c64207b0a202020206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a202020206f7074696f6e2064657072656361746564203d20747275653b0a202020206f7074696f6e616c20696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a20207d0a20206f7074696f6e616c202e6f7074732e526f6f742e4368696c64206368696c64203d2031205b6a736f6e5f6e616d65203d20226368696c64225d3b0a7d0a\nopts.Root.Child 6d657373616765204368696c64207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a20206f7074696f6e2064657072656361746564203d20747275653b0a20206f7074696f6e616c20696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = false;\n  option deprecated = true;\n  message Child {\n    option no_standard_descriptor_accessor = false;\n    option deprecated = true;\n    optional int32 value = 1 [json_name = \"value\"];\n  }\n  optional .opts.Root.Child child = 1 [json_name = \"child\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_nested_flagTrue_deprecatedNone_messagesetNone",
+      "syntax": "proto2",
+      "layout": "nested",
+      "flag": true,
+      "deprecated": null,
+      "message_set": null,
+      "descriptor_hex": "0a7c0a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322550a04526f6f7412260a056368696c6418012001280b32102e6f7074732e526f6f742e4368696c6452056368696c641a210a054368696c6412140a0576616c7565180120012805520576616c75653a0210013a021001620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206d657373616765204368696c64207b0a202020206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a202020206f7074696f6e616c20696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a20207d0a20206f7074696f6e616c202e6f7074732e526f6f742e4368696c64206368696c64203d2031205b6a736f6e5f6e616d65203d20226368696c64225d3b0a7d0a\nopts.Root.Child 6d657373616765204368696c64207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206f7074696f6e616c20696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = true;\n  message Child {\n    option no_standard_descriptor_accessor = true;\n    optional int32 value = 1 [json_name = \"value\"];\n  }\n  optional .opts.Root.Child child = 1 [json_name = \"child\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_nested_flagTrue_deprecatedFalse_messagesetNone",
+      "syntax": "proto2",
+      "layout": "nested",
+      "flag": true,
+      "deprecated": false,
+      "message_set": null,
+      "descriptor_hex": "0a80010a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322590a04526f6f7412260a056368696c6418012001280b32102e6f7074732e526f6f742e4368696c6452056368696c641a230a054368696c6412140a0576616c7565180120012805520576616c75653a04100118003a0410011800620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a20206d657373616765204368696c64207b0a202020206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a202020206f7074696f6e2064657072656361746564203d2066616c73653b0a202020206f7074696f6e616c20696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a20207d0a20206f7074696f6e616c202e6f7074732e526f6f742e4368696c64206368696c64203d2031205b6a736f6e5f6e616d65203d20226368696c64225d3b0a7d0a\nopts.Root.Child 6d657373616765204368696c64207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a20206f7074696f6e616c20696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = true;\n  option deprecated = false;\n  message Child {\n    option no_standard_descriptor_accessor = true;\n    option deprecated = false;\n    optional int32 value = 1 [json_name = \"value\"];\n  }\n  optional .opts.Root.Child child = 1 [json_name = \"child\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_nested_flagTrue_deprecatedTrue_messagesetNone",
+      "syntax": "proto2",
+      "layout": "nested",
+      "flag": true,
+      "deprecated": true,
+      "message_set": null,
+      "descriptor_hex": "0a80010a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322590a04526f6f7412260a056368696c6418012001280b32102e6f7074732e526f6f742e4368696c6452056368696c641a230a054368696c6412140a0576616c7565180120012805520576616c75653a04100118013a0410011801620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206f7074696f6e2064657072656361746564203d20747275653b0a20206d657373616765204368696c64207b0a202020206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a202020206f7074696f6e2064657072656361746564203d20747275653b0a202020206f7074696f6e616c20696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a20207d0a20206f7074696f6e616c202e6f7074732e526f6f742e4368696c64206368696c64203d2031205b6a736f6e5f6e616d65203d20226368696c64225d3b0a7d0a\nopts.Root.Child 6d657373616765204368696c64207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206f7074696f6e2064657072656361746564203d20747275653b0a20206f7074696f6e616c20696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = true;\n  option deprecated = true;\n  message Child {\n    option no_standard_descriptor_accessor = true;\n    option deprecated = true;\n    optional int32 value = 1 [json_name = \"value\"];\n  }\n  optional .opts.Root.Child child = 1 [json_name = \"child\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_map_flagNone_deprecatedNone_messagesetNone",
+      "syntax": "proto2",
+      "layout": "map",
+      "flag": null,
+      "deprecated": null,
+      "message_set": null,
+      "descriptor_hex": "0a90010a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322690a04526f6f7412310a07656e747269657318012003280b32172e6f7074732e526f6f742e456e7472696573456e7472795207656e74726965731a2e0a0c456e7472696573456e747279120b0a036b6579180120012809120d0a0576616c75651802200128053a023801620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206d61703c737472696e672c20696e7433323e20656e7472696573203d2031205b6a736f6e5f6e616d65203d2022656e7472696573225d3b0a7d0a\nopts.Root.EntriesEntry \n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  map<string, int32> entries = 1 [json_name = \"entries\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_map_flagNone_deprecatedFalse_messagesetNone",
+      "syntax": "proto2",
+      "layout": "map",
+      "flag": null,
+      "deprecated": false,
+      "message_set": null,
+      "descriptor_hex": "0a96010a156d6573736167655f6f7074696f6e732e70726f746f12046f707473226f0a04526f6f7412310a07656e747269657318012003280b32172e6f7074732e526f6f742e456e7472696573456e7472795207656e74726965731a300a0c456e7472696573456e747279120b0a036b6579180120012809120d0a0576616c75651802200128053a04180038013a021800620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a20206d61703c737472696e672c20696e7433323e20656e7472696573203d2031205b6a736f6e5f6e616d65203d2022656e7472696573225d3b0a7d0a\nopts.Root.EntriesEntry \n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option deprecated = false;\n  map<string, int32> entries = 1 [json_name = \"entries\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_map_flagNone_deprecatedTrue_messagesetNone",
+      "syntax": "proto2",
+      "layout": "map",
+      "flag": null,
+      "deprecated": true,
+      "message_set": null,
+      "descriptor_hex": "0a96010a156d6573736167655f6f7074696f6e732e70726f746f12046f707473226f0a04526f6f7412310a07656e747269657318012003280b32172e6f7074732e526f6f742e456e7472696573456e7472795207656e74726965731a300a0c456e7472696573456e747279120b0a036b6579180120012809120d0a0576616c75651802200128053a04180138013a021801620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e2064657072656361746564203d20747275653b0a20206d61703c737472696e672c20696e7433323e20656e7472696573203d2031205b6a736f6e5f6e616d65203d2022656e7472696573225d3b0a7d0a\nopts.Root.EntriesEntry \n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option deprecated = true;\n  map<string, int32> entries = 1 [json_name = \"entries\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_map_flagFalse_deprecatedNone_messagesetNone",
+      "syntax": "proto2",
+      "layout": "map",
+      "flag": false,
+      "deprecated": null,
+      "message_set": null,
+      "descriptor_hex": "0a96010a156d6573736167655f6f7074696f6e732e70726f746f12046f707473226f0a04526f6f7412310a07656e747269657318012003280b32172e6f7074732e526f6f742e456e7472696573456e7472795207656e74726965731a300a0c456e7472696573456e747279120b0a036b6579180120012809120d0a0576616c75651802200128053a04100038013a021000620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a20206d61703c737472696e672c20696e7433323e20656e7472696573203d2031205b6a736f6e5f6e616d65203d2022656e7472696573225d3b0a7d0a\nopts.Root.EntriesEntry \n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = false;\n  map<string, int32> entries = 1 [json_name = \"entries\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_map_flagFalse_deprecatedFalse_messagesetNone",
+      "syntax": "proto2",
+      "layout": "map",
+      "flag": false,
+      "deprecated": false,
+      "message_set": null,
+      "descriptor_hex": "0a9a010a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322730a04526f6f7412310a07656e747269657318012003280b32172e6f7074732e526f6f742e456e7472696573456e7472795207656e74726965731a320a0c456e7472696573456e747279120b0a036b6579180120012809120d0a0576616c75651802200128053a061000180038013a0410001800620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a20206d61703c737472696e672c20696e7433323e20656e7472696573203d2031205b6a736f6e5f6e616d65203d2022656e7472696573225d3b0a7d0a\nopts.Root.EntriesEntry \n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = false;\n  option deprecated = false;\n  map<string, int32> entries = 1 [json_name = \"entries\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_map_flagFalse_deprecatedTrue_messagesetNone",
+      "syntax": "proto2",
+      "layout": "map",
+      "flag": false,
+      "deprecated": true,
+      "message_set": null,
+      "descriptor_hex": "0a9a010a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322730a04526f6f7412310a07656e747269657318012003280b32172e6f7074732e526f6f742e456e7472696573456e7472795207656e74726965731a320a0c456e7472696573456e747279120b0a036b6579180120012809120d0a0576616c75651802200128053a061000180138013a0410001801620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a20206f7074696f6e2064657072656361746564203d20747275653b0a20206d61703c737472696e672c20696e7433323e20656e7472696573203d2031205b6a736f6e5f6e616d65203d2022656e7472696573225d3b0a7d0a\nopts.Root.EntriesEntry \n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = false;\n  option deprecated = true;\n  map<string, int32> entries = 1 [json_name = \"entries\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_map_flagTrue_deprecatedNone_messagesetNone",
+      "syntax": "proto2",
+      "layout": "map",
+      "flag": true,
+      "deprecated": null,
+      "message_set": null,
+      "descriptor_hex": "0a96010a156d6573736167655f6f7074696f6e732e70726f746f12046f707473226f0a04526f6f7412310a07656e747269657318012003280b32172e6f7074732e526f6f742e456e7472696573456e7472795207656e74726965731a300a0c456e7472696573456e747279120b0a036b6579180120012809120d0a0576616c75651802200128053a04100138013a021001620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206d61703c737472696e672c20696e7433323e20656e7472696573203d2031205b6a736f6e5f6e616d65203d2022656e7472696573225d3b0a7d0a\nopts.Root.EntriesEntry \n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = true;\n  map<string, int32> entries = 1 [json_name = \"entries\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_map_flagTrue_deprecatedFalse_messagesetNone",
+      "syntax": "proto2",
+      "layout": "map",
+      "flag": true,
+      "deprecated": false,
+      "message_set": null,
+      "descriptor_hex": "0a9a010a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322730a04526f6f7412310a07656e747269657318012003280b32172e6f7074732e526f6f742e456e7472696573456e7472795207656e74726965731a320a0c456e7472696573456e747279120b0a036b6579180120012809120d0a0576616c75651802200128053a061001180038013a0410011800620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a20206d61703c737472696e672c20696e7433323e20656e7472696573203d2031205b6a736f6e5f6e616d65203d2022656e7472696573225d3b0a7d0a\nopts.Root.EntriesEntry \n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = true;\n  option deprecated = false;\n  map<string, int32> entries = 1 [json_name = \"entries\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_map_flagTrue_deprecatedTrue_messagesetNone",
+      "syntax": "proto2",
+      "layout": "map",
+      "flag": true,
+      "deprecated": true,
+      "message_set": null,
+      "descriptor_hex": "0a9a010a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322730a04526f6f7412310a07656e747269657318012003280b32172e6f7074732e526f6f742e456e7472696573456e7472795207656e74726965731a320a0c456e7472696573456e747279120b0a036b6579180120012809120d0a0576616c75651802200128053a061001180138013a0410011801620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206f7074696f6e2064657072656361746564203d20747275653b0a20206d61703c737472696e672c20696e7433323e20656e7472696573203d2031205b6a736f6e5f6e616d65203d2022656e7472696573225d3b0a7d0a\nopts.Root.EntriesEntry \n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = true;\n  option deprecated = true;\n  map<string, int32> entries = 1 [json_name = \"entries\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_empty_flagNone_deprecatedNone_messagesetNone",
+      "syntax": "proto3",
+      "layout": "empty",
+      "flag": null,
+      "deprecated": null,
+      "message_set": null,
+      "descriptor_hex": "0a2d0a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322060a04526f6f74620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_empty_flagNone_deprecatedFalse_messagesetNone",
+      "syntax": "proto3",
+      "layout": "empty",
+      "flag": null,
+      "deprecated": false,
+      "message_set": null,
+      "descriptor_hex": "0a310a156d6573736167655f6f7074696f6e732e70726f746f12046f707473220a0a04526f6f743a021800620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option deprecated = false;\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_empty_flagNone_deprecatedTrue_messagesetNone",
+      "syntax": "proto3",
+      "layout": "empty",
+      "flag": null,
+      "deprecated": true,
+      "message_set": null,
+      "descriptor_hex": "0a310a156d6573736167655f6f7074696f6e732e70726f746f12046f707473220a0a04526f6f743a021801620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e2064657072656361746564203d20747275653b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option deprecated = true;\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_empty_flagFalse_deprecatedNone_messagesetNone",
+      "syntax": "proto3",
+      "layout": "empty",
+      "flag": false,
+      "deprecated": null,
+      "message_set": null,
+      "descriptor_hex": "0a310a156d6573736167655f6f7074696f6e732e70726f746f12046f707473220a0a04526f6f743a021000620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = false;\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_empty_flagFalse_deprecatedFalse_messagesetNone",
+      "syntax": "proto3",
+      "layout": "empty",
+      "flag": false,
+      "deprecated": false,
+      "message_set": null,
+      "descriptor_hex": "0a330a156d6573736167655f6f7074696f6e732e70726f746f12046f707473220c0a04526f6f743a0410001800620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = false;\n  option deprecated = false;\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_empty_flagFalse_deprecatedTrue_messagesetNone",
+      "syntax": "proto3",
+      "layout": "empty",
+      "flag": false,
+      "deprecated": true,
+      "message_set": null,
+      "descriptor_hex": "0a330a156d6573736167655f6f7074696f6e732e70726f746f12046f707473220c0a04526f6f743a0410001801620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a20206f7074696f6e2064657072656361746564203d20747275653b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = false;\n  option deprecated = true;\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_empty_flagTrue_deprecatedNone_messagesetNone",
+      "syntax": "proto3",
+      "layout": "empty",
+      "flag": true,
+      "deprecated": null,
+      "message_set": null,
+      "descriptor_hex": "0a310a156d6573736167655f6f7074696f6e732e70726f746f12046f707473220a0a04526f6f743a021001620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = true;\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_empty_flagTrue_deprecatedFalse_messagesetNone",
+      "syntax": "proto3",
+      "layout": "empty",
+      "flag": true,
+      "deprecated": false,
+      "message_set": null,
+      "descriptor_hex": "0a330a156d6573736167655f6f7074696f6e732e70726f746f12046f707473220c0a04526f6f743a0410011800620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = true;\n  option deprecated = false;\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_empty_flagTrue_deprecatedTrue_messagesetNone",
+      "syntax": "proto3",
+      "layout": "empty",
+      "flag": true,
+      "deprecated": true,
+      "message_set": null,
+      "descriptor_hex": "0a330a156d6573736167655f6f7074696f6e732e70726f746f12046f707473220c0a04526f6f743a0410011801620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206f7074696f6e2064657072656361746564203d20747275653b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = true;\n  option deprecated = true;\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_field_flagNone_deprecatedNone_messagesetNone",
+      "syntax": "proto3",
+      "layout": "field",
+      "flag": null,
+      "deprecated": null,
+      "message_set": null,
+      "descriptor_hex": "0a430a156d6573736167655f6f7074696f6e732e70726f746f12046f707473221c0a04526f6f7412140a0576616c7565180120012805520576616c7565620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a2020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  int32 value = 1 [json_name = \"value\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_field_flagNone_deprecatedFalse_messagesetNone",
+      "syntax": "proto3",
+      "layout": "field",
+      "flag": null,
+      "deprecated": false,
+      "message_set": null,
+      "descriptor_hex": "0a470a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322200a04526f6f7412140a0576616c7565180120012805520576616c75653a021800620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a2020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option deprecated = false;\n  int32 value = 1 [json_name = \"value\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_field_flagNone_deprecatedTrue_messagesetNone",
+      "syntax": "proto3",
+      "layout": "field",
+      "flag": null,
+      "deprecated": true,
+      "message_set": null,
+      "descriptor_hex": "0a470a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322200a04526f6f7412140a0576616c7565180120012805520576616c75653a021801620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e2064657072656361746564203d20747275653b0a2020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option deprecated = true;\n  int32 value = 1 [json_name = \"value\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_field_flagFalse_deprecatedNone_messagesetNone",
+      "syntax": "proto3",
+      "layout": "field",
+      "flag": false,
+      "deprecated": null,
+      "message_set": null,
+      "descriptor_hex": "0a470a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322200a04526f6f7412140a0576616c7565180120012805520576616c75653a021000620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a2020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = false;\n  int32 value = 1 [json_name = \"value\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_field_flagFalse_deprecatedFalse_messagesetNone",
+      "syntax": "proto3",
+      "layout": "field",
+      "flag": false,
+      "deprecated": false,
+      "message_set": null,
+      "descriptor_hex": "0a490a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322220a04526f6f7412140a0576616c7565180120012805520576616c75653a0410001800620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a2020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = false;\n  option deprecated = false;\n  int32 value = 1 [json_name = \"value\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_field_flagFalse_deprecatedTrue_messagesetNone",
+      "syntax": "proto3",
+      "layout": "field",
+      "flag": false,
+      "deprecated": true,
+      "message_set": null,
+      "descriptor_hex": "0a490a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322220a04526f6f7412140a0576616c7565180120012805520576616c75653a0410001801620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a20206f7074696f6e2064657072656361746564203d20747275653b0a2020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = false;\n  option deprecated = true;\n  int32 value = 1 [json_name = \"value\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_field_flagTrue_deprecatedNone_messagesetNone",
+      "syntax": "proto3",
+      "layout": "field",
+      "flag": true,
+      "deprecated": null,
+      "message_set": null,
+      "descriptor_hex": "0a470a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322200a04526f6f7412140a0576616c7565180120012805520576616c75653a021001620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a2020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = true;\n  int32 value = 1 [json_name = \"value\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_field_flagTrue_deprecatedFalse_messagesetNone",
+      "syntax": "proto3",
+      "layout": "field",
+      "flag": true,
+      "deprecated": false,
+      "message_set": null,
+      "descriptor_hex": "0a490a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322220a04526f6f7412140a0576616c7565180120012805520576616c75653a0410011800620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a2020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = true;\n  option deprecated = false;\n  int32 value = 1 [json_name = \"value\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_field_flagTrue_deprecatedTrue_messagesetNone",
+      "syntax": "proto3",
+      "layout": "field",
+      "flag": true,
+      "deprecated": true,
+      "message_set": null,
+      "descriptor_hex": "0a490a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322220a04526f6f7412140a0576616c7565180120012805520576616c75653a0410011801620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206f7074696f6e2064657072656361746564203d20747275653b0a2020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = true;\n  option deprecated = true;\n  int32 value = 1 [json_name = \"value\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_oneof_flagNone_deprecatedNone_messagesetNone",
+      "syntax": "proto3",
+      "layout": "oneof",
+      "flag": null,
+      "deprecated": null,
+      "message_set": null,
+      "descriptor_hex": "0a4f0a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322280a04526f6f7412160a0576616c75651801200128054800520576616c756542080a0663686f696365620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f6e656f662063686f696365207b0a20202020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a20207d0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  oneof choice {\n    int32 value = 1 [json_name = \"value\"];\n  }\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_oneof_flagNone_deprecatedFalse_messagesetNone",
+      "syntax": "proto3",
+      "layout": "oneof",
+      "flag": null,
+      "deprecated": false,
+      "message_set": null,
+      "descriptor_hex": "0a530a156d6573736167655f6f7074696f6e732e70726f746f12046f707473222c0a04526f6f7412160a0576616c75651801200128054800520576616c75653a02180042080a0663686f696365620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a20206f6e656f662063686f696365207b0a20202020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a20207d0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option deprecated = false;\n  oneof choice {\n    int32 value = 1 [json_name = \"value\"];\n  }\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_oneof_flagNone_deprecatedTrue_messagesetNone",
+      "syntax": "proto3",
+      "layout": "oneof",
+      "flag": null,
+      "deprecated": true,
+      "message_set": null,
+      "descriptor_hex": "0a530a156d6573736167655f6f7074696f6e732e70726f746f12046f707473222c0a04526f6f7412160a0576616c75651801200128054800520576616c75653a02180142080a0663686f696365620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e2064657072656361746564203d20747275653b0a20206f6e656f662063686f696365207b0a20202020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a20207d0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option deprecated = true;\n  oneof choice {\n    int32 value = 1 [json_name = \"value\"];\n  }\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_oneof_flagFalse_deprecatedNone_messagesetNone",
+      "syntax": "proto3",
+      "layout": "oneof",
+      "flag": false,
+      "deprecated": null,
+      "message_set": null,
+      "descriptor_hex": "0a530a156d6573736167655f6f7074696f6e732e70726f746f12046f707473222c0a04526f6f7412160a0576616c75651801200128054800520576616c75653a02100042080a0663686f696365620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a20206f6e656f662063686f696365207b0a20202020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a20207d0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = false;\n  oneof choice {\n    int32 value = 1 [json_name = \"value\"];\n  }\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_oneof_flagFalse_deprecatedFalse_messagesetNone",
+      "syntax": "proto3",
+      "layout": "oneof",
+      "flag": false,
+      "deprecated": false,
+      "message_set": null,
+      "descriptor_hex": "0a550a156d6573736167655f6f7074696f6e732e70726f746f12046f707473222e0a04526f6f7412160a0576616c75651801200128054800520576616c75653a041000180042080a0663686f696365620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a20206f6e656f662063686f696365207b0a20202020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a20207d0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = false;\n  option deprecated = false;\n  oneof choice {\n    int32 value = 1 [json_name = \"value\"];\n  }\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_oneof_flagFalse_deprecatedTrue_messagesetNone",
+      "syntax": "proto3",
+      "layout": "oneof",
+      "flag": false,
+      "deprecated": true,
+      "message_set": null,
+      "descriptor_hex": "0a550a156d6573736167655f6f7074696f6e732e70726f746f12046f707473222e0a04526f6f7412160a0576616c75651801200128054800520576616c75653a041000180142080a0663686f696365620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a20206f7074696f6e2064657072656361746564203d20747275653b0a20206f6e656f662063686f696365207b0a20202020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a20207d0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = false;\n  option deprecated = true;\n  oneof choice {\n    int32 value = 1 [json_name = \"value\"];\n  }\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_oneof_flagTrue_deprecatedNone_messagesetNone",
+      "syntax": "proto3",
+      "layout": "oneof",
+      "flag": true,
+      "deprecated": null,
+      "message_set": null,
+      "descriptor_hex": "0a530a156d6573736167655f6f7074696f6e732e70726f746f12046f707473222c0a04526f6f7412160a0576616c75651801200128054800520576616c75653a02100142080a0663686f696365620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206f6e656f662063686f696365207b0a20202020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a20207d0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = true;\n  oneof choice {\n    int32 value = 1 [json_name = \"value\"];\n  }\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_oneof_flagTrue_deprecatedFalse_messagesetNone",
+      "syntax": "proto3",
+      "layout": "oneof",
+      "flag": true,
+      "deprecated": false,
+      "message_set": null,
+      "descriptor_hex": "0a550a156d6573736167655f6f7074696f6e732e70726f746f12046f707473222e0a04526f6f7412160a0576616c75651801200128054800520576616c75653a041001180042080a0663686f696365620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a20206f6e656f662063686f696365207b0a20202020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a20207d0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = true;\n  option deprecated = false;\n  oneof choice {\n    int32 value = 1 [json_name = \"value\"];\n  }\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_oneof_flagTrue_deprecatedTrue_messagesetNone",
+      "syntax": "proto3",
+      "layout": "oneof",
+      "flag": true,
+      "deprecated": true,
+      "message_set": null,
+      "descriptor_hex": "0a550a156d6573736167655f6f7074696f6e732e70726f746f12046f707473222e0a04526f6f7412160a0576616c75651801200128054800520576616c75653a041001180142080a0663686f696365620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206f7074696f6e2064657072656361746564203d20747275653b0a20206f6e656f662063686f696365207b0a20202020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a20207d0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = true;\n  option deprecated = true;\n  oneof choice {\n    int32 value = 1 [json_name = \"value\"];\n  }\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_nested_flagNone_deprecatedNone_messagesetNone",
+      "syntax": "proto3",
+      "layout": "nested",
+      "flag": null,
+      "deprecated": null,
+      "message_set": null,
+      "descriptor_hex": "0a740a156d6573736167655f6f7074696f6e732e70726f746f12046f707473224d0a04526f6f7412260a056368696c6418012001280b32102e6f7074732e526f6f742e4368696c6452056368696c641a1d0a054368696c6412140a0576616c7565180120012805520576616c7565620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206d657373616765204368696c64207b0a20202020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a20207d0a20202e6f7074732e526f6f742e4368696c64206368696c64203d2031205b6a736f6e5f6e616d65203d20226368696c64225d3b0a7d0a\nopts.Root.Child 6d657373616765204368696c64207b0a2020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  message Child {\n    int32 value = 1 [json_name = \"value\"];\n  }\n  .opts.Root.Child child = 1 [json_name = \"child\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_nested_flagNone_deprecatedFalse_messagesetNone",
+      "syntax": "proto3",
+      "layout": "nested",
+      "flag": null,
+      "deprecated": false,
+      "message_set": null,
+      "descriptor_hex": "0a7c0a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322550a04526f6f7412260a056368696c6418012001280b32102e6f7074732e526f6f742e4368696c6452056368696c641a210a054368696c6412140a0576616c7565180120012805520576616c75653a0218003a021800620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a20206d657373616765204368696c64207b0a202020206f7074696f6e2064657072656361746564203d2066616c73653b0a20202020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a20207d0a20202e6f7074732e526f6f742e4368696c64206368696c64203d2031205b6a736f6e5f6e616d65203d20226368696c64225d3b0a7d0a\nopts.Root.Child 6d657373616765204368696c64207b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a2020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option deprecated = false;\n  message Child {\n    option deprecated = false;\n    int32 value = 1 [json_name = \"value\"];\n  }\n  .opts.Root.Child child = 1 [json_name = \"child\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_nested_flagNone_deprecatedTrue_messagesetNone",
+      "syntax": "proto3",
+      "layout": "nested",
+      "flag": null,
+      "deprecated": true,
+      "message_set": null,
+      "descriptor_hex": "0a7c0a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322550a04526f6f7412260a056368696c6418012001280b32102e6f7074732e526f6f742e4368696c6452056368696c641a210a054368696c6412140a0576616c7565180120012805520576616c75653a0218013a021801620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e2064657072656361746564203d20747275653b0a20206d657373616765204368696c64207b0a202020206f7074696f6e2064657072656361746564203d20747275653b0a20202020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a20207d0a20202e6f7074732e526f6f742e4368696c64206368696c64203d2031205b6a736f6e5f6e616d65203d20226368696c64225d3b0a7d0a\nopts.Root.Child 6d657373616765204368696c64207b0a20206f7074696f6e2064657072656361746564203d20747275653b0a2020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option deprecated = true;\n  message Child {\n    option deprecated = true;\n    int32 value = 1 [json_name = \"value\"];\n  }\n  .opts.Root.Child child = 1 [json_name = \"child\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_nested_flagFalse_deprecatedNone_messagesetNone",
+      "syntax": "proto3",
+      "layout": "nested",
+      "flag": false,
+      "deprecated": null,
+      "message_set": null,
+      "descriptor_hex": "0a7c0a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322550a04526f6f7412260a056368696c6418012001280b32102e6f7074732e526f6f742e4368696c6452056368696c641a210a054368696c6412140a0576616c7565180120012805520576616c75653a0210003a021000620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a20206d657373616765204368696c64207b0a202020206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a20202020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a20207d0a20202e6f7074732e526f6f742e4368696c64206368696c64203d2031205b6a736f6e5f6e616d65203d20226368696c64225d3b0a7d0a\nopts.Root.Child 6d657373616765204368696c64207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a2020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = false;\n  message Child {\n    option no_standard_descriptor_accessor = false;\n    int32 value = 1 [json_name = \"value\"];\n  }\n  .opts.Root.Child child = 1 [json_name = \"child\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_nested_flagFalse_deprecatedFalse_messagesetNone",
+      "syntax": "proto3",
+      "layout": "nested",
+      "flag": false,
+      "deprecated": false,
+      "message_set": null,
+      "descriptor_hex": "0a80010a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322590a04526f6f7412260a056368696c6418012001280b32102e6f7074732e526f6f742e4368696c6452056368696c641a230a054368696c6412140a0576616c7565180120012805520576616c75653a04100018003a0410001800620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a20206d657373616765204368696c64207b0a202020206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a202020206f7074696f6e2064657072656361746564203d2066616c73653b0a20202020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a20207d0a20202e6f7074732e526f6f742e4368696c64206368696c64203d2031205b6a736f6e5f6e616d65203d20226368696c64225d3b0a7d0a\nopts.Root.Child 6d657373616765204368696c64207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a2020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = false;\n  option deprecated = false;\n  message Child {\n    option no_standard_descriptor_accessor = false;\n    option deprecated = false;\n    int32 value = 1 [json_name = \"value\"];\n  }\n  .opts.Root.Child child = 1 [json_name = \"child\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_nested_flagFalse_deprecatedTrue_messagesetNone",
+      "syntax": "proto3",
+      "layout": "nested",
+      "flag": false,
+      "deprecated": true,
+      "message_set": null,
+      "descriptor_hex": "0a80010a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322590a04526f6f7412260a056368696c6418012001280b32102e6f7074732e526f6f742e4368696c6452056368696c641a230a054368696c6412140a0576616c7565180120012805520576616c75653a04100018013a0410001801620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a20206f7074696f6e2064657072656361746564203d20747275653b0a20206d657373616765204368696c64207b0a202020206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a202020206f7074696f6e2064657072656361746564203d20747275653b0a20202020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a20207d0a20202e6f7074732e526f6f742e4368696c64206368696c64203d2031205b6a736f6e5f6e616d65203d20226368696c64225d3b0a7d0a\nopts.Root.Child 6d657373616765204368696c64207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a20206f7074696f6e2064657072656361746564203d20747275653b0a2020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = false;\n  option deprecated = true;\n  message Child {\n    option no_standard_descriptor_accessor = false;\n    option deprecated = true;\n    int32 value = 1 [json_name = \"value\"];\n  }\n  .opts.Root.Child child = 1 [json_name = \"child\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_nested_flagTrue_deprecatedNone_messagesetNone",
+      "syntax": "proto3",
+      "layout": "nested",
+      "flag": true,
+      "deprecated": null,
+      "message_set": null,
+      "descriptor_hex": "0a7c0a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322550a04526f6f7412260a056368696c6418012001280b32102e6f7074732e526f6f742e4368696c6452056368696c641a210a054368696c6412140a0576616c7565180120012805520576616c75653a0210013a021001620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206d657373616765204368696c64207b0a202020206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20202020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a20207d0a20202e6f7074732e526f6f742e4368696c64206368696c64203d2031205b6a736f6e5f6e616d65203d20226368696c64225d3b0a7d0a\nopts.Root.Child 6d657373616765204368696c64207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a2020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = true;\n  message Child {\n    option no_standard_descriptor_accessor = true;\n    int32 value = 1 [json_name = \"value\"];\n  }\n  .opts.Root.Child child = 1 [json_name = \"child\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_nested_flagTrue_deprecatedFalse_messagesetNone",
+      "syntax": "proto3",
+      "layout": "nested",
+      "flag": true,
+      "deprecated": false,
+      "message_set": null,
+      "descriptor_hex": "0a80010a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322590a04526f6f7412260a056368696c6418012001280b32102e6f7074732e526f6f742e4368696c6452056368696c641a230a054368696c6412140a0576616c7565180120012805520576616c75653a04100118003a0410011800620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a20206d657373616765204368696c64207b0a202020206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a202020206f7074696f6e2064657072656361746564203d2066616c73653b0a20202020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a20207d0a20202e6f7074732e526f6f742e4368696c64206368696c64203d2031205b6a736f6e5f6e616d65203d20226368696c64225d3b0a7d0a\nopts.Root.Child 6d657373616765204368696c64207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a2020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = true;\n  option deprecated = false;\n  message Child {\n    option no_standard_descriptor_accessor = true;\n    option deprecated = false;\n    int32 value = 1 [json_name = \"value\"];\n  }\n  .opts.Root.Child child = 1 [json_name = \"child\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_nested_flagTrue_deprecatedTrue_messagesetNone",
+      "syntax": "proto3",
+      "layout": "nested",
+      "flag": true,
+      "deprecated": true,
+      "message_set": null,
+      "descriptor_hex": "0a80010a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322590a04526f6f7412260a056368696c6418012001280b32102e6f7074732e526f6f742e4368696c6452056368696c641a230a054368696c6412140a0576616c7565180120012805520576616c75653a04100118013a0410011801620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206f7074696f6e2064657072656361746564203d20747275653b0a20206d657373616765204368696c64207b0a202020206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a202020206f7074696f6e2064657072656361746564203d20747275653b0a20202020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a20207d0a20202e6f7074732e526f6f742e4368696c64206368696c64203d2031205b6a736f6e5f6e616d65203d20226368696c64225d3b0a7d0a\nopts.Root.Child 6d657373616765204368696c64207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206f7074696f6e2064657072656361746564203d20747275653b0a2020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = true;\n  option deprecated = true;\n  message Child {\n    option no_standard_descriptor_accessor = true;\n    option deprecated = true;\n    int32 value = 1 [json_name = \"value\"];\n  }\n  .opts.Root.Child child = 1 [json_name = \"child\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_map_flagNone_deprecatedNone_messagesetNone",
+      "syntax": "proto3",
+      "layout": "map",
+      "flag": null,
+      "deprecated": null,
+      "message_set": null,
+      "descriptor_hex": "0a90010a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322690a04526f6f7412310a07656e747269657318012003280b32172e6f7074732e526f6f742e456e7472696573456e7472795207656e74726965731a2e0a0c456e7472696573456e747279120b0a036b6579180120012809120d0a0576616c75651802200128053a023801620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206d61703c737472696e672c20696e7433323e20656e7472696573203d2031205b6a736f6e5f6e616d65203d2022656e7472696573225d3b0a7d0a\nopts.Root.EntriesEntry \n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  map<string, int32> entries = 1 [json_name = \"entries\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_map_flagNone_deprecatedFalse_messagesetNone",
+      "syntax": "proto3",
+      "layout": "map",
+      "flag": null,
+      "deprecated": false,
+      "message_set": null,
+      "descriptor_hex": "0a96010a156d6573736167655f6f7074696f6e732e70726f746f12046f707473226f0a04526f6f7412310a07656e747269657318012003280b32172e6f7074732e526f6f742e456e7472696573456e7472795207656e74726965731a300a0c456e7472696573456e747279120b0a036b6579180120012809120d0a0576616c75651802200128053a04180038013a021800620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a20206d61703c737472696e672c20696e7433323e20656e7472696573203d2031205b6a736f6e5f6e616d65203d2022656e7472696573225d3b0a7d0a\nopts.Root.EntriesEntry \n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option deprecated = false;\n  map<string, int32> entries = 1 [json_name = \"entries\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_map_flagNone_deprecatedTrue_messagesetNone",
+      "syntax": "proto3",
+      "layout": "map",
+      "flag": null,
+      "deprecated": true,
+      "message_set": null,
+      "descriptor_hex": "0a96010a156d6573736167655f6f7074696f6e732e70726f746f12046f707473226f0a04526f6f7412310a07656e747269657318012003280b32172e6f7074732e526f6f742e456e7472696573456e7472795207656e74726965731a300a0c456e7472696573456e747279120b0a036b6579180120012809120d0a0576616c75651802200128053a04180138013a021801620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e2064657072656361746564203d20747275653b0a20206d61703c737472696e672c20696e7433323e20656e7472696573203d2031205b6a736f6e5f6e616d65203d2022656e7472696573225d3b0a7d0a\nopts.Root.EntriesEntry \n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option deprecated = true;\n  map<string, int32> entries = 1 [json_name = \"entries\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_map_flagFalse_deprecatedNone_messagesetNone",
+      "syntax": "proto3",
+      "layout": "map",
+      "flag": false,
+      "deprecated": null,
+      "message_set": null,
+      "descriptor_hex": "0a96010a156d6573736167655f6f7074696f6e732e70726f746f12046f707473226f0a04526f6f7412310a07656e747269657318012003280b32172e6f7074732e526f6f742e456e7472696573456e7472795207656e74726965731a300a0c456e7472696573456e747279120b0a036b6579180120012809120d0a0576616c75651802200128053a04100038013a021000620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a20206d61703c737472696e672c20696e7433323e20656e7472696573203d2031205b6a736f6e5f6e616d65203d2022656e7472696573225d3b0a7d0a\nopts.Root.EntriesEntry \n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = false;\n  map<string, int32> entries = 1 [json_name = \"entries\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_map_flagFalse_deprecatedFalse_messagesetNone",
+      "syntax": "proto3",
+      "layout": "map",
+      "flag": false,
+      "deprecated": false,
+      "message_set": null,
+      "descriptor_hex": "0a9a010a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322730a04526f6f7412310a07656e747269657318012003280b32172e6f7074732e526f6f742e456e7472696573456e7472795207656e74726965731a320a0c456e7472696573456e747279120b0a036b6579180120012809120d0a0576616c75651802200128053a061000180038013a0410001800620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a20206d61703c737472696e672c20696e7433323e20656e7472696573203d2031205b6a736f6e5f6e616d65203d2022656e7472696573225d3b0a7d0a\nopts.Root.EntriesEntry \n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = false;\n  option deprecated = false;\n  map<string, int32> entries = 1 [json_name = \"entries\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_map_flagFalse_deprecatedTrue_messagesetNone",
+      "syntax": "proto3",
+      "layout": "map",
+      "flag": false,
+      "deprecated": true,
+      "message_set": null,
+      "descriptor_hex": "0a9a010a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322730a04526f6f7412310a07656e747269657318012003280b32172e6f7074732e526f6f742e456e7472696573456e7472795207656e74726965731a320a0c456e7472696573456e747279120b0a036b6579180120012809120d0a0576616c75651802200128053a061000180138013a0410001801620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d2066616c73653b0a20206f7074696f6e2064657072656361746564203d20747275653b0a20206d61703c737472696e672c20696e7433323e20656e7472696573203d2031205b6a736f6e5f6e616d65203d2022656e7472696573225d3b0a7d0a\nopts.Root.EntriesEntry \n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = false;\n  option deprecated = true;\n  map<string, int32> entries = 1 [json_name = \"entries\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_map_flagTrue_deprecatedNone_messagesetNone",
+      "syntax": "proto3",
+      "layout": "map",
+      "flag": true,
+      "deprecated": null,
+      "message_set": null,
+      "descriptor_hex": "0a96010a156d6573736167655f6f7074696f6e732e70726f746f12046f707473226f0a04526f6f7412310a07656e747269657318012003280b32172e6f7074732e526f6f742e456e7472696573456e7472795207656e74726965731a300a0c456e7472696573456e747279120b0a036b6579180120012809120d0a0576616c75651802200128053a04100138013a021001620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206d61703c737472696e672c20696e7433323e20656e7472696573203d2031205b6a736f6e5f6e616d65203d2022656e7472696573225d3b0a7d0a\nopts.Root.EntriesEntry \n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = true;\n  map<string, int32> entries = 1 [json_name = \"entries\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_map_flagTrue_deprecatedFalse_messagesetNone",
+      "syntax": "proto3",
+      "layout": "map",
+      "flag": true,
+      "deprecated": false,
+      "message_set": null,
+      "descriptor_hex": "0a9a010a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322730a04526f6f7412310a07656e747269657318012003280b32172e6f7074732e526f6f742e456e7472696573456e7472795207656e74726965731a320a0c456e7472696573456e747279120b0a036b6579180120012809120d0a0576616c75651802200128053a061001180038013a0410011800620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a20206d61703c737472696e672c20696e7433323e20656e7472696573203d2031205b6a736f6e5f6e616d65203d2022656e7472696573225d3b0a7d0a\nopts.Root.EntriesEntry \n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = true;\n  option deprecated = false;\n  map<string, int32> entries = 1 [json_name = \"entries\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto3_map_flagTrue_deprecatedTrue_messagesetNone",
+      "syntax": "proto3",
+      "layout": "map",
+      "flag": true,
+      "deprecated": true,
+      "message_set": null,
+      "descriptor_hex": "0a9a010a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322730a04526f6f7412310a07656e747269657318012003280b32172e6f7074732e526f6f742e456e7472696573456e7472795207656e74726965731a320a0c456e7472696573456e747279120b0a036b6579180120012809120d0a0576616c75651802200128053a061001180138013a0410011801620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206f7074696f6e2064657072656361746564203d20747275653b0a20206d61703c737472696e672c20696e7433323e20656e7472696573203d2031205b6a736f6e5f6e616d65203d2022656e7472696573225d3b0a7d0a\nopts.Root.EntriesEntry \n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option no_standard_descriptor_accessor = true;\n  option deprecated = true;\n  map<string, int32> entries = 1 [json_name = \"entries\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "native"
+    },
+    {
+      "id": "proto2_empty_flagTrue_deprecatedFalse_messagesetFalse",
+      "syntax": "proto2",
+      "layout": "empty",
+      "flag": true,
+      "deprecated": false,
+      "message_set": false,
+      "descriptor_hex": "0a350a156d6573736167655f6f7074696f6e732e70726f746f12046f707473220e0a04526f6f743a06080010011800620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206d6573736167655f7365745f776972655f666f726d6174203d2066616c73653b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option message_set_wire_format = false;\n  option no_standard_descriptor_accessor = true;\n  option deprecated = false;\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "option"
+    },
+    {
+      "id": "proto2_empty_flagTrue_deprecatedFalse_messagesetTrue",
+      "syntax": "proto2",
+      "layout": "empty",
+      "flag": true,
+      "deprecated": false,
+      "message_set": true,
+      "descriptor_hex": "0a350a156d6573736167655f6f7074696f6e732e70726f746f12046f707473220e0a04526f6f743a06080110011800620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206d6573736167655f7365745f776972655f666f726d6174203d20747275653b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option message_set_wire_format = true;\n  option no_standard_descriptor_accessor = true;\n  option deprecated = false;\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "option"
+    },
+    {
+      "id": "proto2_field_flagTrue_deprecatedFalse_messagesetFalse",
+      "syntax": "proto2",
+      "layout": "field",
+      "flag": true,
+      "deprecated": false,
+      "message_set": false,
+      "descriptor_hex": "0a4b0a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322240a04526f6f7412140a0576616c7565180120012805520576616c75653a06080010011800620670726f746f32",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206d6573736167655f7365745f776972655f666f726d6174203d2066616c73653b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a20206f7074696f6e616c20696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option message_set_wire_format = false;\n  option no_standard_descriptor_accessor = true;\n  option deprecated = false;\n  optional int32 value = 1 [json_name = \"value\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "option"
+    },
+    {
+      "id": "proto2_field_flagTrue_deprecatedFalse_messagesetTrue",
+      "syntax": "proto2",
+      "layout": "field",
+      "flag": true,
+      "deprecated": false,
+      "message_set": true,
+      "descriptor_hex": "0a4b0a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322240a04526f6f7412140a0576616c7565180120012805520576616c75653a06080110011800620670726f746f32",
+      "native": {
+        "exit": 5,
+        "stdout": "",
+        "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"message_options.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   opts.Root.value: MessageSets cannot have fields, only extensions.\n"
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "",
+        "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"message_options.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   opts.Root.value: MessageSets cannot have fields, only extensions.\nDynamicFactory(). Unable to place descriptors from [@descriptor@] in the descriptor pool\nUnable to create message of type[opts.Root]\n"
+      },
+      "expected": "option"
+    },
+    {
+      "id": "proto3_empty_flagTrue_deprecatedFalse_messagesetFalse",
+      "syntax": "proto3",
+      "layout": "empty",
+      "flag": true,
+      "deprecated": false,
+      "message_set": false,
+      "descriptor_hex": "0a350a156d6573736167655f6f7074696f6e732e70726f746f12046f707473220e0a04526f6f743a06080010011800620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206d6573736167655f7365745f776972655f666f726d6174203d2066616c73653b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option message_set_wire_format = false;\n  option no_standard_descriptor_accessor = true;\n  option deprecated = false;\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "option"
+    },
+    {
+      "id": "proto3_empty_flagTrue_deprecatedFalse_messagesetTrue",
+      "syntax": "proto3",
+      "layout": "empty",
+      "flag": true,
+      "deprecated": false,
+      "message_set": true,
+      "descriptor_hex": "0a350a156d6573736167655f6f7074696f6e732e70726f746f12046f707473220e0a04526f6f743a06080110011800620670726f746f33",
+      "native": {
+        "exit": 5,
+        "stdout": "",
+        "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"message_options.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   opts.Root: MessageSet is not supported in proto3.\n"
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "",
+        "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"message_options.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   opts.Root: MessageSet is not supported in proto3.\nDynamicFactory(). Unable to place descriptors from [@descriptor@] in the descriptor pool\nUnable to create message of type[opts.Root]\n"
+      },
+      "expected": "option"
+    },
+    {
+      "id": "proto3_field_flagTrue_deprecatedFalse_messagesetFalse",
+      "syntax": "proto3",
+      "layout": "field",
+      "flag": true,
+      "deprecated": false,
+      "message_set": false,
+      "descriptor_hex": "0a4b0a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322240a04526f6f7412140a0576616c7565180120012805520576616c75653a06080010011800620670726f746f33",
+      "native": {
+        "exit": 0,
+        "stdout": "opts.Root 6d65737361676520526f6f74207b0a20206f7074696f6e206d6573736167655f7365745f776972655f666f726d6174203d2066616c73653b0a20206f7074696f6e206e6f5f7374616e646172645f64657363726970746f725f6163636573736f72203d20747275653b0a20206f7074696f6e2064657072656361746564203d2066616c73653b0a2020696e7433322076616c7565203d2031205b6a736f6e5f6e616d65203d202276616c7565225d3b0a7d0a\n",
+        "stderr": ""
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "Name: opts.Root\nFile: message_options.proto\n\nmessage Root {\n  option message_set_wire_format = false;\n  option no_standard_descriptor_accessor = true;\n  option deprecated = false;\n  int32 value = 1 [json_name = \"value\"];\n}\n\n",
+        "stderr": ""
+      },
+      "expected": "option"
+    },
+    {
+      "id": "proto3_field_flagTrue_deprecatedFalse_messagesetTrue",
+      "syntax": "proto3",
+      "layout": "field",
+      "flag": true,
+      "deprecated": false,
+      "message_set": true,
+      "descriptor_hex": "0a4b0a156d6573736167655f6f7074696f6e732e70726f746f12046f70747322240a04526f6f7412140a0576616c7565180120012805520576616c75653a06080110011800620670726f746f33",
+      "native": {
+        "exit": 5,
+        "stdout": "",
+        "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"message_options.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   opts.Root.value: MessageSets cannot have fields, only extensions.\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   opts.Root: MessageSet is not supported in proto3.\n"
+      },
+      "native_cli": {
+        "exit": 0,
+        "stdout": "",
+        "stderr": "[libprotobuf ERROR google/protobuf/descriptor.cc:4201] Invalid proto descriptor for file \"message_options.proto\":\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   opts.Root.value: MessageSets cannot have fields, only extensions.\n[libprotobuf ERROR google/protobuf/descriptor.cc:4204]   opts.Root: MessageSet is not supported in proto3.\nDynamicFactory(). Unable to place descriptors from [@descriptor@] in the descriptor pool\nUnable to create message of type[opts.Root]\n"
+      },
+      "expected": "option"
+    }
+  ]
+}

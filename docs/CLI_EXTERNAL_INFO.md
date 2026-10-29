@@ -10,13 +10,15 @@ The formatter preserves declaration order, nested messages/enums, source-ordered
 enum aliases and signed values, maps, real oneofs, proto3 optional fields, qualified
 message/enum references, reserved ranges/names and arbitrary UTF-8 JSON names
 (including the empty name). Native C-style byte escaping preserves quotes,
-backslashes, controls and non-ASCII UTF-8 bytes using octal escapes. It supports message deprecated, enum
+backslashes, controls and non-ASCII UTF-8 bytes using octal escapes. It supports message no_standard_descriptor_accessor/deprecated, enum
 allow_alias/deprecated, enum-value deprecated and field packed/deprecated/lazy/weak/unverified_lazy boolean
 options, including explicit false. [Field-option qualification](FIELD_OPTIONS.md)
 records the message-only true lazy flags and metadata/runtime boundary.
 [Enum-valued field options](ENUM_FIELD_OPTIONS.md) retain declared CType/JSType
 labels with explicit shape and unknown-number guards. Synthetic map entries produce an empty body.
 A definition is assembled before return, so a failure exposes no partial string.
+[Standard message options](MESSAGE_OPTIONS.md) retain code-generation metadata
+without changing Rust descriptor APIs or MessageSet wire support.
 
 `DefinitionError::Unsupported` identifies invalid default shapes and groups,
 extension declarations, unsupported standard/custom/unknown options, malformed

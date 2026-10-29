@@ -153,7 +153,6 @@ fn custom_definitions_are_native_exact_or_explicitly_unsupported() {
             let descriptor = registry.pool().get_message_by_name(&name).unwrap();
             let actual = descriptor_definition(&descriptor);
             let feature = match name.as_str() {
-                "definition.unsupported.StandardMessageOption" => Some("option"),
                 "definition.unsupported.DeclaresExtension" => Some("extension declarations"),
                 "definition.legacy.Legacy" => Some("extension declarations"),
                 name if name.starts_with("definition.unsupported.Custom") => Some("custom options"),
@@ -294,6 +293,8 @@ fn external_cli_info_preserves_canonical_output_and_continuation() {
         let supported_transition = (args == ["--info", "definition.proto2.Defaults"]
             && row["descriptor"] == "tests/fixtures/definitions/proto2.desc")
             || (args == ["--info", "definition.unsupported.StandardFieldOption"]
+                && row["descriptor"] == "tests/fixtures/definitions/unsupported.desc")
+            || (args == ["--info", "definition.unsupported.StandardMessageOption"]
                 && row["descriptor"] == "tests/fixtures/definitions/unsupported.desc");
         if let Some(feature) = row.get("unsupported").filter(|_| !supported_transition) {
             assert!(!result.status.success());

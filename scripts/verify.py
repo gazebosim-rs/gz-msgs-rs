@@ -63,6 +63,10 @@ enum_options = json.loads(pathlib.Path('tests/fixtures/enum-field-options.json')
 for key in ['upstream_commit', 'native_binary_sha256', 'native_source_sha256', 'native_libraries_sha256', 'schema_manifest_sha256', 'peer_source_sha256']:
     assert enum_options[key] == definitions[key], key
 assert enum_options['reference_script_sha256'] == hashlib.sha256(pathlib.Path('scripts/enum-field-options-reference.py').read_bytes()).hexdigest()
+message_options = json.loads(pathlib.Path('tests/fixtures/message-options.json').read_text())
+for key in ['upstream_commit', 'native_binary_sha256', 'native_source_sha256', 'native_libraries_sha256', 'schema_manifest_sha256', 'peer_source_sha256']:
+    assert message_options[key] == definitions[key], key
+assert message_options['reference_script_sha256'] == hashlib.sha256(pathlib.Path('scripts/message-options-reference.py').read_bytes()).hexdigest()
 defaults = json.loads(pathlib.Path('tests/fixtures/byte-defaults/native.json').read_text())
 assert defaults['default_probe_source_sha256'] == hashlib.sha256(pathlib.Path('tests/byte_defaults_peer.cc').read_bytes()).hexdigest()
 for row in defaults['cases']:

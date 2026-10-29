@@ -376,7 +376,10 @@ fn message(
         }
     }
     line(output, depth, format_args!("message {} {{", value.name()));
-    for option in options(value.options(), &["deprecated"])? {
+    for option in options(
+        value.options(),
+        &["no_standard_descriptor_accessor", "deprecated"],
+    )? {
         line(output, depth + 1, format_args!("option {option};"));
     }
     for child in value.child_messages() {
