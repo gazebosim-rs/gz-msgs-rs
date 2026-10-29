@@ -80,8 +80,9 @@ complete oneof validation and arbitrary synthetic map shapes are not qualified.
 proto2 integer defaults across all ten scalar kinds. They print the parsed effective
 value in decimal while preserving raw descriptor metadata; see
 [integer declarations](INTEGER_DEFINITIONS.md).
-[Boolean declarations](BOOLEAN_DEFINITIONS.md) are qualified separately. Remaining
-default kinds and oneof defaults remain Unsupported.
+[Boolean](BOOLEAN_DEFINITIONS.md) and valid-UTF8 [string](STRING_DEFINITIONS.md)
+declarations are qualified separately. Remaining default kinds and oneof defaults
+remain Unsupported.
 A rejected numeric descriptor remains unavailable through the existing missing
 info/continuation behavior. Floats, strings/bytes, enums, groups,
 extensions and general native proto2 wire/formatting behavior are not newly

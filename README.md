@@ -46,4 +46,5 @@ External registry integer defaults follow a bounded, native-backed
 Standard reflection entry points retain their separate limitations. The bounded
 [integer declaration formatter](docs/INTEGER_DEFINITIONS.md) supports all ten ordinary
 proto2 integer scalar kinds without changing raw descriptor metadata. Ordinary
-[boolean defaults](docs/BOOLEAN_DEFINITIONS.md) also use native declaration spelling.
+[boolean defaults](docs/BOOLEAN_DEFINITIONS.md) and valid-UTF8
+[string defaults](docs/STRING_DEFINITIONS.md) also use native declaration spelling.

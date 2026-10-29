@@ -19,8 +19,8 @@ Ten invalid literal spellings retain their parser rejection. Oneof, repeated and
 proto3 defaults remain unsupported by formatting, including existing differences
 between native and reflection admission. Unknown options still return an error.
 The earlier native boolean control retains its exact input and expected native
-declaration as a positive test. String/bytes, floating and enum defaults remain
-outside this slice; all 83 upstream assertion mappings are unchanged.
+declaration as a positive test. [Valid-UTF8 string defaults](STRING_DEFINITIONS.md)
+are qualified separately. Bytes, floating and enum defaults remain unsupported; all 83 upstream assertion mappings are unchanged.
 
 `tests/integer_definition_peer.cc` is reused as the native declaration observer.
 The [fixture](../tests/fixtures/boolean-definitions.json) records every raw input,

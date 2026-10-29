@@ -388,8 +388,10 @@ names. It preserves defined raw-range display quirks and rejects the two message
 boundaries whose native signed arithmetic overflows. Basic proto2 labels/oneofs
 are supported. Ordinary optional/required defaults for all ten integer scalar kinds
 are formatted in decimal from their effective values. Ordinary
-[boolean defaults](BOOLEAN_DEFINITIONS.md) use `true`/`false`; string/bytes, floating
-and enum defaults, groups, extensions and advanced options remain unsupported.
+[boolean defaults](BOOLEAN_DEFINITIONS.md) use `true`/`false`. Valid-UTF8
+[string defaults](STRING_DEFINITIONS.md) reuse the existing protobuf escape helper.
+Bytes, floating and enum defaults, groups, extensions and advanced options remain
+unsupported.
 Standard reflection entry points retain their separate raw integer-default
 interpretation; the registry's bounded opt-in integer policy is described
 below. Formatting preserves parsed values and does not expand wire support.

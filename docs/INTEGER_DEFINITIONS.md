@@ -18,8 +18,9 @@ value rather than reparsing the raw string. The original 990 parser observations
 raw metadata, explicit-presence wire and rejection assertions remain in force.
 
 Defaults on oneof, repeated and proto3 fields remain outside this formatter's
-supported subset. [Boolean defaults](BOOLEAN_DEFINITIONS.md) are a separate
-qualified family; string/bytes, floating and enum defaults remain unsupported.
+supported subset. [Boolean](BOOLEAN_DEFINITIONS.md) and valid-UTF8
+[string defaults](STRING_DEFINITIONS.md) are separate qualified families. Bytes,
+floating and enum defaults remain unsupported.
 Unknown options remain errors.
 This adds no parser policy, schema change, wire behavior, upstream test retirement,
 performance result or complete MSG-02 acceptance.
