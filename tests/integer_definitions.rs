@@ -183,11 +183,38 @@ fn ordinary_proto2_integer_declarations_use_effective_values_and_native_option_o
     assert_eq!(checked, 66);
 }
 #[test]
+fn prior_boolean_default_control_matches_its_unchanged_native_definition() {
+    let fixture = observations();
+    let row = fixture["cases"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|row| row["input"]["id"] == "bool-default")
+        .unwrap();
+    let bytes = unhex(row["descriptor_hex"].as_str().unwrap());
+    let mut registry = DescriptorRegistry::default();
+    assert!(registry.load_bytes(&bytes).unwrap().is_empty());
+    let descriptor = registry.pool().get_message_by_name("Default").unwrap();
+    let raw = descriptor
+        .get_field_by_name("value")
+        .unwrap()
+        .field_descriptor_proto()
+        .clone();
+    assert_eq!(registry.definition("Default").unwrap(), Some(expected(row)));
+    assert_eq!(
+        descriptor
+            .get_field_by_name("value")
+            .unwrap()
+            .field_descriptor_proto(),
+        &raw
+    );
+}
+
+#[test]
 fn unsupported_shapes_and_kinds_stay_explicit_and_standard_pool_semantics_stay_distinct() {
     let fixture = observations();
     for id in [
         "optional-oneof",
-        "bool-default",
         "string-default",
         "float-default",
         "enum-default",

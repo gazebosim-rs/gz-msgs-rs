@@ -17,8 +17,10 @@ decimal-ten interpretation. Formatting uses the supplied descriptor's effective
 value rather than reparsing the raw string. The original 990 parser observations,
 raw metadata, explicit-presence wire and rejection assertions remain in force.
 
-Defaults on oneof fields, repeated fields, proto3 fields and other scalar kinds
-remain outside this formatter's supported subset. Unknown options remain errors.
+Defaults on oneof, repeated and proto3 fields remain outside this formatter's
+supported subset. [Boolean defaults](BOOLEAN_DEFINITIONS.md) are a separate
+qualified family; string/bytes, floating and enum defaults remain unsupported.
+Unknown options remain errors.
 This adds no parser policy, schema change, wire behavior, upstream test retirement,
 performance result or complete MSG-02 acceptance.
 

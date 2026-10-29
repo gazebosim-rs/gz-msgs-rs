@@ -387,10 +387,12 @@ The formatter includes reserved names/ranges and C-style escaping for UTF-8 JSON
 names. It preserves defined raw-range display quirks and rejects the two message
 boundaries whose native signed arithmetic overflows. Basic proto2 labels/oneofs
 are supported. Ordinary optional/required defaults for all ten integer scalar kinds
-are formatted in decimal from their effective values; other defaults, groups,
-extensions and advanced options remain unsupported. Standard reflection entry points retain their separate raw integer
-default interpretation; the registry's bounded opt-in integer policy is described
-below. Declaration formatting adds no default-value or general wire contract.
+are formatted in decimal from their effective values. Ordinary
+[boolean defaults](BOOLEAN_DEFINITIONS.md) use `true`/`false`; string/bytes, floating
+and enum defaults, groups, extensions and advanced options remain unsupported.
+Standard reflection entry points retain their separate raw integer-default
+interpretation; the registry's bounded opt-in integer policy is described
+below. Formatting preserves parsed values and does not expand wire support.
 This is not a complete descriptor validator.
 
 Raw byte defaults that can panic in the pinned reflection loader now return
