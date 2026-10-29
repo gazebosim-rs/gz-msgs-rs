@@ -60,3 +60,8 @@ required before publication.
 The additional [packed-double qualification](PACKED_WIRE_BOUNDARIES.md) preserves
 this original 70-case corpus and adds exact float-bit, length/error and
 Rust-only partial-state observations. It changes no decoder or dependency.
+
+The separate [Float_V fixed32 qualification](PACKED_FLOAT_WIRE.md) covers exact
+float32 bits, its distinct Header/data tags, framing and existing partial-cursor
+boundaries. The fixed64 corpus and shared native peer remain unchanged; no
+production decoder or unknown-forwarding policy changes.

@@ -1,0 +1,1401 @@
+{
+  "upstream_commit": "89c0c3d1474f545cb889335daf930bfdab6ab852",
+  "native_protobuf": "3.21.12",
+  "schema_manifest_sha256": "4762e2101674aa2cdd3a6518f8a71a50acde2ce417452e46b44f42e9d02c1d39",
+  "probe_source_sha256": "af60c4881ec931ffaf0cc7ffdbbd680c94212d40772afad5d5e8f09a13691ae0",
+  "canonical_builder_sha256": "54bb6d764b1f1555f208e62cb00466c0270ee7572e088c6aea2239cf2eea6e91",
+  "reference_script_sha256": "73509bbecf70ac5f981060764880030279183386af4b58565c53ea29ddec64a3",
+  "rows": [
+    {
+      "id": "absent",
+      "wire_hex": "",
+      "expected_bits": [],
+      "accepted": true,
+      "strict": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "empty",
+      "wire_hex": "1200",
+      "expected_bits": [],
+      "accepted": true,
+      "strict": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "bits_0",
+      "wire_hex": "120400000000",
+      "expected_bits": [
+        0
+      ],
+      "accepted": true,
+      "strict": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120400000000",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120400000000",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "bits_1",
+      "wire_hex": "120400000080",
+      "expected_bits": [
+        2147483648
+      ],
+      "accepted": true,
+      "strict": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120400000080",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120400000080",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "bits_2",
+      "wire_hex": "12040000a03f",
+      "expected_bits": [
+        1067450368
+      ],
+      "accepted": true,
+      "strict": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "12040000a03f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "12040000a03f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "bits_3",
+      "wire_hex": "120401000000",
+      "expected_bits": [
+        1
+      ],
+      "accepted": true,
+      "strict": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120401000000",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120401000000",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "bits_4",
+      "wire_hex": "120401000080",
+      "expected_bits": [
+        2147483649
+      ],
+      "accepted": true,
+      "strict": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120401000080",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120401000080",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "bits_5",
+      "wire_hex": "120400008000",
+      "expected_bits": [
+        8388608
+      ],
+      "accepted": true,
+      "strict": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120400008000",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120400008000",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "bits_6",
+      "wire_hex": "1204ffff7f7f",
+      "expected_bits": [
+        2139095039
+      ],
+      "accepted": true,
+      "strict": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "1204ffff7f7f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "1204ffff7f7f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "bits_7",
+      "wire_hex": "1204ffff7fff",
+      "expected_bits": [
+        4286578687
+      ],
+      "accepted": true,
+      "strict": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "1204ffff7fff",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "1204ffff7fff",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "bits_8",
+      "wire_hex": "12040000807f",
+      "expected_bits": [
+        2139095040
+      ],
+      "accepted": true,
+      "strict": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "12040000807f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "12040000807f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "bits_9",
+      "wire_hex": "1204000080ff",
+      "expected_bits": [
+        4286578688
+      ],
+      "accepted": true,
+      "strict": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "1204000080ff",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "1204000080ff",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "bits_10",
+      "wire_hex": "12043412c07f",
+      "expected_bits": [
+        2143294004
+      ],
+      "accepted": true,
+      "strict": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "12043412c07f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "12043412c07f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "bits_11",
+      "wire_hex": "12043412807f",
+      "expected_bits": [
+        2139099700
+      ],
+      "accepted": true,
+      "strict": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "12043412807f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "12043412807f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "bits_12",
+      "wire_hex": "12042143c0ff",
+      "expected_bits": [
+        4290790177
+      ],
+      "accepted": true,
+      "strict": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "12042143c0ff",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "12042143c0ff",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "length_boundary_31",
+      "wire_hex": "127c00000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f0100000001000080",
+      "expected_bits": [
+        0,
+        2147483648,
+        1067450368,
+        1,
+        2147483649,
+        8388608,
+        2139095039,
+        4286578687,
+        2139095040,
+        4286578688,
+        2143294004,
+        2139099700,
+        4290790177,
+        0,
+        2147483648,
+        1067450368,
+        1,
+        2147483649,
+        8388608,
+        2139095039,
+        4286578687,
+        2139095040,
+        4286578688,
+        2143294004,
+        2139099700,
+        4290790177,
+        0,
+        2147483648,
+        1067450368,
+        1,
+        2147483649
+      ],
+      "accepted": true,
+      "strict": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "127c00000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f0100000001000080",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "127c00000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f0100000001000080",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "length_boundary_32",
+      "wire_hex": "12800100000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000008000",
+      "expected_bits": [
+        0,
+        2147483648,
+        1067450368,
+        1,
+        2147483649,
+        8388608,
+        2139095039,
+        4286578687,
+        2139095040,
+        4286578688,
+        2143294004,
+        2139099700,
+        4290790177,
+        0,
+        2147483648,
+        1067450368,
+        1,
+        2147483649,
+        8388608,
+        2139095039,
+        4286578687,
+        2139095040,
+        4286578688,
+        2143294004,
+        2139099700,
+        4290790177,
+        0,
+        2147483648,
+        1067450368,
+        1,
+        2147483649,
+        8388608
+      ],
+      "accepted": true,
+      "strict": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "12800100000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000008000",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "12800100000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000008000",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "length_boundary_33",
+      "wire_hex": "12840100000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000008000ffff7f7f",
+      "expected_bits": [
+        0,
+        2147483648,
+        1067450368,
+        1,
+        2147483649,
+        8388608,
+        2139095039,
+        4286578687,
+        2139095040,
+        4286578688,
+        2143294004,
+        2139099700,
+        4290790177,
+        0,
+        2147483648,
+        1067450368,
+        1,
+        2147483649,
+        8388608,
+        2139095039,
+        4286578687,
+        2139095040,
+        4286578688,
+        2143294004,
+        2139099700,
+        4290790177,
+        0,
+        2147483648,
+        1067450368,
+        1,
+        2147483649,
+        8388608,
+        2139095039
+      ],
+      "accepted": true,
+      "strict": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "12840100000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000008000ffff7f7f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "12840100000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000008000ffff7f7f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "length_boundary_65",
+      "wire_hex": "12840200000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff",
+      "expected_bits": [
+        0,
+        2147483648,
+        1067450368,
+        1,
+        2147483649,
+        8388608,
+        2139095039,
+        4286578687,
+        2139095040,
+        4286578688,
+        2143294004,
+        2139099700,
+        4290790177,
+        0,
+        2147483648,
+        1067450368,
+        1,
+        2147483649,
+        8388608,
+        2139095039,
+        4286578687,
+        2139095040,
+        4286578688,
+        2143294004,
+        2139099700,
+        4290790177,
+        0,
+        2147483648,
+        1067450368,
+        1,
+        2147483649,
+        8388608,
+        2139095039,
+        4286578687,
+        2139095040,
+        4286578688,
+        2143294004,
+        2139099700,
+        4290790177,
+        0,
+        2147483648,
+        1067450368,
+        1,
+        2147483649,
+        8388608,
+        2139095039,
+        4286578687,
+        2139095040,
+        4286578688,
+        2143294004,
+        2139099700,
+        4290790177,
+        0,
+        2147483648,
+        1067450368,
+        1,
+        2147483649,
+        8388608,
+        2139095039,
+        4286578687,
+        2139095040,
+        4286578688,
+        2143294004,
+        2139099700,
+        4290790177
+      ],
+      "accepted": true,
+      "strict": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "12840200000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "12840200000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "all_unpacked",
+      "wire_hex": "15000000001500000080150000a03f15010000001501000080150000800015ffff7f7f15ffff7fff150000807f15000080ff153412c07f153412807f152143c0ff",
+      "expected_bits": [
+        0,
+        2147483648,
+        1067450368,
+        1,
+        2147483649,
+        8388608,
+        2139095039,
+        4286578687,
+        2139095040,
+        4286578688,
+        2143294004,
+        2139099700,
+        4290790177
+      ],
+      "accepted": true,
+      "strict": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "123400000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "123400000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "split_packed_fields",
+      "wire_hex": "121400000000000000800000a03f0100000001000080122000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff",
+      "expected_bits": [
+        0,
+        2147483648,
+        1067450368,
+        1,
+        2147483649,
+        8388608,
+        2139095039,
+        4286578687,
+        2139095040,
+        4286578688,
+        2143294004,
+        2139099700,
+        4290790177
+      ],
+      "accepted": true,
+      "strict": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "123400000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "123400000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "mixed_packed_unpacked",
+      "wire_hex": "121400000000000000800000a03f01000000010000801500008000121cffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff",
+      "expected_bits": [
+        0,
+        2147483648,
+        1067450368,
+        1,
+        2147483649,
+        8388608,
+        2139095039,
+        4286578687,
+        2139095040,
+        4286578688,
+        2143294004,
+        2139099700,
+        4290790177
+      ],
+      "accepted": true,
+      "strict": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "123400000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "123400000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "known_then_unknown",
+      "wire_hex": "123400000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff1801",
+      "expected_bits": [
+        0,
+        2147483648,
+        1067450368,
+        1,
+        2147483649,
+        8388608,
+        2139095039,
+        4286578687,
+        2139095040,
+        4286578688,
+        2143294004,
+        2139099700,
+        4290790177
+      ],
+      "accepted": true,
+      "strict": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "123400000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff1801",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "123400000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "wrong_known_then_packed",
+      "wire_hex": "1007123400000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff",
+      "expected_bits": [
+        0,
+        2147483648,
+        1067450368,
+        1,
+        2147483649,
+        8388608,
+        2139095039,
+        4286578687,
+        2139095040,
+        4286578688,
+        2143294004,
+        2139099700,
+        4290790177
+      ],
+      "accepted": true,
+      "strict": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "123400000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff1007",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "123400000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "packed_then_wrong_known",
+      "wire_hex": "123400000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff1007",
+      "expected_bits": [
+        0,
+        2147483648,
+        1067450368,
+        1,
+        2147483649,
+        8388608,
+        2139095039,
+        4286578687,
+        2139095040,
+        4286578688,
+        2143294004,
+        2139099700,
+        4290790177
+      ],
+      "accepted": true,
+      "strict": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "123400000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff1007",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "123400000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "nonminimal_length",
+      "wire_hex": "1284000000a03f",
+      "expected_bits": [
+        1067450368
+      ],
+      "accepted": true,
+      "strict": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "12040000a03f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "12040000a03f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "nonminimal_empty_length",
+      "wire_hex": "128000",
+      "expected_bits": [],
+      "accepted": true,
+      "strict": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "misaligned_1",
+      "wire_hex": "1201001801",
+      "expected_bits": null,
+      "accepted": false,
+      "strict": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "misaligned_2",
+      "wire_hex": "120200001801",
+      "expected_bits": null,
+      "accepted": false,
+      "strict": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "misaligned_3",
+      "wire_hex": "12030000001801",
+      "expected_bits": null,
+      "accepted": false,
+      "strict": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "misaligned_5",
+      "wire_hex": "120500000000001801",
+      "expected_bits": null,
+      "accepted": false,
+      "strict": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "misaligned_6",
+      "wire_hex": "12060000000000001801",
+      "expected_bits": null,
+      "accepted": false,
+      "strict": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "misaligned_7",
+      "wire_hex": "1207000000000000001801",
+      "expected_bits": null,
+      "accepted": false,
+      "strict": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "misaligned_9",
+      "wire_hex": "12090000000000000000001801",
+      "expected_bits": null,
+      "accepted": false,
+      "strict": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "truncated_1",
+      "wire_hex": "12800100000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f0100000001000080000080",
+      "expected_bits": null,
+      "accepted": false,
+      "strict": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "truncated_2",
+      "wire_hex": "12800100000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f01000000010000800000",
+      "expected_bits": null,
+      "accepted": false,
+      "strict": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "truncated_3",
+      "wire_hex": "12800100000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000",
+      "expected_bits": null,
+      "accepted": false,
+      "strict": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "truncated_4",
+      "wire_hex": "12800100000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f0100000001000080",
+      "expected_bits": null,
+      "accepted": false,
+      "strict": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "truncated_5",
+      "wire_hex": "12800100000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f01000000010000",
+      "expected_bits": null,
+      "accepted": false,
+      "strict": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "truncated_6",
+      "wire_hex": "12800100000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100",
+      "expected_bits": null,
+      "accepted": false,
+      "strict": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "truncated_7",
+      "wire_hex": "12800100000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f0100000001",
+      "expected_bits": null,
+      "accepted": false,
+      "strict": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "truncated_8",
+      "wire_hex": "12800100000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f01000000",
+      "expected_bits": null,
+      "accepted": false,
+      "strict": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "truncated_9",
+      "wire_hex": "12800100000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000000100008000008000ffff7f7fffff7fff0000807f000080ff3412c07f3412807f2143c0ff00000000000000800000a03f010000",
+      "expected_bits": null,
+      "accepted": false,
+      "strict": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "missing_length",
+      "wire_hex": "12",
+      "expected_bits": null,
+      "accepted": false,
+      "strict": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "unterminated_length_1",
+      "wire_hex": "12ff",
+      "expected_bits": null,
+      "accepted": false,
+      "strict": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "unterminated_length_2",
+      "wire_hex": "12ffff",
+      "expected_bits": null,
+      "accepted": false,
+      "strict": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "unterminated_length_3",
+      "wire_hex": "12ffffff",
+      "expected_bits": null,
+      "accepted": false,
+      "strict": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "unterminated_length_4",
+      "wire_hex": "12ffffffff",
+      "expected_bits": null,
+      "accepted": false,
+      "strict": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "unterminated_length_5",
+      "wire_hex": "12ffffffffff",
+      "expected_bits": null,
+      "accepted": false,
+      "strict": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "unterminated_length_6",
+      "wire_hex": "12ffffffffffff",
+      "expected_bits": null,
+      "accepted": false,
+      "strict": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "unterminated_length_7",
+      "wire_hex": "12ffffffffffffff",
+      "expected_bits": null,
+      "accepted": false,
+      "strict": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "unterminated_length_8",
+      "wire_hex": "12ffffffffffffffff",
+      "expected_bits": null,
+      "accepted": false,
+      "strict": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "unterminated_length_9",
+      "wire_hex": "12ffffffffffffffffff",
+      "expected_bits": null,
+      "accepted": false,
+      "strict": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "unterminated_length_10",
+      "wire_hex": "12ffffffffffffffffffff",
+      "expected_bits": null,
+      "accepted": false,
+      "strict": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "unterminated_length_11",
+      "wire_hex": "12ffffffffffffffffffffff",
+      "expected_bits": null,
+      "accepted": false,
+      "strict": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "declared_u64_max",
+      "wire_hex": "12ffffffffffffffffff01",
+      "expected_bits": null,
+      "accepted": false,
+      "strict": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "empty_header_and_data",
+      "wire_hex": "0a00120c00000000000000800000a03f",
+      "expected_bits": [
+        0,
+        2147483648,
+        1067450368
+      ],
+      "accepted": true,
+      "strict": true,
+      "header": "present",
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "0a00120c00000000000000800000a03f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "0a00120c00000000000000800000a03f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "stamp_header_and_data",
+      "wire_hex": "0a040a020807120c00000000000000800000a03f",
+      "expected_bits": [
+        0,
+        2147483648,
+        1067450368
+      ],
+      "accepted": true,
+      "strict": true,
+      "header": "stamp7",
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "0a040a020807120c00000000000000800000a03f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "0a040a020807120c00000000000000800000a03f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "unknown_inside_header",
+      "wire_hex": "0a03a0067b120c00000000000000800000a03f",
+      "expected_bits": [
+        0,
+        2147483648,
+        1067450368
+      ],
+      "accepted": true,
+      "strict": true,
+      "header": "unknown",
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "0a03a0067b120c00000000000000800000a03f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "0a00120c00000000000000800000a03f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "wrong_header_wire_then_data",
+      "wire_hex": "0807120c00000000000000800000a03f",
+      "expected_bits": [
+        0,
+        2147483648,
+        1067450368
+      ],
+      "accepted": true,
+      "strict": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120c00000000000000800000a03f0807",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120c00000000000000800000a03f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "malformed_known_header",
+      "wire_hex": "0a0100120c00000000000000800000a03f",
+      "expected_bits": null,
+      "accepted": false,
+      "strict": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    }
+  ]
+}
