@@ -33,6 +33,10 @@ for item in manifest['schemas']:
 wire = json.loads(pathlib.Path('tests/fixtures/wire-compatibility.json').read_text())
 assert wire['schema_manifest_sha256'] == hashlib.sha256(pathlib.Path('schemas/manifest.json').read_bytes()).hexdigest()
 assert wire['probe_source_sha256'] == hashlib.sha256(pathlib.Path('tests/wire_peer.cc').read_bytes()).hexdigest()
+packed = json.loads(pathlib.Path('tests/fixtures/packed-wire.json').read_text())
+assert packed['upstream_commit'] == manifest['commit']
+assert packed['schema_manifest_sha256'] == hashlib.sha256(pathlib.Path('schemas/manifest.json').read_bytes()).hexdigest()
+assert packed['probe_source_sha256'] == hashlib.sha256(pathlib.Path('tests/wire_peer.cc').read_bytes()).hexdigest()
 options = json.loads(pathlib.Path('tests/fixtures/cli-options.json').read_text())
 assert options['upstream_commit'] == manifest['commit']
 assert options['schema_manifest_sha256'] == hashlib.sha256(pathlib.Path('schemas/manifest.json').read_bytes()).hexdigest()

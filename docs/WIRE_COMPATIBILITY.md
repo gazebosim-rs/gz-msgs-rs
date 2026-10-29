@@ -56,3 +56,7 @@ native gz-msgs installation available, `python3 scripts/wire-reference.py`
 independently replays its generated parser and writes a local provenance proof.
 Full source/coverage/staged/hosted gates and independent slice review are
 required before publication.
+
+The additional [packed-double qualification](PACKED_WIRE_BOUNDARIES.md) preserves
+this original 70-case corpus and adds exact float-bit, length/error and
+Rust-only partial-state observations. It changes no decoder or dependency.
