@@ -38,7 +38,7 @@ rejected; these checks do not constitute a complete descriptor validator.
 Basic proto2 declarations preserve optional/required/repeated labels, oneofs,
 maps, nested messages/enums (including a nonzero first enum value), reserved
 declarations and the same supported boolean options. Oneof fields carry no
-optional label. Ordinary optional/required int32, int64, uint32 and uint64 defaults
+optional label. Ordinary optional/required defaults for all ten integer scalar kinds
 are supported; other explicit defaults, groups and extensions return Unsupported;
 legacy inputs remain tested, with their first unsupported-feature diagnostic now
 identifying extensions rather than blanket proto2 rejection. Malformed required
@@ -50,8 +50,8 @@ boundary: `010` is decimal ten and `0x2a` is rejected. The registry/factory now 
 an [opt-in integer policy](INTEGER_DEFAULTS.md) matching the qualified native
 Linux LP64/C23 effective values while preserving raw spelling. Protoc normalizes
 source literals, so directly constructed descriptor bytes qualify this boundary.
-The formatter prints effective values for ordinary int32, int64, uint32 and uint64
-defaults in decimal, before json_name and boolean options. Other default kinds and
+The formatter prints effective values for all ordinary integer scalar defaults
+in decimal, before json_name and boolean options. Other default kinds and
 oneof defaults remain unsupported. See [integer declarations](INTEGER_DEFINITIONS.md).
 No raw descriptor normalization or general native proto2 formatting contract is introduced.
 Canonical proto3 schemas are unchanged.

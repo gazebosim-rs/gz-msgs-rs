@@ -53,19 +53,25 @@ impl Drop for Directory {
 fn fixture() -> serde_json::Value {
     serde_json::from_str(include_str!("fixtures/integer-defaults/native.json")).unwrap()
 }
-fn native_integer_definition(row: &serde_json::Value) -> Option<String> {
-    if ![5, 3, 13, 4].contains(&row["kind"].as_i64().unwrap()) {
-        return None;
-    }
+fn native_integer_definition(row: &serde_json::Value) -> String {
     static OBSERVED: std::sync::OnceLock<serde_json::Value> = std::sync::OnceLock::new();
     let observed = OBSERVED.get_or_init(|| {
-        serde_json::from_str(include_str!(
+        let mut observed: serde_json::Value = serde_json::from_str(include_str!(
             "fixtures/integer-definitions/existing-396.json"
         ))
-        .unwrap()
+        .unwrap();
+        let remaining: serde_json::Value = serde_json::from_str(include_str!(
+            "fixtures/integer-definitions/remaining-594.json"
+        ))
+        .unwrap();
+        observed["cases"]
+            .as_array_mut()
+            .unwrap()
+            .extend(remaining["cases"].as_array().unwrap().iter().cloned());
+        observed
     });
     let cases = observed["cases"].as_array().unwrap();
-    assert_eq!(cases.len(), 396);
+    assert_eq!(cases.len(), 990);
     let native = cases
         .iter()
         .find(|case| case["input"]["id"] == row["id"])
@@ -73,14 +79,12 @@ fn native_integer_definition(row: &serde_json::Value) -> Option<String> {
     assert_eq!(&native["input"], row);
     assert_eq!(native["descriptor_hex"], row["descriptor_hex"]);
     assert!(native["observation"]["admitted"].as_bool().unwrap());
-    Some(
-        String::from_utf8(unhex(
-            native["observation"]["fields"]["DEFINITION_HEX"]
-                .as_str()
-                .unwrap(),
-        ))
-        .unwrap(),
-    )
+    String::from_utf8(unhex(
+        native["observation"]["fields"]["DEFINITION_HEX"]
+            .as_str()
+            .unwrap(),
+    ))
+    .unwrap()
 }
 fn unhex(text: &str) -> Vec<u8> {
     text.as_bytes()
@@ -229,11 +233,10 @@ fn exact_native_integer_corpus_matches_effective_values_wire_and_raw_spelling() 
                 DynamicMessage::decode(descriptor, unhex(wire).as_slice()).unwrap(),
                 message
             );
-            if let Some(expected) = native_integer_definition(row) {
-                assert_eq!(registry.definition("Default").unwrap(), Some(expected));
-            } else {
-                assert!(registry.definition("Default").is_err());
-            }
+            assert_eq!(
+                registry.definition("Default").unwrap(),
+                Some(native_integer_definition(row))
+            );
         } else {
             assert_eq!(errors.len(), 1, "{row}");
             let _: &gz_msgs::prost_reflect::DescriptorError = &errors[0];
@@ -272,14 +275,10 @@ fn factory_empty_decode_paths_observe_native_integer_defaults_and_errors() {
             assert_eq!(factory.new_text("Default", "").unwrap().unwrap(), message);
             assert!(factory.types().contains(&"Default".to_owned()));
             assert!(factory.take_initial_errors().is_empty());
-            if let Some(expected) = native_integer_definition(row) {
-                assert_eq!(
-                    factory.registry_definition("Default").unwrap(),
-                    Some(expected)
-                );
-            } else {
-                assert!(factory.registry_definition("Default").is_err());
-            }
+            assert_eq!(
+                factory.registry_definition("Default").unwrap(),
+                Some(native_integer_definition(row))
+            );
         } else {
             assert!(factory.new_message("Default").is_none());
             let errors = factory.take_initial_errors();
@@ -311,7 +310,7 @@ fn factory_empty_decode_paths_observe_native_integer_defaults_and_errors() {
                 .find(|row| row["kind"] == 5 && row["input"] == default)
                 .unwrap()
                 .clone();
-            let native = native_integer_definition(&row).unwrap();
+            let native = native_integer_definition(&row);
             assert!(output.stderr.is_empty());
             assert_eq!(
                 output.stdout,

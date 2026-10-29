@@ -176,10 +176,10 @@ fn field(
         }
         // Native declarations print the parsed value without changing raw metadata.
         Some(match (field.kind(), field.default_value()) {
-            (Kind::Int32, Value::I32(value)) => value.to_string(),
-            (Kind::Int64, Value::I64(value)) => value.to_string(),
-            (Kind::Uint32, Value::U32(value)) => value.to_string(),
-            (Kind::Uint64, Value::U64(value)) => value.to_string(),
+            (Kind::Int32 | Kind::Sint32 | Kind::Sfixed32, Value::I32(value)) => value.to_string(),
+            (Kind::Int64 | Kind::Sint64 | Kind::Sfixed64, Value::I64(value)) => value.to_string(),
+            (Kind::Uint32 | Kind::Fixed32, Value::U32(value)) => value.to_string(),
+            (Kind::Uint64 | Kind::Fixed64, Value::U64(value)) => value.to_string(),
             _ => return Err(DefinitionError::Unsupported("proto2 default")),
         })
     } else {

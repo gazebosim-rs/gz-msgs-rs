@@ -12,9 +12,10 @@
   "old_assertion_snapshot_sha256": "24fed21cbc437cca8ee81e8ffb031c05c0a6532b50dfec72b0d3c36c1a1074a0",
   "fixtures": {
     "native-76.json": "468d73eb296e4f3f27cd863395662fb2286718b4e33c659de2189dff0bb21727",
-    "existing-396.json": "f07a8752d758fe6056388fd88dd219bfefe0bb12f0885fdb962290ca4b75d8d1"
+    "existing-396.json": "f07a8752d758fe6056388fd88dd219bfefe0bb12f0885fdb962290ca4b75d8d1",
+    "remaining-594.json": "ba8b9237bc1a8f821d12c6122c79685d4b5236514773cf913044ca12b2909af9"
   },
-  "scope": "All472 observations retained. Rust formatter scope ordinary optional/required proto2 int32/int64/uint32/uint64 explicit defaults. Oneof/repeated/proto3/otherkinds and unknownoptions remain unsupported. Source raw metadata retained, effective value decimal beforejson_name/options. No new parser/wire emission/diagnostic equivalence/generaldefault/SDK claim. 83original count unchanged.",
+  "scope": "All ten ordinary optional/required proto2 integer scalar default declarations. Parsed effective values print in decimal before json_name/options, without changing raw metadata, parser/wire behavior or the existing 83 upstream mappings. Oneof/repeated/proto3/non-integer defaults and unknown options remain unsupported.",
   "replay_command": "cargo test --locked --test integer_definitions all_472_native_declarations_reproduce_exact_captured_outputs",
   "peer_build_command": "c++ -std=c++17 -Wall -Wextra -Werror tests/integer_definition_peer.cc -lprotobuf -o /tmp/gz-msgs-integer-definition-peer",
   "replayed_at": "2026-10-29",
@@ -26,5 +27,19 @@
     "libc.so.6": "3a15d66867d83762c7f2f1e37359cb8f6c5743edb369c65285cb0b1c4f7498bf",
     "libz.so.1": "f61677c7bdb7c2aa2a243ea781bfd16afcb361cede7b4ef76127a9d8eb9a5242",
     "libm.so.6": "fce00b6f25f459cf4ae0b7fae4257909a1a8a86f9149e7c029a5d617baf1ccd0"
+  },
+  "remaining_kinds": {
+    "source_fixture": "tests/fixtures/integer-defaults/native.json",
+    "rows": 594,
+    "admitted": 384,
+    "kinds": [
+      "sint32",
+      "sint64",
+      "fixed32",
+      "fixed64",
+      "sfixed32",
+      "sfixed64"
+    ],
+    "replay_command": "cargo test --locked --test integer_definition_kinds all_remaining_integer_declarations_match_fresh_native_outputs"
   }
 }

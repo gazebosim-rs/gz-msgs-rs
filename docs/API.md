@@ -386,7 +386,7 @@ checking the registry/factory/CLI output against the original descriptor bytes.
 The formatter includes reserved names/ranges and C-style escaping for UTF-8 JSON
 names. It preserves defined raw-range display quirks and rejects the two message
 boundaries whose native signed arithmetic overflows. Basic proto2 labels/oneofs
-are supported. Ordinary optional/required int32, int64, uint32 and uint64 defaults
+are supported. Ordinary optional/required defaults for all ten integer scalar kinds
 are formatted in decimal from their effective values; other defaults, groups,
 extensions and advanced options remain unsupported. Standard reflection entry points retain their separate raw integer
 default interpretation; the registry's bounded opt-in integer policy is described

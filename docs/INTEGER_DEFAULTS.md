@@ -77,7 +77,7 @@ than expanding malformed descriptor acceptance. Required-message initialization,
 complete oneof validation and arbitrary synthetic map shapes are not qualified.
 
 `descriptor_definition`, registry/factory definitions and CLI info support ordinary
-proto2 int32, int64, uint32 and uint64 defaults. They print the parsed effective
+proto2 integer defaults across all ten scalar kinds. They print the parsed effective
 value in decimal while preserving raw descriptor metadata; see
 [integer declarations](INTEGER_DEFINITIONS.md). Other explicit default kinds and
 oneof defaults remain Unsupported.
