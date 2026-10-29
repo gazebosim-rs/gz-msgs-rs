@@ -113,9 +113,15 @@ fn options(value: DynamicMessage, allowed: &[&str]) -> Result<Vec<String>, Defin
             if !allowed.contains(&field.name()) {
                 return Err(DefinitionError::Unsupported("option"));
             }
-            let value = value
-                .as_bool()
-                .ok_or(DefinitionError::Unsupported("option type"))?;
+            let value = match (value, field.kind()) {
+                (Value::Bool(value), _) => value.to_string(),
+                (Value::EnumNumber(number), Kind::Enum(enumeration)) => enumeration
+                    .get_value(*number)
+                    .ok_or(DefinitionError::Unsupported("option"))?
+                    .name()
+                    .to_owned(),
+                _ => return Err(DefinitionError::Unsupported("option type")),
+            };
             Ok(format!("{} = {value}", field.name()))
         })
         .collect()
@@ -235,13 +241,34 @@ fn field(
             .get_field_by_name(name)
             .is_some_and(|value| value.as_bool() == Some(true))
     });
+    let requires_64_bit = metadata
+        .get_field_by_name("jstype")
+        .is_some_and(|value| value.as_enum_number().is_some_and(|number| number != 0));
     let declared_options = options(
         metadata,
-        &["packed", "deprecated", "lazy", "weak", "unverified_lazy"],
+        &[
+            "ctype",
+            "packed",
+            "deprecated",
+            "lazy",
+            "jstype",
+            "weak",
+            "unverified_lazy",
+        ],
     )?;
     if requires_message && !matches!(field.kind(), Kind::Message(_)) {
         return Err(DefinitionError::Unsupported(
             "lazy option on non-message field",
+        ));
+    }
+    if requires_64_bit
+        && !matches!(
+            field.kind(),
+            Kind::Int64 | Kind::Uint64 | Kind::Sint64 | Kind::Fixed64 | Kind::Sfixed64
+        )
+    {
+        return Err(DefinitionError::Unsupported(
+            "jstype option on non-64-bit integer field",
         ));
     }
     field_options.extend(declared_options);

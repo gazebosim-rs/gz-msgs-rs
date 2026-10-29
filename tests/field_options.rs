@@ -95,7 +95,18 @@ fn native_field_options_keep_presence_shapes_order_and_source_metadata() {
             .env("GZ_DESCRIPTOR_PATH", &input)
             .output()
             .unwrap();
-        if row["expected"] == "native" {
+        // Preserve the original fixture while qualifying its former CType boundary.
+        let disposition = if row["scope"] == "unsupported_ctype" {
+            assert_eq!(row["expected"], "option");
+            if row["options"]["lazy"] == true {
+                "lazy"
+            } else {
+                "native"
+            }
+        } else {
+            row["expected"].as_str().unwrap()
+        };
+        if disposition == "native" {
             supported += 1;
             let expected = body(row);
             assert_eq!(
@@ -132,7 +143,7 @@ fn native_field_options_keep_presence_shapes_order_and_source_metadata() {
                 row["id"]
             );
         } else {
-            let reason = match row["expected"].as_str().unwrap() {
+            let reason = match disposition {
                 "required" => "proto3 default or required field",
                 "option" => "option",
                 "lazy" => "lazy option on non-message field",
@@ -170,6 +181,6 @@ fn native_field_options_keep_presence_shapes_order_and_source_metadata() {
             row["id"]
         );
     }
-    assert_eq!(supported, 272);
+    assert_eq!(supported, 275);
     assert_eq!(native_accepted, 275);
 }

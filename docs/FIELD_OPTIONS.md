@@ -11,16 +11,20 @@ admits these flags on scalars too, so the formatter returns
 `Unsupported("lazy option on non-message field")` for those inputs. False lazy
 flags and either weak value remain supported where the existing declaration
 shape is supported. Existing option validation runs first: unsupported standard
-options such as `ctype`, custom options and unknown options retain their errors.
+options, custom options and unknown options retain their errors. Declared
+`ctype`/`jstype` values follow the [enum-option contract](ENUM_FIELD_OPTIONS.md).
 Proto3 required fields retain their existing rejection. This is a bounded output
 guard, not a complete descriptor validator or a change to loader admission.
 
 `tests/field_options.rs` replays 354 descriptors against a freshly compiled native
-peer, comparing complete status, stdout and stderr. Native admits 275; 272 have
-supported declaration metadata. Three native-valid `ctype` controls deliberately
-remain unsupported. The other native rejections distinguish scalar true lazy
+peer, comparing complete status, stdout and stderr. Native admits 275; all now
+have supported declarations. A reviewed extension changed the three original
+native-valid `ctype` controls to complete positives, retaining their exact inputs
+and observations. The three scalar true-lazy controls with CType stay negative
+with their precise lazy error. The other rejections distinguish scalar true lazy
 flags and proto3 required fields. All 354 still load through the existing Rust
-registry; 82 then return explicit formatter errors.
+registry; 79 return explicit formatter errors. Historical fixture dispositions
+remain unchanged; the test applies the explicit reviewed CType transition.
 
 The matrix covers proto2/proto3, optional/required/repeated labels, scalar and
 message kinds, absent/false/true flag combinations, maps, real oneofs, synthetic
