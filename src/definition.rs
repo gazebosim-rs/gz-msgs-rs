@@ -366,7 +366,7 @@ fn validate_extension(
     if !omissions.contains(value.full_name()) {
         return Err(DefinitionError::Unsupported("extension declarations"));
     }
-    let declared = options(value.options(), &["deprecated"])?;
+    let declared = options(value.options(), &["packed", "deprecated"])?;
     // Native admits leading digits but rejects non-ASCII identifier bytes.
     if value.name().is_empty()
         || !value
@@ -389,6 +389,9 @@ fn validate_extension(
             .is_some_and(|options| options.message_set_wire_format())
     {
         return Err(DefinitionError::Unsupported("extension declarations"));
+    }
+    if raw.options.as_ref().and_then(|options| options.packed) == Some(true) && !value.is_packed() {
+        return Err(DefinitionError::Unsupported("packed extension shape"));
     }
     Ok(declared)
 }

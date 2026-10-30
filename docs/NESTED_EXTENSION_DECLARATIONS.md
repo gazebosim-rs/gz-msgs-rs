@@ -12,8 +12,10 @@ synthetic FieldDescriptor conversion are used.
 
 Optional and repeated non-group scalar, enum and message fields are supported
 when the original descriptor omitted json_name and has no explicit default.
-Declared deprecated booleans are supported; other nonempty options remain errors.
-See [deprecated extension options](EXTENSION_DEPRECATED.md). Empty option presence is retained in metadata. Declarations
+Declared deprecated and [packed booleans](EXTENSION_PACKED.md) are supported;
+other nonempty options remain errors. Packed=true requires a repeated packable
+kind; packed=false preserves explicit presence for all supported kinds/labels.
+See also [deprecated extension options](EXTENSION_DEPRECATED.md). Empty option presence is retained in metadata. Declarations
 follow their raw source order, after ordinary fields and extension ranges and
 before reserved declarations. Consecutive declarations for one extendee share
 an extend block; A/B/A reopens A rather than reordering declarations. Nested
@@ -28,7 +30,7 @@ ordinary default spellings. Custom names are native-negative. Standalone
 declarations Unsupported. The formatter does not invent a case converter or
 silently discard present metadata. Defaults, groups, required fields, maps,
 proto3 declarations, true MessageSet extendees, oneof/proto3-optional shapes, empty extension names or bytes outside ASCII alphanumeric/underscore and
-other standard/custom/unknown options remain errors. This is a bounded feature
+unhandled standard/custom/unknown options remain errors. This is a bounded feature
 guard, not a complete native descriptor validator.
 
 The native corpus has 125 complete peer and upstream CLI observations on pinned

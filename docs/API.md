@@ -398,7 +398,8 @@ The source-aware [nested extension declaration formatter](NESTED_EXTENSION_DECLA
 admits only ordinary proto2 declarations with original JSON-name absence; standalone
 descriptor formatting retains its presence limitation. Declared
 [deprecated extension booleans](EXTENSION_DEPRECATED.md) retain explicit false/true;
-other extension options remain unsupported.
+[packed flags](EXTENSION_PACKED.md) preserve explicit false/true with native shape
+guards. Other extension options remain unsupported.
 Standard reflection entry points retain their separate raw integer-default
 interpretation; the registry's bounded opt-in integer policy is described
 below. Formatting preserves parsed values and does not expand wire support.

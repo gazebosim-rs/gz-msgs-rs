@@ -83,6 +83,16 @@ assert extension_deprecated['reference_script_sha256'] == hashlib.sha256(pathlib
 assert extension_deprecated['base_corpus_sha256'] == hashlib.sha256(pathlib.Path('tests/fixtures/nested-extension-declarations.json').read_bytes()).hexdigest()
 assert extension_deprecated['base_reference_script_sha256'] == hashlib.sha256(pathlib.Path('scripts/nested-extension-declarations-reference.py').read_bytes()).hexdigest()
 assert extension_deprecated['standard_descriptor_fixture_sha256'] == definitions['inputs']['tests/fixtures/definitions/unsupported.desc']
+extension_packed = json.loads(pathlib.Path('tests/fixtures/extension-packed.json').read_text())
+for key in ['upstream_commit', 'native_binary_sha256', 'native_source_sha256', 'native_libraries_sha256', 'schema_manifest_sha256', 'peer_source_sha256']:
+    assert extension_packed[key] == definitions[key], key
+assert extension_packed['reference_script_sha256'] == hashlib.sha256(pathlib.Path('scripts/extension-packed-reference.py').read_bytes()).hexdigest()
+for key, path in [('nested_corpus_sha256', 'tests/fixtures/nested-extension-declarations.json'),
+                  ('nested_reference_script_sha256', 'scripts/nested-extension-declarations-reference.py'),
+                  ('deprecated_corpus_sha256', 'tests/fixtures/extension-deprecated.json'),
+                  ('deprecated_reference_script_sha256', 'scripts/extension-deprecated-reference.py')]:
+    assert extension_packed[key] == hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest()
+assert extension_packed['standard_descriptor_fixture_sha256'] == definitions['inputs']['tests/fixtures/definitions/unsupported.desc']
 packed_float = json.loads(pathlib.Path('tests/fixtures/packed-float-wire.json').read_text())
 assert packed_float['probe_source_sha256'] == hashlib.sha256(pathlib.Path('tests/wire_peer.cc').read_bytes()).hexdigest()
 assert packed_float['canonical_builder_sha256'] == hashlib.sha256(pathlib.Path('scripts/native-wire-peer.py').read_bytes()).hexdigest()

@@ -21,7 +21,8 @@ A definition is assembled before return, so a failure exposes no partial string.
 [Ordinary proto2 extension ranges](EXTENSION_RANGES.md) retain raw source order
 and native endpoints with explicit option and invalid-range guards. [Nested extension fields](NESTED_EXTENSION_DECLARATIONS.md) have a separate bounded
 source-aware declaration contract, including declared [deprecated flags](EXTENSION_DEPRECATED.md).
-Other extension options, groups and true MessageSet remain unsupported.
+[Packed extension flags](EXTENSION_PACKED.md) retain raw presence with native
+repeated-packable true guards. Other options, groups and true MessageSet remain unsupported.
 [Standard message options](MESSAGE_OPTIONS.md) retain code-generation metadata
 without changing Rust descriptor APIs or MessageSet wire support.
 

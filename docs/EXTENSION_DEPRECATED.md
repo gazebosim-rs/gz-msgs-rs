@@ -13,6 +13,7 @@ The accepted declaration domain remains ordinary proto2 optional/repeated
 non-group scalar, enum and message extensions nested within messages. Original
 JSON-name absence is required, source order and consecutive extendee grouping
 are preserved, and standalone descriptors still cannot recover original presence.
+[Packed extension flags](EXTENSION_PACKED.md) have a separate bounded contract.
 Defaults, groups, true MessageSet, explicit JSON names, other standard options,
 custom/unknown options and previously rejected shapes remain unsupported. No
 loader, dependency, wire or extension runtime behavior changes.
@@ -20,8 +21,9 @@ loader, dependency, wire or extension runtime behavior changes.
 The new corpus records 224 complete pinned protobuf 3.21.12 peer and upstream CLI
 observations. All seventeen non-group kinds, optional/repeated labels, ordinary/
 nested/range-and-reserved layouts and mixed absent/false/true flags are covered.
-216 inputs are native-admitted; 209 fit this bounded formatter. Negative cases
-retain other-option, JSON-name, default, group/map/MessageSet, name, proto3 and
+216 inputs are native-admitted; 210 fit the current bounded formatter after
+separate packed-flag support. Negative cases retain JSON-name, default,
+group/map/MessageSet, name, proto3 and
 custom/unknown-option boundaries. Tests compare typed `Option<bool>`, dynamic
 presence/value, full file/options bytes, registry/factory text and actual CLI
 status/stdout/stderr.

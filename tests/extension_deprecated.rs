@@ -88,6 +88,33 @@ fn check(rows: &[serde_json::Value]) -> usize {
                 Some(expected.unwrap_or(false))
             );
         }
+        if row["mode"] == "other-option" {
+            assert_eq!(row["values"], serde_json::json!([true, true, true]));
+            assert_eq!(extensions.len(), 3);
+            for (extension, expected) in extensions.iter().zip([Some(false), None, None]) {
+                assert_eq!(
+                    extension
+                        .field_descriptor_proto()
+                        .options
+                        .as_ref()
+                        .and_then(|o| o.packed),
+                    expected
+                );
+                assert_eq!(
+                    extension.options().has_field_by_name("packed"),
+                    expected.is_some()
+                );
+                assert_eq!(
+                    extension
+                        .options()
+                        .get_field_by_name("packed")
+                        .unwrap()
+                        .as_bool(),
+                    Some(false)
+                );
+                assert!(!extension.is_packed());
+            }
+        }
         assert_eq!(
             descriptor_definition(&descriptor),
             Err(DefinitionError::Unsupported("extension declarations"))
@@ -101,7 +128,7 @@ fn check(rows: &[serde_json::Value]) -> usize {
             .unwrap();
         if matches!(
             row["mode"].as_str().unwrap(),
-            "deprecated" | "mixed" | "historical-false"
+            "deprecated" | "mixed" | "historical-false" | "other-option"
         ) {
             supported += 1;
             let body = row["native"]["stdout"]
@@ -132,7 +159,6 @@ fn check(rows: &[serde_json::Value]) -> usize {
             );
         } else {
             let reason = match row["mode"].as_str().unwrap() {
-                "other-option" => "option",
                 "unknown-option" => "unknown options",
                 "custom-option" => "custom options",
                 _ => "extension declarations",
@@ -186,5 +212,5 @@ fn declared_deprecated_extension_flags_match_native() {
         assert_eq!(old[key], new[key], "{key}");
     }
     assert_eq!(new["values"], serde_json::json!([false, false, false]));
-    assert_eq!(check(d["rows"].as_array().unwrap()), 209);
+    assert_eq!(check(d["rows"].as_array().unwrap()), 210);
 }
