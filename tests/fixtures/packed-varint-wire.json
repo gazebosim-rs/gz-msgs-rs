@@ -1,0 +1,6326 @@
+{
+  "upstream_commit": "89c0c3d1474f545cb889335daf930bfdab6ab852",
+  "native_protobuf": "3.21.12",
+  "schema_manifest_sha256": "4762e2101674aa2cdd3a6518f8a71a50acde2ce417452e46b44f42e9d02c1d39",
+  "probe_source_sha256": "af60c4881ec931ffaf0cc7ffdbbd680c94212d40772afad5d5e8f09a13691ae0",
+  "canonical_builder_sha256": "881910e3ac24bdfdc47bdc1b1158083786eecf5d2508277d9481395e57d805e9",
+  "reference_script_sha256": "a7c1e1454818ec6a4a62bff092390e20e5455e7388a89683ce6ba7e554216d32",
+  "rows": [
+    {
+      "id": "Int32_V_absent",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "",
+      "expected_values": [],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_empty",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "1200",
+      "expected_values": [],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_value_0",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "120100",
+      "expected_values": [
+        0
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120100",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120100",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_value_1",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "120101",
+      "expected_values": [
+        1
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120101",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120101",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_value_127",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "12017f",
+      "expected_values": [
+        127
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "12017f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "12017f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_value_128",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "12028001",
+      "expected_values": [
+        128
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "12028001",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "12028001",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_value_16383",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "1202ff7f",
+      "expected_values": [
+        16383
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "1202ff7f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "1202ff7f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_value_16384",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "1203808001",
+      "expected_values": [
+        16384
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "1203808001",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "1203808001",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_value_2147483647",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "1205ffffffff07",
+      "expected_values": [
+        2147483647
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "1205ffffffff07",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "1205ffffffff07",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_value_2147483648",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "12058080808008",
+      "expected_values": [
+        -2147483648
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120a80808080f8ffffffff01",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120a80808080f8ffffffff01",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_value_4294967295",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "1205ffffffff0f",
+      "expected_values": [
+        -1
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120affffffffffffffffff01",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120affffffffffffffffff01",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_value_4294967296",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "12058080808010",
+      "expected_values": [
+        0
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120100",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120100",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_value_9223372036854775807",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "1209ffffffffffffffff7f",
+      "expected_values": [
+        -1
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120affffffffffffffffff01",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120affffffffffffffffff01",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_value_9223372036854775808",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "120a80808080808080808001",
+      "expected_values": [
+        0
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120100",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120100",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_value_18446744073709551615",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "120affffffffffffffffff01",
+      "expected_values": [
+        -1
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120affffffffffffffffff01",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120affffffffffffffffff01",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_all_packed",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+      "expected_values": [
+        0,
+        1,
+        127,
+        128,
+        16383,
+        16384,
+        2147483647,
+        -2147483648,
+        -1,
+        0,
+        -1,
+        0,
+        -1
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "123900017f8001ff7f808001ffffffff0780808080f8ffffffff01ffffffffffffffffff0100ffffffffffffffffff0100ffffffffffffffffff01",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "123900017f8001ff7f808001ffffffff0780808080f8ffffffff01ffffffffffffffffff0100ffffffffffffffffff0100ffffffffffffffffff01",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_all_unpacked",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "10001001107f10800110ff7f1080800110ffffffff0710808080800810ffffffff0f10808080801010ffffffffffffffff7f108080808080808080800110ffffffffffffffffff01",
+      "expected_values": [
+        0,
+        1,
+        127,
+        128,
+        16383,
+        16384,
+        2147483647,
+        -2147483648,
+        -1,
+        0,
+        -1,
+        0,
+        -1
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "123900017f8001ff7f808001ffffffff0780808080f8ffffffff01ffffffffffffffffff0100ffffffffffffffffff0100ffffffffffffffffff01",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "123900017f8001ff7f808001ffffffff0780808080f8ffffffff01ffffffffffffffffff0100ffffffffffffffffff0100ffffffffffffffffff01",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_split_fields",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "120700017f8001ff7f1234808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+      "expected_values": [
+        0,
+        1,
+        127,
+        128,
+        16383,
+        16384,
+        2147483647,
+        -2147483648,
+        -1,
+        0,
+        -1,
+        0,
+        -1
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "123900017f8001ff7f808001ffffffff0780808080f8ffffffff01ffffffffffffffffff0100ffffffffffffffffff0100ffffffffffffffffff01",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "123900017f8001ff7f808001ffffffff0780808080f8ffffffff01ffffffffffffffffff0100ffffffffffffffffff0100ffffffffffffffffff01",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_mixed",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "120700017f8001ff7f108080011231ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+      "expected_values": [
+        0,
+        1,
+        127,
+        128,
+        16383,
+        16384,
+        2147483647,
+        -2147483648,
+        -1,
+        0,
+        -1,
+        0,
+        -1
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "123900017f8001ff7f808001ffffffff0780808080f8ffffffff01ffffffffffffffffff0100ffffffffffffffffff0100ffffffffffffffffff01",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "123900017f8001ff7f808001ffffffff0780808080f8ffffffff01ffffffffffffffffff0100ffffffffffffffffff0100ffffffffffffffffff01",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_length_127",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "127f00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "expected_values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "127f00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "127f00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_length_128",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "1280010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "expected_values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "1280010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "1280010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_length_129",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "128101000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "expected_values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "128101000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "128101000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_nonminimal_zero",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "12028000",
+      "expected_values": [
+        0
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120100",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120100",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_nonminimal_ten_zero",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "120a80808080808080808000",
+      "expected_values": [
+        0
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120100",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120100",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_overflow_2_packed",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "120a81808080808080808002",
+      "expected_values": [
+        1
+      ],
+      "accepted": true,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120101",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120101",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_overflow_2_unpacked",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "1081808080808080808002",
+      "expected_values": [
+        1
+      ],
+      "accepted": true,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120101",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120101",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_overflow_127_packed",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "120a8180808080808080807f",
+      "expected_values": [
+        1
+      ],
+      "accepted": true,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120101",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120101",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_overflow_127_unpacked",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "108180808080808080807f",
+      "expected_values": [
+        1
+      ],
+      "accepted": true,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120101",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120101",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_known_then_unknown",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff011801",
+      "expected_values": [
+        0,
+        1,
+        127,
+        128,
+        16383,
+        16384,
+        2147483647,
+        -2147483648,
+        -1,
+        0,
+        -1,
+        0,
+        -1
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "123900017f8001ff7f808001ffffffff0780808080f8ffffffff01ffffffffffffffffff0100ffffffffffffffffff0100ffffffffffffffffff011801",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "123900017f8001ff7f808001ffffffff0780808080f8ffffffff01ffffffffffffffffff0100ffffffffffffffffff0100ffffffffffffffffff01",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_wrong_known_before",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "1501000000123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+      "expected_values": [
+        0,
+        1,
+        127,
+        128,
+        16383,
+        16384,
+        2147483647,
+        -2147483648,
+        -1,
+        0,
+        -1,
+        0,
+        -1
+      ],
+      "accepted": true,
+      "strict": false,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "123900017f8001ff7f808001ffffffff0780808080f8ffffffff01ffffffffffffffffff0100ffffffffffffffffff0100ffffffffffffffffff011501000000",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "123900017f8001ff7f808001ffffffff0780808080f8ffffffff01ffffffffffffffffff0100ffffffffffffffffff0100ffffffffffffffffff01",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_wrong_known_after",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff011501000000",
+      "expected_values": [
+        0,
+        1,
+        127,
+        128,
+        16383,
+        16384,
+        2147483647,
+        -2147483648,
+        -1,
+        0,
+        -1,
+        0,
+        -1
+      ],
+      "accepted": true,
+      "strict": false,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "123900017f8001ff7f808001ffffffff0780808080f8ffffffff01ffffffffffffffffff0100ffffffffffffffffff0100ffffffffffffffffff011501000000",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "123900017f8001ff7f808001ffffffff0780808080f8ffffffff01ffffffffffffffffff0100ffffffffffffffffff0100ffffffffffffffffff01",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_empty_header",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "0a00120300017f",
+      "expected_values": [
+        0,
+        1,
+        127
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": "present",
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "0a00120300017f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "0a00120300017f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_stamp_header",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "0a040a020807120300017f",
+      "expected_values": [
+        0,
+        1,
+        127
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": "stamp7",
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "0a040a020807120300017f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "0a040a020807120300017f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_unknown_header",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "0a03a0067b120300017f",
+      "expected_values": [
+        0,
+        1,
+        127
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": "unknown",
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "0a03a0067b120300017f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "0a00120300017f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_wrong_header",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "0807120300017f",
+      "expected_values": [
+        0,
+        1,
+        127
+      ],
+      "accepted": true,
+      "strict": false,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120300017f0807",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120300017f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_malformed_header",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "0a0100120300017f",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_truncated_1",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_truncated_2",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffff",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_truncated_3",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffff",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_truncated_4",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffff",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_truncated_5",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffff",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_unterminated_value_1",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "120180",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_unterminated_value_2",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "12028080",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_unterminated_value_9",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "1209808080808080808080",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_unterminated_value_10",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "120a80808080808080808080",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_unterminated_value_11",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "120b8080808080808080808080",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_eleven_byte_value",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "120b8080808080808080808000",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_missing_length",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "12",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_unterminated_length_1",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "12ff",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_unterminated_length_9",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "12ffffffffffffffffff",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_unterminated_length_10",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "12ffffffffffffffffffff",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int32_V_maximum_length",
+      "message": "gz.msgs.Int32_V",
+      "wire_hex": "12ffffffffffffffffff01",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_absent",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "",
+      "expected_values": [],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_empty",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "1200",
+      "expected_values": [],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_value_0",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "120100",
+      "expected_values": [
+        0
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120100",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120100",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_value_1",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "120101",
+      "expected_values": [
+        1
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120101",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120101",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_value_127",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "12017f",
+      "expected_values": [
+        127
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "12017f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "12017f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_value_128",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "12028001",
+      "expected_values": [
+        128
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "12028001",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "12028001",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_value_16383",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "1202ff7f",
+      "expected_values": [
+        16383
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "1202ff7f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "1202ff7f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_value_16384",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "1203808001",
+      "expected_values": [
+        16384
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "1203808001",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "1203808001",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_value_2147483647",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "1205ffffffff07",
+      "expected_values": [
+        2147483647
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "1205ffffffff07",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "1205ffffffff07",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_value_2147483648",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "12058080808008",
+      "expected_values": [
+        2147483648
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "12058080808008",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "12058080808008",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_value_4294967295",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "1205ffffffff0f",
+      "expected_values": [
+        4294967295
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "1205ffffffff0f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "1205ffffffff0f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_value_4294967296",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "12058080808010",
+      "expected_values": [
+        0
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120100",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120100",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_value_9223372036854775807",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "1209ffffffffffffffff7f",
+      "expected_values": [
+        4294967295
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "1205ffffffff0f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "1205ffffffff0f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_value_9223372036854775808",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "120a80808080808080808001",
+      "expected_values": [
+        0
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120100",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120100",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_value_18446744073709551615",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "120affffffffffffffffff01",
+      "expected_values": [
+        4294967295
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "1205ffffffff0f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "1205ffffffff0f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_all_packed",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+      "expected_values": [
+        0,
+        1,
+        127,
+        128,
+        16383,
+        16384,
+        2147483647,
+        2147483648,
+        4294967295,
+        0,
+        4294967295,
+        0,
+        4294967295
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "122500017f8001ff7f808001ffffffff078080808008ffffffff0f00ffffffff0f00ffffffff0f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "122500017f8001ff7f808001ffffffff078080808008ffffffff0f00ffffffff0f00ffffffff0f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_all_unpacked",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "10001001107f10800110ff7f1080800110ffffffff0710808080800810ffffffff0f10808080801010ffffffffffffffff7f108080808080808080800110ffffffffffffffffff01",
+      "expected_values": [
+        0,
+        1,
+        127,
+        128,
+        16383,
+        16384,
+        2147483647,
+        2147483648,
+        4294967295,
+        0,
+        4294967295,
+        0,
+        4294967295
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "122500017f8001ff7f808001ffffffff078080808008ffffffff0f00ffffffff0f00ffffffff0f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "122500017f8001ff7f808001ffffffff078080808008ffffffff0f00ffffffff0f00ffffffff0f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_split_fields",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "120700017f8001ff7f1234808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+      "expected_values": [
+        0,
+        1,
+        127,
+        128,
+        16383,
+        16384,
+        2147483647,
+        2147483648,
+        4294967295,
+        0,
+        4294967295,
+        0,
+        4294967295
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "122500017f8001ff7f808001ffffffff078080808008ffffffff0f00ffffffff0f00ffffffff0f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "122500017f8001ff7f808001ffffffff078080808008ffffffff0f00ffffffff0f00ffffffff0f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_mixed",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "120700017f8001ff7f108080011231ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+      "expected_values": [
+        0,
+        1,
+        127,
+        128,
+        16383,
+        16384,
+        2147483647,
+        2147483648,
+        4294967295,
+        0,
+        4294967295,
+        0,
+        4294967295
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "122500017f8001ff7f808001ffffffff078080808008ffffffff0f00ffffffff0f00ffffffff0f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "122500017f8001ff7f808001ffffffff078080808008ffffffff0f00ffffffff0f00ffffffff0f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_length_127",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "127f00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "expected_values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "127f00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "127f00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_length_128",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "1280010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "expected_values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "1280010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "1280010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_length_129",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "128101000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "expected_values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "128101000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "128101000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_nonminimal_zero",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "12028000",
+      "expected_values": [
+        0
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120100",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120100",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_nonminimal_ten_zero",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "120a80808080808080808000",
+      "expected_values": [
+        0
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120100",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120100",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_overflow_2_packed",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "120a81808080808080808002",
+      "expected_values": [
+        1
+      ],
+      "accepted": true,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120101",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120101",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_overflow_2_unpacked",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "1081808080808080808002",
+      "expected_values": [
+        1
+      ],
+      "accepted": true,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120101",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120101",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_overflow_127_packed",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "120a8180808080808080807f",
+      "expected_values": [
+        1
+      ],
+      "accepted": true,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120101",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120101",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_overflow_127_unpacked",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "108180808080808080807f",
+      "expected_values": [
+        1
+      ],
+      "accepted": true,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120101",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120101",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_known_then_unknown",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff011801",
+      "expected_values": [
+        0,
+        1,
+        127,
+        128,
+        16383,
+        16384,
+        2147483647,
+        2147483648,
+        4294967295,
+        0,
+        4294967295,
+        0,
+        4294967295
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "122500017f8001ff7f808001ffffffff078080808008ffffffff0f00ffffffff0f00ffffffff0f1801",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "122500017f8001ff7f808001ffffffff078080808008ffffffff0f00ffffffff0f00ffffffff0f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_wrong_known_before",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "1501000000123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+      "expected_values": [
+        0,
+        1,
+        127,
+        128,
+        16383,
+        16384,
+        2147483647,
+        2147483648,
+        4294967295,
+        0,
+        4294967295,
+        0,
+        4294967295
+      ],
+      "accepted": true,
+      "strict": false,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "122500017f8001ff7f808001ffffffff078080808008ffffffff0f00ffffffff0f00ffffffff0f1501000000",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "122500017f8001ff7f808001ffffffff078080808008ffffffff0f00ffffffff0f00ffffffff0f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_wrong_known_after",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff011501000000",
+      "expected_values": [
+        0,
+        1,
+        127,
+        128,
+        16383,
+        16384,
+        2147483647,
+        2147483648,
+        4294967295,
+        0,
+        4294967295,
+        0,
+        4294967295
+      ],
+      "accepted": true,
+      "strict": false,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "122500017f8001ff7f808001ffffffff078080808008ffffffff0f00ffffffff0f00ffffffff0f1501000000",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "122500017f8001ff7f808001ffffffff078080808008ffffffff0f00ffffffff0f00ffffffff0f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_empty_header",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "0a00120300017f",
+      "expected_values": [
+        0,
+        1,
+        127
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": "present",
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "0a00120300017f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "0a00120300017f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_stamp_header",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "0a040a020807120300017f",
+      "expected_values": [
+        0,
+        1,
+        127
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": "stamp7",
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "0a040a020807120300017f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "0a040a020807120300017f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_unknown_header",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "0a03a0067b120300017f",
+      "expected_values": [
+        0,
+        1,
+        127
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": "unknown",
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "0a03a0067b120300017f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "0a00120300017f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_wrong_header",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "0807120300017f",
+      "expected_values": [
+        0,
+        1,
+        127
+      ],
+      "accepted": true,
+      "strict": false,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120300017f0807",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120300017f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_malformed_header",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "0a0100120300017f",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_truncated_1",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_truncated_2",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffff",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_truncated_3",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffff",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_truncated_4",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffff",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_truncated_5",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffff",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_unterminated_value_1",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "120180",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_unterminated_value_2",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "12028080",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_unterminated_value_9",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "1209808080808080808080",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_unterminated_value_10",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "120a80808080808080808080",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_unterminated_value_11",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "120b8080808080808080808080",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_eleven_byte_value",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "120b8080808080808080808000",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_missing_length",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "12",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_unterminated_length_1",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "12ff",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_unterminated_length_9",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "12ffffffffffffffffff",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_unterminated_length_10",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "12ffffffffffffffffffff",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt32_V_maximum_length",
+      "message": "gz.msgs.UInt32_V",
+      "wire_hex": "12ffffffffffffffffff01",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_absent",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "",
+      "expected_values": [],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_empty",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "1200",
+      "expected_values": [],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_value_0",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "120100",
+      "expected_values": [
+        0
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120100",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120100",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_value_1",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "120101",
+      "expected_values": [
+        1
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120101",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120101",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_value_127",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "12017f",
+      "expected_values": [
+        127
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "12017f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "12017f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_value_128",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "12028001",
+      "expected_values": [
+        128
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "12028001",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "12028001",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_value_16383",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "1202ff7f",
+      "expected_values": [
+        16383
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "1202ff7f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "1202ff7f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_value_16384",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "1203808001",
+      "expected_values": [
+        16384
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "1203808001",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "1203808001",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_value_2147483647",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "1205ffffffff07",
+      "expected_values": [
+        2147483647
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "1205ffffffff07",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "1205ffffffff07",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_value_2147483648",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "12058080808008",
+      "expected_values": [
+        2147483648
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "12058080808008",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "12058080808008",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_value_4294967295",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "1205ffffffff0f",
+      "expected_values": [
+        4294967295
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "1205ffffffff0f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "1205ffffffff0f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_value_4294967296",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "12058080808010",
+      "expected_values": [
+        4294967296
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "12058080808010",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "12058080808010",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_value_9223372036854775807",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "1209ffffffffffffffff7f",
+      "expected_values": [
+        9223372036854775807
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "1209ffffffffffffffff7f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "1209ffffffffffffffff7f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_value_9223372036854775808",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "120a80808080808080808001",
+      "expected_values": [
+        -9223372036854775808
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120a80808080808080808001",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120a80808080808080808001",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_value_18446744073709551615",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "120affffffffffffffffff01",
+      "expected_values": [
+        -1
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120affffffffffffffffff01",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120affffffffffffffffff01",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_all_packed",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+      "expected_values": [
+        0,
+        1,
+        127,
+        128,
+        16383,
+        16384,
+        2147483647,
+        2147483648,
+        4294967295,
+        4294967296,
+        9223372036854775807,
+        -9223372036854775808,
+        -1
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_all_unpacked",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "10001001107f10800110ff7f1080800110ffffffff0710808080800810ffffffff0f10808080801010ffffffffffffffff7f108080808080808080800110ffffffffffffffffff01",
+      "expected_values": [
+        0,
+        1,
+        127,
+        128,
+        16383,
+        16384,
+        2147483647,
+        2147483648,
+        4294967295,
+        4294967296,
+        9223372036854775807,
+        -9223372036854775808,
+        -1
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_split_fields",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "120700017f8001ff7f1234808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+      "expected_values": [
+        0,
+        1,
+        127,
+        128,
+        16383,
+        16384,
+        2147483647,
+        2147483648,
+        4294967295,
+        4294967296,
+        9223372036854775807,
+        -9223372036854775808,
+        -1
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_mixed",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "120700017f8001ff7f108080011231ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+      "expected_values": [
+        0,
+        1,
+        127,
+        128,
+        16383,
+        16384,
+        2147483647,
+        2147483648,
+        4294967295,
+        4294967296,
+        9223372036854775807,
+        -9223372036854775808,
+        -1
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_length_127",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "127f00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "expected_values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "127f00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "127f00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_length_128",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "1280010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "expected_values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "1280010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "1280010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_length_129",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "128101000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "expected_values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "128101000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "128101000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_nonminimal_zero",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "12028000",
+      "expected_values": [
+        0
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120100",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120100",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_nonminimal_ten_zero",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "120a80808080808080808000",
+      "expected_values": [
+        0
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120100",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120100",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_overflow_2_packed",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "120a81808080808080808002",
+      "expected_values": [
+        1
+      ],
+      "accepted": true,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120101",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120101",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_overflow_2_unpacked",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "1081808080808080808002",
+      "expected_values": [
+        1
+      ],
+      "accepted": true,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120101",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120101",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_overflow_127_packed",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "120a8180808080808080807f",
+      "expected_values": [
+        -9223372036854775807
+      ],
+      "accepted": true,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120a81808080808080808001",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120a81808080808080808001",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_overflow_127_unpacked",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "108180808080808080807f",
+      "expected_values": [
+        -9223372036854775807
+      ],
+      "accepted": true,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120a81808080808080808001",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120a81808080808080808001",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_known_then_unknown",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff011801",
+      "expected_values": [
+        0,
+        1,
+        127,
+        128,
+        16383,
+        16384,
+        2147483647,
+        2147483648,
+        4294967295,
+        4294967296,
+        9223372036854775807,
+        -9223372036854775808,
+        -1
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff011801",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_wrong_known_before",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "1501000000123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+      "expected_values": [
+        0,
+        1,
+        127,
+        128,
+        16383,
+        16384,
+        2147483647,
+        2147483648,
+        4294967295,
+        4294967296,
+        9223372036854775807,
+        -9223372036854775808,
+        -1
+      ],
+      "accepted": true,
+      "strict": false,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff011501000000",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_wrong_known_after",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff011501000000",
+      "expected_values": [
+        0,
+        1,
+        127,
+        128,
+        16383,
+        16384,
+        2147483647,
+        2147483648,
+        4294967295,
+        4294967296,
+        9223372036854775807,
+        -9223372036854775808,
+        -1
+      ],
+      "accepted": true,
+      "strict": false,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff011501000000",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_empty_header",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "0a00120300017f",
+      "expected_values": [
+        0,
+        1,
+        127
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": "present",
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "0a00120300017f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "0a00120300017f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_stamp_header",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "0a040a020807120300017f",
+      "expected_values": [
+        0,
+        1,
+        127
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": "stamp7",
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "0a040a020807120300017f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "0a040a020807120300017f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_unknown_header",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "0a03a0067b120300017f",
+      "expected_values": [
+        0,
+        1,
+        127
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": "unknown",
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "0a03a0067b120300017f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "0a00120300017f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_wrong_header",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "0807120300017f",
+      "expected_values": [
+        0,
+        1,
+        127
+      ],
+      "accepted": true,
+      "strict": false,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120300017f0807",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120300017f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_malformed_header",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "0a0100120300017f",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_truncated_1",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_truncated_2",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffff",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_truncated_3",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffff",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_truncated_4",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffff",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_truncated_5",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffff",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_unterminated_value_1",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "120180",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_unterminated_value_2",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "12028080",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_unterminated_value_9",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "1209808080808080808080",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_unterminated_value_10",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "120a80808080808080808080",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_unterminated_value_11",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "120b8080808080808080808080",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_eleven_byte_value",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "120b8080808080808080808000",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_missing_length",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "12",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_unterminated_length_1",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "12ff",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_unterminated_length_9",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "12ffffffffffffffffff",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_unterminated_length_10",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "12ffffffffffffffffffff",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "Int64_V_maximum_length",
+      "message": "gz.msgs.Int64_V",
+      "wire_hex": "12ffffffffffffffffff01",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_absent",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "",
+      "expected_values": [],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_empty",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "1200",
+      "expected_values": [],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_value_0",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "120100",
+      "expected_values": [
+        0
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120100",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120100",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_value_1",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "120101",
+      "expected_values": [
+        1
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120101",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120101",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_value_127",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "12017f",
+      "expected_values": [
+        127
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "12017f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "12017f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_value_128",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "12028001",
+      "expected_values": [
+        128
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "12028001",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "12028001",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_value_16383",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "1202ff7f",
+      "expected_values": [
+        16383
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "1202ff7f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "1202ff7f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_value_16384",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "1203808001",
+      "expected_values": [
+        16384
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "1203808001",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "1203808001",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_value_2147483647",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "1205ffffffff07",
+      "expected_values": [
+        2147483647
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "1205ffffffff07",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "1205ffffffff07",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_value_2147483648",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "12058080808008",
+      "expected_values": [
+        2147483648
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "12058080808008",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "12058080808008",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_value_4294967295",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "1205ffffffff0f",
+      "expected_values": [
+        4294967295
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "1205ffffffff0f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "1205ffffffff0f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_value_4294967296",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "12058080808010",
+      "expected_values": [
+        4294967296
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "12058080808010",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "12058080808010",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_value_9223372036854775807",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "1209ffffffffffffffff7f",
+      "expected_values": [
+        9223372036854775807
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "1209ffffffffffffffff7f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "1209ffffffffffffffff7f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_value_9223372036854775808",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "120a80808080808080808001",
+      "expected_values": [
+        9223372036854775808
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120a80808080808080808001",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120a80808080808080808001",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_value_18446744073709551615",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "120affffffffffffffffff01",
+      "expected_values": [
+        18446744073709551615
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120affffffffffffffffff01",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120affffffffffffffffff01",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_all_packed",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+      "expected_values": [
+        0,
+        1,
+        127,
+        128,
+        16383,
+        16384,
+        2147483647,
+        2147483648,
+        4294967295,
+        4294967296,
+        9223372036854775807,
+        9223372036854775808,
+        18446744073709551615
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_all_unpacked",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "10001001107f10800110ff7f1080800110ffffffff0710808080800810ffffffff0f10808080801010ffffffffffffffff7f108080808080808080800110ffffffffffffffffff01",
+      "expected_values": [
+        0,
+        1,
+        127,
+        128,
+        16383,
+        16384,
+        2147483647,
+        2147483648,
+        4294967295,
+        4294967296,
+        9223372036854775807,
+        9223372036854775808,
+        18446744073709551615
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_split_fields",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "120700017f8001ff7f1234808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+      "expected_values": [
+        0,
+        1,
+        127,
+        128,
+        16383,
+        16384,
+        2147483647,
+        2147483648,
+        4294967295,
+        4294967296,
+        9223372036854775807,
+        9223372036854775808,
+        18446744073709551615
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_mixed",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "120700017f8001ff7f108080011231ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+      "expected_values": [
+        0,
+        1,
+        127,
+        128,
+        16383,
+        16384,
+        2147483647,
+        2147483648,
+        4294967295,
+        4294967296,
+        9223372036854775807,
+        9223372036854775808,
+        18446744073709551615
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_length_127",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "127f00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "expected_values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "127f00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "127f00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_length_128",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "1280010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "expected_values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "1280010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "1280010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_length_129",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "128101000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "expected_values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "128101000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "128101000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_nonminimal_zero",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "12028000",
+      "expected_values": [
+        0
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120100",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120100",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_nonminimal_ten_zero",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "120a80808080808080808000",
+      "expected_values": [
+        0
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120100",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120100",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_overflow_2_packed",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "120a81808080808080808002",
+      "expected_values": [
+        1
+      ],
+      "accepted": true,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120101",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120101",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_overflow_2_unpacked",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "1081808080808080808002",
+      "expected_values": [
+        1
+      ],
+      "accepted": true,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120101",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120101",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_overflow_127_packed",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "120a8180808080808080807f",
+      "expected_values": [
+        9223372036854775809
+      ],
+      "accepted": true,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120a81808080808080808001",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120a81808080808080808001",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_overflow_127_unpacked",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "108180808080808080807f",
+      "expected_values": [
+        9223372036854775809
+      ],
+      "accepted": true,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120a81808080808080808001",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120a81808080808080808001",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_known_then_unknown",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff011801",
+      "expected_values": [
+        0,
+        1,
+        127,
+        128,
+        16383,
+        16384,
+        2147483647,
+        2147483648,
+        4294967295,
+        4294967296,
+        9223372036854775807,
+        9223372036854775808,
+        18446744073709551615
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff011801",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_wrong_known_before",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "1501000000123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+      "expected_values": [
+        0,
+        1,
+        127,
+        128,
+        16383,
+        16384,
+        2147483647,
+        2147483648,
+        4294967295,
+        4294967296,
+        9223372036854775807,
+        9223372036854775808,
+        18446744073709551615
+      ],
+      "accepted": true,
+      "strict": false,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff011501000000",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_wrong_known_after",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff011501000000",
+      "expected_values": [
+        0,
+        1,
+        127,
+        128,
+        16383,
+        16384,
+        2147483647,
+        2147483648,
+        4294967295,
+        4294967296,
+        9223372036854775807,
+        9223372036854775808,
+        18446744073709551615
+      ],
+      "accepted": true,
+      "strict": false,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff011501000000",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff01",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_empty_header",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "0a00120300017f",
+      "expected_values": [
+        0,
+        1,
+        127
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": "present",
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "0a00120300017f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "0a00120300017f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_stamp_header",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "0a040a020807120300017f",
+      "expected_values": [
+        0,
+        1,
+        127
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": "stamp7",
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "0a040a020807120300017f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "0a040a020807120300017f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_unknown_header",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "0a03a0067b120300017f",
+      "expected_values": [
+        0,
+        1,
+        127
+      ],
+      "accepted": true,
+      "strict": true,
+      "compatible": true,
+      "header": "unknown",
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "0a03a0067b120300017f",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "0a00120300017f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_wrong_header",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "0807120300017f",
+      "expected_values": [
+        0,
+        1,
+        127
+      ],
+      "accepted": true,
+      "strict": false,
+      "compatible": true,
+      "header": null,
+      "cpp_generated": {
+        "exit": 0,
+        "output_hex": "120300017f0807",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 0,
+        "output_hex": "120300017f",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_malformed_header",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "0a0100120300017f",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_truncated_1",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffffff",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_truncated_2",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffffff",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_truncated_3",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffffff",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_truncated_4",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffffff",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_truncated_5",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "123b00017f8001ff7f808001ffffffff078080808008ffffffff0f8080808010ffffffffffffffff7f80808080808080808001ffffffffff",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_unterminated_value_1",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "120180",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_unterminated_value_2",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "12028080",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_unterminated_value_9",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "1209808080808080808080",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_unterminated_value_10",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "120a80808080808080808080",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_unterminated_value_11",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "120b8080808080808080808080",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_eleven_byte_value",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "120b8080808080808080808000",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_missing_length",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "12",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_unterminated_length_1",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "12ff",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_unterminated_length_9",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "12ffffffffffffffffff",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_unterminated_length_10",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "12ffffffffffffffffffff",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    },
+    {
+      "id": "UInt64_V_maximum_length",
+      "message": "gz.msgs.UInt64_V",
+      "wire_hex": "12ffffffffffffffffff01",
+      "expected_values": null,
+      "accepted": false,
+      "strict": false,
+      "compatible": false,
+      "header": null,
+      "cpp_generated": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      },
+      "cpp_known": {
+        "exit": 6,
+        "output_hex": "",
+        "stderr": ""
+      }
+    }
+  ]
+}

@@ -65,3 +65,7 @@ The separate [Float_V fixed32 qualification](PACKED_FLOAT_WIRE.md) covers exact
 float32 bits, its distinct Header/data tags, framing and existing partial-cursor
 boundaries. The fixed64 corpus and shared native peer remain unchanged; no
 production decoder or unknown-forwarding policy changes.
+
+[Packed integer-vector qualification](PACKED_VARINT_WIRE.md) records exact
+signed/unsigned widths, framing and partial-state boundaries. Native overflowing
+ten-byte varints remain explicit errors in both strict and compatible Rust paths.
