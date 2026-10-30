@@ -396,7 +396,9 @@ contracts. Explicit-false [MessageSet metadata](MESSAGE_SET_FALSE.md) describes
 ordinary wire semantics; true MessageSet remains unsupported. Groups, unsupported extension declarations and unhandled options remain unsupported.
 The source-aware [nested extension declaration formatter](NESTED_EXTENSION_DECLARATIONS.md)
 admits only ordinary proto2 declarations with original JSON-name absence; standalone
-descriptor formatting retains its presence limitation.
+descriptor formatting retains its presence limitation. Declared
+[deprecated extension booleans](EXTENSION_DEPRECATED.md) retain explicit false/true;
+other extension options remain unsupported.
 Standard reflection entry points retain their separate raw integer-default
 interpretation; the registry's bounded opt-in integer policy is described
 below. Formatting preserves parsed values and does not expand wire support.

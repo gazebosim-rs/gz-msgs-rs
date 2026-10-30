@@ -63,6 +63,29 @@ fn prepared_source_aware_nested_declarations_match_native() {
         }
         let d = registry.pool().get_message_by_name("probe.Root").unwrap();
         let before = d.parent_file().encode_to_vec();
+        if row["mode"] == "deprecated" {
+            assert_eq!(d.child_extensions().len(), 3);
+            for extension in d.child_extensions() {
+                assert_eq!(
+                    extension
+                        .field_descriptor_proto()
+                        .options
+                        .as_ref()
+                        .unwrap()
+                        .deprecated,
+                    Some(false)
+                );
+                assert!(extension.options().has_field_by_name("deprecated"));
+                assert_eq!(
+                    extension
+                        .options()
+                        .get_field_by_name("deprecated")
+                        .unwrap()
+                        .as_bool(),
+                    Some(false)
+                );
+            }
+        }
         assert_eq!(
             descriptor_definition(&d),
             Err(DefinitionError::Unsupported("extension declarations"))
@@ -70,7 +93,7 @@ fn prepared_source_aware_nested_declarations_match_native() {
         let result = registry.definition("probe.Root");
         if matches!(
             row["mode"].as_str().unwrap(),
-            "ordinary" | "empty-options" | "digit-name"
+            "ordinary" | "empty-options" | "digit-name" | "deprecated"
         ) && row["label"] != 2
         {
             supported += 1;
@@ -103,7 +126,6 @@ fn prepared_source_aware_nested_declarations_match_native() {
             assert!(cli.stderr.is_empty());
         } else {
             let reason = match row["mode"].as_str().unwrap() {
-                "deprecated" => "option",
                 "unknown-option" => "unknown options",
                 "custom-option" => "custom options",
                 _ => "extension declarations",
@@ -112,6 +134,6 @@ fn prepared_source_aware_nested_declarations_match_native() {
         }
         assert_eq!(d.parent_file().encode_to_vec(), before);
     }
-    assert_eq!((supported, native_admitted), (108, 115));
+    assert_eq!((supported, native_admitted), (109, 115));
     assert_eq!(registry_rejected, 1);
 }

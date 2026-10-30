@@ -317,7 +317,12 @@ fn extension_declarations(
     extensions.sort_by_key(|value| value.path().last().copied());
     let mut previous = None;
     for value in extensions {
-        validate_extension(&value, omissions)?;
+        let declared = validate_extension(&value, omissions)?;
+        let suffix = if declared.is_empty() {
+            String::new()
+        } else {
+            format!(" [{}]", declared.join(", "))
+        };
         let extendee = value.containing_message();
         if previous.as_ref() != Some(&extendee) {
             if previous.is_some() {
@@ -339,7 +344,7 @@ fn extension_declarations(
             output,
             depth + 1,
             format_args!(
-                "{label} {} {} = {};",
+                "{label} {} {} = {}{suffix};",
                 type_name(value.kind()),
                 value.name(),
                 value.number()
@@ -355,13 +360,13 @@ fn extension_declarations(
 fn validate_extension(
     value: &ExtensionDescriptor,
     omissions: &BTreeSet<String>,
-) -> Result<(), DefinitionError> {
+) -> Result<Vec<String>, DefinitionError> {
     let raw = value.field_descriptor_proto();
     // Only the registry retains whether reflection synthesized json_name.
     if !omissions.contains(value.full_name()) {
         return Err(DefinitionError::Unsupported("extension declarations"));
     }
-    options(value.options(), &[])?;
+    let declared = options(value.options(), &["deprecated"])?;
     // Native admits leading digits but rejects non-ASCII identifier bytes.
     if value.name().is_empty()
         || !value
@@ -385,7 +390,7 @@ fn validate_extension(
     {
         return Err(DefinitionError::Unsupported("extension declarations"));
     }
-    Ok(())
+    Ok(declared)
 }
 
 fn enumeration(
