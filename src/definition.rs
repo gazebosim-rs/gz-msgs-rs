@@ -419,10 +419,24 @@ fn message(
         }
     }
     line(output, depth, format_args!("message {} {{", value.name()));
-    for option in options(
+    let configured_options = options(
         value.options(),
-        &["no_standard_descriptor_accessor", "deprecated"],
-    )? {
+        &[
+            "message_set_wire_format",
+            "no_standard_descriptor_accessor",
+            "deprecated",
+        ],
+    )?;
+    // Explicit false is ordinary wire metadata; true MessageSet stays unsupported.
+    if value
+        .descriptor_proto()
+        .options
+        .as_ref()
+        .is_some_and(|options| options.message_set_wire_format())
+    {
+        return Err(DefinitionError::Unsupported("option"));
+    }
+    for option in configured_options {
         line(output, depth + 1, format_args!("option {option};"));
     }
     for child in value.child_messages() {

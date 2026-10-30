@@ -10,7 +10,8 @@ The formatter preserves declaration order, nested messages/enums, source-ordered
 enum aliases and signed values, maps, real oneofs, proto3 optional fields, qualified
 message/enum references, reserved ranges/names and arbitrary UTF-8 JSON names
 (including the empty name). Native C-style byte escaping preserves quotes,
-backslashes, controls and non-ASCII UTF-8 bytes using octal escapes. It supports message no_standard_descriptor_accessor/deprecated, enum
+backslashes, controls and non-ASCII UTF-8 bytes using octal escapes. It supports message no_standard_descriptor_accessor/deprecated and explicit-false
+[message_set_wire_format metadata](MESSAGE_SET_FALSE.md), enum
 allow_alias/deprecated, enum-value deprecated and field packed/deprecated/lazy/weak/unverified_lazy boolean
 options, including explicit false. [Field-option qualification](FIELD_OPTIONS.md)
 records the message-only true lazy flags and metadata/runtime boundary.

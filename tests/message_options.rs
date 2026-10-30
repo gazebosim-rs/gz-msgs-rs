@@ -83,6 +83,12 @@ fn check_cases(rows: &[serde_json::Value]) -> (usize, usize) {
         );
         let descriptor = registry.pool().get_message_by_name("opts.Root").unwrap();
         let raw_before = descriptor.descriptor_proto().clone();
+        if row["message_set"] == false {
+            assert_eq!(
+                raw_before.options.as_ref().unwrap().message_set_wire_format,
+                Some(false)
+            );
+        }
         let options_before = descriptor.options().encode_to_vec();
         let factory = MessageFactory::with_paths(input.as_os_str());
         assert!(factory.take_initial_errors().is_empty());
@@ -91,7 +97,7 @@ fn check_cases(rows: &[serde_json::Value]) -> (usize, usize) {
             .env("GZ_DESCRIPTOR_PATH", &input)
             .output()
             .unwrap();
-        if row["expected"] == "native" {
+        if row["expected"] == "native" || row["message_set"] == false {
             supported += 1;
             let expected = body(row);
             assert_eq!(
@@ -168,5 +174,5 @@ fn native_message_options_keep_presence_order_context_and_metadata() {
         serde_json::from_str(include_str!("fixtures/message-options.json")).unwrap();
     let rows = data["rows"].as_array().unwrap();
     assert_eq!(rows.len(), 98);
-    assert_eq!(check_cases(rows), (90, 95));
+    assert_eq!(check_cases(rows), (94, 95));
 }

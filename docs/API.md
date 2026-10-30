@@ -392,7 +392,9 @@ are formatted in decimal from their effective values. Ordinary
 [string defaults](STRING_DEFINITIONS.md) reuse the existing protobuf escape helper.
 [Bytes](BYTES_DEFINITIONS.md), [enum](ENUM_DEFINITIONS.md) and
 [floating defaults](FLOATING_DEFINITIONS.md) have separate bounded native-backed
-contracts. Groups, extensions and unhandled options remain unsupported.
+contracts. Explicit-false [MessageSet metadata](MESSAGE_SET_FALSE.md) describes
+ordinary wire semantics; true MessageSet remains unsupported. Groups, extension-field
+declarations and unhandled options remain unsupported.
 Standard reflection entry points retain their separate raw integer-default
 interpretation; the registry's bounded opt-in integer policy is described
 below. Formatting preserves parsed values and does not expand wire support.

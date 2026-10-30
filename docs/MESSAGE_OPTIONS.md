@@ -17,12 +17,15 @@ absent/false/true combinations with deprecated. All ninety compare exact direct,
 registry, factory and complete CLI output. Typed descriptor metadata (including
 nested messages) and encoded reflected message options are unchanged afterward.
 
-Eight MessageSet controls preserve the existing explicit Unsupported option
-boundary. Five admit in native and three are rejected by native, while all eight
-remain ordinary descriptor admissions through the existing Rust loader. Their
-native observations are recorded separately from the Rust formatter error; no
-MessageSet implementation or general descriptor validation is claimed. Existing
-custom/unknown options, extension declarations and other guards are unchanged.
+Explicit false message_set_wire_format metadata now follows the ordinary native
+formatting path; true remains Unsupported. See [the bounded transition](MESSAGE_SET_FALSE.md).
+The immutable 98-case corpus and its original historical annotations are retained:
+four false rows become full native positives, while four true rows keep their
+existing errors. Native admits 95 cases and the current Rust formatter supports
+94; the empty proto2 true-MessageSet case stays deliberately unsupported. The
+existing loader still admits all 98, so native rejection and formatter rejection
+remain separately recorded. No MessageSet runtime or general validator is added.
+Custom/unknown options, extension declarations and other guards are unchanged.
 
 ## Reviewed exact capability transition
 
@@ -40,5 +43,6 @@ boundaries and performance evidence remain unchanged. The 98-case native replay,
 supplementary tests and Clippy passed. Independent review replayed both prepared
 tests and all 98 complete native observations before approval. Final independent
 review passed all fourteen definition tests and the 98-row message-option test;
-old descriptor/fixture bytes remain unchanged. Normal strict local and exact
-hosted qualification remain pending.
+old descriptor/fixture bytes remain unchanged. That original descriptor-accessor
+slice passed strict local and exact hosted qualification. The explicit-false MessageSet extension has its own final review
+and staged/hosted gates pending, as recorded in MESSAGE_SET_FALSE.md.
