@@ -56,9 +56,10 @@ fn native_cli_file_diagnostics_keep_bytes_order_exits_and_lazy_shortcuts() {
         .unwrap();
     assert!(help.status.success() && help.stderr.is_empty());
     let rows = fixture["rows"].as_array().unwrap();
-    assert_eq!(rows.len(), 65);
+    assert_eq!(rows.len(), 80);
     let mut complete = 0;
     let mut known_differences = 0;
+    let mut wire_differences = 0;
     for row in rows {
         let case = row["case"].as_str().unwrap();
         let label = row["command"].as_str().unwrap();
@@ -106,7 +107,22 @@ fn native_cli_file_diagnostics_keep_bytes_order_exits_and_lazy_shortcuts() {
         } else {
             assert_eq!(output.stdout, native_stdout, "{case}/{label}");
         }
-        if ["invalid-name", "invalid-field", "missing-import"].contains(&case)
+        if case.starts_with("wrong-wire-") && ["list", "missing-info"].contains(&label) {
+            // Preserve the existing strict descriptor-wire decoder without claiming native parity.
+            let native = unhex(row["stderr_hex"].as_str().unwrap());
+            let missing = if label == "missing-info" {
+                b"Unable to create message of type[errors.Missing]\n".as_slice()
+            } else {
+                b""
+            };
+            assert_eq!(native, missing, "{case}/{label}");
+            let mut expected = b"DynamicFactory(): Unable to parse descriptor set from [".to_vec();
+            expected.extend(unhex(row["descriptor_path_hex"].as_str().unwrap()));
+            expected.extend_from_slice(b"]\n");
+            expected.extend_from_slice(missing);
+            assert_eq!(output.stderr, expected, "{case}/{label}");
+            wire_differences += 1;
+        } else if ["invalid-name", "invalid-field", "missing-import"].contains(&case)
             && ["list", "missing-info"].contains(&label)
         {
             // Full libprotobuf schema-validation console text is a retained gap.
@@ -131,7 +147,7 @@ fn native_cli_file_diagnostics_keep_bytes_order_exits_and_lazy_shortcuts() {
             complete += 1;
         }
     }
-    assert_eq!((complete, known_differences), (59, 6));
+    assert_eq!((complete, known_differences, wire_differences), (68, 6, 6));
 }
 
 #[test]

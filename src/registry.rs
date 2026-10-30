@@ -17,7 +17,7 @@ use std::{
     sync::Arc,
 };
 
-/// Native console wording available for a descriptor-file loading failure.
+/// File-level console wording for a descriptor-loading failure.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum LoadDiagnostic {
     Open,

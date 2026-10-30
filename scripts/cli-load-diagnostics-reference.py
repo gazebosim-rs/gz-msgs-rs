@@ -55,6 +55,9 @@ inputs = {
     'invalid-field.desc': d.FileDescriptorSet(file=[d.FileDescriptorProto(name='invalid-field.proto', package='errors', syntax='proto2', message_type=[d.DescriptorProto(name='Invalid', field=[d.FieldDescriptorProto(name='value', number=0, label=1, type=5)])])]).SerializeToString(),
     'missing-import.desc': descriptor(dependency='absent.proto'),
     'ignored.txt': b'bad',
+    'wrong-wire-varint.desc': b'\x08\x01',
+    'wrong-wire-fixed32.desc': b'\x0d' + bytes(4),
+    'wrong-wire-fixed64.desc': b'\x09' + bytes(8),
 }
 for name, data in inputs.items():
     (ROOT / name).write_bytes(data)
@@ -69,6 +72,9 @@ cases = [
     ('ignored', b'ignored.txt'), ('directory', b'directory.desc'),
     ('raw-missing', raw_path), ('read-error', b'read-error.desc'), ('missing-valid', b'missing.desc:valid.desc'),
     ('garbage-missing', b'garbage.desc:missing.desc'),
+    ('wrong-wire-varint', b'wrong-wire-varint.desc'),
+    ('wrong-wire-fixed32', b'wrong-wire-fixed32.desc'),
+    ('wrong-wire-fixed64', b'wrong-wire-fixed64.desc'),
 ]
 canonical = json.loads((REPO / 'tests/fixtures/cli-external-list.json').read_text())['canonical_names']
 rows = []
