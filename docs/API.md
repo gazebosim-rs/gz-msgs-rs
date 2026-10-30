@@ -69,7 +69,8 @@ Arrays are raw values without math-domain normalization or color clamping.
 vector3/quaternion are convenience constructors. pose(position, orientation)
 constructs geometric fields with default metadata; pose_components returns XYZ
 and XYZW, with absent translation zero and absent orientation identity. Explicit
-zero quaternions remain zero. Broad math conversions remain pending.
+zero quaternions remain zero. The conversion families retained by native Utility.hh also have Rust counterparts;
+see the [remaining capability checklist](MSG_02_REMAINING.md) for release work.
 
 ## Runtime, tooling and provenance
 
@@ -115,8 +116,10 @@ error codes are qualified by the [bounded option corpus](CLI_OPTIONS.md). Native
 long flag-value conversion has its [own corpus](CLI_FLAG_VALUES.md); full legacy
 grammar remains unqualified. Bracketed info vectors and per-occurrence required
 consumption follow the [bounded native rules](CLI_INFO_VECTORS.md).
-Install-prefix/canonical-path-cache behavior, dynamic-descriptor CLI info and
-broader Any/formatting qualification remain pending. Factory environment/lazy,
+External descriptor CLI info supports the bounded declaration domain documented
+below. Install-prefix/canonical-path-cache behavior and broader Any/formatting
+qualification remain pending. [OS-byte arguments](OS_ARGV.md) preserve Linux argv
+bytes and legacy precedence. Factory environment/lazy,
 retry/concurrency and packed-cloud APIs are described below with their own limits.
 
 Production builds require system protoc (qualified baseline 3.21.12); C++ peer

@@ -1369,11 +1369,57 @@ fn normalize_proto_json(
         pose_parent_ranges,
     }
 }
+fn print_info(names: Vec<Vec<u8>>) -> Result<(), Box<dyn std::error::Error>> {
+    let factory = gz_msgs::factory::MessageFactory::default();
+    for bytes in names {
+        let descriptor = if let Ok(name) = std::str::from_utf8(&bytes) {
+            gz_msgs::descriptor(name)
+                .filter(|_| {
+                    !name.starts_with('.')
+                        || name.starts_with(".gz.msgs.")
+                        || name.starts_with(".gz_msgs.")
+                })
+                .or_else(|| {
+                    factory
+                        .new_message(name)
+                        .map(|message| message.descriptor())
+                })
+        } else {
+            // A miss still initializes the lazy descriptor source, without
+            // substituting a different type name or losing argument bytes.
+            let _ = factory.types();
+            None
+        };
+        let Some(descriptor) = descriptor else {
+            let mut stderr = std::io::stderr().lock();
+            stderr.write_all(b"Unable to create message of type[")?;
+            stderr.write_all(&bytes)?;
+            stderr.write_all(b"]\n")?;
+            continue;
+        };
+        if let Some(text) = gz_msgs::message_info(descriptor.full_name()) {
+            print!("{text}");
+        } else {
+            let text = factory
+                .registry_definition(descriptor.full_name())?
+                .ok_or("external descriptor source unavailable")?;
+            print!(
+                "Name: {}\nFile: {}\n\n{text}\n",
+                descriptor.full_name(),
+                descriptor.parent_file().name()
+            );
+        }
+    }
+    std::io::stdout().flush()?;
+    Ok(())
+}
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let args = match legacy_cli::normalize(std::env::args().skip(1).collect()) {
-        Ok(args) => args,
+    let args = match legacy_cli::normalize(std::env::args_os().skip(1).collect()) {
+        Ok(legacy_cli::Command::Utf8(args)) => args,
+        Ok(legacy_cli::Command::Info(names)) => return print_info(names),
         Err((code, message)) => {
-            eprintln!("{message}");
+            std::io::stderr().write_all(&message)?;
+            std::io::stderr().write_all(b"\n")?;
             std::process::exit(i32::from(code));
         }
     };
@@ -1388,39 +1434,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     if args == ["list"] || args == ["--list"] || args == ["-l"] {
         let names = gz_msgs::factory::MessageFactory::default().types();
         println!("{}", names.join("\n"));
-        return Ok(());
-    }
-    if args.len() >= 2 && ["info", "--info", "-i"].contains(&args[0].as_str()) {
-        let factory = gz_msgs::factory::MessageFactory::default();
-        for name in &args[1..] {
-            let descriptor = gz_msgs::descriptor(name)
-                .filter(|_| {
-                    !name.starts_with('.')
-                        || name.starts_with(".gz.msgs.")
-                        || name.starts_with(".gz_msgs.")
-                })
-                .or_else(|| {
-                    factory
-                        .new_message(name)
-                        .map(|message| message.descriptor())
-                });
-            let Some(descriptor) = descriptor else {
-                eprintln!("Unable to create message of type[{name}]");
-                continue;
-            };
-            if let Some(text) = gz_msgs::message_info(descriptor.full_name()) {
-                print!("{text}");
-            } else {
-                let text = factory
-                    .registry_definition(descriptor.full_name())?
-                    .ok_or("external descriptor source unavailable")?;
-                print!(
-                    "Name: {}\nFile: {}\n\n{text}\n",
-                    descriptor.full_name(),
-                    descriptor.parent_file().name()
-                );
-            }
-        }
         return Ok(());
     }
     if args.len() != 2 {

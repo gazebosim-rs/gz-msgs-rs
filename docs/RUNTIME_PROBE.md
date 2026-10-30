@@ -1,5 +1,8 @@
 # Runtime decision probe (2026-10-24)
 
+This is historical migration evidence. The maintained production stack and
+current compatibility boundaries are documented in [API.md](API.md).
+
 The current [rust-protobuf README](https://github.com/stepancheg/rust-protobuf)
 announces approaching end of life. Its 3.7.2 release is a provisional baseline,
 not a release-qualified foundation. The generator patch fixes typed binary

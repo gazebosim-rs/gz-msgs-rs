@@ -6,8 +6,8 @@
 Two preliminary timing runs lacked effective Rust compiler/configuration evidence.
 They remain explicitly [unqualified](codec-benchmark-unqualified.json); no override
 is alleged or established. The final matched run below followed independent
-approval of the corrected compiler-fidelity controls. Its final measurement review also passed; normal staged/hosted qualification
-remains pending.
+approval of the corrected compiler-fidelity controls. Its final measurement review and normal staged/hosted qualification passed at
+`45f29b7b333e9187f16e5a542241eacf80cb6ff7`.
 
 This is a bounded single-threaded message-codec baseline. It preserves slower
 results and establishes an optimization target; it does not accept MSG-02,
