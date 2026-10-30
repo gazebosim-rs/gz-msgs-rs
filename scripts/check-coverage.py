@@ -20,17 +20,40 @@ def check(report, root):
 
 def added_patch_lines(path, filename):
     current, number, added = None, 0, []
+    old_left = new_left = 0
     for line in path.read_text().splitlines():
-        if line.startswith('+++ '):
+        if old_left or new_left:
+            # Inside a counted hunk, +++ is added source text, not a header.
+            if line.startswith('+'):
+                if filename == current or filename.endswith('/' + str(current)):
+                    added.append(number)
+                number += 1
+                new_left -= 1
+            elif line.startswith('-'):
+                old_left -= 1
+            elif line.startswith(' '):
+                number += 1
+                old_left -= 1
+                new_left -= 1
+            elif line != r'\ No newline at end of file':
+                raise ValueError('invalid patch hunk data')
+            if old_left < 0 or new_left < 0:
+                raise ValueError('patch hunk exceeds declared length')
+        elif line.startswith('+++ '):
             current = line[4:]
+        elif line.startswith('--- ') or line.startswith('diff --git '):
+            current = None
         elif line.startswith('@@ '):
-            number = int(re.search(r'\+(\d+)', line)[1])
-        elif line.startswith('+'):
-            if filename == current or filename.endswith('/' + str(current)):
-                added.append(number)
-            number += 1
-        elif line.startswith(' '):
-            number += 1
+            header = re.match(r'@@ -(\d+)(?:,(\d+))? \+(\d+)(?:,(\d+))? @@', line)
+            if header is None or current is None:
+                raise ValueError('invalid patch hunk header')
+            _, old_count, start, new_count = header.groups()
+            old_left, new_left = int(old_count or 1), int(new_count or 1)
+            number = int(start)
+        elif line.startswith(('+', '-', ' ')):
+            raise ValueError('patch data outside declared hunk')
+    if old_left or new_left:
+        raise ValueError('truncated patch hunk')
     return added
 
 

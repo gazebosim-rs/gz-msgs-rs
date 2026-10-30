@@ -93,3 +93,39 @@ for manifest,expected in [(str(root),True),(str(root/'vendor/prost-derive-0.14.4
     output=subprocess.check_output([str(wrapper),'/bin/echo','--crate-name','fixture'],env=env,text=True).strip()
     assert output=='--crate-name fixture'+(' -C instrument-coverage' if expected else '')
 print('Coverage selection: owned root/two patched vendors included; unowned/query invocations excluded')
+
+# Hunk data must not become a filename or redirect a later hunk.
+with tempfile.TemporaryDirectory() as directory:
+    patch = pathlib.Path(directory) / 'source.patch'
+    patch.write_text('--- lib.rs\n+++ lib.rs\n@@ -1 +1 @@\n-old\n+++ other.rs\n@@ -3 +3 @@\n-old\n+call();\n')
+    assert gate.added_patch_lines(patch, 'vendor/lib.rs') == [1, 3]
+    assert gate.added_patch_lines(patch, 'vendor/other.rs') == []
+    patch.write_text('--- a.rs\n+++ a.rs\n@@ -0,0 +1 @@\n+first();\n--- b.rs\n+++ b.rs\n@@ -1 +1,2 @@\n context\n+second();\n')
+    assert gate.added_patch_lines(patch, 'vendor/a.rs') == [1]
+    assert gate.added_patch_lines(patch, 'vendor/b.rs') == [2]
+    for invalid in ['--- lib.rs\n+++ lib.rs\n@@ -0,0 +1,2 @@\n+one\n',
+                    '--- lib.rs\n+++ lib.rs\n@@ -0,0 +1 @@\n+one\n+extra\n',
+                    '--- lib.rs\n+++ lib.rs\n@@ malformed\n+one\n']:
+        patch.write_text(invalid)
+        try: gate.added_patch_lines(patch, 'vendor/lib.rs'); rejected = False
+        except ValueError: rejected = True
+        assert rejected
+print('Patch selector: header-like source stays in its file; declared hunk lengths and file boundaries enforced')
+
+# Exercise the selector against a real Git-generated raw-string replacement.
+with tempfile.TemporaryDirectory() as directory:
+    fixture = pathlib.Path(directory)
+    def git(*args):
+        return subprocess.check_output(['git', *args], cwd=fixture, text=True)
+    git('init', '-q')
+    source = fixture / 'lib.rs'
+    original = ['const TEXT: &str = r#"', 'before', '"#;'] + ['// gap'] * 12 + ['fn f() { old(); }']
+    source.write_text('\n'.join(original) + '\n')
+    git('add', 'lib.rs')
+    modified = original.copy(); modified[1] = '++ other.rs'; modified[-1] = 'fn f() { changed(); }'
+    source.write_text('\n'.join(modified) + '\n')
+    patch = fixture / 'real.patch'
+    patch.write_text(git('diff', '--no-ext-diff', '--unified=0'))
+    assert gate.added_patch_lines(patch, 'b/lib.rs') == [2, 16]
+    assert gate.added_patch_lines(patch, 'other.rs') == []
+print('Patch selector: real Git raw-string replacement preserves the later hunk owner')
