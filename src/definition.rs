@@ -366,7 +366,11 @@ fn validate_extension(
     if !omissions.contains(value.full_name()) {
         return Err(DefinitionError::Unsupported("extension declarations"));
     }
-    let declared = options(value.options(), &["packed", "deprecated"])?;
+    let metadata = value.options();
+    let requires_64_bit = metadata
+        .get_field_by_name("jstype")
+        .is_some_and(|value| value.as_enum_number().is_some_and(|number| number != 0));
+    let declared = options(metadata, &["ctype", "packed", "deprecated", "jstype"])?;
     // Native admits leading digits but rejects non-ASCII identifier bytes.
     if value.name().is_empty()
         || !value
@@ -392,6 +396,16 @@ fn validate_extension(
     }
     if raw.options.as_ref().and_then(|options| options.packed) == Some(true) && !value.is_packed() {
         return Err(DefinitionError::Unsupported("packed extension shape"));
+    }
+    if requires_64_bit
+        && !matches!(
+            value.kind(),
+            Kind::Int64 | Kind::Uint64 | Kind::Sint64 | Kind::Fixed64 | Kind::Sfixed64
+        )
+    {
+        return Err(DefinitionError::Unsupported(
+            "jstype option on non-64-bit integer field",
+        ));
     }
     Ok(declared)
 }

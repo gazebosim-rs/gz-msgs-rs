@@ -399,7 +399,9 @@ admits only ordinary proto2 declarations with original JSON-name absence; standa
 descriptor formatting retains its presence limitation. Declared
 [deprecated extension booleans](EXTENSION_DEPRECATED.md) retain explicit false/true;
 [packed flags](EXTENSION_PACKED.md) preserve explicit false/true with native shape
-guards. Other extension options remain unsupported.
+guards. Declared [CType/JSType enums](EXTENSION_ENUM_OPTIONS.md) reuse maintained
+option names and the existing 64-bit JSType constraint; unknown labels remain errors.
+Other extension options remain unsupported.
 Standard reflection entry points retain their separate raw integer-default
 interpretation; the registry's bounded opt-in integer policy is described
 below. Formatting preserves parsed values and does not expand wire support.

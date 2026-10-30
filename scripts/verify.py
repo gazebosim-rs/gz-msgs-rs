@@ -93,6 +93,18 @@ for key, path in [('nested_corpus_sha256', 'tests/fixtures/nested-extension-decl
                   ('deprecated_reference_script_sha256', 'scripts/extension-deprecated-reference.py')]:
     assert extension_packed[key] == hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest()
 assert extension_packed['standard_descriptor_fixture_sha256'] == definitions['inputs']['tests/fixtures/definitions/unsupported.desc']
+extension_enum_options = json.loads(pathlib.Path('tests/fixtures/extension-enum-options.json').read_text())
+for key in ['upstream_commit', 'native_binary_sha256', 'native_source_sha256', 'native_libraries_sha256', 'schema_manifest_sha256', 'peer_source_sha256']:
+    assert extension_enum_options[key] == definitions[key], key
+assert extension_enum_options['reference_script_sha256'] == hashlib.sha256(pathlib.Path('scripts/extension-enum-options-reference.py').read_bytes()).hexdigest()
+for key, path in [('nested_corpus_sha256', 'tests/fixtures/nested-extension-declarations.json'),
+                  ('nested_reference_script_sha256', 'scripts/nested-extension-declarations-reference.py'),
+                  ('deprecated_corpus_sha256', 'tests/fixtures/extension-deprecated.json'),
+                  ('deprecated_reference_script_sha256', 'scripts/extension-deprecated-reference.py'),
+                  ('packed_corpus_sha256', 'tests/fixtures/extension-packed.json'),
+                  ('packed_reference_script_sha256', 'scripts/extension-packed-reference.py')]:
+    assert extension_enum_options[key] == hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest()
+assert extension_enum_options['standard_descriptor_fixture_sha256'] == definitions['inputs']['tests/fixtures/definitions/unsupported.desc']
 packed_float = json.loads(pathlib.Path('tests/fixtures/packed-float-wire.json').read_text())
 assert packed_float['probe_source_sha256'] == hashlib.sha256(pathlib.Path('tests/wire_peer.cc').read_bytes()).hexdigest()
 assert packed_float['canonical_builder_sha256'] == hashlib.sha256(pathlib.Path('scripts/native-wire-peer.py').read_bytes()).hexdigest()

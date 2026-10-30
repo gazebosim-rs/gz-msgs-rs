@@ -12,8 +12,9 @@ synthetic FieldDescriptor conversion are used.
 
 Optional and repeated non-group scalar, enum and message fields are supported
 when the original descriptor omitted json_name and has no explicit default.
-Declared deprecated and [packed booleans](EXTENSION_PACKED.md) are supported;
-other nonempty options remain errors. Packed=true requires a repeated packable
+Declared deprecated, [packed booleans](EXTENSION_PACKED.md) and
+[CType/JSType enums](EXTENSION_ENUM_OPTIONS.md) are supported; other nonempty
+options and undeclared enum labels remain errors. Packed=true requires a repeated packable
 kind; packed=false preserves explicit presence for all supported kinds/labels.
 See also [deprecated extension options](EXTENSION_DEPRECATED.md). Empty option presence is retained in metadata. Declarations
 follow their raw source order, after ordinary fields and extension ranges and
