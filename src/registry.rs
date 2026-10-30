@@ -239,7 +239,7 @@ fn missing_json_names(prefix: &str, message: &DescriptorProto, missing: &mut BTr
     } else {
         format!("{prefix}.{}", message.name())
     };
-    for field in &message.field {
+    for field in message.field.iter().chain(&message.extension) {
         if field.json_name.is_none() {
             missing.insert(format!("{name}.{}", field.name()));
         }

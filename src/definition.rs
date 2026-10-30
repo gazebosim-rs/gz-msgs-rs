@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 //! Bounded native declaration formatting over validated reflection descriptors.
 use prost_reflect::{
-    Cardinality, DynamicMessage, EnumDescriptor, FieldDescriptor, Kind, MessageDescriptor, Syntax,
-    Value,
+    Cardinality, DynamicMessage, EnumDescriptor, ExtensionDescriptor, FieldDescriptor, Kind,
+    MessageDescriptor, Syntax, Value,
 };
 use std::{collections::BTreeSet, fmt::Write};
 
@@ -307,6 +307,87 @@ fn field(
     Ok(())
 }
 
+fn extension_declarations(
+    output: &mut String,
+    depth: usize,
+    owner: &MessageDescriptor,
+    omissions: &BTreeSet<String>,
+) -> Result<(), DefinitionError> {
+    let mut extensions: Vec<_> = owner.child_extensions().collect();
+    extensions.sort_by_key(|value| value.path().last().copied());
+    let mut previous = None;
+    for value in extensions {
+        validate_extension(&value, omissions)?;
+        let extendee = value.containing_message();
+        if previous.as_ref() != Some(&extendee) {
+            if previous.is_some() {
+                line(output, depth, "}");
+            }
+            line(
+                output,
+                depth,
+                format_args!("extend .{} {{", extendee.full_name()),
+            );
+            previous = Some(extendee);
+        }
+        let label = if value.is_list() {
+            "repeated"
+        } else {
+            "optional"
+        };
+        line(
+            output,
+            depth + 1,
+            format_args!(
+                "{label} {} {} = {};",
+                type_name(value.kind()),
+                value.name(),
+                value.number()
+            ),
+        );
+    }
+    if previous.is_some() {
+        line(output, depth, "}");
+    }
+    Ok(())
+}
+
+fn validate_extension(
+    value: &ExtensionDescriptor,
+    omissions: &BTreeSet<String>,
+) -> Result<(), DefinitionError> {
+    let raw = value.field_descriptor_proto();
+    // Only the registry retains whether reflection synthesized json_name.
+    if !omissions.contains(value.full_name()) {
+        return Err(DefinitionError::Unsupported("extension declarations"));
+    }
+    options(value.options(), &[])?;
+    // Native admits leading digits but rejects non-ASCII identifier bytes.
+    if value.name().is_empty()
+        || !value
+            .name()
+            .bytes()
+            .all(|byte| byte.is_ascii_alphanumeric() || byte == b'_')
+        || value.parent_file().syntax() != Syntax::Proto2
+        || value.containing_message().parent_file().syntax() != Syntax::Proto2
+        || value.cardinality() == Cardinality::Required
+        || value.is_group()
+        || value.is_map()
+        || raw.default_value.is_some()
+        || raw.oneof_index.is_some()
+        || raw.proto3_optional()
+        || value
+            .containing_message()
+            .descriptor_proto()
+            .options
+            .as_ref()
+            .is_some_and(|options| options.message_set_wire_format())
+    {
+        return Err(DefinitionError::Unsupported("extension declarations"));
+    }
+    Ok(())
+}
+
 fn enumeration(
     output: &mut String,
     depth: usize,
@@ -407,10 +488,6 @@ fn message(
         map_types(value)?;
         return Ok(());
     }
-    if value.child_extensions().len() != 0 {
-        return Err(DefinitionError::Unsupported("extension declarations"));
-    }
-
     validate_extension_ranges(value)?;
     for oneof in value.oneofs() {
         options(oneof.options(), &[])?;
@@ -473,6 +550,7 @@ fn message(
             ),
         );
     }
+    extension_declarations(output, depth + 1, value, omissions)?;
     reserved(
         output,
         depth + 1,

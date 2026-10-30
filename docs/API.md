@@ -393,8 +393,10 @@ are formatted in decimal from their effective values. Ordinary
 [Bytes](BYTES_DEFINITIONS.md), [enum](ENUM_DEFINITIONS.md) and
 [floating defaults](FLOATING_DEFINITIONS.md) have separate bounded native-backed
 contracts. Explicit-false [MessageSet metadata](MESSAGE_SET_FALSE.md) describes
-ordinary wire semantics; true MessageSet remains unsupported. Groups, extension-field
-declarations and unhandled options remain unsupported.
+ordinary wire semantics; true MessageSet remains unsupported. Groups, unsupported extension declarations and unhandled options remain unsupported.
+The source-aware [nested extension declaration formatter](NESTED_EXTENSION_DECLARATIONS.md)
+admits only ordinary proto2 declarations with original JSON-name absence; standalone
+descriptor formatting retains its presence limitation.
 Standard reflection entry points retain their separate raw integer-default
 interpretation; the registry's bounded opt-in integer policy is described
 below. Formatting preserves parsed values and does not expand wire support.

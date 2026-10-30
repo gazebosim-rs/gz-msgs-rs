@@ -71,6 +71,11 @@ extension_ranges = json.loads(pathlib.Path('tests/fixtures/extension-ranges.json
 for key in ['upstream_commit', 'native_binary_sha256', 'native_source_sha256', 'native_libraries_sha256', 'schema_manifest_sha256', 'peer_source_sha256']:
     assert extension_ranges[key] == definitions[key], key
 assert extension_ranges['reference_script_sha256'] == hashlib.sha256(pathlib.Path('scripts/extension-ranges-reference.py').read_bytes()).hexdigest()
+nested_extensions = json.loads(pathlib.Path('tests/fixtures/nested-extension-declarations.json').read_text())
+for key in ['upstream_commit', 'native_binary_sha256', 'native_source_sha256', 'native_libraries_sha256', 'schema_manifest_sha256', 'peer_source_sha256']:
+    assert nested_extensions[key] == definitions[key], key
+assert nested_extensions['reference_script_sha256'] == hashlib.sha256(pathlib.Path('scripts/nested-extension-declarations-reference.py').read_bytes()).hexdigest()
+assert nested_extensions['standard_descriptor_fixture_sha256'] == definitions['inputs']['tests/fixtures/definitions/unsupported.desc']
 packed_float = json.loads(pathlib.Path('tests/fixtures/packed-float-wire.json').read_text())
 assert packed_float['probe_source_sha256'] == hashlib.sha256(pathlib.Path('tests/wire_peer.cc').read_bytes()).hexdigest()
 assert packed_float['canonical_builder_sha256'] == hashlib.sha256(pathlib.Path('scripts/native-wire-peer.py').read_bytes()).hexdigest()

@@ -19,13 +19,13 @@ records the message-only true lazy flags and metadata/runtime boundary.
 labels with explicit shape and unknown-number guards. Synthetic map entries produce an empty body.
 A definition is assembled before return, so a failure exposes no partial string.
 [Ordinary proto2 extension ranges](EXTENSION_RANGES.md) retain raw source order
-and native endpoints with explicit option and invalid-range guards. Actual extension
-field declarations, groups and MessageSet remain unsupported.
+and native endpoints with explicit option and invalid-range guards. [Nested extension fields](NESTED_EXTENSION_DECLARATIONS.md) have a separate bounded
+source-aware declaration contract. Groups and true MessageSet remain unsupported.
 [Standard message options](MESSAGE_OPTIONS.md) retain code-generation metadata
 without changing Rust descriptor APIs or MessageSet wire support.
 
 `DefinitionError::Unsupported` identifies invalid default shapes and groups,
-extension-field declarations, unsupported standard/custom/unknown options, malformed
+unsupported extension-field declarations, unsupported standard/custom/unknown options, malformed
 synthetic map entries,
 empty oneofs, invalid/overflowing reserved boundaries, proto3 default/required fields or
 nesting beyond 100 message levels. Reflection accepts the raw default/required
@@ -48,7 +48,7 @@ Basic proto2 declarations preserve optional/required/repeated labels, oneofs,
 maps, nested messages/enums (including a nonzero first enum value), reserved
 declarations and the same supported boolean options. Oneof fields carry no
 optional label. Ordinary optional/required scalar defaults are supported within
-the family contracts below; invalid default shapes, groups and extensions return Unsupported;
+the family contracts below; invalid default shapes, groups and unsupported extension shapes return Unsupported;
 legacy inputs remain tested, with their first unsupported-feature diagnostic now
 identifying extensions rather than blanket proto2 rejection. Malformed required
 or repeated oneof labels accepted by reflection but rejected by native return a
