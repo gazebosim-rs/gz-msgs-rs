@@ -17,6 +17,35 @@ use std::{
     sync::Arc,
 };
 
+/// Native console wording available for a descriptor-file loading failure.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum LoadDiagnostic {
+    Open,
+    Parse,
+}
+
+/// A structured loading error with optional native file-diagnostic provenance.
+#[derive(Debug)]
+pub struct DescriptorLoadError {
+    pub path: PathBuf,
+    pub error: io::Error,
+    pub diagnostic: Option<LoadDiagnostic>,
+}
+
+impl DescriptorLoadError {
+    pub(crate) fn other(path: PathBuf, error: io::Error) -> Self {
+        Self {
+            path,
+            error,
+            diagnostic: None,
+        }
+    }
+
+    pub(crate) fn into_error(self) -> (PathBuf, io::Error) {
+        (self.path, self.error)
+    }
+}
+
 /// A canonical descriptor snapshot extended by caller-supplied descriptor sets.
 /// Mutations require an exclusive borrow; existing dynamic values own snapshots.
 #[derive(Clone)]
@@ -51,16 +80,19 @@ impl DescriptorRegistry {
     /// Load a platform-separated list of explicit paths or directories.
     /// Return path-associated IO/descriptor errors without printing diagnostics.
     pub fn load_paths(&mut self, paths: impl AsRef<OsStr>) -> Vec<(PathBuf, io::Error)> {
-        self.load_os_paths(paths.as_ref())
+        self.load_paths_detailed(paths.as_ref())
+            .into_iter()
+            .map(DescriptorLoadError::into_error)
+            .collect()
     }
     // Share traversal code across path argument types instead of monomorphizing it.
-    fn load_os_paths(&mut self, paths: &OsStr) -> Vec<(PathBuf, io::Error)> {
+    pub(crate) fn load_paths_detailed(&mut self, paths: &OsStr) -> Vec<DescriptorLoadError> {
         let mut errors = Vec::new();
         for path in std::env::split_paths(paths) {
             if path.is_dir() {
-                match self.load_directory(&path) {
+                match self.load_directory_path(&path) {
                     Ok(mut found) => errors.append(&mut found),
-                    Err(error) => errors.push((path, error)),
+                    Err(error) => errors.push(DescriptorLoadError::other(path, error)),
                 }
             } else {
                 self.load_candidate(&path, &mut errors);
@@ -75,9 +107,14 @@ impl DescriptorRegistry {
         &mut self,
         path: impl AsRef<Path>,
     ) -> io::Result<Vec<(PathBuf, io::Error)>> {
-        self.load_directory_path(path.as_ref())
+        self.load_directory_path(path.as_ref()).map(|errors| {
+            errors
+                .into_iter()
+                .map(DescriptorLoadError::into_error)
+                .collect()
+        })
     }
-    fn load_directory_path(&mut self, path: &Path) -> io::Result<Vec<(PathBuf, io::Error)>> {
+    fn load_directory_path(&mut self, path: &Path) -> io::Result<Vec<DescriptorLoadError>> {
         let mut errors = Vec::new();
         let own = path.join("gz-msgs.gz_desc");
         if own.exists() {
@@ -91,7 +128,7 @@ impl DescriptorRegistry {
         }
         Ok(errors)
     }
-    fn load_candidate(&mut self, path: &Path, errors: &mut Vec<(PathBuf, io::Error)>) {
+    fn load_candidate(&mut self, path: &Path, errors: &mut Vec<DescriptorLoadError>) {
         // Native recognition is a substring check on the full path, not a suffix.
         if ![".desc", ".gz_desc", ".proto"]
             .iter()
@@ -99,14 +136,14 @@ impl DescriptorRegistry {
         {
             return;
         }
-        match self.load_file(path) {
+        match self.load_file_detailed(path) {
             Ok(found) => errors.extend(found.into_iter().map(|error| {
-                (
+                DescriptorLoadError::other(
                     path.to_owned(),
                     io::Error::new(io::ErrorKind::InvalidData, error),
                 )
             })),
-            Err(error) => errors.push((path.to_owned(), error)),
+            Err(error) => errors.push(error),
         }
     }
     /// Read a binary FileDescriptorSet; malformed bytes return InvalidData.
@@ -114,13 +151,36 @@ impl DescriptorRegistry {
     /// IO, parse and individual-file validation failures remain retryable.
     pub fn load_file(&mut self, path: impl AsRef<Path>) -> io::Result<Vec<DescriptorError>> {
         let path = path.as_ref();
-        let key = descriptor_path_key(path)?;
+        self.load_file_detailed(path)
+            .map_err(|failure| failure.error)
+    }
+    fn load_file_detailed(
+        &mut self,
+        path: &Path,
+    ) -> Result<Vec<DescriptorError>, DescriptorLoadError> {
+        let open_error = |error| DescriptorLoadError {
+            path: path.to_owned(),
+            error,
+            diagnostic: Some(LoadDiagnostic::Open),
+        };
+        let key = descriptor_path_key(path).map_err(open_error)?;
         if self.loaded_files.contains(&key) {
             return Ok(Vec::new());
         }
+        let mut file = std::fs::File::open(path).map_err(open_error)?;
+        let mut bytes = Vec::new();
+        io::Read::read_to_end(&mut file, &mut bytes).map_err(|error| DescriptorLoadError {
+            path: path.to_owned(),
+            error,
+            diagnostic: Some(LoadDiagnostic::Parse),
+        })?;
         let errors = self
-            .load_bytes(&std::fs::read(path)?)
-            .map_err(|error| io::Error::new(io::ErrorKind::InvalidData, error))?;
+            .load_bytes_detailed(&bytes)
+            .map_err(|(error, diagnostic)| DescriptorLoadError {
+                path: path.to_owned(),
+                error: io::Error::new(io::ErrorKind::InvalidData, error),
+                diagnostic,
+            })?;
         if errors.is_empty() {
             Arc::make_mut(&mut self.loaded_files).insert(key);
         }
@@ -132,9 +192,16 @@ impl DescriptorRegistry {
     /// replace existing schemas. No filesystem path cache or environment is used.
     /// Byte defaults that can panic in the pinned loader return DecodeError.
     pub fn load_bytes(&mut self, bytes: &[u8]) -> Result<Vec<DescriptorError>, DecodeError> {
+        self.load_bytes_detailed(bytes).map_err(|(error, _)| error)
+    }
+    fn load_bytes_detailed(
+        &mut self,
+        bytes: &[u8],
+    ) -> Result<Vec<DescriptorError>, (DecodeError, Option<LoadDiagnostic>)> {
         // Reflect the descriptor set instead of prost-types decoding it: custom
         // options must survive as nested unknown bytes until their schema loads.
-        let set = DynamicMessage::decode(FileDescriptorSet::default().descriptor(), bytes)?;
+        let set = DynamicMessage::decode(FileDescriptorSet::default().descriptor(), bytes)
+            .map_err(|error| (error, Some(LoadDiagnostic::Parse)))?;
         let files = set
             .get_field_by_name("file")
             .expect("FileDescriptorSet.file");
@@ -144,12 +211,13 @@ impl DescriptorRegistry {
                 .as_message()
                 .expect("FileDescriptorProto")
                 .encode_to_vec();
-            let raw = FileDescriptorProto::decode(bytes.as_slice())?;
+            let raw =
+                FileDescriptorProto::decode(bytes.as_slice()).map_err(|error| (error, None))?;
             let existed = self.pool.get_file_by_name(raw.name()).is_some();
             if !existed {
-                check_default_fields(&raw.extension)?;
+                check_default_fields(&raw.extension).map_err(|error| (error, None))?;
                 for message in &raw.message_type {
-                    check_message_defaults(message)?;
+                    check_message_defaults(message).map_err(|error| (error, None))?;
                 }
             }
             match self

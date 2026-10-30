@@ -69,6 +69,11 @@ assert factory_cache['reference_script_sha256'] == hashlib.sha256(pathlib.Path('
 for name, expected in definitions['native_libraries_sha256'].items():
     assert factory_cache['native_libraries_sha256'][name] == expected, name
 assert os_argv['native_libraries_sha256'] == definitions['native_libraries_sha256']
+load_diagnostics = json.loads(pathlib.Path('tests/fixtures/cli-load-diagnostics.json').read_text())
+for key in ['upstream_commit', 'native_binary_sha256', 'native_source_sha256', 'native_libraries_sha256', 'schema_manifest_sha256']:
+    assert load_diagnostics[key] == definitions[key], key
+assert load_diagnostics['probe_sha256'] == hashlib.sha256(pathlib.Path('scripts/cli-load-diagnostics-reference.py').read_bytes()).hexdigest()
+assert load_diagnostics['canonical_listing_sha256'] == hashlib.sha256(pathlib.Path('tests/fixtures/cli-external-list.json').read_bytes()).hexdigest()
 field_options = json.loads(pathlib.Path('tests/fixtures/field-options.json').read_text())
 for key in ['upstream_commit', 'native_binary_sha256', 'native_source_sha256', 'native_libraries_sha256', 'schema_manifest_sha256', 'peer_source_sha256']:
     assert field_options[key] == definitions[key], key

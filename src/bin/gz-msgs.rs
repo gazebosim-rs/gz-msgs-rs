@@ -1390,6 +1390,7 @@ fn print_info(names: Vec<Vec<u8>>) -> Result<(), Box<dyn std::error::Error>> {
             let _ = factory.types();
             None
         };
+        print_load_errors(&factory)?;
         let Some(descriptor) = descriptor else {
             let mut stderr = std::io::stderr().lock();
             stderr.write_all(b"Unable to create message of type[")?;
@@ -1413,6 +1414,23 @@ fn print_info(names: Vec<Vec<u8>>) -> Result<(), Box<dyn std::error::Error>> {
     std::io::stdout().flush()?;
     Ok(())
 }
+fn print_load_errors(factory: &gz_msgs::factory::MessageFactory) -> std::io::Result<()> {
+    use gz_msgs::registry::LoadDiagnostic;
+    let mut stderr = std::io::stderr().lock();
+    for failure in factory.take_initial_errors_detailed() {
+        let message = match failure.diagnostic {
+            Some(LoadDiagnostic::Open) => b"DynamicFactory(): Unable to open [".as_slice(),
+            Some(LoadDiagnostic::Parse) => {
+                b"DynamicFactory(): Unable to parse descriptor set from [".as_slice()
+            }
+            None => continue,
+        };
+        stderr.write_all(message)?;
+        stderr.write_all(failure.path.as_os_str().as_encoded_bytes())?;
+        stderr.write_all(b"]\n")?;
+    }
+    Ok(())
+}
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let args = match legacy_cli::normalize(std::env::args_os().skip(1).collect()) {
         Ok(legacy_cli::Command::Utf8(args)) => args,
@@ -1432,7 +1450,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         return Ok(());
     }
     if args == ["list"] || args == ["--list"] || args == ["-l"] {
-        let names = gz_msgs::factory::MessageFactory::default().types();
+        let factory = gz_msgs::factory::MessageFactory::default();
+        let names = factory.types();
+        print_load_errors(&factory)?;
         println!("{}", names.join("\n"));
         return Ok(());
     }

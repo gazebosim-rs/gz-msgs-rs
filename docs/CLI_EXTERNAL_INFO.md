@@ -111,7 +111,9 @@ retain their existing canonical-type scope.
 Descriptor discovery/loading is a separate contract: see
 [the listing contract](CLI_EXTERNAL_LIST.md) and [the factory API](API.md).
 Immutable canonical-base precedence, structured loader failures and instance-local
-lazy initialization remain in force. Malformed-path native console diagnostics,
+lazy initialization remain in force. The bounded
+[file-diagnostic candidate](CLI_LOAD_DIAGNOSTICS.md) covers open and malformed-wire
+console output separately. Schema-validation native console diagnostics,
 conflicting canonical redefinitions, install/global behavior and arbitrary
 external serialization are not qualified by this formatter. Successful file
 caching is qualified separately in [FACTORY_FILE_CACHE.md](FACTORY_FILE_CACHE.md).

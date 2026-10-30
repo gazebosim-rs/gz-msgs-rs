@@ -3,7 +3,7 @@
 //! Instance-owned message creation with lazy external descriptors.
 use crate::{
     prost_reflect::{DynamicMessage, ReflectMessage},
-    registry::DescriptorRegistry,
+    registry::{DescriptorLoadError, DescriptorRegistry},
 };
 use std::{
     borrow::Cow,
@@ -19,7 +19,7 @@ struct State {
     constructors: BTreeMap<String, Constructor>,
     paths: Option<OsString>,
     registry: Option<DescriptorRegistry>,
-    initial_errors: Vec<(PathBuf, io::Error)>,
+    initial_errors: Vec<DescriptorLoadError>,
 }
 impl State {
     fn registry(&mut self) -> &mut DescriptorRegistry {
@@ -30,7 +30,7 @@ impl State {
                 .clone()
                 .or_else(|| std::env::var_os("GZ_DESCRIPTOR_PATH"))
                 .unwrap_or_default();
-            self.initial_errors = registry.load_paths(paths);
+            self.initial_errors = registry.load_paths_detailed(&paths);
             let prefix = self
                 .paths
                 .is_none()
@@ -41,9 +41,11 @@ impl State {
                 match share.try_exists() {
                     Ok(true) => self
                         .initial_errors
-                        .extend(registry.load_paths(share.as_os_str())),
+                        .extend(registry.load_paths_detailed(share.as_os_str())),
                     Ok(false) => {}
-                    Err(error) => self.initial_errors.push((share, error)),
+                    Err(error) => self
+                        .initial_errors
+                        .push(DescriptorLoadError::other(share, error)),
                 }
             }
             self.registry = Some(registry);
@@ -151,12 +153,24 @@ impl MessageFactory {
         let paths = paths.as_ref();
         let mut state = self.state.lock().expect("factory state");
         let explicit = state.registry().load_paths(paths);
-        let mut errors = std::mem::take(&mut state.initial_errors);
+        let mut errors: Vec<_> = std::mem::take(&mut state.initial_errors)
+            .into_iter()
+            .map(DescriptorLoadError::into_error)
+            .collect();
         errors.extend(explicit);
         errors
     }
     /// Retrieve initial-path diagnostics without triggering initialization.
     pub fn take_initial_errors(&self) -> Vec<(PathBuf, io::Error)> {
+        self.take_initial_errors_detailed()
+            .into_iter()
+            .map(DescriptorLoadError::into_error)
+            .collect()
+    }
+    /// Retrieve initial errors and native file-diagnostic provenance without initialization.
+    /// This drains the same pending errors as `take_initial_errors`.
+    /// Schema validation and traversal failures have no native diagnostic mapping.
+    pub fn take_initial_errors_detailed(&self) -> Vec<DescriptorLoadError> {
         std::mem::take(&mut self.state.lock().expect("factory state").initial_errors)
     }
 }

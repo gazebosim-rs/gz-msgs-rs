@@ -264,6 +264,13 @@ runtime or process-global mutable registration; the canonical base is bundled. I
 returning explicit-load diagnostics. Returned messages own descriptor snapshots
 and can outlive the factory.
 
+The candidate `take_initial_errors_detailed` drains that same queue without
+initialization, retaining original errors and optional `LoadDiagnostic`
+provenance for file-open and descriptor-wire failures. Library loading stays
+silent. The CLI uses these tags for bounded native console output; schema and
+safe-default guard failures remain distinct. See
+[the diagnostic boundary](CLI_LOAD_DIAGNOSTICS.md).
+
 `register` stores names literally, replacing previous constructors. Name/path
 argument conversion, constructor invocation and replacement destruction happen
 outside the state lock, allowing reentry. Constructors must be Send+Sync and
