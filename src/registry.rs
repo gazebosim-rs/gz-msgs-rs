@@ -11,9 +11,9 @@ use crate::{
 };
 use std::{
     collections::BTreeSet,
-    ffi::OsStr,
+    ffi::{OsStr, OsString},
     io,
-    path::{Path, PathBuf},
+    path::{Component, Path, PathBuf},
     sync::Arc,
 };
 
@@ -23,12 +23,14 @@ use std::{
 pub struct DescriptorRegistry {
     pool: DescriptorPool,
     json_omissions: Arc<BTreeSet<String>>,
+    loaded_files: Arc<BTreeSet<OsString>>,
 }
 impl Default for DescriptorRegistry {
     fn default() -> Self {
         Self {
             pool: crate::descriptors().clone(),
             json_omissions: Arc::default(),
+            loaded_files: Arc::default(),
         }
     }
 }
@@ -108,10 +110,21 @@ impl DescriptorRegistry {
         }
     }
     /// Read a binary FileDescriptorSet; malformed bytes return InvalidData.
-    /// The returned errors describe individual files that failed validation.
+    /// Successfully loaded paths are cached by native-compatible canonical key.
+    /// IO, parse and individual-file validation failures remain retryable.
     pub fn load_file(&mut self, path: impl AsRef<Path>) -> io::Result<Vec<DescriptorError>> {
-        self.load_bytes(&std::fs::read(path)?)
-            .map_err(|error| io::Error::new(io::ErrorKind::InvalidData, error))
+        let path = path.as_ref();
+        let key = descriptor_path_key(path)?;
+        if self.loaded_files.contains(&key) {
+            return Ok(Vec::new());
+        }
+        let errors = self
+            .load_bytes(&std::fs::read(path)?)
+            .map_err(|error| io::Error::new(io::ErrorKind::InvalidData, error))?;
+        if errors.is_empty() {
+            Arc::make_mut(&mut self.loaded_files).insert(key);
+        }
+        Ok(errors)
     }
     /// Attempt every file in descriptor-set order, retaining successful files.
     /// Missing imports can be supplied and failed files retried on a later call.
@@ -156,6 +169,57 @@ impl DescriptorRegistry {
         }
         Ok(errors)
     }
+}
+
+// Match the pinned native weak-canonical cache policy, including its relative
+// missing-prefix behavior. Filesystem resolution stays in std; path-clean owns
+// lexical dot/parent normalization. This is an identity key, not an IO sandbox.
+fn descriptor_path_key(path: &Path) -> io::Result<OsString> {
+    match path.canonicalize() {
+        Ok(value) => return Ok(value.into_os_string()),
+        Err(error) if missing_path(&error) => {}
+        Err(error) => return Err(error),
+    }
+    let mut prefix = PathBuf::new();
+    let mut existing = PathBuf::new();
+    let mut resolved = None;
+    for component in path.components() {
+        prefix.push(component.as_os_str());
+        match prefix.canonicalize() {
+            Ok(value) => {
+                existing = prefix.clone();
+                resolved = Some(value);
+            }
+            Err(error) if missing_path(&error) => break,
+            Err(error) => return Err(error),
+        }
+    }
+    let mut key = match resolved {
+        Some(value) => path_clean::clean(
+            value.join(
+                path.strip_prefix(existing)
+                    .expect("prefix from the same path"),
+            ),
+        ),
+        None => path_clean::clean(path),
+    };
+    // Native stores strings, not path objects: a trailing directory separator
+    // must not compare equal to a successfully cached ordinary filename.
+    let bytes = path.as_os_str().as_encoded_bytes();
+    let separator = |byte: u8| std::path::is_separator(char::from(byte));
+    let directory_tail = bytes.last().is_some_and(|byte| separator(*byte))
+        || (bytes.len() >= 2 && bytes.last() == Some(&b'.') && separator(bytes[bytes.len() - 2]))
+        || matches!(path.components().next_back(), Some(Component::ParentDir));
+    if directory_tail && key.file_name().is_some() {
+        key.push("");
+    }
+    Ok(key.into_os_string())
+}
+fn missing_path(error: &io::Error) -> bool {
+    matches!(
+        error.kind(),
+        io::ErrorKind::NotFound | io::ErrorKind::NotADirectory
+    )
 }
 
 fn check_message_defaults(message: &DescriptorProto) -> Result<(), DecodeError> {

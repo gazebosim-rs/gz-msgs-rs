@@ -130,6 +130,7 @@ dependencies = [
  "clap_lex",
  "fhex",
  "heck",
+ "path-clean",
  "prost",
  "prost-build",
  "prost-derive 0.14.4",
@@ -272,6 +273,12 @@ checksum = "68f19d67e5a2795c94e73e0bb1cc1a7edeb2e28efd39e2e1c9b7a40c1108b11c"
 dependencies = [
  "num-traits",
 ]
+
+[[package]]
+name = "path-clean"
+version = "1.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "17359afc20d7ab31fdb42bb844c8b3bb1dabd7dcf7e68428492da7f16966fcef"
 
 [[package]]
 name = "petgraph"

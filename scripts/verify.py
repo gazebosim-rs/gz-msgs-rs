@@ -61,6 +61,13 @@ definitions = json.loads(pathlib.Path('tests/fixtures/definitions/cli.json').rea
 for key in ['upstream_commit', 'native_binary_sha256', 'native_source_sha256', 'schema_manifest_sha256', 'native_argv0']:
     assert definitions[key] == options[key], key
 assert definitions['peer_source_sha256'] == hashlib.sha256(pathlib.Path('tests/definition_peer.cc').read_bytes()).hexdigest()
+factory_cache = json.loads(pathlib.Path('tests/fixtures/factory-cache.json').read_text())
+assert factory_cache['upstream_commit'] == manifest['commit']
+assert factory_cache['schema_manifest_sha256'] == hashlib.sha256(pathlib.Path('schemas/manifest.json').read_bytes()).hexdigest()
+assert factory_cache['peer_source_sha256'] == hashlib.sha256(pathlib.Path('tests/factory_cache_reference.cc').read_bytes()).hexdigest()
+assert factory_cache['reference_script_sha256'] == hashlib.sha256(pathlib.Path('scripts/factory-cache-reference.py').read_bytes()).hexdigest()
+for name, expected in definitions['native_libraries_sha256'].items():
+    assert factory_cache['native_libraries_sha256'][name] == expected, name
 assert os_argv['native_libraries_sha256'] == definitions['native_libraries_sha256']
 field_options = json.loads(pathlib.Path('tests/fixtures/field-options.json').read_text())
 for key in ['upstream_commit', 'native_binary_sha256', 'native_source_sha256', 'native_libraries_sha256', 'schema_manifest_sha256', 'peer_source_sha256']:

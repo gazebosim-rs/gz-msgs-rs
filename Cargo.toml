@@ -10,6 +10,7 @@ repository = "https://github.com/gazebosim-rs/gz-msgs-rs"
 build = "build.rs"
 
 [dependencies]
+path-clean = "=1.0.1"
 fhex = "=2.0.2"
 bytemuck = "=1.25.2"
 clap_lex = "=1.1.1"

@@ -117,8 +117,8 @@ long flag-value conversion has its [own corpus](CLI_FLAG_VALUES.md); full legacy
 grammar remains unqualified. Bracketed info vectors and per-occurrence required
 consumption follow the [bounded native rules](CLI_INFO_VECTORS.md).
 External descriptor CLI info supports the bounded declaration domain documented
-below. Install-prefix/canonical-path-cache behavior and broader Any/formatting
-qualification remain pending. [OS-byte arguments](OS_ARGV.md) preserve Linux argv
+below. Install-prefix discovery and broader Any/formatting qualification remain
+pending. Successful file-path caching has its own [contract](FACTORY_FILE_CACHE.md). [OS-byte arguments](OS_ARGV.md) preserve Linux argv
 bytes and legacy precedence. Factory environment/lazy,
 retry/concurrency and packed-cloud APIs are described below with their own limits.
 
@@ -209,7 +209,7 @@ and `DynamicMessage::parse_text_format(descriptor(name)?, text)` constructs one
 from protobuf text with a detailed parse error. These public reexports cover the
 original well-formed and malformed Vector3d cases and instantiate all 271 native
 registered names. External descriptors and their lazy/retry/concurrency contracts
-remain separate unfinished work.
+are qualified separately below; install-prefix discovery remains unfinished.
 
 `registry::DescriptorRegistry::default()` owns a canonical descriptor snapshot.
 `load_bytes` accepts binary FileDescriptorSet bytes and attempts files in their
@@ -217,7 +217,8 @@ encoded order. It returns every per-file descriptor error while retaining
 successful files, so callers can provide a missing dependency and retry the
 failed file. Malformed outer protobuf bytes return DecodeError. `load_file`
 reads one explicit path, returning IO/InvalidData errors or the same validation
-error list. Duplicate schema file names are ignored, including changed content;
+error list. Successful file paths are cached per registry; failures remain
+retryable. See [file-cache behavior](FACTORY_FILE_CACHE.md). Duplicate schema file names are ignored, including changed content;
 this API does not replace schemas. The public pool supports normal maintained
 reflection construction, field access, text/JSON and binary codecs. Existing
 messages/descriptors retain their pool snapshots after registry mutation/drop.
@@ -225,10 +226,10 @@ messages/descriptors retain their pool snapshots after registry mutation/drop.
 Reflection also decodes the descriptor set itself, preserving nested custom
 option bytes until their extension schema is available. A plain prost-types
 FileDescriptorSet decode would discard those bytes. The registry has no global
-mutation, native lifetime, path cache, environment lookup or lazy
-singleton behavior. Its canonical base is explicit; callers synchronize exclusive
-mutation themselves when sharing it. Those remaining legacy factory contracts
-are tracked separately, and default canonical descriptor APIs remain immutable.
+mutation, native lifetime, environment lookup or lazy singleton behavior. Its
+successful-file cache is instance owned and clones follow the pool snapshot. Its canonical base is explicit; callers synchronize exclusive
+mutation themselves when sharing it. Factory lazy/environment policy stays in its own API below; default canonical
+descriptor APIs remain immutable.
 
 
 `DescriptorRegistry::load_paths` accepts an explicit platform-separated path list.
@@ -242,8 +243,9 @@ other entries load progressively. A listing failure returns an IO error while
 retaining loaded descriptors (earlier per-file diagnostics are not returned with
 that listing error). No diagnostics are printed. Scanning does not recursively
 search nested directories or automatically retry imports. Repeated files/schemas
-remain idempotent by schema file name; there is still no canonical-path cache.
-Install-prefix discovery and canonical-path caching remain unfinished. No
+remain idempotent by schema file name, and successfully loaded canonical file
+keys avoid repeated descriptor reads. Empty sets count as successful loads. Install-prefix
+discovery remains unfinished. No
 external generated Rust types are created by the registry.
 
 

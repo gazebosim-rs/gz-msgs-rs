@@ -112,8 +112,9 @@ Descriptor discovery/loading is a separate contract: see
 [the listing contract](CLI_EXTERNAL_LIST.md) and [the factory API](API.md).
 Immutable canonical-base precedence, structured loader failures and instance-local
 lazy initialization remain in force. Malformed-path native console diagnostics,
-conflicting canonical redefinitions, install/global/cache behavior and arbitrary
-external serialization are not qualified by this formatter.
+conflicting canonical redefinitions, install/global behavior and arbitrary
+external serialization are not qualified by this formatter. Successful file
+caching is qualified separately in [FACTORY_FILE_CACHE.md](FACTORY_FILE_CACHE.md).
 
 `tests/definitions.rs` compares all 271 canonical dynamic message descriptors with
 a freshly compiled C++ protobuf peer, checks supported custom descriptors and
