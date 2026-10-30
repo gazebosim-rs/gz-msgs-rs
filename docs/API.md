@@ -244,19 +244,22 @@ retaining loaded descriptors (earlier per-file diagnostics are not returned with
 that listing error). No diagnostics are printed. Scanning does not recursively
 search nested directories or automatically retry imports. Repeated files/schemas
 remain idempotent by schema file name, and successfully loaded canonical file
-keys avoid repeated descriptor reads. Empty sets count as successful loads. Install-prefix
-discovery remains unfinished. No
-external generated Rust types are created by the registry.
+keys avoid repeated descriptor reads. Empty sets count as successful loads. The
+registry does not choose installation prefixes or create external generated Rust
+types; automatic discovery is a separate factory policy.
 
 
 `factory::MessageFactory` is an instance-owned synchronized constructor registry.
 `new_message` returns a dynamic value; `new_text` returns a parsed value, a detailed
 parse error, or None for an unknown type. Canonical generated-type lookup and
 registration do not initialize external descriptors. First dynamic lookup, Types
-or explicit loading reads GZ_DESCRIPTOR_PATH once per default instance. Explicit
-`with_paths` avoids that process environment dependency. There is no background
-runtime, process-global mutable registration or install-prefix probing; the
-canonical descriptor base is bundled. Initial load errors remain available via
+or explicit loading reads GZ_DESCRIPTOR_PATH once per default instance, then
+scans an existing `share/gz/protos` under an explicitly set runtime
+GZ_MSGS_INSTALL_PREFIX. Empty and OS-byte overrides retain their meaning.
+`with_paths` remains isolated from both environment sources. No absent-variable
+compiled-prefix fallback is selected; release layout remains open. See the
+[explicit-prefix boundary](FACTORY_INSTALL_SHARE.md). There is no background
+runtime or process-global mutable registration; the canonical base is bundled. Initial load errors remain available via
 `take_initial_errors`; `load_paths` drains pending initial diagnostics before
 returning explicit-load diagnostics. Returned messages own descriptor snapshots
 and can outlive the factory.

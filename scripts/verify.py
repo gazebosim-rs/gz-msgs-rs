@@ -119,6 +119,12 @@ for key, path in [('nested_corpus_sha256', 'tests/fixtures/nested-extension-decl
                   ('packed_reference_script_sha256', 'scripts/extension-packed-reference.py')]:
     assert extension_enum_options[key] == hashlib.sha256(pathlib.Path(path).read_bytes()).hexdigest()
 assert extension_enum_options['standard_descriptor_fixture_sha256'] == definitions['inputs']['tests/fixtures/definitions/unsupported.desc']
+install_share = json.loads(pathlib.Path('tests/fixtures/factory-install-share.json').read_text())
+assert install_share['upstream_commit'] == manifest['commit']
+assert install_share['native_cli_sha256'] == definitions['native_binary_sha256']
+assert install_share['schema_manifest_sha256'] == hashlib.sha256(pathlib.Path('schemas/manifest.json').read_bytes()).hexdigest()
+assert install_share['peer_source_sha256'] == hashlib.sha256(pathlib.Path('tests/factory_install_share_reference.cc').read_bytes()).hexdigest()
+assert install_share['reference_script_sha256'] == hashlib.sha256(pathlib.Path('scripts/factory-install-share-reference.py').read_bytes()).hexdigest()
 packed_float = json.loads(pathlib.Path('tests/fixtures/packed-float-wire.json').read_text())
 assert packed_float['probe_source_sha256'] == hashlib.sha256(pathlib.Path('tests/wire_peer.cc').read_bytes()).hexdigest()
 assert packed_float['canonical_builder_sha256'] == hashlib.sha256(pathlib.Path('scripts/native-wire-peer.py').read_bytes()).hexdigest()

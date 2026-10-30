@@ -39,3 +39,8 @@ debug = 1
 name = "factory_env"
 path = "tests/factory_env.rs"
 harness = false
+
+[[test]]
+name = "factory_install_share"
+path = "tests/factory_install_share.rs"
+harness = false

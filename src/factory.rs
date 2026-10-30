@@ -31,6 +31,21 @@ impl State {
                 .or_else(|| std::env::var_os("GZ_DESCRIPTOR_PATH"))
                 .unwrap_or_default();
             self.initial_errors = registry.load_paths(paths);
+            let prefix = self
+                .paths
+                .is_none()
+                .then(|| std::env::var_os("GZ_MSGS_INSTALL_PREFIX"))
+                .flatten();
+            if let Some(prefix) = prefix {
+                let share = PathBuf::from(prefix).join("share/gz/protos");
+                match share.try_exists() {
+                    Ok(true) => self
+                        .initial_errors
+                        .extend(registry.load_paths(share.as_os_str())),
+                    Ok(false) => {}
+                    Err(error) => self.initial_errors.push((share, error)),
+                }
+            }
             self.registry = Some(registry);
         }
         self.registry
@@ -45,7 +60,7 @@ pub struct MessageFactory {
     state: Mutex<State>,
 }
 impl MessageFactory {
-    /// Use these explicit paths instead of consulting GZ_DESCRIPTOR_PATH.
+    /// Use only these explicit paths, without environment-based discovery.
     pub fn with_paths(paths: impl Into<OsString>) -> Self {
         Self {
             state: Mutex::new(State {

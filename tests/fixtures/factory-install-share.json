@@ -1,0 +1,589 @@
+{
+  "upstream_commit": "89c0c3d1474f545cb889335daf930bfdab6ab852",
+  "native_sources_sha256": {
+    "core/src/DynamicFactory.cc": "a43f166d8bc2a29f49e7c9b2985817b65f16554e576e24e3fe46b03d9723728e",
+    "core/src/MessageFactory.cc": "58eb3d4d9a4541812f6042ddd8a8fd8c9bc984424fd46194eb8041e4d6be93b5",
+    "core/src/Factory.cc": "5991ae76b1523c990f2ddaedad11bba0c46ffb751e898352e28ab942d8afdc1c",
+    "core/include/gz/msgs/MessageFactory.hh": "b5f8c0289b5a65473c87f5cba9a5cdd2233b33e1288c0ebebc0528ef1c0545b4",
+    "core/include/gz/msgs/Factory.hh": "afe3a1392b9ebf0114c48771303044e75921193f4f8a39388a62ade57b8ec290",
+    "core/include/gz/msgs/InstallationDirectories.hh": "c85629692920b857f034a0fa54e1dc67cfa5198f2e62c1409615c7669c251d59",
+    "core/CMakeLists.txt": "22669905569683435b1e01a1d992b34f66229402cb1f665b506d7d27efb82bfb",
+    "build/core/gz-msgs_get_install_prefix_impl.cc": "f12f6e74850758e71078f09e4828e0c0b61c2d12d948cce264ee3ee58ad631d4"
+  },
+  "schema_manifest_sha256": "4762e2101674aa2cdd3a6518f8a71a50acde2ce417452e46b44f42e9d02c1d39",
+  "native_libraries_sha256": {
+    "libgz-msgs.so.13": "0504be34705191623dce9654e7b659663d87cdb92a3b99c83db13a7f60f13659",
+    "libstdc++.so.6": "1fd75fe70354a416d75aef22bcae68c47bd25d20e2d0568c30b1a9838cf62f11",
+    "libgcc_s.so.1": "d93224d2b0dab4247598be683adca02f5cf00586f99c187579cd7e92058fb7cb",
+    "libc.so.6": "3a15d66867d83762c7f2f1e37359cb8f6c5743edb369c65285cb0b1c4f7498bf",
+    "libprotobuf.so.32": "53a2a625a30418d6ea84438b04c9196214dec51a30476596ee9be45ccadb0404",
+    "libgz-utils.so.5": "2e91419fd59b6995ee8fada80e106dac5644d3d44cd2e8bc6655547433e51ae6",
+    "libm.so.6": "fce00b6f25f459cf4ae0b7fae4257909a1a8a86f9149e7c029a5d617baf1ccd0",
+    "libz.so.1": "f61677c7bdb7c2aa2a243ea781bfd16afcb361cede7b4ef76127a9d8eb9a5242"
+  },
+  "peer_source_sha256": "1de124566251430a23604717877e444bcaf8c473f9e24f0771d94b72205361f3",
+  "reference_script_sha256": "b5c61aaa364db4049f7dd3adcdbfb1a6951076e3931ec1531eba6e76769040d4",
+  "inputs": {
+    "A": "0a1d0a07612e70726f746f1205617564697422030a0141620670726f746f32",
+    "B_conflict": "0a1d0a07612e70726f746f1205617564697422030a0142620670726f746f32",
+    "B_other": "0a1d0a07622e70726f746f1205617564697422030a0142620670726f746f32"
+  },
+  "rows": [
+    {
+      "mode": "normal",
+      "native": {
+        "exit": 0,
+        "stdout": [
+          {
+            "hex": "535441544520312061756469742e410a535441544520322061756469742e410a4d4553534147452061756469742e4120612e70726f746f0a4d4553534147452061756469742e42202d0a"
+          }
+        ],
+        "stderr": [
+          {
+            "hex": ""
+          }
+        ]
+      },
+      "states": [
+        [
+          "audit.A"
+        ],
+        [
+          "audit.A"
+        ]
+      ],
+      "messages": [
+        [
+          "audit.A",
+          "a.proto"
+        ],
+        [
+          "audit.B",
+          "-"
+        ]
+      ]
+    },
+    {
+      "mode": "empty",
+      "native": {
+        "exit": 0,
+        "stdout": [
+          {
+            "hex": "535441544520312061756469742e410a535441544520322061756469742e410a4d4553534147452061756469742e4120612e70726f746f0a4d4553534147452061756469742e42202d0a"
+          }
+        ],
+        "stderr": [
+          {
+            "hex": ""
+          }
+        ]
+      },
+      "states": [
+        [
+          "audit.A"
+        ],
+        [
+          "audit.A"
+        ]
+      ],
+      "messages": [
+        [
+          "audit.A",
+          "a.proto"
+        ],
+        [
+          "audit.B",
+          "-"
+        ]
+      ]
+    },
+    {
+      "mode": "raw",
+      "native": {
+        "exit": 0,
+        "stdout": [
+          {
+            "hex": "535441544520312061756469742e410a535441544520322061756469742e410a4d4553534147452061756469742e4120612e70726f746f0a4d4553534147452061756469742e42202d0a"
+          }
+        ],
+        "stderr": [
+          {
+            "hex": ""
+          }
+        ]
+      },
+      "states": [
+        [
+          "audit.A"
+        ],
+        [
+          "audit.A"
+        ]
+      ],
+      "messages": [
+        [
+          "audit.A",
+          "a.proto"
+        ],
+        [
+          "audit.B",
+          "-"
+        ]
+      ]
+    },
+    {
+      "mode": "colon",
+      "native": {
+        "exit": 0,
+        "stdout": [
+          {
+            "hex": "535441544520310a535441544520320a4d4553534147452061756469742e41202d0a4d4553534147452061756469742e42202d0a"
+          }
+        ],
+        "stderr": [
+          {
+            "hex": ""
+          }
+        ]
+      },
+      "states": [
+        [],
+        []
+      ],
+      "messages": [
+        [
+          "audit.A",
+          "-"
+        ],
+        [
+          "audit.B",
+          "-"
+        ]
+      ]
+    },
+    {
+      "mode": "relative",
+      "native": {
+        "exit": 0,
+        "stdout": [
+          {
+            "hex": "535441544520312061756469742e410a535441544520322061756469742e410a4d4553534147452061756469742e4120612e70726f746f0a4d4553534147452061756469742e42202d0a"
+          }
+        ],
+        "stderr": [
+          {
+            "hex": ""
+          }
+        ]
+      },
+      "states": [
+        [
+          "audit.A"
+        ],
+        [
+          "audit.A"
+        ]
+      ],
+      "messages": [
+        [
+          "audit.A",
+          "a.proto"
+        ],
+        [
+          "audit.B",
+          "-"
+        ]
+      ]
+    },
+    {
+      "mode": "missing",
+      "native": {
+        "exit": 0,
+        "stdout": [
+          {
+            "hex": "535441544520310a535441544520320a4d4553534147452061756469742e41202d0a4d4553534147452061756469742e42202d0a"
+          }
+        ],
+        "stderr": [
+          {
+            "hex": ""
+          }
+        ]
+      },
+      "states": [
+        [],
+        []
+      ],
+      "messages": [
+        [
+          "audit.A",
+          "-"
+        ],
+        [
+          "audit.B",
+          "-"
+        ]
+      ]
+    },
+    {
+      "mode": "missing-colon",
+      "native": {
+        "exit": 0,
+        "stdout": [
+          {
+            "hex": "535441544520310a535441544520320a4d4553534147452061756469742e41202d0a4d4553534147452061756469742e42202d0a"
+          }
+        ],
+        "stderr": [
+          {
+            "hex": ""
+          }
+        ]
+      },
+      "states": [
+        [],
+        []
+      ],
+      "messages": [
+        [
+          "audit.A",
+          "-"
+        ],
+        [
+          "audit.B",
+          "-"
+        ]
+      ]
+    },
+    {
+      "mode": "loop",
+      "native": {
+        "exit": -6,
+        "stdout": [
+          {
+            "hex": ""
+          }
+        ],
+        "stderr": [
+          {
+            "hex": "7465726d696e6174652063616c6c6564206166746572207468726f77696e6720616e20696e7374616e6365206f6620277374643a3a66696c6573797374656d3a3a5f5f63787831313a3a66696c6573797374656d5f6572726f72270a20207768617428293a202066696c6573797374656d206572726f723a207374617475733a20546f6f206d616e79206c6576656c73206f662073796d626f6c6963206c696e6b73205b"
+          },
+          {
+            "case_directory": true
+          },
+          {
+            "hex": "2f6c6f6f702f73686172652f677a2f70726f746f735d0a"
+          }
+        ]
+      },
+      "states": [],
+      "messages": []
+    },
+    {
+      "mode": "env-first",
+      "native": {
+        "exit": 0,
+        "stdout": [
+          {
+            "hex": "535441544520312061756469742e420a535441544520322061756469742e420a4d4553534147452061756469742e41202d0a4d4553534147452061756469742e4220612e70726f746f0a"
+          }
+        ],
+        "stderr": [
+          {
+            "hex": ""
+          }
+        ]
+      },
+      "states": [
+        [
+          "audit.B"
+        ],
+        [
+          "audit.B"
+        ]
+      ],
+      "messages": [
+        [
+          "audit.A",
+          "-"
+        ],
+        [
+          "audit.B",
+          "a.proto"
+        ]
+      ]
+    },
+    {
+      "mode": "explicit-after",
+      "native": {
+        "exit": 0,
+        "stdout": [
+          {
+            "hex": "535441544520312061756469742e410a535441544520322061756469742e410a4d4553534147452061756469742e4120612e70726f746f0a4d4553534147452061756469742e42202d0a"
+          }
+        ],
+        "stderr": [
+          {
+            "hex": ""
+          }
+        ]
+      },
+      "states": [
+        [
+          "audit.A"
+        ],
+        [
+          "audit.A"
+        ]
+      ],
+      "messages": [
+        [
+          "audit.A",
+          "a.proto"
+        ],
+        [
+          "audit.B",
+          "-"
+        ]
+      ]
+    },
+    {
+      "mode": "late",
+      "native": {
+        "exit": 0,
+        "stdout": [
+          {
+            "hex": "535441544520312061756469742e420a535441544520322061756469742e420a4d4553534147452061756469742e41202d0a4d4553534147452061756469742e4220622e70726f746f0a"
+          }
+        ],
+        "stderr": [
+          {
+            "hex": ""
+          }
+        ]
+      },
+      "states": [
+        [
+          "audit.B"
+        ],
+        [
+          "audit.B"
+        ]
+      ],
+      "messages": [
+        [
+          "audit.A",
+          "-"
+        ],
+        [
+          "audit.B",
+          "b.proto"
+        ]
+      ]
+    },
+    {
+      "mode": "freeze",
+      "native": {
+        "exit": 0,
+        "stdout": [
+          {
+            "hex": "535441544520312061756469742e410a535441544520322061756469742e410a4d4553534147452061756469742e4120612e70726f746f0a4d4553534147452061756469742e42202d0a"
+          }
+        ],
+        "stderr": [
+          {
+            "hex": ""
+          }
+        ]
+      },
+      "states": [
+        [
+          "audit.A"
+        ],
+        [
+          "audit.A"
+        ]
+      ],
+      "messages": [
+        [
+          "audit.A",
+          "a.proto"
+        ],
+        [
+          "audit.B",
+          "-"
+        ]
+      ]
+    },
+    {
+      "mode": "generated",
+      "native": {
+        "exit": 0,
+        "stdout": [
+          {
+            "hex": "535441544520312061756469742e420a535441544520322061756469742e420a4d4553534147452061756469742e41202d0a4d4553534147452061756469742e4220622e70726f746f0a"
+          }
+        ],
+        "stderr": [
+          {
+            "hex": ""
+          }
+        ]
+      },
+      "states": [
+        [
+          "audit.B"
+        ],
+        [
+          "audit.B"
+        ]
+      ],
+      "messages": [
+        [
+          "audit.A",
+          "-"
+        ],
+        [
+          "audit.B",
+          "b.proto"
+        ]
+      ]
+    },
+    {
+      "mode": "registered",
+      "native": {
+        "exit": 0,
+        "stdout": [
+          {
+            "hex": "535441544520312061756469742e420a535441544520322061756469742e420a4d4553534147452061756469742e41202d0a4d4553534147452061756469742e4220622e70726f746f0a"
+          }
+        ],
+        "stderr": [
+          {
+            "hex": ""
+          }
+        ]
+      },
+      "states": [
+        [
+          "audit.B"
+        ],
+        [
+          "audit.B"
+        ]
+      ],
+      "messages": [
+        [
+          "audit.A",
+          "-"
+        ],
+        [
+          "audit.B",
+          "b.proto"
+        ]
+      ]
+    },
+    {
+      "mode": "bad-share",
+      "native": {
+        "exit": 0,
+        "stdout": [
+          {
+            "hex": "535441544520310a535441544520322061756469742e410a4d4553534147452061756469742e4120612e70726f746f0a4d4553534147452061756469742e42202d0a"
+          }
+        ],
+        "stderr": [
+          {
+            "hex": "44796e616d6963466163746f727928293a20556e61626c6520746f2070617273652064657363726970746f72207365742066726f6d205b"
+          },
+          {
+            "case_directory": true
+          },
+          {
+            "hex": "2f7072656669782f73686172652f677a2f70726f746f732f612e646573635d0a"
+          }
+        ]
+      },
+      "states": [
+        [],
+        [
+          "audit.A"
+        ]
+      ],
+      "messages": [
+        [
+          "audit.A",
+          "a.proto"
+        ],
+        [
+          "audit.B",
+          "-"
+        ]
+      ]
+    },
+    {
+      "mode": "errors",
+      "native": {
+        "exit": 0,
+        "stdout": [
+          {
+            "hex": "535441544520310a535441544520320a4d4553534147452061756469742e41202d0a4d4553534147452061756469742e42202d0a"
+          }
+        ],
+        "stderr": [
+          {
+            "hex": "44796e616d6963466163746f727928293a20556e61626c6520746f2070617273652064657363726970746f72207365742066726f6d205b"
+          },
+          {
+            "case_directory": true
+          },
+          {
+            "hex": "2f6261642d656e762e646573635d0a44796e616d6963466163746f727928293a20556e61626c6520746f2070617273652064657363726970746f72207365742066726f6d205b"
+          },
+          {
+            "case_directory": true
+          },
+          {
+            "hex": "2f7072656669782f73686172652f677a2f70726f746f732f612e646573635d0a44796e616d6963466163746f727928293a20556e61626c6520746f2070617273652064657363726970746f72207365742066726f6d205b"
+          },
+          {
+            "case_directory": true
+          },
+          {
+            "hex": "2f6261642d6578706c696369742e646573635d0a"
+          }
+        ]
+      },
+      "states": [
+        [],
+        []
+      ],
+      "messages": [
+        [
+          "audit.A",
+          "-"
+        ],
+        [
+          "audit.B",
+          "-"
+        ]
+      ]
+    }
+  ],
+  "native_cli_sha256": "6160c5d48314c32f36fceecd6a0637fc84b7fb09f1dada790ab6fcefd729bcc8",
+  "native_cli_libraries_sha256": {
+    "libgz-msgs.so.13": "0504be34705191623dce9654e7b659663d87cdb92a3b99c83db13a7f60f13659",
+    "libprotobuf.so.32": "53a2a625a30418d6ea84438b04c9196214dec51a30476596ee9be45ccadb0404",
+    "libstdc++.so.6": "1fd75fe70354a416d75aef22bcae68c47bd25d20e2d0568c30b1a9838cf62f11",
+    "libgcc_s.so.1": "d93224d2b0dab4247598be683adca02f5cf00586f99c187579cd7e92058fb7cb",
+    "libc.so.6": "3a15d66867d83762c7f2f1e37359cb8f6c5743edb369c65285cb0b1c4f7498bf",
+    "libgz-utils.so.5": "2e91419fd59b6995ee8fada80e106dac5644d3d44cd2e8bc6655547433e51ae6",
+    "libz.so.1": "f61677c7bdb7c2aa2a243ea781bfd16afcb361cede7b4ef76127a9d8eb9a5242",
+    "libm.so.6": "fce00b6f25f459cf4ae0b7fae4257909a1a8a86f9149e7c029a5d617baf1ccd0"
+  },
+  "cli_positive": {
+    "exit": 0,
+    "stdout_hex": "4e616d653a2061756469742e410a46696c653a20612e70726f746f0a0a6d6573736167652041207b0a7d0a0a",
+    "stderr_hex": ""
+  }
+}
