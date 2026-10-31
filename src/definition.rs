@@ -382,7 +382,8 @@ fn validate_extension(
         || value.cardinality() == Cardinality::Required
         || value.is_group()
         || value.is_map()
-        || raw.default_value.is_some() && !matches!(value.kind(), Kind::Bool | Kind::Int32)
+        || raw.default_value.is_some()
+            && !matches!(value.kind(), Kind::Bool | Kind::Int32 | Kind::Int64)
         || raw.oneof_index.is_some()
         || raw.proto3_optional()
         || value
@@ -399,15 +400,15 @@ fn validate_extension(
         // Canonical decimal spelling agrees without changing either loader.
         let default = match (value.kind(), value.default_value()) {
             (Kind::Bool, Value::Bool(default)) => default.to_string(),
-            (Kind::Int32, Value::I32(default)) => {
-                let canonical = default.to_string();
-                if raw.default_value.as_deref() != Some(canonical.as_str()) {
-                    return Err(DefinitionError::Unsupported("extension declarations"));
-                }
-                canonical
-            }
+            (Kind::Int32, Value::I32(default)) => default.to_string(),
+            (Kind::Int64, Value::I64(default)) => default.to_string(),
             _ => return Err(DefinitionError::Unsupported("extension declarations")),
         };
+        if !matches!(value.kind(), Kind::Bool)
+            && raw.default_value.as_deref() != Some(default.as_str())
+        {
+            return Err(DefinitionError::Unsupported("extension declarations"));
+        }
         declared.insert(0, format!("default = {default}"));
     }
     if raw.options.as_ref().and_then(|options| options.packed) == Some(true) && !value.is_packed() {

@@ -125,7 +125,7 @@ fn prepared_exact_and_new_source_aware_int32_defaults_match_native_and_keep_guar
         );
         let factory = MessageFactory::with_paths(path.as_os_str());
         assert!(factory.take_initial_errors().is_empty(), "{id}");
-        if row["policy"] == "supported" {
+        if row["policy"] == "supported" || id == "other-kind-3" {
             supported += 1;
             assert!(native.status.success(), "{id}");
             let expected = native_definition(row);
@@ -155,6 +155,11 @@ fn prepared_exact_and_new_source_aware_int32_defaults_match_native_and_keep_guar
                             raw,
                             "{id}"
                         ),
+                        Kind::Int64 => {
+                            assert_eq!(id, "other-kind-3");
+                            assert_eq!(raw, "3");
+                            assert_eq!(extension.default_value().as_i64(), Some(3));
+                        }
                         Kind::Bool => assert_eq!(
                             extension.default_value().as_bool(),
                             Some(raw == "true"),
@@ -224,7 +229,7 @@ fn prepared_exact_and_new_source_aware_int32_defaults_match_native_and_keep_guar
         }
         assert_eq!(descriptor.parent_file().encode_to_vec(), before, "{id}");
     }
-    assert_eq!((supported, unsupported, rejected), (57, 23, 17));
+    assert_eq!((supported, unsupported, rejected), (58, 22, 17));
     // Preserve the extension loader's narrower radix/range/whitespace policy.
     assert_eq!(native_accepted_loader_rejections, 10);
 }

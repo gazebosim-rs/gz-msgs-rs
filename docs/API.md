@@ -431,7 +431,9 @@ Source-aware [optional boolean extension defaults](EXTENSION_BOOLEAN_DEFAULTS.md
 preserve explicit true/false before supported options, while omitted defaults
 stay omitted. [Canonical INT32 extension defaults](EXTENSION_INT32_DEFAULTS.md)
 use the maintained effective value only when its decimal spelling matches the
-raw text. Other extension-default families keep their existing error.
+raw text. [Canonical INT64 extension defaults](EXTENSION_INT64_DEFAULTS.md)
+use the same source-aware decimal boundary with maintained I64 values. Other
+extension-default families keep their existing error.
 Standard reflection entry points retain their separate raw integer-default
 interpretation; the registry's bounded opt-in integer policy is described
 below. Formatting preserves parsed values and does not expand wire support.
