@@ -75,6 +75,9 @@ see the [remaining capability checklist](MSG_02_REMAINING.md) for release work.
 ## Runtime, tooling and provenance
 
 The maintained stack uses prost/prost-build 0.14.4 and prost-reflect 0.16.5.
+Reflected decoding reuses the field kind across a packed occurrence; its
+[qualification](REFLECTED_PACKED_KIND.md) retains the maintained scalar parsers
+and their partial-state/error-cursor behavior.
 Two narrowly patched dependencies are direct path dependencies, preserving fixes
 when this package is consumed without any consumer Cargo patch table. A supported
 prost-build prost_path facade combines standard prost traits with the patched

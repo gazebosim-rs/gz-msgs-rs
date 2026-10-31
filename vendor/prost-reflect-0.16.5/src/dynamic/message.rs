@@ -1,3 +1,5 @@
+// Copyright (C) 2026 Open Source Robotics Foundation
+// SPDX-License-Identifier: Apache-2.0
 use prost::{
     bytes::{Buf, BufMut},
     encoding::{DecodeContext, WireType},
@@ -279,7 +281,21 @@ impl Value {
     where
         B: Buf,
     {
-        match (self, field_desc.kind()) {
+        self.merge_field_with_kind(field_desc, &field_desc.kind(), wire_type, buf, ctx)
+    }
+
+    fn merge_field_with_kind<B>(
+        &mut self,
+        field_desc: &impl FieldDescriptorLike,
+        field_kind: &Kind,
+        wire_type: WireType,
+        buf: &mut B,
+        ctx: DecodeContext,
+    ) -> Result<(), DecodeError>
+    where
+        B: Buf,
+    {
+        match (self, field_kind) {
             (Value::Bool(value), Kind::Bool) => {
                 prost::encoding::bool::merge(wire_type, value, buf, ctx)
             }
@@ -336,16 +352,23 @@ impl Value {
                 }
             }
             (Value::List(values), field_kind) if field_desc.is_list() => {
+                // Resolve the kind once per occurrence, including packed elements.
                 if wire_type == WireType::LengthDelimited && field_desc.is_packable() {
                     prost::encoding::merge_loop(values, buf, ctx, |values, buf, ctx| {
-                        let mut value = Value::default_value(&field_kind);
-                        value.merge_field(field_desc, field_kind.wire_type(), buf, ctx)?;
+                        let mut value = Value::default_value(field_kind);
+                        value.merge_field_with_kind(
+                            field_desc,
+                            field_kind,
+                            field_kind.wire_type(),
+                            buf,
+                            ctx,
+                        )?;
                         values.push(value);
                         Ok(())
                     })
                 } else {
-                    let mut value = Value::default_value(&field_kind);
-                    value.merge_field(field_desc, wire_type, buf, ctx)?;
+                    let mut value = Value::default_value(field_kind);
+                    value.merge_field_with_kind(field_desc, field_kind, wire_type, buf, ctx)?;
                     values.push(value);
                     Ok(())
                 }
