@@ -17,6 +17,13 @@ DiscContents::{Sub,Pub}, publisher::PubType::{MsgPub,SrvPub}, Scope::{Process,Ho
 values implement prost::Name with canonical names and type.googleapis.com URLs.
 Standard prost/prost_types traits and Any values interoperate downstream.
 
+`encode_append(&message, &mut Vec<u8>)` is an explicit slice-backed alternative
+for appending a standard prost message, preserving an existing prefix. It uses
+checked length arithmetic, fallible reservation and an initialized tail; returned
+errors restore the original logical length. Capacity can grow, and panics or
+arbitrary custom Message side effects are not transactional. Generated/default
+codecs stay unchanged. See [costs and guarantees](APPEND_ENCODING.md).
+
 **Generated values discard unknown fields during decode.** Use
 `WireMessage::<T>::decode_compatible(bytes)` for a typed read-only view and lossless
 forwarding: value() borrows T and bytes() returns the original bytes exactly,
