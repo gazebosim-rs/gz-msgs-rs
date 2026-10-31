@@ -382,7 +382,7 @@ fn validate_extension(
         || value.cardinality() == Cardinality::Required
         || value.is_group()
         || value.is_map()
-        || raw.default_value.is_some() && !matches!(value.kind(), Kind::Bool)
+        || raw.default_value.is_some() && !matches!(value.kind(), Kind::Bool | Kind::Int32)
         || raw.oneof_index.is_some()
         || raw.proto3_optional()
         || value
@@ -395,9 +395,18 @@ fn validate_extension(
         return Err(DefinitionError::Unsupported("extension declarations"));
     }
     if raw.default_value.is_some() {
-        // Use the maintained parser's effective value without changing raw spelling.
-        let Value::Bool(default) = value.default_value() else {
-            return Err(DefinitionError::Unsupported("extension declarations"));
+        // Extension integer parsing differs from native radix/range semantics.
+        // Canonical decimal spelling agrees without changing either loader.
+        let default = match (value.kind(), value.default_value()) {
+            (Kind::Bool, Value::Bool(default)) => default.to_string(),
+            (Kind::Int32, Value::I32(default)) => {
+                let canonical = default.to_string();
+                if raw.default_value.as_deref() != Some(canonical.as_str()) {
+                    return Err(DefinitionError::Unsupported("extension declarations"));
+                }
+                canonical
+            }
+            _ => return Err(DefinitionError::Unsupported("extension declarations")),
         };
         declared.insert(0, format!("default = {default}"));
     }

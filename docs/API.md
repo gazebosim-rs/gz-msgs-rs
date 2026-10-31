@@ -429,7 +429,9 @@ option names and the existing 64-bit JSType constraint; unknown labels remain er
 Other extension options remain unsupported.
 Source-aware [optional boolean extension defaults](EXTENSION_BOOLEAN_DEFAULTS.md)
 preserve explicit true/false before supported options, while omitted defaults
-stay omitted. Other extension-default families keep their existing error.
+stay omitted. [Canonical INT32 extension defaults](EXTENSION_INT32_DEFAULTS.md)
+use the maintained effective value only when its decimal spelling matches the
+raw text. Other extension-default families keep their existing error.
 Standard reflection entry points retain their separate raw integer-default
 interpretation; the registry's bounded opt-in integer policy is described
 below. Formatting preserves parsed values and does not expand wire support.

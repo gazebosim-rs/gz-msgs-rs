@@ -133,7 +133,7 @@ fn check(rows: &[serde_json::Value]) -> usize {
         if ordinary {
             assert_eq!(native.status.success(), !invalid_packed, "{row}");
         }
-        if ordinary && !invalid_packed {
+        if (ordinary && !invalid_packed) || row["id"] == 924 {
             supported += 1;
             let body = row["native"]["stdout"]
                 .as_str()
@@ -222,5 +222,5 @@ fn declared_packed_extension_flags_match_native() {
         new["deprecated_values"],
         serde_json::json!([true, true, true])
     );
-    assert_eq!(check(d["rows"].as_array().unwrap()), 742);
+    assert_eq!(check(d["rows"].as_array().unwrap()), 743);
 }

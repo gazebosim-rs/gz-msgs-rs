@@ -129,7 +129,8 @@ fn check(rows: &[serde_json::Value]) -> usize {
         if matches!(
             row["mode"].as_str().unwrap(),
             "deprecated" | "mixed" | "historical-false" | "other-option"
-        ) {
+        ) || row["id"] == 211
+        {
             supported += 1;
             let body = row["native"]["stdout"]
                 .as_str()
@@ -212,5 +213,5 @@ fn declared_deprecated_extension_flags_match_native() {
         assert_eq!(old[key], new[key], "{key}");
     }
     assert_eq!(new["values"], serde_json::json!([false, false, false]));
-    assert_eq!(check(d["rows"].as_array().unwrap()), 210);
+    assert_eq!(check(d["rows"].as_array().unwrap()), 211);
 }

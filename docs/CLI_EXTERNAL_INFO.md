@@ -27,7 +27,9 @@ retain declared presence and native kind constraints. Unknown labels, other
 options, groups and true MessageSet remain unsupported.
 [Optional boolean extension defaults](EXTENSION_BOOLEAN_DEFAULTS.md) preserve
 explicit true/false before supported options on the source-aware paths; other
-extension-default families retain their existing Unsupported boundary.
+extension-default families retain their existing Unsupported boundary, except
+[canonical INT32 defaults](EXTENSION_INT32_DEFAULTS.md) on the same source-aware
+paths. Noncanonical integer text keeps existing loader/formatter boundaries.
 [Standard message options](MESSAGE_OPTIONS.md) retain code-generation metadata
 without changing Rust descriptor APIs or MessageSet wire support.
 

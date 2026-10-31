@@ -109,7 +109,9 @@ fn source_aware_boolean_extension_defaults_match_native_and_keep_guards() {
         );
         let factory = MessageFactory::with_paths(path.as_os_str());
         assert!(factory.take_initial_errors().is_empty(), "{id}");
-        if row["policy"] == "supported" {
+        if row["policy"] == "supported"
+            || matches!(id, "other-default-kind-5" | "mixed-default-kind")
+        {
             supported += 1;
             assert!(native.status.success(), "{id}");
             let expected = native_definition(row);
@@ -133,11 +135,17 @@ fn source_aware_boolean_extension_defaults_match_native_and_keep_guards() {
             };
             for extension in owner.child_extensions() {
                 if let Some(raw) = &extension.field_descriptor_proto().default_value {
-                    assert_eq!(
-                        extension.default_value().as_bool(),
-                        Some(raw == "true"),
-                        "{id}"
-                    );
+                    if extension.kind() == gz_msgs::prost_reflect::Kind::Int32 {
+                        assert!(matches!(id, "other-default-kind-5" | "mixed-default-kind"));
+                        assert_eq!(raw, "3", "{id}");
+                        assert_eq!(extension.default_value().as_i32(), Some(3), "{id}");
+                    } else {
+                        assert_eq!(
+                            extension.default_value().as_bool(),
+                            Some(raw == "true"),
+                            "{id}"
+                        );
+                    }
                 }
             }
             for option in ["--info", "-i", "info"] {
@@ -200,7 +208,7 @@ fn source_aware_boolean_extension_defaults_match_native_and_keep_guards() {
         }
         assert_eq!(descriptor.parent_file().encode_to_vec(), before, "{id}");
     }
-    assert_eq!((supported, unsupported, rejected), (32, 14, 10));
+    assert_eq!((supported, unsupported, rejected), (34, 12, 10));
 }
 
 #[test]

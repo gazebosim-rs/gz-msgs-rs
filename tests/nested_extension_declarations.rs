@@ -91,10 +91,11 @@ fn prepared_source_aware_nested_declarations_match_native() {
             Err(DefinitionError::Unsupported("extension declarations"))
         );
         let result = registry.definition("probe.Root");
-        if matches!(
+        if (matches!(
             row["mode"].as_str().unwrap(),
             "ordinary" | "empty-options" | "digit-name" | "deprecated"
-        ) && row["label"] != 2
+        ) && row["label"] != 2)
+            || row["id"] == 108
         {
             supported += 1;
             let expected = row["native"]["stdout"]
@@ -134,6 +135,6 @@ fn prepared_source_aware_nested_declarations_match_native() {
         }
         assert_eq!(d.parent_file().encode_to_vec(), before);
     }
-    assert_eq!((supported, native_admitted), (109, 115));
+    assert_eq!((supported, native_admitted), (110, 115));
     assert_eq!(registry_rejected, 1);
 }

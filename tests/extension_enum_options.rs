@@ -116,7 +116,8 @@ fn declared_enum_extension_options_match_native_without_metadata_changes() {
             descriptor_definition(&root),
             Err(DefinitionError::Unsupported("extension declarations"))
         );
-        let ordinary = matches!(row["mode"].as_str().unwrap(), "matrix" | "mixed");
+        let ordinary =
+            matches!(row["mode"].as_str().unwrap(), "matrix" | "mixed") || row["id"] == 2246;
         let profiles = row["profiles"].as_array().unwrap();
         let unknown = profiles.iter().any(|p| {
             ["ctype", "jstype"]
@@ -206,6 +207,6 @@ fn declared_enum_extension_options_match_native_without_metadata_changes() {
             metadata
         );
     }
-    assert_eq!(supported, 1065);
+    assert_eq!(supported, 1066);
     assert_eq!(admitted, 1888);
 }
