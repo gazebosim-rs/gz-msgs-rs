@@ -1,5 +1,0 @@
-file:
-- name: test.proto
-  messageType:
-  - name: Foo
-  - name: Foo

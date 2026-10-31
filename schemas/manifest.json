@@ -866,5 +866,16 @@
       "path": "schemas/gz/msgs/wrench.proto",
       "sha256": "db91c7a2ce0c0dc46761c171ef557f9e0d5be13387e89aa87a1532d1a1e73a24"
     }
-  ]
+  ],
+  "validation": {
+    "protoc_version": "libprotoc 3.21.12",
+    "include_root": "schemas",
+    "external_imports": [
+      {
+        "path": "google/protobuf/any.proto",
+        "sha256": "1aa80cf90ddbd380b73b1422bae51d76d99b82a4cdf0b183f21a802f72aafe8b"
+      }
+    ],
+    "descriptor_sha256": "903eaeb384231233d5075bec47e2c25747e064f16dbd47729f1f8d97f555e8f5"
+  }
 }

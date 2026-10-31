@@ -1,8 +1,0 @@
-file:
-- name: dep.proto
-  messageType:
-  - name: foo
-- name: root.proto
-  package: foo
-  dependency:
-  - dep.proto

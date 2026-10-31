@@ -1,90 +1,36 @@
-# Implementation guidance
+# Schema repository guidance
 
-Read README.md and the linked canonical plan, this repository's contract, task
-packets, and test policy. Confirmed owner decisions override proposed defaults.
-MSG-01's canonical message foundation is accepted. MSG-02's full retained scope
-remains in the ledger; all production quality gates stay mandatory for every slice.
+Owner decision D29 supersedes the former Rust runtime scope. This repository
+contains canonical `.proto` sources, a minimal inventory, notices, documentation
+and standard-compiler validation. Do not restore a generated Rust package,
+custom codec, reflection/conversion framework or standalone Messages CLI here
+or hide a successor runtime in simulator consumers. Consumers generate locally
+with pinned maintained tooling. D28 uses upstream Zenoh directly in the simulator.
 
-Generate types from canonical schemas. Preserve field numbers, packages, types, enums, descriptors, and wire behavior. Evaluate runtime reflection and unknown-field handling explicitly. Test C++ interoperability in both directions. Do not depend on Bevy or simulator-specific math.
+Preserve canonical source bytes, packages, field numbers, types, presence,
+options, imports and original OSRF copyright/license notices. Use the standard
+protobuf compiler to validate the complete import closure and descriptor identity;
+do not write a custom protobuf parser. Synthetic historical proto2/default-loader
+fixtures do not expand the 216-file canonical release inventory.
 
-- Pin the upstream main SHA, toolchain, dependencies, and fixtures. Reconcile the
-  central source inventory with actual expanded runtime tests for this repository.
-- Preserve behavior, formats, protocols, and all retained upstream test semantics.
-  Faithful Rust ports are allowed. Keep assertions, edge cases, tolerances, and
-  fixture hashes; verify against C++ reference runs and record the mapping.
-- Reuse maintained Rust libraries before writing general-purpose algorithms.
-  Record exact missing semantics before adding custom code.
-- Require strictly greater than 95% line and region coverage for each production
-  crate and the repository. Generated code exclusions must be explicit and reviewed.
-  Missing tests, unavailable runners, and empty denominators are not passes.
-- Install pre-commit checks and required CI gates using the canonical policy.
-  Never bypass hooks, weaken tests, or remove hard code from coverage to pass.
-- Keep unsafe code narrow and audited. Document ownership, threading, and error
-  behavior. Do not let panics or native exceptions cross FFI boundaries.
-- Write concise idiomatic code and human comments. Explain invariants and reasons,
-  not obvious statements. Avoid repetitive wrappers and speculative abstractions.
-- Measure performance against the pinned C++ behavior at equal fidelity. Report
-  evidence and limitations; a Rust rewrite is not inherently a speedup.
-- Work in bounded reviewable tasks. Commit only owned changes. A different reviewer
-  checks semantics, assertions, exclusions, and performance evidence.
-- Record exact check commands/results and unrun work. Keep this repo's test ledger
-  and integration contract current; do not silently break downstream consumers.
-- Reviewer builds of staged exports or other worktrees must use a separate,
-  reviewer-owned CARGO_TARGET_DIR. Never reuse the producer's Cargo target.
-  Verify binary provenance and fresh-source results; Cargo's Fresh message or a
-  newer binary mtime alone does not identify the source that was checked.
+Before changing a canonical definition, inspect the pinned upstream source and
+coordinate the compatibility decision. Require independent review, staged-index
+validation, negative controls, hosted CI and exact published source verification.
+Never weaken assertions, thresholds or inventory checks to make a gate pass.
+There is no production runtime crate in this tree; empty coverage denominators
+are not a >95% pass. Consumer-owned production code retains its real coverage and
+native domain interoperability requirements.
 
-Staged verification must retain the parent hook's intended Git index/context,
-then remove only `git rev-parse --local-env-vars` from the exported build/test
-child. Foreign fixture/reference Git commands must not inherit caller repository
-paths. Preserve nonlocal settings such as `GIT_SSH_COMMAND`. Keep the real
-worktree/alternate-index/foreign-repository regression mandatory.
+Use isolated worktrees and preserve other owners' work. Do not edit Fuel. Do not
+publish this transition until the coordinator confirms consumers have migrated;
+existing historical pins must keep working. Keep all existing Git history and
+runtime evidence. List non-regenerable files before any physical deletion.
 
-Do not apply the monorepo's internal crate layout here. Do not edit the active Fuel
-rewrite or another repository without a coordinated assignment.
+Staged validation preserves the parent Git context/index and removes only
+`git rev-parse --local-env-vars` from the exported child. Preserve nonlocal Git
+settings. Test real worktree, explicit context and alternate-index behavior.
 
-## Public progress reporting
-
-Keep this owner's status current at the public
-[rewrite dashboard](https://gazebosim-rs.github.io/rewrite-progress/).
-Follow the sibling rewrite-progress/status-contract.md; write the report to
-ignored artifacts/status.json, refresh UTC timestamps at slice/test/review/blocker
-changes, then run `python3 ../rewrite-progress/scripts/update-status.py gz-msgs-rs
-artifacts/status.json --dry-run` before publishing without --dry-run. Publish only
-this repository's status record. Only link quality.revision_url after verifying
-the commit is public. Accepted slices do not make MSG-01/MSG-02 complete while
-retained acceptance scope remains. Keep credentials and private paths out of reports.
-
-## Licensing
-
-Repository-owned code, tests and experiments use Apache-2.0; declare
-`license = "Apache-2.0"` in every owned Cargo package. Preserve all original
-vendored third-party licenses, copyright notices and provenance; this rule does
-not relicense third-party source.
-
-For new repository-owned Rust, Python, C++ and shell source/probes, include
-`Copyright (C) 2026 Open Source Robotics Foundation` and
-`SPDX-License-Identifier: Apache-2.0`; place comments after a shebang where present.
-Keep root NOTICE and README attribution consistent. Preserve original imported
-copyright holders/years and all vendored third-party attribution unchanged.
-
-Assertion-preserving Rust ports retain the original source copyright notices/years
-alongside the new rewrite notice, even when the source language changes.
-
-## Owner guidance (2026-10-27)
-
-These answers from the owner apply to every agent, Claude or ChatGPT.
-
-- Keep the real gates: tests, required coverage, this repository's pre-commit
-  hook, hosted CI, real C++ interoperability and preserved upstream test intent.
-  Do not add process on top of them: no frozen proposal files, hash-bound review
-  receipts, CPU/disk slot reservations, versioned reruns of the same check, or
-  archiving every failed build. Keep `artifacts/` small.
-- Have someone other than the author review each change: give the reviewer the
-  code and the claims to verify, and have it re-check each fix.
-- Ask the owner only for real product or dependency decisions and record the
-  answer. List non-regenerable files for the owner before deleting them.
-- Write status and reports in plain sentences that another agent can act on.
-- The simulator coordinator's current state and cross-repository lessons are in
-  gz-sim-rs `docs/HANDOFF.md` and the end of gz-sim-rs `AGENTS.md`.
-
+All new owned source uses Copyright (C) 2026 Open Source Robotics Foundation and
+SPDX-License-Identifier: Apache-2.0. Preserve third-party notices unchanged.
+Keep this owner's public status current through the sibling rewrite-progress
+updater; historical runtime metrics are not proof this transition is complete.

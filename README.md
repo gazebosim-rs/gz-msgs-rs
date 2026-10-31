@@ -1,60 +1,39 @@
-# Gazebo Messages in Rust
+<!-- Copyright (C) 2026 Open Source Robotics Foundation -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+# Gazebo message schemas
 
-Canonical Gazebo schemas, generated Rust values, runtime descriptors, conversion
-helpers and a standalone message tool. Apache-2.0; upstream notices are retained.
+This repository distributes 216 canonical Gazebo `.proto` definitions, their
+inventory and validation tooling. Consumers generate their own bindings with
+standard pinned protobuf tooling. There is no Rust package, generated binding,
+codec, reflection library, conversion API or standalone Messages command here.
 
-```rust
-use gz_msgs::{Clock, time_from_nanos, prost::Message};
-let clock = Clock { sim: Some(time_from_nanos(123)), ..Default::default() };
-let bytes = clock.encode_to_vec();
+The schemas are unchanged from Gazebo Messages commit
+`89c0c3d1474f545cb889335daf930bfdab6ab852`. Their original OSRF notices remain in
+every file. See [LICENSE](LICENSE), [NOTICE](NOTICE) and the
+[schema manifest](schemas/manifest.json).
+
+Use `schemas` as the compiler include root. Compile the files listed in the
+manifest, resolving the standard external `google/protobuf/any.proto` from your
+pinned protobuf installation. All canonical files use proto3; the inventory has
+no proto2 defaults, extensions or custom option definitions. Discovery schemas
+remain canonical data even though the standalone transport rewrite is retired.
+
+For schema validation, install standard `protoc` 3.21.12 with its matching include
+files and run:
+
+```sh
+python3 tools/test_validate.py
+python3 tools/test_staged.py
+python3 tools/validate.py
 ```
 
-Generated values discard unknown fields on decode. For lossless forwarding use
-`WireMessage::<Clock>::decode_compatible(&bytes)`, inspect `value()` and forward `bytes()`
-verbatim. See [the API contract](docs/API.md), [test ledger](docs/test-ledger.json)
-and [runtime qualification](docs/RUNTIME_PROBE.md).
-Direct prost decoding and reflective decoding reject known tags with unexpected
-wire types that native C++ treats as unknowns; the compatible envelope handles
-this boundary. See [wire qualification](docs/WIRE_COMPATIBILITY.md).
+Install the staged hook with `git config core.hooksPath .githooks`. It checks the
+intended Git index in a temporary source export, including alternate indexes.
+See [validation](docs/VALIDATION.md) and [consumer migration](docs/MIGRATION.md).
 
-The MSG-01 message foundation is [formally accepted](https://github.com/gazebosim-rs/gz-sim-rs/blob/30ade168180f97aa0bcaf447b278aaf1c4c0a5ba/docs/acceptance/MSG-01.md).
-All83 original message cases have independently reviewed Rust assertion mappings.
-MSG-02 remains in progress: broader XML/formatting and dynamic tooling contracts,
-packaging/release qualification and performance evidence are still required.
-Complete Gazebo Messages parity is not claimed. The canonical architecture and acceptance policy live in
-[gz-sim-rs](https://github.com/gazebosim-rs/gz-sim-rs/blob/main/docs/PLAN.md).
-
-Requires Rust 1.94.1 and protoc (qualified baseline 3.21.12). `cargo test --locked`
-also needs a C++17 compiler, libprotobuf and gtest development files. Run the quality
-gate with `python3 scripts/verify.py`; install staged-tree enforcement using
-`git config core.hooksPath .githooks`. The vendored dependency fixes apply
-transitively without downstream Cargo patch configuration.
-The [added-line coverage policy](docs/CHANGED_COVERAGE.md) also enforces >95%
-coverage of newly added executable production lines and retains exact staged
-coverage evidence.
-
-New repository-owned contributions are Copyright (C) 2026 Open Source Robotics
-Foundation, SPDX-License-Identifier: Apache-2.0. See [NOTICE](NOTICE). Imported
-schemas/tests and vendored dependencies retain their original notices and licenses.
-
-[Source packaging](docs/PACKAGING.md) preserves the reviewed vendored fixes and
-licenses. Crates.io publishing remains disabled; a normal `.crate` archive loses
-the path dependencies and is not a supported distribution.
-
-External registry integer defaults follow a bounded, native-backed
-[Linux LP64 policy](docs/INTEGER_DEFAULTS.md), preserving raw descriptor spelling.
-Standard reflection entry points retain their separate limitations. The bounded
-[integer declaration formatter](docs/INTEGER_DEFINITIONS.md) supports all ten ordinary
-proto2 integer scalar kinds without changing raw descriptor metadata. Ordinary
-[boolean defaults](docs/BOOLEAN_DEFINITIONS.md) and valid-UTF8
-[string defaults](docs/STRING_DEFINITIONS.md) also use native declaration spelling.
-Ordinary [enum defaults](docs/ENUM_DEFINITIONS.md) retain the selected name,
-including aliases of the same numeric value.
-Ordinary [bytes defaults](docs/BYTES_DEFINITIONS.md) format admitted reflected
-bytes with the same quoting helper, preserving existing loader boundaries.
-Ordinary [floating defaults](docs/FLOATING_DEFINITIONS.md) use the pinned native
-precision/layout policy with Rust std rounding and unchanged decoder boundaries.
-
-The [representative codec baseline](docs/CODEC_BENCHMARK.md) retains native/Rust
-fresh/reused serialization measurements, including slower packed LaserScan
-results. It is bounded evidence, not MSG-02 or simulator performance acceptance.
+This private transition is not yet published. Existing simulator consumers still
+pin the historical Rust package; schema-only removal must be coordinated with
+consumer-owned code generation before publication. Runtime history and evidence
+remain available at commit `a39a9455d731923bd316745c2dda21071408dcbf` and its ancestors.
+The owner retired that runtime release responsibility under D29; this does not
+mean the historical full runtime task was completed.

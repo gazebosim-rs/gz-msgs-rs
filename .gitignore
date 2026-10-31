@@ -1,6 +1,2 @@
-/target/
 /artifacts/
-/.cache/
-*.profraw
-*.profdata
 __pycache__/
