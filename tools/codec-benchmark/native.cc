@@ -70,10 +70,11 @@ template<class T> void run(const T &value, const std::string &action,
     } else { throw std::runtime_error("unknown codec mode"); }
     return result;
   };
-  for (unsigned i = 0; i < 64; ++i) consume(operation());
-  auto start = std::chrono::steady_clock::now(); std::uint64_t checksum = 0;
+  if (action == "run") for (unsigned i = 0; i < 64; ++i) consume(operation());
+  auto start = action == "run" ? std::chrono::steady_clock::now() : std::chrono::steady_clock::time_point{};
+  std::uint64_t checksum = 0;
   for (std::uint64_t i = 0; i < count; ++i) checksum += operation();
-  auto ns = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now() - start).count();
+  auto ns = action == "run" ? std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now() - start).count() : 0;
   if (mode == "decode_reuse" || mode == "roundtrip_reuse") require(reused.SerializeAsString() == bytes);
   if (mode == "encode_reuse" || mode == "roundtrip_reuse") require(output == bytes);
   report(ns, checksum, count, bytes.size());
@@ -92,10 +93,11 @@ void envelope(const std::string &fixture, const std::string &action, std::uint64
     auto original = bytes; gz::msgs::Time decoded; require(decoded.ParseFromString(original));
     auto result = decoded.nsec() + original.size(); consume(decoded); consume(original); return result;
   };
-  for (unsigned i = 0; i < 64; ++i) consume(operation());
-  auto start = std::chrono::steady_clock::now(); std::uint64_t checksum = 0;
+  if (action == "run") for (unsigned i = 0; i < 64; ++i) consume(operation());
+  auto start = action == "run" ? std::chrono::steady_clock::now() : std::chrono::steady_clock::time_point{};
+  std::uint64_t checksum = 0;
   for (std::uint64_t i = 0; i < count; ++i) checksum += operation();
-  auto ns = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now() - start).count();
+  auto ns = action == "run" ? std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now() - start).count() : 0;
   report(ns, checksum, count, bytes.size());
 }
 
@@ -103,10 +105,10 @@ int main(int argc, char **argv) {
   try {
     require(argc == 3 || argc == 5);
     const std::string action = argv[1], fixture = argv[2], mode = argc == 5 ? argv[3] : "";
-    require(action == "dump" || action == "run");
+    require(action == "dump" || action == "run" || action == "verify");
     if (argc == 5) { std::string n = argv[4]; require(!n.empty() && std::all_of(n.begin(), n.end(), [](char c) { return c >= '0' && c <= '9'; })); }
     auto count = argc == 5 ? std::stoull(argv[4]) : 0;
-    require(action != "run" || (count > 0 && count <= 1000000000));
+    require(action == "dump" || (count > 0 && count <= 1000000000));
     if (fixture.rfind("time_", 0) == 0) {
       require(action == "dump" || mode == "envelope"); envelope(fixture, action, count);
     } else if (fixture == "clock") {

@@ -208,6 +208,7 @@ commands += [
     ['python3', 'tools/test_codec_benchmark.py'],
     ['cargo', 'fmt', '--manifest-path', 'tools/codec-benchmark/Cargo.toml', '--', '--check'],
     ['cargo', 'clippy', '--locked', '--release', '--manifest-path', 'tools/codec-benchmark/Cargo.toml', '--', '-D', 'warnings'],
-    ['python3', 'tools/codec_benchmark.py', '--verify-only'],
+    ['cargo', 'clippy', '--locked', '--release', '--manifest-path', 'tools/codec-benchmark/Cargo.toml', '--features', 'append', '--', '-D', 'warnings'],
+    ['python3', 'tools/codec_benchmark.py', '--verify-only', '--append'],
 ]
 run_checks(root, changed, commands)

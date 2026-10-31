@@ -115,7 +115,7 @@ python3 tools/codec_benchmark.py --samples 10 --sample-ms 50
 
 An explicit --output directory must not contain a prior results.json; raw
 measurements are never overwritten. Build products are regenerable. The normal
-staged gate runs the eight failure/sampling/compiler controls, consumer formatting/Clippy
+staged gate runs the failure/sampling/compiler controls, consumer formatting/Clippy
 and all 45 native/Rust fidelity/work controls without timing. The standalone
 consumer is measurement/test tooling, outside the shipped production crate's
 coverage denominator. All existing production coverage, native, assertion and
@@ -125,3 +125,47 @@ Independent compiler-fidelity review passed before final timing. Final review
 replayed all 45 fidelity controls, recomputed every summary/interval/table cell
 and checked all 450 paired samples against the independently rebuilt executable.
 The single normal Main gate and exact hosted qualification remain required.
+
+## Public append-helper preparation
+
+The current verifier has a separate `verify` action in both executables. It
+performs no warmup and never enters the harness clock path; every verification
+row must report zero elapsed time. Counts 1 and 3 still execute the complete
+operation and compare work, bytes and checksums. `--verify-only --append` also
+builds an opt-in public-helper consumer, checks all three runtimes against the
+ten complete historical wires, and retains all 270 verification rows. The normal
+staged gate uses this path and checks both consumer feature configurations.
+
+`tools/append_benchmark.py --archive ARCHIVE --revision FULL_PUBLIC_SHA
+--output EMPTY_DIRECTORY` prepares independent native, default prost and public
+append executables from a source distribution. The trusted full revision is
+mandatory. The maintained source-package checker verifies every archive blob,
+mode, path and the complete Git commit/tree before compilation. A separate
+consumer links that extracted library through its public API; its source, lock
+and manifest are identical for the two Rust builds. The `append` feature is
+their only build selection difference. Generated native types use the same
+extracted schema closure. Compiler arguments/profiles, raw Rust build logs,
+consumer inputs, generated sources, executable/library identities and source
+manifest identity are retained in the output. No private precursor helper code
+is used as runtime provenance.
+The hosted workflow repeats this preparation against its own immutable source
+archive and uploads the report, raw build logs, consumer/generated inputs and
+three executables alongside the existing source and coverage evidence.
+
+Fresh default encoding calls `Message::encode_to_vec`; fresh append encoding
+creates an empty vector and calls the shipped `gz_msgs::encode_append`, including
+fallible reservation, zero-fill, both length traversals and all returned-error
+checks. Reused encoding clears the output vector inside the operation before
+calling its selected encoder. Native fresh encoding uses `SerializeAsString`;
+`SerializeToString` resets the retained output inside each reused operation.
+Decode and roundtrip keep the original public clear/parse lifetimes. Buffer
+capacity retention and allocation counts may differ between runtimes; this is
+equal caller work, not a claim of identical allocation internals.
+
+Public controls additionally check Any, prefix/append boundaries, reflective
+unknown fields and exact signed-zero/NaN bits. The source-bound public-helper
+output is preparation only: this command contains no measurement option. A later
+quiet comparison must bind its raw balanced samples to these exact executables
+and inputs and receive independent review. The historical default-codec result
+and the distinct precursor experiment remain unchanged; shipped-helper timing,
+default adoption and MSG-02 completion remain unqualified.

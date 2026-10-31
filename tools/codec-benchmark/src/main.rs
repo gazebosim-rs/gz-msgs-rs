@@ -58,9 +58,71 @@ fn encoded_sample(bytes: &[u8]) -> u64 {
     bytes.len() as u64 + u64::from(bytes[0]) + u64::from(*bytes.last().unwrap())
 }
 
+fn encode<T: Message>(value: &T, output: &mut Vec<u8>) {
+    #[cfg(feature = "append")]
+    gz_msgs::encode_append(value, output).unwrap();
+    #[cfg(not(feature = "append"))]
+    value.encode(output).unwrap();
+}
+
+fn encode_fresh<T: Message>(value: &T) -> Vec<u8> {
+    #[cfg(feature = "append")]
+    {
+        let mut output = Vec::new();
+        gz_msgs::encode_append(value, &mut output).unwrap();
+        output
+    }
+    #[cfg(not(feature = "append"))]
+    value.encode_to_vec()
+}
+
+fn public_controls() {
+    let time = Time { sec: -1, nsec: 42 };
+    let any = gz_msgs::prost_types::Any::from_msg(&time).unwrap();
+    let mut output = vec![0xaa, 0xbb];
+    for _ in 0..2 {
+        let start = output.len();
+        gz_msgs::encode_append(&any, &mut output).unwrap();
+        assert_eq!(
+            gz_msgs::prost_types::Any::decode(&output[start..]).unwrap(),
+            any
+        );
+    }
+    assert_eq!(&output[..2], &[0xaa, 0xbb]);
+    let mut wire = time.encode_to_vec();
+    wire.extend([0xa0, 6, 123]);
+    let dynamic = gz_msgs::prost_reflect::DynamicMessage::decode(
+        gz_msgs::descriptor("gz.msgs.Time").unwrap(),
+        wire.as_slice(),
+    )
+    .unwrap();
+    assert_eq!(dynamic.unknown_fields().count(), 1);
+    output.clear();
+    gz_msgs::encode_append(&dynamic, &mut output).unwrap();
+    assert_eq!(output, dynamic.encode_to_vec());
+    assert_eq!(output, wire);
+    let floats = FloatV {
+        header: None,
+        data: vec![-0.0, 0.0, f32::from_bits(0x7fc01234)],
+    };
+    output.clear();
+    gz_msgs::encode_append(&floats, &mut output).unwrap();
+    assert_eq!(output, floats.encode_to_vec());
+    let decoded = FloatV::decode(output.as_slice()).unwrap();
+    assert_eq!(
+        decoded.data.iter().map(|v| v.to_bits()).collect::<Vec<_>>(),
+        floats.data.iter().map(|v| v.to_bits()).collect::<Vec<_>>()
+    );
+}
+
 fn run<T: Sample>(value: T, action: &str, mode: &str, count: u64) {
     let bytes = value.encode_to_vec();
-    assert_eq!(T::decode(bytes.as_slice()).unwrap(), value);
+    {
+        let decoded = T::decode(bytes.as_slice()).unwrap();
+        assert_eq!(decoded, value);
+        assert_eq!(decoded.encode_to_vec(), bytes);
+    }
+    assert_eq!(encode_fresh(&value), bytes);
     if action == "dump" {
         std::io::stdout().write_all(&bytes).unwrap();
         return;
@@ -73,7 +135,7 @@ fn run<T: Sample>(value: T, action: &str, mode: &str, count: u64) {
             check.merge(bytes.as_slice()).unwrap();
             assert_eq!(check, value);
             encoded.clear();
-            check.encode(&mut encoded).unwrap();
+            encode(&check, &mut encoded);
             assert_eq!(encoded, bytes);
         }
     }
@@ -81,14 +143,14 @@ fn run<T: Sample>(value: T, action: &str, mode: &str, count: u64) {
     let mut output = Vec::with_capacity(bytes.len());
     let mut operation = || match mode {
         "encode_fresh" => {
-            let encoded = black_box(&value).encode_to_vec();
+            let encoded = encode_fresh(black_box(&value));
             let sample = encoded_sample(&encoded);
             black_box(encoded);
             sample
         }
         "encode_reuse" => {
             output.clear();
-            black_box(&value).encode(&mut output).unwrap();
+            encode(black_box(&value), &mut output);
             let sample = encoded_sample(&output);
             black_box(&output);
             sample
@@ -108,7 +170,7 @@ fn run<T: Sample>(value: T, action: &str, mode: &str, count: u64) {
         }
         "roundtrip_fresh" => {
             let decoded = T::decode(black_box(bytes.as_slice())).unwrap();
-            let encoded = decoded.encode_to_vec();
+            let encoded = encode_fresh(&decoded);
             let sample = decoded.sample().wrapping_add(encoded_sample(&encoded));
             black_box((decoded, encoded));
             sample
@@ -117,22 +179,24 @@ fn run<T: Sample>(value: T, action: &str, mode: &str, count: u64) {
             reused.clear();
             reused.merge(black_box(bytes.as_slice())).unwrap();
             output.clear();
-            reused.encode(&mut output).unwrap();
+            encode(&reused, &mut output);
             let sample = reused.sample().wrapping_add(encoded_sample(&output));
             black_box((&reused, &output));
             sample
         }
         _ => panic!("unknown codec mode"),
     };
-    for _ in 0..64 {
-        black_box(operation());
+    if action == "run" {
+        for _ in 0..64 {
+            black_box(operation());
+        }
     }
-    let start = Instant::now();
+    let start = (action == "run").then(Instant::now);
     let mut checksum = 0_u64;
     for _ in 0..count {
         checksum = checksum.wrapping_add(operation());
     }
-    let elapsed = start.elapsed().as_nanos();
+    let elapsed = start.map_or(0, |start| start.elapsed().as_nanos());
     if mode == "decode_reuse" || mode == "roundtrip_reuse" {
         assert_eq!(reused, value);
         assert_eq!(reused.encode_to_vec(), bytes);
@@ -168,15 +232,17 @@ fn envelope(fixture: &str, action: &str, count: u64) {
         black_box(decoded);
         sample
     };
-    for _ in 0..64 {
-        black_box(operation());
+    if action == "run" {
+        for _ in 0..64 {
+            black_box(operation());
+        }
     }
-    let start = Instant::now();
+    let start = (action == "run").then(Instant::now);
     let mut checksum = 0_u64;
     for _ in 0..count {
         checksum = checksum.wrapping_add(operation());
     }
-    let elapsed = start.elapsed().as_nanos();
+    let elapsed = start.map_or(0, |start| start.elapsed().as_nanos());
     println!(
         "{{\"elapsed_ns\":{elapsed},\"checksum\":{checksum},\"iterations\":{count},\"bytes\":{}}}",
         bytes.len()
@@ -187,14 +253,17 @@ fn main() {
     let args: Vec<_> = std::env::args().collect();
     assert!(
         args.len() == 3 || args.len() == 5,
-        "dump FIXTURE | run FIXTURE MODE ITERATIONS"
+        "dump FIXTURE | run|verify FIXTURE MODE ITERATIONS"
     );
     let (action, fixture) = (args[1].as_str(), args[2].as_str());
-    assert!(action == "dump" || action == "run");
+    assert!(action == "dump" || action == "run" || action == "verify");
     let mode = args.get(3).map(String::as_str).unwrap_or("");
     let count = args.get(4).map(|v| v.parse::<u64>().unwrap()).unwrap_or(0);
-    if action == "run" {
+    if action != "dump" {
         assert!(count > 0 && count <= 1_000_000_000);
+    }
+    if action == "verify" {
+        public_controls();
     }
     if fixture.starts_with("time_") {
         assert!(action == "dump" || mode == "envelope");

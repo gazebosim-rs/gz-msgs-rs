@@ -71,7 +71,7 @@ def rust_invocations(stderr, compiler, host):
     return units
 
 
-def rust_build(manifest, output, name):
+def rust_build(manifest, output, name, features=(), binary_name='rust'):
     channel = tomllib.loads((ROOT / 'rust-toolchain.toml').read_text())['toolchain']['channel']
     compiler = Path(command(['rustup', 'which', '--toolchain', channel, 'rustc']).stdout.decode().strip()).resolve(strict=True)
     cargo_binary = Path(command(['rustup', 'which', '--toolchain', channel, 'cargo']).stdout.decode().strip()).resolve(strict=True)
@@ -96,16 +96,22 @@ def rust_build(manifest, output, name):
     with tempfile.TemporaryDirectory(prefix='rust-build-', dir=output) as target:
         cargo = [cargo_binary, 'build', '--locked', '--release', '--verbose', '--color', 'never', '--message-format=json',
                  '--manifest-path', manifest, '--target', host, '--target-dir', target]
+        if features:
+            cargo.extend(['--features', ','.join(features)])
         for key, value in settings.items():
             cargo.extend(['--config', key + '=' + json.dumps(value)])
         built = command(cargo, env=env, cwd=manifest.parent)
+        (output / (binary_name + '-build.stdout')).write_bytes(built.stdout)
+        (output / (binary_name + '-build.stderr')).write_bytes(built.stderr)
         units = rust_invocations(built.stderr, compiler, host)
         assert any(unit['runtime'] and unit['crate'] == name.replace('-', '_') for unit in units)
         profiles = [row for line in built.stdout.splitlines()
                     if (row := json.loads(line)).get('reason') == 'compiler-artifact']
-        binary = output / 'rust'
+        binary = output / binary_name
         shutil.copy2(Path(target) / host / 'release' / name, binary)
-    return binary, {'command': list(map(str, cargo)), 'cargo_sha256': sha(cargo_binary),
+    return binary, {'command': list(map(str, cargo)), 'features': list(features),
+                    'stdout_sha256': sha(output / (binary_name + '-build.stdout')),
+                    'stderr_sha256': sha(output / (binary_name + '-build.stderr')), 'cargo_sha256': sha(cargo_binary),
                     'cargo_version': command([cargo_binary, '--version']).stdout.decode().strip(),
                     'compiler': str(compiler), 'compiler_sha256': sha(compiler),
                     'version': version, 'invocations': units,
@@ -113,33 +119,33 @@ def rust_build(manifest, output, name):
                                   'kind': row['target']['kind'], 'profile': row['profile']} for row in profiles]}
 
 
-def schema_closure():
+def schema_closure(root=ROOT):
     pending = ['gz/msgs/' + name + '.proto' for name in ('clock', 'imu', 'pose_v', 'laserscan')]
     result = set()
     while pending:
         name = pending.pop()
         if name not in result:
             result.add(name)
-            pending.extend(re.findall(r'^import "([^"]+)";', (ROOT / 'schemas' / name).read_text(), re.M))
+            pending.extend(re.findall(r'^import "([^"]+)";', (root / 'schemas' / name).read_text(), re.M))
     return sorted(result)
 
 
-def build(output):
+def build(output, append=False, source_root=ROOT):
     generated = output / 'generated'
     generated.mkdir(parents=True, exist_ok=True)
-    manifest = json.loads((ROOT / 'schemas/manifest.json').read_text())
+    manifest = json.loads((source_root / 'schemas/manifest.json').read_text())
     for item in manifest['schemas']:
-        assert sha(ROOT / item['path']) == item['sha256'], item['path']
-    for package in json.loads((ROOT / 'vendor/manifest.json').read_text())['packages']:
+        assert sha(source_root / item['path']) == item['sha256'], item['path']
+    for package in json.loads((source_root / 'vendor/manifest.json').read_text())['packages']:
         for item in package['files']:
-            assert sha(ROOT / item['path']) == item['sha256'], item['path']
-    root_lock = tomllib.loads((ROOT / 'Cargo.lock').read_text())
+            assert sha(source_root / item['path']) == item['sha256'], item['path']
+    root_lock = tomllib.loads((source_root / 'Cargo.lock').read_text())
     bench_lock = tomllib.loads((TOOLS / 'Cargo.lock').read_text())
     def packages(lock):
         return {(p['name'], p['version'], p.get('source'), p.get('checksum')) for p in lock['package']}
     assert packages(bench_lock) - {('gz-msgs-codec-benchmark', '0.0.0', None, None)} <= packages(root_lock), 'Benchmark runtime differs from root lock'
-    schemas = schema_closure()
-    protoc = ['protoc', '-I' + str(ROOT / 'schemas'), '--cpp_out=' + str(generated), *schemas]
+    schemas = schema_closure(source_root)
+    protoc = ['protoc', '-I' + str(source_root / 'schemas'), '--cpp_out=' + str(generated), *schemas]
     command(protoc)
     native = output / 'native'
     compiler = Path(shutil.which('c++')).resolve(strict=True)
@@ -147,11 +153,28 @@ def build(output):
            '-I' + str(generated), TOOLS / 'native.cc',
            *[generated / (name[:-6] + '.pb.cc') for name in schemas], '-lprotobuf', '-pthread', '-o', native]
     command(cxx)
-    rust, rust_info = rust_build(TOOLS / 'Cargo.toml', output, 'gz-msgs-codec-benchmark')
+    # A separate caller consumes only the public package API. Its lock/source is
+    # identical across variants; the append feature is their only Cargo difference.
+    consumer = output / 'consumer'
+    (consumer / 'src').mkdir(parents=True)
+    shutil.copy2(TOOLS / 'src/main.rs', consumer / 'src/main.rs')
+    shutil.copy2(TOOLS / 'Cargo.lock', consumer / 'Cargo.lock')
+    text = (TOOLS / 'Cargo.toml').read_text()
+    assert text.count('path = "../.."') == 1
+    (consumer / 'Cargo.toml').write_text(text.replace('path = "../.."', 'path = ' + json.dumps(str(source_root))))
+    rust, rust_info = rust_build(consumer / 'Cargo.toml', output, 'gz-msgs-codec-benchmark')
     binaries = {'cpp': native, 'rust': rust}
+    append_info = None
+    if append:
+        binaries['append'], append_info = rust_build(consumer / 'Cargo.toml', output, 'gz-msgs-codec-benchmark',
+                                                    features=('append',), binary_name='rust-append')
+    for info in (rust_info, append_info):
+        if info is not None:
+            libraries = [unit for unit in info['invocations'] if unit['runtime'] and unit['crate'] == 'gz_msgs']
+            assert len(libraries) == 1 and str(source_root / 'src/lib.rs') in libraries[0]['arguments'], 'Consumer used another package source'
     def portable(value):
         if isinstance(value, str):
-            return value.replace(str(output), '$OUTPUT').replace(str(ROOT), '$REPOSITORY').replace(str(Path.home()), '$HOME')
+            return value.replace(str(source_root), '$PACKAGE').replace(str(output), '$OUTPUT').replace(str(ROOT), '$REPOSITORY').replace(str(Path.home()), '$HOME')
         if isinstance(value, list):
             return [portable(item) for item in value]
         if isinstance(value, dict):
@@ -160,17 +183,20 @@ def build(output):
     return binaries, {'protoc': portable(list(map(str, protoc))), 'cxx': portable(list(map(str, cxx))),
                       'cxx_sha256': sha(compiler), 'cxx_version': command([compiler, '--version']).stdout.decode().splitlines()[0],
                       'rust': portable(rust_info),
+                      'append': portable(append_info),
+                      'consumer': {name: sha(consumer / name) for name in ('Cargo.toml', 'Cargo.lock', 'src/main.rs')},
                       'generated': {name[:-6] + suffix: sha(generated / (name[:-6] + suffix))
                                     for name in schemas for suffix in ('.pb.cc', '.pb.h')}}
 
 
-def invoke(binary, cpu, fixture, mode, count):
-    output = command(['taskset', '-c', cpu, binary, 'run', fixture, mode, count])
+def invoke(binary, cpu, fixture, mode, count, action='run'):
+    output = command(['taskset', '-c', cpu, binary, action, fixture, mode, count])
     assert not output.stderr, output.stderr.decode(errors='replace')
     row = json.loads(output.stdout)
     assert set(row) == {'elapsed_ns', 'checksum', 'iterations', 'bytes'}
     assert all(type(value) is int for value in row.values())
-    assert row['elapsed_ns'] > 0 and row['bytes'] > 0 and row['iterations'] == count
+    assert (row['elapsed_ns'] == 0 if action == 'verify' else row['elapsed_ns'] > 0)
+    assert row['bytes'] > 0 and row['iterations'] == count
     return row
 
 
@@ -179,7 +205,7 @@ def validate_sample(row, count, unit, size):
     assert row['checksum'] == (unit * count) & MASK, 'unequal or incomplete timed work'
 
 
-def verify(binaries, cpu):
+def verify(binaries, cpu, observations=None):
     fixtures, units = {}, {}
     for fixture in FIXTURES + ENVELOPES:
         wire = {}
@@ -187,17 +213,21 @@ def verify(binaries, cpu):
             result = command(['taskset', '-c', cpu, binary, 'dump', fixture])
             assert not result.stderr
             wire[name] = result.stdout
-        assert wire['cpp'] == wire['rust'], fixture
+        assert all(value == wire['cpp'] for value in wire.values()), fixture
         fixtures[fixture] = {'bytes': len(wire['cpp']), 'sha256': hashlib.sha256(wire['cpp']).hexdigest(),
                              'wire_hex': wire['cpp'].hex()}
         for mode in MODES if fixture in FIXTURES else ('envelope',):
-            single = {name: invoke(binary, cpu, fixture, mode, 1) for name, binary in binaries.items()}
-            assert single['cpp']['checksum'] == single['rust']['checksum'], (fixture, mode)
+            single = {name: invoke(binary, cpu, fixture, mode, 1, action='verify') for name, binary in binaries.items()}
+            assert all(row['checksum'] == single['cpp']['checksum'] for row in single.values()), (fixture, mode)
             unit = single['cpp']['checksum']
             units[fixture, mode] = unit
             for name, binary in binaries.items():
                 validate_sample(single[name], 1, unit, len(wire[name]))
-                validate_sample(invoke(binary, cpu, fixture, mode, 3), 3, unit, len(wire[name]))
+                repeated = invoke(binary, cpu, fixture, mode, 3, action='verify')
+                validate_sample(repeated, 3, unit, len(wire[name]))
+                if observations is not None:
+                    observations.extend({'runtime': name, 'fixture': fixture, 'mode': mode, **row}
+                                        for row in (single[name], repeated))
     return fixtures, units
 
 
@@ -257,7 +287,8 @@ def identity(binaries, cpu, build_info):
     paths = ['tools/codec_benchmark.py', 'tools/test_codec_benchmark.py', 'tools/codec-benchmark/native.cc', 'tools/codec-benchmark/release_checks.hh',
              'tools/codec-benchmark/src/main.rs', 'tools/codec-benchmark/Cargo.toml',
              'tools/codec-benchmark/Cargo.lock', 'Cargo.toml', 'Cargo.lock', 'build.rs',
-             'rust-toolchain.toml', 'schemas/manifest.json', 'schemas/cli-info.json', 'vendor/manifest.json']
+             'rust-toolchain.toml', 'schemas/manifest.json', 'schemas/cli-info.json', 'vendor/manifest.json',
+             'docs/codec-benchmark.json']
     paths += [str(p.relative_to(ROOT)) for p in sorted((ROOT / 'src').rglob('*.rs'))]
     return {'schema_commit': json.loads((ROOT / 'schemas/manifest.json').read_text())['commit'],
             'rustc': build_info['rust']['version'],
@@ -275,22 +306,27 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, default=ROOT / ('artifacts/codec-benchmark-' + time.strftime('%Y%m%dT%H%M%S', time.gmtime()) + '-' + str(os.getpid())))
     parser.add_argument('--verify-only', action='store_true')
+    parser.add_argument('--append', action='store_true', help='Also verify the public helper; no timing in this mode')
     parser.add_argument('--cpu', type=int, default=min(os.sched_getaffinity(0)))
     parser.add_argument('--samples', type=int, default=10)
     parser.add_argument('--sample-ms', type=float, default=50)
     args = parser.parse_args()
+    assert not args.append or args.verify_only, 'Append qualification is preparation only; timing is separate'
     assert args.cpu in os.sched_getaffinity(0)
     assert args.samples >= 10 and math.isfinite(args.sample_ms) and args.sample_ms >= 10
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=True)
     assert not (output / 'results.json').exists(), 'Choose a new output directory to preserve prior measurements'
-    binaries, build_info = build(output)
-    fixtures, units = verify(binaries, args.cpu)
+    binaries, build_info = build(output, append=args.append)
+    observations = []
+    fixtures, units = verify(binaries, args.cpu, observations)
+    if args.append:
+        assert fixtures == json.loads((ROOT / 'docs/codec-benchmark.json').read_text())['fixtures'], 'Historical complete wire changed'
     report = {'scope': 'Generated canonical known-field codecs; Time owned-byte envelopes are separate. No simulator or broad performance acceptance.',
               'utc_started': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),
-              'warmup_iterations_per_process': 64, 'seed': 73119, 'samples': args.samples,
+              'warmup_iterations_per_process': 0 if args.verify_only else 64, 'seed': 73119, 'samples': args.samples,
               'target_sample_ms': args.sample_ms, 'identity': identity(binaries, args.cpu, build_info),
-              'fixtures': fixtures, 'checks': len(units), 'rows': []}
+              'fixtures': fixtures, 'checks': len(units), 'verification_rows': observations, 'rows': []}
     if not args.verify_only:
         report['rows'] = measure(binaries, args.cpu, fixtures, units, args.samples, args.sample_ms)
     report['utc_finished'] = time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())

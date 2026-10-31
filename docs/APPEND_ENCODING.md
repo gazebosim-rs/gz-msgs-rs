@@ -47,6 +47,12 @@ or small payloads. There is no new decode implementation, native performance
 parity, broad robotics/simulator speedup or allocation-count equivalence claim.
 Fresh and reused operations retain the capacities each runtime supports.
 
+The [benchmark preparation command](CODEC_BENCHMARK.md#public-append-helper-preparation)
+builds independent default/helper consumers against a verified full-SHA source
+archive and checks the unchanged native goldens without clocks or warmup.
+It retains source, compiler, executable and complete-work evidence for a later
+quiet measurement. Preparation does not qualify performance or adopt the helper.
+
 Native conformance controls compare all fourteen packed scalar families,
 empty/boundary lengths, nonfinite and signed-zero bits, unknown enum integers,
 canonical LaserScan and standard Any wires. Further controls retain existing

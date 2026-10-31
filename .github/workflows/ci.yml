@@ -15,6 +15,7 @@ jobs:
       - run: python3 scripts/test-staged.py
       - run: python3 scripts/source-package.py --output artifacts/distribution
       - run: python3 scripts/test-source-package.py --archive artifacts/distribution/gz-msgs-${{ github.sha }}.tar.gz --revision ${{ github.sha }} --fresh-cache
+      - run: python3 tools/append_benchmark.py --archive artifacts/distribution/gz-msgs-${{ github.sha }}.tar.gz --revision ${{ github.sha }} --output artifacts/public-append-prepared
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: messages-source-${{ github.sha }}-${{ github.run_attempt }}
@@ -22,6 +23,14 @@ jobs:
             artifacts/distribution/*.tar.gz
             artifacts/distribution/*.sha256
             artifacts/source-package-check/proof.json
+            artifacts/public-append-prepared/prepared.json
+            artifacts/public-append-prepared/*-build.stdout
+            artifacts/public-append-prepared/*-build.stderr
+            artifacts/public-append-prepared/consumer/**
+            artifacts/public-append-prepared/generated/**
+            artifacts/public-append-prepared/native
+            artifacts/public-append-prepared/rust
+            artifacts/public-append-prepared/rust-append
             target/coverage/coverage.json
             target/coverage/coverage.lcov
             target/coverage/changed-production.json
