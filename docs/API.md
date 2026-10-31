@@ -427,6 +427,9 @@ descriptor formatting retains its presence limitation. Declared
 guards. Declared [CType/JSType enums](EXTENSION_ENUM_OPTIONS.md) reuse maintained
 option names and the existing 64-bit JSType constraint; unknown labels remain errors.
 Other extension options remain unsupported.
+Source-aware [optional boolean extension defaults](EXTENSION_BOOLEAN_DEFAULTS.md)
+preserve explicit true/false before supported options, while omitted defaults
+stay omitted. Other extension-default families keep their existing error.
 Standard reflection entry points retain their separate raw integer-default
 interpretation; the registry's bounded opt-in integer policy is described
 below. Formatting preserves parsed values and does not expand wire support.

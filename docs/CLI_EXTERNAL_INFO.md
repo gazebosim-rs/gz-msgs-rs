@@ -25,6 +25,9 @@ source-aware declaration contract, including declared [deprecated flags](EXTENSI
 repeated-packable true guards. [CType/JSType extension enums](EXTENSION_ENUM_OPTIONS.md)
 retain declared presence and native kind constraints. Unknown labels, other
 options, groups and true MessageSet remain unsupported.
+[Optional boolean extension defaults](EXTENSION_BOOLEAN_DEFAULTS.md) preserve
+explicit true/false before supported options on the source-aware paths; other
+extension-default families retain their existing Unsupported boundary.
 [Standard message options](MESSAGE_OPTIONS.md) retain code-generation metadata
 without changing Rust descriptor APIs or MessageSet wire support.
 

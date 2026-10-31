@@ -370,7 +370,7 @@ fn validate_extension(
     let requires_64_bit = metadata
         .get_field_by_name("jstype")
         .is_some_and(|value| value.as_enum_number().is_some_and(|number| number != 0));
-    let declared = options(metadata, &["ctype", "packed", "deprecated", "jstype"])?;
+    let mut declared = options(metadata, &["ctype", "packed", "deprecated", "jstype"])?;
     // Native admits leading digits but rejects non-ASCII identifier bytes.
     if value.name().is_empty()
         || !value
@@ -382,7 +382,7 @@ fn validate_extension(
         || value.cardinality() == Cardinality::Required
         || value.is_group()
         || value.is_map()
-        || raw.default_value.is_some()
+        || raw.default_value.is_some() && !matches!(value.kind(), Kind::Bool)
         || raw.oneof_index.is_some()
         || raw.proto3_optional()
         || value
@@ -393,6 +393,13 @@ fn validate_extension(
             .is_some_and(|options| options.message_set_wire_format())
     {
         return Err(DefinitionError::Unsupported("extension declarations"));
+    }
+    if raw.default_value.is_some() {
+        // Use the maintained parser's effective value without changing raw spelling.
+        let Value::Bool(default) = value.default_value() else {
+            return Err(DefinitionError::Unsupported("extension declarations"));
+        };
+        declared.insert(0, format!("default = {default}"));
     }
     if raw.options.as_ref().and_then(|options| options.packed) == Some(true) && !value.is_packed() {
         return Err(DefinitionError::Unsupported("packed extension shape"));

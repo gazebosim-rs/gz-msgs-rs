@@ -95,6 +95,12 @@ for key in ['upstream_commit', 'native_binary_sha256', 'native_source_sha256', '
     assert nested_extensions[key] == definitions[key], key
 assert nested_extensions['reference_script_sha256'] == hashlib.sha256(pathlib.Path('scripts/nested-extension-declarations-reference.py').read_bytes()).hexdigest()
 assert nested_extensions['standard_descriptor_fixture_sha256'] == definitions['inputs']['tests/fixtures/definitions/unsupported.desc']
+extension_boolean_defaults = json.loads(pathlib.Path('tests/fixtures/extension-boolean-defaults.json').read_text())
+for key in ['upstream_commit', 'native_binary_sha256', 'native_source_sha256', 'native_libraries_sha256', 'schema_manifest_sha256', 'peer_source_sha256']:
+    assert extension_boolean_defaults[key] == definitions[key], key
+assert extension_boolean_defaults['reference_script_sha256'] == hashlib.sha256(pathlib.Path('scripts/extension-boolean-defaults-reference.py').read_bytes()).hexdigest()
+assert extension_boolean_defaults['input_builder_sha256'] == hashlib.sha256(pathlib.Path('scripts/nested-extension-declarations-reference.py').read_bytes()).hexdigest()
+assert extension_boolean_defaults['standard_descriptor_fixture_sha256'] == definitions['inputs']['tests/fixtures/definitions/unsupported.desc']
 extension_deprecated = json.loads(pathlib.Path('tests/fixtures/extension-deprecated.json').read_text())
 for key in ['upstream_commit', 'native_binary_sha256', 'native_source_sha256', 'native_libraries_sha256', 'schema_manifest_sha256', 'peer_source_sha256']:
     assert extension_deprecated[key] == definitions[key], key
