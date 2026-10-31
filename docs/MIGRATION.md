@@ -18,8 +18,9 @@ The simulator's complete local staged hook and independent artifact audit pass:
 783 headless, 435 renderer and 217 tooling tests, real C++ Zenoh peers, software
 Vulkan workers and strict owned production coverage. Exact hosted run
 [41248418524](https://github.com/gazebosim-rs/gz-sim-rs/actions/runs/41248418524)
-is pending. This schema transition remains held until that consumer qualification
-is independently verified. These bounded checks do not complete simulator parity,
+passed. Independent verification of all downloaded sources, inputs, native/GPU
+receipts and both strict coverage profiles is complete. This qualifies the bounded
+consumer migration and permits the schema-only release; it does not complete simulator parity,
 all sensor families or release acceptance.
 
 Retain actual clock/time/control, pose/IMU/rate/force and camera domain contracts:

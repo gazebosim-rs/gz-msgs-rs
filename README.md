@@ -31,12 +31,13 @@ Install the staged hook with `git config core.hooksPath .githooks`. It checks th
 intended Git index in a temporary source export, including alternate indexes.
 See [validation](docs/VALIDATION.md) and [consumer migration](docs/MIGRATION.md).
 
-The schema-only transition is prepared; publication awaits final consumer
-qualification. Simulator commit `5870373f0d8280601b051f2cbb1bb0aba264f70f` now
+This schema-only release follows the independently verified consumer migration.
+Simulator commit `5870373f0d8280601b051f2cbb1bb0aba264f70f` now
 uses the identical canonical schemas and consumer-generated bindings. Its normal
-local staged gate and independent audit pass; exact hosted run
+local staged gate and independent audit pass. Exact hosted run
 [41248418524](https://github.com/gazebosim-rs/gz-sim-rs/actions/runs/41248418524)
-is pending. See [consumer migration](docs/MIGRATION.md) for the precise scope.
+passed, including independent downloaded source, input and coverage verification.
+See [consumer migration](docs/MIGRATION.md) for the precise scope.
 Runtime history and evidence remain available at commit
 `a39a9455d731923bd316745c2dda21071408dcbf` and its ancestors. The owner retired
 that runtime release responsibility under D29; this does not mean the historical
