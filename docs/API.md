@@ -432,8 +432,10 @@ preserve explicit true/false before supported options, while omitted defaults
 stay omitted. [Canonical INT32 extension defaults](EXTENSION_INT32_DEFAULTS.md)
 use the maintained effective value only when its decimal spelling matches the
 raw text. [Canonical INT64 extension defaults](EXTENSION_INT64_DEFAULTS.md)
-use the same source-aware decimal boundary with maintained I64 values. Other
-extension-default families keep their existing error.
+use the same source-aware decimal boundary with maintained I64 values. The
+[remaining canonical integer kinds](EXTENSION_INTEGER_DEFAULTS.md) use maintained
+I32/I64/U32/U64 values and the same exact raw-text guard. Noninteger extension
+defaults keep their existing error.
 Standard reflection entry points retain their separate raw integer-default
 interpretation; the registry's bounded opt-in integer policy is described
 below. Formatting preserves parsed values and does not expand wire support.

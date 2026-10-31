@@ -125,7 +125,12 @@ fn prepared_exact_and_new_source_aware_int64_defaults_match_native_and_keep_guar
         );
         let factory = MessageFactory::with_paths(path.as_os_str());
         assert!(factory.take_initial_errors().is_empty(), "{id}");
-        if row["policy"] == "supported" {
+        if row["policy"] == "supported"
+            || matches!(
+                id,
+                "other-kind-4" | "other-kind-13" | "other-kind-17" | "other-kind-18"
+            )
+        {
             supported += 1;
             assert!(native.status.success(), "{id}");
             let expected = native_definition(row);
@@ -155,6 +160,26 @@ fn prepared_exact_and_new_source_aware_int64_defaults_match_native_and_keep_guar
                             raw,
                             "{id}"
                         ),
+                        Kind::Uint64 => {
+                            assert_eq!(id, "other-kind-4");
+                            assert_eq!(raw, "3");
+                            assert_eq!(extension.default_value().as_u64(), Some(3));
+                        }
+                        Kind::Uint32 => {
+                            assert_eq!(id, "other-kind-13");
+                            assert_eq!(raw, "3");
+                            assert_eq!(extension.default_value().as_u32(), Some(3));
+                        }
+                        Kind::Sint32 => {
+                            assert_eq!(id, "other-kind-17");
+                            assert_eq!(raw, "3");
+                            assert_eq!(extension.default_value().as_i32(), Some(3));
+                        }
+                        Kind::Sint64 => {
+                            assert_eq!(id, "other-kind-18");
+                            assert_eq!(raw, "3");
+                            assert_eq!(extension.default_value().as_i64(), Some(3));
+                        }
                         Kind::Bool => assert_eq!(
                             extension.default_value().as_bool(),
                             Some(raw == "true"),
@@ -225,7 +250,7 @@ fn prepared_exact_and_new_source_aware_int64_defaults_match_native_and_keep_guar
         }
         assert_eq!(descriptor.parent_file().encode_to_vec(), before, "{id}");
     }
-    assert_eq!((supported, unsupported, rejected), (79, 24, 26));
+    assert_eq!((supported, unsupported, rejected), (83, 20, 26));
     // Preserve the extension loader's narrower radix/range/whitespace policy.
     assert_eq!(native_accepted_loader_rejections, 19);
 }

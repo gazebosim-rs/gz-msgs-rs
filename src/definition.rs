@@ -383,7 +383,20 @@ fn validate_extension(
         || value.is_group()
         || value.is_map()
         || raw.default_value.is_some()
-            && !matches!(value.kind(), Kind::Bool | Kind::Int32 | Kind::Int64)
+            && !matches!(
+                value.kind(),
+                Kind::Bool
+                    | Kind::Int32
+                    | Kind::Int64
+                    | Kind::Uint32
+                    | Kind::Uint64
+                    | Kind::Sint32
+                    | Kind::Sint64
+                    | Kind::Fixed32
+                    | Kind::Fixed64
+                    | Kind::Sfixed32
+                    | Kind::Sfixed64
+            )
         || raw.oneof_index.is_some()
         || raw.proto3_optional()
         || value
@@ -400,8 +413,14 @@ fn validate_extension(
         // Canonical decimal spelling agrees without changing either loader.
         let default = match (value.kind(), value.default_value()) {
             (Kind::Bool, Value::Bool(default)) => default.to_string(),
-            (Kind::Int32, Value::I32(default)) => default.to_string(),
-            (Kind::Int64, Value::I64(default)) => default.to_string(),
+            (Kind::Int32 | Kind::Sint32 | Kind::Sfixed32, Value::I32(default)) => {
+                default.to_string()
+            }
+            (Kind::Int64 | Kind::Sint64 | Kind::Sfixed64, Value::I64(default)) => {
+                default.to_string()
+            }
+            (Kind::Uint32 | Kind::Fixed32, Value::U32(default)) => default.to_string(),
+            (Kind::Uint64 | Kind::Fixed64, Value::U64(default)) => default.to_string(),
             _ => return Err(DefinitionError::Unsupported("extension declarations")),
         };
         if !matches!(value.kind(), Kind::Bool)

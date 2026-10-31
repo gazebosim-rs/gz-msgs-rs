@@ -30,7 +30,8 @@ explicit true/false before supported options on the source-aware paths; other
 extension-default families retain their existing Unsupported boundary, except
 [canonical INT32 defaults](EXTENSION_INT32_DEFAULTS.md) on the same source-aware
 paths. [Canonical INT64 extension defaults](EXTENSION_INT64_DEFAULTS.md) use
-the same decimal-only boundary. Noncanonical integer text keeps existing
+the same decimal-only boundary, as do the [remaining canonical integer
+kinds](EXTENSION_INTEGER_DEFAULTS.md). Noncanonical integer text keeps existing
 loader/formatter boundaries.
 [Standard message options](MESSAGE_OPTIONS.md) retain code-generation metadata
 without changing Rust descriptor APIs or MessageSet wire support.
