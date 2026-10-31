@@ -8,8 +8,8 @@ standard pinned protobuf tooling. There is no Rust package, generated binding,
 codec, reflection library, conversion API or standalone Messages command here.
 
 The schemas are unchanged from Gazebo Messages commit
-`89c0c3d1474f545cb889335daf930bfdab6ab852`. Their original OSRF notices remain in
-every file. See [LICENSE](LICENSE), [NOTICE](NOTICE) and the
+`89c0c3d1474f545cb889335daf930bfdab6ab852`. Their original upstream copyright and
+license notices remain unchanged in every file. See [LICENSE](LICENSE), [NOTICE](NOTICE) and the
 [schema manifest](schemas/manifest.json).
 
 Use `schemas` as the compiler include root. Compile the files listed in the

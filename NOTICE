@@ -2,8 +2,10 @@ Gazebo message schemas
 Copyright (C) 2026 Open Source Robotics Foundation
 
 Repository-owned validation tooling and documentation are licensed under
-Apache-2.0. Canonical Gazebo Messages schemas retain their original OSRF
-copyright notices and Apache-2.0 licenses unchanged in each source file.
+Apache-2.0. Canonical Gazebo Messages schemas retain their original upstream
+copyright and Apache-2.0 license notices unchanged in each source file, including
+Open Source Robotics Foundation, CogniPilot Foundation and Rudis Laboratories
+attribution.
 Upstream source: https://github.com/gazebosim/gz-msgs
 Commit: 89c0c3d1474f545cb889335daf930bfdab6ab852
 
